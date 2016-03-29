@@ -1,56 +1,63 @@
 package engine;
 
-import java.awt.Image;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ObservableList;
 import util.Coordinate;
+import util.TimeDuration;
 
-public class Sprite implements ISpriteEditable, ISpritePlayable {
-    
-    private IMovementModule myMover;
-    private Collection<IModule> myModules;
+
+public class Sprite implements ISprite {
+
+    private SimpleObjectProperty<IMovementModule> myMover;
+    private SimpleObjectProperty<IGraphicModule> myGraphic;
+    private ObservableList<IModule> myModules;
     private IStatusModule myStatusModule;
 
     @Override
     public void update () {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
-    public Coordinate getLocation () {
+    public SimpleObjectProperty<IGraphicModule> getDrawer () {
+        return myGraphic;
+    }
+
+    @Override
+    public SimpleObjectProperty<Coordinate> getLocation () {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public void setLocation (Coordinate location) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public Image getImage () {
+    public SimpleObjectProperty<IMovementStrategy> getMovementStrategyProperty () {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public void setImage (Image image) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public IMovementStrategy getMovementStrategy () {
+    public ObservableList<IModule> getModulesProperty () {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public void setMovementStrategy (IMovementStrategy movementStrategy) {
+    public ObservableList<IAttribute> getAttributesProperty () {
         // TODO Auto-generated method stub
-        
+        return null;
     }
-    
-    
+
+    @Override
+    public ObservableList<IResource> getResourcesProperty () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void update (TimeDuration duration) {
+        // TODO Auto-generated method stub
+
+    }
 
 }

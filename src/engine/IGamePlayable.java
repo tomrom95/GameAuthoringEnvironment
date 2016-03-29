@@ -1,9 +1,7 @@
 package engine;
 
-public interface IGamePlayable {
+public interface IGamePlayable extends Updateable {
 
     IGameInformation getGameInformation ();
-
-    void update ();
 
 }

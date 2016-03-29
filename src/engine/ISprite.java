@@ -1,5 +1,22 @@
 package engine;
 
-public interface ISprite extends ISpriteEditable, ISpritePlayable {
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ObservableList;
+import util.Coordinate;
+
+
+public interface ISprite extends Drawable, Updateable {
+
+    SimpleObjectProperty<Coordinate> getLocation ();
+
+    SimpleObjectProperty<IMovementStrategy> getMovementStrategyProperty ();
+
+    ObservableList<IModule> getModulesProperty ();
+
+    ObservableList<IAttribute> getAttributesProperty ();
+
+    ObservableList<IResource> getResourcesProperty ();
+
+    void update ();
 
 }

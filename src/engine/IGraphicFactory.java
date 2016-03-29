@@ -2,6 +2,8 @@ package engine;
 
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import util.Block;
+import util.TextGraphic;
 
 public interface IGraphicFactory {
 
