@@ -6,7 +6,7 @@ public interface SpriteEditorController {
     /**
      * Has an observable list of sprites
      */
-    void setSprites(EditableSpriteListHolder sprites);
+    void setSprites(SpriteListHolder sprites);
     
     void showAndEdit();
     
