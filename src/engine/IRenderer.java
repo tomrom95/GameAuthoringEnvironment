@@ -1,7 +1,9 @@
 package engine;
 
+import java.util.List;
+
 public interface IRenderer {
 
-    //TODO
-    void render (IGame game);
+    //List used to have sense of order if needed
+    void render (List<? extends Drawable> drawables);
 }

@@ -14,12 +14,6 @@ public class Sprite implements ISprite {
     private IStatusModule myStatusModule;
 
     @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public SimpleObjectProperty<IGraphicModule> getDrawer () {
         return myGraphic;
     }
@@ -58,6 +52,12 @@ public class Sprite implements ISprite {
     public void update (TimeDuration duration) {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void applyEffect (IEffect effect) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

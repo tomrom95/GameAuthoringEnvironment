@@ -1,5 +1,8 @@
 package engine;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ObservableList;
+
 public interface ILevel extends Updateable {
 
     void addSprite (ISprite sprite);
@@ -10,4 +13,5 @@ public interface ILevel extends Updateable {
 
     void addGlobalResource (IResource resource);
 
+    ObservableList<SimpleObjectProperty<ISprite>> getSprites ();
 }

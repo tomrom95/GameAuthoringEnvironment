@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 import util.Coordinate;
 
 
-public interface ISprite extends Drawable, Updateable {
+public interface ISprite extends Drawable, Updateable, Effectable {
 
     SimpleObjectProperty<Coordinate> getLocation ();
 
@@ -16,7 +16,5 @@ public interface ISprite extends Drawable, Updateable {
     ObservableList<IAttribute> getAttributesProperty ();
 
     ObservableList<IResource> getResourcesProperty ();
-
-    void update ();
 
 }
