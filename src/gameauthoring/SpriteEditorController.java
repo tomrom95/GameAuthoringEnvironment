@@ -2,7 +2,7 @@ package gameauthoring;
 
 import java.util.List;
 
-public interface SpriteTabController {
+public interface SpriteEditorController {
     /**
      * Has an observable list of sprites
      */
