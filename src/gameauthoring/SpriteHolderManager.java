@@ -30,5 +30,13 @@ public interface SpriteHolderManager {
      * @return The SpriteHolder at the given index
      */
     SpriteHolder getSpriteHolderAtIndex (int index);
+    
+    /**
+     * Get the list of SpriteEditorControllers that this manager is in charge of
+     * 
+     * @return The list of SpriteEditorControllerObjects
+     */
+    List<SpriteEditorController> getSpriteEditorControllers();
+    
 
 }

@@ -6,6 +6,8 @@ public interface SpriteEditorController {
     /**
      * Has an observable list of sprites
      */
+    void setSprites(SpriteHolder sprites);
+    
     void showAndEdit();
     
     void createBlankSprite(); // Empty sprite
