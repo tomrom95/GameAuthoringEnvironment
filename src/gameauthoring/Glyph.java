@@ -4,7 +4,7 @@ import javafx.scene.Node;
 
 public interface Glyph {
     
-    public Node draw();
+    Node draw();
     
-    public void update();
+    void update();
 }
