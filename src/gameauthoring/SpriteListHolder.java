@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
  * @author Jeremy Schreck
  *
  */
-public interface EditableSpriteListHolder {
+public interface SpriteListHolder {
 
     /**
      * Get the sprites stored in this holder
