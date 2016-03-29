@@ -1,6 +1,6 @@
 package gameauthoring;
 
-public interface ListView extends Glyph{
+public interface SpriteListView extends Glyph{
     /**
      * Has SpriteEditorController
      * Has buttons that map cells to SpriteTabController.showAndEdit()
