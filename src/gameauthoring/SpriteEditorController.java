@@ -6,11 +6,13 @@ public interface SpriteEditorController {
     /**
      * Has an observable list of sprites
      */
-    public void showAndEdit();
+    void setSprites(EditableSpriteListHolder sprites);
     
-    public void createBlankSprite(); // Empty sprite
+    void showAndEdit();
     
-    public void deleteSprite();
+    void createBlankSprite(); // Empty sprite
+    
+    void deleteSprite();
     
     void editSprite(List<SubFormView> subForms); 
 }
