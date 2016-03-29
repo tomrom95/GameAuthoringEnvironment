@@ -12,13 +12,13 @@ import java.util.List;
  * @author Jeremy Schreck
  *
  */
-public interface SpriteHolderFactory {
+public interface EditableSpriteListHolderFactory {
 
     /**
      * Creates a list of sprite holder objects based on a resource file
      * 
      * @return A list of sprite holders
      */
-    List<SpriteHolder> createSpriteHolders ();
+    List<EditableSpriteListHolder> createSpriteHolders ();
 
 }
