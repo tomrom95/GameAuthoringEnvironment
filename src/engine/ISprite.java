@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 import util.Coordinate;
 
 
-public interface ISprite extends Drawable, Updateable, Effectable {
+public interface ISprite extends Drawable, Updateable, Affectable {
 
     SimpleObjectProperty<Coordinate> getLocation ();
 

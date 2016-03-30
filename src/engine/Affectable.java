@@ -1,6 +1,6 @@
 package engine;
 
-public interface Effectable {
+public interface Affectable {
 
     void applyEffect (IEffect effect);
 }

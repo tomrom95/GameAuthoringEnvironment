@@ -1,6 +1,6 @@
 package engine;
 
-public interface IConditionManager {
+public interface IConditionManager extends Updateable{
 
     void addCondition (ICondition condition);
     

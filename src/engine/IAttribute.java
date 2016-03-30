@@ -1,11 +1,12 @@
 package engine;
 
-public interface IAttribute {
+import javafx.beans.property.DoubleProperty;
+
+
+public interface IAttribute extends Affectable {
     AttributeType getType ();
 
-    void addEffect (IEffect myEffect);
-
-    double getValue ();
+    DoubleProperty getValueProperty ();
 
     void setValue (double valueToSet);
 
