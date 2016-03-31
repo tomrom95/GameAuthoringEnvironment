@@ -3,7 +3,6 @@ package usecases;
 import engine.IAttribute;
 import engine.IEffect;
 import engine.IGlobalEffect;
-import engine.IMovementModule;
 import engine.IMovementStrategy;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;

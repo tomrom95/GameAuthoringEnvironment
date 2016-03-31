@@ -62,7 +62,7 @@ public class TimedFiringUseCase {
         @Override
         public void update (TimeDuration duration) {
 
-            myDuration.increase(duration.getMillis());
+            myDuration.increase(duration);
             if (myDuration.getMillis() >= myFireRate.getValueProperty().get()) {
                 fire();
                 myDuration.setToZero();
@@ -92,7 +92,8 @@ public class TimedFiringUseCase {
 
         @Override
         public void applyEffect (IGlobalEffect effect) {
-            // TODO Auto-generated method stub
+            //Should not be influenced by global clicks or mouse input
+            //Do nothing
             
         }
 

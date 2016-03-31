@@ -12,8 +12,8 @@ public class TimeDuration {
         return myDuration;
     }
     
-    public void increase (double millis) {
-        myDuration += millis;
+    public void increase (TimeDuration other) {
+        myDuration += other.getMillis();
     }
     
     public void setToZero ()  { 
