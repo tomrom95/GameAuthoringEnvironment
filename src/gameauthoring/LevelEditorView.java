@@ -5,6 +5,7 @@ package gameauthoring;
  * Will include a side panel for adding sprites and another
  * one for defining waves. 
  * @author Tommy
+ * @author Jin An
  *
  */
 public interface LevelEditorView extends Glyph {
@@ -13,4 +14,5 @@ public interface LevelEditorView extends Glyph {
     // Has ListviewDisplayer
     // Has WaveView / WinLossView
     // Has LevelEditorController
+    
 }
