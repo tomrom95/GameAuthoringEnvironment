@@ -9,8 +9,8 @@ import javafx.scene.input.MouseEvent;
  */
 public interface IScreenEventFactory {
 
-    IEffect interpreterEvent(MouseEvent event); 
+    IEffect interpretEvent(MouseEvent event); 
 
-    IEffect interpreterEvent (KeyEvent event); 
+    IEffect interpretEvent (KeyEvent event); 
     
 }

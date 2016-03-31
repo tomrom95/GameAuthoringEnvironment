@@ -1,5 +1,5 @@
 package engine;
 
-public interface IMovementModule {
+public interface IMovementModule extends IModule {
 
 }

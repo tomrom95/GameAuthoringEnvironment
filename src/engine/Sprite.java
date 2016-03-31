@@ -60,4 +60,10 @@ public class Sprite implements ISprite {
         
     }
 
+    @Override
+    public void applyEffect (IGlobalEffect effect) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }
