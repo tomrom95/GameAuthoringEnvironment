@@ -1,5 +1,16 @@
 package engine;
 
+/**
+ * This class defines the type of an attribute, and defines the functionality that allows checking
+ * to see if attributes are of the same type
+ * 
+ * @author Joe Timko
+ * @author Dhrumil Patel
+ * @author David Maydew
+ * @author Ryan St.Pierre
+ * @author Jonathan Im
+ *
+ */
 public class AttributeType {
 
     private String myType;
@@ -9,6 +20,9 @@ public class AttributeType {
         return getType();
     }
 
+    /**
+     * Overrides the equality check for this object using the label for this type
+     */
     @Override
     public boolean equals (Object obj) {
         if (obj == this) {

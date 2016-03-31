@@ -6,6 +6,17 @@ import util.Coordinate;
 import util.TimeDuration;
 
 
+/**
+ * This class represents a generic sprite, and allows for specific functionality via adding
+ * different modules. Each sprite has a sense of location/movement, graphics, and status.
+ * 
+ * @author Joe Timko
+ * @author Dhrumil Patel
+ * @author David Maydew
+ * @author Ryan St.Pierre
+ * @author Jonathan Im
+ *
+ */
 public class Sprite implements ISprite {
 
     private SimpleObjectProperty<IMovementModule> myMover;
@@ -15,7 +26,26 @@ public class Sprite implements ISprite {
 
     @Override
     public SimpleObjectProperty<IGraphicModule> getDrawer () {
-        return myGraphic;
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void update (TimeDuration duration) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void applyEffect (IEffect effect) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public SimpleObjectProperty<SpriteType> getType () {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
@@ -25,7 +55,7 @@ public class Sprite implements ISprite {
     }
 
     @Override
-    public SimpleObjectProperty<IMovementStrategy> getMovementStrategyProperty () {
+    public SimpleObjectProperty<IMovementModule> getMovementStrategyProperty () {
         // TODO Auto-generated method stub
         return null;
     }
@@ -46,18 +76,6 @@ public class Sprite implements ISprite {
     public ObservableList<IResource> getResourcesProperty () {
         // TODO Auto-generated method stub
         return null;
-    }
-
-    @Override
-    public void update (TimeDuration duration) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void applyEffect (IEffect effect) {
-        // TODO Auto-generated method stub
-        
     }
 
 }
