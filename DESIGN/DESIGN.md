@@ -10,7 +10,21 @@ The primary architecture of our design lies in the idea that games can be constr
 
 ###Overview
 
+#####Authoring Sub-Team
 
+
+
+![Authoring UML](Authoring.jpg "Authoring UML")
+
+####Engine Sub-Team
+
+
+
+#####Game Model UML
+![GameModel UML](GameModel.jpg "GameModel UML")
+
+#####Game Player UML
+![GamePlayer UML](GamePLayer.jpg "GamePlayer UML")
 
 ###User Interface
 
@@ -32,40 +46,6 @@ The game player is actually quite a simple interface for the user and will follo
 * For an IGame, the key components that it contains are a generic representation of its information (name, author, date created), and an ILevelManager. It will also contain an IConditionManager and an IGameState that handle any game-wide interactions and resources. From there, the ILevelManager contains components that manage the specific levels. A Level handles the sprites that it contains, as well as any level-specific interactions and attributes. Sprites will contain a generic group of modules that define that sprite's behavior, but the modules will take care of all of the actual implementation and action. Every Sprite has to have a module that handles its movement (even if the concrete implementation of that is just stationary, as well as one that handles its status (dead or alive, but not necessarily tied with health). Conditions will contain direct references to the objects they need to rely on, and a condition check to see whether or not they should pass an effect to those references. Effects will have internal concrete logic that specifies which attributes they act on and how to do so. Additionally, user interaction events such as clicks or key input will be passed down through the same framework and conditions/sprites will be responsible for responding to those events as necessary. 
 
  
-
-
-###Design Considerations 
-
-
-
-####Engine Sub-team Meetings
-
-Over the course of our meetings, the strongest ambiguities and concerns we attempted to address were collision detection, how to classify events or effects in regards to our sprites, and numerous nuances about how the engine would handle clicks and user-input, changing levels, and access management. 
-
-During our initial conversations, we discussed how we wanted to handle the notion of attributes. At first, we discussed maintaining private instance variables that serve as generic attributes such as health and movement. Focusing on generalizing the notion of attributes, we introduced the notion of an external condition manager. These conditions essentially maintain the information involving the sprites or group of sprites, the effect, and any global attributes that may be altered. 
-
-In regards to a few design patterns, we discussed trade-offs between the strategy design pattern and a combination of the composition and visitor pattern to handle how we implement the notion of behavior. We decided that we wanted unilateral dependencies that moved downwards from the game to each individual sprite. We believe this prevented any untraceable altercations that occur if we pass references up the hierarchy and wait for it to trickle back down. We decided to run with the composition design pattern with sprites to attach various modules, such as weapons or movement. 
-
-Additionally, we are strictly adhering to interfaces for our sprites, modules, conditions, and components of the engine. During one of our meetings, we heavily discussed our hierarchy beginning with the player and moving down at a high-level into the game engine and the components below the engine component. We discussed tradeoffs on how we want to pass condition and collision information between our managers, the level, and the sprites and its attributes. We decided that we would create a condition and collision manager that holds a list of all of the users' effects and events for that level. By doing so we would be able to prevent passing information up to the level and back down to the sprites. Our solution holds the affected sprites attributes, a list of effects, a method to check if the condition or collision is met, and where else the condition needs to be applied.
-
-We also held significant discussion about the notion of a level and how we would differentiate what a level and a splash screen entails. We defined splash screens as interstitial screens with texts and bottoms that allow the user to segue between levels. The problems that elucidated from this discussion created issues with our model. We didn't feel comfortable having a renderer in our game engine that rendered Sprites onto the screen and text and buttons. We didn't want to abstract the renderer to account for the differences because we would introduce complications between our level manager and how the authoring environment would create the notion of a splash screen. 
-
-
-####Authoring Sub-team Meetings
-
-On the authorship side, there are still a few issues that need to be addressed before we finish our basic implementation. First, we need to make very clear our hierarchy of model-view-controllers for the game authorship. Making multiple model-view-controllers will be quite tricky and we had a very lengthy discussion about whether the view has the controller or the controller has the view or neither. We decided that each view should have a controller that works independently of any other controller. We felt this best separated JavaFX code and normal code. Also, since the model is just the one created by the engine, we will just use that one instead of making our own.
-
-The other issue that was discussed at length was how to deal with dynamic forms to create objects, and especially interactions. Because interactions vary widely and some take values and some don't, this created a complex 'tree' quite similar to SLogo. We discussed whether supporting these dynamic forms was worth the trouble (it would make the controller quite complex too) or if we should give one standard form for everything. We decided that we should not be limiting the user's choice, so we will have to come up with a way to reveal different sub forms and parse the information accordingly. So, we will try to use sub forms like in the other creation tabs, but these just aren't always there.
-
-Lastly, we have not discussed validation among the authoring environment yet. Meaning, there is no current plan for how we will monitor forms being filled out correctly or if the game is ready to be saved to an XML. Though this will probably just mean adding in functionality to our form controllers and overall controller, it's still a discussion that may need to be had.
-
-####Overall Considerations
-
-Going forward, the discussions we are having entail input from both sub-groups. One of the topics we are discussing is the notion of paths for sprites and our interpretation of spawners. Additionally, we are going to have to deliberate on how we the authoring environment constructs the XML files and how the engine team uses reflection and other techniques to interpret the property files for the specified game. 
-
-On the authorship side, there were some design conversations that occurred because we didn't yet have created classes yet in the engine. I think once we have a more concrete idea of some of the objects that are being created (like mover or firing modules), these discussions will end. Understanding how to store form and sub-form data is a problem we are tackling on the authoring environment. We need to abstract an appropriate way to interpret sprite information, wave or level information, and data about winning conditions.
-
-
 ###Example Games
 
 1. Bloons
@@ -107,6 +87,31 @@ These are other examples of classical/successful tower defense games.  We will b
 * [Plants vs Zombies](http://www.miniclip.com/games/plants-vs-zombies/en/)
 
 
+###Design Considerations 
+
+####Engine Sub-team Meetings
+
+Over the course of our meetings, the strongest ambiguities and concerns we attempted to address were collision detection, how to classify events or effects in regards to our sprites, and numerous nuances about how the engine would handle clicks and user-input, changing levels, and access management. 
+
+During our initial conversations, we discussed how we wanted to handle the notion of attributes. At first, we discussed maintaining private instance variables that serve as generic attributes such as health and movement. Focusing on generalizing the notion of attributes, we introduced the notion of an external condition manager. These conditions essentially maintain the information involving the sprites or group of sprites, the effect, and any global attributes that may be altered. 
+
+In regards to a few design patterns, we discussed trade-offs between the strategy design pattern and a combination of the composition and visitor pattern to handle how we implement the notion of behavior. We decided that we wanted unilateral dependencies that moved downwards from the game to each individual sprite. We believe this prevented any untraceable altercations that occur if we pass references up the hierarchy and wait for it to trickle back down. We decided to run with the composition design pattern with sprites to attach various modules, such as weapons or movement. 
+
+Additionally, we are strictly adhering to interfaces for our sprites, modules, conditions, and components of the engine. During one of our meetings, we heavily discussed our hierarchy beginning with the player and moving down at a high-level into the game engine and the components below the engine component. We discussed tradeoffs on how we want to pass condition and collision information between our managers, the level, and the sprites and its attributes. We decided that we would create a condition and collision manager that holds a list of all of the users' effects and events for that level. By doing so we would be able to prevent passing information up to the level and back down to the sprites. Our solution holds the affected sprites attributes, a list of effects, a method to check if the condition or collision is met, and where else the condition needs to be applied.
+
+We also held significant discussion about the notion of a level and how we would differentiate what a level and a splash screen entails. We defined splash screens as interstitial screens with texts and bottoms that allow the user to segue between levels. The problems that elucidated from this discussion created issues with our model. We didn't feel comfortable having a renderer in our game engine that rendered Sprites onto the screen and text and buttons. We didn't want to abstract the renderer to account for the differences because we would introduce complications between our level manager and how the authoring environment would create the notion of a splash screen. 
 
 
-###Design Considerations
+####Authoring Sub-team Meetings
+
+On the authorship side, there are still a few issues that need to be addressed before we finish our basic implementation. First, we need to make very clear our hierarchy of model-view-controllers for the game authorship. Making multiple model-view-controllers will be quite tricky and we had a very lengthy discussion about whether the view has the controller or the controller has the view or neither. We decided that each view should have a controller that works independently of any other controller. We felt this best separated JavaFX code and normal code. Also, since the model is just the one created by the engine, we will just use that one instead of making our own.
+
+The other issue that was discussed at length was how to deal with dynamic forms to create objects, and especially interactions. Because interactions vary widely and some take values and some don't, this created a complex 'tree' quite similar to SLogo. We discussed whether supporting these dynamic forms was worth the trouble (it would make the controller quite complex too) or if we should give one standard form for everything. We decided that we should not be limiting the user's choice, so we will have to come up with a way to reveal different sub forms and parse the information accordingly. So, we will try to use sub forms like in the other creation tabs, but these just aren't always there.
+
+Lastly, we have not discussed validation among the authoring environment yet. Meaning, there is no current plan for how we will monitor forms being filled out correctly or if the game is ready to be saved to an XML. Though this will probably just mean adding in functionality to our form controllers and overall controller, it's still a discussion that may need to be had.
+
+####Overall Considerations
+
+Going forward, the discussions we are having entail input from both sub-groups. One of the topics we are discussing is the notion of paths for sprites and our interpretation of spawners. Additionally, we are going to have to deliberate on how we the authoring environment constructs the XML files and how the engine team uses reflection and other techniques to interpret the property files for the specified game. 
+
+On the authorship side, there were some design conversations that occurred because we didn't yet have created classes yet in the engine. I think once we have a more concrete idea of some of the objects that are being created (like mover or firing modules), these discussions will end. Understanding how to store form and sub-form data is a problem we are tackling on the authoring environment. We need to abstract an appropriate way to interpret sprite information, wave or level information, and data about winning conditions.
