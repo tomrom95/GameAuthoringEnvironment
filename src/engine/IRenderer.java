@@ -1,9 +1,16 @@
 package engine;
 
-import java.util.List;
-
+/**
+ * This interface represents an object that can handle the rendering a game and all of its
+ * appropriate visuals
+ *
+ * @author Joe Timko
+ * @author Dhrumil Patel
+ * @author David Maydew
+ * @author Ryan St.Pierre
+ * @author Jonathan Im
+ *
+ */
 public interface IRenderer {
 
-    //List used to have sense of order if needed
-    void render (List<? extends Drawable> drawables);
 }

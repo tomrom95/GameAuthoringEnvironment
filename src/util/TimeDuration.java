@@ -11,4 +11,12 @@ public class TimeDuration {
     public double getMillis () {
         return myDuration;
     }
+    
+    public void increase (TimeDuration other) {
+        myDuration += other.getMillis();
+    }
+    
+    public void setToZero ()  { 
+        myDuration = 0;
+    }
 }
