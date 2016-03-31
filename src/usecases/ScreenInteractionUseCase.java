@@ -10,20 +10,16 @@ import javafx.scene.layout.Pane;
 
 /**
  * Demonstrates how clicks and key inputs are watched, converted into effects that our game engine
- * can interpret, and
- * pass throughout the engine as necessary
+ * can interpret, and pass throughout the engine as necessary
  * 
  * It is the job of this screen interaction class to watch and change these clicks and key inputs it
- * IGlobalEffects. Then this class
- * simple queues these effects. Every time the game loop in a given game occurs there is a step that
- * dequeues these effects and
+ * IGlobalEffects. Then this class simple queues these effects. Every time the game loop in a given
+ * game occurs there is a step that dequeues these effects and
  * passes them to the current level to process. The effects are queued and retrieved all at once for
- * two reasons. First, it
- * gives us great flexibility when these effects are processed. Second, it avoids concurrency
- * errors. It is quite possible that
- * if these effects propagated immediately they could influence the game mid-update in an
- * undesirable way (i.e cause an effect
- * that will cause a Sprite to add to a list that is currently being looped over).
+ * two reasons. First, it gives us great flexibility when these effects are processed. Second, it
+ * avoids concurrency errors. It is quite possible that if these effects propagated immediately they
+ * could influence the game mid-update in an undesirable way (i.e cause an effect that will cause a 
+ * Sprite to add to a list that is currently being looped over).
  * 
  * The Interaction interpreter is given a pane on which it watches. This is the main pane where the
  * game screen is rendered.
