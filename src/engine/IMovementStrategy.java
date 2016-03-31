@@ -3,7 +3,7 @@ package engine;
 import util.Coordinate;
 import util.TimeDuration;
 
-public interface IMovementStrategy extends Affectable {
+public interface IMovementStrategy extends Affectable, Updateable {
 
     /**
      * Makes the decision on where the Sprite should move next
