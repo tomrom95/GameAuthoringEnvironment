@@ -11,8 +11,13 @@ import engine.IEffect;
 import engine.IGlobalEffect;
 import engine.IModule;
 
+
 /**
- * Demonstrates creating a weapon that fires on a specific time interval
+ * Demonstrates creating a weapon that fires on a specific time interval. To do such a class
+ * implementing the IModule interface is created to give the desired functionality. Here the
+ * firing module can be thought of as a Spawner that spawns the desired projectile on the time
+ * interval specfied.
+ * 
  * @author RyanStPierre
  *
  */
@@ -32,12 +37,19 @@ public class TimedFiringUseCase {
          */
 
         double fireRate = 10;
+
+        /**
+         * This projectile can be any type of ISprite. The collisions, damage that a weapon does is
+         * tied directly to what its projectile does.
+         */
         ISprite projectile = EasyMock.createMock(ISprite.class);
         IModule firingModule = new TimedFiringModuleUC(fireRate, projectile);
         sprite.getModulesProperty().add(firingModule);
-        
+
         /**
-         * Now it will
+         * Now it will. The firing modules is created with the specified parameters and then applied
+         * to the Sprite to give the desired functionality. The Sprite updates is modules upon
+         * updating itself.
          */
 
     }
@@ -54,11 +66,19 @@ public class TimedFiringUseCase {
             myAdder = EasyMock.createMock(IAdder.class);
         }
 
+        /**
+         * The only attribute this module contains is the fire rate. The fire rate
+         * passes itself to the effect. The effect will only do something if it stores he
+         * AttributeType myFireRate.
+         */
         @Override
         public void applyEffect (IEffect effect) {
-            // do nothing
+            effect.applyToAttribute(myFireRate);
         }
 
+        /**
+         * If the desired time has passed the weapon fires
+         */
         @Override
         public void update (TimeDuration duration) {
 
@@ -70,6 +90,15 @@ public class TimedFiringUseCase {
 
         }
 
+        /**
+         * This methods fires the weapon. To do this the ISpriteCloner is used to create a new
+         * instance
+         * of the projectile that the weapon is supposed to fire. The projectile is simply a Sprite.
+         * In addition the firing needs a way to add to the given level. To do this it is given
+         * access to the LevelManager in the form of the IAdder interface, which just exposes the
+         * add
+         * method.
+         */
         private void fire () {
 
             ISpriteCloner cloner = EasyMock.createMock(ISpriteCloner.class);
@@ -92,9 +121,9 @@ public class TimedFiringUseCase {
 
         @Override
         public void applyEffect (IGlobalEffect effect) {
-            //Should not be influenced by global clicks or mouse input
-            //Do nothing
-            
+            // Should not be influenced by global clicks or mouse input
+            // Do nothing
+
         }
 
     }
