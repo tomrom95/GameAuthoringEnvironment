@@ -12,7 +12,7 @@ public interface AuthoringView {
 
     GameTabViewer getGameTabViewer();
     CharTabViewer getCharTabViewer();
-    LevelTabViewer getLevelTabViewer();
+    SceneTabViewer getLevelTabViewer();
     
     /**
      * Creates initial tabs/views that make up the main view

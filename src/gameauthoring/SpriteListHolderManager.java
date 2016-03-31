@@ -47,7 +47,6 @@ public interface SpriteListHolderManager {
      * 
      * @return The list of SpriteEditorControllerObjects
      */
-    List<ISpriteEditorController> getSpriteEditorControllers();
-    
+  
 
 }

@@ -20,7 +20,11 @@ The game player is actually quite a simple interface for the user and will follo
 ![Player View](https://github.com/duke-compsci308-spring2016/voogasalad_GitDepends/tree/master/DESIGN/player.jpg "Player View")
 
 ###Design Details
+* To launch a game, you first start out by launching a GameLibrary. The GameLibrary displays a collection of games that are queried from a specified repository (by looking for xml files). When a user chooses a game to play, it will launch a game engine and pass it the specified IGame object, which it creates by using xScript to deserialize the game from xml. The game engine contains an internal timeline loop that tells the game to update, and then asks for its renderable objects. It passes those objects to a renderer, which uses a factory design to convert them into JavaFX Nodes. The GamePlayer will allow for high level game functionality such as pausing and resuming, and eventually (not necessarily first sprint) allowing a user to launch an editor and edit the game in progress. 
 
+* For an IGame, the key components that it contains are a generic representation of its information (name, author, date created), and an ILevelManager. It will also contain an IConditionManager and an IGameState that handle any game-wide interactions and resources. From there, the ILevelManager contains components that manage the specific levels. A Level handles the sprites that it contains, as well as any level-specific interactions and attributes. Sprites will contain a generic group of modules that define that sprite's behavior, but the modules will take care of all of the actual implementation and action. Every Sprite has to have a module that handles its movement (even if the concrete implementation of that is just stationary, as well as one that handles its status (dead or alive, but not necessarily tied with health). Conditions will contain direct references to the objects they need to rely on, and a condition check to see whether or not they should pass an effect to those references. Effects will have internal concrete logic that specifies which attributes they act on and how to do so. Additionally, user interaction events such as clicks or key input will be passed down through the same framework and conditions/sprites will be responsible for responding to those events as necessary. 
+
+ 
 
 
 ###Design Considerations 
