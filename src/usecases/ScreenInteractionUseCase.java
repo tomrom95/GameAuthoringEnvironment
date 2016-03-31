@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.easymock.EasyMock;
 import engine.IScreenEventFactory;
-import engine.IGlobalEffect;
+import engine.IInteractionEvent;
 import javafx.scene.layout.Pane;
 
 
@@ -34,10 +34,10 @@ public class ScreenInteractionUseCase {
     /* Factory used to convert JavaFX ActionEvents to their corresponding IGlobalEffect */
     private IScreenEventFactory factoryMock;
     /* All IGlobalEffects stored after last dequeue */
-    private List<IGlobalEffect> myQueue;
+    private List<IInteractionEvent> myQueue;
 
     public ScreenInteractionUseCase (Pane pane) {
-        myQueue = new ArrayList<IGlobalEffect>();
+        myQueue = new ArrayList<IInteractionEvent>();
         factoryMock = EasyMock.createMock(IScreenEventFactory.class);
         setUpWatchers(pane);
     }
@@ -59,9 +59,9 @@ public class ScreenInteractionUseCase {
      * @return list of queued effects
      */
 
-    public List<IGlobalEffect> deQueueEffects () {
+    public List<IInteractionEvent> deQueueEffects () {
 
-        List<IGlobalEffect> copy = new ArrayList<IGlobalEffect>(myQueue);
+        List<IInteractionEvent> copy = new ArrayList<IInteractionEvent>(myQueue);
         myQueue.clear();
         return copy;
     }

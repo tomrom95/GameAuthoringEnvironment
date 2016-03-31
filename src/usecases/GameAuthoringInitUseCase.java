@@ -1,4 +1,4 @@
-package examplecode;
+package usecases;
 
 import gameauthoring.AuthoringView;
 import gameauthoring.CharTabViewer;

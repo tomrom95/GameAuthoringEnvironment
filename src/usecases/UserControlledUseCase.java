@@ -2,7 +2,7 @@ package usecases;
 
 import engine.IAttribute;
 import engine.IEffect;
-import engine.IGlobalEffect;
+import engine.IInteractionEvent;
 import engine.IMovementModule;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -105,7 +105,7 @@ public class UserControlledUseCase {
          * accordingly 
          */
         @Override
-        public void applyEffect (IGlobalEffect effect) {
+        public void registerEvent (IInteractionEvent effect) {
             if (effect.isKeyInput()) {
                 if (effect.getKey().isEqual(myRightKey)) {
                     setValue(myXVel, myXVel.getValueProperty().get() +

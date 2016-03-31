@@ -13,4 +13,13 @@ package engine;
  */
 public class SpriteType {
 
+    private String myName;
+
+    public SpriteType (String name) {
+        myName = name;
+    }
+
+    public String getName () {
+        return myName;
+    }
 }

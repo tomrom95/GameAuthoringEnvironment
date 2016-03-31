@@ -20,5 +20,9 @@ public interface Affectable {
      */
     void applyEffect (IEffect effect);
     
-    void applyEffect (IGlobalEffect effect);
+    /**
+     * Respond appropriately to a global interaction event
+     * @param event
+     */
+    void registerEvent (IInteractionEvent event);
 }

@@ -1,9 +1,10 @@
-package examplecode;
+package usecases;
 
 import java.util.ArrayList;
 import java.util.List;
 import org.easymock.EasyMock;
 import engine.ISprite;
+import engine.SpriteType;
 import gameauthoring.FormData;
 import gameauthoring.ISpriteEditorController;
 import gameauthoring.SpriteListHolder;
@@ -11,14 +12,15 @@ import gameauthoring.SubFormController;
 import gameauthoring.SubFormView;
 import javafx.collections.ObservableList;
 
+
 /**
  * This class demonstrates what happens when a user clicks "Create Sprite"
  * 
- * The view will notify the SpriteEditorController that the user clicked "Create 
- * Sprite". The SpriteEditorController will create a new ISprite, and all 
+ * The view will notify the SpriteEditorController that the user clicked "Create
+ * Sprite". The SpriteEditorController will create a new ISprite, and all
  * all of the subform controllers to edit the sprite based on the data in the subform
  * An example subform controller (profile subform) is implemented. The SpriteEditorController
- * will then add the sprite to its SpriteListHolder, which will automatically 
+ * will then add the sprite to its SpriteListHolder, which will automatically
  * change all views that use the observable list of sprites contained in the SpriteListHolder.
  * 
  * 
@@ -53,7 +55,8 @@ public class AddSpriteUseCase {
             FormData nameData = profileFormData.get(1);
 
             sprite.getProfileProperty().get().getImageFilepathProperty().set(imageData.getData());
-            sprite.getProfileProperty().get().getNameProperty().set(nameData.getData());
+            sprite.getProfileProperty().get().getSpriteType()
+                    .set(new SpriteType(nameData.getData()));
 
         }
     }

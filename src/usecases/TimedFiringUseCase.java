@@ -8,7 +8,7 @@ import util.TimeDuration;
 import engine.IAdder;
 import engine.IAttribute;
 import engine.IEffect;
-import engine.IGlobalEffect;
+import engine.IInteractionEvent;
 import engine.IModule;
 
 
@@ -16,7 +16,7 @@ import engine.IModule;
  * Demonstrates creating a weapon that fires on a specific time interval. To do such a class
  * implementing the IModule interface is created to give the desired functionality. Here the
  * firing module can be thought of as a Spawner that spawns the desired projectile on the time
- * interval specfied.
+ * interval specified.
  * 
  * @author RyanStPierre
  *
@@ -120,7 +120,7 @@ public class TimedFiringUseCase {
         }
 
         @Override
-        public void applyEffect (IGlobalEffect effect) {
+        public void registerEvent (IInteractionEvent effect) {
             // Should not be influenced by global clicks or mouse input
             // Do nothing
 

@@ -1,7 +1,6 @@
 package engine;
 
-import gameauthoring.IProfile;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import util.Coordinate;
 
@@ -19,13 +18,11 @@ import util.Coordinate;
  */
 public interface ISprite extends Drawable, Updateable, Affectable {
 
-    SimpleObjectProperty<IProfile> getProfileProperty ();
-    
-    SimpleObjectProperty<SpriteType> getType ();
+    ObjectProperty<IProfile> getProfileProperty ();
 
-    SimpleObjectProperty<Coordinate> getLocation ();
+    ObjectProperty<Coordinate> getLocation ();
 
-    SimpleObjectProperty<IMovementModule> getMovementStrategyProperty ();
+    ObjectProperty<IMovementModule> getMovementStrategyProperty ();
 
     ObservableList<IModule> getModulesProperty ();
 

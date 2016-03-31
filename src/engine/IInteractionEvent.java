@@ -2,7 +2,7 @@ package engine;
 
 import util.Key;
 
-public interface IGlobalEffect {
+public interface IInteractionEvent {
 
     boolean isKeyInput (); 
     
