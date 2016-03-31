@@ -2,7 +2,7 @@ package gameauthoring;
 
 import java.util.List;
 
-public interface SpriteEditorController {
+public interface ISpriteEditorController {
     /**
      * Has an observable list of sprites
      */
@@ -10,9 +10,11 @@ public interface SpriteEditorController {
     
     void showAndEdit();
     
-    void createBlankSprite(); // Empty sprite
+    //void createBlankSprite(); // Empty sprite
     
     void deleteSprite();
     
     void editSprite(List<SubFormView> subForms); 
+    
+    void createSprite();
 }
