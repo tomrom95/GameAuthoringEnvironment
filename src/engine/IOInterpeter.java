@@ -16,6 +16,6 @@ import java.util.List;
 
 public interface IOInterpeter {
 
-    List<IEffect> getQueuedEffects ();
+    List<IEffect> deQueueEffects ();
 
 }

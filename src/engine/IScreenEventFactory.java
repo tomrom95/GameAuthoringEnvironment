@@ -20,12 +20,13 @@ public interface IScreenEventFactory {
      * @param event to convert
      * @return an effect that represents the given mouse event
      */
-    IEffect interpreterEvent (MouseEvent event);
+    IGlobalEffect interpretEvent (MouseEvent event);
 
     /**
      * @param event to convert
      * @return an effect that represents the given key event
      */
-    IEffect interpreterEvent (KeyEvent event);
+    IGlobalEffect interpretEvent (KeyEvent event);
+
 
 }

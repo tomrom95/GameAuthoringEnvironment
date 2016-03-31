@@ -19,4 +19,6 @@ public interface Affectable {
      * @param effect the effect to apply
      */
     void applyEffect (IEffect effect);
+    
+    void applyEffect (IGlobalEffect effect);
 }

@@ -1,5 +1,6 @@
 package engine;
 
+import gameauthoring.IProfile;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import util.Coordinate;
@@ -74,6 +75,18 @@ public class Sprite implements ISprite {
 
     @Override
     public ObservableList<IResource> getResourcesProperty () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void applyEffect (IGlobalEffect effect) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public SimpleObjectProperty<IProfile> getProfileProperty () {
         // TODO Auto-generated method stub
         return null;
     }

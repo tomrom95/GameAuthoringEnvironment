@@ -26,4 +26,10 @@ public class Coordinate {
         yCoordinate = yCor;
     }
 
+    public void setLocation (double x, double y) {
+        setX(x);
+        setY(y);
+
+    }
+
 }

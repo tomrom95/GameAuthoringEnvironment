@@ -1,5 +1,6 @@
 package engine;
 
+import gameauthoring.IProfile;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import util.Coordinate;
@@ -13,10 +14,13 @@ import util.Coordinate;
  * @author David Maydew
  * @author Ryan St.Pierre
  * @author Jonathan Im
+ * @author Jeremy Schreck
  *
  */
 public interface ISprite extends Drawable, Updateable, Affectable {
 
+    SimpleObjectProperty<IProfile> getProfileProperty ();
+    
     SimpleObjectProperty<SpriteType> getType ();
 
     SimpleObjectProperty<Coordinate> getLocation ();

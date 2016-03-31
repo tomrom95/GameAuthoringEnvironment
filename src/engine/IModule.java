@@ -11,5 +11,6 @@ package engine;
  * @author Jonathan Im
  *
  */
-public interface IModule extends Affectable {
+public interface IModule extends Updateable, Affectable {
+
 }

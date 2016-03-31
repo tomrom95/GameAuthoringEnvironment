@@ -1,7 +1,9 @@
 package gameauthoring;
 
+import engine.ISprite;
+
 public interface SubFormController {
     
-    void editSpriteWithData(EditableSprite s);
+    void editSpriteWithData(ISprite sprite);
     
 }

@@ -1,5 +1,6 @@
 package gameauthoring;
 
+import engine.ISprite;
 import javafx.collections.ObservableList;
 
 
@@ -16,5 +17,12 @@ public interface SpriteListHolder {
      * 
      * @return An observable list of editable sprites
      */
-    ObservableList<EditableSprite> getSprites ();
+    ObservableList<ISprite> getSprites ();
+    
+    /**
+     * Add a sprite to the list
+     * 
+     * @param sprite The sprite to add
+     */
+    void addSprite(ISprite sprite);
 }
