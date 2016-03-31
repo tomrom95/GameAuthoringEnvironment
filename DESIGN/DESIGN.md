@@ -32,7 +32,6 @@ We also held significant discussion about the notion of a level and how we would
 ####Authoring Sub-team Meetings
 
 
-
 ####Overall Considerations
 
 Going forward, the discussions we are having entail input from both sub-groups. One of the topics we are discussing is the notion of paths for sprites and our interpretation of spawners. Addtionally, we are going to have to deliberate on how we the authoring environment constructs the XML files and how the engine team uses reflection and other techniques to interpret the property files for the specified game. 
