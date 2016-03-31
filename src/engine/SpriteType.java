@@ -1,8 +1,8 @@
 package engine;
 
 /**
- * This interface represents an object that can handle the rendering a game and all of its
- * appropriate visuals
+ * This class represents the type of a sprite, with the appropriate implementation to allow for
+ * equality tests
  *
  * @author Joe Timko
  * @author Dhrumil Patel
@@ -11,6 +11,6 @@ package engine;
  * @author Jonathan Im
  *
  */
-public interface IRenderer {
+public class SpriteType {
 
 }

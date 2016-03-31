@@ -88,6 +88,11 @@ public class UserControlledUseCase {
             attribute.setValue(value);
 
         }
+
+        @Override
+        public Coordinate getPosition () {
+            return myLocation.get();
+        }
     }
 
 }
