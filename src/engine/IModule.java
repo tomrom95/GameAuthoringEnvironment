@@ -1,10 +1,15 @@
 package engine;
 
-import java.util.List;
-
-public interface IModule {
-
-    void applyEffect(IEffect effect);
-    
-    List<IEffect> getResultingEffects();
+/**
+ * This interface represents a generic module, which defines some compartmentalized functionality
+ * for a sprite
+ *
+ * @author Joe Timko
+ * @author Dhrumil Patel
+ * @author David Maydew
+ * @author Ryan St.Pierre
+ * @author Jonathan Im
+ *
+ */
+public interface IModule extends Affectable {
 }
