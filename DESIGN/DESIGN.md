@@ -58,9 +58,10 @@ Lastly, we have not discussed validation among the authoring environment yet. Me
 
 ####Overall Considerations
 
-Going forward, the discussions we are having entail input from both sub-groups. One of the topics we are discussing is the notion of paths for sprites and our interpretation of spawners. Addtionally, we are going to have to deliberate on how we the authoring environment constructs the XML files and how the engine team uses reflection and other techniques to interpret the property files for the specified game. 
+Going forward, the discussions we are having entail input from both sub-groups. One of the topics we are discussing is the notion of paths for sprites and our interpretation of spawners.  Tying into this, the idea of upgradeable Sprites is extremely difficult to have encompassed within our design.  Another idea that has been discussed is how exactly to apply I/O events to specific Sprites, as the game view in theory should not be able to affect changes on the model.  What information needs to be passed in order for I/O events to be handled properly. Additionally, we are going to have to deliberate on how we the authoring environment constructs the XML files and how the engine team uses reflection and other techniques to interpret the property files for the specified game. 
 
 On the authorship side, there were some design conversations that occured because we didn't yet have created classes yet in the engine. I think once we have a more concrete idea of some of the objects that are being created (like mover or firing modules), these discussions with end. 
+
 
 ###Example Games
 
