@@ -3,31 +3,50 @@ package usecases;
 import engine.IAttribute;
 import engine.IEffect;
 import engine.IGlobalEffect;
-import engine.IMovementStrategy;
+import engine.IMovementModule;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import util.Coordinate;
 import util.TimeDuration;
 
+
 /**
- * Demonstrates a user controlled movement module 
+ * This class demonstrates implementing a user controlled movement module
+ * Each Sprite contains a module responsible for its movement. Depending
+ * on the logic spelled out in the module the Sprite can move in a variety
+ * of ways. I am demonstrating the user controlled case, where the user
+ * can define the keys that are clicked to move the Sprite.
+ * Possible others include: Path following, AI, simple algorithms
+ * 
  * @author RyanStPierre
  */
 
-
 public class UserControlledUseCase {
 
-    IMovementStrategy strategy;
+    IMovementModule strategy;
 
     public UserControlledUseCase () {
+
+        /**
+         * Right now I am leaving these as Strings. We need to think of a more
+         * robust way of doing this. These Strings correspond to the controls
+         * the user defines to control movement
+         */
         String right = "d";
         String left = "s";
-        strategy = new UserMovement(left, right);
+
+        /**
+         * How much the velocity reacts to button input
+         */
+        double buttonSensitivity = 1;
+        strategy = new UserMovement(left, right, buttonSensitivity);
     }
 
-    public class UserMovement implements IMovementStrategy {
+    public class UserMovement implements IMovementModule {
 
-        public static final double SPEED_CHANGE = 1;
+        /**
+         * Attributes that store the velocity
+         */
         IAttribute myXVel;
         IAttribute myYVel;
         ObjectProperty<Coordinate> myLocation;
@@ -40,26 +59,35 @@ public class UserControlledUseCase {
         private String myRightKey;
         private String myLeftKey;
 
-        public UserMovement (String left, String right) {
+        /**
+         * Attributes that define how sensitive the movement is to the user input
+         */
+        private IAttribute myButtonSensitivity;
+
+        public UserMovement (String left, String right, double buttonSensitivity) {
             myLocation = new SimpleObjectProperty<>();
             myRightKey = right;
             myLeftKey = left;
+            // TODO initialize button sensitivity
         }
 
+        /**
+         * Possibly applies effects to all Attributes in class. Effect does internal
+         * check to ensure it should be applying its logic to this give AttributeType
+         */
         @Override
         public void applyEffect (IEffect effect) {
 
-            if (effect.getAttributeType().equals(myXVel.getType())) {
-                effect.applyToAttribute(myXVel);
-            }
-            else if (effect.getAttributeType().equals(myYVel.getType())) {
-                effect.applyToAttribute(myYVel);
-            }
+            effect.applyToAttribute(myButtonSensitivity);
+            effect.applyToAttribute(myXVel);
+            effect.applyToAttribute(myYVel);
         }
 
+        /**
+         * Updates the position of the ISprite based on velocity
+         */
         @Override
         public void update (TimeDuration duration) {
-            // TODO Auto-generated method stub
             double xChange = myXVel.getValueProperty().get() * duration.getMillis();
             double yChange = myYVel.getValueProperty().get() * duration.getMillis();
             applyChange(myXVel, xChange);
@@ -72,14 +100,20 @@ public class UserControlledUseCase {
             attribute.getValueProperty().set(attribute.getValueProperty().get() + change);
         }
 
+        /**
+         * Takes in global effects (key presses) and updates its velocity Attributes 
+         * accordingly 
+         */
         @Override
         public void applyEffect (IGlobalEffect effect) {
             if (effect.isKeyInput()) {
                 if (effect.getKey().isEqual(myRightKey)) {
-                    setValue(myXVel, myXVel.getValueProperty().get() + SPEED_CHANGE);
+                    setValue(myXVel, myXVel.getValueProperty().get() +
+                                     myButtonSensitivity.getValueProperty().get());
                 }
                 else if (effect.getKey().isEqual(myLeftKey)) {
-                    setValue(myXVel, myXVel.getValueProperty().get() - SPEED_CHANGE);
+                    setValue(myXVel, myXVel.getValueProperty().get() -
+                                     myButtonSensitivity.getValueProperty().get());
                 }
             }
         }
@@ -89,15 +123,9 @@ public class UserControlledUseCase {
 
         }
 
-        /**
-         * It is the job of the IMovementModule to actually move the Sprite.  This process is aided by the movement strategy
-         * that tells the Movement module where to move the Sprite to. 
-         * In this case the movement strategy directly changes velocity for the Movement Module. A new location is not returned
-         * but the mover moves to the next location reflecting the velocity change 
-         */
         @Override
-        public Coordinate getNextLocation (Coordinate coordinate, TimeDuration timePassed) {
-            return coordinate;
+        public Coordinate getPosition () {
+            return myLocation.get();
         }
 
     }
