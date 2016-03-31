@@ -5,7 +5,7 @@ import javafx.beans.property.DoubleProperty;
 
 /**
  * This interface represents an attribute, or a pairing of a type and a value.
- * 
+ *
  * @author Joe Timko
  * @author Dhrumil Patel
  * @author David Maydew
@@ -26,7 +26,7 @@ public interface IAttribute extends Affectable {
 
     /**
      * change the value of a this Attribute
-     * 
+     *
      * @param valueToSet value to change to
      */
     void setValue (double valueToSet);

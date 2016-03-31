@@ -9,7 +9,7 @@ import util.TimeDuration;
 /**
  * This class represents a generic sprite, and allows for specific functionality via adding
  * different modules. Each sprite has a sense of location/movement, graphics, and status.
- * 
+ *
  * @author Joe Timko
  * @author Dhrumil Patel
  * @author David Maydew

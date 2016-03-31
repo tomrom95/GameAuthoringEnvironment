@@ -3,7 +3,7 @@ package engine;
 /**
  * This interface defines the functionality for a Game, specifically adding editing functionality to
  * an IGamePlayable
- * 
+ *
  * @author Joe Timko
  * @author Dhrumil Patel
  * @author David Maydew

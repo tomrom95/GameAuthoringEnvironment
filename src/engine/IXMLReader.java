@@ -6,7 +6,7 @@ import java.io.File;
 /**
  * This class represents an XML converter that can extract an IGame model from an XML file
  * describing that game
- * 
+ *
  * @author Joe Timko
  * @author Dhrumil Patel
  * @author David Maydew

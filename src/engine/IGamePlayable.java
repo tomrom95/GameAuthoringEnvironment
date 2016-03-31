@@ -1,13 +1,12 @@
 package engine;
 
-import java.util.List;
 import javafx.collections.ObservableList;
 
 
 /**
  * This interface represents a playable game, essentially exposing the necessary functionality to
  * execute a game, but not to edit it.
- * 
+ *
  * @author Joe Timko
  * @author Dhrumil Patel
  * @author David Maydew

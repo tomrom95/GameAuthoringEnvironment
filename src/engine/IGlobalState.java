@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 /**
  * This interface represents a component of a game that manages the global attributes that a game
  * can contain
- * 
+ *
  * @author Joe Timko
  * @author Dhrumil Patel
  * @author David Maydew

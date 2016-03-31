@@ -11,7 +11,7 @@ import util.TextGraphic;
 /**
  * This interface represents a factory that will convert back-end structures into their visual
  * JavaFX representations.
- * 
+ *
  * @author Joe Timko
  * @author Dhrumil Patel
  * @author David Maydew
@@ -28,7 +28,7 @@ public interface IGraphicFactory {
     Node getVisual (Block block);
 
     /**
-     * 
+     *
      * @param image to convert
      * @return Node representing this Image
      */
@@ -42,7 +42,7 @@ public interface IGraphicFactory {
 
     /**
      * @param attributes to be converted
-     * @return VBox containing the visual representation of these attributes. 
+     * @return VBox containing the visual representation of these attributes.
      */
     VBox renderHUD (List<IAttribute> attributes);
 

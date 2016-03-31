@@ -5,7 +5,7 @@ import javafx.scene.Node;
 
 /**
  * This interface represents the component of a sprite that will handle its visual properties
- * 
+ *
  * @author Joe Timko
  * @author Dhrumil Patel
  * @author David Maydew
@@ -14,7 +14,7 @@ import javafx.scene.Node;
  *
  */
 public interface IGraphicModule {
-	
-	Node getVisualRepresentation ();
-	
+
+    Node getVisualRepresentation ();
+
 }

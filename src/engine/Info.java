@@ -6,7 +6,7 @@ import javafx.beans.property.StringProperty;
 
 /**
  * Stores the info of the Game
- * 
+ *
  * @author Joe Timko
  * @author Dhrumil Patel
  * @author David Maydew

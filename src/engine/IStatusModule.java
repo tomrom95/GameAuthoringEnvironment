@@ -2,7 +2,7 @@ package engine;
 
 /**
  * This interface represents a module that handles the status of a sprite
- * 
+ *
  * @author Joe Timko
  * @author Dhrumil Patel
  * @author David Maydew

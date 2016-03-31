@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 
 /**
  * This interface manages a list of sprites, and handles access to them.
- * 
+ *
  * @author Joe Timko
  * @author Dhrumil Patel
  * @author David Maydew

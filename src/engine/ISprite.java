@@ -4,8 +4,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import util.Coordinate;
 
+
 /**
- * This interface represents the 
+ * This interface represents the
+ *
  * @author Joe Timko
  * @author Dhrumil Patel
  * @author David Maydew
@@ -14,7 +16,7 @@ import util.Coordinate;
  *
  */
 public interface ISprite extends Drawable, Updateable, Affectable {
-    
+
     SimpleObjectProperty<SpriteType> getType ();
 
     SimpleObjectProperty<Coordinate> getLocation ();
