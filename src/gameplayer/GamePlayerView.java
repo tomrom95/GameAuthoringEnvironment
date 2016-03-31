@@ -8,5 +8,5 @@ public interface GamePlayerView {
     
     public LevelView getLevelView();
     
-    public TowerPicker getTowerPicker();
+    public SpritePicker getSpritePicker();
 }
