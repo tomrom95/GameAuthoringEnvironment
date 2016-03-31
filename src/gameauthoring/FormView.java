@@ -1,5 +1,6 @@
 package gameauthoring;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 /**
@@ -7,6 +8,7 @@ import java.util.function.Consumer;
  * in the Creation Views. This would be general for
  * creating sprites, attributes, or interactions
  * @author Tommy
+ * @author Jin An
  *
  */
 public interface FormView extends Glyph{
@@ -21,4 +23,5 @@ public interface FormView extends Glyph{
     
     void setDeleteAction(Consumer<?> action);
     
+    List<SubFormView> getSubFormView();
 }
