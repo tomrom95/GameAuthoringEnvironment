@@ -1,5 +1,6 @@
 package gameauthoring;
 
+import java.util.List;
 import javafx.scene.Node;
 
 
@@ -11,10 +12,12 @@ import javafx.scene.Node;
  * @author Jin An
  *
  */
-public class CharTabViewer implements TabViewer {
+public class CharTabViewer implements ITabViewer {
 
-    // Has multiple SpriteEditorViews
-
+    List<ObjectCreationView> getObjectCreationView() {
+        return null;
+    }
+    
     @Override
     public Node draw () {
         // TODO Auto-generated method stub

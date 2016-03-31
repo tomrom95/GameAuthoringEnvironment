@@ -9,7 +9,7 @@ import javafx.scene.Node;
  * @author Jin An
  *
  */
-public class LevelTabViewer implements TabViewer {
+public class SceneTabViewer implements ITabViewer {
 
     // Has multiple LevelEditorViews
 
