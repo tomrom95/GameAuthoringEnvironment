@@ -3,10 +3,16 @@ package gameauthoring;
 import javafx.scene.Node;
 
 
+/**
+ * Level tab view class which allows the user to put together all the sprites in different levels
+ * Handles selection for different level editor views. 
+ * @author Jin An
+ *
+ */
 public class LevelTabViewer implements TabViewer {
 
-    //Has multiple LevelEditorViews
-    
+    // Has multiple LevelEditorViews
+
     @Override
     public Node draw () {
         // TODO Auto-generated method stub
