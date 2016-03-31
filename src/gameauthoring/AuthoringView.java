@@ -5,13 +5,15 @@ package gameauthoring;
  * This will handle the selection between different parts of
  * the authoring environment.
  * @author Tommy
+ * @author Jin An
  *
  */
 public interface AuthoringView {
 
-    // Has CharTabViewer
-    // Has LevelTabViewer
-
+    GameTabViewer getGameTabViewer();
+    CharTabViewer getCharTabViewer();
+    LevelTabViewer getLevelTabViewer();
+    
     /**
      * Creates initial tabs/views that make up the main view
      */

@@ -17,4 +17,9 @@ public interface IGame extends IGamePlayable {
      * @return the ILevelManager for this Game
      */
     ILevelManager getLevelManager ();
+    
+    /**
+     * @return the condition manager for this level
+     */
+    IConditionManager getConditionManager ();
 }

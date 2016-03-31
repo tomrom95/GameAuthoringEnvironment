@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.easymock.EasyMock;
 import engine.IScreenEventFactory;
-import engine.IGlobalEffect;
+import engine.IInteractionEvent;
 import javafx.scene.layout.Pane;
 
 
@@ -18,7 +18,7 @@ import javafx.scene.layout.Pane;
  * passes them to the current level to process. The effects are queued and retrieved all at once for
  * two reasons. First, it gives us great flexibility when these effects are processed. Second, it
  * avoids concurrency errors. It is quite possible that if these effects propagated immediately they
- * could influence the game mid-update in an undesirable way (i.e cause an effect that will cause a 
+ * could influence the game mid-update in an undesirable way (i.e cause an effect that will cause a
  * Sprite to add to a list that is currently being looped over).
  * 
  * The Interaction interpreter is given a pane on which it watches. This is the main pane where the
@@ -34,10 +34,10 @@ public class ScreenInteractionUseCase {
     /* Factory used to convert JavaFX ActionEvents to their corresponding IGlobalEffect */
     private IScreenEventFactory factoryMock;
     /* All IGlobalEffects stored after last dequeue */
-    private List<IGlobalEffect> myQueue;
+    private List<IInteractionEvent> myQueue;
 
     public ScreenInteractionUseCase (Pane pane) {
-        myQueue = new ArrayList<IGlobalEffect>();
+        myQueue = new ArrayList<IInteractionEvent>();
         factoryMock = EasyMock.createMock(IScreenEventFactory.class);
         setUpWatchers(pane);
     }
@@ -59,9 +59,9 @@ public class ScreenInteractionUseCase {
      * @return list of queued effects
      */
 
-    public List<IGlobalEffect> deQueueEffects () {
+    public List<IInteractionEvent> deQueueEffects () {
 
-        List<IGlobalEffect> copy = new ArrayList<IGlobalEffect>(myQueue);
+        List<IInteractionEvent> copy = new ArrayList<IInteractionEvent>(myQueue);
         myQueue.clear();
         return copy;
     }

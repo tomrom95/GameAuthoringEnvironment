@@ -1,6 +1,6 @@
 package engine;
 
-import gameauthoring.IProfile;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import util.Coordinate;
@@ -24,71 +24,57 @@ public class Sprite implements ISprite {
     private SimpleObjectProperty<IGraphicModule> myGraphic;
     private ObservableList<IModule> myModules;
     private IStatusModule myStatusModule;
-
+    
     @Override
     public SimpleObjectProperty<IGraphicModule> getDrawer () {
         // TODO Auto-generated method stub
         return null;
     }
-
     @Override
     public void update (TimeDuration duration) {
         // TODO Auto-generated method stub
-
+        
     }
-
     @Override
     public void applyEffect (IEffect effect) {
         // TODO Auto-generated method stub
-
+        
     }
-
     @Override
-    public SimpleObjectProperty<SpriteType> getType () {
+    public void registerEvent (IInteractionEvent event) {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public ObjectProperty<IProfile> getProfileProperty () {
         // TODO Auto-generated method stub
         return null;
     }
-
     @Override
-    public SimpleObjectProperty<Coordinate> getLocation () {
+    public ObjectProperty<Coordinate> getLocation () {
         // TODO Auto-generated method stub
         return null;
     }
-
     @Override
-    public SimpleObjectProperty<IMovementModule> getMovementStrategyProperty () {
+    public ObjectProperty<IMovementModule> getMovementStrategyProperty () {
         // TODO Auto-generated method stub
         return null;
     }
-
     @Override
     public ObservableList<IModule> getModulesProperty () {
         // TODO Auto-generated method stub
         return null;
     }
-
     @Override
     public ObservableList<IAttribute> getAttributesProperty () {
         // TODO Auto-generated method stub
         return null;
     }
-
     @Override
     public ObservableList<IResource> getResourcesProperty () {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
-    public void applyEffect (IGlobalEffect effect) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public SimpleObjectProperty<IProfile> getProfileProperty () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
+    
 }

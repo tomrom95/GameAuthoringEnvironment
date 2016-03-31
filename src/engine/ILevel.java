@@ -31,11 +31,9 @@ public interface ILevel extends Updateable {
     void addCondition (ICondition condition);
 
     /**
-     * Add a specified global attribute to this level
-     *
-     * @param attribute to be added
+     * @return the condition manager for this level
      */
-    void addGlobalAttribute (IAttribute attribute);
+    IConditionManager getConditionManager ();
 
     /**
      * Add a global resource to this level

@@ -1,6 +1,8 @@
-package gameauthoring;
+package engine;
 
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.StringProperty;
+
 
 /**
  * This interface represents the basic info (profile) of a Sprite
@@ -11,17 +13,16 @@ import javafx.beans.property.SimpleStringProperty;
 public interface IProfile {
 
     /**
-     * Gets the sprite's name property
+     * Gets the sprite's type property
      * 
      * @return A SimpleStringProperty containing the name of the sprite
      */
-    SimpleStringProperty getNameProperty();
-    
+    ObjectProperty<SpriteType> getSpriteType ();
+
     /**
      * Gets the filepath property containing the sprite's image
      * 
-     * @return The image filepath as a SimpleStringProperty
+     * @return The image filepath as a StringProperty
      */
-    SimpleStringProperty getImageFilepathProperty();
-    
+    StringProperty getImageFilepathProperty ();
 }

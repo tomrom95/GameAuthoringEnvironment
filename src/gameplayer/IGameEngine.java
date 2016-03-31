@@ -1,4 +1,4 @@
-package engine;
+package gameplayer;
 
 /**
  * This interface represents a game engine that can be used to run a game. It defines the necessary

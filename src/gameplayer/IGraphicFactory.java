@@ -1,6 +1,7 @@
-package engine;
+package gameplayer;
 
 import java.util.List;
+import engine.IAttribute;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
