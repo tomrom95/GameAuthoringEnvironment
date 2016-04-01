@@ -14,17 +14,17 @@ The primary architecture of our design lies in the idea that games can be constr
 
 
 
-![Authoring UML](Authoring.jpg "Authoring UML")
+![Authoring UML](Authoring.png "Authoring UML")
 
 ####Engine Sub-Team
 
 
 
 #####Game Model UML
-![GameModel UML](GameModel.jpg "GameModel UML")
+![GameModel UML](GameModel.png "GameModel UML")
 
 #####Game Player UML
-![GamePlayer UML](GamePLayer.jpg "GamePlayer UML")
+![GamePlayer UML](GamePlayer.png "GamePlayer UML")
 
 ###User Interface
 
@@ -46,7 +46,7 @@ The game player is actually quite a simple interface for the user and will follo
 * For an IGame, the key components that it contains are a generic representation of its information (name, author, date created), and an ILevelManager. It will also contain an IConditionManager and an IGameState that handle any game-wide interactions and resources. From there, the ILevelManager contains components that manage the specific levels. A Level handles the sprites that it contains, as well as any level-specific interactions and attributes. Sprites will contain a generic group of modules that define that sprite's behavior, but the modules will take care of all of the actual implementation and action. Every Sprite has to have a module that handles its movement (even if the concrete implementation of that is just stationary, as well as one that handles its status (dead or alive, but not necessarily tied with health). Conditions will contain direct references to the objects they need to rely on, and a condition check to see whether or not they should pass an effect to those references. Effects will have internal concrete logic that specifies which attributes they act on and how to do so. Additionally, user interaction events such as clicks or key input will be passed down through the same framework and conditions/sprites will be responsible for responding to those events as necessary. 
 
 * For our game authoring environment, we have divided into three big components - AuthoringView, UIFactory, and SpriteListHolderManager. UIFactory, as its name suggests, creates different user interface components such as buttons. SpriteListHolderManager manages different groups of Sprites such as a list of weapons/defenders/enemies. SpriteListHolderManager uses the factory design pattern to create different sprite list holders. Lastly, AuthoringView is the highest hierarchy object that controls all components of GUI. The key to AuthoringView is the use of Model-View-Controller (MVC) design pattern. View component receives the information from users and also displays the result back to the user. Controller component receives the data from View, processes the data using the model, and render the final output. The relationship between different interfaces are shown in UML design above. One of the major design decisions we have made was to have multiple-level controllers for the SceneTabViewer instead of having a single-level controller. The advantage of having multiple-level controllers is that it divides up the responsibility of each controller, which fits more to the modular programming.   
-
+	
  
 ###Example Games
 
