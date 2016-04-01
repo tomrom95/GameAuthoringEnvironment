@@ -15,6 +15,9 @@ Our three UML diagrams highlight how we intend on dividing the program and how w
 #####Game Model UML
 ![GameModel UML](GameModel.png "GameModel UML")
 
+The Game Model UML displays how interfaces will enable the objects in the model to pass information and act on one another.  The IGame object is the uppermost object containing an IConditionManager that managers the activation of conditions in a level, an ILevelManager that manages the transitions between levels, and an IGeneralInformation which will enable the IGame to store and access general administrative information about the game like its title.  IAdder will handle the addition of ISprites to a level.  ISprites will exist within a level and IConditionManager will manage the interaction of those ISprites and their respective IModules.  IModules define actions and rule specific to a group of ISprites.  ICondition will allow for each interaction between ISprites. IMovementModule is a specific module that all ISprite will have access to that will define and handle ISprite movement on the screen. 
+
+
 #####Game Player UML
 ![GamePlayer UML](GamePlayer.png "GamePlayer UML")
 
