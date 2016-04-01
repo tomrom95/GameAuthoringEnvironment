@@ -16,7 +16,7 @@ Our three UML diagrams highlight how we intend on dividing the program and how w
 ![GameModel UML](GameModel.png "GameModel UML")
 
 #####Game Player UML
-![GamePlayer UML](GamePLayer.png "GamePlayer UML")
+![GamePlayer UML](GamePlayer.png "GamePlayer UML")
 
 The Game player UML serves to highlight the interactions within the game engine. We use interfaces to communicate and interact with our purported hierarchy. We have an IGamePlayer interface that will launch the game. The interface is dependent upon the IGame we pass it. This game interface will interact the IGamePlayable class to retrieve information, drawables, and attributes that our engine will render onto the screen. We also have a IGraphicFactory that will interact with the IRenderer to convert back-end model nodes into its corresponding visuals. The IRenderer will then take the visuals and display them onto the screen. Finally we have the IGameEngine (covered more in-depth in another UML) that plays and pauses the game. 
 
@@ -110,7 +110,7 @@ The other issue that was discussed at length was how to deal with dynamic forms 
 
 Lastly, we have not discussed validation among the authoring environment yet. Meaning, there is no current plan for how we will monitor forms being filled out correctly or if the game is ready to be saved to an XML. Though this will probably just mean adding in functionality to our form controllers and overall controller, it's still a discussion that may need to be had.
 
-####Overall Considerations
+####Future Considerations as a Team
 
 Going forward, the discussions we are having entail input from both sub-groups. One of the topics we are discussing is the notion of paths for sprites and our interpretation of spawners. Additionally, we are going to have to deliberate on how we the authoring environment constructs the XML files and how the engine team uses reflection and other techniques to interpret the property files for the specified game. 
 
