@@ -6,25 +6,23 @@ The primary architecture of our design lies in the idea that games can be constr
 (G)it Depends has chosen to focus it’s efforts on building an environment suited for Tower Defense games.  There are many unique aspects to the Tower Defense genre as a whole that our environment will need to support.  First off, Tower Defense games allow for the user to modify the state of the level by placing towers and actors on the screen to aid in their defense.  Therefore the state of the game’s level needs to be extremely dynamic.  Tower Defense also depends on waves of enemies moving in a random fashion towards an objective, and conversely having the defense actors and towers be “smart” enough to destroy as many of those enemies as they can in an intelligent fashion.  Finally Tower Defense games are grounded in strategy, so there needs to be a great deal of flexibility in how a user can accomplish reaching the winning condition of a level.
 
 
-
-
 ###Overview
 
-#####Authoring Sub-Team
-
-
-
-![Authoring UML](Authoring.png "Authoring UML")
+Our three UML diagrams highlight how we intend on dividing the program and how we expect the individual parts to interact with each other. To create the desired functionality that we delineate in our latter parts of the design document, we focused on splitting our design discussions and layouts into two sub-groups. We created an engine sub-group that focused largely on understanding and conceptualizing the schema for the back-end, the model, and how we would render actors onto the screen and create effects. The authoring sub-group focused on how the user would interact with the GUI in regards to setting up the actors in the game, specifying levels, and create conditions and effects for a responsive and interactive gaming experience. 
 
 ####Engine Sub-Team
-
-
 
 #####Game Model UML
 ![GameModel UML](GameModel.png "GameModel UML")
 
 #####Game Player UML
-![GamePlayer UML](GamePlayer.png "GamePlayer UML")
+![GamePlayer UML](GamePLayer.png "GamePlayer UML")
+
+The Game player UML serves to highlight the interactions within the game engine. We use interfaces to communicate and interact with our purported hierarchy. We have an IGamePlayer interface that will launch the game. The interface is dependent upon the IGame we pass it. This game interface will interact the IGamePlayable class to retrieve information, drawables, and attributes that our engine will render onto the screen. We also have a IGraphicFactory that will interact with the IRenderer to convert back-end model nodes into its corresponding visuals. The IRenderer will then take the visuals and display them onto the screen. Finally we have the IGameEngine (covered more in-depth in another UML) that plays and pauses the game. 
+
+#####Authoring Sub-Team
+![Authoring UML](Authoring.png "Authoring UML")
+
 
 ###User Interface
 
