@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PossibleOptions>
+	<Option DisplayName="User Controlled Movement"
+		FilePath="src/somepath/UserControlledMovementModule.java"></Option>
+</PossibleOptions>

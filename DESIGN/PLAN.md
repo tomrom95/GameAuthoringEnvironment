@@ -8,55 +8,55 @@ In our approach to completing this project, at least at this early stage, we hav
 
 * General Game Attributes Tab
 
-	- Primary: 
-	- Secondary:
+	- Primary: Jin
+	- Secondary: Jeremy
 
 * General Form/Subform Structure
 
-	- Primary: 
-	- Secondary: jrl48
+	- Primary: Tommy
+	- Secondary: Joe L
 
 * Sprite Creation Tab
 
-	- Primary: 
-	- Secondary: jrl48
+	- Primary: Jeremy
+	- Secondary: Joe L
 
 * Level Generation Screen
 
-	- Primary: jrl48
-	- Secondary:
+	- Primary: Joe L
+	- Secondary: Jeremy
 
 * Object Collision/Interaction Tab
 
-	- Primary: 
-	- Secondary:
+	- Primary: Tommy
+	- Secondary: Jeremy
 
 * Communication with Engine
 
-	- Primary: 
-	- Secondary:
+	- Primary: Jeremy
+	- Secondary: Jin
 
 * GamePlay Previewer
 
-	- Primary:
-	- Secondary:
+	- Primary: Jin
+	- Secondary: Tommy
 
 #### Extended
 
 * Wave Definition
 
-	- Primary: 
-	- Secondary:
+	- Primary: Tommy
+	- Secondary: Jeremy
 
 * Upgrade Definition/Construction
 
-	- Primary: jrl48
-	- Secondary:
+	- Primary: Joe L
+	- Secondary: Jin
 
 * StatBoosts/Character specific upgrades
 
-	- Primary:
-	- Secondary:
+	- Primary: Jeremy
+	- Secondary: Tommy
 
 ### Game Player
 
@@ -64,35 +64,35 @@ In our approach to completing this project, at least at this early stage, we hav
 
 * Character Rendering (communication with Engine)
 
-	- Primary: 
-	- Secondary:
+	- Primary: Jeremy
+	- Secondary: Joe L
 
 * Handling user input
 
-	- Primary: 
-	- Secondary:
+	- Primary: Tommy
+	- Secondary: Jin
 
 * Game Library Screen
 
-	- Primary: jrl48
-	- Secondary:
+	- Primary: Joe L
+	- Secondary: Jin
 
 #### Extended
 
 * Dynamic Game Editing
 
-	- Primary: 
-	- Secondary: jrl48
+	- Primary: Tommy
+	- Secondary: Joe L
 
 * Tower Upgrades
 
-	- Primary: 
-	- Secondary:
+	- Primary: Jin
+	- Secondary: Jeremy
 
 * Level Manager Splash Screen
 
-	- Primary: 
-	- Secondary:
+	- Primary: Jeremy
+	- Secondary: Jin
 
 ### Game Data
 
@@ -100,25 +100,25 @@ In our approach to completing this project, at least at this early stage, we hav
 
 * Work on XML file Construction
 
-	- Primary: 
-	- Secondary:
+	- Primary: Ryan
+	- Secondary: Jeremy
 
 * Property file creation
 
-	- Primary: 
-	- Secondary:
+	- Primary: David
+	- Secondary: Joe T
 
 * Resource Management/Organization
 
-	- Primary: 
-	- Secondary:
+	- Primary: Dhrumil
+	- Secondary: Jon
 
 #### Extended
 
 * Saving Specific Items (e.g. single character creation)
 
-	- Primary: 
-	- Secondary:
+	- Primary: Tommy
+	- Secondary: Ryan
 
 ### Game Engine
 
@@ -126,67 +126,67 @@ In our approach to completing this project, at least at this early stage, we hav
 
 * Sprite/Attribute Relationship
 
-	- Primary: 
-	- Secondary:
+	- Primary: Jon
+	- Secondary: Ryan
 
 * Sprite Effect Modules
 
-	- Primary: 
-	- Secondary:
+	- Primary: David
+	- Secondary: Dhrumil
 
 * Global Data Management
 
-	- Primary: 
-	- Secondary:
+	- Primary: Joe T
+	- Secondary: Jon
 
 * Level Management Hierarchy
 
-	- Primary: 
-	- Secondary:
+	- Primary: Ryan
+	- Secondary: David
 
 * Collision Management
 
-	- Primary: 
-	- Secondary:
+	- Primary: Jon
+	- Secondary: Dhrumil
 
 * GameEngine functionality (Timeline loop, etc.)
 
-	- Primary: 
-	- Secondary:
+	- Primary: Dhrumil
+	- Secondary: Joe T
 
 * Handle UserInput during GamePlay
 
-	- Primary: 
-	- Secondary:
+	- Primary: David
+	- Secondary: Jon
 	
 #### Extended
 
 * Wave definition Capability
 
-	- Primary: 
-	- Secondary:
+	- Primary: Ryan
+	- Secondary: Joe T
 
 * Additional Sprite Modifiers 
 
-	- Primary: 
-	- Secondary:
+	- Primary: Jon
+	- Secondary: Dhrumil
 
 * Complex AI Engine
 
-	- Primary: 
-	- Secondary:
+	- Primary: David
+	- Secondary: Jon
 
 ### General Extensions
 
 * Facebook Integration Capability
 
-	- Primary: 
-	- Secondary:
+	- Primary: Tommy
+	- Secondary: David
 
 * Live Game Editing
 
-	- Primary: 
-	- Secondary:
+	- Primary: Jeremy
+	- Secondary: Joe
 
 
 

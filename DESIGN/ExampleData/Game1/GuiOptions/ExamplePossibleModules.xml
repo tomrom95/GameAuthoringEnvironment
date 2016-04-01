@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PossibleOptions>
+	<Option DisplayName="MovementModule"
+		FilePath="/RESOURCES/GItDepends/ExamplePossibleMovementModules.xml"></Option>
+</PossibleOptions>
