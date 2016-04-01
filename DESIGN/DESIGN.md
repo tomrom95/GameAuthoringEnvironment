@@ -10,21 +10,21 @@ The primary architecture of our design lies in the idea that games can be constr
 
 ###Overview
 
-#####Authoring Sub-Team
-
-
-
-![Authoring UML](Authoring.jpg "Authoring UML")
+Our three UML diagrams highlight how we intend on dividing the program and how we expect the individual parts to interact with each other. To create the desired functionality that we delineate in our latter parts of the design document, we focused on splitting our design discussions and layouts into two sub-groups. We created an engine sub-group that focused largely on understanding and conceptualizing the schema for the back-end, the model, and how we would render actors onto the screen and create effects. The authoring sub-group focused on how the user would interact with the GUI in regards to setting up the actors in the game, specifying levels, and create conditions and effects for a responsive and interactive gaming experience. 
 
 ####Engine Sub-Team
 
-
-
 #####Game Model UML
-![GameModel UML](GameModel.jpg "GameModel UML")
+![GameModel UML](GameModel.png "GameModel UML")
 
 #####Game Player UML
-![GamePlayer UML](GamePLayer.jpg "GamePlayer UML")
+![GamePlayer UML](GamePLayer.png "GamePlayer UML")
+
+The Game player UML serves to highlight the interactions within the game engine. We use interfaces to communicate and interact with our purported hierarchy. We have an IGamePlayer interface that will launch the game. The interface is dependent upon the IGame we pass it. This game interface will interact the IGamePlayable class to retrieve information, drawables, and attributes that our engine will render onto the screen. We also have a IGraphicFactory that will interact with the IRenderer to convert back-end model nodes into its corresponding visuals. The IRenderer will then take the visuals and display them onto the screen. Finally we have the IGameEngine (covered more in-depth in another UML) that plays and pauses the game. 
+
+#####Authoring Sub-Team
+![Authoring UML](Authoring.png "Authoring UML")
+
 
 ###User Interface
 
