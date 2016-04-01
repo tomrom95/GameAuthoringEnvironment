@@ -26,6 +26,10 @@ The Game player UML serves to highlight the interactions within the game engine.
 #####Authoring Sub-Team
 ![Authoring UML](Authoring.png "Authoring UML")
 
+The Authoring UML displays the interactions and dependencies required to render a view for the user to utilize, select, and manipulate particular view screens. The AuthoringView interface interacts with the ScreenTabViewer to create tabbed view components for the user to shift to-and-fro between options. The UML also displays the SpriteListHolderManager which works with the SpriteListHolderFactory that creates SpriteHolders. Another component that is segmented separately sprite screens is the LevelView that works with the LevelController to add sprites onto each specified level.
+
+The CharTabViewer also contains an OptionCreationView which holds an interface for the SpriteListView and the CreationController. The CreationController contains an interface for the FormView renders the options and forms available for a user to interact with and set sprites, effects, and other information in the authoring environment. The FormView also interacts with a SubFormView that uses FormData objects and renders information about the form to the user. The authoring components heavily depend on the utilization of controllers and views to move information and display the appropriate sprites, details, forms and views for the game author. 
+
 
 ###User Interface
 
