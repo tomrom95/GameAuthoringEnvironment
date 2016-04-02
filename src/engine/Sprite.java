@@ -1,5 +1,8 @@
 package engine;
 
+import interactionevents.IInteractionEvent;
+import interactionevents.KeyIOEvent;
+import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -44,11 +47,7 @@ public class Sprite implements ISprite {
         // TODO Auto-generated method stub
         
     }
-    @Override
-    public void registerEvent (IInteractionEvent event) {
-        // TODO Auto-generated method stub
-        
-    }
+    
     @Override
     public ObjectProperty<IProfile> getProfileProperty () {
         // TODO Auto-generated method stub
@@ -78,6 +77,18 @@ public class Sprite implements ISprite {
     public ObservableList<IResource> getResourcesProperty () {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public void registerKeyEvent (KeyIOEvent event) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void registerMouseEvent (MouseIOEvent event) {
+        // TODO Auto-generated method stub
+        
     }
 
     

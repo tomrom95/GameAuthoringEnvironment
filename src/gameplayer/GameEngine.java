@@ -1,6 +1,7 @@
 package gameplayer;
 
 import engine.IGamePlayable;
+import engine.IOInterpeter;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -27,6 +28,7 @@ public class GameEngine implements IGameEngine {
         myGame = game;
         myRenderer = new Renderer(game, pane);
         initializeTimeline();
+        IOInterpeter interpreter = new IOInterpeter(pane);
     }
 
     private void initializeTimeline () {

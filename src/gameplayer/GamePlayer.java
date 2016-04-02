@@ -29,11 +29,11 @@ public class GamePlayer {
         myGameEngine = new GameEngine(game, myPane);
     }
 
-    private void play () {
+    public void play () {
         getGameEngine().play();
     }
 
-    private void pause () {
+    public void pause () {
         getGameEngine().pause();
     }
 

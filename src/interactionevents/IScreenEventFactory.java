@@ -1,4 +1,4 @@
-package engine;
+package interactionevents;
 
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -20,13 +20,13 @@ public interface IScreenEventFactory {
      * @param event to convert
      * @return an effect that represents the given mouse event
      */
-    IInteractionEvent interpretEvent (MouseEvent event);
+    MouseIOEvent interpretEvent (MouseEvent event);
 
     /**
      * @param event to convert
      * @return an effect that represents the given key event
      */
-    IInteractionEvent interpretEvent (KeyEvent event);
+    KeyIOEvent interpretEvent (KeyEvent event);
 
 
 }
