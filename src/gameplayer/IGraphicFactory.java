@@ -2,11 +2,12 @@ package gameplayer;
 
 import java.util.List;
 import engine.IAttribute;
+import graphics.Block;
+import graphics.ImageGraphic;
 import graphics.TextGraphic;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
-import util.Block;
 
 
 /**
@@ -33,7 +34,7 @@ public interface IGraphicFactory {
      * @param image to convert
      * @return Node representing this Image
      */
-    Node getVisual (Image image);
+    Node getVisual (ImageGraphic imageGraphic);
 
     /**
      * @param text to be converted

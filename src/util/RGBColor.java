@@ -6,6 +6,7 @@ public class RGBColor {
     private static final double NO_PIGMENT = 0;
 
     public static final RGBColor WHITE = new RGBColor(FULL_PIGMENT, FULL_PIGMENT, FULL_PIGMENT);
+    public static final RGBColor BLACK = new RGBColor(NO_PIGMENT, NO_PIGMENT, NO_PIGMENT);
 
     private double myRed;
     private double myGreen;
@@ -39,7 +40,7 @@ public class RGBColor {
         return myGreen;
     }
 
-    private double getBlue () {
+    public double getBlue () {
         return myBlue;
 
     }

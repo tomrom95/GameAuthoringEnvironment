@@ -30,5 +30,7 @@ public interface IAttribute extends Affectable {
      * @param valueToSet value to change to
      */
     void setValue (double valueToSet);
+    
+    String getTitle ();
 
 }
