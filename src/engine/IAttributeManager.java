@@ -1,7 +1,5 @@
 package engine;
 
-import javafx.collections.ObservableList;
-
 
 /**
  * This interface represents a component of a game that manages the global attributes that a game
@@ -14,11 +12,8 @@ import javafx.collections.ObservableList;
  * @author Jonathan Im
  *
  */
-public interface IGlobalState extends Updateable, Affectable {
+public interface IAttributeManager extends Updateable, Affectable {
 
-    /**
-     * @return the observable list containing the global attributes
-     */
-    ObservableList<IAttribute> getAttributes ();
+
 
 }

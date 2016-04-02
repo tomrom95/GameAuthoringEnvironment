@@ -12,9 +12,10 @@ public class LevelManager implements ILevelManager {
 
     private ObservableList<ObjectProperty<ILevel>> myLevelPropertyList;
     private ObjectProperty<ILevel> myCurrentLevel;
-    // TODO add lists for Game wide attributes
-    // TODO add lists for Game wide conditions ?
-    // TODO add lists for Game wide attributes
+    // TODO add Attribute manager
+    // TODO add Condition manager
+    // since all wrapped in properties, will eventually create lambda loop to call update on all updateable items as 
+    // specified by our Updateable interface
 
     LevelManager () {
         myLevelPropertyList = FXCollections.observableArrayList();
@@ -23,15 +24,14 @@ public class LevelManager implements ILevelManager {
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
         // this may not work once we are using attributes in coords
-        updateSpriteLocation(sprite, coordinate);
-        addSpriteToLevel(myCurrentLevel.get(), sprite);
+        myCurrentLevel.get().add(sprite, coordinate);
     }
 
     @Override
     public void update (TimeDuration duration) {
         // TODO extend this call to include all functionality as required
         checkAndUpdateCurrentLevel();
-        updateSprites(myCurrentLevel.get(), duration);
+        myCurrentLevel.get().update(duration);
     }
 
     @Override
@@ -44,19 +44,7 @@ public class LevelManager implements ILevelManager {
         return myLevelPropertyList;
     }
 
-    private void updateSpriteLocation (ISprite sprite, Coordinate coordinate) {
-        sprite.getLocation().get().setLocation(coordinate.getX(), coordinate.getY());
-    }
 
-    private void updateSprites (ILevel level, TimeDuration duration) {
-        for (ObjectProperty<ISprite> s : level.getSprites()) {
-            s.get().update(duration);
-        }
-    }
-
-    private void addSpriteToLevel (ILevel level, ISprite sprite) {
-        level.getSprites().add(new SimpleObjectProperty<>(sprite));
-    }
 
     private void checkAndUpdateCurrentLevel () {
         // TODO create logic for figuring out what level is

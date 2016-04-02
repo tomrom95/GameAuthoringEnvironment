@@ -14,14 +14,9 @@ import javafx.collections.ObservableList;
  * @author Jonathan Im
  *
  */
-public interface ILevel extends Updateable {
+public interface ILevel extends Updateable, IAdder {
 
-    /**
-     * Add a given sprite to this level
-     *
-     * @param sprite to be added
-     */
-    void addSprite (ISprite sprite);
+
 
     /**
      * Add a condition to this level

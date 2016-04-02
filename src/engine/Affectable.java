@@ -1,5 +1,8 @@
 package engine;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
+
 /**
  * This interface imposes the ability to respond to an incoming effect and handle it as necessary.
  * The implementing class may or may not change a result of an applied effect.
@@ -25,4 +28,12 @@ public interface Affectable {
      * @param event
      */
     void registerEvent (IInteractionEvent event);
+    
+    
+    /**
+     * Any object that is affectable must have attributes that can be affected.
+     * We are thus combining these two notions in this one interface.
+     * @return
+     */
+    ObservableList<ObjectProperty<IAttribute>> getAttributes();
 }
