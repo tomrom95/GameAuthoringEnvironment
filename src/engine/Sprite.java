@@ -20,15 +20,19 @@ import util.TimeDuration;
  */
 public class Sprite implements ISprite {
 
-    private SimpleObjectProperty<IMovementModule> myMover;
-    private SimpleObjectProperty<IGraphicModule> myGraphic;
+    private ObjectProperty<IMovementModule> myMover;
+    private ObjectProperty<IGraphicModule> myGraphic;
     private ObservableList<IModule> myModules;
     private IStatusModule myStatusModule;
     
+    public Sprite () { 
+        //Initialized for testing
+        myGraphic = new SimpleObjectProperty<>();
+    }
+    
     @Override
-    public SimpleObjectProperty<IGraphicModule> getDrawer () {
-        // TODO Auto-generated method stub
-        return null;
+    public ObjectProperty<IGraphicModule> getDrawer () {
+        return myGraphic;
     }
     @Override
     public void update (TimeDuration duration) {
