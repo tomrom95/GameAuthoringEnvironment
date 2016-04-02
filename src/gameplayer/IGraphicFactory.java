@@ -2,11 +2,11 @@ package gameplayer;
 
 import java.util.List;
 import engine.IAttribute;
+import graphics.TextGraphic;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import util.Block;
-import util.TextGraphic;
 
 
 /**
