@@ -12,9 +12,11 @@ public class LevelManager implements ILevelManager {
 
     private ObservableList<ObjectProperty<ILevel>> myLevelPropertyList;
     private ObjectProperty<ILevel> myCurrentLevel;
-    // TODO add Attribute manager
-    // TODO add Condition manager
-    // since all wrapped in properties, will eventually create lambda loop to call update on all updateable items as 
+    private ObjectProperty<IConditionManager> myGlobalGameConditions;
+    private ObjectProperty<IAttributeManager> myGlobalAttributeManager;
+
+    // since all wrapped in properties, will eventually create lambda loop to call update on all
+    // updateable items as
     // specified by our Updateable interface
 
     LevelManager () {
@@ -23,14 +25,13 @@ public class LevelManager implements ILevelManager {
 
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
-        // this may not work once we are using attributes in coords
         myCurrentLevel.get().add(sprite, coordinate);
     }
 
     @Override
     public void update (TimeDuration duration) {
         // TODO extend this call to include all functionality as required
-        checkAndUpdateCurrentLevel();
+        checkAndSetCurrentLevel();
         myCurrentLevel.get().update(duration);
     }
 
@@ -44,9 +45,9 @@ public class LevelManager implements ILevelManager {
         return myLevelPropertyList;
     }
 
-
-
-    private void checkAndUpdateCurrentLevel () {
-        // TODO create logic for figuring out what level is
+    private void checkAndSetCurrentLevel () {
+        if (myCurrentLevel.get().shouldSwitchLevel()) {
+            myCurrentLevel.set(myCurrentLevel.get().getNextLevel());
+        }
     }
 }

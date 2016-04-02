@@ -1,6 +1,6 @@
 package engine;
 
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
 
@@ -18,17 +18,11 @@ public interface ILevel extends Updateable, IAdder {
 
 
 
-    /**
-     * Add a condition to this level
-     *
-     * @param condition to be added
-     */
-    void addCondition (ICondition condition);
 
     /**
      * @return the condition manager for this level
      */
-    IConditionManager getConditionManager ();
+    ObservableList<ObjectProperty<ICondition>> getConditionsPropertyList ();
 
     /**
      * Add a global resource to this level
@@ -40,5 +34,18 @@ public interface ILevel extends Updateable, IAdder {
     /**
      * @return an observable list of the sprites in this level
      */
-    ObservableList<SimpleObjectProperty<ISprite>> getSprites ();
+    ObservableList<ObjectProperty<ISprite>> getSprites ();
+    
+    /**
+     * This method call will control transition between levels, to stay on the current 
+     * level
+     * @return
+     */
+    ILevel getNextLevel();
+    
+    /**
+     * Will return whether or not level should be switched out for next ones
+     * @return
+     */
+    boolean shouldSwitchLevel();
 }
