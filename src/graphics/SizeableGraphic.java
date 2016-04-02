@@ -1,21 +1,18 @@
-package util;
+package graphics;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
-
-public class Block {
-
-    // TODO finish
+abstract public class SizeableGraphic implements IGraphic{
 
     private DoubleProperty myWidth;
     private DoubleProperty myHeight;
-
-    public Block (double width, double height) {
+    
+    public SizeableGraphic (double width, double height) { 
         myWidth = new SimpleDoubleProperty(width);
         myHeight = new SimpleDoubleProperty(height);
     }
-
+    
     public DoubleProperty getWidthProperty () {
         return myWidth;
     }
@@ -23,5 +20,5 @@ public class Block {
     public DoubleProperty getHeightProperty () {
         return myHeight;
     }
-
+    
 }

@@ -1,5 +1,8 @@
 package engine;
 
+import interactionevents.IInteractionEvent;
+import interactionevents.KeyIOEvent;
+import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -20,15 +23,19 @@ import util.TimeDuration;
  */
 public class Sprite implements ISprite {
 
-    private SimpleObjectProperty<IMovementModule> myMover;
-    private SimpleObjectProperty<IGraphicModule> myGraphic;
+    private ObjectProperty<IMovementModule> myMover;
+    private ObjectProperty<IGraphicModule> myGraphic;
     private ObservableList<IModule> myModules;
     private IStatusModule myStatusModule;
     
+    public Sprite () { 
+        //Initialized for testing
+        myGraphic = new SimpleObjectProperty<>();
+    }
+    
     @Override
-    public SimpleObjectProperty<IGraphicModule> getDrawer () {
-        // TODO Auto-generated method stub
-        return null;
+    public ObjectProperty<IGraphicModule> getDrawer () {
+        return myGraphic;
     }
     @Override
     public void update (TimeDuration duration) {
@@ -40,11 +47,7 @@ public class Sprite implements ISprite {
         // TODO Auto-generated method stub
         
     }
-    @Override
-    public void registerEvent (IInteractionEvent event) {
-        // TODO Auto-generated method stub
-        
-    }
+    
     @Override
     public ObjectProperty<IProfile> getProfileProperty () {
         // TODO Auto-generated method stub
@@ -74,6 +77,18 @@ public class Sprite implements ISprite {
     public ObservableList<IResource> getResourcesProperty () {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public void registerKeyEvent (KeyIOEvent event) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void registerMouseEvent (MouseIOEvent event) {
+        // TODO Auto-generated method stub
+        
     }
 
     

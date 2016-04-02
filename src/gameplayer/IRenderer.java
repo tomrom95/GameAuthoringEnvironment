@@ -13,4 +13,5 @@ package gameplayer;
  */
 public interface IRenderer {
 
+    void render ();
 }

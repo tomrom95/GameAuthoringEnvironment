@@ -1,5 +1,9 @@
 package engine;
 
+import interactionevents.IInteractionEvent;
+import interactionevents.KeyIOEvent;
+import interactionevents.MouseIOEvent;
+
 /**
  * This interface imposes the ability to respond to an incoming effect and handle it as necessary.
  * The implementing class may or may not change a result of an applied effect.
@@ -24,5 +28,7 @@ public interface Affectable {
      * Respond appropriately to a global interaction event
      * @param event
      */
-    void registerEvent (IInteractionEvent event);
+    void registerKeyEvent (KeyIOEvent event);
+    
+    void registerMouseEvent (MouseIOEvent event);
 }
