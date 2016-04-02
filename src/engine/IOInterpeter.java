@@ -6,6 +6,7 @@ import interactionevents.IScreenEventFactory;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import interactionevents.ScreenEventFactory;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 
@@ -35,6 +36,7 @@ public class IOInterpeter {
     }
 
     private void setUpListener (Pane pane) {
+       pane.requestFocus();
        pane.setOnMouseClicked(e -> queue(eventFactory.interpretEvent(e)));
        pane.setOnKeyPressed(e -> queue(eventFactory.interpretEvent(e)));
        pane.setOnKeyReleased(e -> queue(eventFactory.interpretEvent(e)));

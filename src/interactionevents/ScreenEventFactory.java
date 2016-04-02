@@ -24,7 +24,6 @@ public class ScreenEventFactory implements IScreenEventFactory {
     public KeyIOEvent interpretEvent (KeyEvent event) {
         Key key = new Key(event.getCode().getName());
         KeyIOEvent keyEvent = new KeyIOEvent(InputType.KEY_PRESSED, key);
-        System.out.println(keyEvent);
         return keyEvent;
 
     }

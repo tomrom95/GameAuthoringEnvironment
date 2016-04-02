@@ -18,4 +18,10 @@ public class Key {
         return myKeyCode == keyIdentifier;
        
     }
+   
+    //TODO delete 
+    
+    public String getKeyCode () {
+        return myKeyCode;
+    }
 }

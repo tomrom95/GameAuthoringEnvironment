@@ -18,12 +18,13 @@ public class UserControlledMover implements IMovementModule {
     ObjectProperty<Coordinate> myLocation;
     ObjectProperty<IAttribute> mySpeed;
     
-    public UserControlledMover (double speed) {
-       myXVel = new SimpleObjectProperty<>();
-       myYVel = new SimpleObjectProperty<>();
-       myLocation = new SimpleObjectProperty<>();
+    public UserControlledMover (Coordinate startingLocation, double speed) {
+       myXVel = new SimpleObjectProperty<>(new Attribute());
+       myYVel = new SimpleObjectProperty<>(new Attribute());
+       myLocation = new SimpleObjectProperty<>(startingLocation);
        mySpeed = new SimpleObjectProperty<>(new Attribute(speed));
     }
+    
     @Override
     public void update (TimeDuration duration) {
         double xChange = distance(myXVel.get().getValueProperty().get(), duration.getMillis());
@@ -57,12 +58,15 @@ public class UserControlledMover implements IMovementModule {
     }
     @Override
     public void registerMouseEvent (MouseIOEvent event) {
-        //do nothing (could possibly track to here)
+        
     }
     
     private void registerKeyPress (Key key) {
         // TODO Auto-generated method stub
-        
+        System.out.println(key.getKeyCode());
+        if(key.isEqual("Right")) {
+            myXVel.get().setValue(1);
+        }
     }
     
     private void registerKeyRelease (Key key) {
@@ -71,15 +75,8 @@ public class UserControlledMover implements IMovementModule {
     }
     
     @Override
-    public Coordinate getPosition () {
-        return myLocation.get();
-    }
-    
-    public static void main(String [ ] args) { 
-        ISprite sprite = new Sprite ();
-        UserControlledMover mover = new UserControlledMover(10);
-        
-        sprite.getMovementStrategyProperty().set(mover);
+    public ObjectProperty<Coordinate> getLocationProperty () {
+        return myLocation;
     }
     
     

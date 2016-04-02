@@ -28,8 +28,9 @@ public class Renderer implements IRenderer {
 
     @Override
     public void render () {
+        myPane.getChildren().clear();
         myGame.getDrawables().forEach(d -> draw(d));
-        
+
     }
 
     private void draw (Drawable drawable) {
