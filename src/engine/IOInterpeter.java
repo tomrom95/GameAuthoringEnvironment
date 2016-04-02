@@ -6,8 +6,6 @@ import interactionevents.IScreenEventFactory;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import interactionevents.ScreenEventFactory;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 
@@ -25,8 +23,8 @@ import javafx.scene.layout.Pane;
 public class IOInterpeter {
 
     IScreenEventFactory eventFactory;
-    List<KeyIOEvent> queuedMouseEvents;
-    List<MouseIOEvent> queuedKeyEvents;
+    List<KeyIOEvent> queuedKeyEvents;
+    List<MouseIOEvent> queuedMouseEvents;
     
     
     public IOInterpeter (Pane pane) {
@@ -35,22 +33,30 @@ public class IOInterpeter {
     }
 
     private void setUpListener (Pane pane) {
-     
-       pane.setOnMouseClicked(e -> eventFactory.interpretEvent(e));
-       pane.setOnMouseReleased(e -> eventFactory.interpretEvent(e));
-       pane.setOnKeyPressed(e -> eventFactory.interpretEvent(e));
-       pane.setOnKeyReleased(e -> eventFactory.interpretEvent(e));
+       pane.setOnMouseClicked(e -> queue(eventFactory.interpretEvent(e)));
+       pane.setOnMouseReleased(e -> queue(eventFactory.interpretEvent(e)));
+       pane.setOnKeyPressed(e -> queue(eventFactory.interpretEvent(e)));
+       pane.setOnKeyReleased(e -> queue(eventFactory.interpretEvent(e)));
     }
    
 
-    private void queue (MouseIOEvent setOnMouseClicked) {
-        // TODO Auto-generated method stub
-        
+    private void queue (MouseIOEvent event) {
+        queuedMouseEvents.add(event);
+    }
+    
+    private void queue (KeyIOEvent event) {
+        queuedKeyEvents.add(event);
     }
 
-    public List<IEffect> deQueueEvents () {
-        List<IEffect> copy = new ArrayList<IEffect>(queuedEffects);
-        queuedEffects.clear();
+    public List<MouseIOEvent> deQueueMouseEvents () {
+        List<MouseIOEvent> copy = new ArrayList<>(queuedMouseEvents);
+        queuedMouseEvents.clear();
+        return copy;
+    }
+    
+    public List<KeyIOEvent> deQueueKeyEvents () {
+        List<KeyIOEvent> copy = new ArrayList<>(queuedKeyEvents);
+        queuedKeyEvents.clear();
         return copy;
     }
 
