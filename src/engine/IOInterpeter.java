@@ -29,12 +29,13 @@ public class IOInterpeter {
     
     public IOInterpeter (Pane pane) {
         eventFactory = new ScreenEventFactory ();
+        queuedKeyEvents = new ArrayList<>();
+        queuedMouseEvents = new ArrayList<>();
         setUpListener(pane);
     }
 
     private void setUpListener (Pane pane) {
        pane.setOnMouseClicked(e -> queue(eventFactory.interpretEvent(e)));
-       pane.setOnMouseReleased(e -> queue(eventFactory.interpretEvent(e)));
        pane.setOnKeyPressed(e -> queue(eventFactory.interpretEvent(e)));
        pane.setOnKeyReleased(e -> queue(eventFactory.interpretEvent(e)));
     }
@@ -59,5 +60,7 @@ public class IOInterpeter {
         queuedKeyEvents.clear();
         return copy;
     }
+    
+    
 
 }

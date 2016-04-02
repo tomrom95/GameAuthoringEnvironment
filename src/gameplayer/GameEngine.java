@@ -28,7 +28,6 @@ public class GameEngine implements IGameEngine {
         myGame = game;
         myRenderer = new Renderer(game, pane);
         initializeTimeline();
-        IOInterpeter interpreter = new IOInterpeter(pane);
     }
 
     private void initializeTimeline () {
