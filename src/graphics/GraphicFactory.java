@@ -16,7 +16,7 @@ import util.RGBColor;
 
 public class GraphicFactory implements IGraphicFactory {
 
-    private static final int ALPHA = 0;
+    private static final int ALPHA = 1;
     private static final String DEFAULT_PATH = "resource/DefaultGraphics";
     
     ResourceBundle myResources;

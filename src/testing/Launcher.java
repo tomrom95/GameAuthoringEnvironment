@@ -1,5 +1,6 @@
 package testing;
 
+import engine.ControlKeys;
 import engine.GraphicModule;
 import engine.IOInterpeter;
 import engine.Sprite;
@@ -16,6 +17,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import util.Coordinate;
+import util.Key;
 import util.RGBColor;
 import gameplayer.Renderer;
 import graphics.Block;
@@ -36,7 +38,7 @@ public class Launcher extends Application {
     
     private void initializeTimeline () {
         Timeline timeline = new Timeline();
-        Duration frameDuration = Duration.seconds(1.0d / 1);
+        Duration frameDuration = Duration.seconds(1.0d / 70);
         KeyFrame repeatedFrame = new KeyFrame(frameDuration, e -> step(frameDuration));
         timeline.getKeyFrames().add(repeatedFrame);
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -48,7 +50,7 @@ public class Launcher extends Application {
         io.deQueueKeyEvents().forEach(e-> sprite.registerKeyEvent(e));
         r.render();
         r.draw(sprite);
-        System.out.println(myPane.getChildren());
+      
     }
     
     @Override
@@ -56,20 +58,21 @@ public class Launcher extends Application {
         
         Stage myStage = new Stage();
         myPane = new Pane();
-        myPane.resize(300, 300);
+        myPane.setStyle("-fx-background-color: blue;");
         Scene myScene = new Scene(myPane);
+        myPane.setPrefSize(1000, 400);
         myStage.setScene(myScene);
         myStage.show();
         myPane.setOnKeyPressed(e-> System.out.println("Pane"));
         io = new IOInterpeter (myPane);
         myPane.requestFocus();
         sprite = new Sprite();
-        sprite.getMovementStrategyProperty().set(new UserControlledMover(new Coordinate(10, 10), 10));
+        ControlKeys keys = new ControlKeys(new Key("Up"), new Key("Left"), new Key("Right"), new Key("Down"));
+        sprite.getMovementStrategyProperty().set(new UserControlledMover(new Coordinate(10, 10), .75, keys));
         initializeTimeline();
         r = new Renderer(null, myPane);
-        TextGraphic graphic = new TextGraphic("ryan", 40);
+        Block graphic = new Block(40, 40, RGBColor.BLACK);
         sprite.getDrawer().set(new GraphicModule(graphic));
-        myPane.getChildren().add(new Rectangle(10, 10, 10, 10));
         myStage.show();
     }
     
