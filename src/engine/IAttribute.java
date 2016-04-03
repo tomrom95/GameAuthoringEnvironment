@@ -1,6 +1,11 @@
 package engine;
 
+import interactionevents.IInteractionEvent;
+import interactionevents.KeyIOEvent;
+import interactionevents.MouseIOEvent;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -32,5 +37,15 @@ public interface IAttribute extends Affectable {
     void setValue (double valueToSet);
     
     String getTitle ();
+
+    /**
+     * This will expose the property list of the current effects
+     * waiting to be applied to the attribute
+     * 
+     * @return
+     */
+    ObservableList<ObjectProperty<IEffect>> getEffects ();
+
+    ObservableList<ObjectProperty<IInteractionEvent>> getEvents ();
 
 }

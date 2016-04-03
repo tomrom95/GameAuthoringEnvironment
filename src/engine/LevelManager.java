@@ -10,36 +10,34 @@ import util.TimeDuration;
 
 public class LevelManager implements ILevelManager {
 
-    private ObservableList<ObjectProperty<ISprite>> mySpritePropertyList;
     private ObservableList<ObjectProperty<ILevel>> myLevelPropertyList;
-    // TODO add lists for Game wide attributes
-    // TODO add lists for Game wide conditions ?
-    // TODO add lists for Game wide attributes
+    private ObjectProperty<ILevel> myCurrentLevel;
+    private ObjectProperty<IConditionManager> myGlobalGameConditions;
+    private ObjectProperty<IAttributeManager> myGlobalAttributeManager;
+
+    // since all wrapped in properties, will eventually create lambda loop to call update on all
+    // updateable items as
+    // specified by our Updateable interface
 
     LevelManager () {
-        mySpritePropertyList = FXCollections.observableArrayList();
         myLevelPropertyList = FXCollections.observableArrayList();
     }
 
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
-        // this may not work once we are using attributes in coords
-        sprite.getLocation().get().setLocation(coordinate.getX(), coordinate.getY()); 
-        mySpritePropertyList.add(new SimpleObjectProperty<ISprite>(sprite));
+        myCurrentLevel.get().add(sprite, coordinate);
     }
 
     @Override
     public void update (TimeDuration duration) {
-        for (ObjectProperty<ISprite> s : mySpritePropertyList) {
-            s.get().update(duration);
-        }
-
+        // TODO extend this call to include all functionality as required
+        checkAndSetCurrentLevel();
+        myCurrentLevel.get().update(duration);
     }
 
     @Override
-    public ILevel getCurrentLevel () {
-        // TODO Auto-generated method stub
-        return null;
+    public ObjectProperty<ILevel> getCurrentLevel () {
+        return myCurrentLevel;
     }
 
     @Override
@@ -47,4 +45,9 @@ public class LevelManager implements ILevelManager {
         return myLevelPropertyList;
     }
 
+    private void checkAndSetCurrentLevel () {
+        if (myCurrentLevel.get().shouldSwitchLevel()) {
+            myCurrentLevel.set(myCurrentLevel.get().getNextLevel());
+        }
+    }
 }

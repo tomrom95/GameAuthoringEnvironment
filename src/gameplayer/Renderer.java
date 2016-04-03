@@ -28,11 +28,12 @@ public class Renderer implements IRenderer {
 
     @Override
     public void render () {
-        myGame.getDrawables().forEach(d -> draw(d));
-        
+        myPane.getChildren().clear();
+        //myGame.getDrawables().forEach(d -> draw(d));
+
     }
 
-    private void draw (Drawable drawable) {
+    public void draw (Drawable drawable) {
         Node node = drawable.getDrawer().get().getVisualRepresentation(myFactory);
         Coordinate location = drawable.getLocation().get();
         node.relocate(location.getX(), location.getY());

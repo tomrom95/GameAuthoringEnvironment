@@ -16,6 +16,7 @@ import java.util.List;
  */
 public interface IResource extends Updateable, Affectable {
 
-    List<IAttribute> getAttributes ();
+    public ResourceType getType();
+
 
 }

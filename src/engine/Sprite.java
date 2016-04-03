@@ -31,6 +31,8 @@ public class Sprite implements ISprite {
     public Sprite () { 
         //Initialized for testing
         myGraphic = new SimpleObjectProperty<>();
+        myMover = new SimpleObjectProperty<>();
+        
     }
     
     @Override
@@ -40,7 +42,7 @@ public class Sprite implements ISprite {
     @Override
     public void update (TimeDuration duration) {
         // TODO Auto-generated method stub
-        
+        myMover.get().update(duration);
     }
     @Override
     public void applyEffect (IEffect effect) {
@@ -55,33 +57,32 @@ public class Sprite implements ISprite {
     }
     @Override
     public ObjectProperty<Coordinate> getLocation () {
-        // TODO Auto-generated method stub
-        return null;
+        return myMover.get().getLocationProperty();
     }
     @Override
     public ObjectProperty<IMovementModule> getMovementStrategyProperty () {
         // TODO Auto-generated method stub
-        return null;
+        return myMover;
     }
     @Override
-    public ObservableList<IModule> getModulesProperty () {
+    public ObservableList<ObjectProperty<IModule>> getModulesProperty () {
         // TODO Auto-generated method stub
         return null;
     }
     @Override
-    public ObservableList<IAttribute> getAttributesProperty () {
+    public ObservableList<ObjectProperty<IAttribute>> getAttributesProperty () {
         // TODO Auto-generated method stub
         return null;
     }
     @Override
-    public ObservableList<IResource> getResourcesProperty () {
+    public ObservableList<ObjectProperty<IResource>> getResourcesProperty () {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public void registerKeyEvent (KeyIOEvent event) {
-        // TODO Auto-generated method stub
+        myMover.get().registerKeyEvent(event);
         
     }
 
@@ -89,6 +90,12 @@ public class Sprite implements ISprite {
     public void registerMouseEvent (MouseIOEvent event) {
         // TODO Auto-generated method stub
         
+    }
+
+    @Override
+    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     

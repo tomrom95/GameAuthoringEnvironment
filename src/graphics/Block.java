@@ -26,8 +26,7 @@ public class Block extends SizeableGraphic {
 
     @Override
     public Node getVisualRepresentation (IGraphicFactory factory) {
-        // TODO Auto-generated method stub
-        return null;
+        return factory.getVisual(this);
     }
 
 }

@@ -4,7 +4,10 @@ import interactionevents.IInteractionEvent;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.collections.ObservableList;
+import util.TimeDuration;
 
 
 public class Attribute implements IAttribute {
@@ -61,6 +64,30 @@ public class Attribute implements IAttribute {
     public void registerMouseEvent (MouseIOEvent event) {
         // TODO Auto-generated method stub
         
+    }
+
+    @Override
+    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void update (TimeDuration duration) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public ObservableList<ObjectProperty<IEffect>> getEffects () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public ObservableList<ObjectProperty<IInteractionEvent>> getEvents () {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
