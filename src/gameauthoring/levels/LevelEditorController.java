@@ -1,4 +1,4 @@
-package gameauthoring;
+package gameauthoring.levels;
 
 /**
  * Controller for creating/editing levels for the
