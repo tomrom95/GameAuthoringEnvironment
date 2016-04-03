@@ -2,9 +2,7 @@ package engine;
 
 public interface INextLevelCondition extends Updateable {
     /**
-     * Will return whether or not the condition thinks the game should move to the next level
-     * 
-     * @return
+     * @return whether or not the condition thinks the game should move to the next level
      */
     boolean shouldProceed ();
 

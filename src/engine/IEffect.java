@@ -13,7 +13,6 @@ package engine;
 public interface IEffect {
 
     /**
-     * 
      * @return AttributeType specifying the type of Attribute to which the Effect is intended to
      *         influence
      */
@@ -24,6 +23,5 @@ public interface IEffect {
      *
      * @param attribute to be affected
      */
-
     void applyToAttribute (IAttribute attribute);
 }

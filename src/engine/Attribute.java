@@ -12,7 +12,7 @@ import util.TimeDuration;
 
 public class Attribute implements IAttribute {
 
-    DoubleProperty myValue;
+    private DoubleProperty myValue;
 
     public Attribute () {
         // TODO introduce idea of default
@@ -46,12 +46,6 @@ public class Attribute implements IAttribute {
     public void setValue (double valueToSet) {
        myValue.set(valueToSet);
 
-    }
-
-    @Override
-    public String getTitle () {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     @Override

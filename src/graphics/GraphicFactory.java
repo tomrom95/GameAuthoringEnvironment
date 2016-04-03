@@ -63,7 +63,7 @@ public class GraphicFactory implements IGraphicFactory {
     }
 
     private void addToVBox (VBox vbox, IAttribute attribute) {
-        Text title = getText(attribute.getTitle());
+        Text title = getText(attribute.getType().toString());
         Text value = getText("" + attribute.getValueProperty().get());
         vbox.getChildren().addAll(title, value);
     }

@@ -10,15 +10,13 @@ public class ConditionManager implements IConditionManager {
 
     private ObservableList<ObjectProperty<ICondition>> myConditions;
 
-    ConditionManager () {
+    public ConditionManager () {
         myConditions = FXCollections.observableArrayList();
     }
 
     @Override
     public void update (TimeDuration duration) {
-        for (ObjectProperty<ICondition> condition : myConditions) {
-            condition.get().update(duration);
-        }
+        getConditionListProperty().forEach(condition -> condition.get().update(duration));
     }
 
     @Override

@@ -18,7 +18,6 @@ import javafx.collections.ObservableList;
 public interface IConditionManager extends Updateable {
 
     /**
-     *
      * @return the observable list of condition that this class manages
      */
     ObservableList<ObjectProperty<ICondition>> getConditionListProperty ();
