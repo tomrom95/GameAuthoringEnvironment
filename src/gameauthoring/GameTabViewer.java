@@ -1,13 +1,22 @@
 package gameauthoring;
 
 import javafx.scene.Node;
+import javafx.scene.control.Tab;
+
 
 /**
  * Handles selection between differnet games
+ * 
  * @author Jin An
  *
  */
-public class GameTabViewer implements ITabViewer{
+public class GameTabViewer implements ITabViewer {
+
+    private Tab myGameTab;
+
+    public GameTabViewer (Tab gameTab) {
+        myGameTab = gameTab;
+    }
 
     @Override
     public Node draw () {
@@ -18,7 +27,7 @@ public class GameTabViewer implements ITabViewer{
     @Override
     public void update () {
         // TODO Auto-generated method stub
-        
+
     }
 
 }
