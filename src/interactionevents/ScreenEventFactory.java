@@ -13,7 +13,7 @@ public class ScreenEventFactory implements IScreenEventFactory {
         try {
             type = convertType(event.getEventType().toString());
         }
-        catch (ClassNotFoundException e) {
+        catch (ClassNotFoundException error) {
             type = InputType.MOUSE_CLICKED;
         }
         MouseIOEvent mouse = new MouseIOEvent(type, event.getX(), event.getY());
@@ -37,8 +37,8 @@ public class ScreenEventFactory implements IScreenEventFactory {
     
     private InputType convertType (String str) throws ClassNotFoundException {
 
-        Class c = Class.forName(InputType.class.getName());
-        InputType o = (InputType) Enum.valueOf(c, str);
+        Class inputClass = Class.forName(InputType.class.getName());
+        InputType o = (InputType) Enum.valueOf(inputClass, str);
         return o;
 
     }
