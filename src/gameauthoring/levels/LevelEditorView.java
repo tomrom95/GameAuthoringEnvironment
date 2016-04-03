@@ -1,6 +1,7 @@
 package gameauthoring.levels;
 
 import java.io.File;
+import engine.IGame;
 import gameauthoring.Glyph;
 import gameauthoring.ListCellView;
 import gameauthoring.SpriteCellView;
@@ -35,11 +36,16 @@ import javafx.stage.FileChooser;
 public class LevelEditorView implements Glyph {
 
     private BorderPane myLayout;
+    private LevelEditorController myLevelController;
+    
+    public LevelEditorView (IGame gameModel) {
+        myLevelController = new LevelEditorController(gameModel);
+    }
+    
     @Override
     public Node draw () {
         myLayout = new BorderPane();
-        myLayout.setCenter(createLevelView());
-        myLayout.setRight(createSpriteSelection());
+        myLayout.setCenter((new SceneCreator(null)).draw());
         //myLayout.setLeft(createWaveSelection());
         myLayout.setBottom(createBottomForms());
         return myLayout;
