@@ -14,6 +14,9 @@ public abstract class StringBasedType {
     @Override
     public abstract boolean equals (Object obj);
 
+    /**
+     * Overrides the hashCode check for this object to only use the label for this type
+     */
     @Override
     public int hashCode () {
         return getType().hashCode();

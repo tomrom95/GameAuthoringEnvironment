@@ -1,7 +1,5 @@
 package engine;
 
-import java.util.List;
-
 
 /**
  * This class represents a resource, or a group of attributes that manages their behavior so as to
@@ -16,7 +14,6 @@ import java.util.List;
  */
 public interface IResource extends Updateable, Affectable {
 
-    public ResourceType getType();
-
+    ResourceType getType ();
 
 }

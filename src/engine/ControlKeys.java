@@ -5,10 +5,10 @@ import util.Key;
 
 public class ControlKeys {
 
-    Key myUpKey;
-    Key myLeftKey;
-    Key myRightKey;
-    Key myDownKey;
+    private Key myUpKey;
+    private Key myLeftKey;
+    private Key myRightKey;
+    private Key myDownKey;
 
     public ControlKeys (Key up, Key left, Key right, Key down) {
         myUpKey = up;

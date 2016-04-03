@@ -14,13 +14,13 @@ import javafx.beans.property.StringProperty;
  * @author Jonathan Im
  */
 
-public class Info implements IGameInformation {
+public class GameInformation implements IGameInformation {
 
     private StringProperty myTitle = new SimpleStringProperty();
     private StringProperty myAuthor = new SimpleStringProperty();
     private StringProperty myDateCreated = new SimpleStringProperty();
 
-    public Info (String title, String author, String dateCreated) {
+    public GameInformation (String title, String author, String dateCreated) {
         myTitle.set(title);
         myAuthor.set(author);
         myDateCreated.set(dateCreated);

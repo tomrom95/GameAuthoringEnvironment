@@ -22,7 +22,7 @@ import javafx.collections.ObservableList;
 public interface IAttributeManager extends Updateable, Affectable {
 
     ObservableList<ObjectProperty<IResource>> getResourceList ();
-    
-    public void addResource(IResource resource);
+
+    void addResource (IResource resource);
 
 }

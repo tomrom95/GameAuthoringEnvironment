@@ -12,7 +12,7 @@ import util.TimeDuration;
 
 public class Attribute implements IAttribute {
 
-    DoubleProperty myValue;
+    private DoubleProperty myValue;
 
     public Attribute () {
         // TODO introduce idea of default
