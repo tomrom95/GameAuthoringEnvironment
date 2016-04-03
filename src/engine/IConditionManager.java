@@ -1,5 +1,6 @@
 package engine;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
 
@@ -20,5 +21,5 @@ public interface IConditionManager extends Updateable {
      *
      * @return the observable list of condition that this class manages
      */
-    ObservableList<ICondition> getConditionListProperty ();
+    ObservableList<ObjectProperty<ICondition>> getConditionListProperty ();
 }

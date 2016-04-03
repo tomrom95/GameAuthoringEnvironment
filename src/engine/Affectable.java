@@ -1,8 +1,12 @@
 package engine;
 
-import interactionevents.IInteractionEvent;
+
+
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
+import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
+
 
 /**
  * This interface imposes the ability to respond to an incoming effect and handle it as necessary.
@@ -15,7 +19,7 @@ import interactionevents.MouseIOEvent;
  * @author Jonathan Im
  *
  */
-public interface Affectable {
+public interface Affectable extends Updateable {
 
     /**
      * Apply a given effect to this object
@@ -23,12 +27,23 @@ public interface Affectable {
      * @param effect the effect to apply
      */
     void applyEffect (IEffect effect);
-    
+
     /**
      * Respond appropriately to a global interaction event
+     * 
      * @param event
      */
+
     void registerKeyEvent (KeyIOEvent event);
     
     void registerMouseEvent (MouseIOEvent event);
+
+    /**
+     * Any object that is affectable must have attributes that can be affected.
+     * We are thus combining these two notions in this one interface.
+     * 
+     * @return
+     */
+    ObservableList<ObjectProperty<IAttribute>> getAttributes ();
+
 }

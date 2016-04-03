@@ -65,17 +65,17 @@ public class Sprite implements ISprite {
         return myMover;
     }
     @Override
-    public ObservableList<IModule> getModulesProperty () {
+    public ObservableList<ObjectProperty<IModule>> getModulesProperty () {
         // TODO Auto-generated method stub
         return null;
     }
     @Override
-    public ObservableList<IAttribute> getAttributesProperty () {
+    public ObservableList<ObjectProperty<IAttribute>> getAttributesProperty () {
         // TODO Auto-generated method stub
         return null;
     }
     @Override
-    public ObservableList<IResource> getResourcesProperty () {
+    public ObservableList<ObjectProperty<IResource>> getResourcesProperty () {
         // TODO Auto-generated method stub
         return null;
     }
@@ -90,6 +90,12 @@ public class Sprite implements ISprite {
     public void registerMouseEvent (MouseIOEvent event) {
         // TODO Auto-generated method stub
         
+    }
+
+    @Override
+    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     

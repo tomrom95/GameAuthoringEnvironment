@@ -2,13 +2,13 @@ package engine;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.Key;
 import util.TimeDuration;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.Queue;
 import interactionevents.InputType;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
@@ -179,5 +179,12 @@ public class UserControlledMover implements IMovementModule {
     public ObjectProperty<Coordinate> getLocationProperty () {
         return myLocation;
     }
+
+    @Override
+    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
+        ObservableList<ObjectProperty<IAttribute>> attributeList = FXCollections.observableArrayList();
+        attributeList.addAll(mySpeed, myXVel, myYVel);
+        return attributeList;
+     }
 
 }

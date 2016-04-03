@@ -24,10 +24,10 @@ public interface ISprite extends Drawable, Updateable, Affectable {
 
     ObjectProperty<IMovementModule> getMovementStrategyProperty ();
 
-    ObservableList<IModule> getModulesProperty ();
+    ObservableList<ObjectProperty<IModule>> getModulesProperty ();
 
-    ObservableList<IAttribute> getAttributesProperty ();
+    ObservableList<ObjectProperty<IAttribute>> getAttributesProperty ();
 
-    ObservableList<IResource> getResourcesProperty ();
+    ObservableList<ObjectProperty<IResource>> getResourcesProperty ();
 
 }
