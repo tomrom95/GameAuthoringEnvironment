@@ -49,12 +49,6 @@ public class Attribute implements IAttribute {
     }
 
     @Override
-    public String getTitle () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public void registerKeyEvent (KeyIOEvent event) {
         // TODO Auto-generated method stub
         

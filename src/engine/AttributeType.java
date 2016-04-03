@@ -12,20 +12,9 @@ package engine;
  *
  */
 public class AttributeType extends StringBasedType {
-    /**
-     * Overrides the equality check for this object using the label for this type
-     */
     @Override
-    public boolean equals (Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof AttributeType)) {
-            return false;
-        }
-        AttributeType otherType = (AttributeType)obj;
-
-        return getType().equals(otherType.getType());
+    protected boolean isSameClass (Object obj) {
+        return obj instanceof AttributeType;
     }
 
 }

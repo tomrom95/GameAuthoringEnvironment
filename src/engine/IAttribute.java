@@ -34,8 +34,6 @@ public interface IAttribute extends Affectable {
      */
     void setValue (double valueToSet);
 
-    String getTitle ();
-
     /**
      * This will expose the property list of the current effects
      * waiting to be applied to the attribute

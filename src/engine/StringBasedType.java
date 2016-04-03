@@ -12,7 +12,19 @@ public abstract class StringBasedType {
      * Overrides the equality check for this object using the label for this type
      */
     @Override
-    public abstract boolean equals (Object obj);
+    public boolean equals (Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!isSameClass(obj)) {
+            return false;
+        }
+        StringBasedType otherType = (StringBasedType)obj;
+
+        return getType().equals(otherType.getType());
+    }
+    
+    protected abstract boolean isSameClass (Object obj);
 
     /**
      * Overrides the hashCode check for this object to only use the label for this type

@@ -11,15 +11,9 @@ package engine;
  * @author Jonathan Im
  *
  */
-public class SpriteType {
-
-    private String myName;
-
-    public SpriteType (String name) {
-        myName = name;
-    }
-
-    public String getName () {
-        return myName;
+public class SpriteType extends StringBasedType {
+    @Override
+    protected boolean isSameClass (Object obj) {
+        return obj instanceof SpriteType;
     }
 }
