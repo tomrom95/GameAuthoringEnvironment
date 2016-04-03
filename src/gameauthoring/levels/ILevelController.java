@@ -1,4 +1,4 @@
-package gameauthoring;
+package gameauthoring.levels;
 
 /**
  * Inteface that controls the game screen and character selecting view.
