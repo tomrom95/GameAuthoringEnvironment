@@ -1,5 +1,8 @@
-package engine;
+package modules;
 
+import engine.Attribute;
+import engine.IAttribute;
+import engine.IEffect;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;

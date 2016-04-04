@@ -2,6 +2,8 @@ package engine;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
+import modules.IMovementModule;
+import util.Bound;
 import util.Coordinate;
 
 

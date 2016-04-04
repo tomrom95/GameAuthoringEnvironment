@@ -1,5 +1,6 @@
-package engine;
+package modules;
 
+import engine.IGraphicModule;
 import gameplayer.IGraphicFactory;
 import graphics.IGraphic;
 import javafx.scene.Node;

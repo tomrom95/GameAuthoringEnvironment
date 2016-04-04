@@ -2,10 +2,10 @@ package usecases;
 
 import engine.IAttribute;
 import engine.IEffect;
-import engine.IMovementModule;
 import interactionevents.IInteractionEvent;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import modules.IMovementModule;
 import util.Coordinate;
 import util.TimeDuration;
 

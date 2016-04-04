@@ -5,6 +5,8 @@ import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
+import modules.IMovementModule;
+import util.Bound;
 import util.Coordinate;
 import util.TimeDuration;
 

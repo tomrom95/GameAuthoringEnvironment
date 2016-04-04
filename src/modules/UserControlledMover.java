@@ -1,14 +1,18 @@
-package engine;
+package modules;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import util.ControlKeys;
 import util.Coordinate;
 import util.Key;
 import util.TimeDuration;
 import java.util.HashMap;
 import java.util.Map;
+import engine.Attribute;
+import engine.IAttribute;
+import engine.IEffect;
 import interactionevents.InputType;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;

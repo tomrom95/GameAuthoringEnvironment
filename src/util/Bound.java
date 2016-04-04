@@ -1,4 +1,4 @@
-package engine;
+package util;
 
 /**
  * Class to represent rectangular bounds for collision checking
