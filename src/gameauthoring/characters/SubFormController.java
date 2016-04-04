@@ -1,4 +1,4 @@
-package gameauthoring;
+package gameauthoring.characters;
 
 import engine.ISprite;
 
