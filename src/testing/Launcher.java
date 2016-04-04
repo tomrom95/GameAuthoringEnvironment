@@ -1,8 +1,11 @@
 package testing;
 
+import java.util.ArrayList;
+import java.util.List;
 import engine.ControlKeys;
 import engine.GraphicModule;
 import engine.IOInterpeter;
+import engine.PathFollowMover;
 import engine.Sprite;
 import engine.UserControlledMover;
 import gameplayer.GamePlayer;
@@ -10,6 +13,8 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -38,7 +43,7 @@ public class Launcher extends Application {
     
     private void initializeTimeline () {
         Timeline timeline = new Timeline();
-        Duration frameDuration = Duration.seconds(1.0d / 70);
+        Duration frameDuration = Duration.seconds(1.0d / 60);
         KeyFrame repeatedFrame = new KeyFrame(frameDuration, e -> step(frameDuration));
         timeline.getKeyFrames().add(repeatedFrame);
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -66,14 +71,21 @@ public class Launcher extends Application {
         myPane.setOnKeyPressed(e-> System.out.println("Pane"));
         io = new IOInterpeter (myPane);
         myPane.requestFocus();
-        sprite = new Sprite();
         ControlKeys keys = new ControlKeys(new Key("Up"), new Key("Left"), new Key("Right"), new Key("Down"));
-        sprite.getMovementStrategyProperty().set(new UserControlledMover(new Coordinate(10, 10), .75, keys));
+        ObjectProperty<Coordinate> c = new SimpleObjectProperty<>(new Coordinate(0,0));
+        List<Coordinate> list = new ArrayList<>();
+        list.add(new Coordinate(100,100));
+        list.add(new Coordinate(20, 20));
+        list.add(new Coordinate(200, 2));
+        list.add(new Coordinate(700, 700));
+        sprite = new Sprite(c);
+        sprite.getMovementStrategyProperty().set(new PathFollowMover(c, .10, list));
         initializeTimeline();
         r = new Renderer(null, myPane);
         Block graphic = new Block(40, 40, RGBColor.BLACK);
         sprite.getDrawer().set(new GraphicModule(graphic));
         myStage.show();
+        r.draw(sprite);
     }
     
 

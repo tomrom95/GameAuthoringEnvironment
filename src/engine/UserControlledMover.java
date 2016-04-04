@@ -26,10 +26,10 @@ public class UserControlledMover implements IMovementModule {
     private Map<Direction, Key> myKeys;
     private Map<Direction, Boolean> myTraveling;
 
-    public UserControlledMover (Coordinate startingLocation, double speed, ControlKeys controls) {
+    public UserControlledMover (ObjectProperty<Coordinate> location, double speed, ControlKeys controls) {
         myXVel = new SimpleObjectProperty<>(new Attribute());
         myYVel = new SimpleObjectProperty<>(new Attribute());
-        myLocation = new SimpleObjectProperty<>(startingLocation);
+        myLocation = location;
         mySpeed = new SimpleObjectProperty<>(new Attribute(speed));
         makeKeyMap(controls);
         makeTravelingMap();
