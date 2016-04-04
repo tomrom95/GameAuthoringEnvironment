@@ -26,7 +26,6 @@ import util.Key;
 import util.RGBColor;
 import gameplayer.Renderer;
 import graphics.Block;
-import graphics.TextGraphic;
 import util.TimeDuration;
 
 
@@ -77,7 +76,7 @@ public class Launcher extends Application {
         list.add(new Coordinate(100,100));
         list.add(new Coordinate(20, 20));
         list.add(new Coordinate(200, 2));
-        list.add(new Coordinate(700, 700));
+        list.add(new Coordinate(500, 30));
         sprite = new Sprite(c);
         sprite.getMovementStrategyProperty().set(new PathFollowMover(c, .10, list));
         initializeTimeline();

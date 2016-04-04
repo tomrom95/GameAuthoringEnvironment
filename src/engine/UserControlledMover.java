@@ -15,21 +15,17 @@ import interactionevents.MouseIOEvent;
 import util.Direction;
 
 
-public class UserControlledMover implements IMovementModule {
+public class UserControlledMover extends Mover {
 
-    private static final double NO_MOTION = 0;
-    private ObjectProperty<IAttribute> myXVel;
-    private ObjectProperty<IAttribute> myYVel;
-    private ObjectProperty<Coordinate> myLocation;
     private ObjectProperty<IAttribute> mySpeed;
 
     private Map<Direction, Key> myKeys;
     private Map<Direction, Boolean> myTraveling;
 
-    public UserControlledMover (ObjectProperty<Coordinate> location, double speed, ControlKeys controls) {
-        myXVel = new SimpleObjectProperty<>(new Attribute());
-        myYVel = new SimpleObjectProperty<>(new Attribute());
-        myLocation = location;
+    public UserControlledMover (ObjectProperty<Coordinate> location,
+                                double speed,
+                                ControlKeys controls) {
+        super(location);
         mySpeed = new SimpleObjectProperty<>(new Attribute(speed));
         makeKeyMap(controls);
         makeTravelingMap();
@@ -54,24 +50,14 @@ public class UserControlledMover implements IMovementModule {
 
     @Override
     public void update (TimeDuration duration) {
-        double xChange = distance(myXVel.get().getValueProperty().get(), duration.getMillis());
-        double yChange = distance(myYVel.get().getValueProperty().get(), duration.getMillis());
-        myLocation.set(getNextCoordinate(xChange, yChange));
+        move(duration);
 
-    }
-
-    private Coordinate getNextCoordinate (double xChange, double yChange) {
-        return new Coordinate(myLocation.get().getX() + xChange, myLocation.get().getY() + yChange);
-    }
-
-    private double distance (double rate, double time) {
-        return rate * time;
     }
 
     @Override
     public void applyEffect (IEffect effect) {
-        myXVel.get().applyEffect(effect);
-        myYVel.get().applyEffect(effect);
+        getXVel().get().applyEffect(effect);
+        getYVel().get().applyEffect(effect);
     }
 
     @Override
@@ -145,47 +131,42 @@ public class UserControlledMover implements IMovementModule {
     }
 
     private void stopVertical () {
-        myYVel.get().setValue(NO_MOTION);
+        getYVel().get().setValue(NO_MOTION);
         myTraveling.put(Direction.DOWN, false);
         myTraveling.put(Direction.UP, false);
     }
 
     private void goRight () {
-        myXVel.get().setValue(mySpeed.get().getValueProperty().get());
+        getXVel().get().setValue(mySpeed.get().getValueProperty().get());
         myTraveling.put(Direction.RIGHT, true);
     }
 
     private void goLeft () {
-        myXVel.get().setValue(-mySpeed.get().getValueProperty().get());
+        getXVel().get().setValue(-mySpeed.get().getValueProperty().get());
         myTraveling.put(Direction.LEFT, true);
     }
 
     private void goUp () {
-        myYVel.get().setValue(-mySpeed.get().getValueProperty().get());
+        getYVel().get().setValue(-mySpeed.get().getValueProperty().get());
         myTraveling.put(Direction.UP, true);
     }
 
     private void goDown () {
-        myYVel.get().setValue(mySpeed.get().getValueProperty().get());
+        getYVel().get().setValue(mySpeed.get().getValueProperty().get());
         myTraveling.put(Direction.DOWN, true);
     }
 
     private void stopHorizontal () {
-        myXVel.get().setValue(NO_MOTION);
+        getXVel().get().setValue(NO_MOTION);
         myTraveling.put(Direction.RIGHT, false);
         myTraveling.put(Direction.LEFT, false);
     }
 
     @Override
-    public ObjectProperty<Coordinate> getLocationProperty () {
-        return myLocation;
-    }
-
-    @Override
-    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
+    public ObservableList<ObjectProperty<IAttribute>> getSpecificAttributes () {
         ObservableList<ObjectProperty<IAttribute>> attributeList =
                 FXCollections.observableArrayList();
-        attributeList.addAll(mySpeed, myXVel, myYVel);
+        attributeList.add(mySpeed);
         return attributeList;
     }
 
