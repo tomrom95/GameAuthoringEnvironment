@@ -1,6 +1,5 @@
 package modules;
 
-import engine.IModule;
 import javafx.beans.property.ObjectProperty;
 import util.Coordinate;
 

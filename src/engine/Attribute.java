@@ -26,6 +26,7 @@ public class Attribute implements IAttribute {
     public Attribute (double value, AttributeType type) {
         myValue = new SimpleDoubleProperty(value);
         myType = type;
+        myEffects = FXCollections.observableArrayList();
     }
 
     @Override

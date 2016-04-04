@@ -77,8 +77,9 @@ public class Launcher extends Application {
         list.add(new Coordinate(20, 20));
         list.add(new Coordinate(200, 2));
         list.add(new Coordinate(500, 30));
-        sprite = new Sprite(c);
-        sprite.getMovementStrategyProperty().set(new PathFollowMover(c, .10, list));
+        sprite = new Sprite();
+        sprite.getLocation().set(c.get());
+        sprite.getMovementStrategyProperty().set(new PathFollowMover(sprite.getLocation(), .10, list));
         initializeTimeline();
         r = new Renderer(null, myPane);
         Block graphic = new Block(40, 40, RGBColor.BLACK);

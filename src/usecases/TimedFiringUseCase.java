@@ -5,11 +5,11 @@ import effects.IEffect;
 import engine.ISprite;
 import engine.ISpriteCloner;
 import interactionevents.IInteractionEvent;
+import modules.IModule;
 import util.Coordinate;
 import util.TimeDuration;
 import engine.IAdder;
 import engine.IAttribute;
-import engine.IModule;
 
 
 /**

@@ -2,32 +2,14 @@ package modules;
 
 import effects.IEffect;
 import engine.IAttribute;
-import gameplayer.IGraphicFactory;
-import graphics.IGraphic;
+import engine.IStatusModule;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import util.TimeDuration;
 
-
-public class GraphicModule implements IGraphicModule {
-
-    private IGraphic myGraphic;
-
-    public GraphicModule (IGraphic graphic) {
-        myGraphic = graphic;
-    }
-    
-    public IGraphic getGraphic () {
-        return myGraphic;
-    }
-
-    @Override
-    public Node getVisualRepresentation (IGraphicFactory graphicFactory) {
-        return myGraphic.getVisualRepresentation(graphicFactory);
-    }
+public class StatusModule implements IStatusModule {
 
     @Override
     public void update (TimeDuration duration) {
@@ -57,6 +39,12 @@ public class GraphicModule implements IGraphicModule {
     public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public boolean shouldBeRemoved () {
+        // TODO Auto-generated method stub
+        return false;
     }
 
 }

@@ -1,6 +1,5 @@
 package effects;
 
-import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
 
@@ -20,10 +19,5 @@ public class ProportionEffect extends Effect {
             double newValue = incoming.getValueProperty().get() * getAlteringValue();
             incoming.setValue(newValue);
         }
-    }
-    
-    public static void main(String [ ] args) {
-        AttributeType health = new AttributeType("Health");
-        Attribute h = new Attribute(health);
     }
 }
