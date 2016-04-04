@@ -5,6 +5,8 @@ import engine.IGame;
 import gameauthoring.Glyph;
 import gameauthoring.ListCellView;
 import gameauthoring.SpriteCellView;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.ListView;
@@ -32,11 +34,13 @@ public class SceneCreator implements Glyph {
 
     private IGame gameModel;
     private PathCreator pathCreator;
-    private SpriteDragDrop dragDrop;
+    private Pane myLevel;
+    private DoubleProperty myHeight;
 
     public SceneCreator (IGame model) {
         gameModel = model;
         pathCreator = new PathCreator();
+        myHeight = new SimpleDoubleProperty(HEIGHT);
     }
 
     @Override
@@ -54,14 +58,13 @@ public class SceneCreator implements Glyph {
 
     private Node createSpriteSelection () {
         Accordion selector = new Accordion();
-        selector.setMaxHeight(HEIGHT);
+        selector.maxHeightProperty().bind(myHeight);
         ListView<Node> testList = new ListView<Node>();
 
         for (int i = 0; i < 12; i++) {
-            SpriteCellView sprite = new SpriteCellView(null);
+            SpriteCellView sprite = new DraggableSpriteCell(null, myLevel);
             Node spriteNode = sprite.draw();
             testList.getItems().add(spriteNode);
-            addDraggableEvent(sprite, spriteNode);
         }
         TitledPane enemies = new TitledPane("Enemies", testList);
         testList = new ListView<Node>();
@@ -74,20 +77,13 @@ public class SceneCreator implements Glyph {
         return selector;
     }
 
-    private void addDraggableEvent (SpriteCellView cell, Node spriteNode) {
-        spriteNode.setOnDragDetected(e -> {
-            dragDrop.newDrag(cell, spriteNode);
-        });
-    }
-
     private Node createLevelView () {
-        Pane container = new Pane();
-        setBackground(container, DEFAULT_BACKGROUND);
+        myLevel = new Pane();
+        setBackground(myLevel, DEFAULT_BACKGROUND);
 
-        container.setOnMouseClicked(e -> handleMouseClick(e, container));
-        container.setOnKeyPressed(e -> handleKeyPress(e, container));
-        dragDrop = new SpriteDragDrop(container);
-        return container;
+        myLevel.setOnMouseClicked(e -> handleMouseClick(e, myLevel));
+        myLevel.setOnKeyPressed(e -> handleKeyPress(e, myLevel));
+        return myLevel;
     }
 
     private void handleKeyPress (KeyEvent e, Pane container) {
@@ -128,7 +124,8 @@ public class SceneCreator implements Glyph {
                                                          BackgroundSize.DEFAULT);
         container.setBackground(new Background(background));
         container.setMinWidth(img.getWidth());
-        container.setMinHeight(HEIGHT);
+        myHeight.set(img.getHeight());
+        container.setMinHeight(img.getHeight());
     }
 
 }

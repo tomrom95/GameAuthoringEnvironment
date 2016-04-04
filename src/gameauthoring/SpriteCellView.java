@@ -45,6 +45,10 @@ public class SpriteCellView implements ListCellView{
     public Image getImageProfile () {
         return imageProfile;
     }
+    
+    public ISprite getSprite() {
+        return mySprite;
+    }
 
     @Override
     public void update () {

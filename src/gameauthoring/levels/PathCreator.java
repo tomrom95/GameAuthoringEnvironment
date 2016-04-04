@@ -44,6 +44,7 @@ public class PathCreator {
     public void addToPath (MouseEvent event, Pane container) {
         if(!makingPath) return;
         
+        container.requestFocus();
         myPath.getElements().add(new MoveTo(event.getX(), event.getY()));
         LineTo line = new LineTo(event.getX(), event.getY());
         myPath.getElements().add(line);
