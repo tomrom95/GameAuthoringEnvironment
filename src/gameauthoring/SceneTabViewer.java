@@ -2,6 +2,7 @@ package gameauthoring;
 
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
+import javafx.scene.layout.BorderPane;
 
 
 /**
@@ -16,6 +17,7 @@ public class SceneTabViewer implements ITabViewer {
     // Has multiple LevelEditorViews
 
     private Tab mySceneTab;
+    private BorderPane myLayout;
 
     public SceneTabViewer (Tab sceneTab) {
         mySceneTab = sceneTab;
@@ -26,8 +28,8 @@ public class SceneTabViewer implements ITabViewer {
     }
     @Override
     public Node draw () {
-        // TODO Auto-generated method stub
-        return null;
+        myLayout = new BorderPane();
+        return myLayout;
     }
 
     @Override

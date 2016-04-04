@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.BorderPane;
 
 
 /**
@@ -18,6 +19,7 @@ import javafx.scene.control.TabPane;
 public class CharTabViewer implements ITabViewer {
 
     private Tab myCharTab;
+    private BorderPane myLayout;
 
     public CharTabViewer (Tab charTab) {
         myCharTab = charTab;
@@ -57,8 +59,8 @@ public class CharTabViewer implements ITabViewer {
 
     @Override
     public Node draw () {
-        // TODO Auto-generated method stub
-        return null;
+        myLayout = new BorderPane();
+        return myLayout;
     }
 
     @Override
