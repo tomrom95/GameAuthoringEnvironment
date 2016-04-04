@@ -1,26 +1,29 @@
 package gameauthoring.characters;
 
+import java.util.List;
 import engine.ISprite;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.stage.FileChooser;
 
-public class TextSubFormView implements SubFormView{
+public class SingleChoiceSubFormView implements SubFormView{
     private String myLabel;
     private SubFormController myController;
     private HBox myContainer = new HBox(20);
-    private TextField myTextInput = new TextField();
-    private boolean isNumberData;
+    private ChoiceBox<?> myChoices;
     
-    public TextSubFormView (String label, SubFormController controller, boolean isNumberData) {
-        this.myController = controller;
+    public SingleChoiceSubFormView(String label, SubFormController controller, List<Object> choices){
+        ObservableList<Object> obsChoices = FXCollections.observableList(choices);
         this.myLabel = label;
-        this.isNumberData = isNumberData;
+        this.myController = controller;
+        this.myChoices = new ChoiceBox<Object>(obsChoices);
         myContainer.getChildren().add(new Label(myLabel));
-        myContainer.getChildren().add(myTextInput);
+        myContainer.getChildren().add(myChoices);
     }
+
 
     @Override
     public void update () {
@@ -31,22 +34,8 @@ public class TextSubFormView implements SubFormView{
     @Override
     public FormData getData () {
         String key = myLabel;
-        String value = myTextInput.getText();
-        if(isNumberData){
-            checkForAndThrowError(value);
-            return null;
-        }        
+        Object value = myChoices.getSelectionModel().getSelectedItem();
         return null;
-    }
-
-    private void checkForAndThrowError (String value) {
-        try{
-            Double.parseDouble(value);
-        }
-        catch(IllegalArgumentException e){
-            ErrorMessage err = new ErrorMessage(myLabel + " Value Must Be a Double!");
-            err.showError();
-        }
     }
 
     @Override
@@ -54,7 +43,7 @@ public class TextSubFormView implements SubFormView{
         // TODO Auto-generated method stub
         
     }
-
+    
     @Override
     public SubFormController getSubFormController () {
         return this.myController;
