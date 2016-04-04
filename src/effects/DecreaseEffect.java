@@ -5,7 +5,7 @@ import engine.IAttribute;
 
 
 /**
- * Effect intended to increase an incoming attribute by a value.
+ * Effect intended to decease an incoming attribute by a value.
  * 
  * @author RyanStPierre
  *

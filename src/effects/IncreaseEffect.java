@@ -3,6 +3,12 @@ package effects;
 import engine.AttributeType;
 import engine.IAttribute;
 
+/**
+ * Effect intended to increase an incoming attribute by a value.
+ * 
+ * @author RyanStPierre
+ *
+ */
 public class IncreaseEffect extends Effect {
 
     public IncreaseEffect (AttributeType type, double increaseAmount) {
