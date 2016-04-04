@@ -74,6 +74,9 @@ public class Launcher extends Application {
         Block graphic = new Block(40, 40, RGBColor.BLACK);
         sprite.getDrawer().set(new GraphicModule(graphic));
         myStage.show();
+        
+        Rectangle rect = new Rectangle(50, 50,100,100);
+        System.out.println(rect.getBoundsInLocal());
     }
     
 
