@@ -1,5 +1,6 @@
 package engine;
 
+import effects.IEffect;
 import interactionevents.IInteractionEvent;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
@@ -42,6 +43,5 @@ public interface IAttribute extends Affectable {
      */
     ObservableList<ObjectProperty<IEffect>> getEffects ();
 
-    ObservableList<ObjectProperty<IInteractionEvent>> getEvents ();
 
 }
