@@ -29,5 +29,7 @@ public interface ISprite extends Drawable, Updateable, Affectable {
     ObservableList<ObjectProperty<IAttribute>> getAttributesProperty ();
 
     ObservableList<ObjectProperty<IResource>> getResourcesProperty ();
+    
+    Bound getBounds ();
 
 }

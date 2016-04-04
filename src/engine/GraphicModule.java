@@ -12,6 +12,10 @@ public class GraphicModule implements IGraphicModule {
     public GraphicModule (IGraphic graphic) {
         myGraphic = graphic;
     }
+    
+    public IGraphic getGraphic () {
+        return myGraphic;
+    }
 
     @Override
     public Node getVisualRepresentation (IGraphicFactory graphicFactory) {

@@ -1,6 +1,7 @@
 package engine;
 
 import gameplayer.IGraphicFactory;
+import graphics.IGraphic;
 import javafx.scene.Node;
 
 
@@ -17,5 +18,7 @@ import javafx.scene.Node;
 public interface IGraphicModule {
 
     Node getVisualRepresentation (IGraphicFactory factory);
+    
+    IGraphic getGraphic ();
 
 }

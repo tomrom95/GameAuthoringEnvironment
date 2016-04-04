@@ -60,8 +60,14 @@ public class TextGraphic implements IGraphic{
         return myFill;
     }
 
-    public static void main(String[] args) {
-        TextGraphic text = new TextGraphic ("Ryan", 20);
-        System.out.println(text.getVisualRepresentation(new GraphicFactory()));
+    //TODO extrapolate bounds
+    @Override
+    public DoubleProperty getWidth () {
+        return new SimpleDoubleProperty(0);
+    }
+
+    @Override
+    public DoubleProperty getHeight () {
+        return new SimpleDoubleProperty(0);
     }
 }

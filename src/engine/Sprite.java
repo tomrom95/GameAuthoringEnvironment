@@ -108,4 +108,15 @@ public class Sprite implements ISprite {
         return null;
     }
 
+
+
+    @Override
+    public Bound getBounds () {
+        double x = getLocation().get().getX();
+        double y = getLocation().get().getY();
+        double width = getDrawer().get().getGraphic().getWidth().get();
+        double height = getDrawer().get().getGraphic().getHeight().get();
+        return new Bound(x, y, width, height);
+    }
+
 }
