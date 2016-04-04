@@ -14,7 +14,7 @@ public class PathCreator {
     private boolean makingPath = false;
     private Path myPath;
 
-    public void newPath (MouseEvent e, Pane container) {
+    public void newPath (Coordinate startPoint, Pane container) {
         if(makingPath) return;
         container.getChildren().remove(myPath);
         makingPath = true;
@@ -22,7 +22,7 @@ public class PathCreator {
         
         myPath = new Path();
         container.getChildren().add(myPath);
-        addToPath(e, container);
+        addToPath(startPoint, container);
     }
     
     public void endPath (Pane container) {
@@ -40,13 +40,18 @@ public class PathCreator {
         line.setX(event.getX());
         line.setY(event.getY());
     }
+    
+    public void addToPath (MouseEvent e, Pane container) {
+        Coordinate point = new Coordinate(e.getX(), e.getY());
+        addToPath(point, container);
+    }
 
-    public void addToPath (MouseEvent event, Pane container) {
+    public void addToPath (Coordinate point, Pane container) {
         if(!makingPath) return;
         
         container.requestFocus();
-        myPath.getElements().add(new MoveTo(event.getX(), event.getY()));
-        LineTo line = new LineTo(event.getX(), event.getY());
+        myPath.getElements().add(new MoveTo(point.getX(), point.getY()));
+        LineTo line = new LineTo(point.getX(), point.getY());
         myPath.getElements().add(line);
         container.setOnMouseMoved(e -> followMouse(e, line));
     }

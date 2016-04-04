@@ -3,14 +3,10 @@ package gameauthoring.levels;
 import engine.ISprite;
 import gameauthoring.SpriteCellView;
 import javafx.scene.Node;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
@@ -21,10 +17,12 @@ public class DraggableSpriteCell extends SpriteCellView implements Draggable{
 
     private Pane myTarget;
     private Node mySource;
+    private SceneController myController;
     
-    public DraggableSpriteCell (ISprite sprite, Pane target) {
+    public DraggableSpriteCell (ISprite sprite, Pane target, SceneController controller) {
         super(sprite);
         myTarget = target;
+        myController = controller;
     }
     
     public Node draw() {
@@ -59,32 +57,12 @@ public class DraggableSpriteCell extends SpriteCellView implements Draggable{
     public void setOnDragDropped (DragEvent e) {
         Dragboard db = e.getDragboard();
         if (db.hasString()) {
-            ImageView img = new ImageView(getDragImage());
-            img.setTranslateX(e.getX());
-            img.setTranslateY(e.getY());
-            createRightClickMenu(img);
-            myTarget.getChildren().add(img);
+            OnScreenSprite sprite = new OnScreenSpawner(getSprite(), myTarget, getDragImage(), myController);
+            Node onScreen = sprite.draw();
+            onScreen.setTranslateX(e.getX());
+            onScreen.setTranslateY(e.getY());
+            myTarget.getChildren().add(onScreen);
         }
-    }
-
-    private void createRightClickMenu (ImageView img) {
-        img.setOnMouseClicked(event -> {
-            if (event.getButton() == MouseButton.SECONDARY) {
-                spriteActionsMenu(myTarget, img).show(img,
-                                                      event.getScreenX(),
-                                                      event.getScreenY());
-            }
-        });
-    }
-
-    private ContextMenu spriteActionsMenu (Pane container, Node node) {
-        ContextMenu menu = new ContextMenu();
-        MenuItem delete = new MenuItem("Delete");
-        delete.setOnAction(event -> {
-            container.getChildren().remove(node);
-        });
-        menu.getItems().add(delete);
-        return menu;
     }
 
 }
