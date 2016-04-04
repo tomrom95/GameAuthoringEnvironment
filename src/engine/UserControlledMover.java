@@ -18,13 +18,13 @@ import util.Direction;
 public class UserControlledMover implements IMovementModule {
 
     private static final double NO_MOTION = 0;
-    ObjectProperty<IAttribute> myXVel;
-    ObjectProperty<IAttribute> myYVel;
-    ObjectProperty<Coordinate> myLocation;
-    ObjectProperty<IAttribute> mySpeed;
+    private ObjectProperty<IAttribute> myXVel;
+    private ObjectProperty<IAttribute> myYVel;
+    private ObjectProperty<Coordinate> myLocation;
+    private ObjectProperty<IAttribute> mySpeed;
 
-    Map<Direction, Key> myKeys;
-    Map<Direction, Boolean> traveling;
+    private Map<Direction, Key> myKeys;
+    private Map<Direction, Boolean> myTraveling;
 
     public UserControlledMover (Coordinate startingLocation, double speed, ControlKeys controls) {
         myXVel = new SimpleObjectProperty<>(new Attribute());
@@ -37,11 +37,11 @@ public class UserControlledMover implements IMovementModule {
     }
 
     private void makeTravelingMap () {
-        traveling = new HashMap<>();
-        traveling.put(Direction.UP, false);
-        traveling.put(Direction.LEFT, false);
-        traveling.put(Direction.RIGHT, false);
-        traveling.put(Direction.DOWN, false);
+        myTraveling = new HashMap<>();
+        myTraveling.put(Direction.UP, false);
+        myTraveling.put(Direction.LEFT, false);
+        myTraveling.put(Direction.RIGHT, false);
+        myTraveling.put(Direction.DOWN, false);
     }
 
     private void makeKeyMap (ControlKeys controls) {
@@ -106,73 +106,74 @@ public class UserControlledMover implements IMovementModule {
     }
 
     private void registerKeyRelease (Key key) {
-
         if (key.isEqual(myKeys.get(Direction.RIGHT))) {
-            if (traveling.get(Direction.LEFT)) {
+            if (myTraveling.get(Direction.LEFT)) {
                 goLeft();
             }
             else {
                 stopHorizontal();
             }
-            traveling.put(Direction.RIGHT, false);
+            myTraveling.put(Direction.RIGHT, false);
         }
         else if (key.isEqual(myKeys.get(Direction.LEFT))) {
-            if (traveling.get(Direction.RIGHT)) {
+            if (myTraveling.get(Direction.RIGHT)) {
                 goRight();
             }
             else {
                 stopHorizontal();
             }
-            traveling.put(Direction.LEFT, false);
-        } else if (key.isEqual(myKeys.get(Direction.UP))) {
-            if (traveling.get(Direction.DOWN)) {
+            myTraveling.put(Direction.LEFT, false);
+        }
+        else if (key.isEqual(myKeys.get(Direction.UP))) {
+            if (myTraveling.get(Direction.DOWN)) {
                 goDown();
             }
             else {
                 stopVertical();
             }
-            traveling.put(Direction.UP, false);
-        } else if (key.isEqual(myKeys.get(Direction.DOWN))) {
-            if (traveling.get(Direction.UP)) {
+            myTraveling.put(Direction.UP, false);
+        }
+        else if (key.isEqual(myKeys.get(Direction.DOWN))) {
+            if (myTraveling.get(Direction.UP)) {
                 goUp();
             }
             else {
                 stopVertical();
             }
-            traveling.put(Direction.DOWN, false);
+            myTraveling.put(Direction.DOWN, false);
         }
     }
 
     private void stopVertical () {
         myYVel.get().setValue(NO_MOTION);
-        traveling.put(Direction.DOWN, false);
-        traveling.put(Direction.UP, false);
+        myTraveling.put(Direction.DOWN, false);
+        myTraveling.put(Direction.UP, false);
     }
 
     private void goRight () {
         myXVel.get().setValue(mySpeed.get().getValueProperty().get());
-        traveling.put(Direction.RIGHT, true);
+        myTraveling.put(Direction.RIGHT, true);
     }
 
     private void goLeft () {
         myXVel.get().setValue(-mySpeed.get().getValueProperty().get());
-        traveling.put(Direction.LEFT, true);
-    }
-    
-    private void goUp () {
-        myYVel.get().setValue(-mySpeed.get().getValueProperty().get());
-        traveling.put(Direction.UP, true);
+        myTraveling.put(Direction.LEFT, true);
     }
 
-    private void goDown() {
+    private void goUp () {
+        myYVel.get().setValue(-mySpeed.get().getValueProperty().get());
+        myTraveling.put(Direction.UP, true);
+    }
+
+    private void goDown () {
         myYVel.get().setValue(mySpeed.get().getValueProperty().get());
-        traveling.put(Direction.DOWN, true);
+        myTraveling.put(Direction.DOWN, true);
     }
 
     private void stopHorizontal () {
         myXVel.get().setValue(NO_MOTION);
-        traveling.put(Direction.RIGHT, false);
-        traveling.put(Direction.LEFT, false);
+        myTraveling.put(Direction.RIGHT, false);
+        myTraveling.put(Direction.LEFT, false);
     }
 
     @Override
@@ -182,9 +183,10 @@ public class UserControlledMover implements IMovementModule {
 
     @Override
     public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
-        ObservableList<ObjectProperty<IAttribute>> attributeList = FXCollections.observableArrayList();
+        ObservableList<ObjectProperty<IAttribute>> attributeList =
+                FXCollections.observableArrayList();
         attributeList.addAll(mySpeed, myXVel, myYVel);
         return attributeList;
-     }
+    }
 
 }

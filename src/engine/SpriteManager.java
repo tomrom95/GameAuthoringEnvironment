@@ -22,9 +22,7 @@ public class SpriteManager implements ISpriteManager {
     }
 
     private void loopThroughSpritesAndDo (Consumer<ISprite> consumer) {
-        for (ObjectProperty<ISprite> sprite : mySpriteList) {
-            consumer.accept(sprite.get());
-        }
+        getSprites().forEach(sprite -> consumer.accept(sprite.get()));
     }
 
     @Override

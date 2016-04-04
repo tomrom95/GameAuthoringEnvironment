@@ -6,7 +6,6 @@ import interactionevents.IScreenEventFactory;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import interactionevents.ScreenEventFactory;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 
@@ -23,46 +22,42 @@ import javafx.scene.layout.Pane;
 
 public class IOInterpeter {
 
-    IScreenEventFactory eventFactory;
-    List<KeyIOEvent> queuedKeyEvents;
-    List<MouseIOEvent> queuedMouseEvents;
-    
-    
+    private IScreenEventFactory myEventFactory;
+    private List<KeyIOEvent> myQueuedKeyEvents;
+    private List<MouseIOEvent> myQueuedMouseEvents;
+
     public IOInterpeter (Pane pane) {
-        eventFactory = new ScreenEventFactory ();
-        queuedKeyEvents = new ArrayList<>();
-        queuedMouseEvents = new ArrayList<>();
+        myEventFactory = new ScreenEventFactory();
+        myQueuedKeyEvents = new ArrayList<>();
+        myQueuedMouseEvents = new ArrayList<>();
         setUpListener(pane);
     }
 
     private void setUpListener (Pane pane) {
-       pane.requestFocus();
-       pane.setOnMouseClicked(e -> queue(eventFactory.interpretEvent(e)));
-       pane.setOnKeyPressed(e -> queue(eventFactory.interpretEvent(e)));
-       pane.setOnKeyReleased(e -> queue(eventFactory.interpretEvent(e)));
+        pane.requestFocus();
+        pane.setOnMouseClicked(e -> queue(myEventFactory.interpretEvent(e)));
+        pane.setOnKeyPressed(e -> queue(myEventFactory.interpretEvent(e)));
+        pane.setOnKeyReleased(e -> queue(myEventFactory.interpretEvent(e)));
     }
-   
 
     private void queue (MouseIOEvent event) {
-        queuedMouseEvents.add(event);
+        myQueuedMouseEvents.add(event);
     }
-    
+
     private void queue (KeyIOEvent event) {
-        queuedKeyEvents.add(event);
+        myQueuedKeyEvents.add(event);
     }
 
     public List<MouseIOEvent> deQueueMouseEvents () {
-        List<MouseIOEvent> copy = new ArrayList<>(queuedMouseEvents);
-        queuedMouseEvents.clear();
+        List<MouseIOEvent> copy = new ArrayList<>(myQueuedMouseEvents);
+        myQueuedMouseEvents.clear();
         return copy;
     }
-    
+
     public List<KeyIOEvent> deQueueKeyEvents () {
-        List<KeyIOEvent> copy = new ArrayList<>(queuedKeyEvents);
-        queuedKeyEvents.clear();
+        List<KeyIOEvent> copy = new ArrayList<>(myQueuedKeyEvents);
+        myQueuedKeyEvents.clear();
         return copy;
     }
-    
-    
 
 }

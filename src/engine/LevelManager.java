@@ -1,7 +1,6 @@
 package engine;
 
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.Coordinate;
@@ -19,7 +18,7 @@ public class LevelManager implements ILevelManager {
     // updateable items as
     // specified by our Updateable interface
 
-    LevelManager () {
+    public LevelManager () {
         myLevelPropertyList = FXCollections.observableArrayList();
     }
 

@@ -16,9 +16,6 @@ import javafx.collections.ObservableList;
  */
 public interface ILevel extends Updateable, IAdder {
 
-
-
-
     /**
      * @return the condition manager for this level
      */
@@ -35,17 +32,17 @@ public interface ILevel extends Updateable, IAdder {
      * @return an observable list of the sprites in this level
      */
     ObservableList<ObjectProperty<ISprite>> getSprites ();
-    
+
     /**
-     * This method call will control transition between levels, to stay on the current 
+     * This method call will control transition between levels, to stay on the current
      * level
-     * @return
+     * 
+     * @return the next level after this one
      */
-    ILevel getNextLevel();
-    
+    ILevel getNextLevel ();
+
     /**
-     * Will return whether or not level should be switched out for next ones
-     * @return
+     * @return whether or not level should be switched out for the next one
      */
-    boolean shouldSwitchLevel();
+    boolean shouldSwitchLevel ();
 }

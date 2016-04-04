@@ -6,16 +6,17 @@ import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
 
+
 public class Level implements ILevel {
-    
+
     private ObjectProperty<IConditionManager> myConditionManager;
     private ObjectProperty<ISpriteManager> mySpriteManager;
     private ObjectProperty<IAttributeManager> myAttributeManager;
     private ObjectProperty<INextLevelManager> myNextLevelManager;
-    
-    Level(){
-        //TODO need to actually instantiate internal manager objects 
-        //after creating the concrete classes
+
+    public Level () {
+        // TODO need to actually instantiate internal manager objects
+        // after creating the concrete classes
         myAttributeManager = new SimpleObjectProperty<>(new AttributeManager());
         myConditionManager = new SimpleObjectProperty<>(new ConditionManager());
         mySpriteManager = new SimpleObjectProperty<>(new SpriteManager());
@@ -29,7 +30,6 @@ public class Level implements ILevel {
         myAttributeManager.get().update(duration);
         myNextLevelManager.get().update(duration);
     }
-
 
     @Override
     public ObservableList<ObjectProperty<ICondition>> getConditionsPropertyList () {
@@ -46,11 +46,9 @@ public class Level implements ILevel {
         return mySpriteManager.get().getSprites();
     }
 
-
-
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
-       mySpriteManager.get().add(sprite, coordinate);
+        mySpriteManager.get().add(sprite, coordinate);
     }
 
     @Override

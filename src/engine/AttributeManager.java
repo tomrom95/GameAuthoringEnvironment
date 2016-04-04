@@ -1,7 +1,6 @@
 package engine;
 
 import java.util.function.Consumer;
-import interactionevents.IInteractionEvent;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
@@ -27,9 +26,7 @@ public class AttributeManager implements IAttributeManager {
     }
 
     private void updateAttributeLoop (Consumer<IAttribute> consume) {
-        for (ObjectProperty<IAttribute> atty : myAttributes) {
-            consume.accept(atty.get());
-        }
+        getAttributes().forEach(attribute -> consume.accept(attribute.get()));
     }
 
     @Override
@@ -49,21 +46,19 @@ public class AttributeManager implements IAttributeManager {
 
     @Override
     public void addResource (IResource resource) {
-        for (ObjectProperty<IAttribute> attribute : resource.getAttributes()) {
-            myAttributes.add(attribute);
-        }
+        resource.getAttributes().forEach(attribute -> myAttributes.add(attribute));
         myResources.add(new SimpleObjectProperty<>(resource));
     }
 
     @Override
     public void registerKeyEvent (KeyIOEvent event) {
-       myAttributes.forEach((a) -> a.get().registerKeyEvent(event));
+       myAttributes.forEach(attribute -> attribute.get().registerKeyEvent(event));
         
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent event) {
-        myAttributes.forEach((a) -> a.get().registerMouseEvent(event));
+        myAttributes.forEach(attribute -> attribute.get().registerMouseEvent(event));
         
     }
 

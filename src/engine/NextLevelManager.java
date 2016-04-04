@@ -12,7 +12,7 @@ public class NextLevelManager implements INextLevelManager {
     private SimpleBooleanProperty myShouldProceedToNext;
     private ILevel myNextLevel;
 
-    NextLevelManager () {
+    public NextLevelManager () {
         myNextLevelConditions = FXCollections.observableArrayList();
         myShouldProceedToNext = new SimpleBooleanProperty(false);
     }

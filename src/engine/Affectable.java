@@ -29,20 +29,24 @@ public interface Affectable extends Updateable {
     void applyEffect (IEffect effect);
 
     /**
-     * Respond appropriately to a global interaction event
+     * Respond appropriately to a global key interaction event
      * 
-     * @param event
+     * @param keyEvent to respond to
      */
-
-    void registerKeyEvent (KeyIOEvent event);
+    void registerKeyEvent (KeyIOEvent keyEvent);
     
-    void registerMouseEvent (MouseIOEvent event);
+    /**
+     * Respond appropriately to a global mouse interaction event
+     * 
+     * @param mouseEvent to respond to
+     */
+    void registerMouseEvent (MouseIOEvent mouseEvent);
 
     /**
      * Any object that is affectable must have attributes that can be affected.
      * We are thus combining these two notions in this one interface.
      * 
-     * @return
+     * @return observable list of attribute properties
      */
     ObservableList<ObjectProperty<IAttribute>> getAttributes ();
 
