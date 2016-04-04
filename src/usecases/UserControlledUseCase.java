@@ -1,7 +1,7 @@
 package usecases;
 
+import effects.IEffect;
 import engine.IAttribute;
-import engine.IEffect;
 import interactionevents.IInteractionEvent;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;

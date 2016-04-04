@@ -10,9 +10,10 @@ import util.Key;
 import util.TimeDuration;
 import java.util.HashMap;
 import java.util.Map;
+import effects.IEffect;
 import engine.Attribute;
+import engine.AttributeType;
 import engine.IAttribute;
-import engine.IEffect;
 import interactionevents.InputType;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
@@ -30,7 +31,7 @@ public class UserControlledMover extends Mover {
                                 double speed,
                                 ControlKeys controls) {
         super(location);
-        mySpeed = new SimpleObjectProperty<>(new Attribute(speed));
+        mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));
         makeKeyMap(controls);
         makeTravelingMap();
 

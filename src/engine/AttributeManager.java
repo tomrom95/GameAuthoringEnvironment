@@ -1,6 +1,7 @@
 package engine;
 
 import java.util.function.Consumer;
+import effects.IEffect;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;

@@ -2,6 +2,7 @@ package modules;
 
 import java.util.List;
 import engine.Attribute;
+import engine.AttributeType;
 import engine.IAttribute;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
@@ -25,7 +26,7 @@ public class PathFollowMover extends Mover {
                             double speed,
                             List<Coordinate> points) {
         super(location);
-        mySpeed = new SimpleObjectProperty<>(new Attribute(speed));
+        mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));
         myPoints = points;
         myNextDestination = 0;
 

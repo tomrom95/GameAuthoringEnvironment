@@ -1,6 +1,7 @@
 package usecases;
 
 import org.easymock.EasyMock;
+import effects.IEffect;
 import engine.ISprite;
 import engine.ISpriteCloner;
 import interactionevents.IInteractionEvent;
@@ -8,7 +9,6 @@ import util.Coordinate;
 import util.TimeDuration;
 import engine.IAdder;
 import engine.IAttribute;
-import engine.IEffect;
 import engine.IModule;
 
 

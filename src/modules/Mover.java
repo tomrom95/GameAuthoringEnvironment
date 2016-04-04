@@ -1,8 +1,9 @@
 package modules;
 
+import effects.IEffect;
 import engine.Attribute;
+import engine.AttributeType;
 import engine.IAttribute;
-import engine.IEffect;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
@@ -12,7 +13,7 @@ import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
 
-abstract public class Mover implements IMovementModule {
+public abstract class Mover implements IMovementModule {
 
     public static final double NO_MOTION = 0;
     private ObjectProperty<IAttribute> myXVel;
@@ -20,8 +21,8 @@ abstract public class Mover implements IMovementModule {
     private ObjectProperty<Coordinate> myLocation;
     
     public Mover (ObjectProperty<Coordinate> location) {
-        myXVel = new SimpleObjectProperty<>(new Attribute());
-        myYVel = new SimpleObjectProperty<>(new Attribute());
+        myXVel = new SimpleObjectProperty<>(new Attribute(AttributeType.X_VEL));
+        myYVel = new SimpleObjectProperty<>(new Attribute(AttributeType.Y_VEL));
         myLocation = location;
     }
     
