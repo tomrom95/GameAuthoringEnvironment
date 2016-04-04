@@ -1,4 +1,4 @@
-package gameauthoring;
+package gameauthoring.characters;
 
 import javafx.scene.Node;
 import javafx.scene.control.TextField;

@@ -1,7 +1,8 @@
-package gameauthoring;
+package gameauthoring.characters;
 
 import java.util.List;
 import engine.ISprite;
+import gameauthoring.Glyph;
 
 public interface SubFormView extends Glyph{
     

@@ -2,6 +2,7 @@ package gameauthoring;
 
 import java.util.ArrayList;
 import java.util.List;
+import gameauthoring.characters.ObjectCreationView;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;

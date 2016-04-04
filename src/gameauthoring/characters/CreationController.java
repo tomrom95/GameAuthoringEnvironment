@@ -1,6 +1,7 @@
-package gameauthoring;
+package gameauthoring.characters;
 
 import java.util.List;
+import gameauthoring.SpriteListView;
 import javafx.collections.ObservableList;
 
 
@@ -26,7 +27,7 @@ public interface CreationController<ItemType> {
 
     void edit (List<SubFormView> subForms);
 
-    FormView getForView ();
+    IFormView getForView ();
 
     SpriteListView getSpriteListView ();
 

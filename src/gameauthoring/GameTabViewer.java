@@ -1,6 +1,7 @@
 package gameauthoring;
 
 import java.io.File;
+import gameauthoring.characters.TextFormData;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
