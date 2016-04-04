@@ -1,18 +1,22 @@
 package gameauthoring.characters;
 
-import java.util.List;
 import engine.ISprite;
 import gameauthoring.Glyph;
 
+/**
+ * 
+ * @author JoeLilien
+ *
+ */
 public interface SubFormView extends Glyph{
     
-    List<FormData> getData();
+    FormData getData();
     
     void populateWithData(ISprite s);
     
     SubFormController getSubFormController();
     
-    SubFormController setSubFormController();
+    void setSubFormController(SubFormController controller);
 
     
 }
