@@ -1,4 +1,4 @@
-package application;
+package gameauthoring.application;
 
 import gameauthoring.AuthoringView;
 import javafx.application.Application;

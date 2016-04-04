@@ -18,6 +18,10 @@ public class GameTabViewer implements ITabViewer {
         myGameTab = gameTab;
     }
 
+    public Tab getTab(){
+        return myGameTab;
+    }
+    
     @Override
     public Node draw () {
         // TODO Auto-generated method stub

@@ -21,6 +21,9 @@ public class SceneTabViewer implements ITabViewer {
         mySceneTab = sceneTab;
     }
 
+    public Tab getTab(){
+        return mySceneTab;
+    }
     @Override
     public Node draw () {
         // TODO Auto-generated method stub

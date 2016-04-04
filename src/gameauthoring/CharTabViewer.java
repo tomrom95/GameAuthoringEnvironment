@@ -50,6 +50,10 @@ public class CharTabViewer implements ITabViewer {
     List<ObjectCreationView> getObjectCreationView () {
         return null;
     }
+    
+    public Tab getTab(){
+        return myCharTab;
+    }
 
     @Override
     public Node draw () {

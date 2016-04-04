@@ -33,27 +33,19 @@ public class AuthoringView implements IAuthoringView {
 
     @Override
     public void init (Stage s) {
-        TabPane tabPane = new TabPane();
-        List<Tab> listOfTabs = createAllTabs();
-        tabPane.getTabs().addAll(listOfTabs);
+        TabPane tabPane = createAllTabs();
         s.setScene(new Scene(tabPane, WIDTH, HEIGHT));
     }
 
-    private List<Tab> createAllTabs () {
-        List<Tab> listOfTabs = new ArrayList<Tab>();
-        Tab gameTab = createTab("Game");
-        listOfTabs.add(gameTab);
-        myGameTabViewer = new GameTabViewer(gameTab);
-        
-        Tab createObjectTab = createTab("Create Objects");
-        listOfTabs.add(createObjectTab);
-        myCharTabViewer = new CharTabViewer(createObjectTab);
-        
-        Tab buildSceneTab = createTab("Build Scenes/Levels");
-        listOfTabs.add(buildSceneTab);
-        mySceneTabViewer = new SceneTabViewer(buildSceneTab);
-        
-        return listOfTabs;
+    private TabPane createAllTabs () {
+        TabPane tabpane = new TabPane();
+        myGameTabViewer = new GameTabViewer(createTab("Game"));
+        myCharTabViewer = new CharTabViewer(createTab("Create Objects"));
+        mySceneTabViewer = new SceneTabViewer(createTab("Build Scenes/Levels"));
+
+        tabpane.getTabs().addAll(myGameTabViewer.getTab(), myCharTabViewer.getTab(),
+                                 mySceneTabViewer.getTab());
+        return tabpane;
     }
 
     private Tab createTab (String tabName) {
