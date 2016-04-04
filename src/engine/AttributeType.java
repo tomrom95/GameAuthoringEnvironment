@@ -12,6 +12,11 @@ package engine;
  *
  */
 public class AttributeType extends StringBasedType {
+    
+    public AttributeType(String type) {
+        super(type);
+    }
+    
     @Override
     protected boolean isSameClass (Object obj) {
         return obj instanceof AttributeType;
