@@ -22,7 +22,7 @@ public class ObjectCreationView implements IObjectCreationView {
         Pane pane = new Pane();
         pane.setPrefWidth(600);
         myCreationPane.add(pane, 0, 0);
-        myCreationPane.add(form.draw(), 0, 1);
+        myCreationPane.add(form.draw(), 1, 0);
     }
 
     @Override
