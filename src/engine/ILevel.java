@@ -1,5 +1,8 @@
 package engine;
 
+import java.util.List;
+import interactionevents.KeyIOEvent;
+import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
@@ -45,4 +48,11 @@ public interface ILevel extends Updateable, IAdder {
      * @return whether or not level should be switched out for the next one
      */
     boolean shouldSwitchLevel ();
+
+    ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
+    
+    void internalizeKeyEvents (List<KeyIOEvent> list);
+
+    void internalizeMouseEvents (List<MouseIOEvent> list);
+   
 }

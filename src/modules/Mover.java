@@ -4,6 +4,7 @@ import effects.IEffect;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
+import engine.ISprite;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
@@ -18,22 +19,30 @@ public abstract class Mover implements IMovementModule {
     public static final double NO_MOTION = 0;
     private ObjectProperty<IAttribute> myXVel;
     private ObjectProperty<IAttribute> myYVel;
-    private ObjectProperty<Coordinate> myLocation;
+    private ISprite myParent;
     
-    public Mover (ObjectProperty<Coordinate> location) {
+    public Mover (ISprite sprite) {
         myXVel = new SimpleObjectProperty<>(new Attribute(AttributeType.X_VEL));
         myYVel = new SimpleObjectProperty<>(new Attribute(AttributeType.Y_VEL));
-        myLocation = location;
+        myParent = sprite;
+    }
+    
+    private ObjectProperty<Coordinate> getLocation () {
+        return myParent.getLocation();
     }
     
     protected void move (TimeDuration duration) {
         double xChange = distance(getXVel().get().getValueProperty().get(), duration.getMillis());
         double yChange = distance(getYVel().get().getValueProperty().get(), duration.getMillis());
-        myLocation.set(getNextCoordinate(xChange, yChange));
+        getLocation().set(getNextCoordinate(xChange, yChange));
+    }
+    
+    protected void move (Coordinate coordinate) {
+        getLocation().set(coordinate);
     }
     
     private Coordinate getNextCoordinate (double xChange, double yChange) {
-        return new Coordinate(myLocation.get().getX() + xChange, myLocation.get().getY() + yChange);
+        return new Coordinate(getLocation().get().getX() + xChange, getLocation().get().getY() + yChange);
     }
 
     private double distance (double rate, double time) {
@@ -41,11 +50,11 @@ public abstract class Mover implements IMovementModule {
     }
     
     protected double getXDiff(double input) { 
-        return input - myLocation.get().getX();
+        return input - getLocation().get().getX();
     }
     
     protected double getYDiff(double input) { 
-        return input - myLocation.get().getY();
+        return input - getLocation().get().getY();
     }
     
     abstract public void update (TimeDuration duration);
@@ -71,11 +80,6 @@ public abstract class Mover implements IMovementModule {
     }
     
     abstract protected ObservableList<ObjectProperty<IAttribute>> getSpecificAttributes();
-
-    @Override
-    public ObjectProperty<Coordinate> getLocationProperty () {
-        return myLocation;
-    }
     
     protected ObjectProperty<IAttribute> getXVel () {
         return myXVel;

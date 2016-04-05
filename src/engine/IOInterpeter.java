@@ -6,6 +6,7 @@ import interactionevents.IScreenEventFactory;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import interactionevents.ScreenEventFactory;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
 
@@ -26,18 +27,18 @@ public class IOInterpeter {
     private List<KeyIOEvent> myQueuedKeyEvents;
     private List<MouseIOEvent> myQueuedMouseEvents;
 
-    public IOInterpeter (Pane pane) {
+    public IOInterpeter (Scene scene, Pane pane) {
         myEventFactory = new ScreenEventFactory();
         myQueuedKeyEvents = new ArrayList<>();
         myQueuedMouseEvents = new ArrayList<>();
-        setUpListener(pane);
+        setUpListener(scene, pane);
     }
 
-    private void setUpListener (Pane pane) {
-        pane.requestFocus();
+    private void setUpListener (Scene scene, Pane pane) {
+
         pane.setOnMouseClicked(e -> queue(myEventFactory.interpretEvent(e)));
-        pane.setOnKeyPressed(e -> queue(myEventFactory.interpretEvent(e)));
-        pane.setOnKeyReleased(e -> queue(myEventFactory.interpretEvent(e)));
+        scene.setOnKeyPressed(e -> queue(myEventFactory.interpretEvent(e)));
+        scene.setOnKeyReleased(e -> queue(myEventFactory.interpretEvent(e)));
     }
 
     private void queue (MouseIOEvent event) {

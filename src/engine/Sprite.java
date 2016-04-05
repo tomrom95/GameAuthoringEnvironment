@@ -37,10 +37,10 @@ public class Sprite implements ISprite {
     private ObjectProperty<IStatusModule> myStatusModule;
     private ObjectProperty<AttributeManager> myAttributeManager;
 
-    public Sprite (ObjectProperty<IMovementModule> mover, ObjectProperty<IGraphicModule> graphic) {
+    public Sprite () {
         myAttributeManager = new SimpleObjectProperty<>(new AttributeManager());
-        myMover = mover;
-        myGraphic = graphic;
+        myMover = new SimpleObjectProperty<>();
+        myGraphic = new SimpleObjectProperty<>();
         initializeRequiredModules();
         myLocation = new SimpleObjectProperty<>(new Coordinate(0,0));
     }

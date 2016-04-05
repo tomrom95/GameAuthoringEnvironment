@@ -2,6 +2,8 @@ package effects;
 
 import engine.AttributeType;
 import engine.IAttribute;
+import engine.Updateable;
+import util.TimeDuration;
 
 /**
  * This class represents an effect to be applied to an attribute.
@@ -13,7 +15,7 @@ import engine.IAttribute;
  * @author Jonathan Im
  *
  */
-public interface IEffect {
+public interface IEffect extends Updateable {
 
     /**
      * @return AttributeType specifying the type of Attribute to which the Effect is intended to.
@@ -27,4 +29,9 @@ public interface IEffect {
      * @param attribute to be affected
      */
     void applyToAttribute (IAttribute attribute);
+    
+    /**
+     * @return true if the effect has completed, false otherwise
+     */
+    boolean hasCompleted ();
 }
