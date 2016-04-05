@@ -19,6 +19,7 @@ public class OnScreenSpawner extends OnScreenSprite{
         ContextMenu menu = super.spriteActionsMenu(container, node);
         MenuItem create = new MenuItem("Create Path");
         create.setOnAction(event -> {
+            // REPLACE WITH SPRITE COORDINATE
             Coordinate point = new Coordinate(node.getTranslateX(), node.getTranslateY());
             this.getController().createNewPath(point, container);
         });

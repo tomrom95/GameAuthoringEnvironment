@@ -72,8 +72,8 @@ public class OnScreenSprite implements Draggable, Glyph{
 
     @Override
     public void setOnDragDropped (DragEvent e) {
-        thisNode.setTranslateX(e.getX());
-        thisNode.setTranslateY(e.getY());
+        thisNode.setTranslateX(e.getX()-myImage.getWidth()/2);
+        thisNode.setTranslateY(e.getY()-myImage.getHeight()/2);
         thisNode.setVisible(true);
     }
     

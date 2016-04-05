@@ -59,8 +59,8 @@ public class DraggableSpriteCell extends SpriteCellView implements Draggable{
         if (db.hasString()) {
             OnScreenSprite sprite = new OnScreenSpawner(getSprite(), myTarget, getDragImage(), myController);
             Node onScreen = sprite.draw();
-            onScreen.setTranslateX(e.getX());
-            onScreen.setTranslateY(e.getY());
+            onScreen.setTranslateX(e.getX() - getImageProfile().getWidth()/2);
+            onScreen.setTranslateY(e.getY() - getImageProfile().getHeight()/2);
             myTarget.getChildren().add(onScreen);
         }
     }
