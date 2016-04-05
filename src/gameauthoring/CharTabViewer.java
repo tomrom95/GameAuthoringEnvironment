@@ -1,5 +1,11 @@
 package gameauthoring;
 
+import gameauthoring.ITabViewer;
+import gameauthoring.object_creation_tab.AttributeEditorView;
+import gameauthoring.object_creation_tab.DefenderEditorView;
+import gameauthoring.object_creation_tab.EnemyEditorView;
+import gameauthoring.object_creation_tab.InteractionEditorView;
+import gameauthoring.object_creation_tab.WeaponEditorView;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Node;
@@ -20,27 +26,30 @@ public class CharTabViewer implements ITabViewer {
 
     private Tab myCharTab;
     private BorderPane myLayout;
+    private AttributeEditorView myAttributeView;
+    private DefenderEditorView myDefenderView;
+    private EnemyEditorView myEnemyView;
+    private InteractionEditorView myInteractionView;
+    private WeaponEditorView myWeaponView;
 
     public CharTabViewer (Tab charTab) {
         myCharTab = charTab;
-        TabPane tabPane = new TabPane();
-        tabPane.getTabs().addAll(createAllSubTabs());
+        TabPane tabPane = createAllSubTabs();
         myCharTab.setContent(tabPane);
     }
 
-    private List<Tab> createAllSubTabs () {
-        List<Tab> allSubTabs = new ArrayList<Tab>();
-        Tab attributesTab = createSubTab("Attributes");
-        allSubTabs.add(attributesTab);
-        Tab weaponsTab = createSubTab("Weapons");
-        allSubTabs.add(weaponsTab);
-        Tab enemiesTab = createSubTab("Enemies");
-        allSubTabs.add(enemiesTab);
-        Tab defendersTab = createSubTab("Defenders");
-        allSubTabs.add(defendersTab);
-        Tab interactionsTab = createSubTab("Interactions");
-        allSubTabs.add(interactionsTab);
-        return allSubTabs;
+    private TabPane createAllSubTabs () {
+        TabPane tabpane = new TabPane();
+        myAttributeView = new AttributeEditorView(createSubTab("Attributes"));
+        myDefenderView = new DefenderEditorView(createSubTab("Defenders"));
+        myEnemyView = new EnemyEditorView(createSubTab("Enemies"));
+        myInteractionView = new InteractionEditorView(createSubTab("Interactions"));
+        myWeaponView = new WeaponEditorView(createSubTab("Weapons"));
+
+        tabpane.getTabs().addAll(myAttributeView.getTab(), myDefenderView.getTab(),
+                                 myEnemyView.getTab(), myInteractionView.getTab(),
+                                 myWeaponView.getTab());
+        return tabpane;
     }
 
     private Tab createSubTab (String tabName) {
@@ -52,14 +61,15 @@ public class CharTabViewer implements ITabViewer {
     List<ObjectCreationView> getObjectCreationView () {
         return null;
     }
-    
-    public Tab getTab(){
+
+    public Tab getTab () {
         return myCharTab;
     }
 
     @Override
     public Node draw () {
         myLayout = new BorderPane();
+
         return myLayout;
     }
 
