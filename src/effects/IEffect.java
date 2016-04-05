@@ -1,4 +1,7 @@
-package engine;
+package effects;
+
+import engine.AttributeType;
+import engine.IAttribute;
 
 /**
  * This class represents an effect to be applied to an attribute.
@@ -13,17 +16,15 @@ package engine;
 public interface IEffect {
 
     /**
-     * 
-     * @return AttributeType specifying the type of Attribute to which the Effect is intended to
+     * @return AttributeType specifying the type of Attribute to which the Effect is intended to.
      *         influence
      */
     AttributeType getAttributeType ();
 
     /**
-     * Applies the changes from this effect to a a given attribute
+     * Applies the changes from this effect to a a given attribute.
      *
      * @param attribute to be affected
      */
-
     void applyToAttribute (IAttribute attribute);
 }

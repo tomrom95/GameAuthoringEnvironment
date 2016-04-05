@@ -2,6 +2,9 @@ package engine;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
+import modules.IModule;
+import modules.IMovementModule;
+import util.Bound;
 import util.Coordinate;
 
 
@@ -18,16 +21,16 @@ import util.Coordinate;
  */
 public interface ISprite extends Drawable, Updateable, Affectable {
 
-    ObjectProperty<IProfile> getProfileProperty ();
-
     ObjectProperty<Coordinate> getLocation ();
 
     ObjectProperty<IMovementModule> getMovementStrategyProperty ();
 
-    ObservableList<IModule> getModulesProperty ();
+    ObservableList<ObjectProperty<? extends IModule>> getModulesProperty ();
 
-    ObservableList<IAttribute> getAttributesProperty ();
+    ObservableList<ObjectProperty<IAttribute>> getAttributes ();
 
-    ObservableList<IResource> getResourcesProperty ();
+    ObservableList<ObjectProperty<IResource>> getResourcesProperty ();
+    
+    Bound getBounds ();
 
 }

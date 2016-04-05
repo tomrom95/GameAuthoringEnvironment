@@ -18,7 +18,7 @@ public interface ILevelManager extends IAdder {
     /**
      * @return the current level
      */
-    ILevel getCurrentLevel ();
+    ObjectProperty<ILevel> getCurrentLevel ();
 
     /**
      * @return an ObservableList of all the levels associated with this manager
