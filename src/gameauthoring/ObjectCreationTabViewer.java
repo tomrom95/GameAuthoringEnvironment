@@ -22,7 +22,7 @@ import javafx.scene.layout.BorderPane;
  * @author Jin An
  *
  */
-public class CharTabViewer implements ITabViewer {
+public class ObjectCreationTabViewer implements ITabViewer {
 
     private Tab myCharTab;
     private BorderPane myLayout;
@@ -32,7 +32,7 @@ public class CharTabViewer implements ITabViewer {
     private InteractionEditorView myInteractionView;
     private WeaponEditorView myWeaponView;
 
-    public CharTabViewer (Tab charTab) {
+    public ObjectCreationTabViewer (Tab charTab) {
         myCharTab = charTab;
         TabPane tabPane = createAllSubTabs();
         myCharTab.setContent(tabPane);
