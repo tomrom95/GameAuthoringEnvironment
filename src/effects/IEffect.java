@@ -2,6 +2,7 @@ package effects;
 
 import engine.AttributeType;
 import engine.IAttribute;
+import engine.Updateable;
 import util.TimeDuration;
 
 /**
@@ -14,7 +15,7 @@ import util.TimeDuration;
  * @author Jonathan Im
  *
  */
-public interface IEffect {
+public interface IEffect extends Updateable {
 
     /**
      * @return AttributeType specifying the type of Attribute to which the Effect is intended to.
@@ -30,9 +31,7 @@ public interface IEffect {
     void applyToAttribute (IAttribute attribute);
     
     /**
-     * Decreases the time of the effect
-     * @param duration Time to decrease by 
      * @return true if the effect has completed, false otherwise
      */
-    boolean hasCompleted (TimeDuration duration);
+    boolean hasCompleted ();
 }

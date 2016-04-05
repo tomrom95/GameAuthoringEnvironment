@@ -14,6 +14,7 @@ import effects.IEffect;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
+import engine.ISprite;
 import interactionevents.InputType;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
@@ -27,10 +28,9 @@ public class UserControlledMover extends Mover {
     private Map<Direction, Key> myKeys;
     private Map<Direction, Boolean> myTraveling;
 
-    public UserControlledMover (ObjectProperty<Coordinate> location,
-                                double speed,
-                                ControlKeys controls) {
-        super(location);
+    public UserControlledMover (double speed,
+                                ControlKeys controls, ISprite parent) {
+        super(parent);
         mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));
         makeKeyMap(controls);
         makeTravelingMap();

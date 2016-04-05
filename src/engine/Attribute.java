@@ -1,5 +1,6 @@
 package engine;
 
+import java.util.stream.Collectors;
 import effects.IEffect;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
@@ -70,17 +71,16 @@ public class Attribute implements IAttribute {
 
     @Override
     public void update (TimeDuration duration) {
-        myEffects.forEach( (e) -> e.get().applyToAttribute(this));
+        myEffects.forEach(e -> e.get().applyToAttribute(this));
+        myEffects.forEach(e -> e.get().update(duration));
         removeCompletedEffects(duration);
     }
 
     private void removeCompletedEffects (TimeDuration duration) {
-        for(int i=0; i<myEffects.size(); i++){
-            if(myEffects.get(i).get().hasCompleted(duration)) {
-                myEffects.remove(i);
-                i--;
-            }
-        }
+
+        myEffects.stream().filter(e -> !e.get().hasCompleted())
+                .collect(Collectors.toList());
+        
     }
 
     @Override

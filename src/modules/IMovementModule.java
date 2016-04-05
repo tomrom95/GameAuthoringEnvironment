@@ -16,5 +16,5 @@ import util.Coordinate;
  */
 public interface IMovementModule extends IModule {
 
-    ObjectProperty<Coordinate> getLocationProperty ();
+    
 }

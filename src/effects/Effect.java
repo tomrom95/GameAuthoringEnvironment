@@ -57,8 +57,11 @@ public abstract class Effect implements IEffect {
     }
     
    
-    public boolean hasCompleted (TimeDuration duration) {
-        myEffectLength.getValueProperty().set(duration.getMillis());
+    public boolean hasCompleted () {
         return myEffectLength.getValueProperty().get() < 0;
+    }
+    
+    public void update (TimeDuration duration) {
+        myEffectLength.getValueProperty().set(duration.getMillis());
     }
 }
