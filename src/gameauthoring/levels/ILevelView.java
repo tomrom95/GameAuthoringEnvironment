@@ -1,4 +1,4 @@
-package gameauthoring;
+package gameauthoring.levels;
 
 import java.util.List;
 import javafx.scene.Node;

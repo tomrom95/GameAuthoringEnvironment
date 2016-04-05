@@ -1,4 +1,4 @@
-package engine;
+package modules;
 
 import javafx.beans.property.ObjectProperty;
 import util.Coordinate;

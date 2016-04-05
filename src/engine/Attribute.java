@@ -1,11 +1,13 @@
 package engine;
 
-import interactionevents.IInteractionEvent;
+import effects.IEffect;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
 
@@ -13,28 +15,28 @@ import util.TimeDuration;
 public class Attribute implements IAttribute {
 
     private DoubleProperty myValue;
+    private AttributeType myType;
+    private ObservableList<ObjectProperty<IEffect>> myEffects;
 
-    public Attribute () {
-        // TODO introduce idea of default
+    public Attribute (AttributeType type) {
         myValue = new SimpleDoubleProperty(0);
+        myEffects = FXCollections.observableArrayList();
     }
 
-    public Attribute (double value) {
+    public Attribute (double value, AttributeType type) {
         myValue = new SimpleDoubleProperty(value);
+        myType = type;
+        myEffects = FXCollections.observableArrayList();
     }
 
     @Override
     public void applyEffect (IEffect effect) {
-        effect.applyToAttribute(this);
-
+        myEffects.add(new SimpleObjectProperty<>(effect));
     }
-
-    
 
     @Override
     public AttributeType getType () {
-        // TODO Auto-generated method stub
-        return null;
+        return myType;
     }
 
     @Override
@@ -44,44 +46,36 @@ public class Attribute implements IAttribute {
 
     @Override
     public void setValue (double valueToSet) {
-       myValue.set(valueToSet);
-
+        myValue.set(valueToSet);
     }
 
     @Override
     public void registerKeyEvent (KeyIOEvent event) {
-        // TODO Auto-generated method stub
-        
+        // do nothing
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent event) {
-        // TODO Auto-generated method stub
-        
+        // do nothing
     }
 
     @Override
     public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
-        // TODO Auto-generated method stub
-        return null;
+
+        ObservableList<ObjectProperty<IAttribute>> attributes =
+                FXCollections.observableArrayList();
+        attributes.add(new SimpleObjectProperty<>(this));
+        return attributes;
     }
 
     @Override
     public void update (TimeDuration duration) {
-        // TODO Auto-generated method stub
-        
+        myEffects.forEach( (e) -> e.get().applyToAttribute(this));
     }
 
     @Override
     public ObservableList<ObjectProperty<IEffect>> getEffects () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public ObservableList<ObjectProperty<IInteractionEvent>> getEvents () {
-        // TODO Auto-generated method stub
-        return null;
+        return myEffects;
     }
 
 }

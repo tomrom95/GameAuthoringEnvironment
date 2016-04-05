@@ -13,11 +13,11 @@ abstract public class SizeableGraphic implements IGraphic{
         myHeight = new SimpleDoubleProperty(height);
     }
     
-    public DoubleProperty getWidthProperty () {
+    public DoubleProperty getWidth () {
         return myWidth;
     }
 
-    public DoubleProperty getHeightProperty () {
+    public DoubleProperty getHeight () {
         return myHeight;
     }
     

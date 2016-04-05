@@ -1,6 +1,7 @@
-package engine;
+package modules;
 
 import gameplayer.IGraphicFactory;
+import graphics.IGraphic;
 import javafx.scene.Node;
 
 
@@ -14,8 +15,10 @@ import javafx.scene.Node;
  * @author Jonathan Im
  *
  */
-public interface IGraphicModule {
+public interface IGraphicModule extends IModule {
 
     Node getVisualRepresentation (IGraphicFactory factory);
+    
+    IGraphic getGraphic ();
 
 }

@@ -1,10 +1,18 @@
 package engine;
 
+import java.util.function.Consumer;
+import effects.IEffect;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import modules.IGraphicModule;
+import modules.IModule;
+import modules.IMovementModule;
+import modules.StatusModule;
+import util.Bound;
 import util.Coordinate;
 import util.TimeDuration;
 
@@ -24,78 +32,98 @@ public class Sprite implements ISprite {
 
     private ObjectProperty<IMovementModule> myMover;
     private ObjectProperty<IGraphicModule> myGraphic;
-    private ObservableList<IModule> myModules;
-    private IStatusModule myStatusModule;
-    
-    public Sprite () { 
-        //Initialized for testing
-        myGraphic = new SimpleObjectProperty<>();
-        myMover = new SimpleObjectProperty<>();
-        
+    private ObservableList<ObjectProperty<? extends IModule>> myModules;
+    private ObjectProperty<Coordinate> myLocation;
+    private ObjectProperty<IStatusModule> myStatusModule;
+    private ObjectProperty<AttributeManager> myAttributeManager;
+
+    public Sprite (ObjectProperty<IMovementModule> mover, ObjectProperty<IGraphicModule> graphic) {
+        myAttributeManager = new SimpleObjectProperty<>(new AttributeManager());
+        myMover = mover;
+        myGraphic = graphic;
+        initializeRequiredModules();
+        myLocation = new SimpleObjectProperty<>(new Coordinate(0,0));
     }
-    
+
+    private void initializeRequiredModules () {
+        //TODO will get nulls if something is not put in here
+        myModules = FXCollections.observableArrayList();
+        myStatusModule = new SimpleObjectProperty<>(new StatusModule());
+        myModules.add(myMover);
+        myModules.add(myStatusModule);
+        myModules.add(myGraphic);
+    }
+
     @Override
     public ObjectProperty<IGraphicModule> getDrawer () {
         return myGraphic;
     }
+
     @Override
     public void update (TimeDuration duration) {
-        // TODO Auto-generated method stub
-        myMover.get().update(duration);
+        myAttributeManager.get().update(duration);
+        forAllModules((m) -> m.get().update(duration));
     }
+
     @Override
     public void applyEffect (IEffect effect) {
-        // TODO Auto-generated method stub
-        
+       myAttributeManager.get().applyEffect(effect);
+       forAllModules((m) -> m.get().applyEffect(effect));
     }
-    
-    @Override
-    public ObjectProperty<IProfile> getProfileProperty () {
-        // TODO Auto-generated method stub
-        return null;
-    }
+
     @Override
     public ObjectProperty<Coordinate> getLocation () {
-        return myMover.get().getLocationProperty();
+        return myLocation;
     }
+
     @Override
     public ObjectProperty<IMovementModule> getMovementStrategyProperty () {
-        // TODO Auto-generated method stub
         return myMover;
     }
+
     @Override
-    public ObservableList<ObjectProperty<IModule>> getModulesProperty () {
-        // TODO Auto-generated method stub
-        return null;
+    public ObservableList<ObjectProperty<? extends IModule>> getModulesProperty () {
+        return myModules;
     }
-    @Override
-    public ObservableList<ObjectProperty<IAttribute>> getAttributesProperty () {
-        // TODO Auto-generated method stub
-        return null;
-    }
+
     @Override
     public ObservableList<ObjectProperty<IResource>> getResourcesProperty () {
-        // TODO Auto-generated method stub
-        return null;
+        ObservableList<ObjectProperty<IResource>> resources = FXCollections.observableArrayList();
+        resources.addAll(myAttributeManager.get().getResourceList());
+        return resources;
     }
 
     @Override
     public void registerKeyEvent (KeyIOEvent event) {
-        myMover.get().registerKeyEvent(event);
-        
+        myAttributeManager.get().registerKeyEvent(event);
+        forAllModules((m) -> m.get().registerKeyEvent(event));
+
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent event) {
-        // TODO Auto-generated method stub
-        
+        myAttributeManager.get().registerMouseEvent(event);
+        forAllModules((m) -> m.get().registerMouseEvent(event));
     }
 
     @Override
     public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
-        // TODO Auto-generated method stub
-        return null;
+        ObservableList<ObjectProperty<IAttribute>> attributes = FXCollections.observableArrayList();
+        attributes.addAll(myAttributeManager.get().getAttributes());
+        forAllModules((m) -> attributes.addAll(m.get().getAttributes()));
+        return attributes;
     }
-
     
+    private void forAllModules(Consumer<? super ObjectProperty<? extends IModule>> action) {
+        myModules.forEach(action);
+    }
+    
+    @Override
+    public Bound getBounds () {
+        double x = getLocation().get().getX();
+        double y = getLocation().get().getY();
+        double width = getDrawer().get().getGraphic().getWidth().get();
+        double height = getDrawer().get().getGraphic().getHeight().get();
+        return new Bound(x, y, width, height);
+    }
 }

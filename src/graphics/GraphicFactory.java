@@ -27,7 +27,7 @@ public class GraphicFactory implements IGraphicFactory {
     
     @Override
     public Node getVisual (Block block) {
-        Rectangle rect = new Rectangle(block.getWidthProperty().get(), block.getHeightProperty().get());
+        Rectangle rect = new Rectangle(block.getWidth().get(), block.getHeight().get());
         rect.setFill(rgbToColor(block.getFillProeprty().get()));
         return rect;
     }
@@ -36,7 +36,7 @@ public class GraphicFactory implements IGraphicFactory {
     public Node getVisual (ImageGraphic imageGraphic) {
         Image image = new Image(imageGraphic.getUrlProperty().get());
         ImageView imageView = new ImageView(image);
-        imageView.resize(imageGraphic.getWidthProperty().get(), imageGraphic.getHeightProperty().get());
+        imageView.resize(imageGraphic.getWidth().get(), imageGraphic.getHeight().get());
         return imageView;
     }
 

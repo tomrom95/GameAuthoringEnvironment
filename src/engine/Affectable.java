@@ -2,6 +2,7 @@ package engine;
 
 
 
+import effects.IEffect;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
