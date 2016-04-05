@@ -16,10 +16,13 @@ public class Game implements IGame, IGamePlayable {
 
     private ILevelManager myLevelManager;
     private IConditionManager myConditionManager;
+    private AuthorshipData myAuthorshipData;
+    private IGameInformation myGameInformation;
     
-    public Game (LevelManager levelManager, ConditionManager conditionManager) {
+    public Game (LevelManager levelManager, GameInformation info, ConditionManager conditionManager) {
         myLevelManager = levelManager;
         myConditionManager = conditionManager;
+        myAuthorshipData = new AuthorshipData();
     }
     
     @Override
@@ -30,8 +33,7 @@ public class Game implements IGame, IGamePlayable {
 
     @Override
     public IGameInformation getGameInformation () {
-        // TODO Auto-generated method stub
-        return null;
+        return myGameInformation;
     }
 
     @Override
@@ -64,6 +66,11 @@ public class Game implements IGame, IGamePlayable {
     @Override
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
         myLevelManager.internalizeMouseEvents(list);
+    }
+
+    @Override
+    public AuthorshipData getAuthorshipData () {
+       return myAuthorshipData;
     }
 
 }

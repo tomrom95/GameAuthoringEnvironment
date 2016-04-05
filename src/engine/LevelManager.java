@@ -70,4 +70,10 @@ public class LevelManager implements ILevelManager {
         myCurrentLevel.get().internalizeMouseEvents(list);
         
     }
+
+    @Override
+    public void remove (ObjectProperty<ISprite> sprite) {
+        myCurrentLevel.get().remove(sprite);
+        
+    }
 }

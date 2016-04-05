@@ -51,8 +51,20 @@ public interface ILevel extends Updateable, IAdder {
 
     ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
     
+    /**
+     * @param list of key events to be processed
+     */
     void internalizeKeyEvents (List<KeyIOEvent> list);
 
+    /**
+     * @param list of key events to be processed
+     */
     void internalizeMouseEvents (List<MouseIOEvent> list);
+    
+    /**
+     * @param sprite to be removed
+     */
+    
+    void remove(ObjectProperty<ISprite> sprite);
    
 }

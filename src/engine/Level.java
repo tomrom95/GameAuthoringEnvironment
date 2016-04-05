@@ -81,4 +81,10 @@ public class Level implements ILevel {
         
     }
 
+    @Override
+    public void remove (ObjectProperty<ISprite> sprite) {
+        mySpriteManager.get().remove(sprite);
+        
+    }
+
 }
