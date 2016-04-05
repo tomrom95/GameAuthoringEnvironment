@@ -3,6 +3,7 @@ package effects;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
+import util.TimeDuration;
 
 
 /**
@@ -15,6 +16,7 @@ import engine.IAttribute;
 public abstract class Effect implements IEffect {
 
     private AttributeType myAttributeType;
+    private IAttribute myEffectLength;
     private IAttribute myAlteringValue;
 
     /**
@@ -23,8 +25,9 @@ public abstract class Effect implements IEffect {
      * @param type AttributeType to which the Effect applied
      * @param alteringValue the amount of the decrement
      */
-    public Effect (AttributeType type, double alteringValue) {
+    public Effect (AttributeType type,  IAttribute effectLength, double alteringValue) {
         myAttributeType = type;
+        myEffectLength = effectLength;
         myAlteringValue = new Attribute(alteringValue, AttributeType.CONSTANT);
     }
     
@@ -35,8 +38,9 @@ public abstract class Effect implements IEffect {
      * @param alteringValue the amount of the decrement- tied to another dynamic
      *        attribute
      */
-    public Effect (AttributeType type, IAttribute alteringValue) {
+    public Effect (AttributeType type, IAttribute effectLength, IAttribute alteringValue) {
         myAttributeType = type;
+        myEffectLength = effectLength;
         myAlteringValue = alteringValue;
     }
 
@@ -50,5 +54,14 @@ public abstract class Effect implements IEffect {
 
     public AttributeType getAttributeType () {
         return myAttributeType;
+    }
+    
+   
+    public boolean hasCompleted () {
+        return myEffectLength.getValueProperty().get() < 0;
+    }
+    
+    public void update (TimeDuration duration) {
+        myEffectLength.getValueProperty().set(duration.getMillis());
     }
 }

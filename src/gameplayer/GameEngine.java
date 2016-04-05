@@ -22,11 +22,13 @@ public class GameEngine implements IGameEngine {
 
     private IGamePlayable myGame;
     private IRenderer myRenderer;
+    private IOInterpeter myIOIntercepter;
     private Timeline myTimeline = new Timeline();
 
-    public GameEngine (IGamePlayable game, Pane pane) {
+    public GameEngine (IGamePlayable game, Pane pane, IOInterpeter ioInterpreter) {
         myGame = game;
         myRenderer = new Renderer(game, pane);
+        myIOIntercepter = ioInterpreter;
         initializeTimeline();
     }
 
@@ -40,6 +42,8 @@ public class GameEngine implements IGameEngine {
     }
 
     private void step (Duration frameDuration) {
+        getGame().internalizeKeyEvents(myIOIntercepter.deQueueKeyEvents());
+        getGame().internalizeMouseEvents(myIOIntercepter.deQueueMouseEvents());
         getGame().update(new TimeDuration(frameDuration.toMillis()));
         getRenderer().render();
     }

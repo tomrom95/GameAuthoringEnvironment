@@ -13,12 +13,12 @@ import engine.IAttribute;
 
 public class DecreaseEffect extends Effect {
     
-    public DecreaseEffect (AttributeType type, double decreaseAmount) {
-        super(type, decreaseAmount);
+    public DecreaseEffect (AttributeType type, IAttribute effectLength, double decreaseAmount) {
+        super(type, effectLength, decreaseAmount);
     }
  
-    public DecreaseEffect (AttributeType type, IAttribute decreaseAmount) {
-        super(type, decreaseAmount);
+    public DecreaseEffect (AttributeType type, IAttribute effectLength, IAttribute decreaseAmount) {
+        super(type, effectLength, decreaseAmount);
     }
 
     @Override

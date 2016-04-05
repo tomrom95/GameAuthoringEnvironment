@@ -4,6 +4,7 @@ import java.util.List;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
+import engine.ISprite;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
@@ -22,10 +23,9 @@ public class PathFollowMover extends Mover {
     private List<Coordinate> myPoints;
     private int myNextDestination;
 
-    public PathFollowMover (ObjectProperty<Coordinate> location,
-                            double speed,
-                            List<Coordinate> points) {
-        super(location);
+    public PathFollowMover (double speed,
+                            List<Coordinate> points, ISprite parent) {
+        super(parent);
         mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));
         myPoints = points;
         myNextDestination = 0;
@@ -34,16 +34,21 @@ public class PathFollowMover extends Mover {
 
     @Override
     public void update (TimeDuration duration) {
-        updateIndex();
-        adjustVectors();
-        move(duration);
+        if (overshootNext(duration)) {
+            move(myPoints.get(myNextDestination));
+            incrementIndex();
+        }
+        else {
+            adjustVectors();
+            move(duration);
+        }
 
     }
 
-    private void updateIndex () {
-        if (withinRange(xDifference()) && withinRange(yDifference())) {
-            incrementIndex();
-        }
+    private boolean overshootNext (TimeDuration duration) {
+       double distancePossible = duration.getMillis() * mySpeed.get().getValueProperty().get();
+       double distance = Math.sqrt(xDifference() * xDifference() + yDifference() * yDifference());
+       return distancePossible>distance;
     }
 
     private double xDifference () {
@@ -58,10 +63,6 @@ public class PathFollowMover extends Mover {
         if (myNextDestination < myPoints.size() - 1) {
             myNextDestination++;
         }
-    }
-
-    private boolean withinRange (double input) {
-        return Math.abs(input) < PIXEL_RANGE;
     }
 
     private void adjustVectors () {

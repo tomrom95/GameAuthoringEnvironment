@@ -11,12 +11,12 @@ import engine.IAttribute;
  */
 public class IncreaseEffect extends Effect {
 
-    public IncreaseEffect (AttributeType type, double increaseAmount) {
-        super(type, increaseAmount);
+    public IncreaseEffect (AttributeType type, IAttribute effectLength, double increaseAmount) {
+        super(type, effectLength, increaseAmount);
     }
  
-    public IncreaseEffect (AttributeType type, IAttribute increaseAmount) {
-        super(type, increaseAmount);
+    public IncreaseEffect (AttributeType type, IAttribute effectLength, IAttribute increaseAmount) {
+        super(type, effectLength, increaseAmount);
     }
 
     @Override

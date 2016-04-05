@@ -1,5 +1,8 @@
 package engine;
 
+import java.util.List;
+import interactionevents.KeyIOEvent;
+import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,8 +21,9 @@ public class LevelManager implements ILevelManager {
     // updateable items as
     // specified by our Updateable interface
 
-    public LevelManager () {
+    public LevelManager (ObjectProperty<ILevel> startingLevel) {
         myLevelPropertyList = FXCollections.observableArrayList();
+        myCurrentLevel = startingLevel; 
     }
 
     @Override
@@ -48,5 +52,28 @@ public class LevelManager implements ILevelManager {
         if (myCurrentLevel.get().shouldSwitchLevel()) {
             myCurrentLevel.set(myCurrentLevel.get().getNextLevel());
         }
+    }
+
+    @Override
+    public ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables () {
+        return myCurrentLevel.get().getDrawables();
+    }
+
+    @Override
+    public void internalizeKeyEvents (List<KeyIOEvent> list) {
+        myCurrentLevel.get().internalizeKeyEvents(list);
+        
+    }
+
+    @Override
+    public void internalizeMouseEvents (List<MouseIOEvent> list) {
+        myCurrentLevel.get().internalizeMouseEvents(list);
+        
+    }
+
+    @Override
+    public void remove (ObjectProperty<ISprite> sprite) {
+        myCurrentLevel.get().remove(sprite);
+        
     }
 }

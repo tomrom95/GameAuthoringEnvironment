@@ -1,5 +1,8 @@
 package engine;
 
+import java.util.List;
+import interactionevents.KeyIOEvent;
+import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -59,6 +62,29 @@ public class Level implements ILevel {
     @Override
     public boolean shouldSwitchLevel () {
         return myNextLevelManager.get().shouldGoToNextLevel();
+    }
+
+    @Override
+    public ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables () {
+        return mySpriteManager.get().getDrawables();
+    }
+
+    @Override
+    public void internalizeKeyEvents (List<KeyIOEvent> list) {
+        mySpriteManager.get().internalizeKeyEvents(list);
+        
+    }
+
+    @Override
+    public void internalizeMouseEvents (List<MouseIOEvent> list) {
+       mySpriteManager.get().internalizeMouseEvents(list);
+        
+    }
+
+    @Override
+    public void remove (ObjectProperty<ISprite> sprite) {
+        mySpriteManager.get().remove(sprite);
+        
     }
 
 }
