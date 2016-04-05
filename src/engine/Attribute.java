@@ -71,6 +71,16 @@ public class Attribute implements IAttribute {
     @Override
     public void update (TimeDuration duration) {
         myEffects.forEach( (e) -> e.get().applyToAttribute(this));
+        removeCompletedEffects(duration);
+    }
+
+    private void removeCompletedEffects (TimeDuration duration) {
+        for(int i=0; i<myEffects.size(); i++){
+            if(myEffects.get(i).get().hasCompleted(duration)) {
+                myEffects.remove(i);
+                i--;
+            }
+        }
     }
 
     @Override

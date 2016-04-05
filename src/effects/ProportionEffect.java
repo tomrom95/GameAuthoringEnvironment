@@ -10,12 +10,12 @@ import engine.IAttribute;
  */
 public class ProportionEffect extends Effect {
 
-    public ProportionEffect (AttributeType type, double proportion) {
-        super(type, proportion);
+    public ProportionEffect (AttributeType type, IAttribute effectLength, double proportion) {
+        super(type,  effectLength, proportion);
     }
  
-    public ProportionEffect (AttributeType type, IAttribute proportion) {
-        super(type, proportion);
+    public ProportionEffect (AttributeType type, IAttribute effectLength, IAttribute proportion) {
+        super(type, effectLength, proportion);
     }
 
     @Override

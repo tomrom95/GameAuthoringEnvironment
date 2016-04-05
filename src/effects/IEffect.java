@@ -2,6 +2,7 @@ package effects;
 
 import engine.AttributeType;
 import engine.IAttribute;
+import util.TimeDuration;
 
 /**
  * This class represents an effect to be applied to an attribute.
@@ -27,4 +28,11 @@ public interface IEffect {
      * @param attribute to be affected
      */
     void applyToAttribute (IAttribute attribute);
+    
+    /**
+     * Decreases the time of the effect
+     * @param duration Time to decrease by 
+     * @return true if the effect has completed, false otherwise
+     */
+    boolean hasCompleted (TimeDuration duration);
 }
