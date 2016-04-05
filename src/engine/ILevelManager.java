@@ -34,8 +34,20 @@ public interface ILevelManager extends IAdder {
      */
     ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
 
+    /**
+     * @param list of key events to internalize
+     */
     void internalizeKeyEvents (List<KeyIOEvent> list);
 
+    
+    /**
+     * @param list of mouse events to internalize
+     */
     void internalizeMouseEvents (List<MouseIOEvent> list);
+    
+    /**
+     * @param sprite to be removed from the current level
+     */
+    void remove(ObjectProperty<ISprite> sprite);
     
 }

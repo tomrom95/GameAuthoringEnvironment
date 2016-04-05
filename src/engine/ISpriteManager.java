@@ -1,6 +1,5 @@
 package engine;
 
-
 import java.util.List;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
@@ -11,7 +10,7 @@ import javafx.collections.ObservableList;
 /**
  * This interface manages a list of sprites, and handles access to them.
  * Effects have been moved to a conditions manager, which will have
- * top down views of the individual sprites themselves, 
+ * top down views of the individual sprites themselves,
  * thus this interface is not repsonsible for passing events to the sprites
  *
  * @author Joe Timko
@@ -30,9 +29,19 @@ public interface ISpriteManager extends Updateable, IAdder {
 
     ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
 
+    /**
+     * @param list of key events to be processed
+     */
     void internalizeKeyEvents (List<KeyIOEvent> list);
-    
+
+    /**
+     * @param list of mouse events to be processed
+     */
     void internalizeMouseEvents (List<MouseIOEvent> list);
-    
-    
+
+    /**
+     * @param sprite to be removed
+     */
+    void remove (ObjectProperty<ISprite> sprite);
+
 }

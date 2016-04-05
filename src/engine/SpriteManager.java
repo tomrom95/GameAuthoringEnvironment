@@ -56,4 +56,9 @@ public class SpriteManager implements ISpriteManager {
         list.forEach(event -> loopThroughSpritesAndDo(sprite-> sprite.registerMouseEvent(event)));
     }
 
+    @Override
+    public void remove (ObjectProperty<ISprite> sprite) {
+        mySpriteList.remove(sprite);
+    }
+
 }
