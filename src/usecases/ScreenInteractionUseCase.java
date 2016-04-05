@@ -3,8 +3,8 @@ package usecases;
 import java.util.ArrayList;
 import java.util.List;
 import org.easymock.EasyMock;
-import engine.IScreenEventFactory;
-import engine.IInteractionEvent;
+import interactionevents.IInteractionEvent;
+import interactionevents.IScreenEventFactory;
 import javafx.scene.layout.Pane;
 
 

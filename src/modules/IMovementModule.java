@@ -1,5 +1,6 @@
-package engine;
+package modules;
 
+import javafx.beans.property.ObjectProperty;
 import util.Coordinate;
 
 
@@ -15,5 +16,5 @@ import util.Coordinate;
  */
 public interface IMovementModule extends IModule {
 
-    Coordinate getPosition ();
+    
 }

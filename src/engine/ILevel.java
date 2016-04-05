@@ -1,6 +1,9 @@
 package engine;
 
-import javafx.beans.property.SimpleObjectProperty;
+import java.util.List;
+import interactionevents.KeyIOEvent;
+import interactionevents.MouseIOEvent;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
 
@@ -14,26 +17,12 @@ import javafx.collections.ObservableList;
  * @author Jonathan Im
  *
  */
-public interface ILevel extends Updateable {
-
-    /**
-     * Add a given sprite to this level
-     *
-     * @param sprite to be added
-     */
-    void addSprite (ISprite sprite);
-
-    /**
-     * Add a condition to this level
-     *
-     * @param condition to be added
-     */
-    void addCondition (ICondition condition);
+public interface ILevel extends Updateable, IAdder {
 
     /**
      * @return the condition manager for this level
      */
-    IConditionManager getConditionManager ();
+    ObservableList<ObjectProperty<ICondition>> getConditionsPropertyList ();
 
     /**
      * Add a global resource to this level
@@ -45,5 +34,25 @@ public interface ILevel extends Updateable {
     /**
      * @return an observable list of the sprites in this level
      */
-    ObservableList<SimpleObjectProperty<ISprite>> getSprites ();
+    ObservableList<ObjectProperty<ISprite>> getSprites ();
+
+    /**
+     * This method call will control transition between levels, to stay on the current
+     * level
+     * 
+     * @return the next level after this one
+     */
+    ILevel getNextLevel ();
+
+    /**
+     * @return whether or not level should be switched out for the next one
+     */
+    boolean shouldSwitchLevel ();
+
+    ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
+    
+    void internalizeKeyEvents (List<KeyIOEvent> list);
+
+    void internalizeMouseEvents (List<MouseIOEvent> list);
+   
 }
