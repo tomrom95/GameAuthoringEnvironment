@@ -1,7 +1,4 @@
-package engine;
-
-import util.Key;
-
+package util;
 
 public class ControlKeys {
 
