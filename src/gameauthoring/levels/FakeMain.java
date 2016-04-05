@@ -19,7 +19,7 @@ public class FakeMain extends Application {
      */
     @Override
     public void start (Stage stage) {
-        LevelEditorView view = new LevelEditorView();
+        LevelEditorView view = new LevelEditorView(null);
         Group root = new Group(view.draw());
         Scene scene = new Scene(root);
         stage.setScene(scene);

@@ -19,7 +19,7 @@ import util.Coordinate;
  * @author Jeremy Schreck
  *
  */
-public interface ISprite extends Drawable, Updateable, Affectable {
+public interface ISprite extends Drawable, Updateable, Affectable{
 
     ObjectProperty<Coordinate> getLocation ();
 

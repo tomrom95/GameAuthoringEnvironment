@@ -11,14 +11,17 @@ import javafx.scene.text.Text;
 public class SpriteCellView implements ListCellView{
     
     private ISprite mySprite;
+    private Image imageProfile;
 
     public SpriteCellView (ISprite sprite){
         mySprite = sprite;
+        imageProfile = new Image("images/photo.png");
     }
     
     @Override
     public Node draw () {
         HBox container = new HBox();
+        
         container.getChildren().add(createImageProfile());
         container.getChildren().add(createTextProfile());
         return container;
@@ -35,8 +38,16 @@ public class SpriteCellView implements ListCellView{
 
     private Node createImageProfile () {
         //Node image = mySprite.getDrawer().get().getVisualRepresentation();
-        Node image = new ImageView(new Image("images/photo.png"));
+        Node image = new ImageView(imageProfile);
         return image;
+    }
+    
+    public Image getImageProfile () {
+        return imageProfile;
+    }
+    
+    public ISprite getSprite() {
+        return mySprite;
     }
 
     @Override
