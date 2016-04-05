@@ -1,5 +1,9 @@
 package engine;
 
+import java.util.List;
+import interactionevents.KeyIOEvent;
+import interactionevents.MouseIOEvent;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
 
@@ -24,11 +28,15 @@ public interface IGamePlayable extends Updateable {
     /**
      * @return list of Drawable objects that a game contains
      */
-    ObservableList<? extends Drawable> getDrawables ();
+    ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
 
     /**
      * @return the global attributes for this game
      */
     ObservableList<IAttribute> getGlobalAttributes ();
+
+    void internalizeKeyEvents (List<KeyIOEvent> list);
+    
+    void internalizeMouseEvents (List<MouseIOEvent> list);
 
 }

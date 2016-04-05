@@ -1,6 +1,9 @@
 package engine;
 
 
+import java.util.List;
+import interactionevents.KeyIOEvent;
+import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
@@ -24,6 +27,12 @@ public interface ISpriteManager extends Updateable, IAdder {
      * @return the observable list of sprites
      */
     ObservableList<ObjectProperty<ISprite>> getSprites ();
+
+    ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
+
+    void internalizeKeyEvents (List<KeyIOEvent> list);
+    
+    void internalizeMouseEvents (List<MouseIOEvent> list);
     
     
 }

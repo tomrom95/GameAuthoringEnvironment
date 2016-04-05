@@ -1,6 +1,7 @@
 package gameplayer;
 
 import engine.IGame;
+import engine.IOInterpeter;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -17,16 +18,23 @@ public class GamePlayer {
 
     private Stage myStage = new Stage();
     private Pane myPane = new Pane();
+    private Scene myScene = new Scene(myPane);
     private IGameEngine myGameEngine;
-
+    
     public GamePlayer (IGame game) {
         initializeGameEngine(game);
-        myStage.setScene(new Scene(myPane));
+        stylePane();
+        myStage.setScene(myScene);
         myStage.show();
     }
 
+    private void stylePane () {
+        myPane.setPrefSize(600, 600);
+    }
+
     private void initializeGameEngine (IGame game) {
-        myGameEngine = new GameEngine(game, myPane);
+        IOInterpeter IO = new IOInterpeter(myScene, myPane);
+        myGameEngine = new GameEngine(game, myPane, IO);
     }
 
     public void play () {
