@@ -22,4 +22,10 @@ public interface IGame extends IGamePlayable {
      * @return the condition manager for this level
      */
     IConditionManager getConditionManager ();
+    
+    /**
+     * @return the authoring data for this game
+     */
+    AuthorshipData getAuthorshipData();
+    
 }
