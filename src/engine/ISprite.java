@@ -9,7 +9,8 @@ import util.Coordinate;
 
 
 /**
- * This interface represents the
+ * This interface represents a sprite in a game, that can be updated and can respond to external
+ * events and stimuli. 
  *
  * @author Joe Timko
  * @author Dhrumil Patel
@@ -30,7 +31,9 @@ public interface ISprite extends Drawable, Updateable, Affectable {
     ObservableList<ObjectProperty<IAttribute>> getAttributes ();
 
     ObservableList<ObjectProperty<IResource>> getResourcesProperty ();
-    
+
     Bound getBounds ();
+
+    ObjectProperty<SpriteType> getType ();
 
 }
