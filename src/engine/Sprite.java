@@ -36,6 +36,7 @@ public class Sprite implements ISprite {
     private ObjectProperty<Coordinate> myLocation;
     private ObjectProperty<IStatusModule> myStatusModule;
     private ObjectProperty<AttributeManager> myAttributeManager;
+    private ObjectProperty<SpriteType> myType;
 
     public Sprite () {
         myAttributeManager = new SimpleObjectProperty<>(new AttributeManager());
@@ -121,5 +122,10 @@ public class Sprite implements ISprite {
         double width = getDrawer().get().getGraphic().getWidth().get();
         double height = getDrawer().get().getGraphic().getHeight().get();
         return new Bound(x, y, width, height);
+    }
+
+    @Override
+    public ObjectProperty<SpriteType> getType () {
+        return myType;
     }
 }
