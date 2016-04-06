@@ -1,7 +1,7 @@
 package engine;
 
-import effects.IEffect;
-import interactionevents.IInteractionEvent;
+import engine.effects.IEffect;
+import engine.interactionevents.IInteractionEvent;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;

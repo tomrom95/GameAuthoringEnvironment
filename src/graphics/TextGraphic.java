@@ -1,7 +1,7 @@
 package graphics;
 
 import java.util.ResourceBundle;
-import gameplayer.IGraphicFactory;
+import engine.rendering.IGraphicFactory;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;

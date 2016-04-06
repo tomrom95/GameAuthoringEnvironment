@@ -1,8 +1,9 @@
 package engine;
 
 import java.util.List;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
+import graphics.ImageGraphic;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
@@ -71,6 +72,11 @@ public class Game implements IGame, IGamePlayable {
     @Override
     public AuthorshipData getAuthorshipData () {
        return myAuthorshipData;
+    }
+
+    @Override
+    public ImageGraphic getBackroundImage () {
+        return myLevelManager.getBackgroundImage();
     }
 
 }

@@ -1,6 +1,6 @@
 package gameauthoring;
 
-import engine.ISprite;
+import engine.sprite.ISprite;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

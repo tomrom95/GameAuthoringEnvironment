@@ -1,0 +1,92 @@
+package engine.modules;
+
+import engine.Attribute;
+import engine.AttributeType;
+import engine.IAttribute;
+import engine.IPositionable;
+import engine.effects.IEffect;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import util.Coordinate;
+import util.TimeDuration;
+
+public abstract class Mover implements IMovementModule {
+
+    public static final double NO_MOTION = 0;
+    private ObjectProperty<IAttribute> myXVel;
+    private ObjectProperty<IAttribute> myYVel;
+    private IPositionable myParent;
+    
+    public Mover (IPositionable positionable) {
+        myXVel = new SimpleObjectProperty<>(new Attribute(AttributeType.X_VEL));
+        myYVel = new SimpleObjectProperty<>(new Attribute(AttributeType.Y_VEL));
+        myParent = positionable;
+    }
+    
+    private ObjectProperty<Coordinate> getLocation () {
+        return myParent.getLocation();
+    }
+    
+    protected void move (TimeDuration duration) {
+        double xChange = distance(getXVel().get().getValueProperty().get(), duration.getMillis());
+        double yChange = distance(getYVel().get().getValueProperty().get(), duration.getMillis());
+        getLocation().set(getNextCoordinate(xChange, yChange));
+    }
+    
+    protected void move (Coordinate coordinate) {
+        getLocation().set(coordinate);
+    }
+    
+    private Coordinate getNextCoordinate (double xChange, double yChange) {
+        return new Coordinate(getLocation().get().getX() + xChange, getLocation().get().getY() + yChange);
+    }
+
+    private double distance (double rate, double time) {
+        return rate * time;
+    }
+    
+    protected double getXDiff(double input) { 
+        return input - getLocation().get().getX();
+    }
+    
+    protected double getYDiff(double input) { 
+        return input - getLocation().get().getY();
+    }
+    
+    abstract public void update (TimeDuration duration);
+
+    @Override
+    public void applyEffect (IEffect effect) {
+        getAttributes().forEach(a -> effect.applyToAttribute(a.get()));
+        
+    }
+
+    @Override
+    abstract public void registerKeyEvent (KeyIOEvent keyEvent);
+
+    @Override
+    abstract public void registerMouseEvent (MouseIOEvent mouseEvent);
+
+    @Override
+    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
+        ObservableList<ObjectProperty<IAttribute>> attributes = FXCollections.observableArrayList();
+        attributes.addAll(myXVel, myYVel);
+        attributes.addAll(getSpecificAttributes());
+        return attributes;
+    }
+    
+    abstract protected ObservableList<ObjectProperty<IAttribute>> getSpecificAttributes();
+    
+    protected ObjectProperty<IAttribute> getXVel () {
+        return myXVel;
+    }
+    
+    protected ObjectProperty<IAttribute> getYVel () {
+        return myYVel;
+    }
+
+}
