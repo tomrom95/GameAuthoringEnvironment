@@ -28,8 +28,15 @@ public class Renderer implements IRenderer {
     @Override
     public void render () {
         myPane.getChildren().clear();
+        drawBackground();
         myGame.getDrawables().forEach(d -> draw(d.get()));
 
+    }
+
+    private void drawBackground () {
+        
+        add(myFactory.getVisual(myGame.getBackroundImage()));
+        
     }
 
     private void draw (Drawable drawable) {

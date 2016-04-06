@@ -4,6 +4,7 @@ import java.util.List;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
+import graphics.ImageGraphic;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -76,5 +77,10 @@ public class LevelManager implements ILevelManager {
     public void remove (ObjectProperty<ISprite> sprite) {
         myCurrentLevel.get().remove(sprite);
         
+    }
+
+    @Override
+    public ImageGraphic getBackgroundImage () {
+        return myCurrentLevel.get().getBackgroundImageProperty().get();
     }
 }
