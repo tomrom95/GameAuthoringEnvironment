@@ -42,10 +42,10 @@ public class AddSpriteUseCase {
 
     public class ProfileSubFormController implements SubFormController {
 
-        private SubFormView myProfileFormView;
+        private EntryView myProfileFormView;
 
         public ProfileSubFormController () {
-            myProfileFormView = EasyMock.createMock(SubFormView.class);
+            myProfileFormView = EasyMock.createMock(EntryView.class);
         }
 
         @Override
@@ -90,7 +90,7 @@ public class AddSpriteUseCase {
         }
 
         @Override
-        public void editSprite (List<SubFormView> subForms) {
+        public void editSprite (List<EntryView> subForms) {
             // TODO Auto-generated method stub
 
         }

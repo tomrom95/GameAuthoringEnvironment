@@ -18,11 +18,11 @@ public class FormView implements IFormView {
     private Button mySaveButton = new Button("Save");
     private Button myDeleteButton = new Button("Delete");
     private List<Node> myButtons = new ArrayList<Node>(Arrays.asList(mySaveButton,myDeleteButton));
-    private List<SubFormView> mySubFormViews;
+    private List<EntryView> mySubFormViews;
 
     
 
-    public FormView(List<SubFormView> subFormViews){
+    public FormView(List<EntryView> subFormViews){
         mySubFormViews = subFormViews;
         mySubFormViewer.setPrefHeight(500); //TODO Magic Number
         myFormView.add(mySubFormViewer, 0, 0); 
@@ -36,8 +36,8 @@ public class FormView implements IFormView {
         return buttonHolder;
     }
 
-    private void generateView (List<SubFormView> subFormViews) {
-        for(SubFormView s:subFormViews){
+    private void generateView (List<EntryView> subFormViews) {
+        for(EntryView s:subFormViews){
             mySubFormContainer.getChildren().add(s.draw());
         }
     }
@@ -53,7 +53,7 @@ public class FormView implements IFormView {
     }
 
     @Override
-    public List<SubFormView> getSubFormView () {
+    public List<EntryView> getSubFormView () {
         return mySubFormViews;
     }
 

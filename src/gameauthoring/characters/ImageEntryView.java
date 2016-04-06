@@ -2,27 +2,30 @@ package gameauthoring.characters;
 
 import java.io.File;
 import java.net.MalformedURLException;
-import engine.ISprite;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 
-public class ImageSubFormView implements SubFormView {
-    private SubFormController myController;
+public class ImageEntryView implements EntryView {
     private String myLabel;
     private HBox myContainer = new HBox(20);
     private String myImageChoice;
     private Button myChooseImage = new Button("Choose Image");
+    private ImageView myImage;
 
-    public ImageSubFormView (String label, SubFormController controller) {
-        this.myController = controller;
+    public ImageEntryView (String label) {
         this.myLabel = label;
         myContainer.getChildren().add(new Label(myLabel));
         myContainer.getChildren().add(myChooseImage);
+        myContainer.getChildren().add(myImage);
         initFileChooser(new FileChooser());        
     }
 
@@ -39,6 +42,7 @@ public class ImageSubFormView implements SubFormView {
             try {
                 String fileName = file.toURI().toURL().toString();
                 myImageChoice = fileName;
+                myImage = new ImageView(new Image(fileName));
             }
             catch (MalformedURLException e) {
                 ErrorMessage err = new ErrorMessage("BAD URL");
@@ -58,24 +62,14 @@ public class ImageSubFormView implements SubFormView {
     public FormData getData () {
         String key = myLabel;
         String value = myImageChoice;
-        return null;
+        return new FormData(key, new ArrayList<String>(Arrays.asList(value)));
     }
 
     @Override
-    public void populateWithData (ISprite s) {
-        // TODO Auto-generated method stub
-
+    public void populateWithData (FormData data) {
+        this.myImage.setImage(new Image(data.getMyValue().get(0)));
     }
-
-    @Override
-    public SubFormController getSubFormController () {
-        return this.myController;
-    }
-
-    @Override
-    public void setSubFormController (SubFormController controller) {
-        this.myController = controller;
-    }
+   
 
     @Override
     public Node draw () {

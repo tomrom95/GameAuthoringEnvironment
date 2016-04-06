@@ -5,7 +5,7 @@ import java.util.List;
 import gameauthoring.characters.FormView;
 import gameauthoring.characters.IObjectCreationView;
 import gameauthoring.characters.ObjectCreationView;
-import gameauthoring.characters.SubFormView;
+import gameauthoring.characters.EntryView;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -50,7 +50,7 @@ public class CharTabViewer implements ITabViewer {
     private Tab createSubTab (String tabName) {
         Tab newTab = new Tab();
         newTab.setText(tabName);  
-        ObjectCreationView view = new ObjectCreationView(new FormView(new ArrayList<SubFormView>()));
+        ObjectCreationView view = new ObjectCreationView(new FormView(new ArrayList<EntryView>()));
         newTab.setContent(view.draw());
         return newTab;
     }

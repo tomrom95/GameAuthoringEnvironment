@@ -25,7 +25,7 @@ public interface CreationController<ItemType> {
 
     void delete ();
 
-    void edit (List<SubFormView> subForms);
+    void edit (List<EntryView> subForms);
 
     IFormView getForView ();
 
