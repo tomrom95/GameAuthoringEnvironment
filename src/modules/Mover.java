@@ -4,7 +4,7 @@ import effects.IEffect;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
-import engine.ISprite;
+import engine.IPositionable;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
@@ -19,12 +19,12 @@ public abstract class Mover implements IMovementModule {
     public static final double NO_MOTION = 0;
     private ObjectProperty<IAttribute> myXVel;
     private ObjectProperty<IAttribute> myYVel;
-    private ISprite myParent;
+    private IPositionable myParent;
     
-    public Mover (ISprite sprite) {
+    public Mover (IPositionable positionable) {
         myXVel = new SimpleObjectProperty<>(new Attribute(AttributeType.X_VEL));
         myYVel = new SimpleObjectProperty<>(new Attribute(AttributeType.Y_VEL));
-        myParent = sprite;
+        myParent = positionable;
     }
     
     private ObjectProperty<Coordinate> getLocation () {

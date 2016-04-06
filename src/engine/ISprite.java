@@ -19,9 +19,7 @@ import util.Coordinate;
  * @author Jeremy Schreck
  *
  */
-public interface ISprite extends Drawable, Updateable, Affectable {
-
-    ObjectProperty<Coordinate> getLocation ();
+public interface ISprite extends Drawable, Updateable, Affectable, IPositionable {
 
     ObjectProperty<IMovementModule> getMovementStrategyProperty ();
 
