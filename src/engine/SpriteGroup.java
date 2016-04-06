@@ -2,6 +2,7 @@ package engine;
 
 import java.util.Arrays;
 import java.util.List;
+import engine.sprite.SpriteType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

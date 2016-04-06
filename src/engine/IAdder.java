@@ -1,5 +1,6 @@
 package engine;
 
+import engine.sprite.ISprite;
 import util.Coordinate;
 
 /**

@@ -1,6 +1,6 @@
 package gameauthoring;
 
-import engine.ISprite;
+import engine.sprite.ISprite;
 
 public interface SubFormController {
     
