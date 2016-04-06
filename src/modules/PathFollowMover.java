@@ -24,7 +24,8 @@ public class PathFollowMover extends Mover {
     private int myNextDestination;
 
     public PathFollowMover (double speed,
-                            List<Coordinate> points, ISprite parent) {
+                            List<Coordinate> points,
+                            ISprite parent) {
         super(parent);
         mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));
         myPoints = points;
@@ -46,9 +47,9 @@ public class PathFollowMover extends Mover {
     }
 
     private boolean overshootNext (TimeDuration duration) {
-       double distancePossible = duration.getMillis() * mySpeed.get().getValueProperty().get();
-       double distance = Math.sqrt(xDifference() * xDifference() + yDifference() * yDifference());
-       return distancePossible>distance;
+        double distancePossible = duration.getMillis() * mySpeed.get().getValueProperty().get();
+        double distance = Math.sqrt(xDifference() * xDifference() + yDifference() * yDifference());
+        return distancePossible > distance;
     }
 
     private double xDifference () {
