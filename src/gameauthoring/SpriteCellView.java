@@ -1,25 +1,28 @@
 package gameauthoring;
 
 import engine.ISprite;
+import graphics.GraphicFactory;
+import javafx.beans.property.ObjectProperty;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class SpriteCellView implements ListCellView{
+public class SpriteCellView extends ListCell<ObjectProperty<ISprite>>{
     
-    private ISprite mySprite;
-    private Image imageProfile;
+    private ObjectProperty<ISprite> mySprite;
 
-    public SpriteCellView (ISprite sprite){
-        mySprite = sprite;
-        imageProfile = new Image("images/photo.png");
-    }
-    
     @Override
-    public Node draw () {
+    protected void updateItem(ObjectProperty<ISprite> item, boolean empty) {
+        super.updateItem(item, empty);
+        if (item != null) {
+            mySprite = item;
+            setGraphic(createSpriteCell());
+        }
+    } 
+    
+    protected Node createSpriteCell () {
         HBox container = new HBox();
         
         container.getChildren().add(createImageProfile());
@@ -29,30 +32,20 @@ public class SpriteCellView implements ListCellView{
     
     private Node createTextProfile () {
         VBox container = new VBox();
-        //Text name = new Text(mySprite.getProfileProperty().getName());
-        Text name = new Text("<Title>");
+        Text name = new Text("Title");
         Text description = new Text("<DESCRIPTION>");
         container.getChildren().addAll(name, description);
         return container;
     }
 
     private Node createImageProfile () {
-        //Node image = mySprite.getDrawer().get().getVisualRepresentation();
-        Node image = new ImageView(imageProfile);
-        return image;
+        GraphicFactory graphics = new GraphicFactory();
+        Node node = mySprite.get().getDrawer().get().getVisualRepresentation(graphics);
+        return node;
     }
     
-    public Image getImageProfile () {
-        return imageProfile;
-    }
-    
-    public ISprite getSprite() {
+    protected ObjectProperty<ISprite> getSprite(){
         return mySprite;
     }
-
-    @Override
-    public void update () {
-        //
-    }
-
+    
 }

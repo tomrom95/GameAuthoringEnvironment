@@ -1,20 +1,22 @@
 package gameauthoring.levels;
 
-
 import engine.IGame;
+import engine.ILevel;
+import engine.ISprite;
 import gameauthoring.Glyph;
-import gameauthoring.ListCellView;
-import gameauthoring.SpriteCellView;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.util.Callback;
 
 
 public class SceneCreator implements Glyph {
@@ -23,14 +25,16 @@ public class SceneCreator implements Glyph {
     public final static int WIDTH = 700;
 
     private IGame gameModel;
-    private Pane myLevel;
+    private LevelRenderer levelView;
+    private ILevel myLevel;
     private SceneController myController;
     private DoubleProperty myHeight;
 
-    public SceneCreator (IGame model) {
+    public SceneCreator (IGame model, ILevel level) {
         gameModel = model;
+        myLevel = level;
         myHeight = new SimpleDoubleProperty(HEIGHT);
-        myController = new SceneController();
+        myController = new SceneController(myLevel);
     }
 
     @Override
@@ -49,35 +53,37 @@ public class SceneCreator implements Glyph {
     private Node createSpriteSelection () {
         Accordion selector = new Accordion();
         selector.maxHeightProperty().bind(myHeight);
-        ListView<Node> testList = new ListView<Node>();
+        ListView<ObjectProperty<ISprite>> spriteList = new ListView<ObjectProperty<ISprite>>();
+       
+        spriteList.setItems(gameModel.getAuthorshipData().getCreatedSprites());
+        
+        spriteList.setCellFactory(new Callback<ListView<ObjectProperty<ISprite>>, ListCell<ObjectProperty<ISprite>>>() {
+            @Override 
+            public ListCell<ObjectProperty<ISprite>> call(ListView<ObjectProperty<ISprite>> list) {
+                return new DraggableSpriteCell(levelView, myController);
+            }
+        });
+        
+        TitledPane friendlies = new TitledPane("Sprites", spriteList);
 
-        for (int i = 0; i < 12; i++) {
-            SpriteCellView sprite = new DraggableSpriteCell(null, myLevel, myController);
-            Node spriteNode = sprite.draw();
-            testList.getItems().add(spriteNode);
-        }
-        TitledPane enemies = new TitledPane("Enemies", testList);
-        testList = new ListView<Node>();
-        for (int i = 0; i < 9; i++) {
-            ListCellView sprite = new SpriteCellView(null);
-            testList.getItems().add(sprite.draw());
-        }
-        TitledPane friendlies = new TitledPane("Defenders", testList);
-        selector.getPanes().addAll(enemies, friendlies);
+        selector.getPanes().addAll(friendlies);
         return selector;
     }
-
+    
     private Node createLevelView () {
-        myLevel = new Pane();
-        myController.setBackground(myLevel, DEFAULT_BACKGROUND);
+        Pane levelPane = new Pane();
+        levelView = new LevelRenderer(myLevel, levelPane);
+        levelView.render();
+        
+        levelView.setBackground(DEFAULT_BACKGROUND);
 
-        myLevel.setOnMouseClicked(e -> handleMouseClick(e, myLevel));
-        return myLevel;
+        levelPane.setOnMouseClicked(e -> handleMouseClick(e));
+        return levelPane;
     }
 
-    private void handleMouseClick (MouseEvent e, Pane container) {
+    private void handleMouseClick (MouseEvent e) {
         if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-            myController.uploadNewBackground(e, container);
+            myController.uploadNewBackground();
             e.consume();
         } 
     }

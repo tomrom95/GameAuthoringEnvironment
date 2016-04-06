@@ -1,20 +1,16 @@
 package util;
 
 import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 
 public interface Draggable{
     
-    default void setActions(Node source, Pane target) {
-        source.setOnDragDetected(e -> setOnDragDetected(e));
+    default void setActions(Node source) {
+        source.setOnDragDetected(e -> setOnDragDetected(e, source));
     }
     
-    public Image getDragImage();
-    
-    public void setOnDragDetected(MouseEvent e);
+    public void setOnDragDetected(MouseEvent e, Node node);
     
     public void setOnDragOver(DragEvent e);
     

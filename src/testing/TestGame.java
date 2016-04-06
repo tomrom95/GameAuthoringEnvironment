@@ -39,9 +39,8 @@ public class TestGame extends Application {
         
         levelManager.add(createUserSprite(), new Coordinate(10,10));
         ConditionManager conditionManager = new ConditionManager();
-        Game game = new Game(levelManager, conditionManager);
+        Game game = new Game(levelManager, null, conditionManager);
         
-       
         GamePlayer player = new GamePlayer(game);
         player.play();
         
