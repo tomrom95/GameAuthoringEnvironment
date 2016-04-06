@@ -17,15 +17,20 @@ public interface IGame extends IGamePlayable {
      * @return the ILevelManager for this Game
      */
     ILevelManager getLevelManager ();
-    
+
     /**
-     * @return the condition manager for this level
+     * @return the condition manager for game-wide global conditions
      */
     IConditionManager getConditionManager ();
-    
+
     /**
      * @return the authoring data for this game
      */
-    AuthorshipData getAuthorshipData();
-    
+    AuthorshipData getAuthorshipData ();
+
+    /**
+     * @return the attribute manager for game-wide global attributes
+     */
+    IAttributeManager getAttributeManager ();
+
 }

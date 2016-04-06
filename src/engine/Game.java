@@ -12,12 +12,13 @@ import util.TimeDuration;
  * @author RyanStPierre
  *
  */
-public class Game implements IGame, IGamePlayable {
+public class Game implements IGame {
 
     private ILevelManager myLevelManager;
     private IConditionManager myConditionManager;
     private AuthorshipData myAuthorshipData;
     private IGameInformation myGameInformation;
+    private IAttributeManager myAttributeManager;
     
     public Game (LevelManager levelManager, GameInformation info, ConditionManager conditionManager) {
         myLevelManager = levelManager;
@@ -37,7 +38,7 @@ public class Game implements IGame, IGamePlayable {
     }
 
     @Override
-    public ObservableList<IAttribute> getGlobalAttributes () {
+    public ObservableList<IAttribute> getGlobalAttributeManager () {
         // TODO Auto-generated method stub
         return null;
     }
