@@ -16,13 +16,18 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class ImageEntryView implements EntryView {
     private String myLabel;
-    private HBox myContainer = new HBox(20);
+    private HBox myContainer;
     private String myImageChoice;
     private Button myChooseImage = new Button("Choose Image");
     private ImageView myImage;
+    private double width;
+    private double height;
 
-    public ImageEntryView (String label) {
+    public ImageEntryView (String label, double spacing, double width, double height) {
         this.myLabel = label;
+        this.width = width;
+        this.height = height;
+        this.myContainer = new HBox(spacing);
         myContainer.getChildren().add(new Label(myLabel));
         myContainer.getChildren().add(myChooseImage);
         myContainer.getChildren().add(myImage);
@@ -43,6 +48,7 @@ public class ImageEntryView implements EntryView {
                 String fileName = file.toURI().toURL().toString();
                 myImageChoice = fileName;
                 myImage = new ImageView(new Image(fileName));
+                myImage.resize(width, height);
             }
             catch (MalformedURLException e) {
                 ErrorMessage err = new ErrorMessage("BAD URL");
@@ -68,6 +74,8 @@ public class ImageEntryView implements EntryView {
     @Override
     public void populateWithData (FormData data) {
         this.myImage.setImage(new Image(data.getMyValue().get(0)));
+        this.myImage.resize(width, height);
+        
     }
    
 

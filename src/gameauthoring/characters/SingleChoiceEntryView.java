@@ -21,13 +21,14 @@ import javafx.scene.layout.HBox;
  */
 public class SingleChoiceEntryView implements EntryView {
     private String myLabel;
-    private HBox myContainer = new HBox(20);
+    private HBox myContainer;
     private ChoiceBox<String> myChoices;
 
-    public SingleChoiceEntryView (String label, List<Object> choices) {
+    public SingleChoiceEntryView (String label, List<Object> choices, double spacing) {
         List<String> stringChoices = generateStringList(choices);
         ObservableList<String> obsChoices = FXCollections.observableList(stringChoices);
         this.myLabel = label;
+        this.myContainer = new HBox(spacing);
         this.myChoices = new ChoiceBox<String>(obsChoices);
         myContainer.getChildren().add(new Label(myLabel));
         myContainer.getChildren().add(myChoices);

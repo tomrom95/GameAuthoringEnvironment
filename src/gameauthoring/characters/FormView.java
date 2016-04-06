@@ -18,11 +18,10 @@ public class FormView implements IFormView {
     private Button mySaveButton = new Button("Save");
     private Button myDeleteButton = new Button("Delete");
     private List<Node> myButtons = new ArrayList<Node>(Arrays.asList(mySaveButton,myDeleteButton));
-    private List<EntryView> mySubFormViews;
-
+    private List<SubFormView> mySubFormViews;
     
 
-    public FormView(List<EntryView> subFormViews){
+    public FormView(List<SubFormView> subFormViews){
         mySubFormViews = subFormViews;
         mySubFormViewer.setPrefHeight(500); //TODO Magic Number
         myFormView.add(mySubFormViewer, 0, 0); 
@@ -36,24 +35,30 @@ public class FormView implements IFormView {
         return buttonHolder;
     }
 
-    private void generateView (List<EntryView> subFormViews) {
-        for(EntryView s:subFormViews){
+    private void generateView (List<SubFormView> subFormViews) {
+        for(SubFormView s:subFormViews){
             mySubFormContainer.getChildren().add(s.draw());
         }
     }
-
+    
+    /**
+     * Define save action for button
+     */
     @Override
     public void setSaveAction (Consumer<?> action) {
-        mySaveButton.setOnAction(e->action.accept(null));
+        mySaveButton.setOnAction(e->action.accept(null)); //Not sure what the input should be here
     }
 
+    /**
+     * Define delete action for button
+     */
     @Override
     public void setDeleteAction (Consumer<?> action) {
-        myDeleteButton.setOnAction(e->action.accept(null));
+        myDeleteButton.setOnAction(e->action.accept(null)); //Not sure what the input should be here
     }
 
     @Override
-    public List<EntryView> getSubFormView () {
+    public List<SubFormView> getSubFormView () {
         return mySubFormViews;
     }
 

@@ -18,10 +18,11 @@ import javafx.scene.layout.HBox;
  */
 public class MultiChoiceEntryView implements EntryView {
     private String myLabel;
-    private HBox myContainer = new HBox(20);
+    private HBox myContainer;
     
-    public MultiChoiceEntryView(String label, List<Object> choices){
+    public MultiChoiceEntryView(String label, double spacing, List<Object> choices){
         this.myLabel = label;
+        this.myContainer = new HBox(spacing);
         myContainer.getChildren().add(new Label(myLabel));
     }
 
