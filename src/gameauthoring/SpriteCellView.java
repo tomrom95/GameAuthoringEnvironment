@@ -1,8 +1,11 @@
 package gameauthoring;
 
-import engine.ISprite;
-import graphics.GraphicFactory;
+
+import engine.rendering.GraphicFactory;
+import engine.rendering.ScaleFactory;
+import engine.sprite.ISprite;
 import javafx.beans.property.ObjectProperty;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
@@ -10,6 +13,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class SpriteCellView extends ListCell<ObjectProperty<ISprite>>{
+    
+    private static final double PIC_SIZE = 30;
     
     private ObjectProperty<ISprite> mySprite;
 
@@ -23,8 +28,8 @@ public class SpriteCellView extends ListCell<ObjectProperty<ISprite>>{
     } 
     
     protected Node createSpriteCell () {
-        HBox container = new HBox();
-        
+        HBox container = new HBox(10);
+        container.setAlignment(Pos.CENTER_LEFT);
         container.getChildren().add(createImageProfile());
         container.getChildren().add(createTextProfile());
         return container;
@@ -39,7 +44,7 @@ public class SpriteCellView extends ListCell<ObjectProperty<ISprite>>{
     }
 
     private Node createImageProfile () {
-        GraphicFactory graphics = new GraphicFactory();
+        GraphicFactory graphics = new ScaleFactory(PIC_SIZE, PIC_SIZE);
         Node node = mySprite.get().getDrawer().get().getVisualRepresentation(graphics);
         return node;
     }

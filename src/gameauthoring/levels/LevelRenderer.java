@@ -1,8 +1,8 @@
 package gameauthoring.levels;
 
 import engine.ILevel;
-import engine.ISprite;
-import gameplayer.IRenderer;
+import engine.rendering.IRenderer;
+import engine.sprite.ISprite;
 import javafx.beans.property.ObjectProperty;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;

@@ -1,9 +1,10 @@
 package gameauthoring.levels;
 
 import engine.ILevel;
-import engine.ISprite;
+import engine.rendering.GraphicFactory;
+import engine.rendering.UnscaledFactory;
+import engine.sprite.ISprite;
 import gameauthoring.Glyph;
-import graphics.GraphicFactory;
 import javafx.beans.property.ObjectProperty;
 import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
@@ -31,7 +32,7 @@ public class OnScreenSprite implements Draggable, Glyph {
         levelView = renderer;
         myController = new SpriteController(level);
         mySprite = sprite;
-        myFactory = new GraphicFactory();
+        myFactory = new UnscaledFactory();
     }
 
     @Override

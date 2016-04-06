@@ -1,9 +1,9 @@
 package engine;
 
 import java.util.stream.Collectors;
-import effects.IEffect;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.effects.IEffect;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;

@@ -1,8 +1,10 @@
 package engine;
 
 import java.util.List;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
+import graphics.ImageGraphic;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
@@ -49,5 +51,10 @@ public interface ILevelManager extends IAdder {
      * @param sprite to be removed from the current level
      */
     void remove(ObjectProperty<ISprite> sprite);
+
+    /**
+     * @return the background image of the current level
+     */
+    ImageGraphic getBackgroundImage ();
     
 }

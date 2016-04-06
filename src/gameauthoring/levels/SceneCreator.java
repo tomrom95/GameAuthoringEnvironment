@@ -2,7 +2,7 @@ package gameauthoring.levels;
 
 import engine.IGame;
 import engine.ILevel;
-import engine.ISprite;
+import engine.sprite.ISprite;
 import gameauthoring.Glyph;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;

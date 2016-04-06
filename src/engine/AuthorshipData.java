@@ -1,5 +1,6 @@
 package engine;
 
+import engine.sprite.ISprite;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

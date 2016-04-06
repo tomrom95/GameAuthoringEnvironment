@@ -4,10 +4,12 @@ package gameauthoring.levels;
 import engine.ConditionManager;
 import engine.Game;
 import engine.ILevel;
-import engine.ISprite;
+import engine.sprite.ISprite;
 import engine.Level;
 import engine.LevelManager;
-import engine.Sprite;
+import engine.modules.GraphicModule;
+import engine.modules.IGraphicModule;
+import engine.sprite.Sprite;
 import graphics.Block;
 import graphics.ImageGraphic;
 import javafx.application.Application;
@@ -16,8 +18,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import modules.GraphicModule;
-import modules.IGraphicModule;
 import util.RGBColor;
 
 
