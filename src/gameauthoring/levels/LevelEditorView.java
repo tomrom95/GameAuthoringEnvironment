@@ -1,6 +1,7 @@
 package gameauthoring.levels;
 
 import engine.IGame;
+import engine.ILevel;
 import gameauthoring.Glyph;
 import gameauthoring.TextFormData;
 import javafx.geometry.Pos;
@@ -8,7 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Rectangle;
 
 
 /**
@@ -23,14 +23,18 @@ import javafx.scene.shape.Rectangle;
 public class LevelEditorView implements Glyph {
 
     private BorderPane myLayout;
+    private IGame myGame;
+    private ILevel myLevel;
 
-    public LevelEditorView (IGame gameModel) {
+    public LevelEditorView (IGame gameModel, ILevel level) {
+        myGame = gameModel;
+        myLevel = level;
     }
 
     @Override
     public Node draw () {
         myLayout = new BorderPane();
-        myLayout.setCenter((new SceneCreator(null)).draw());
+        myLayout.setCenter((new SceneCreator(myGame, myLevel)).draw());
         // myLayout.setLeft(createWaveSelection());
         myLayout.setBottom(createBottomForms());
         return myLayout;

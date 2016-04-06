@@ -1,29 +1,46 @@
 package gameauthoring.levels;
 
+import engine.ILevel;
 import engine.ISprite;
-import javafx.scene.Node;
+import javafx.beans.property.ObjectProperty;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import util.Coordinate;
 
 public class OnScreenSpawner extends OnScreenSprite{
+    
+    PathCreator pathCreator;
 
-    public OnScreenSpawner (ISprite sprite, Pane target, Image image, SceneController controller) {
-        super(sprite, target, image, controller);
+    public OnScreenSpawner (LevelRenderer renderer, ILevel level, ObjectProperty<ISprite> sprite) {
+        super(renderer, level, sprite);
+        pathCreator = new PathCreator();
     }
     
     @Override
-    protected ContextMenu spriteActionsMenu (Pane container, Node node) {
-        ContextMenu menu = super.spriteActionsMenu(container, node);
+    protected ContextMenu spriteActionsMenu (Pane container) {
+        ContextMenu menu = super.spriteActionsMenu(container);
         MenuItem create = new MenuItem("Create Path");
         create.setOnAction(event -> {
-            Coordinate point = new Coordinate(node.getTranslateX(), node.getTranslateY());
-            this.getController().createNewPath(point, container);
+            Coordinate point = getSprite().get().getLocation().get();
+            createNewPath(point, container);
         });
         menu.getItems().add(create);
         return menu;
+    }
+    
+    public void createNewPath(Coordinate startPoint, Pane container){
+        pathCreator.newPath(startPoint, container);
+        container.setOnMouseClicked(e -> pathCreator.addToPath(e, container));
+        container.setOnKeyPressed(e -> handleKeyPress(e, container));
+    }
+    
+    private void handleKeyPress (KeyEvent e, Pane container) {
+        if (e.getCode() == KeyCode.ESCAPE) {
+            pathCreator.endPath(container);
+        }
     }
 
 }
