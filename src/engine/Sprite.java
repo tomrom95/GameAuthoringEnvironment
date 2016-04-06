@@ -46,7 +46,6 @@ public class Sprite implements ISprite {
     }
 
     private void initializeRequiredModules () {
-        //TODO will get nulls if something is not put in here
         myModules = FXCollections.observableArrayList();
         myStatusModule = new SimpleObjectProperty<>(new StatusModule());
         myModules.add(myMover);
@@ -62,13 +61,17 @@ public class Sprite implements ISprite {
     @Override
     public void update (TimeDuration duration) {
         myAttributeManager.get().update(duration);
-        forAllModules((m) -> m.get().update(duration));
+        myModules.forEach(m -> m.get().update(duration));
     }
 
     @Override
     public void applyEffect (IEffect effect) {
-       myAttributeManager.get().applyEffect(effect);
-       forAllModules((m) -> m.get().applyEffect(effect));
+       applyToAffectable(a -> a.applyEffect(effect));
+    }
+
+    private void applyToAffectable (Consumer<Affectable> function) {
+       function.accept(myAttributeManager.get());
+       myModules.forEach(m -> function.accept(m.get()));
     }
 
     @Override
@@ -95,27 +98,20 @@ public class Sprite implements ISprite {
 
     @Override
     public void registerKeyEvent (KeyIOEvent event) {
-        myAttributeManager.get().registerKeyEvent(event);
-        forAllModules((m) -> m.get().registerKeyEvent(event));
+        applyToAffectable(a -> a.registerKeyEvent(event));
 
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent event) {
-        myAttributeManager.get().registerMouseEvent(event);
-        forAllModules((m) -> m.get().registerMouseEvent(event));
+        applyToAffectable(a -> a.registerMouseEvent(event));
     }
 
     @Override
     public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
         ObservableList<ObjectProperty<IAttribute>> attributes = FXCollections.observableArrayList();
-        attributes.addAll(myAttributeManager.get().getAttributes());
-        forAllModules((m) -> attributes.addAll(m.get().getAttributes()));
+        applyToAffectable(a -> attributes.addAll(a.getAttributes()));
         return attributes;
-    }
-    
-    private void forAllModules(Consumer<? super ObjectProperty<? extends IModule>> action) {
-        myModules.forEach(action);
     }
     
     @Override

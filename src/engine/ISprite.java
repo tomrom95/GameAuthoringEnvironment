@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import modules.IModule;
 import modules.IMovementModule;
 import util.Bound;
-import util.Coordinate;
 
 
 /**

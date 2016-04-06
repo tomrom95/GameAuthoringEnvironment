@@ -5,7 +5,6 @@ import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
 import engine.IPositionable;
-import engine.ISprite;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
