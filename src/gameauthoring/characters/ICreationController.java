@@ -46,6 +46,8 @@ public interface ICreationController<ItemType> {
      */
     void setSubFormControllers (List<ISubFormController<ItemType>> subFormControllers);
 
+    void setFactory (Factory<? extends ItemType> factory);
+
     /*
      * void showAndEdit ();
      * 
@@ -53,7 +55,9 @@ public interface ICreationController<ItemType> {
      * 
      * void delete ();
      * 
-     * void edit (List<EntryView> subForms);
+     * void save ();
+     * 
+     * void edit (List<EntryView> subForms); //what is this for? don't think we need it
      */
 
 }

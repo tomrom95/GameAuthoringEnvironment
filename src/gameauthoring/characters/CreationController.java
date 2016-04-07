@@ -22,6 +22,7 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
     private IObjectCreationView myView;
     private List<ISubFormController<ItemType>> mySubFormControllers;
     private ItemType myCurrentItem;
+    private Factory<? extends ItemType> myFactory;
 
     public CreationController () {
 
@@ -39,6 +40,11 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
         IFormView formView = getMyObjectCreationView().getFormView();
         formView.setSaveAction(e -> saveItem());
         formView.setDeleteAction(e -> deleteItem());
+        
+        IObjectCreationView creationView = getMyObjectCreationView();
+        //creationView.setEditAction(e -> showAndEdit(e));
+        creationView.setNewAction(e -> createBlankItem());
+        
     }
 
     /**
@@ -60,21 +66,38 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
      * instead of setDeleteAction(Consumer<?>) ?
      * 
      * @param item the item to delete
+     * 
+     * Instead: delete the item currently being edited in the form
      */
     private void deleteItem () {
 
-        //model.removeItem(getMyCurrentItem())
+        getMyItems().remove(getMyCurrentItem());
     }
 
+    
+    private void createBlankItem() {
+        //create new itemType() using factory class
+        //show and edit itemType
+        ItemType item = myFactory.create();
+        showAndEdit(item);
+    }
+    
+    private void showAndEdit(ItemType item) {
+        setMyCurrentItem(item);
+        
+        
+    }
+    
     /**
      * Add the given item to the list of available items in the model
      * 
      * @param item The item to add
      */
-    private void addItem (Object item) {
+    private void addItem (ItemType item) {
         // add to model
         //model.addItem(getMyCurrentItem());
 
+        getMyItems().add(item);
     }
 
     // Getters and setters
@@ -114,5 +137,13 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
     private ItemType getMyCurrentItem() {
         return myCurrentItem;
     }
+    
+    private void setMyCurrentItem(ItemType item) {
+        this.myCurrentItem = item;
+    }
 
+    @Override
+    public void setFactory (Factory<? extends ItemType> factory) {
+        this.myFactory = factory;
+    }
 }

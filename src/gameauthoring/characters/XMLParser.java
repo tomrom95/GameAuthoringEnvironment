@@ -2,7 +2,9 @@ package gameauthoring.characters;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.sun.org.apache.bcel.internal.classfile.Attribute;
 import engine.ISprite;
+import engine.Sprite;
 import gameauthoring.IObjectListView;
 import gameauthoring.ObjectListView;
 
@@ -94,6 +96,9 @@ public class XMLParser {
         enemiesCreationController.setObjectCreationView(enemiesCreationView);
         enemiesCreationController.setSubFormControllers(subFormControllers);
         
+        Factory<Sprite> enemiesFactory = new ItemFactory<Sprite>(Sprite.class);
+        enemiesCreationController.setFactory(enemiesFactory);
+
         
     }
 

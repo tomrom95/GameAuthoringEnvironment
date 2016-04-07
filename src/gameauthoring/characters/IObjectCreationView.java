@@ -1,6 +1,7 @@
 package gameauthoring.characters;
 
 import java.util.List;
+import java.util.function.Consumer;
 import gameauthoring.Glyph;
 import gameauthoring.IObjectListView;
 
@@ -16,6 +17,20 @@ import gameauthoring.IObjectListView;
  *
  */
 public interface IObjectCreationView extends Glyph {
+    
+    /**
+     * Tell the view which method it should call to create a "new" item
+     * 
+     * @param action The action to take when the user decides to create a new ite,
+     */
+    void setNewAction(Consumer<?> action);
+    
+    /**
+     * Tell the view which method it should call to edit a previously created item
+     * 
+     * @param action The action to take when the user decides to edit a different item
+     */
+    void setEditAction(Consumer<?> action);
 
     /**
      * Set the title of the view to make it clear which types of objects are being created
