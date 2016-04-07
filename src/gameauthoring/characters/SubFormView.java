@@ -11,18 +11,20 @@ import gameauthoring.Glyph;
  * @author JoeLilien
  *
  */
-public abstract class SubFormView implements Glyph {
+public abstract class SubFormView implements ISubFormView{
 
     private List<EntryView> myEntryViews;
-   // private FormDataManager myData;
+    private IFormDataManager myData;
 
-    public List<FormData> getData () {
-        List<FormData> myData = new ArrayList<FormData>();
-        for (EntryView e : myEntryViews) {
-            myData.add(e.getData());
-        }
-        return myData;
+    public SubFormView() {
+        
     }
+    
+    public SubFormView(IFormDataManager formDataManager){
+        myData = formDataManager;
+    }
+    
+   
 
     /**
      * Implementation of getData() with Manager, think I like this one better. The same instance of
@@ -31,13 +33,22 @@ public abstract class SubFormView implements Glyph {
      * 
      * @return
      */
-    // public FormDataManager getData(){
-    // for (EntryView e : myEntryViews) {
-    // e.getData();
-    // }
-    // return myData;
-    // }
+    @Override
+    public IFormDataManager getData () {
+        for (EntryView e : getMyEntryViews()) {
+            myData.add(e.getData());
+        }
+        return myData;
+    }
+   
 
+    @Override
+    public void populateWithData(IFormDataManager data) {
+        
+    }
+    
+    
+    
     public List<EntryView> getMyEntryViews () {
         return myEntryViews;
     }
@@ -46,4 +57,5 @@ public abstract class SubFormView implements Glyph {
         this.myEntryViews = myEntryViews;
     }
 
+    
 }

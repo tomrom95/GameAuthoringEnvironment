@@ -24,9 +24,22 @@ public class FormDataManager implements IFormDataManager {
     }
 
     @Override
-    public List<String> getValue (String key) {
+    public List<String> getValues (String key) {
         try {
             return myStorage.get(key);
+        }
+        catch (NullPointerException e) {
+            ErrorMessage err = new ErrorMessage("Key Does Not Exist");
+            err.showError();
+            return null;
+        }
+    }
+    
+    @Override
+    public String getValue (String key) {
+        try {
+            // TODO: maybe return error if myStorage.get(key).size ! = 1
+            return myStorage.get(key).get(0);
         }
         catch (NullPointerException e) {
             ErrorMessage err = new ErrorMessage("Key Does Not Exist");

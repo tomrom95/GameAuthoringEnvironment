@@ -1,28 +1,40 @@
 package gameauthoring.characters;
 
-import gameauthoring.SpriteListView;
+import gameauthoring.IObjectListView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 
 
 /**
  * Object that holds and displays both view items that make up object creation interface
  * 
- * @author JoeLilien
+ * @author JoeLilien, Jeremy Schreck
  *
  */
 public class ObjectCreationView implements IObjectCreationView {
 
     private GridPane myCreationPane = new GridPane();
+    private IObjectListView myObjectListView;
+    private IFormView myFormView;
 
-    // Should add both listCellView and formview in constructor argument in
-    public ObjectCreationView (FormView form) {
-        //Temporary placeholder pane
-        Pane pane = new Pane();
-        pane.setPrefWidth(600);
-        myCreationPane.add(pane, 0, 0);
-        myCreationPane.add(form.draw(), 1, 0);
+    /**
+     * Constructor
+     * 
+     * @param objectListView The IObjectListView that displays the list of created objects
+     * @param formView The IFormView that displays the form to create a new object
+     */
+    public ObjectCreationView (IObjectListView objectListView, IFormView formView) {
+        setObjectListView(objectListView);
+        setFormView(formView);
+        init();
+    }
+
+    /**
+     * Initialize view
+     */
+    private void init () {
+        myCreationPane.add(myObjectListView.draw(), 0, 0);
+        myCreationPane.add(myFormView.draw(), 1, 0);
     }
 
     @Override
@@ -36,16 +48,28 @@ public class ObjectCreationView implements IObjectCreationView {
 
     }
 
+    // Getters and Setters
+
     @Override
-    public SpriteListView getSpriteListView () {
-        // TODO Auto-generated method stub
-        return null;
+    public void setObjectListView (IObjectListView objectListView) {
+        this.myObjectListView = objectListView;
     }
 
     @Override
-    public CreationController<?> getCreationController () {
+    public void setFormView (IFormView formView) {
+        this.myFormView = formView;
+    }
+
+    @Override
+    public IObjectListView getObjectListView () {
         // TODO Auto-generated method stub
-        return null;
+        return myObjectListView;
+    }
+
+    @Override
+    public IFormView getFormView () {
+        // TODO Auto-generated method stub
+        return myFormView;
     }
 
 }

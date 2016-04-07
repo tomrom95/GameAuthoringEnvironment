@@ -1,5 +1,7 @@
 package gameauthoring.characters;
 
+import gameauthoring.Glyph;
+
 /**
  * This interface specifies the methods each SubFormView must implement to allow
  * its SubFormController to control it
@@ -7,19 +9,19 @@ package gameauthoring.characters;
  * @author Jeremy Schreck
  *
  */
-public interface ISubFormView {
+public interface ISubFormView extends Glyph {
 
     /**
      * Get the data entered in the SubFormView
      * 
-     * @return A FormDataManager object that holds the data
+     * @return An IFormDataManager object that holds the data
      */
-    FormDataManager getData ();
+    IFormDataManager getData ();
 
     /**
      * Populate the SubFormView's fields with new data
      * 
-     * @param data A FormDataManager object containing the new data
+     * @param data An IFormDataManager object containing the new data
      */
-    void populateWithData (FormDataManager data);
+    void populateWithData (IFormDataManager data);
 }

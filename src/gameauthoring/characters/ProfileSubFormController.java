@@ -18,7 +18,7 @@ public class ProfileSubFormController implements ISubFormController {
      * implementation of that in constructor,  but still issues to work out  (current Implementation)
      * 
      */
-    TempProfileSubFormView myView;
+    private TempProfileSubFormView myView;
 
     public ProfileSubFormController (TempProfileSubFormView view) {
         this.myView = view;
@@ -26,21 +26,33 @@ public class ProfileSubFormController implements ISubFormController {
 
     @Override
     public void updateGameModel (ISprite sprite) {
+        IFormDataManager formDataWrapper = myView.getData();
+        String name = formDataWrapper.getValue("name");
+        String description = formDataWrapper.getValue("description");
+        String image = formDataWrapper.getValue("image");
+        
+        /*
+         Old code
         List<FormData> data = myView.getData();
         String Name = data.get(myView.getMyNameInd()).getMyValue().get(0);
         String Description = data.get(myView.getMyDescriptionInd()).getMyValue().get(0);
         String Image = data.get(myView.getMyImageInd()).getMyValue().get(0);
+        */
+        
+        
         /*
          * **Need to fill in with actual method calls**
          * 
-         * sprite.setName(Name)
-         * sprite.setDescription(Description)
-         * sprite.setImage(Image)
+         * sprite.setName(name)
+         * sprite.setDescription(description)
+         * sprite.setImage(image)
          */
     }
 
     @Override
     public void populateViewsWithData () {
+        //myView.populateWithData(myFormDataManager);
+        
         List<EntryView> views = myView.getMyEntryViews();
         
         //Example of how it might be done
