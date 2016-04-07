@@ -1,7 +1,7 @@
 package gameauthoring;
 
 import java.util.List;
-import engine.ISprite;
+import engine.sprite.ISprite;
 
 public interface SubFormView extends Glyph{
     

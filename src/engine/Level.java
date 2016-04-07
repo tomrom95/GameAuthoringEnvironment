@@ -1,8 +1,10 @@
 package engine;
 
 import java.util.List;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
+import graphics.ImageGraphic;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -20,6 +22,7 @@ import util.TimeDuration;
 public class Level implements ILevel {
 
     private ObjectProperty<IConditionManager> myConditionManager;
+    private ObjectProperty<ImageGraphic> myBackgroundImage;
     private ObjectProperty<ISpriteManager> mySpriteManager;
     private ObjectProperty<IAttributeManager> myAttributeManager;
     private ObjectProperty<INextLevelManager> myNextLevelManager;
@@ -96,5 +99,12 @@ public class Level implements ILevel {
         mySpriteManager.get().remove(sprite);
 
     }
+
+    @Override
+    public ObjectProperty<ImageGraphic> getBackgroundImageProperty () {
+       return myBackgroundImage;
+    }
+    
+    
 
 }

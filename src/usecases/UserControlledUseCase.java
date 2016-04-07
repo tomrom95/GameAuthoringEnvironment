@@ -1,11 +1,11 @@
 package usecases;
 
-import effects.IEffect;
 import engine.IAttribute;
-import interactionevents.IInteractionEvent;
+import engine.effects.IEffect;
+import engine.interactionevents.IInteractionEvent;
+import engine.modules.IMovementModule;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import modules.IMovementModule;
 import util.Coordinate;
 import util.TimeDuration;
 

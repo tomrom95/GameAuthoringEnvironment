@@ -2,7 +2,8 @@ package engine;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import effects.IEffect;
+import engine.effects.IEffect;
+import engine.sprite.ISprite;
 import javafx.beans.property.ObjectProperty;
 import util.TimeDuration;
 

@@ -1,6 +1,6 @@
 package graphics;
 
-import gameplayer.IGraphicFactory;
+import engine.rendering.IGraphicFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
