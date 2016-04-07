@@ -4,6 +4,7 @@ import engine.IGame;
 import engine.ILevel;
 import engine.sprite.ISprite;
 import gameauthoring.Glyph;
+import gameauthoring.levels.sprites.DraggableSpriteCell;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -84,7 +85,6 @@ public class SceneCreator implements Glyph {
     private void handleMouseClick (MouseEvent e) {
         if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
             myController.uploadNewBackground();
-            e.consume();
         } 
     }
 

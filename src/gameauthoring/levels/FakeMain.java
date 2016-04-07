@@ -10,6 +10,7 @@ import engine.LevelManager;
 import engine.modules.GraphicModule;
 import engine.modules.IGraphicModule;
 import engine.sprite.Sprite;
+import engine.sprite.SpriteType;
 import graphics.Block;
 import graphics.ImageGraphic;
 import javafx.application.Application;
@@ -53,6 +54,7 @@ public class FakeMain extends Application {
 
     private ISprite createFirstSprite () {
         ISprite sprite = new Sprite();
+        sprite.getType().set(new SpriteType("Person"));
         ObjectProperty<IGraphicModule> g = new SimpleObjectProperty<>(new GraphicModule(new ImageGraphic(30, 30, "images/photo.png")));
         sprite.getDrawer().set(g.get());
         return sprite;
@@ -60,6 +62,7 @@ public class FakeMain extends Application {
     
     private ISprite createSecondSprite () {
         ISprite sprite = new Sprite();
+        sprite.getType().set(new SpriteType("Block"));
         ObjectProperty<IGraphicModule> g = new SimpleObjectProperty<>(new GraphicModule(new Block(40, 40, RGBColor.BLACK)));
         sprite.getDrawer().set(g.get());
         return sprite;

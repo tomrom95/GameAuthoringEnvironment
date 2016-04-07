@@ -35,7 +35,6 @@ public class LevelEditorView implements Glyph {
     public Node draw () {
         myLayout = new BorderPane();
         myLayout.setCenter((new SceneCreator(myGame, myLevel)).draw());
-        // myLayout.setLeft(createWaveSelection());
         myLayout.setBottom(createBottomForms());
         return myLayout;
     }

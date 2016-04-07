@@ -49,6 +49,7 @@ public class Sprite implements ISprite {
         myGraphic = new SimpleObjectProperty<>();
         initializeRequiredModules();
         myLocation = new SimpleObjectProperty<>(new Coordinate(0,0));
+        myType = new SimpleObjectProperty<>();
     }
 
     private void initializeRequiredModules () {

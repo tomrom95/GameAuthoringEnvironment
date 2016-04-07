@@ -1,13 +1,16 @@
-package gameauthoring.levels;
+package gameauthoring.levels.sprites;
 
+import engine.rendering.UnscaledFactory;
 import gameauthoring.SpriteCellView;
+import gameauthoring.UIFactory;
+import gameauthoring.levels.LevelRenderer;
+import gameauthoring.levels.SceneController;
 import javafx.scene.Node;
-import javafx.scene.input.ClipboardContent;
+import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import util.Draggable;
 
 public class DraggableSpriteCell extends SpriteCellView implements Draggable{
     private static final String DRAG_STRING = "Sprite";
@@ -30,12 +33,17 @@ public class DraggableSpriteCell extends SpriteCellView implements Draggable{
     @Override
     public void setOnDragDetected (MouseEvent e, Node node) {
         Dragboard db = node.startDragAndDrop(TransferMode.COPY);
-        ClipboardContent content = new ClipboardContent();
-        content.putString(DRAG_STRING);
-        db.setContent(content);
+        db.setContent(this.createClipboard(DRAG_STRING));
+        
+        db.setDragView(getSpriteImage());
         
         myTarget.getPane().setOnDragOver(event -> setOnDragOver(event));
         myTarget.getPane().setOnDragDropped(event -> setOnDragDropped(event));
+    }
+    
+    private Image getSpriteImage(){
+        Node spriteNode = this.getSprite().get().getDrawer().get().getVisualRepresentation(new UnscaledFactory());
+        return (new UIFactory()).getImageFromNode(spriteNode);
     }
 
     @Override

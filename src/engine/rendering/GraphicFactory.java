@@ -33,6 +33,7 @@ public abstract class GraphicFactory implements IGraphicFactory {
         myResources = ResourceBundle.getBundle(DEFAULT_PATH);
     }
     
+    
    
     protected Rectangle getRectangle (Block block) {
         Rectangle rect = new Rectangle();
@@ -77,5 +78,6 @@ public abstract class GraphicFactory implements IGraphicFactory {
     private Text getText (String str) {
         return new Text(str);
     }
+    
 
 }

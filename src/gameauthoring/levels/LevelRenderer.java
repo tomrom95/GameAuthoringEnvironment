@@ -3,6 +3,7 @@ package gameauthoring.levels;
 import engine.ILevel;
 import engine.rendering.IRenderer;
 import engine.sprite.ISprite;
+import gameauthoring.levels.sprites.OnScreenSprite;
 import javafx.beans.property.ObjectProperty;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -33,7 +34,7 @@ public class LevelRenderer implements IRenderer{
     }
     
     private void createOnScreenSprite (ObjectProperty<ISprite> sprite) {
-        myPane.getChildren().add((new OnScreenSpawner(this, myLevel, sprite)).draw());
+        myPane.getChildren().add((new OnScreenSprite(this, myLevel, sprite)).draw());
     }
 
     public void setBackground (String imagePath) {
