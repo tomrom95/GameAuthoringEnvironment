@@ -70,7 +70,6 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
      * Instead: delete the item currently being edited in the form
      */
     private void deleteItem () {
-
         getMyItems().remove(getMyCurrentItem());
     }
 
