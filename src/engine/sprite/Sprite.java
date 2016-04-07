@@ -9,16 +9,19 @@ import engine.IStatusModule;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.modules.GraphicModule;
 import engine.modules.IGraphicModule;
 import engine.modules.IModule;
 import engine.modules.IMovementModule;
 import engine.modules.StatusModule;
+import graphics.Block;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.Bound;
 import util.Coordinate;
+import util.RGBColor;
 import util.TimeDuration;
 
 
@@ -46,7 +49,7 @@ public class Sprite implements ISprite {
     public Sprite () {
         myAttributeManager = new SimpleObjectProperty<>(new AttributeManager());
         myMover = new SimpleObjectProperty<>();
-        myGraphic = new SimpleObjectProperty<>();
+        myGraphic = new SimpleObjectProperty<>(new GraphicModule(new Block(0,0,RGBColor.BLACK)));
         initializeRequiredModules();
         myLocation = new SimpleObjectProperty<>(new Coordinate(0,0));
     }

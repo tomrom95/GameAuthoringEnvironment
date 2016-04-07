@@ -31,7 +31,8 @@ public class PathFollowMover extends Mover {
     private int myNextDestination;
 
     public PathFollowMover (double speed,
-                            List<Coordinate> points, IPositionable positionable) {
+                            List<Coordinate> points,
+                            IPositionable positionable) {
         super(positionable);
         mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));
         myPoints = points;
@@ -41,6 +42,9 @@ public class PathFollowMover extends Mover {
 
     @Override
     public void update (TimeDuration duration) {
+        if (myPoints.size() == 0) {
+            return;
+        }
         if (overshootNext(duration)) {
             move(myPoints.get(myNextDestination));
             incrementIndex();

@@ -24,7 +24,7 @@ public class SpriteManager implements ISpriteManager {
 
     private ObservableList<ObjectProperty<ISprite>> mySpriteList;
 
-    SpriteManager () {
+    public SpriteManager () {
         mySpriteList = FXCollections.observableArrayList();
     }
 
