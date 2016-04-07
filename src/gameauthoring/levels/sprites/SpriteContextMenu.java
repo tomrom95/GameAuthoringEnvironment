@@ -44,7 +44,6 @@ public class SpriteContextMenu {
             newItem.setOnAction(event -> callMethod(method));
         }
         catch (NoSuchMethodException | SecurityException e) {
-            e.printStackTrace();
         }
         return newItem;
 
@@ -55,7 +54,7 @@ public class SpriteContextMenu {
             method.invoke(this);
         }
         catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-            e.printStackTrace();
+            return;
         }
     }
 
