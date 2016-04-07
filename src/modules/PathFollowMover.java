@@ -15,6 +15,13 @@ import util.Coordinate;
 import util.TimeDuration;
 
 
+/**
+ * This class provides an implementation of Mover that serves as a module that moves sprites based
+ * on a specified coordinate path.
+ * 
+ *
+ */
+
 public class PathFollowMover extends Mover {
 
     public static final int PIXEL_RANGE = 5;
@@ -24,7 +31,8 @@ public class PathFollowMover extends Mover {
     private int myNextDestination;
 
     public PathFollowMover (double speed,
-                            List<Coordinate> points, ISprite parent) {
+                            List<Coordinate> points,
+                            ISprite parent) {
         super(parent);
         mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));
         myPoints = points;
@@ -45,10 +53,17 @@ public class PathFollowMover extends Mover {
 
     }
 
+    /**
+     * Prevents movement glitches on the GUI by moving the sprite to the next coordinate instead of
+     * overshooting the location and portraying an invalid path
+     * 
+     * @param duration time frame of the game that is computed to provide the animation
+     * @return boolean flagging whether the sprite will overshoot its coordinate target
+     */
     private boolean overshootNext (TimeDuration duration) {
-       double distancePossible = duration.getMillis() * mySpeed.get().getValueProperty().get();
-       double distance = Math.sqrt(xDifference() * xDifference() + yDifference() * yDifference());
-       return distancePossible>distance;
+        double distancePossible = duration.getMillis() * mySpeed.get().getValueProperty().get();
+        double distance = Math.sqrt(xDifference() * xDifference() + yDifference() * yDifference());
+        return distancePossible > distance;
     }
 
     private double xDifference () {
@@ -65,6 +80,10 @@ public class PathFollowMover extends Mover {
         }
     }
 
+    /**
+     * Computes and adjusts the xpos and ypos vectors each time fame to specify the next location of
+     * the sprite
+     */
     private void adjustVectors () {
 
         double xDiff = xDifference();

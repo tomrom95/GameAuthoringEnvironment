@@ -33,10 +33,10 @@ import util.TimeDuration;
 
 public class Launcher extends Application {
 
-    private IOInterpeter io;
-    private Sprite sprite;
+    private IOInterpeter myIO;
+    private Sprite mySprite;
     private Pane myPane;
-    private Renderer r;
+    private Renderer myRenderer;
     
     public static void main (String[] args) {
         launch(args);
@@ -52,10 +52,10 @@ public class Launcher extends Application {
     }
 
     private void step (Duration frameDuration) {
-        sprite.update(new TimeDuration(10));
-        io.deQueueKeyEvents().forEach(e-> sprite.registerKeyEvent(e));
-        r.render();
-        r.draw(sprite);
+        mySprite.update(new TimeDuration(10));
+        myIO.deQueueKeyEvents().forEach(e-> mySprite.registerKeyEvent(e));
+        myRenderer.render();
+        myRenderer.draw(mySprite);
       
     }
     
@@ -70,7 +70,7 @@ public class Launcher extends Application {
         myStage.setScene(myScene);
         myStage.show();
         myPane.setOnKeyPressed(e-> System.out.println("Pane"));
-        io = new IOInterpeter (myPane);
+        myIO = new IOInterpeter (myScene, myPane);
         myPane.requestFocus();
         ControlKeys keys = new ControlKeys(new Key("Up"), new Key("Left"), new Key("Right"), new Key("Down"));
         List<Coordinate> list = new ArrayList<>();
@@ -78,15 +78,15 @@ public class Launcher extends Application {
         list.add(new Coordinate(20, 20));
         list.add(new Coordinate(200, 2));
         list.add(new Coordinate(500, 30));
-        sprite = new Sprite();
-        ObjectProperty<IMovementModule> mover = new SimpleObjectProperty<>(new PathFollowMover(.10, list, sprite));
+        mySprite = new Sprite();
+        ObjectProperty<IMovementModule> mover = new SimpleObjectProperty<>(new PathFollowMover(.10, list, mySprite));
         ObjectProperty<IGraphicModule> g = new SimpleObjectProperty<>(new GraphicModule(new Block(20, 20, RGBColor.BLACK)));
-        sprite.getMovementStrategyProperty().set(mover.get());
-        sprite.getDrawer().set(g.get());
+        mySprite.getMovementStrategyProperty().set(mover.get());
+        mySprite.getDrawer().set(g.get());
         initializeTimeline();
-        r = new Renderer(null, myPane);
+        myRenderer = new Renderer(null, myPane);
         myStage.show();
-        r.draw(sprite);
+        myRenderer.draw(mySprite);
     }
     
 

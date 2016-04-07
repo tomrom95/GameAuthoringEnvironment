@@ -7,6 +7,12 @@ import javafx.beans.property.ObjectProperty;
 import util.TimeDuration;
 
 
+/**
+ * This class is updateable and is responsible to comparing all sprite groups against all of the
+ * other sprite groups to check whether collisions have occurred during the time cycle.
+ *
+ */
+
 public class OnCollisionCondition implements ICondition {
 
     private IGame myGame;
@@ -27,6 +33,10 @@ public class OnCollisionCondition implements ICondition {
         myApplyToB = applyToB;
     }
 
+    /**
+     * Compares all sprite groups against other all other sprite groups to check whether
+     * any of the collision conditions are met and updates the sprites' effects accordingly
+     */
     @Override
     public void update (TimeDuration duration) {
         List<ObjectProperty<ISprite>> sprites =

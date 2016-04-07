@@ -14,17 +14,24 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import util.RGBColor;
 
+
+/**
+ * This class implements IGraphicFactory and converts back-end graphics into their JavaFX Nodes to
+ * render on the game screen
+ * 
+ *
+ */
 public class GraphicFactory implements IGraphicFactory {
 
     private static final int ALPHA = 1;
     private static final String DEFAULT_PATH = "resource/DefaultGraphics";
-    
+
     ResourceBundle myResources;
-    
-    public GraphicFactory () { 
+
+    public GraphicFactory () {
         myResources = ResourceBundle.getBundle(DEFAULT_PATH);
     }
-    
+
     @Override
     public Node getVisual (Block block) {
         Rectangle rect = new Rectangle(block.getWidth().get(), block.getHeight().get());
@@ -43,15 +50,16 @@ public class GraphicFactory implements IGraphicFactory {
     @Override
     public Node getVisual (TextGraphic textGraphic) {
         Text text = getText(textGraphic.getTextProperty().get());
-        text.setFont(Font.font(textGraphic.getFamilyProperty().get(), textGraphic.getFontSizeProperty().get()));
+        text.setFont(Font.font(textGraphic.getFamilyProperty().get(),
+                               textGraphic.getFontSizeProperty().get()));
         text.setFill(rgbToColor(textGraphic.getFillProperty().get()));
         return text;
     }
-    
+
     private Color rgbToColor (RGBColor rgb) {
         Color color = new Color(rgb.getRed(), rgb.getGreen(), rgb.getBlue(), ALPHA);
         return color;
-        
+
     }
 
     @Override
@@ -67,7 +75,7 @@ public class GraphicFactory implements IGraphicFactory {
         Text value = getText("" + attribute.getValueProperty().get());
         vbox.getChildren().addAll(title, value);
     }
-    
+
     private Text getText (String str) {
         return new Text(str);
     }

@@ -1,5 +1,10 @@
 package util;
 
+/**
+ * This class serves to stores cardinal directions specified by the user for the game or a sprite.
+ *
+ *
+ */
 public class ControlKeys {
 
     private Key myUpKey;
@@ -17,15 +22,15 @@ public class ControlKeys {
     public Key getUpKey () {
         return myUpKey;
     }
-    
+
     public Key getLeftKey () {
         return myLeftKey;
     }
-    
+
     public Key getRightKey () {
         return myRightKey;
     }
-    
+
     public Key getDownKey () {
         return myDownKey;
     }

@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
  * can contain
  * 
  * Any implementation class will also be responsible for tracking any tied groups of these
- * attributes, and then indirectly maintaining 'resource' behavior be calling update
+ * attributes, and then indirectly maintaining resource behavior be calling update
  * on the resource objects when all attributes are told to update
  *
  * @author Joe Timko

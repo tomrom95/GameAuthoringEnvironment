@@ -50,7 +50,7 @@ public interface ILevel extends Updateable, IAdder {
     boolean shouldSwitchLevel ();
 
     ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
-    
+
     /**
      * @param list of key events to be processed
      */
@@ -60,11 +60,11 @@ public interface ILevel extends Updateable, IAdder {
      * @param list of key events to be processed
      */
     void internalizeMouseEvents (List<MouseIOEvent> list);
-    
+
     /**
      * @param sprite to be removed
      */
-    
-    void remove(ObjectProperty<ISprite> sprite);
-   
+
+    void remove (ObjectProperty<ISprite> sprite);
+
 }
