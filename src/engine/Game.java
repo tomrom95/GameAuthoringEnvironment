@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import util.TimeDuration;
 
 /**
- * Responsible for managing the components of the game 
+ * This class manages and structures the layout for the components of a game. 
  * @author RyanStPierre
  *
  */

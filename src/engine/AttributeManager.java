@@ -10,6 +10,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
 
+/**
+ * AttributeManager holds a collection of of attributes and resources. The values within the collection
+ * are manipulated by effects. 
+ *
+ */
 
 public class AttributeManager implements IAttributeManager {
 

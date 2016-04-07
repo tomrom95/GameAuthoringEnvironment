@@ -1,5 +1,12 @@
 package engine;
 
+/**
+ * This interface provides the method to determine whether the logic is valid for a level to advance to its next
+ * sequential level in the user created IGame. 
+ * @author Dhrumil
+ *
+ */
+
 public interface INextLevelCondition extends Updateable {
     /**
      * @return whether or not the condition thinks the game should move to the next level
