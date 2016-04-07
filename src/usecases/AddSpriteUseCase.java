@@ -31,7 +31,7 @@ public class AddSpriteUseCase {
 
     public AddSpriteUseCase () {
 
-        SubFormController profileFormController = new ProfileSubFormController();
+        ISubFormController profileFormController = new ProfileSubFormController();
         SpriteEditorController spriteEditorController = new SpriteEditorController();
         spriteEditorController.addSubFormController(profileFormController);
 
@@ -40,7 +40,7 @@ public class AddSpriteUseCase {
 
     }
 
-    public class ProfileSubFormController implements SubFormController {
+    public class ProfileSubFormController implements ISubFormController {
 
         private EntryView myProfileFormView;
 
@@ -63,11 +63,11 @@ public class AddSpriteUseCase {
 
     public class SpriteEditorController implements ISpriteEditorController {
 
-        private List<SubFormController> mySubFormControllers;
+        private List<ISubFormController> mySubFormControllers;
         private SpriteListHolder mySprites;
 
         private SpriteEditorController () {
-            mySubFormControllers = new ArrayList<SubFormController>();
+            mySubFormControllers = new ArrayList<ISubFormController>();
 
         }
 
@@ -98,14 +98,14 @@ public class AddSpriteUseCase {
         @Override
         public void createSprite () {
             ISprite sprite = EasyMock.createMock(ISprite.class);
-            for (SubFormController subFormController : getMySubFormControllers()) {
+            for (ISubFormController subFormController : getMySubFormControllers()) {
                 subFormController.editSpriteWithData(sprite);
             }
             addSprite(sprite);
 
         }
 
-        private List<SubFormController> getMySubFormControllers () {
+        private List<ISubFormController> getMySubFormControllers () {
             return mySubFormControllers;
         }
 
@@ -117,7 +117,7 @@ public class AddSpriteUseCase {
             return mySprites.getSprites();
         }
 
-        public void addSubFormController (SubFormController subFormController) {
+        public void addSubFormController (ISubFormController subFormController) {
             mySubFormControllers.add(subFormController);
         }
     }

@@ -8,7 +8,7 @@ import engine.ISprite;
  *
  */
 
-public interface SubFormController {
+public interface ISubFormController {
 
     // Need to make this more generic
     // Probably take in full model and general Game object eventually (common identifier for sprite,

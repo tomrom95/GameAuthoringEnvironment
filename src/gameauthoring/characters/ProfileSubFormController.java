@@ -4,7 +4,7 @@ import java.util.List;
 import engine.ISprite;
 
 
-public class ProfileSubFormController implements SubFormController {
+public class ProfileSubFormController implements ISubFormController {
 
     /**
      * **Implementation still up for discussion
