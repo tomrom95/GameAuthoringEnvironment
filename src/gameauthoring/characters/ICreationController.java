@@ -35,7 +35,7 @@ public interface ICreationController<ItemType> {
      * 
      * @param subFormController The ISubFormController to add
      */
-    void addSubFormController (ISubFormController subFormController);
+    void addSubFormController (ISubFormController<ItemType> subFormController);
 
     /*
      * void showAndEdit ();

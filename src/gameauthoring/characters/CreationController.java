@@ -20,7 +20,7 @@ import javafx.collections.ObservableList;
 public class CreationController<ItemType> implements ICreationController<ItemType> {
     private ObservableList<ItemType> myItems;
     private IObjectCreationView myView;
-    private List<ISubFormController> mySubFormControllers;
+    private List<ISubFormController<ItemType>> mySubFormControllers;
     private ItemType myCurrentItem;
 
     public CreationController () {
@@ -31,25 +31,25 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
                                IObjectCreationView objectCreationView) {
         setItems(items);
         setObjectCreationView(objectCreationView);
-        mySubFormControllers = new ArrayList<ISubFormController>();
+        mySubFormControllers = new ArrayList<ISubFormController<ItemType>>();
         init();
     }
 
     private void init () {
         IFormView formView = getMyObjectCreationView().getFormView();
-        formView.setSaveAction(e -> saveItem(e));
-        formView.setDeleteAction(e -> deleteItem(e));
+        formView.setSaveAction(e -> saveItem());
+        formView.setDeleteAction(e -> deleteItem());
     }
 
     /**
      * Save the item currently being edited in the form
      * 
      */
-    private void saveItem (Object item) {
-        for (ISubFormController subFormController : getMySubFormControllers()) {
-            subFormController.updateGameModel((ISprite)item); //make more generic later
+    private void saveItem () {
+        for (ISubFormController<ItemType> subFormController : getMySubFormControllers()) {
+            subFormController.updateGameModel(getMyCurrentItem()); //make more generic later
         }
-        addItem(item);
+        addItem(getMyCurrentItem());
     }
 
     /**
@@ -61,8 +61,9 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
      * 
      * @param item the item to delete
      */
-    private void deleteItem (Object item) {
+    private void deleteItem () {
 
+        //model.removeItem(getMyCurrentItem())
     }
 
     /**
@@ -72,6 +73,8 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
      */
     private void addItem (Object item) {
         // add to model
+        //model.addItem(getMyCurrentItem());
+
     }
 
     // Getters and setters
@@ -94,12 +97,16 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
     }
 
     @Override
-    public void addSubFormController (ISubFormController subFormController) {
+    public void addSubFormController (ISubFormController<ItemType> subFormController) {
         mySubFormControllers.add(subFormController);
     }
 
-    private List<ISubFormController> getMySubFormControllers () {
+    private List<ISubFormController<ItemType>> getMySubFormControllers () {
         return mySubFormControllers;
+    }
+    
+    private ItemType getMyCurrentItem() {
+        return myCurrentItem;
     }
 
 }

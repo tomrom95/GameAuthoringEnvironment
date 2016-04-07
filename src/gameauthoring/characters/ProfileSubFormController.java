@@ -4,7 +4,7 @@ import java.util.List;
 import engine.ISprite;
 
 
-public class ProfileSubFormController implements ISubFormController {
+public class ProfileSubFormController<T> implements ISubFormController<T> {
 
     /**
      * **Implementation still up for discussion
@@ -25,7 +25,7 @@ public class ProfileSubFormController implements ISubFormController {
     }
 
     @Override
-    public void updateGameModel (ISprite sprite) {
+    public void updateGameModel (T item) {
         IFormDataManager formDataWrapper = myView.getData();
         String name = formDataWrapper.getValue("name");
         String description = formDataWrapper.getValue("description");
