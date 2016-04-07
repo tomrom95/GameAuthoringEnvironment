@@ -1,5 +1,11 @@
 package util;
 
+/**
+ * Utility class that stores the RBG values based on double inputs. This class allows for a wide
+ * range of available colors.
+ *
+ */
+
 public class RGBColor {
 
     private static final double FULL_PIGMENT = 1;
@@ -31,7 +37,7 @@ public class RGBColor {
         myBlue = checkUserError(val);
 
     }
-    
+
     public double getRed () {
         return myRed;
     }
@@ -45,7 +51,6 @@ public class RGBColor {
 
     }
 
-    // Possibly throw exception here if desired
     private double checkUserError (double val) {
         if (val < NO_PIGMENT) {
             return NO_PIGMENT;

@@ -1,7 +1,7 @@
 package util;
 
 /**
- * Class to represent rectangular bounds for collision checking
+ * Class to represent rectangular bounds for coordinate based collision checking
  * 
  * @author RyanStPierre
  *
