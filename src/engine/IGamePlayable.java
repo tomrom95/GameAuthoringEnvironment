@@ -30,11 +30,6 @@ public interface IGamePlayable extends Updateable {
      */
     ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
 
-    /**
-     * @return the global attributes for this game
-     */
-    ObservableList<IAttribute> getGlobalAttributes ();
-
     void internalizeKeyEvents (List<KeyIOEvent> list);
     
     void internalizeMouseEvents (List<MouseIOEvent> list);

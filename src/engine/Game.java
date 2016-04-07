@@ -7,8 +7,10 @@ import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
 
+
 /**
- * Responsible for managing the components of the game 
+ * Responsible for managing the components of the game
+ * 
  * @author RyanStPierre
  *
  */
@@ -19,17 +21,20 @@ public class Game implements IGame {
     private AuthorshipData myAuthorshipData;
     private IGameInformation myGameInformation;
     private IAttributeManager myAttributeManager;
-    
-    public Game (LevelManager levelManager, GameInformation info, ConditionManager conditionManager) {
+
+    public Game (LevelManager levelManager,
+                 GameInformation info,
+                 ConditionManager conditionManager) {
         myLevelManager = levelManager;
         myConditionManager = conditionManager;
         myAuthorshipData = new AuthorshipData();
+        myAttributeManager = new AttributeManager();
     }
-    
+
     @Override
     public void update (TimeDuration duration) {
-       myLevelManager.update(duration);
-       myConditionManager.update(duration);
+        myLevelManager.update(duration);
+        myConditionManager.update(duration);
     }
 
     @Override
@@ -38,9 +43,8 @@ public class Game implements IGame {
     }
 
     @Override
-    public ObservableList<IAttribute> getGlobalAttributeManager () {
-        // TODO Auto-generated method stub
-        return null;
+    public IAttributeManager getAttributeManager () {
+        return myAttributeManager;
     }
 
     @Override
@@ -55,13 +59,13 @@ public class Game implements IGame {
 
     @Override
     public ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables () {
-       return myLevelManager.getDrawables();
+        return myLevelManager.getDrawables();
     }
 
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
         myLevelManager.internalizeKeyEvents(list);
-        
+
     }
 
     @Override
@@ -71,7 +75,7 @@ public class Game implements IGame {
 
     @Override
     public AuthorshipData getAuthorshipData () {
-       return myAuthorshipData;
+        return myAuthorshipData;
     }
 
 }

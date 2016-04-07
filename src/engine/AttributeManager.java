@@ -16,7 +16,7 @@ public class AttributeManager implements IAttributeManager {
     private ObservableList<ObjectProperty<IAttribute>> myAttributes;
     private ObservableList<ObjectProperty<IResource>> myResources;
 
-    AttributeManager () {
+    public AttributeManager () {
         myAttributes = FXCollections.observableArrayList();
         myResources = FXCollections.observableArrayList();
     }
