@@ -43,11 +43,11 @@ public class Sprite implements ISprite {
         myMover = new SimpleObjectProperty<>();
         myGraphic = new SimpleObjectProperty<>();
         initializeRequiredModules();
-        myLocation = new SimpleObjectProperty<>(new Coordinate(0,0));
+        myLocation = new SimpleObjectProperty<>(new Coordinate(0, 0));
     }
 
     private void initializeRequiredModules () {
-        //TODO will get nulls if something is not put in here
+        // TODO will get nulls if something is not put in here
         myModules = FXCollections.observableArrayList();
         myStatusModule = new SimpleObjectProperty<>(new StatusModule());
         myModules.add(myMover);
@@ -63,13 +63,13 @@ public class Sprite implements ISprite {
     @Override
     public void update (TimeDuration duration) {
         myAttributeManager.get().update(duration);
-        forAllModules((m) -> m.get().update(duration));
+        forAllModules( (m) -> m.get().update(duration));
     }
 
     @Override
     public void applyEffect (IEffect effect) {
-       myAttributeManager.get().applyEffect(effect);
-       forAllModules((m) -> m.get().applyEffect(effect));
+        myAttributeManager.get().applyEffect(effect);
+        forAllModules( (m) -> m.get().applyEffect(effect));
     }
 
     @Override
@@ -97,28 +97,28 @@ public class Sprite implements ISprite {
     @Override
     public void registerKeyEvent (KeyIOEvent event) {
         myAttributeManager.get().registerKeyEvent(event);
-        forAllModules((m) -> m.get().registerKeyEvent(event));
+        forAllModules(m -> m.get().registerKeyEvent(event));
 
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent event) {
         myAttributeManager.get().registerMouseEvent(event);
-        forAllModules((m) -> m.get().registerMouseEvent(event));
+        forAllModules(m -> m.get().registerMouseEvent(event));
     }
 
     @Override
     public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
         ObservableList<ObjectProperty<IAttribute>> attributes = FXCollections.observableArrayList();
         attributes.addAll(myAttributeManager.get().getAttributes());
-        forAllModules((m) -> attributes.addAll(m.get().getAttributes()));
+        forAllModules(m -> attributes.addAll(m.get().getAttributes()));
         return attributes;
     }
-    
-    private void forAllModules(Consumer<? super ObjectProperty<? extends IModule>> action) {
+
+    private void forAllModules (Consumer<? super ObjectProperty<? extends IModule>> action) {
         myModules.forEach(action);
     }
-    
+
     @Override
     public Bound getBounds () {
         double x = getLocation().get().getX();

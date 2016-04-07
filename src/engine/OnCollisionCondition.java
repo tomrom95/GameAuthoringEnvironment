@@ -65,6 +65,8 @@ public class OnCollisionCondition implements ICondition {
                 .forEach(sprite -> myApplyToOtherGroup
                         .forEach(effect -> sprite.applyEffect(effect)));
         myApplyToGlobalAttys.forEach(effect -> myGame.getAttributeManager().applyEffect(effect));
+        myApplyToGlobalAttys.forEach(effect -> myGame.getLevelManager().getCurrentLevel().get()
+                .getAttributeManager().get().applyEffect(effect));
     }
 
 }

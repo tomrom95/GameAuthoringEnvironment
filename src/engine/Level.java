@@ -87,4 +87,9 @@ public class Level implements ILevel {
         
     }
 
+    @Override
+    public ObjectProperty<IAttributeManager> getAttributeManager () {
+        return myAttributeManager;
+    }
+
 }

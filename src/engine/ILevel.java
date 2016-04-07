@@ -23,6 +23,11 @@ public interface ILevel extends Updateable, IAdder {
      * @return the condition manager for this level
      */
     ObservableList<ObjectProperty<ICondition>> getConditionsPropertyList ();
+    
+    /**
+     * @return the global attribute manager for this level 
+     */
+    ObjectProperty<IAttributeManager> getAttributeManager ();
 
     /**
      * Add a global resource to this level
