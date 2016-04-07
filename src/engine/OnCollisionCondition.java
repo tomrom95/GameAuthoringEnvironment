@@ -3,6 +3,8 @@ package engine;
 import java.util.List;
 import java.util.stream.Collectors;
 import effects.IEffect;
+import interactionevents.KeyIOEvent;
+import interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import util.TimeDuration;
 
@@ -67,6 +69,18 @@ public class OnCollisionCondition implements ICondition {
         myApplyToGlobalAttys.forEach(effect -> myGame.getAttributeManager().applyEffect(effect));
         myApplyToGlobalAttys.forEach(effect -> myGame.getLevelManager().getCurrentLevel().get()
                 .getAttributeManager().get().applyEffect(effect));
+    }
+
+    @Override
+    public void registerKeyEvent (KeyIOEvent keyEvent) {
+        // do nothing
+
+    }
+
+    @Override
+    public void registerMouseEvent (MouseIOEvent mouseEvent) {
+        // do nothing
+
     }
 
 }

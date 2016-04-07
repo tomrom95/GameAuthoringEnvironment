@@ -12,7 +12,7 @@ import modules.IGraphicModule;
 import modules.IModule;
 import modules.IMovementModule;
 import modules.StatusModule;
-import util.Bound;
+import util.Bounds;
 import util.Coordinate;
 import util.TimeDuration;
 
@@ -120,12 +120,12 @@ public class Sprite implements ISprite {
     }
 
     @Override
-    public Bound getBounds () {
+    public Bounds getBounds () {
         double x = getLocation().get().getX();
         double y = getLocation().get().getY();
         double width = getDrawer().get().getGraphic().getWidth().get();
         double height = getDrawer().get().getGraphic().getHeight().get();
-        return new Bound(x, y, width, height);
+        return new Bounds(x, y, width, height);
     }
 
     @Override

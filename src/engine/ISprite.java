@@ -4,7 +4,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import modules.IModule;
 import modules.IMovementModule;
-import util.Bound;
+import util.Bounds;
 import util.Coordinate;
 
 
@@ -32,7 +32,7 @@ public interface ISprite extends Drawable, Updateable, Affectable {
 
     ObservableList<ObjectProperty<IResource>> getResourcesProperty ();
 
-    Bound getBounds ();
+    Bounds getBounds ();
 
     ObjectProperty<SpriteType> getType ();
 
