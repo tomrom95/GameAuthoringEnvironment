@@ -1,7 +1,9 @@
 package gameauthoring.characters;
 
+import java.util.List;
 import gameauthoring.IObjectListView;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 
@@ -16,6 +18,8 @@ public class ObjectCreationView implements IObjectCreationView {
     private GridPane myCreationPane = new GridPane();
     private IObjectListView myObjectListView;
     private IFormView myFormView;
+    private List<ISubFormView> mySubFormViews;
+    private String myTitle;
 
     /**
      * Constructor
@@ -70,6 +74,17 @@ public class ObjectCreationView implements IObjectCreationView {
     public IFormView getFormView () {
         // TODO Auto-generated method stub
         return myFormView;
+    }
+
+    @Override
+    public void setSubFormViews (List<ISubFormView> subFormViews) {
+        this.mySubFormViews = subFormViews;
+        
+    }
+
+    @Override
+    public void setTitle (String name) {
+        myTitle = name;
     }
 
 }

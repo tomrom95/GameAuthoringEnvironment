@@ -24,5 +24,7 @@ public interface IFormView extends Glyph{
     
     void setDeleteAction(Consumer<?> action);
     
-    List<SubFormView> getSubFormViews();
+    List<ISubFormView> getSubFormViews();
+    
+    //or setSubFormViews
 }

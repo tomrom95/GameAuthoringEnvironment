@@ -1,5 +1,6 @@
 package gameauthoring.characters;
 
+import java.util.List;
 import gameauthoring.Glyph;
 import gameauthoring.IObjectListView;
 
@@ -15,6 +16,28 @@ import gameauthoring.IObjectListView;
  *
  */
 public interface IObjectCreationView extends Glyph {
+
+    /**
+     * Set the title of the view to make it clear which types of objects are being created
+     * 
+     * @param name The name of the category of objects created in this creation view
+     */
+    void setTitle (String name);
+
+    /**
+     * Sets the list of subFormViews
+     * 
+     * - this way, we can add classes that implement IObjectCreationView and
+     * lay out their subforms in different ways
+     * - the only requirement is that they have a list of ISubFormViews, so that
+     * we can generate those reflectively
+     * 
+     * @param sumFormViews The list of subFormViews
+     */
+    void setSubFormViews (List<ISubFormView> subFormViews);
+
+    // Note: don't need the rest of these, unless we want to be able to generate
+    // those reflectively too
 
     /**
      * Get the IObjectListView, which is the view containing the list of objects

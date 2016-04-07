@@ -5,8 +5,10 @@ import javafx.collections.ObservableList;
 
 
 /**
- * This is a generalized interface for SpriteEditorController.
- * It handles the creation of objects.
+ * This is a generalized interface for a controller that handles creation of items
+ * 
+ * There will be a CreationController for each Character tab, the Attributes tab, and Interactions
+ * tab
  * 
  * @author Jin An, Jeremy Schreck
  *
@@ -36,6 +38,13 @@ public interface ICreationController<ItemType> {
      * @param subFormController The ISubFormController to add
      */
     void addSubFormController (ISubFormController<ItemType> subFormController);
+
+    /**
+     * Sets the list of SubFormControllers
+     * 
+     * @param subFormControllers The list of subFormControllers
+     */
+    void setSubFormControllers (List<ISubFormController<ItemType>> subFormControllers);
 
     /*
      * void showAndEdit ();
