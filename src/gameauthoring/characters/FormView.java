@@ -58,7 +58,7 @@ public class FormView implements IFormView {
     }
 
     @Override
-    public List<SubFormView> getSubFormView () {
+    public List<SubFormView> getSubFormViews () {
         return mySubFormViews;
     }
 
