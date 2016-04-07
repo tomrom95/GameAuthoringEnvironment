@@ -101,6 +101,12 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
         mySubFormControllers.add(subFormController);
     }
 
+    @Override
+    public void setSubFormControllers (List<ISubFormController<ItemType>> subFormControllers) {
+        this.mySubFormControllers = subFormControllers;
+        
+    }
+    
     private List<ISubFormController<ItemType>> getMySubFormControllers () {
         return mySubFormControllers;
     }
