@@ -5,6 +5,13 @@ import javafx.scene.input.MouseEvent;
 import util.Key;
 
 
+/**
+ * This class implements IScreenEventFactory and handles effects from the game and converts them to
+ * be interpreted by the game engine.
+ *
+ *
+ */
+
 public class ScreenEventFactory implements IScreenEventFactory {
 
     @Override
@@ -34,7 +41,15 @@ public class ScreenEventFactory implements IScreenEventFactory {
         return keyEvent;
 
     }
-    
+
+    /**
+     * Converts the JavaFX ActionEvent into an InputType, a class that is understood by the
+     * GameEngine.
+     * 
+     * @param str string representing the ActionEvent
+     * @return InputType that corresponds to the IOEvent that the GameEngine interprets
+     * @throws ClassNotFoundException
+     */
     private InputType convertType (String str) throws ClassNotFoundException {
 
         Class inputClass = Class.forName(InputType.class.getName());

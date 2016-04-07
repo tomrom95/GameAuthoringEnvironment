@@ -12,6 +12,13 @@ import util.Coordinate;
 import util.TimeDuration;
 
 
+/**
+ * This class implements ISpriteManager and holds a collection of sprites. This class holds the
+ * method calls required to add sprites to the collection and handle any behaviors imposed upon its
+ * sprites.
+ *
+ */
+
 public class SpriteManager implements ISpriteManager {
 
     private ObservableList<ObjectProperty<ISprite>> mySpriteList;
@@ -39,7 +46,7 @@ public class SpriteManager implements ISpriteManager {
         mySpriteList.add(new SimpleObjectProperty<>(sprite));
         sprite.getLocation().get().setLocation(coordinate.getX(), coordinate.getY());
     }
-    
+
     @Override
     public ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables () {
         return mySpriteList;
@@ -47,13 +54,13 @@ public class SpriteManager implements ISpriteManager {
 
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
-        list.forEach(event -> loopThroughSpritesAndDo(sprite-> sprite.registerKeyEvent(event)));
-        
+        list.forEach(event -> loopThroughSpritesAndDo(sprite -> sprite.registerKeyEvent(event)));
+
     }
 
     @Override
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
-        list.forEach(event -> loopThroughSpritesAndDo(sprite-> sprite.registerMouseEvent(event)));
+        list.forEach(event -> loopThroughSpritesAndDo(sprite -> sprite.registerMouseEvent(event)));
     }
 
     @Override

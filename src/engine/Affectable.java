@@ -1,7 +1,5 @@
 package engine;
 
-
-
 import effects.IEffect;
 import interactionevents.KeyIOEvent;
 import interactionevents.MouseIOEvent;
@@ -35,7 +33,7 @@ public interface Affectable extends Updateable {
      * @param keyEvent to respond to
      */
     void registerKeyEvent (KeyIOEvent keyEvent);
-    
+
     /**
      * Respond appropriately to a global mouse interaction event
      * 

@@ -23,7 +23,7 @@ public interface Drawable {
      *         for it.
      */
     ObjectProperty<IGraphicModule> getDrawer ();
-    
+
     /**
      * @return the location of the drawable
      */

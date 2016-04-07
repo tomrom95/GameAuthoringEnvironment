@@ -12,8 +12,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
 
+
 /**
- * This class serves to hold values that the user labels as attributes. This class works with the Sprite class
+ * This class serves to hold values that the user labels as attributes. This class works with the
+ * Sprite class
  * to give user created sprites the notion of attributes that are affected by conditions and events.
  *
  */
@@ -84,13 +86,14 @@ public class Attribute implements IAttribute {
     /**
      * Removes time or condition dependent effects that are invalid or have
      * expired
+     * 
      * @param duration frame rate specified by the level
      */
     private void removeCompletedEffects (TimeDuration duration) {
 
         myEffects.stream().filter(e -> !e.get().hasCompleted())
                 .collect(Collectors.toList());
-        
+
     }
 
     @Override

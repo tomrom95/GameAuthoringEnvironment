@@ -9,8 +9,6 @@ import javafx.collections.ObservableList;
  * completed and should proceed
  * to the next level.
  * 
- * @author Dhrumil
- *
  */
 
 interface INextLevelManager extends Updateable {
