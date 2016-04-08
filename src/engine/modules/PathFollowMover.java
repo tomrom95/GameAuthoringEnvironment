@@ -7,6 +7,7 @@ import engine.IAttribute;
 import engine.IPositionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -22,9 +23,6 @@ public class PathFollowMover extends Mover {
     private ObjectProperty<IAttribute> mySpeed;
     private List<Coordinate> myPoints;
     private int myNextDestination;
-    private ObjectProperty<IAttribute> myXVel;
-    private ObjectProperty<IAttribute> myYVel;
-    private IPositionable myParent;
 
     public PathFollowMover (double speed,
                             List<Coordinate> points, IPositionable positionable) {

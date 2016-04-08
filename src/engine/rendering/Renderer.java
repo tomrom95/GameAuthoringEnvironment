@@ -29,7 +29,7 @@ public class Renderer implements IRenderer {
     public void render () {
         myPane.getChildren().clear();
         //drawBackground();
-        myGame.getDrawables().forEach(d -> draw(d.get()));
+        myGame.getDrawables().forEach(d -> draw(d));
 
     }
 

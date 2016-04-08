@@ -68,6 +68,7 @@ public class Sprite implements ISprite {
     public void update (TimeDuration duration) {
         myAttributeManager.get().update(duration);
         myModules.forEach(m -> m.get().update(duration));
+        
     }
 
     @Override

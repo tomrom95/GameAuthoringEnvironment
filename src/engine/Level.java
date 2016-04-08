@@ -51,7 +51,7 @@ public class Level implements ILevel {
     }
 
     @Override
-    public ObservableList<ObjectProperty<ISprite>> getSprites () {
+    public ObservableList<ISprite> getSprites () {
         return mySpriteManager.get().getSprites();
     }
 
@@ -71,7 +71,7 @@ public class Level implements ILevel {
     }
 
     @Override
-    public ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables () {
+    public ObservableList<? extends Drawable> getDrawables () {
         return mySpriteManager.get().getDrawables();
     }
 

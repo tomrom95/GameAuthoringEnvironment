@@ -30,14 +30,14 @@ public class OnCollisionCondition implements ICondition {
 
     @Override
     public void update (TimeDuration duration) {
-        List<ObjectProperty<ISprite>> sprites =
+        List<ISprite> sprites =
                 myGame.getLevelManager().getCurrentLevel().get().getSprites();
         for (ISprite outerSprite : sprites.stream()
-                .map(p -> p.get())
+                
                 .filter(sprite -> sprite.getType().equals(myGroupA))
                 .collect(Collectors.toList())) {
             for (ISprite innerSprite : sprites.stream()
-                    .map(p -> p.get())
+                    
                     .filter(sprite -> sprite.getType().equals(myGroupB))
                     .collect(Collectors.toList())) {
                 if (outerSprite.getBounds().collide(innerSprite.getBounds())) {

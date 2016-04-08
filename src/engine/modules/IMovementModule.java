@@ -15,5 +15,4 @@ import engine.IPositionable;
 public interface IMovementModule extends IModule {
 
   
-    public IPositionable getParent ();
 }

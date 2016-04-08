@@ -30,17 +30,14 @@ public abstract class Mover implements IMovementModule {
     
     private ObjectProperty<Coordinate> getLocation () {
         return myParent.getLocation();
+        
     }
-    
-    //TODO remove
-    public IPositionable getParent () {
-        return myParent;
-    }
-    
+   
     protected void move (TimeDuration duration) {
+        
         double xChange = distance(getXVel().get().getValueProperty().get(), duration.getMillis());
         double yChange = distance(getYVel().get().getValueProperty().get(), duration.getMillis());
-        getLocation().set(getNextCoordinate(xChange, yChange));
+        myParent.getLocation().set(getNextCoordinate(xChange, yChange));
     }
     
     protected void move (Coordinate coordinate) {

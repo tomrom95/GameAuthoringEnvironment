@@ -54,7 +54,7 @@ public class Game implements IGame, IGamePlayable {
     }
 
     @Override
-    public ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables () {
+    public ObservableList<? extends Drawable> getDrawables () {
        return myLevelManager.getDrawables();
     }
 

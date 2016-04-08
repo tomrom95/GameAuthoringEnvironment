@@ -57,7 +57,7 @@ public class LevelManager implements ILevelManager {
     }
 
     @Override
-    public ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables () {
+    public ObservableList<? extends Drawable> getDrawables () {
         return myCurrentLevel.get().getDrawables();
     }
 
