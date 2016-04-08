@@ -1,6 +1,5 @@
 package gameauthoring.characters;
 
-import engine.ISprite;
 
 /**
  * 

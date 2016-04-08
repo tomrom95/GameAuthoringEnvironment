@@ -3,8 +3,6 @@ package gameauthoring.characters;
 import java.util.ArrayList;
 import java.util.List;
 import com.sun.org.apache.bcel.internal.classfile.Attribute;
-import engine.ISprite;
-import engine.Sprite;
 import gameauthoring.IObjectListView;
 import gameauthoring.ObjectListView;
 

@@ -1,7 +1,6 @@
 package gameauthoring.characters;
 
 import java.util.List;
-import engine.ISprite;
 
 
 public class ProfileSubFormController<T> implements ISubFormController<T> {
