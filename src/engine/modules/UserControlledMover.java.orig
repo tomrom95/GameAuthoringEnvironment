@@ -34,8 +34,14 @@ public class UserControlledMover extends Mover {
     private Map<Direction, Boolean> myTraveling;
 
     public UserControlledMover (double speed,
+<<<<<<< HEAD:src/modules/UserControlledMover.java
+                                ControlKeys controls,
+                                ISprite parent) {
+        super(parent);
+=======
                                 ControlKeys controls, IPositionable positionable) {
         super(positionable);
+>>>>>>> master:src/engine/modules/UserControlledMover.java
         mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));
         makeKeyMap(controls);
         makeTravelingMap();

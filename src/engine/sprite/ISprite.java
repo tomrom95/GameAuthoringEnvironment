@@ -10,12 +10,12 @@ import engine.modules.IModule;
 import engine.modules.IMovementModule;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
-import util.Bound;
+import util.Bounds;
 
 
 /**
  * This interface represents a sprite in a game, that can be updated and can respond to external
- * events and stimuli. 
+ * events and stimuli.
  *
  * @author Joe Timko
  * @author Dhrumil Patel
@@ -35,7 +35,7 @@ public interface ISprite extends Drawable, Updateable, Affectable, IPositionable
 
     ObservableList<ObjectProperty<IResource>> getResourcesProperty ();
 
-    Bound getBounds ();
+    Bounds getBounds ();
 
     ObjectProperty<SpriteType> getType ();
 

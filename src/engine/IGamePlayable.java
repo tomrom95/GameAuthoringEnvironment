@@ -34,7 +34,7 @@ public interface IGamePlayable extends Updateable {
     /**
      * @return the global attributes for this game
      */
-    ObservableList<IAttribute> getGlobalAttributes ();
+    ObservableList<ObjectProperty<IAttribute>> getGlobalAttributes ();
     
     /**
      * @return the background image of the running level of the game

@@ -16,6 +16,16 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import util.RGBColor;
 
+<<<<<<< HEAD:src/graphics/GraphicFactory.java
+
+/**
+ * This class implements IGraphicFactory and converts back-end graphics into their JavaFX Nodes to
+ * render on the game screen
+ * 
+ *
+ */
+public class GraphicFactory implements IGraphicFactory {
+=======
 /**
  * Defines uniform functionality between scale and bound factory
  * Returns nodes with no notion of size
@@ -23,6 +33,7 @@ import util.RGBColor;
  *
  */
 public abstract class GraphicFactory implements IGraphicFactory {
+>>>>>>> master:src/engine/rendering/GraphicFactory.java
 
     private static final int ALPHA = 1;
     private static final String DEFAULT_PATH = "resource/DefaultGraphics";
@@ -32,10 +43,17 @@ public abstract class GraphicFactory implements IGraphicFactory {
     public GraphicFactory () {
         myResources = ResourceBundle.getBundle(DEFAULT_PATH);
     }
+<<<<<<< HEAD:src/graphics/GraphicFactory.java
 
+    @Override
+    public Node getVisual (Block block) {
+        Rectangle rect = new Rectangle(block.getWidth().get(), block.getHeight().get());
+=======
+    
    
     protected Rectangle getRectangle (Block block) {
         Rectangle rect = new Rectangle();
+>>>>>>> master:src/engine/rendering/GraphicFactory.java
         rect.setFill(rgbToColor(block.getFillProeprty().get()));
         return rect;
     }

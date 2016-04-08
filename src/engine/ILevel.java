@@ -27,6 +27,11 @@ public interface ILevel extends Updateable, IAdder {
     ObservableList<ObjectProperty<ICondition>> getConditionsPropertyList ();
     
     /**
+     * @return the global attribute manager for this level 
+     */
+    ObjectProperty<IAttributeManager> getAttributeManager ();
+
+    /**
      * @return the Image of the background of the level
      */
     ObjectProperty<ImageGraphic> getBackgroundImageProperty ();
@@ -57,7 +62,7 @@ public interface ILevel extends Updateable, IAdder {
     boolean shouldSwitchLevel ();
 
     ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
-    
+
     /**
      * @param list of key events to be processed
      */
@@ -67,11 +72,11 @@ public interface ILevel extends Updateable, IAdder {
      * @param list of key events to be processed
      */
     void internalizeMouseEvents (List<MouseIOEvent> list);
-    
+
     /**
      * @param sprite to be removed
      */
-    
-    void remove(ObjectProperty<ISprite> sprite);
-   
+
+    void remove (ObjectProperty<ISprite> sprite);
+
 }

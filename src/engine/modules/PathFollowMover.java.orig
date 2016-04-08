@@ -31,9 +31,14 @@ public class PathFollowMover extends Mover {
     private int myNextDestination;
 
     public PathFollowMover (double speed,
+<<<<<<< HEAD:src/modules/PathFollowMover.java
                             List<Coordinate> points,
-                            IPositionable positionable) {
+                            ISprite parent) {
+        super(parent);
+=======
+                            List<Coordinate> points, IPositionable positionable) {
         super(positionable);
+>>>>>>> master:src/engine/modules/PathFollowMover.java
         mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));
         myPoints = points;
         myNextDestination = 0;
@@ -42,9 +47,6 @@ public class PathFollowMover extends Mover {
 
     @Override
     public void update (TimeDuration duration) {
-        if (myPoints.size() == 0) {
-            return;
-        }
         if (overshootNext(duration)) {
             move(myPoints.get(myNextDestination));
             incrementIndex();

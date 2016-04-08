@@ -1,5 +1,12 @@
 package util;
 
+/**
+ * Utility class that stores two double values as a coordinate and manipulates them.
+ * 
+ * @author Dhrumil
+ *
+ */
+
 public class Coordinate {
 
     private double xCoordinate;

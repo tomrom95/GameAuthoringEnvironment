@@ -12,6 +12,12 @@ import javafx.scene.Node;
 import util.TimeDuration;
 
 
+/**
+ * This class implements IGraphicModule and serves as the manages and manipulates the visual
+ * properties of a sprite.
+ * 
+ */
+
 public class GraphicModule implements IGraphicModule {
 
     private IGraphic myGraphic;
@@ -19,7 +25,7 @@ public class GraphicModule implements IGraphicModule {
     public GraphicModule (IGraphic graphic) {
         myGraphic = graphic;
     }
-    
+
     public IGraphic getGraphic () {
         return myGraphic;
     }
@@ -32,25 +38,25 @@ public class GraphicModule implements IGraphicModule {
     @Override
     public void update (TimeDuration duration) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void applyEffect (IEffect effect) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override

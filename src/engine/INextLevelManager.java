@@ -4,6 +4,13 @@ import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
 
+/**
+ * This interface provides the method calls to for an ILevelManager to determine whether a level is
+ * completed and should proceed
+ * to the next level.
+ * 
+ */
+
 interface INextLevelManager extends Updateable {
 
     /**
