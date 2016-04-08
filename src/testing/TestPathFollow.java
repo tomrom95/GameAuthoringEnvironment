@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-import engine.modules.PathFollowMover;
+import engine.modules.PathMover;
 import engine.sprite.Sprite;
 import util.Coordinate;
 import util.TimeDuration;
@@ -25,7 +25,7 @@ public class TestPathFollow {
 
         mySprite.getLocation().set(new Coordinate(10, 10));
         List<Coordinate> path = new ArrayList<>();
-        PathFollowMover mover = new PathFollowMover(1, path, mySprite);
+        PathMover mover = new PathMover(1, path, mySprite);
         mySprite.getMovementStrategyProperty().set(mover);
         Coordinate beforeMove = mySprite.getLocation().get();
         mySprite.update(new TimeDuration(100));
@@ -41,7 +41,7 @@ public class TestPathFollow {
         mySprite.getLocation().set(new Coordinate(10, 10));
         List<Coordinate> path = new ArrayList<>();
         path.add(new Coordinate(11, 11));
-        PathFollowMover mover = new PathFollowMover(1, path, mySprite);
+        PathMover mover = new PathMover(1, path, mySprite);
         mySprite.getMovementStrategyProperty().set(mover);
         Coordinate beforeMove = mySprite.getLocation().get();
         mySprite.update(new TimeDuration(100));

@@ -27,14 +27,14 @@ import util.Direction;
  * 
  */
 
-public class UserControlledMover extends Mover {
+public class UserMover extends Mover {
 
     private ObjectProperty<IAttribute> mySpeed;
 
     private Map<Direction, Key> myKeys;
     private Map<Direction, Boolean> myTraveling;
 
-    public UserControlledMover (double speed,
+    public UserMover (double speed,
                                 ControlKeys controls, IPositionable sprite) {
         super(sprite);
         mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));

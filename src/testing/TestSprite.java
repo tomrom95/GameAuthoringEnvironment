@@ -9,7 +9,7 @@ import engine.sprite.Sprite;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import engine.modules.IMovementModule;
-import engine.modules.UserControlledMover;
+import engine.modules.UserMover;
 import util.ControlKeys;
 import util.Coordinate;
 import util.Key;
@@ -32,7 +32,7 @@ public class TestSprite {
     public void setUp () {
         
         ControlKeys keys = new ControlKeys(new Key("Up"), new Key("Left"), new Key("Right"), new Key("Down"));
-        ObjectProperty<IMovementModule> mover = new SimpleObjectProperty<>(new UserControlledMover(10, keys, sprite));
+        ObjectProperty<IMovementModule> mover = new SimpleObjectProperty<>(new UserMover(10, keys, sprite));
         
         try {
             Method goRight = mover.get().getClass().getDeclaredMethod("goRight");

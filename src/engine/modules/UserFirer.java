@@ -7,6 +7,6 @@ package engine.modules;
  * @author Dhrumil
  *
  */
-public class UserControlledFire {
+public class UserFirer {
 
 }
