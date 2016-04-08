@@ -15,7 +15,7 @@ public class AttributeType extends StringBasedType {
 
     public static final AttributeType CONSTANT = new AttributeType("Constant");
     public static final AttributeType X_VEL = new AttributeType("XVelocity");
-    public static final AttributeType Y_VEL = new AttributeType("XVelocity");
+    public static final AttributeType Y_VEL = new AttributeType("YVelocity");
     public static final AttributeType SPEED = new AttributeType("Speed");
 
     public AttributeType (String type) {

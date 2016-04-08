@@ -25,10 +25,10 @@ public class Attribute implements IAttribute {
     private DoubleProperty myValue;
     private AttributeType myType;
     private ObservableList<ObjectProperty<IEffect>> myEffects;
+    private static final double DEFAULT_STARTING_VALUE = 0;
 
     public Attribute (AttributeType type) {
-        myValue = new SimpleDoubleProperty(0);
-        myEffects = FXCollections.observableArrayList();
+        this(DEFAULT_STARTING_VALUE, type);  
     }
 
     public Attribute (double value, AttributeType type) {
