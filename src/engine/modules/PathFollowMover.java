@@ -22,6 +22,9 @@ public class PathFollowMover extends Mover {
     private ObjectProperty<IAttribute> mySpeed;
     private List<Coordinate> myPoints;
     private int myNextDestination;
+    private ObjectProperty<IAttribute> myXVel;
+    private ObjectProperty<IAttribute> myYVel;
+    private IPositionable myParent;
 
     public PathFollowMover (double speed,
                             List<Coordinate> points, IPositionable positionable) {
@@ -29,6 +32,7 @@ public class PathFollowMover extends Mover {
         mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));
         myPoints = points;
         myNextDestination = 0;
+        
 
     }
 

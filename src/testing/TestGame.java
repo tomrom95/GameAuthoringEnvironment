@@ -22,6 +22,9 @@ import util.Key;
 import util.RGBColor;
 import java.util.ArrayList;
 import java.util.List;
+import com.dooapp.xstreamfx.FXConverters;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.*;
 
 
@@ -33,11 +36,16 @@ public class TestGame extends Application {
     
     @Override
     public void start (Stage primaryStage) throws Exception {
+        
+        XStream xstream = new XStream(new DomDriver());
+        FXConverters.configure(xstream);
+        
         ObjectProperty<ILevel> startingLevel = new SimpleObjectProperty<>(new Level());
         LevelManager levelManager = new LevelManager(startingLevel);
 
         ISprite sprite = createFollowSprite();
         levelManager.add(sprite, new Coordinate(0,0));
+        
         
         levelManager.add(createUserSprite(), new Coordinate(10,10));
         ConditionManager conditionManager = new ConditionManager();
@@ -45,19 +53,28 @@ public class TestGame extends Application {
         
        
         GamePlayer player = new GamePlayer(game);
-        player.play();
+        player.pause();
         
         
     }
 
     private ISprite createFollowSprite () {
+       
+        XStream xstream = new XStream(new DomDriver());
+        FXConverters.configure(xstream);
         ISprite sprite = new Sprite();
         List<Coordinate> list = getListOfCoordinates();
         ObjectProperty<IMovementModule> mover = new SimpleObjectProperty<>(new PathFollowMover(.10, list, sprite));
         ObjectProperty<IGraphicModule> g = new SimpleObjectProperty<>(new GraphicModule(new Block(20, 20, RGBColor.BLACK)));
         sprite.getMovementStrategyProperty().set(mover.get());
         sprite.getDrawer().set(g.get());
-        return sprite;
+        System.out.println(sprite.getMovementStrategyProperty().get().getParent());
+        String xml = xstream.toXML(sprite);
+        System.out.println(xml);
+        ISprite sprite2 = (ISprite) xstream.fromXML(xml);
+        
+        System.out.println(sprite2.getMovementStrategyProperty().get().getParent());
+        return sprite2;
     }
     
     private ISprite createUserSprite () {

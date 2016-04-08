@@ -10,6 +10,7 @@ import engine.Attribute;
 import engine.AttributeType;
 import engine.Game;
 import engine.IAttribute;
+import engine.effects.DecreaseEffect;
 import engine.modules.PathFollowMover;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
@@ -26,17 +27,12 @@ public class GameWriter implements IGameWriter{
     }
     
     public static void main(String [ ] args) {
+        
         XStream xstream = new XStream(new DomDriver());
         FXConverters.configure(xstream);
-        List<Coordinate> list = new ArrayList<>();
-        ISprite sprite = new Sprite();
-        PathFollowMover mover = new PathFollowMover(2, list, sprite);
-        String xml = xstream.toXML(mover);
-        System.out.println(xml);
-        PathFollowMover moverAfter = (PathFollowMover) xstream.fromXML(xml);
-        System.out.print(moverAfter.getMySpeed());
-        
         IAttribute attribute = new Attribute(3, new AttributeType("Ryan"));
+        AttributeType constant = new AttributeType("c");
+        attribute.applyEffect(new DecreaseEffect(constant, new Attribute(constant), 10));
         System.out.println(attribute.getValueProperty().get());
         String a = xstream.toXML(attribute);
         IAttribute attribute2 = (IAttribute) xstream.fromXML(a);

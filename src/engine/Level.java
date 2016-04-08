@@ -3,6 +3,7 @@ package engine;
 import java.util.List;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.modules.GraphicModule;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.beans.property.ObjectProperty;
@@ -27,6 +28,8 @@ public class Level implements ILevel {
         myConditionManager = new SimpleObjectProperty<>(new ConditionManager());
         mySpriteManager = new SimpleObjectProperty<>(new SpriteManager());
         myNextLevelManager = new SimpleObjectProperty<>(new NextLevelManager());
+        //TODO add default
+       // myBackgroundImage = new SimpleObjectProperty<>(new ImageGraphic(400, 400, "/image/blank.jpg"));
     }
 
     @Override
