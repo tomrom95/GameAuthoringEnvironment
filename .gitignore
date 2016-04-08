@@ -1,4 +1,5 @@
 my_stuff/
+secret.properties
 # IDEA Ignores #
 ################
 *.iml
