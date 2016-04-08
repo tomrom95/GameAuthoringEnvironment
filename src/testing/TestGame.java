@@ -23,6 +23,7 @@ import com.dooapp.xstreamfx.FXConverters;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import data.GameWriter;
+import engine.Game;
 import engine.*;
 
 
@@ -52,7 +53,9 @@ public class TestGame extends Application {
         ConditionManager conditionManager = new ConditionManager();
         Game game = new Game(levelManager, new GameInformation("r", "r", "r"), conditionManager);
         
-        GamePlayer player = new GamePlayer(game);
+        Game game2 = (Game) xstream.fromXML(xstream.toXML(game));
+        
+        GamePlayer player = new GamePlayer(game2);
         
         
     }

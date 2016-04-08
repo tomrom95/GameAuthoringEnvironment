@@ -8,7 +8,7 @@ import util.Coordinate;
 
 
 /**
- * Used to render the screen
+ * Used to render the back-end components into JavaFX responsive objects for the screen
  * 
  * @author RyanStPierre
  *

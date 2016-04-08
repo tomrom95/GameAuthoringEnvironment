@@ -13,15 +13,22 @@ import javafx.collections.ObservableList;
 import util.TimeDuration;
 
 
+/**
+ * This class serves to hold values that the user labels as attributes. This class works with the
+ * Sprite class
+ * to give user created sprites the notion of attributes that are affected by conditions and events.
+ *
+ */
+
 public class Attribute implements IAttribute {
 
     private DoubleProperty myValue;
     private AttributeType myType;
     private ObservableList<ObjectProperty<IEffect>> myEffects;
+    private static final double DEFAULT_STARTING_VALUE = 0;
 
     public Attribute (AttributeType type) {
-        myValue = new SimpleDoubleProperty(0);
-        myEffects = FXCollections.observableArrayList();
+        this(DEFAULT_STARTING_VALUE, type);  
     }
 
     public Attribute (double value, AttributeType type) {
@@ -76,11 +83,17 @@ public class Attribute implements IAttribute {
         removeCompletedEffects(duration);
     }
 
+    /**
+     * Removes time or condition dependent effects that are invalid or have
+     * expired
+     * 
+     * @param duration frame rate specified by the level
+     */
     private void removeCompletedEffects (TimeDuration duration) {
 
         myEffects.stream().filter(e -> !e.get().hasCompleted())
                 .collect(Collectors.toList());
-        
+
     }
 
     @Override

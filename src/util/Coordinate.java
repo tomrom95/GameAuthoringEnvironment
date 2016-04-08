@@ -2,7 +2,15 @@ package util;
 
 import java.io.Serializable;
 
-public class Coordinate implements Serializable {
+
+/**
+ * Utility class that stores two double values as a coordinate and manipulates them.
+ * 
+ * @author Dhrumil
+ *
+ */
+
+public class Coordinate {
 
     private double xCoordinate;
     private double yCoordinate;

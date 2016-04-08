@@ -21,6 +21,12 @@ import engine.sprite.ISprite;
 import util.Direction;
 
 
+/**
+ * This class serves as an implementation of Mover that serves as a module for a sprite that moves
+ * based on specified IOEvents.
+ * 
+ */
+
 public class UserControlledMover extends Mover {
 
     private ObjectProperty<IAttribute> mySpeed;
@@ -37,6 +43,10 @@ public class UserControlledMover extends Mover {
 
     }
 
+    /**
+     * Creates a map to store movement directions and a boolean to specify whether a particular
+     * direction is a valid direction to move
+     */
     private void makeTravelingMap () {
         myTraveling = new HashMap<>();
         myTraveling.put(Direction.UP, false);
@@ -45,6 +55,11 @@ public class UserControlledMover extends Mover {
         myTraveling.put(Direction.DOWN, false);
     }
 
+    /**
+     * Creates a map to reference the Keys that map to the cardinal directions
+     * 
+     * @param controls ControlKeys that specify what Key represents a direction
+     */
     private void makeKeyMap (ControlKeys controls) {
         myKeys = new HashMap<>();
         myKeys.put(Direction.UP, controls.getUpKey());
@@ -97,6 +112,12 @@ public class UserControlledMover extends Mover {
         }
     }
 
+    /**
+     * Moves the sprite based on the given Key. Handles the case if a sprite moves into an edge of
+     * the game screen.
+     * 
+     * @param key Key that is specified by the user
+     */
     private void registerKeyRelease (Key key) {
         if (key.isEqual(myKeys.get(Direction.RIGHT))) {
             if (myTraveling.get(Direction.LEFT)) {

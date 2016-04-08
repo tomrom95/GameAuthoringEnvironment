@@ -24,11 +24,11 @@ public abstract class StringBasedType {
         if (!isSameClass(obj)) {
             return false;
         }
-        StringBasedType otherType = (StringBasedType)obj;
+        StringBasedType otherType = (StringBasedType) obj;
 
         return getType().equals(otherType.getType());
     }
-    
+
     protected abstract boolean isSameClass (Object obj);
 
     /**
