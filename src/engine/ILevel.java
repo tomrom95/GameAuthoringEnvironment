@@ -27,6 +27,11 @@ public interface ILevel extends Updateable, IAdder {
     ObservableList<ObjectProperty<ICondition>> getConditionsPropertyList ();
     
     /**
+     * @return the global attribute manager for this level 
+     */
+    ObjectProperty<IAttributeManager> getAttributeManager ();
+
+    /**
      * @return the Image of the background of the level
      */
     ObjectProperty<ImageGraphic> getBackgroundImageProperty ();

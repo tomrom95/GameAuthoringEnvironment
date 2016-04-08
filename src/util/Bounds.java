@@ -1,12 +1,12 @@
 package util;
 
 /**
- * Class to represent rectangular bounds for coordinate based collision checking
+ * Class to represent rectangular bounds for collision checking
  * 
  * @author RyanStPierre
  *
  */
-public class Bound {
+public class Bounds {
 
     private static final double HALF = 0.5;
     private double myX;
@@ -14,18 +14,18 @@ public class Bound {
     private double myWidth;
     private double myHeight;
 
-    public Bound (double x, double y, double width, double height) {
+    public Bounds (double x, double y, double width, double height) {
         myX = x;
         myY = y;
         myWidth = width;
         myHeight = height;
     }
 
-    public boolean collide (Bound other) {
+    public boolean collide (Bounds other) {
         if (other.getLeft() > getRight() || getLeft() > other.getRight()) {
             return false;
         }
-        else if (other.getTop() > getButtom() || getTop() > other.getButtom()) {
+        else if (other.getTop() > getBottom() || getTop() > other.getBottom()) {
             return false;
         }
 
@@ -40,7 +40,7 @@ public class Bound {
         return myY - half(myHeight);
     }
 
-    public double getButtom () {
+    public double getBottom () {
         return myY + half(myHeight);
     }
 
@@ -50,6 +50,11 @@ public class Bound {
 
     private double half (double input) {
         return input * HALF;
+    }
+
+    public boolean contains (Coordinate coordinate) {
+        return coordinate.getX() >= getLeft() && coordinate.getX() <= getRight() 
+                && coordinate.getY() <= getBottom() && coordinate.getY() >= getTop();
     }
 
 }

@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
  * @author Jonathan Im
  *
  */
-public interface Affectable extends Updateable {
+public interface Affectable extends IOAffectable {
 
     /**
      * Apply a given effect to this object

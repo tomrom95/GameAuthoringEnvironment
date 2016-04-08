@@ -19,7 +19,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import util.Bound;
+import util.Bounds;
 import util.Coordinate;
 import util.RGBColor;
 import util.TimeDuration;
@@ -49,9 +49,9 @@ public class Sprite implements ISprite {
     public Sprite () {
         myAttributeManager = new SimpleObjectProperty<>(new AttributeManager());
         myMover = new SimpleObjectProperty<>();
-        myGraphic = new SimpleObjectProperty<>(new GraphicModule(new Block(0,0,RGBColor.BLACK)));
+        myGraphic = new SimpleObjectProperty<>(new GraphicModule(new Block(0, 0, RGBColor.BLACK)));
         initializeRequiredModules();
-        myLocation = new SimpleObjectProperty<>(new Coordinate(0,0));
+        myLocation = new SimpleObjectProperty<>(new Coordinate(0, 0));
     }
 
     private void initializeRequiredModules () {
@@ -71,16 +71,18 @@ public class Sprite implements ISprite {
     public void update (TimeDuration duration) {
         myAttributeManager.get().update(duration);
         myModules.forEach(m -> m.get().update(duration));
+
     }
 
     @Override
     public void applyEffect (IEffect effect) {
-       applyToAffectable(a -> a.applyEffect(effect));
+        applyToAffectable(a -> a.applyEffect(effect));
     }
 
     private void applyToAffectable (Consumer<Affectable> function) {
-       function.accept(myAttributeManager.get());
-       myModules.forEach(m -> function.accept(m.get()));
+        function.accept(myAttributeManager.get());
+        myModules.forEach(m -> function.accept(m.get()));
+
     }
 
     @Override
@@ -107,33 +109,40 @@ public class Sprite implements ISprite {
 
     @Override
     public void registerKeyEvent (KeyIOEvent event) {
+
         applyToAffectable(a -> a.registerKeyEvent(event));
 
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent event) {
+
         applyToAffectable(a -> a.registerMouseEvent(event));
+
     }
 
     @Override
     public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
+
         ObservableList<ObjectProperty<IAttribute>> attributes = FXCollections.observableArrayList();
         applyToAffectable(a -> attributes.addAll(a.getAttributes()));
         return attributes;
     }
-    
+
     @Override
-    public Bound getBounds () {
+    public Bounds getBounds () {
         double x = getLocation().get().getX();
         double y = getLocation().get().getY();
         double width = getDrawer().get().getGraphic().getWidth().get();
         double height = getDrawer().get().getGraphic().getHeight().get();
-        return new Bound(x, y, width, height);
+        return new Bounds(x, y, width, height);
     }
 
     @Override
     public ObjectProperty<SpriteType> getType () {
         return myType;
     }
+
+ 
+   
 }

@@ -19,7 +19,7 @@ public interface IGame extends IGamePlayable {
     ILevelManager getLevelManager ();
 
     /**
-     * @return the condition manager for this level
+     * @return the condition manager for game-wide global conditions
      */
     IConditionManager getConditionManager ();
 
@@ -28,4 +28,8 @@ public interface IGame extends IGamePlayable {
      */
     AuthorshipData getAuthorshipData ();
 
+    /**
+     * @return the attribute manager for game-wide global attributes
+     */
+    IAttributeManager getAttributeManager ();
 }
