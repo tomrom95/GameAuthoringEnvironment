@@ -1,5 +1,6 @@
 package engine;
 
+import java.io.Serializable;
 import engine.effects.IEffect;
 import engine.interactionevents.IInteractionEvent;
 import javafx.beans.property.DoubleProperty;
@@ -17,7 +18,7 @@ import javafx.collections.ObservableList;
  * @author Jonathan Im
  *
  */
-public interface IAttribute extends Affectable {
+public interface IAttribute extends Affectable, Serializable {
     /**
      * @return the type of this attribute
      */

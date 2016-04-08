@@ -6,6 +6,7 @@ import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
+import util.Coordinate;
 
 
 /**
@@ -26,9 +27,9 @@ public interface ISpriteManager extends Updateable, IAdder {
     /**
      * @return the observable list of sprites
      */
-    ObservableList<ObjectProperty<ISprite>> getSprites ();
+    ObservableList<ISprite> getSprites ();
 
-    ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
+    ObservableList<? extends Drawable> getDrawables ();
 
     /**
      * @param list of key events to be processed
@@ -44,5 +45,7 @@ public interface ISpriteManager extends Updateable, IAdder {
      * @param sprite to be removed
      */
     void remove (ObjectProperty<ISprite> sprite);
+
+    
 
 }

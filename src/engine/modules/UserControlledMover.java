@@ -17,6 +17,7 @@ import engine.effects.IEffect;
 import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
 import util.Direction;
 
 
@@ -34,8 +35,8 @@ public class UserControlledMover extends Mover {
     private Map<Direction, Boolean> myTraveling;
 
     public UserControlledMover (double speed,
-                                ControlKeys controls, IPositionable positionable) {
-        super(positionable);
+                                ControlKeys controls, IPositionable sprite) {
+        super(sprite);
         mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));
         makeKeyMap(controls);
         makeTravelingMap();
@@ -96,6 +97,7 @@ public class UserControlledMover extends Mover {
 
     private void registerKeyPress (Key key) {
 
+        
         if (key.isEqual(myKeys.get(Direction.RIGHT))) {
             goRight();
         }

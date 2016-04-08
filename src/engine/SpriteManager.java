@@ -22,7 +22,7 @@ import util.TimeDuration;
 
 public class SpriteManager implements ISpriteManager {
 
-    private ObservableList<ObjectProperty<ISprite>> mySpriteList;
+    private ObservableList<ISprite> mySpriteList;
 
     public SpriteManager () {
         mySpriteList = FXCollections.observableArrayList();
@@ -34,22 +34,18 @@ public class SpriteManager implements ISpriteManager {
     }
 
     private void loopThroughSpritesAndDo (Consumer<ISprite> consumer) {
-        getSprites().forEach(sprite -> consumer.accept(sprite.get()));
+        getSprites().forEach(sprite -> consumer.accept(sprite));
     }
 
-    @Override
-    public ObservableList<ObjectProperty<ISprite>> getSprites () {
-        return mySpriteList;
-    }
-
+   
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
-        mySpriteList.add(new SimpleObjectProperty<>(sprite));
+        mySpriteList.add(sprite);
         sprite.getLocation().get().setLocation(coordinate.getX(), coordinate.getY());
     }
 
     @Override
-    public ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables () {
+    public ObservableList<? extends Drawable> getDrawables () {
         return mySpriteList;
     }
 
@@ -67,6 +63,11 @@ public class SpriteManager implements ISpriteManager {
     @Override
     public void remove (ObjectProperty<ISprite> sprite) {
         mySpriteList.remove(sprite);
+    }
+
+    @Override
+    public ObservableList<ISprite> getSprites () {
+        return mySpriteList;
     }
 
 }
