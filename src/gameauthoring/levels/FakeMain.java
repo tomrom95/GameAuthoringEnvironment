@@ -7,7 +7,6 @@ import engine.ISprite;
 import engine.Level;
 import engine.LevelManager;
 import engine.Sprite;
-import gameauthoring.UIFactory;
 import graphics.Block;
 import graphics.ImageGraphic;
 import javafx.application.Application;
@@ -46,6 +45,7 @@ public class FakeMain extends Application {
         myLevelTabs = new TabPane();
         Tab createLevelTab = createButtonTab();
         Tab firstLevelTab = new Tab("Level 1");
+        myLevelTabs.getSelectionModel().select(firstLevelTab);  
         firstLevelTab.setContent(view.draw());
         myLevelTabs.getTabs().addAll(createLevelTab, firstLevelTab);
         stage.setScene(new Scene(myLevelTabs));
