@@ -81,6 +81,19 @@ public class BrowserView {
                     System.out.println();
                     System.out.println(response.getCode());
                     System.out.println(response.getBody());
+                    
+                    OAuthRequest nextRequest = new OAuthRequest(Verb.POST, "https://graph.facebook.com/me/feed", service);
+                    String message = "test message - ";
+                    nextRequest.addBodyParameter("message", message);
+                    String link = "http://codeoftheday.blogspot.com/";
+                    nextRequest.addBodyParameter("link", link);
+                    service.signRequest(accessToken, nextRequest);
+
+                    Response nextResponse = nextRequest.send();
+                    System.out.println("here");
+                    System.out.println(nextResponse.getCode());
+                    String responseBody = nextResponse.getBody();
+                    System.out.println(responseBody);
 
                 }
                 else {
@@ -100,6 +113,7 @@ public class BrowserView {
                 .apiSecret(clientSecret)
                 .state(secretState)
                 .callback(CALLBACK_URL)
+                .scope("publish_actions")
                 .build(FacebookApi.instance());
 
         System.out.println();
