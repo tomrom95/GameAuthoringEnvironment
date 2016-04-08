@@ -1,6 +1,10 @@
 package engine;
 
+import engine.effects.IEffect;
+import engine.interactionevents.IInteractionEvent;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -30,5 +34,14 @@ public interface IAttribute extends Affectable {
      * @param valueToSet value to change to
      */
     void setValue (double valueToSet);
+
+    /**
+     * This will expose the property list of the current effects
+     * waiting to be applied to the attribute
+     * 
+     * @return
+     */
+    ObservableList<ObjectProperty<IEffect>> getEffects ();
+
 
 }

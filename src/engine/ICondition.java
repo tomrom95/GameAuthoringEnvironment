@@ -11,6 +11,6 @@ package engine;
  * @author Jonathan Im
  *
  */
-public interface ICondition extends Updateable {
+public interface ICondition extends IOAffectable {
 
 }

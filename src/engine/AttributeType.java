@@ -11,38 +11,20 @@ package engine;
  * @author Jonathan Im
  *
  */
-public class AttributeType {
+public class AttributeType extends StringBasedType {
 
-    private String myType;
+    public static final AttributeType CONSTANT = new AttributeType("Constant");
+    public static final AttributeType X_VEL = new AttributeType("XVelocity");
+    public static final AttributeType Y_VEL = new AttributeType("XVelocity");
+    public static final AttributeType SPEED = new AttributeType("Speed");
 
-    @Override
-    public String toString () {
-        return getType();
-    }
-
-    /**
-     * Overrides the equality check for this object using the label for this type
-     */
-    @Override
-    public boolean equals (Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof AttributeType)) {
-            return false;
-        }
-        AttributeType otherType = (AttributeType) obj;
-
-        return getType().equals(otherType.getType());
+    public AttributeType (String type) {
+        super(type);
     }
 
     @Override
-    public int hashCode () {
-        return getType().hashCode();
-    }
-
-    private String getType () {
-        return myType;
+    protected boolean isSameClass (Object obj) {
+        return obj instanceof AttributeType;
     }
 
 }

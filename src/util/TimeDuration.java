@@ -1,5 +1,11 @@
 package util;
 
+/**
+ * This class represents a duration of time, stored with millisecond precision.
+ * 
+ * @author David Maydew
+ *
+ */
 public class TimeDuration {
 
     private double myDuration;
@@ -11,12 +17,16 @@ public class TimeDuration {
     public double getMillis () {
         return myDuration;
     }
-    
+
+    public double getSeconds () {
+        return getMillis() / 1000;
+    }
+
     public void increase (TimeDuration other) {
         myDuration += other.getMillis();
     }
-    
-    public void setToZero ()  { 
+
+    public void setToZero () {
         myDuration = 0;
     }
 }

@@ -1,5 +1,6 @@
 package engine;
 
+import engine.sprite.ISprite;
 import util.Coordinate;
 
 /**
@@ -20,5 +21,6 @@ public interface IAdder extends Updateable {
      */
     
     void add (ISprite sprite, Coordinate coordinate);
-
+    
+    
 }
