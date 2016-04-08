@@ -1,8 +1,5 @@
 package testing;
 
-import engine.ConditionManager;
-import engine.Game;
-import engine.LevelManager;
 import engine.modules.GraphicModule;
 import engine.modules.IGraphicModule;
 import engine.modules.IMovementModule;
@@ -22,6 +19,11 @@ import util.Key;
 import util.RGBColor;
 import java.util.ArrayList;
 import java.util.List;
+import com.dooapp.xstreamfx.FXConverters;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import data.GameWriter;
+import engine.Game;
 import engine.*;
 
 
@@ -33,24 +35,33 @@ public class TestGame extends Application {
     
     @Override
     public void start (Stage primaryStage) throws Exception {
+        
+        XStream xstream = new XStream(new DomDriver());
+        FXConverters.configure(xstream);
+        
         ObjectProperty<ILevel> startingLevel = new SimpleObjectProperty<>(new Level());
         LevelManager levelManager = new LevelManager(startingLevel);
-
+        xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
+        
         ISprite sprite = createFollowSprite();
-        levelManager.add(sprite, new Coordinate(0,0));
+        //levelManager.add(sprite, new Coordinate(0,0));
+        
+        
+        
         
         levelManager.add(createUserSprite(), new Coordinate(10,10));
         ConditionManager conditionManager = new ConditionManager();
-        Game game = new Game(levelManager, null, conditionManager);
+        Game game = new Game(levelManager, new GameInformation("r", "r", "r"), conditionManager);
         
-       
-        GamePlayer player = new GamePlayer(game);
-        player.play();
+        Game game2 = (Game) xstream.fromXML(xstream.toXML(game));
+        
+        GamePlayer player = new GamePlayer(game2);
         
         
     }
 
     private ISprite createFollowSprite () {
+       
         ISprite sprite = new Sprite();
         List<Coordinate> list = getListOfCoordinates();
         ObjectProperty<IMovementModule> mover = new SimpleObjectProperty<>(new PathFollowMover(.10, list, sprite));

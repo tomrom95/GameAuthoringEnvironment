@@ -1,5 +1,6 @@
 package engine.modules;
 
+import java.io.Serializable;
 import engine.Affectable;
 import engine.Updateable;
 
@@ -14,6 +15,6 @@ import engine.Updateable;
  * @author Jonathan Im
  *
  */
-public interface IModule extends Updateable, Affectable {
+public interface IModule extends Updateable, Affectable, Serializable {
 
 }

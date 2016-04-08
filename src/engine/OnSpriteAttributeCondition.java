@@ -41,8 +41,8 @@ public class OnSpriteAttributeCondition implements ICondition {
     @Override
     public void update (TimeDuration duration) {
         myGame.getLevelManager().getCurrentLevel().get().getSprites().stream()
-                .filter(sprite -> sprite.get().getType().equals(myGroupToCheck))
-                .forEach(sprite -> sprite.get().getAttributes().stream()
+                .filter(sprite -> sprite.getType().equals(myGroupToCheck))
+                .forEach(sprite -> sprite.getAttributes().stream()
                         .filter(atty -> atty.get().getType().equals(myAttributeType))
                         .forEach(atty -> checkAttribute(atty)));
     }
@@ -53,9 +53,9 @@ public class OnSpriteAttributeCondition implements ICondition {
             myApplyToOtherGroup.forEach(
                                         effect -> myGame.getLevelManager().getCurrentLevel().get()
                                                 .getSprites().stream()
-                                                .filter(sprite -> sprite.get().getType().equals(
+                                                .filter(sprite -> sprite.getType().equals(
                                                                                                 myOtherGroup))
-                                                .forEach(sprite -> sprite.get()
+                                                .forEach(sprite -> sprite
                                                         .applyEffect(effect)));
             myApplyToGlobalAttys
                     .forEach(effect -> myGame.getAttributeManager().applyEffect(effect));
