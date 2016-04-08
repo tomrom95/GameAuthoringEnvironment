@@ -50,4 +50,6 @@ public interface ILevelManager extends IAdder {
      */
     void remove(ObjectProperty<ISprite> sprite);
     
+    void createNewLevel (ObjectProperty<ILevel> newLevel);
+    
 }

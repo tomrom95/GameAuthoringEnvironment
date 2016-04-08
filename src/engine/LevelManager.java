@@ -23,7 +23,7 @@ public class LevelManager implements ILevelManager {
 
     public LevelManager (ObjectProperty<ILevel> startingLevel) {
         myLevelPropertyList = FXCollections.observableArrayList();
-        myCurrentLevel = startingLevel; 
+        myCurrentLevel = startingLevel;
     }
 
     @Override
@@ -62,18 +62,24 @@ public class LevelManager implements ILevelManager {
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
         myCurrentLevel.get().internalizeKeyEvents(list);
-        
+
     }
 
     @Override
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
         myCurrentLevel.get().internalizeMouseEvents(list);
-        
+
     }
 
     @Override
     public void remove (ObjectProperty<ISprite> sprite) {
         myCurrentLevel.get().remove(sprite);
-        
+
     }
+
+    @Override
+    public void createNewLevel (ObjectProperty<ILevel> newLevel) {
+        myCurrentLevel = newLevel;
+    }
+
 }
