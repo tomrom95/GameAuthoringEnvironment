@@ -53,7 +53,6 @@ public class TestGame extends Application {
         
        
         GamePlayer player = new GamePlayer(game);
-        player.pause();
         
         
     }
