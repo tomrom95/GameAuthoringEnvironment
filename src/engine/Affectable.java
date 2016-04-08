@@ -1,8 +1,8 @@
 package engine;
 
-import effects.IEffect;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.effects.IEffect;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
  * @author Jonathan Im
  *
  */
-public interface Affectable extends Updateable {
+public interface Affectable extends IOAffectable {
 
     /**
      * Apply a given effect to this object

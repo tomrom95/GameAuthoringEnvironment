@@ -1,11 +1,11 @@
 package usecases;
 
 import org.easymock.EasyMock;
-import effects.IEffect;
-import engine.ISprite;
 import engine.ISpriteCloner;
-import interactionevents.IInteractionEvent;
-import modules.IModule;
+import engine.effects.IEffect;
+import engine.interactionevents.IInteractionEvent;
+import engine.modules.IModule;
+import engine.sprite.ISprite;
 import util.Coordinate;
 import util.TimeDuration;
 import engine.IAdder;

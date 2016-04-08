@@ -2,8 +2,9 @@ package engine;
 
 import java.util.List;
 import java.util.function.Consumer;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -23,7 +24,7 @@ public class SpriteManager implements ISpriteManager {
 
     private ObservableList<ObjectProperty<ISprite>> mySpriteList;
 
-    SpriteManager () {
+    public SpriteManager () {
         mySpriteList = FXCollections.observableArrayList();
     }
 

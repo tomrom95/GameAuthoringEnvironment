@@ -1,9 +1,9 @@
 package engine;
 
 import java.util.function.Consumer;
-import effects.IEffect;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.effects.IEffect;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -23,7 +23,7 @@ public class AttributeManager implements IAttributeManager {
     private ObservableList<ObjectProperty<IAttribute>> myAttributes;
     private ObservableList<ObjectProperty<IResource>> myResources;
 
-    AttributeManager () {
+    public AttributeManager () {
         myAttributes = FXCollections.observableArrayList();
         myResources = FXCollections.observableArrayList();
     }

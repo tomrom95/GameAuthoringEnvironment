@@ -1,6 +1,6 @@
 package engine;
 
-import modules.IModule;
+import engine.modules.IModule;
 
 /**
  * This interface represents the components required to construct and handle a firing behavior in the game.
