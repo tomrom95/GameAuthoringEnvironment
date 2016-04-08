@@ -22,7 +22,6 @@ import java.util.List;
 import com.dooapp.xstreamfx.FXConverters;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-import data.GameWriter;
 import engine.Game;
 import engine.*;
 

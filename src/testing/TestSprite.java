@@ -1,13 +1,15 @@
-package engine;
+package testing;
 
 import static org.junit.Assert.*;
 import java.lang.reflect.Method;
 import org.junit.Before;
 import org.junit.Test;
+import engine.sprite.ISprite;
+import engine.sprite.Sprite;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import modules.IMovementModule;
-import modules.UserControlledMover;
+import engine.modules.IMovementModule;
+import engine.modules.UserControlledMover;
 import util.ControlKeys;
 import util.Coordinate;
 import util.Key;
