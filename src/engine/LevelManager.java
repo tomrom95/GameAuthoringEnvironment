@@ -1,8 +1,10 @@
 package engine;
 
 import java.util.List;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
+import graphics.ImageGraphic;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +12,11 @@ import util.Coordinate;
 import util.TimeDuration;
 
 
+/***
+ * This class serves as a container and manager for a collection of the Levels created in the game.
+ * This class makes the necessary calls to manage level progression.
+ *
+ */
 public class LevelManager implements ILevelManager {
 
     private ObservableList<ObjectProperty<ILevel>> myLevelPropertyList;
@@ -23,7 +30,7 @@ public class LevelManager implements ILevelManager {
 
     public LevelManager (ObjectProperty<ILevel> startingLevel) {
         myLevelPropertyList = FXCollections.observableArrayList();
-        myCurrentLevel = startingLevel; 
+        myCurrentLevel = startingLevel;
     }
 
     @Override
@@ -48,6 +55,9 @@ public class LevelManager implements ILevelManager {
         return myLevelPropertyList;
     }
 
+    /**
+     * Moves to the next level if the current level meets the level progression check
+     */
     private void checkAndSetCurrentLevel () {
         if (myCurrentLevel.get().shouldSwitchLevel()) {
             myCurrentLevel.set(myCurrentLevel.get().getNextLevel());
@@ -62,18 +72,23 @@ public class LevelManager implements ILevelManager {
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
         myCurrentLevel.get().internalizeKeyEvents(list);
-        
+
     }
 
     @Override
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
         myCurrentLevel.get().internalizeMouseEvents(list);
-        
+
     }
 
     @Override
     public void remove (ObjectProperty<ISprite> sprite) {
         myCurrentLevel.get().remove(sprite);
-        
+
+    }
+
+    @Override
+    public ImageGraphic getBackgroundImage () {
+        return myCurrentLevel.get().getBackgroundImageProperty().get();
     }
 }

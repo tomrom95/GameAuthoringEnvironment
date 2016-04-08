@@ -1,5 +1,6 @@
 package engine;
 
+import engine.sprite.SpriteType;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 

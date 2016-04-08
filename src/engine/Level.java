@@ -1,8 +1,10 @@
 package engine;
 
 import java.util.List;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
+import graphics.ImageGraphic;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -10,9 +12,17 @@ import util.Coordinate;
 import util.TimeDuration;
 
 
+/**
+ * This class represents the notion of a level in an IGame and holds the interfaces required to
+ * properly entail a level.
+ * This includes a condition, attribute, and sprite manager to hold the rules, objects and
+ * interactions for the level.
+ *
+ */
 public class Level implements ILevel {
 
     private ObjectProperty<IConditionManager> myConditionManager;
+    private ObjectProperty<ImageGraphic> myBackgroundImage;
     private ObjectProperty<ISpriteManager> mySpriteManager;
     private ObjectProperty<IAttributeManager> myAttributeManager;
     private ObjectProperty<INextLevelManager> myNextLevelManager;
@@ -72,20 +82,30 @@ public class Level implements ILevel {
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
         mySpriteManager.get().internalizeKeyEvents(list);
-        
+
     }
 
     @Override
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
-       mySpriteManager.get().internalizeMouseEvents(list);
-        
+        mySpriteManager.get().internalizeMouseEvents(list);
+
     }
 
+    /**
+     * Removes a sprite from the level whenever a sprite meets a particular death condition
+     */
     @Override
     public void remove (ObjectProperty<ISprite> sprite) {
         mySpriteManager.get().remove(sprite);
-        
+
     }
+
+    @Override
+    public ObjectProperty<ImageGraphic> getBackgroundImageProperty () {
+       return myBackgroundImage;
+    }
+    
+    
 
     @Override
     public ObjectProperty<IAttributeManager> getAttributeManager () {

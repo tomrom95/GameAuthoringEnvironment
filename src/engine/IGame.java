@@ -32,5 +32,4 @@ public interface IGame extends IGamePlayable {
      * @return the attribute manager for game-wide global attributes
      */
     IAttributeManager getAttributeManager ();
-
 }

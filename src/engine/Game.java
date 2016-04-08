@@ -1,15 +1,20 @@
 package engine;
 
 import java.util.List;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
+import graphics.ImageGraphic;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
 
 
 /**
+<<<<<<< HEAD
  * Responsible for managing the components of the game
+=======
+ * This class manages and structures the layout for the components of a game.
+>>>>>>> game_engine
  * 
  * @author RyanStPierre
  *
@@ -21,6 +26,7 @@ public class Game implements IGame {
     private AuthorshipData myAuthorshipData;
     private IGameInformation myGameInformation;
     private IAttributeManager myAttributeManager;
+
 
     public Game (LevelManager levelManager,
                  GameInformation info,
@@ -76,6 +82,16 @@ public class Game implements IGame {
     @Override
     public AuthorshipData getAuthorshipData () {
         return myAuthorshipData;
+    }
+
+    @Override
+    public ImageGraphic getBackroundImage () {
+        return myLevelManager.getBackgroundImage();
+    }
+
+    @Override
+    public ObservableList<ObjectProperty<IAttribute>> getGlobalAttributes () {
+        return getAttributeManager().getAttributes();
     }
 
 }

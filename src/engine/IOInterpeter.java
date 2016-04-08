@@ -2,10 +2,10 @@ package engine;
 
 import java.util.ArrayList;
 import java.util.List;
-import interactionevents.IScreenEventFactory;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
-import interactionevents.ScreenEventFactory;
+import engine.interactionevents.IScreenEventFactory;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
+import engine.interactionevents.ScreenEventFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 

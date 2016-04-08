@@ -1,13 +1,18 @@
 package engine;
 
 import java.util.List;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
+import graphics.ImageGraphic;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
 
 /**
+ * This interface creates the behavior for the game to handle and manage the levels that are created
+ * by the user.
+ * This interface provides the method calls for the stored levels in a game.
  *
  * @author Joe Timko
  * @author Dhrumil Patel
@@ -30,6 +35,7 @@ public interface ILevelManager extends IAdder {
 
     /**
      * returns the Drawables of the current level
+     * 
      * @return
      */
     ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
@@ -39,15 +45,19 @@ public interface ILevelManager extends IAdder {
      */
     void internalizeKeyEvents (List<KeyIOEvent> list);
 
-    
     /**
      * @param list of mouse events to internalize
      */
     void internalizeMouseEvents (List<MouseIOEvent> list);
-    
+
     /**
      * @param sprite to be removed from the current level
      */
-    void remove(ObjectProperty<ISprite> sprite);
-    
+    void remove (ObjectProperty<ISprite> sprite);
+
+    /**
+     * @return the background image of the current level
+     */
+    ImageGraphic getBackgroundImage ();
+
 }

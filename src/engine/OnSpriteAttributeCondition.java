@@ -2,9 +2,9 @@ package engine;
 
 import java.util.List;
 import java.util.function.DoublePredicate;
-import effects.IEffect;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.effects.IEffect;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import util.TimeDuration;
 

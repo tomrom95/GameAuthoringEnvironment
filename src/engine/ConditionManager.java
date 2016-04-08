@@ -6,6 +6,13 @@ import javafx.collections.ObservableList;
 import util.TimeDuration;
 
 
+/***
+ * This class manages the collection of conditions that the user specifies in the authoring
+ * environment.
+ * The conditions are checked during each time interval.
+ *
+ */
+
 public class ConditionManager implements IConditionManager {
 
     private ObservableList<ObjectProperty<ICondition>> myConditions;

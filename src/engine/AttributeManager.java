@@ -1,15 +1,22 @@
 package engine;
 
 import java.util.function.Consumer;
-import effects.IEffect;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.effects.IEffect;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
 
+
+/**
+ * AttributeManager holds a collection of of attributes and resources. The values within the
+ * collection
+ * are manipulated by effects.
+ *
+ */
 
 public class AttributeManager implements IAttributeManager {
 
@@ -53,14 +60,14 @@ public class AttributeManager implements IAttributeManager {
 
     @Override
     public void registerKeyEvent (KeyIOEvent event) {
-       myAttributes.forEach(attribute -> attribute.get().registerKeyEvent(event));
-        
+        myAttributes.forEach(attribute -> attribute.get().registerKeyEvent(event));
+
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent event) {
         myAttributes.forEach(attribute -> attribute.get().registerMouseEvent(event));
-        
+
     }
 
 }

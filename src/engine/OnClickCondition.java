@@ -1,11 +1,12 @@
 package engine;
 
 import java.util.List;
-import effects.IEffect;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.effects.IEffect;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
 import util.Coordinate;
 import util.TimeDuration;
+import engine.sprite.ISprite;
 
 
 public class OnClickCondition implements ICondition {

@@ -3,17 +3,19 @@ package testing;
 import engine.ConditionManager;
 import engine.Game;
 import engine.LevelManager;
+import engine.modules.GraphicModule;
+import engine.modules.IGraphicModule;
+import engine.modules.IMovementModule;
+import engine.modules.PathFollowMover;
+import engine.modules.UserControlledMover;
+import engine.sprite.ISprite;
+import engine.sprite.Sprite;
 import gameplayer.GamePlayer;
 import graphics.Block;
 import javafx.application.Application;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.stage.Stage;
-import modules.GraphicModule;
-import modules.IGraphicModule;
-import modules.IMovementModule;
-import modules.PathFollowMover;
-import modules.UserControlledMover;
 import util.ControlKeys;
 import util.Coordinate;
 import util.Key;
@@ -39,7 +41,7 @@ public class TestGame extends Application {
         
         levelManager.add(createUserSprite(), new Coordinate(10,10));
         ConditionManager conditionManager = new ConditionManager();
-        Game game = new Game(levelManager, conditionManager);
+        Game game = new Game(levelManager, null, conditionManager);
         
        
         GamePlayer player = new GamePlayer(game);

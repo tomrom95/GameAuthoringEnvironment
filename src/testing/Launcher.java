@@ -3,7 +3,13 @@ package testing;
 import java.util.ArrayList;
 import java.util.List;
 import engine.IOInterpeter;
-import engine.Sprite;
+import engine.modules.GraphicModule;
+import engine.modules.IGraphicModule;
+import engine.modules.IMovementModule;
+import engine.modules.PathFollowMover;
+import engine.modules.UserControlledMover;
+import engine.rendering.Renderer;
+import engine.sprite.Sprite;
 import gameplayer.GamePlayer;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -17,26 +23,20 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import modules.GraphicModule;
-import modules.IGraphicModule;
-import modules.IMovementModule;
-import modules.PathFollowMover;
-import modules.UserControlledMover;
 import util.ControlKeys;
 import util.Coordinate;
 import util.Key;
 import util.RGBColor;
-import gameplayer.Renderer;
 import graphics.Block;
 import util.TimeDuration;
 
 
 public class Launcher extends Application {
 
-    private IOInterpeter io;
-    private Sprite sprite;
+    private IOInterpeter myIO;
+    private Sprite mySprite;
     private Pane myPane;
-    private Renderer r;
+    private Renderer myRenderer;
     
     public static void main (String[] args) {
         launch(args);
@@ -52,10 +52,10 @@ public class Launcher extends Application {
     }
 
     private void step (Duration frameDuration) {
-        sprite.update(new TimeDuration(10));
-        io.deQueueKeyEvents().forEach(e-> sprite.registerKeyEvent(e));
-        r.render();
-        r.draw(sprite);
+        mySprite.update(new TimeDuration(10));
+        myIO.deQueueKeyEvents().forEach(e-> mySprite.registerKeyEvent(e));
+        myRenderer.render();
+        myRenderer.draw(mySprite);
       
     }
     
@@ -70,7 +70,7 @@ public class Launcher extends Application {
         myStage.setScene(myScene);
         myStage.show();
         myPane.setOnKeyPressed(e-> System.out.println("Pane"));
-        io = new IOInterpeter (myPane);
+        myIO = new IOInterpeter (myScene, myPane);
         myPane.requestFocus();
         ControlKeys keys = new ControlKeys(new Key("Up"), new Key("Left"), new Key("Right"), new Key("Down"));
         List<Coordinate> list = new ArrayList<>();
@@ -78,15 +78,15 @@ public class Launcher extends Application {
         list.add(new Coordinate(20, 20));
         list.add(new Coordinate(200, 2));
         list.add(new Coordinate(500, 30));
-        sprite = new Sprite();
-        ObjectProperty<IMovementModule> mover = new SimpleObjectProperty<>(new PathFollowMover(.10, list, sprite));
+        mySprite = new Sprite();
+        ObjectProperty<IMovementModule> mover = new SimpleObjectProperty<>(new PathFollowMover(.10, list, mySprite));
         ObjectProperty<IGraphicModule> g = new SimpleObjectProperty<>(new GraphicModule(new Block(20, 20, RGBColor.BLACK)));
-        sprite.getMovementStrategyProperty().set(mover.get());
-        sprite.getDrawer().set(g.get());
+        mySprite.getMovementStrategyProperty().set(mover.get());
+        mySprite.getDrawer().set(g.get());
         initializeTimeline();
-        r = new Renderer(null, myPane);
+        myRenderer = new Renderer(null, myPane);
         myStage.show();
-        r.draw(sprite);
+        myRenderer.draw(mySprite);
     }
     
 

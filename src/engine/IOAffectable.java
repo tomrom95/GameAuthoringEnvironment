@@ -1,7 +1,7 @@
 package engine;
 
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
 
 public interface IOAffectable extends Updateable {
 

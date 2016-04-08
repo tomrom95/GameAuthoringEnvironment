@@ -6,6 +6,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
 
+/**
+ * This class serves as an implementation of INextLevelManager and contains the logical checks to manage
+ * valid level progression. This class is updateable and checks for level completion on each update. 
+ *
+ */
 
 public class NextLevelManager implements INextLevelManager {
     private ObservableList<ObjectProperty<INextLevelCondition>> myNextLevelConditions;

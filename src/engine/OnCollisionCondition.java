@@ -2,12 +2,19 @@ package engine;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import effects.IEffect;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.effects.IEffect;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
 import javafx.beans.property.ObjectProperty;
 import util.TimeDuration;
 
+
+/**
+ * This class is updateable and is responsible to comparing all sprite groups against all of the
+ * other sprite groups to check whether collisions have occurred during the time cycle.
+ *
+ */
 
 public class OnCollisionCondition implements ICondition {
 
@@ -38,6 +45,10 @@ public class OnCollisionCondition implements ICondition {
         myApplyToGlobalAttys = applyToGlobalAttys;
     }
 
+    /**
+     * Compares all sprite groups against other all other sprite groups to check whether
+     * any of the collision conditions are met and updates the sprites' effects accordingly
+     */
     @Override
     public void update (TimeDuration duration) {
         List<ObjectProperty<ISprite>> sprites =

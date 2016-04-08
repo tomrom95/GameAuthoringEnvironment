@@ -2,6 +2,8 @@ package gameplayer;
 
 import engine.IGamePlayable;
 import engine.IOInterpeter;
+import engine.rendering.IRenderer;
+import engine.rendering.Renderer;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
