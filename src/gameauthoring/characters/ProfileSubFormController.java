@@ -35,7 +35,7 @@ public class ProfileSubFormController< T extends ISprite> implements ISubFormCon
         
         //TODO: edit profile property or create a new one?
         // edit
-        item.getProfileProperty().get().getSpriteTypeProperty().get().setName(name);
+        item.getProfileProperty().get().getNameProperty().set(name);
         item.getProfileProperty().get().getDescriptionProperty().set(description);
         item.getProfileProperty().get().getImageFilepathProperty().set(imagePath);
         
@@ -48,7 +48,7 @@ public class ProfileSubFormController< T extends ISprite> implements ISubFormCon
 
     @Override
     public void populateViewsWithData (T item) {
-        String name = item.getProfileProperty().get().getSpriteTypeProperty().get().getName();
+        String name = item.getProfileProperty().get().getNameProperty().get();
         String description = item.getProfileProperty().get().getDescriptionProperty().get();
         String imagePath = item.getProfileProperty().get().getImageFilepathProperty().get();
         IFormDataManager formDataWrapper = myView.getData();

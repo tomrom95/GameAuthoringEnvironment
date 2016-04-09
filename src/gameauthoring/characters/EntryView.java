@@ -18,13 +18,12 @@ public abstract class EntryView implements IEntryView {
 
     private FormData myFormData;
 
-    public EntryView (FormData formData) {
+    /*public EntryView (FormData formData) {
         myFormData = formData;
-    }
+    }*/
 
     @Override
     public FormData getData () {
-        // TODO Auto-generated method stub
         return myFormData;
     }
 

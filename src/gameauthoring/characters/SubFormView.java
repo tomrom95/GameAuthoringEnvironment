@@ -35,9 +35,10 @@ public abstract class SubFormView implements ISubFormView{
      */
     @Override
     public IFormDataManager getData () {
-        for (IEntryView e : getMyEntryViews()) {
+        /*for (IEntryView e : getMyEntryViews()) {
             myData.add(e.getData());
         }
+        */
         return myData;
     }
    

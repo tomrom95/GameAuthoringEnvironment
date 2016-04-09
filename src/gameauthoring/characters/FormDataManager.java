@@ -1,6 +1,7 @@
 package gameauthoring.characters;
 
 import java.util.*;
+import javafx.beans.property.StringProperty;
 
 
 /**
@@ -16,11 +17,16 @@ import java.util.*;
  */
 public class FormDataManager implements IFormDataManager {
 
-    private Map<String, List<String>> myStorage = new HashMap<String, List<String>>();
+    private Map<String, List<StringProperty>> myStorage = new HashMap<String, List<StringProperty>>();
 
     @Override
     public void add (FormData data) {
-        myStorage.put(data.getMyKey(), data.getMyValue());
+        List<StringProperty> curValue = myStorage.get(data.getMyKey());
+        for (int i = 0; i < curValue.size(); i++) {
+            
+            data.getMyValue());
+        }
+        
     }
     
     @Override

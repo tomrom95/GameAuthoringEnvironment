@@ -1,9 +1,8 @@
 package engine;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+
 
 /**
  * Simple implementation of an IProfile
@@ -12,29 +11,19 @@ import javafx.beans.property.StringProperty;
  *
  */
 public class Profile implements IProfile {
-    private ObjectProperty<SpriteType> mySpriteTypeProperty;
+    private StringProperty myNameProperty;
     private StringProperty myDescriptionProperty;
     private StringProperty myImageFilepathProperty;
-    
-    
-    public Profile(SpriteType type, String description, String imagePath) {
-        init (type, description, imagePath);
-    }
-    public Profile(String name, String description, String imagePath){
-        SpriteType spriteType = new SpriteType(name);
-        init (spriteType, description, imagePath);
-    }
-    
-    private void init(SpriteType type, String description, String imagePath){
-        mySpriteTypeProperty = new SimpleObjectProperty<SpriteType>(type);
+
+    public Profile (String name, String description, String imagePath) {
+        myNameProperty = new SimpleStringProperty(name);
         myDescriptionProperty = new SimpleStringProperty(description);
         myImageFilepathProperty = new SimpleStringProperty(imagePath);
-
     }
 
     @Override
-    public ObjectProperty<SpriteType> getSpriteTypeProperty () {
-        return mySpriteTypeProperty;
+    public StringProperty getNameProperty () {
+        return myNameProperty;
     }
 
     @Override

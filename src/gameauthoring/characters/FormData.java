@@ -1,6 +1,8 @@
 package gameauthoring.characters;
 
 import java.util.*;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 
 /**
@@ -13,31 +15,43 @@ import java.util.*;
 
 public class FormData {
     private String myKey;
-    private List<String> myValue;
+    private List<StringProperty> myValues;
 
-    public FormData (String key, List<String> value) {
-        this.myKey = key;
-        this.myValue = value;
+    public FormData (String key, List<String> values) {
+        List<StringProperty> valuesP = new ArrayList<StringProperty>();
+        for (String value : values) {
+            valuesP.add(new SimpleStringProperty(value));
+        }
+
+        init(key, valuesP);
+
     }
+
     public FormData (String key, String value) {
-        this.myKey = key;
-        this.myValue = new ArrayList<String>(Arrays.asList(value));
+        List<StringProperty> valuesP = new ArrayList<StringProperty>();
+        valuesP.add(new SimpleStringProperty(value));
+        init(key, valuesP);
+    }
+
+//    public FormData (String key, List<StringProperty> values) {
+//        init(key, values);
+//    }
+
+    private void init (String key, List<StringProperty> values) {
+        myKey = key;
+        myValues = values;
     }
 
     public String getMyKey () {
         return myKey;
     }
 
-    public void setMyKey (String myKey) {
-        this.myKey = myKey;
+    public List<StringProperty> getMyValueProperties () {
+        return myValues;
     }
 
-    public List<String> getMyValue () {
-        return myValue;
-    }
-
-    public void setMyValue (List<String> myValue) {
-        this.myValue = myValue;
+    public StringProperty getValueProperty () {
+        return myValues.get(0);
     }
 
 }

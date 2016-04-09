@@ -7,7 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
 
-public class ProfileSubFormView extends TempProfileSubFormView{
+public class ProfileSubFormView extends SubFormView{
 
     private GridPane myPane = new GridPane();
     private IEntryView myName = new TextEntryView("Name: ", 20, 10, 40, false); // maybe change these
@@ -16,18 +16,22 @@ public class ProfileSubFormView extends TempProfileSubFormView{
                                                                                // getters/setters
     private IEntryView myImage = new ImageEntryView("Image: ", 20, 20, 20);
     private IEntryView myDescription = new TextEntryView("Description: ", 20, 40, 60, false);
-    private List<IEntryView> myEntryViews;
+    private List<String> keys = new ArrayList<String>(Arrays.asList("name","description","image"));
+    private String myNameKey = "name";
+    private String myDescriptionKey = "desctiption";
+    private String myImageKey = "image";
+    
+    private List<IEntryView> myEntryViews = new ArrayList<IEntryView>(Arrays.asList(myName,myImage,myDescription));
     
 
     public ProfileSubFormView () {
-        myEntryViews.add(getMyNameInd(), myName);
-        myEntryViews.add(getMyImageInd(), myImage);
-        myEntryViews.add(getMyDescriptionInd(), myDescription);
         init();
+        
+        //getData()
     }
 
-    @Override
-    protected void init () {
+
+    private void init () {
         super.setMyEntryViews(myEntryViews);
         myPane.add(myName.draw(), 0, 0);
         myPane.add(myImage.draw(), 0, 1);

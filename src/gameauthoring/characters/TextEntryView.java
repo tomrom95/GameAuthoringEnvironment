@@ -15,16 +15,18 @@ import javafx.stage.FileChooser;
  * @author JoeLilien
  *
  */
-public class TextEntryView implements IEntryView {
+public class TextEntryView extends EntryView {
     private String myLabel;
     private HBox myContainer; // TODO Magic Number and Factory
     private TextField myTextInput = new TextField();
     private boolean isNumberData;
+    
 
     public TextEntryView (String label, double spacing, double width, double height, boolean isNumberData) {
         this.myLabel = label;
         this.isNumberData = isNumberData;
         this.myTextInput.setPrefSize(width, height);
+        this.myTextInput.textProperty().bindBidirectional(getData().getValueProperty());
         this.myContainer = new HBox(spacing);
         myContainer.getChildren().add(new Label(myLabel));
         myContainer.getChildren().add(myTextInput);

@@ -1,11 +1,10 @@
 package engine;
 
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 
 
 /**
- * This interface represents the basic info (profile) of a Sprite
+ * This interface represents the basic info (profile) of an object
  * 
  * @author Jeremy Schreck
  *
@@ -13,23 +12,22 @@ import javafx.beans.property.StringProperty;
 public interface IProfile {
 
     /**
-     * Gets the sprite's type property (its name)
+     * Gets the object's name
+     * *
      * 
-     * TODO: probably should change this to a name or type property to generalize it
-     * 
-     * @return A SimpleStringProperty containing the name of the sprite
+     * @return A SimpleStringProperty containing the name of the object
      */
-    ObjectProperty<SpriteType> getSpriteTypeProperty ();
-    
+    StringProperty getNameProperty ();
+
     /**
-     * Get's the sprite's description property
+     * Get's the object's description property
      * 
-     * @return The description of the sprite as a StringProperty
+     * @return The description of the object as a StringProperty
      */
     StringProperty getDescriptionProperty ();
 
     /**
-     * Gets the filepath property containing the sprite's image
+     * Gets the filepath property containing the object's image
      * 
      * @return The image filepath as a StringProperty
      */
