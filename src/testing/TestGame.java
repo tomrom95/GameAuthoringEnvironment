@@ -3,8 +3,8 @@ package testing;
 import engine.modules.GraphicModule;
 import engine.modules.IGraphicModule;
 import engine.modules.IMovementModule;
-import engine.modules.PathFollowMover;
-import engine.modules.UserControlledMover;
+import engine.modules.PathMover;
+import engine.modules.UserMover;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
 import gameplayer.GamePlayer;
@@ -22,7 +22,6 @@ import java.util.List;
 import com.dooapp.xstreamfx.FXConverters;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-import data.GameWriter;
 import engine.Game;
 import engine.*;
 
@@ -64,7 +63,7 @@ public class TestGame extends Application {
        
         ISprite sprite = new Sprite();
         List<Coordinate> list = getListOfCoordinates();
-        ObjectProperty<IMovementModule> mover = new SimpleObjectProperty<>(new PathFollowMover(.10, list, sprite));
+        ObjectProperty<IMovementModule> mover = new SimpleObjectProperty<>(new PathMover(.10, list, sprite));
         ObjectProperty<IGraphicModule> g = new SimpleObjectProperty<>(new GraphicModule(new Block(20, 20, RGBColor.BLACK)));
         sprite.getMovementStrategyProperty().set(mover.get());
         sprite.getDrawer().set(g.get());
@@ -74,7 +73,7 @@ public class TestGame extends Application {
     private ISprite createUserSprite () {
         ISprite sprite = new Sprite();
         ControlKeys keys = new ControlKeys(new Key("Up"), new Key("Left"), new Key("Right"), new Key("Down"));
-        ObjectProperty<IMovementModule> mover = new SimpleObjectProperty<>(new UserControlledMover(1, keys, sprite));
+        ObjectProperty<IMovementModule> mover = new SimpleObjectProperty<>(new UserMover(1, keys, sprite));
         ObjectProperty<IGraphicModule> g = new SimpleObjectProperty<>(new GraphicModule(new Block(20, 20, RGBColor.BLACK)));
         sprite.getMovementStrategyProperty().set(mover.get());
         sprite.getDrawer().set(g.get());
