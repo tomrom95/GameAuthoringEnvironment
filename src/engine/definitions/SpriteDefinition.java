@@ -2,7 +2,9 @@ package engine.definitions;
 
 import java.util.List;
 import engine.modules.IModule;
+import engine.sprite.IProfile;
 import engine.sprite.ISprite;
+import engine.sprite.Profile;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
 import javafx.beans.property.ObjectProperty;
@@ -10,7 +12,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class SpriteDefinition implements IDefinition {
+public class SpriteDefinition extends ProfileDefinition {
 
     private String myType;
     private MovementDefinition myMovementDefinition;
@@ -20,6 +22,7 @@ public class SpriteDefinition implements IDefinition {
     
     public ISprite create () { 
        ISprite sprite = new Sprite();
+       makeProfile(sprite);
        sprite.getType().set(new SpriteType(myType));
        sprite.getMovementStrategyProperty().set(myMovementDefinition.create(sprite));
        initModules(sprite);
@@ -28,6 +31,12 @@ public class SpriteDefinition implements IDefinition {
        return sprite;
     }
     
+    private void makeProfile (ISprite sprite) {
+        IProfile profile = new Profile(getName(), getDescription(), getURL());
+       sprite.getProfile().set(profile);
+        
+    }
+
     private void initAttributes (ISprite sprite) {
         myAttributes.forEach(a -> sprite.getAttributes().add(new SimpleObjectProperty<>(a.create())));
         
