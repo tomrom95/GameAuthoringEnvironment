@@ -16,7 +16,6 @@ public class ProfileSubFormView extends SubFormView{
                                                                                // getters/setters
     private IEntryView myImage = new ImageEntryView("Image: ", 20, 20, 20);
     private IEntryView myDescription = new TextEntryView("Description: ", 20, 40, 60, false);
-    private List<String> keys = new ArrayList<String>(Arrays.asList("name","description","image"));
     private String myNameKey = "name";
     private String myDescriptionKey = "desctiption";
     private String myImageKey = "image";
@@ -25,17 +24,20 @@ public class ProfileSubFormView extends SubFormView{
     
 
     public ProfileSubFormView () {
-        init();
-        
+        initView();
+        initData();
         //getData()
     }
 
 
-    private void init () {
+    private void initView () {
         super.setMyEntryViews(myEntryViews);
         myPane.add(myName.draw(), 0, 0);
         myPane.add(myImage.draw(), 0, 1);
         myPane.add(myDescription.draw(), 1, 0, 1, 1);
+    }
+    private void initData(){
+        this.getData().add();
     }
 
     @Override

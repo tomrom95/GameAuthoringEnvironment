@@ -5,8 +5,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import org.junit.Before;
 import org.junit.Test;
-import engine.ISprite;
-import engine.Sprite;
+import engine.sprite.ISprite;
+import engine.sprite.Sprite;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

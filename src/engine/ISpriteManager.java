@@ -1,11 +1,18 @@
 package engine;
 
-import javafx.beans.property.SimpleObjectProperty;
+import java.util.List;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
 
 /**
  * This interface manages a list of sprites, and handles access to them.
+ * Effects have been moved to a conditions manager, which will have
+ * top down views of the individual sprites themselves,
+ * thus this interface is not repsonsible for passing events to the sprites
  *
  * @author Joe Timko
  * @author Dhrumil Patel
@@ -14,10 +21,28 @@ import javafx.collections.ObservableList;
  * @author Jonathan Im
  *
  */
-public interface ISpriteManager extends Updateable, Affectable {
+public interface ISpriteManager extends Updateable, IAdder {
 
     /**
      * @return the observable list of sprites
      */
-    ObservableList<SimpleObjectProperty<ISprite>> getSprites ();
+    ObservableList<ObjectProperty<ISprite>> getSprites ();
+
+    ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
+
+    /**
+     * @param list of key events to be processed
+     */
+    void internalizeKeyEvents (List<KeyIOEvent> list);
+
+    /**
+     * @param list of mouse events to be processed
+     */
+    void internalizeMouseEvents (List<MouseIOEvent> list);
+
+    /**
+     * @param sprite to be removed
+     */
+    void remove (ObjectProperty<ISprite> sprite);
+
 }

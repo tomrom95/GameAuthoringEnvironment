@@ -1,14 +1,27 @@
 package util;
 
-import javafx.scene.input.KeyCode;
-
+/**
+ * Used to represent Key without JavaFX dependency
+ * @author RyanStPierre
+ *
+ */
 public class Key {
 
-    private KeyCode myKeyCode;
-
-
-    public boolean isEqual(String keyIdentifier)  {
+    private String myKeyCode;
+    
+    public Key (String identifier) {
+        myKeyCode = identifier;
+    }
+    
+    public boolean isEqual(Key key)  {
         // TODO implement
-        return false;
+        return myKeyCode == key.getKeyCode();
+       
+    }
+   
+    //TODO delete 
+    
+    private String getKeyCode () {
+        return myKeyCode;
     }
 }

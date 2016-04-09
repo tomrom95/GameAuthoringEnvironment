@@ -3,7 +3,6 @@ package gameauthoring.characters;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import engine.ISprite;
 import javafx.collections.ObservableList;
 
 /**

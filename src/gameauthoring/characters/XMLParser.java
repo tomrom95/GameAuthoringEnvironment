@@ -3,8 +3,8 @@ package gameauthoring.characters;
 import java.util.ArrayList;
 import java.util.List;
 import com.sun.org.apache.bcel.internal.classfile.Attribute;
-import engine.ISprite;
-import engine.Sprite;
+import engine.sprite.ISprite;
+import engine.sprite.Sprite;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -73,7 +73,7 @@ public class XMLParser {
         List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
         List<ISubFormController<ISprite>> subFormControllers = new ArrayList<ISubFormController<ISprite>>();
         
-        TempProfileSubFormView profileSubFormView = new ProfileSubFormView(); //TODO: how to make this general but enforce dependenc?
+        ProfileSubFormView profileSubFormView = new ProfileSubFormView(); //TODO: how to make this general but enforce dependenc?
         subFormViews.add(profileSubFormView);
 
         ISubFormController<ISprite> profileSubFormController = new ProfileSubFormController<ISprite>(profileSubFormView);

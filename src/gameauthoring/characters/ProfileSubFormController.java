@@ -2,8 +2,9 @@ package gameauthoring.characters;
 
 import java.util.List;
 import engine.IProfile;
-import engine.ISprite;
+import engine.sprite.ISprite;
 import engine.Profile;
+
 
 
 public class ProfileSubFormController< T extends ISprite> implements ISubFormController<T> {
@@ -20,9 +21,9 @@ public class ProfileSubFormController< T extends ISprite> implements ISubFormCon
      * implementation of that in constructor,  but still issues to work out  (current Implementation)
      * 
      */
-    private TempProfileSubFormView myView;
+    private ProfileSubFormView myView;
 
-    public ProfileSubFormController (TempProfileSubFormView view) {
+    public ProfileSubFormController (ProfileSubFormView view) {
         this.myView = view;
     }
 

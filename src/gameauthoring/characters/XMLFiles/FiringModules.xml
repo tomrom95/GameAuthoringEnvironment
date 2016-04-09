@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassName FilePath = "engine.modules">
+	<Option DisplayName="PathFollow">
+		.PathFollowMover
+	</Option>	
+</ClassName>

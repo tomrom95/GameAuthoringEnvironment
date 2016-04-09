@@ -1,7 +1,9 @@
 package gameauthoring;
 
-import engine.ISprite;
+
 import gameauthoring.characters.IListCellView;
+import java.util.function.Consumer;
+import engine.sprite.ISprite;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -9,7 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class SpriteCellView implements IListCellView{
+public class SpriteCellView<E> implements IListCellView<E>{
     
     private ISprite mySprite;
 
@@ -43,6 +45,12 @@ public class SpriteCellView implements IListCellView{
     @Override
     public void update () {
         //
+    }
+
+    @Override
+    public void setEditAction (Consumer<E> action) {
+        // TODO Auto-generated method stub
+        
     }
 
 }
