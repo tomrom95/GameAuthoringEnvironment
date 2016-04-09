@@ -4,10 +4,11 @@ import java.util.List;
 import engine.IProfile;
 import engine.sprite.ISprite;
 import engine.Profile;
+import engine.definitions.ProfileDefinition;
 
 
 
-public class ProfileSubFormController< T extends ISprite> implements ISubFormController<T> {
+public class ProfileSubFormController implements ISubFormControllerProfile {
 
     /**
      * **Implementation still up for discussion
@@ -27,8 +28,10 @@ public class ProfileSubFormController< T extends ISprite> implements ISubFormCon
         this.myView = view;
     }
 
+ 
+
     @Override
-    public void updateGameModel (T item) {
+    public void updateGameModel (ProfileDefinition item) {
         IFormDataManager formDataWrapper = myView.getData();
         String name = formDataWrapper.getValue("name");
         String description = formDataWrapper.getValue("description");
@@ -44,11 +47,11 @@ public class ProfileSubFormController< T extends ISprite> implements ISubFormCon
         //IProfile profile = new Profile(name, description, imagePath);
         ///item.getProfileProperty().set(profile);
         
-      
+        
     }
 
     @Override
-    public void populateViewsWithData (T item) {
+    public void populateViewsWithData (ProfileDefinition item) {
         String name = item.getProfileProperty().get().getNameProperty().get();
         String description = item.getProfileProperty().get().getDescriptionProperty().get();
         String imagePath = item.getProfileProperty().get().getImageFilepathProperty().get();
@@ -66,5 +69,6 @@ public class ProfileSubFormController< T extends ISprite> implements ISubFormCon
         //  views.get(myView.getMyNameInd()).populateWithData(new FormData("Name: ", Sprite.getName()));
         
     }
+    
 
 }

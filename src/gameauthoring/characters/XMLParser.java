@@ -37,12 +37,12 @@ public class XMLParser {
      * ex: do this for each of Enemies, Defenders, Terrain, Obstacle tabs as well
      * as Projectiles, Interactions, Attributes tabs.
      */
-    private void setupCreationFormAndListViewStructure () {
+    private void setupCreationFormAndListViewStructure () throws ReflectiveOperationException {
         
         /*
          * for each <creationTab>
          *      itemType = <itemType>
-         *      create
+         *      create list of objects
          *      create new list of subformviews
          *      create new list of subformcontrollers
          *      for each <subform> in <subforms>
@@ -64,6 +64,20 @@ public class XMLParser {
          *              - set its list of subcontrollers
          *              
          */
+        
+        for (int i = 0; i<6; i++){// for each creation tab in xml
+            String name = "Enemies";
+            String itemClassName = "engine.sprite.ISprite";
+            Class<?> itemClass = Class.forName(itemClassName);
+            List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
+            Class<?> test =  itemClass.getComponentType();
+            List<ISubFormController<Sprite>> subFormControllers = new ArrayList<ISubFormController<ISprite>>();
+
+            
+            
+            
+        }
+        
         
         // Example for Enemies tab
         // itemType = ISprite

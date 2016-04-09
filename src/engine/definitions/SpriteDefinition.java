@@ -16,7 +16,7 @@ public class SpriteDefinition extends ProfileDefinition {
 
     private String myType;
     private MovementDefinition myMovementDefinition;
-    private List<ModuleDefiniton> myModuleDefinitions;
+    private List<ModuleDefinition> myModuleDefinitions;
     private LocationDefinition myLocation;
     private List<AttributeDefinition> myAttributes;
     
@@ -48,7 +48,7 @@ public class SpriteDefinition extends ProfileDefinition {
         sprite.getModulesProperty().addAll(modules);
     }
     
-    public void addModule (ModuleDefiniton definition) {
+    public void addModule (ModuleDefinition definition) {
         myModuleDefinitions.add(definition);
     }
     
@@ -65,7 +65,7 @@ public class SpriteDefinition extends ProfileDefinition {
         myLocation = location;
     }
     
-    public void remove (ModuleDefiniton definition) {
+    public void remove (ModuleDefinition definition) {
         myModuleDefinitions.remove(definition);
     }
 

@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
  */
 public class CreationController<ItemType> implements ICreationController<ItemType> {
     private ObservableList<ItemType> myItems;
-    private IObjectCreationView myView;
+    private IObjectCreationView<ItemType> myView;
     private List<ISubFormController<ItemType>> mySubFormControllers;
     private ItemType myCurrentItem;
     private Factory<? extends ItemType> myFactory;
@@ -40,8 +40,8 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
         formView.setSaveAction(e -> saveItem());
         formView.setDeleteAction(e -> deleteItem());
         
-        IObjectCreationView creationView = getMyObjectCreationView();
-        //creationView.setEditAction(e -> showAndEdit(e));
+        IObjectCreationView<ItemType> creationView = getMyObjectCreationView();
+        creationView.setEditAction(e -> showAndEdit(e));
         creationView.setNewAction(e -> createBlankItem());
         
     }
@@ -105,7 +105,7 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
         return myItems;
     }
 
-    private IObjectCreationView getMyObjectCreationView () {
+    private IObjectCreationView<ItemType> getMyObjectCreationView () {
         return myView;
     }
 

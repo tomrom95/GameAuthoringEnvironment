@@ -24,18 +24,21 @@ public class FormDataManager implements IFormDataManager {
     @Override
     public void add (FormData data) {
         myStorage.put(data.getMyKey(), data.getMyValueProperties());        
+
     }
     
     @Override
     public void add (String key, String value) {
         FormData data = new FormData(key,value);
         myStorage.put(data.getMyKey(),data.getMyValueProperties());
+
         
     }
     
     @Override
     public void add (String key, List<String> values) {
-        // TODO Auto-generated method stub
+        // TODO implementation
+        //myStorage.put(key, values);
         
     }
 
