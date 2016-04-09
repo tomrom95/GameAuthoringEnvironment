@@ -22,6 +22,20 @@ public class FormDataManager implements IFormDataManager {
     public void add (FormData data) {
         myStorage.put(data.getMyKey(), data.getMyValue());
     }
+    
+    @Override
+    public void add (String key, String value) {
+        List<String> values = new ArrayList<String>();
+        values.add(value);
+        myStorage.put(key, values);
+        
+    }
+
+    @Override
+    public void add (String key, List<String> values) {
+        myStorage.put(key, values);
+        
+    }
 
     @Override
     public List<String> getValues (String key) {
@@ -58,5 +72,7 @@ public class FormDataManager implements IFormDataManager {
             err.showError();
         }
     }
+
+  
 
 }

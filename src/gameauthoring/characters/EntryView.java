@@ -1,19 +1,37 @@
 package gameauthoring.characters;
 
-import gameauthoring.Glyph;
-
-
 /**
- * Interface for class to essentially serve as wrapper for two javaFX objects: label and some data
- * entry object. These should be bundled and organized by specific subFormView classes
+ * Abstract class for an simple implementation of IEntryView
  * 
- * @author JoeLilien
+ * Note: one option is to have all of our entry views subclass this, and
+ * in populateWithData they will call super and then access their myFormData
+ * 
+ * Other option is to never store formData and just regenerate a FormData object
+ * in getData() every time, and use the passed in form data in populateWithData
+ * 
+ * design decision: state vs functional programming
+ * 
+ * @author Jeremy Schreck
  *
  */
-public interface EntryView extends Glyph {
+public abstract class EntryView implements IEntryView {
 
-    FormData getData ();
+    private FormData myFormData;
 
-    void populateWithData (FormData data);
+    public EntryView (FormData formData) {
+        myFormData = formData;
+    }
+
+    @Override
+    public FormData getData () {
+        // TODO Auto-generated method stub
+        return myFormData;
+    }
+
+    @Override
+    public void populateWithData (FormData data) {
+        this.myFormData = data;
+
+    }
 
 }

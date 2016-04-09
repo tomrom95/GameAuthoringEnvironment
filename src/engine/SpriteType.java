@@ -9,6 +9,7 @@ package engine;
  * @author David Maydew
  * @author Ryan St.Pierre
  * @author Jonathan Im
+ * @author Jeremy Schreck
  *
  */
 public class SpriteType {
@@ -21,5 +22,9 @@ public class SpriteType {
 
     public String getName () {
         return myName;
+    }
+    
+    public void setName (String name) {
+        this.myName = name;
     }
 }

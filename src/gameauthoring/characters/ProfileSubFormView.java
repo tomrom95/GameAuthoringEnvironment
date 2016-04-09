@@ -10,13 +10,13 @@ import javafx.scene.layout.GridPane;
 public class ProfileSubFormView extends TempProfileSubFormView{
 
     private GridPane myPane = new GridPane();
-    private EntryView myName = new TextEntryView("Name: ", 20, 10, 40, false); // maybe change these
+    private IEntryView myName = new TextEntryView("Name: ", 20, 10, 40, false); // maybe change these
                                                                                // constructor
                                                                                // Arguments to
                                                                                // getters/setters
-    private EntryView myImage = new ImageEntryView("Image: ", 20, 20, 20);
-    private EntryView myDescription = new TextEntryView("Description: ", 20, 40, 60, false);
-    private List<EntryView> myEntryViews;
+    private IEntryView myImage = new ImageEntryView("Image: ", 20, 20, 20);
+    private IEntryView myDescription = new TextEntryView("Description: ", 20, 40, 60, false);
+    private List<IEntryView> myEntryViews;
     
 
     public ProfileSubFormView () {

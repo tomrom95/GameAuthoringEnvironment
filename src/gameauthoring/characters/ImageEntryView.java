@@ -14,7 +14,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 
-public class ImageEntryView implements EntryView {
+public class ImageEntryView implements IEntryView {
     private String myLabel;
     private HBox myContainer;
     private String myImageChoice;

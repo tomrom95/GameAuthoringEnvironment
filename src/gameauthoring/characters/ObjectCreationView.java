@@ -2,7 +2,6 @@ package gameauthoring.characters;
 
 import java.util.List;
 import java.util.function.Consumer;
-import gameauthoring.IObjectListView;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -16,10 +15,10 @@ import javafx.scene.layout.GridPane;
  * @author JoeLilien, Jeremy Schreck
  *
  */
-public class ObjectCreationView implements IObjectCreationView {
+public class ObjectCreationView<E> implements IObjectCreationView<E> {
 
     private GridPane myCreationPane = new GridPane();
-    private IObjectListView myObjectListView;
+    private IObjectListView<E> myObjectListView;
     private IFormView myFormView;
     private List<ISubFormView> mySubFormViews;
     private String myTitle;
@@ -98,10 +97,11 @@ public class ObjectCreationView implements IObjectCreationView {
     }
 
     @Override
-    public void setEditAction (Consumer<?> action) {
+    public void setEditAction (Consumer<E> action) {
         // TODO Auto-generated method stub
         //set listcell's edit button's setOnAction to call action
         //how to retrieve which item is associated with that list cell?
+        getObjectListView().setEditAction(action);
         
     }
 

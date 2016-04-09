@@ -1,6 +1,7 @@
 package gameauthoring;
 
 import engine.ISprite;
+import gameauthoring.characters.IListCellView;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class SpriteCellView implements ListCellView{
+public class SpriteCellView implements IListCellView{
     
     private ISprite mySprite;
 

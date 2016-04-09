@@ -42,10 +42,10 @@ public class AddSpriteUseCase {
 
     public class ProfileSubFormController implements ISubFormController {
 
-        private EntryView myProfileFormView;
+        private IEntryView myProfileFormView;
 
         public ProfileSubFormController () {
-            myProfileFormView = EasyMock.createMock(EntryView.class);
+            myProfileFormView = EasyMock.createMock(IEntryView.class);
         }
 
         @Override
@@ -55,7 +55,7 @@ public class AddSpriteUseCase {
             FormData nameData = profileFormData.get(1);
 
             sprite.getProfileProperty().get().getImageFilepathProperty().set(imageData.getData());
-            sprite.getProfileProperty().get().getSpriteType()
+            sprite.getProfileProperty().get().getSpriteTypeProperty()
                     .set(new SpriteType(nameData.getData()));
 
         }
@@ -90,7 +90,7 @@ public class AddSpriteUseCase {
         }
 
         @Override
-        public void editSprite (List<EntryView> subForms) {
+        public void editSprite (List<IEntryView> subForms) {
             // TODO Auto-generated method stub
 
         }

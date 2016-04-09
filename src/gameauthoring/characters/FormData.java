@@ -7,7 +7,7 @@ import java.util.*;
  * Class for very generic data storage based on user input, strings will be used to generate or
  * represent objects from the GameEngine using reflection
  * 
- * @author JoeLilien
+ * @author JoeLilien, Jeremy Schreck
  *
  */
 
@@ -18,6 +18,10 @@ public class FormData {
     public FormData (String key, List<String> value) {
         this.myKey = key;
         this.myValue = value;
+    }
+    public FormData (String key, String value) {
+        this.myKey = key;
+        this.myValue = new ArrayList<String>(Arrays.asList(value));
     }
 
     public String getMyKey () {

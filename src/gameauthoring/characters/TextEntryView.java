@@ -15,7 +15,7 @@ import javafx.stage.FileChooser;
  * @author JoeLilien
  *
  */
-public class TextEntryView implements EntryView {
+public class TextEntryView implements IEntryView {
     private String myLabel;
     private HBox myContainer; // TODO Magic Number and Factory
     private TextField myTextInput = new TextField();

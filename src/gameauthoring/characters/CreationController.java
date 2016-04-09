@@ -83,7 +83,9 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
     
     private void showAndEdit(ItemType item) {
         setMyCurrentItem(item);
-        
+        for (ISubFormController<ItemType> subFormController : getMySubFormControllers()) {
+            subFormController.populateViewsWithData(item);
+        }
         
     }
     

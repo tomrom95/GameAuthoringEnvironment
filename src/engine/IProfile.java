@@ -13,11 +13,20 @@ import javafx.beans.property.StringProperty;
 public interface IProfile {
 
     /**
-     * Gets the sprite's type property
+     * Gets the sprite's type property (its name)
+     * 
+     * TODO: probably should change this to a name or type property to generalize it
      * 
      * @return A SimpleStringProperty containing the name of the sprite
      */
-    ObjectProperty<SpriteType> getSpriteType ();
+    ObjectProperty<SpriteType> getSpriteTypeProperty ();
+    
+    /**
+     * Get's the sprite's description property
+     * 
+     * @return The description of the sprite as a StringProperty
+     */
+    StringProperty getDescriptionProperty ();
 
     /**
      * Gets the filepath property containing the sprite's image

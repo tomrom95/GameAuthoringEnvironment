@@ -5,8 +5,8 @@ import java.util.List;
 import com.sun.org.apache.bcel.internal.classfile.Attribute;
 import engine.ISprite;
 import engine.Sprite;
-import gameauthoring.IObjectListView;
-import gameauthoring.ObjectListView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * This class will be in charge of reading an xml file that specifies which
@@ -42,6 +42,7 @@ public class XMLParser {
         /*
          * for each <creationTab>
          *      itemType = <itemType>
+         *      create
          *      create new list of subformviews
          *      create new list of subformcontrollers
          *      for each <subform> in <subforms>
@@ -72,7 +73,7 @@ public class XMLParser {
         List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
         List<ISubFormController<ISprite>> subFormControllers = new ArrayList<ISubFormController<ISprite>>();
         
-        ProfileSubFormView profileSubFormView = new ProfileSubFormView(); //TODO: how to make this general but enforce dependenc?
+        TempProfileSubFormView profileSubFormView = new ProfileSubFormView(); //TODO: how to make this general but enforce dependenc?
         subFormViews.add(profileSubFormView);
 
         ISubFormController<ISprite> profileSubFormController = new ProfileSubFormController<ISprite>(profileSubFormView);
@@ -82,8 +83,9 @@ public class XMLParser {
         // TODO: options here for whether setup occurs here (to be able to do reflectively and customize) vs setup
         // in IObjectCreationView (so we don't have to specify as much in the xml)
         IFormView enemiesFormView = new FormView(subFormViews);
-        IObjectListView enemiesListView = new ObjectListView();
-        IObjectCreationView enemiesCreationView = new ObjectCreationView(enemiesListView, enemiesFormView);
+        ObservableList<ISprite> enemiesList = FXCollections.observableArrayList();
+        IObjectListView<ISprite> enemiesListView = new ObjectListView<ISprite>(enemiesList);
+        IObjectCreationView<ISprite> enemiesCreationView = new ObjectCreationView<ISprite>(enemiesListView, enemiesFormView);
         enemiesCreationView.setTitle(name);
         
         /*

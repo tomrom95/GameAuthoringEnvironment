@@ -6,6 +6,10 @@ import java.util.List;
 public interface IFormDataManager {
     
     void add (FormData data);
+    
+    void add (String key, String value);
+    
+    void add (String key, List<String> values);
 
     void remove(String key);
     

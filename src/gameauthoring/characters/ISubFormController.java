@@ -17,5 +17,5 @@ public interface ISubFormController<T> {
     
     void updateGameModel (T item);
 
-    void populateViewsWithData ();
+    void populateViewsWithData (T item);
 }

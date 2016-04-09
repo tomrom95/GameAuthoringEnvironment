@@ -2,9 +2,9 @@ package gameauthoring.levels;
 
 import java.io.File;
 import gameauthoring.Glyph;
-import gameauthoring.ListCellView;
 import gameauthoring.SpriteCellView;
 import gameauthoring.TextFormData;
+import gameauthoring.characters.IListCellView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
@@ -79,7 +79,7 @@ public class LevelEditorView implements Glyph {
         Accordion selector = new Accordion();
         ListView<Node> testList = new ListView<Node>();
         for(int i = 0; i < 5; i ++){
-            ListCellView sprite = new SpriteCellView(null);
+            IListCellView sprite = new SpriteCellView(null);
             testList.getItems().add(sprite.draw());
         }
         TitledPane friendlies = new TitledPane("Enemies", testList);

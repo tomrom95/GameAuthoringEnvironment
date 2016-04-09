@@ -16,7 +16,7 @@ import javafx.scene.layout.HBox;
  * @author JoeLilien
  *
  */
-public class MultiChoiceEntryView implements EntryView {
+public class MultiChoiceEntryView implements IEntryView {
     private String myLabel;
     private HBox myContainer;
     
