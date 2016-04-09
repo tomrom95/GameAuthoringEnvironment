@@ -5,10 +5,11 @@ import engine.IProfile;
 import engine.sprite.ISprite;
 import engine.Profile;
 import engine.definitions.ProfileDefinition;
+import engine.definitions.SpriteDefinition;
 
 
 
-public class ProfileSubFormController implements ISubFormControllerProfile {
+public class ProfileSubFormController implements ISubFormControllerSprite {
 
     /**
      * **Implementation still up for discussion
@@ -23,51 +24,27 @@ public class ProfileSubFormController implements ISubFormControllerProfile {
      * 
      */
     private ProfileSubFormView myView;
+    private IFormDataManager myFormData;
 
     public ProfileSubFormController (ProfileSubFormView view) {
         this.myView = view;
+        this.myFormData = view.getData();
     }
 
  
 
     @Override
-    public void updateGameModel (ProfileDefinition item) {
-        IFormDataManager formDataWrapper = myView.getData();
-        String name = formDataWrapper.getValue("name");
-        String description = formDataWrapper.getValue("description");
-        String imagePath = formDataWrapper.getValue("image");
-        
-        //TODO: edit profile property or create a new one?
-        // edit
-        item.getProfileProperty().get().getNameProperty().set(name);
-        item.getProfileProperty().get().getDescriptionProperty().set(description);
-        item.getProfileProperty().get().getImageFilepathProperty().set(imagePath);
-        
-        // new
-        //IProfile profile = new Profile(name, description, imagePath);
-        ///item.getProfileProperty().set(profile);
-        
-        
+    public void updateGameModel (SpriteDefinition item) {
+        item.setName(myFormData.getValueProperty(myView.getMyNameKey()).get());
+        item.setURL(myFormData.getValueProperty(myView.getMyImageKey()).get());
+        //Same process for description
     }
 
     @Override
-    public void populateViewsWithData (ProfileDefinition item) {
-        String name = item.getProfileProperty().get().getNameProperty().get();
-        String description = item.getProfileProperty().get().getDescriptionProperty().get();
-        String imagePath = item.getProfileProperty().get().getImageFilepathProperty().get();
-        IFormDataManager formDataWrapper = myView.getData();
-        formDataWrapper.add("name", name);
-        formDataWrapper.add("description", description);
-        formDataWrapper.add("image", imagePath);
-        
-        myView.populateWithData(formDataWrapper);
-        
-        //List<EntryView> views = myView.getMyEntryViews();
-        
-        //Example of how it might be done
-        
-        //  views.get(myView.getMyNameInd()).populateWithData(new FormData("Name: ", Sprite.getName()));
-        
+    public void populateViewsWithData (SpriteDefinition item) {
+       myFormData.set(myView.getMyNameKey(), item.getName());
+       myFormData.set(myView.getMyImageKey(), item.getURL());
+       // Same Process for Description
     }
     
 

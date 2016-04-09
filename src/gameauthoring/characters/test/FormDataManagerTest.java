@@ -21,7 +21,7 @@ public class FormDataManagerTest {
     public void testAdd () {
         FormData data = new FormData("Label", new ArrayList<String>(Arrays.asList("value")));
         dataManager.add(data);
-        assertEquals("value", dataManager.getValue("Label"));
+        assertEquals("value", dataManager.getValueProperty("Label"));
     }
     
     @Test

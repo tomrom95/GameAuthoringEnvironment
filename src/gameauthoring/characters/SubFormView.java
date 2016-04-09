@@ -14,12 +14,7 @@ import gameauthoring.Glyph;
 public abstract class SubFormView implements ISubFormView{
 
     private List<IEntryView> myEntryViews;
-    private IFormDataManager myData;
-
-
-    public SubFormView(IFormDataManager formDataManager){
-        myData = formDataManager;
-    }
+    private IFormDataManager myData = new FormDataManager();
     
    
 
@@ -35,20 +30,6 @@ public abstract class SubFormView implements ISubFormView{
         return myData;
     }
    
-
-    @Override
-    public void populateWithData(IFormDataManager data) {
-        myData = data;
-        for (IEntryView e : getMyEntryViews()) {
-            String key = e.getData().getMyKey();
-            List<String> values = myData.getValues(key); //TODO: error check
-            FormData formData = new FormData(key, values);
-            e.populateWithData(formData);
-        }
-    }
-    
-    
-    
     public List<IEntryView> getMyEntryViews () {
         return myEntryViews;
     }

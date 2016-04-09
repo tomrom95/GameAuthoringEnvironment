@@ -1,6 +1,7 @@
 package gameauthoring.characters;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Abstract class for an simple implementation of IEntryView
@@ -24,7 +25,7 @@ public abstract class EntryView implements IEntryView {
  
     public EntryView(String label, IFormDataManager data){
         this.myLabel = label;
-        this.myFormData = new FormData(label, new ArrayList<String>());
+        this.myFormData = new FormData(label, new ArrayList<String>(Arrays.asList("")));
         data.add(myFormData);
     }
     

@@ -57,7 +57,7 @@ public class FormDataManager implements IFormDataManager {
     
     
     @Override
-    public StringProperty getValue (String key) {
+    public StringProperty getValueProperty (String key) {
         try {
             // TODO: maybe return error if myStorage.get(key).size ! = 1
             return myStorage.get(key).get(0);

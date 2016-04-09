@@ -28,7 +28,7 @@ public interface IFormDataManager {
      * @param key
      * @return
      */
-    StringProperty getValue (String key);
+    StringProperty getValueProperty (String key);
 
 
 }
