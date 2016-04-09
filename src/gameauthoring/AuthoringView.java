@@ -1,6 +1,9 @@
 package gameauthoring;
 
+import data.GameWriter;
+import data.IGameWriter;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
@@ -52,18 +55,21 @@ public class AuthoringView implements IAuthoringView {
     private MenuBar createMenuBar () {
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
-        MenuItem saveItem = createMenuItems("Save as XML Files", null); // Connect with Save Actions
+        MenuItem saveItem = createMenuItems("Save your game as XML Files", e->writeGame()); //
         fileMenu.getItems().add(saveItem);
         menuBar.getMenus().add(fileMenu);
         return menuBar;
     }
 
-    private MenuItem createMenuItems (String itemName, ActionEvent action) {
+    private MenuItem createMenuItems (String itemName, EventHandler<ActionEvent> e) {
         MenuItem newMenuItem = new MenuItem(itemName);
         newMenuItem.setOnAction(null);
         return newMenuItem;
     }
 
+    private void writeGame (){
+    }
+    
     private TabPane createAllTabs () {
         TabPane tabpane = new TabPane();
         myGameTabViewer = new GameTabViewer(createTab("Game"));
