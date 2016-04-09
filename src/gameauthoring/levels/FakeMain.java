@@ -3,10 +3,13 @@ package gameauthoring.levels;
 import engine.ConditionManager;
 import engine.Game;
 import engine.ILevel;
-import engine.ISprite;
+import engine.sprite.ISprite;
 import engine.Level;
 import engine.LevelManager;
-import engine.Sprite;
+import engine.modules.GraphicModule;
+import engine.modules.IGraphicModule;
+import engine.sprite.Sprite;
+import engine.sprite.SpriteType;
 import graphics.Block;
 import graphics.ImageGraphic;
 import javafx.application.Application;
@@ -18,8 +21,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
-import modules.GraphicModule;
-import modules.IGraphicModule;
 import util.RGBColor;
 
 
@@ -45,7 +46,7 @@ public class FakeMain extends Application {
         myLevelTabs = new TabPane();
         Tab createLevelTab = createButtonTab();
         Tab firstLevelTab = new Tab("Level 1");
-        myLevelTabs.getSelectionModel().select(firstLevelTab);  
+        myLevelTabs.getSelectionModel().select(firstLevelTab);
         firstLevelTab.setContent(view.draw());
         myLevelTabs.getTabs().addAll(createLevelTab, firstLevelTab);
         stage.setScene(new Scene(myLevelTabs));
@@ -90,6 +91,8 @@ public class FakeMain extends Application {
 
     private ISprite createFirstSprite () {
         ISprite sprite = new Sprite();
+        sprite.getType().set(new SpriteType("Person"));
+
         ObjectProperty<IGraphicModule> g =
                 new SimpleObjectProperty<>(new GraphicModule(new ImageGraphic(30, 30,
                                                                               "images/photo.png")));
@@ -99,6 +102,7 @@ public class FakeMain extends Application {
 
     private ISprite createSecondSprite () {
         ISprite sprite = new Sprite();
+        sprite.getType().set(new SpriteType("Block"));
         ObjectProperty<IGraphicModule> g =
                 new SimpleObjectProperty<>(new GraphicModule(new Block(40, 40, RGBColor.BLACK)));
         sprite.getDrawer().set(g.get());

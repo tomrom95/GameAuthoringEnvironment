@@ -1,7 +1,7 @@
 package engine;
 
+import engine.modules.IGraphicModule;
 import javafx.beans.property.ObjectProperty;
-import modules.IGraphicModule;
 import util.Coordinate;
 
 
@@ -23,7 +23,7 @@ public interface Drawable {
      *         for it.
      */
     ObjectProperty<IGraphicModule> getDrawer ();
-    
+
     /**
      * @return the location of the drawable
      */

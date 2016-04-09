@@ -1,7 +1,7 @@
 package graphics;
 
 import java.util.ResourceBundle;
-import gameplayer.IGraphicFactory;
+import engine.rendering.IGraphicFactory;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -12,6 +12,11 @@ import javafx.scene.Node;
 import util.RGBColor;
 
 
+/**
+ * This class removes the JavaFX dependency of Text and stores the properties referencing to the
+ * text object
+ *
+ */
 public class TextGraphic implements IGraphic{
 	
     private static final String DEFAULT_PATH = "resource/DefaultGraphics";

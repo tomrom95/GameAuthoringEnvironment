@@ -2,7 +2,7 @@ package gameauthoring.levels;
 
 import java.io.File;
 import engine.ILevel;
-import engine.ISprite;
+import engine.sprite.ISprite;
 import javafx.stage.FileChooser;
 import util.Coordinate;
 

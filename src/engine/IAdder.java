@@ -1,5 +1,7 @@
 package engine;
 
+import engine.sprite.ISprite;
+import javafx.beans.property.ObjectProperty;
 import util.Coordinate;
 
 /**
@@ -18,7 +20,7 @@ public interface IAdder extends Updateable {
      * @param sprite to be added in the next game cycle
      * @param coordinate where the Sprite is added
      */
-    
+
     void add (ISprite sprite, Coordinate coordinate);
     
     

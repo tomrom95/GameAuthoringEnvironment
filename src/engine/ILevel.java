@@ -1,8 +1,10 @@
 package engine;
 
 import java.util.List;
-import interactionevents.KeyIOEvent;
-import interactionevents.MouseIOEvent;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
+import graphics.ImageGraphic;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
@@ -23,6 +25,16 @@ public interface ILevel extends Updateable, IAdder {
      * @return the condition manager for this level
      */
     ObservableList<ObjectProperty<ICondition>> getConditionsPropertyList ();
+    
+    /**
+     * @return the global attribute manager for this level 
+     */
+    ObjectProperty<IAttributeManager> getAttributeManager ();
+
+    /**
+     * @return the Image of the background of the level
+     */
+    ObjectProperty<ImageGraphic> getBackgroundImageProperty ();
 
     /**
      * Add a global resource to this level
@@ -34,7 +46,7 @@ public interface ILevel extends Updateable, IAdder {
     /**
      * @return an observable list of the sprites in this level
      */
-    ObservableList<ObjectProperty<ISprite>> getSprites ();
+    ObservableList<ISprite> getSprites ();
 
     /**
      * This method call will control transition between levels, to stay on the current
@@ -49,8 +61,10 @@ public interface ILevel extends Updateable, IAdder {
      */
     boolean shouldSwitchLevel ();
 
-    ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
+
+    ObservableList<? extends Drawable> getDrawables ();
     
+
     /**
      * @param list of key events to be processed
      */
@@ -60,11 +74,11 @@ public interface ILevel extends Updateable, IAdder {
      * @param list of key events to be processed
      */
     void internalizeMouseEvents (List<MouseIOEvent> list);
-    
+
     /**
      * @param sprite to be removed
      */
-    
-    void remove(ObjectProperty<ISprite> sprite);
-   
+
+    void remove (ObjectProperty<ISprite> sprite);
+
 }
