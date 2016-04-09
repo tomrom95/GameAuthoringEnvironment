@@ -40,6 +40,7 @@ public class Sprite implements ISprite {
 
     private ObjectProperty<IMovementModule> myMover;
     private ObjectProperty<IGraphicModule> myGraphic;
+    private ObjectProperty<IProfile> myProfile;
     private ObservableList<ObjectProperty<? extends IModule>> myModules;
     private ObjectProperty<Coordinate> myLocation;
     private ObjectProperty<IStatusModule> myStatusModule;
@@ -52,7 +53,11 @@ public class Sprite implements ISprite {
         myGraphic = new SimpleObjectProperty<>(new GraphicModule(new Block(0, 0, RGBColor.BLACK)));
         initializeRequiredModules();
         myLocation = new SimpleObjectProperty<>(new Coordinate(0, 0));
+
         myType = new SimpleObjectProperty<>();
+
+        myProfile = new SimpleObjectProperty<>(new Profile());
+
     }
 
     private void initializeRequiredModules () {
@@ -128,7 +133,6 @@ public class Sprite implements ISprite {
         applyToAffectable(a -> attributes.addAll(a.getAttributes()));
         return attributes;
     }
-    
 
     @Override
     public Bounds getBounds () {
@@ -150,6 +154,10 @@ public class Sprite implements ISprite {
         return myAttributeManager;
     }
 
- 
-   
+    @Override
+    public ObjectProperty<IProfile> getProfile () {
+        return myProfile;
+
+    }
+
 }

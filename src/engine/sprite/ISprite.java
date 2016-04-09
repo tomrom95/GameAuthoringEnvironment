@@ -41,5 +41,7 @@ public interface ISprite extends Drawable, Updateable, Affectable, IPositionable
     Bounds getBounds ();
 
     ObjectProperty<SpriteType> getType ();
+    
+    ObjectProperty<IProfile> getProfile ();
 
 }
