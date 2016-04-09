@@ -26,7 +26,7 @@ import util.TimeDuration;
  * @author Dhrumil
  *
  */
-public class UserFirer extends Shooter {
+public class UserShooter extends Shooter {
 
     private Key myFireKey;
     private IAdder myAdder;
@@ -34,7 +34,7 @@ public class UserFirer extends Shooter {
     private SpriteDefinition myProjectile;
     private ObjectProperty<IAttribute> myAmmo;
 
-    public UserFirer (SpriteDefinition fireSprite, Key fireKey, IAdder adder, double ammo) {
+    public UserShooter (SpriteDefinition fireSprite, Key fireKey, IAdder adder, double ammo) {
 
         myFireKey = fireKey;
         myProjectile = fireSprite;
@@ -51,8 +51,7 @@ public class UserFirer extends Shooter {
 
     @Override
     public void applyEffect (IEffect effect) {
-        // TODO Auto-generated method stub
-
+        getAmmo().get().applyEffect(effect);
     }
 
     @Override
@@ -72,7 +71,7 @@ public class UserFirer extends Shooter {
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
-        // TODO Auto-generated method stub
+        // do nothing
 
     }
 
@@ -83,4 +82,5 @@ public class UserFirer extends Shooter {
         attributeList.add(myAmmo);
         return attributeList;
     }
+
 }

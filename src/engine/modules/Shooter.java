@@ -9,6 +9,8 @@ import javafx.collections.ObservableList;
 import util.TimeDuration;
 
 public class Shooter implements IFireModule{
+    
+    private ObjectProperty<IAttribute> myAmmo;
 
     @Override
     public void applyEffect (IEffect effect) {
@@ -38,6 +40,10 @@ public class Shooter implements IFireModule{
     public void update (TimeDuration duration) {
         // TODO Auto-generated method stub
         
+    }
+    
+    protected ObjectProperty<IAttribute> getAmmo () {
+        return myAmmo;
     }
     
 }
