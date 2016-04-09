@@ -1,5 +1,15 @@
 package util;
 
+import java.io.Serializable;
+
+
+/**
+ * Utility class that stores two double values as a coordinate and manipulates them.
+ * 
+ * @author Dhrumil
+ *
+ */
+
 public class Coordinate {
     private final static String FORMATTER = "(%.2f,%.2f)";
 
