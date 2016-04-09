@@ -33,7 +33,8 @@ public class ScaleFactory extends GraphicFactory{
     @Override
     public Node getVisual (ImageGraphic imageGraphic) {
         ImageView imageView = super.getImageView(imageGraphic);
-        imageView.resize(myWidth, myHeight);
+        imageView.setFitWidth(myWidth);
+        imageView.setFitHeight(myHeight);
         return imageView;
     }
 }

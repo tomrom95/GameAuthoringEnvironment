@@ -20,6 +20,7 @@ public abstract class FormData implements Glyph{
     private String myTitle;
     private HBox myContainer;
     
+    
     public FormData (String label){
         myTitle = label;
         myContainer = createContainer();

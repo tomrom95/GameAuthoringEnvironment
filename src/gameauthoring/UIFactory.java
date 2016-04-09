@@ -4,6 +4,8 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.Image;
 
 /**
  * Helpful factory to create common UI elements like
@@ -11,9 +13,19 @@ import javafx.scene.Node;
  * @author Tommy
  *
  */
-public interface UIFactory {
+public class UIFactory {
     
-    Node createButton(String text, EventHandler<ActionEvent> action);
+    public Node createButton(String text, EventHandler<ActionEvent> action){
+        // TODO
+        return null;
+    }
     
-    Node createComboBox(List<String> text);
+    public Node createComboBox(List<String> text){
+        //TODO
+        return null;
+    }
+    
+    public Image getImageFromNode(Node node) {
+        return node.snapshot(new SnapshotParameters(), null);
+    }
 }
