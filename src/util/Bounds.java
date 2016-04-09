@@ -8,7 +8,11 @@ package util;
  */
 public class Bounds {
 
-    private static final double HALF = 0.5;
+   
+    
+    /**
+     * myX and myY refer to TOP-LEFT of bounds
+     */
     private double myX;
     private double myY;
     private double myWidth;
@@ -33,24 +37,21 @@ public class Bounds {
     }
 
     public double getLeft () {
-        return myX - half(myWidth);
+        return myX;
     }
 
     public double getTop () {
-        return myY - half(myHeight);
+        return myY;
     }
 
     public double getBottom () {
-        return myY + half(myHeight);
+        return myY + myHeight;
     }
 
     public double getRight () {
-        return myX + half(myWidth);
+        return myX + myWidth;
     }
 
-    private double half (double input) {
-        return input * HALF;
-    }
 
     public boolean contains (Coordinate coordinate) {
         return coordinate.getX() >= getLeft() && coordinate.getX() <= getRight() 

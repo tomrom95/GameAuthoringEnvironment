@@ -12,7 +12,7 @@ import engine.IAttribute;
 // import engine.eff
 
 
-public class EffectsTester {
+public class TestEffects {
 
     private static final String TEST_ATTY_NAME = "TestAttribute";
     private static final String DURATION_ATTY_NAME = "EffectDuration";

@@ -52,6 +52,7 @@ public class Sprite implements ISprite {
         myGraphic = new SimpleObjectProperty<>(new GraphicModule(new Block(0, 0, RGBColor.BLACK)));
         initializeRequiredModules();
         myLocation = new SimpleObjectProperty<>(new Coordinate(0, 0));
+        myType = new SimpleObjectProperty<>();
     }
 
     private void initializeRequiredModules () {
@@ -127,6 +128,7 @@ public class Sprite implements ISprite {
         applyToAffectable(a -> attributes.addAll(a.getAttributes()));
         return attributes;
     }
+    
 
     @Override
     public Bounds getBounds () {
@@ -134,12 +136,18 @@ public class Sprite implements ISprite {
         double y = getLocation().get().getY();
         double width = getDrawer().get().getGraphic().getWidth().get();
         double height = getDrawer().get().getGraphic().getHeight().get();
+        System.out.println(new Bounds(x, y, width, height));
         return new Bounds(x, y, width, height);
     }
 
     @Override
     public ObjectProperty<SpriteType> getType () {
         return myType;
+    }
+
+    @Override
+    public ObjectProperty<AttributeManager> getAttributeManager () {
+        return myAttributeManager;
     }
 
  
