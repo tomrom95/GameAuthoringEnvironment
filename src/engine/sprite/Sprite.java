@@ -40,6 +40,7 @@ public class Sprite implements ISprite {
 
     private ObjectProperty<IMovementModule> myMover;
     private ObjectProperty<IGraphicModule> myGraphic;
+    private ObjectProperty<IProfile> myProfile;
     private ObservableList<ObjectProperty<? extends IModule>> myModules;
     private ObjectProperty<Coordinate> myLocation;
     private ObjectProperty<IStatusModule> myStatusModule;
@@ -52,6 +53,7 @@ public class Sprite implements ISprite {
         myGraphic = new SimpleObjectProperty<>(new GraphicModule(new Block(0, 0, RGBColor.BLACK)));
         initializeRequiredModules();
         myLocation = new SimpleObjectProperty<>(new Coordinate(0, 0));
+        myProfile = new SimpleObjectProperty<>(new Profile());
     }
 
     private void initializeRequiredModules () {
@@ -71,7 +73,6 @@ public class Sprite implements ISprite {
     public void update (TimeDuration duration) {
         myAttributeManager.get().update(duration);
         myModules.forEach(m -> m.get().update(duration));
-
     }
 
     @Override
@@ -141,6 +142,11 @@ public class Sprite implements ISprite {
     @Override
     public ObjectProperty<SpriteType> getType () {
         return myType;
+    }
+
+    @Override
+    public ObjectProperty<IProfile> getProfile () {
+        return myProfile;
     }
 
  

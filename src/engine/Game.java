@@ -1,6 +1,18 @@
 package engine;
 
 import java.util.List;
+import engine.AttributeManager;
+import engine.AuthorshipData;
+import engine.ConditionManager;
+import engine.Drawable;
+import engine.GameInformation;
+import engine.IAttribute;
+import engine.IAttributeManager;
+import engine.IConditionManager;
+import engine.IGame;
+import engine.IGameInformation;
+import engine.ILevelManager;
+import engine.LevelManager;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import graphics.ImageGraphic;
@@ -10,11 +22,7 @@ import util.TimeDuration;
 
 
 /**
-<<<<<<< HEAD
- * Responsible for managing the components of the game
-=======
  * This class manages and structures the layout for the components of a game.
->>>>>>> game_engine
  * 
  * @author RyanStPierre
  *
@@ -64,8 +72,8 @@ public class Game implements IGame {
     }
 
     @Override
-    public ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables () {
-        return myLevelManager.getDrawables();
+    public ObservableList<? extends Drawable> getDrawables () {
+       return myLevelManager.getDrawables();
     }
 
     @Override
@@ -95,3 +103,4 @@ public class Game implements IGame {
     }
 
 }
+

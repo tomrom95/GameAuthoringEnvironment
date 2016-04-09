@@ -51,14 +51,14 @@ public class OnCollisionCondition implements ICondition {
      */
     @Override
     public void update (TimeDuration duration) {
-        List<ObjectProperty<ISprite>> sprites =
+        List<ISprite> sprites =
                 myGame.getLevelManager().getCurrentLevel().get().getSprites();
         for (ISprite outerSprite : sprites.stream()
-                .map(p -> p.get())
+                
                 .filter(sprite -> sprite.getType().equals(myGroupA))
                 .collect(Collectors.toList())) {
             for (ISprite innerSprite : sprites.stream()
-                    .map(p -> p.get())
+                    
                     .filter(sprite -> sprite.getType().equals(myGroupB))
                     .collect(Collectors.toList())) {
                 if (outerSprite.getBounds().collide(innerSprite.getBounds())) {
@@ -71,9 +71,9 @@ public class OnCollisionCondition implements ICondition {
     private void handleCollision (ISprite outerSprite, ISprite innerSprite) {
         myApplyToA.forEach(effect -> outerSprite.applyEffect(effect));
         myApplyToB.forEach(effect -> innerSprite.applyEffect(effect));
-        List<ObjectProperty<ISprite>> sprites =
+        List<ISprite> sprites =
                 myGame.getLevelManager().getCurrentLevel().get().getSprites();
-        sprites.stream().map(sprite -> sprite.get())
+        sprites.stream()
                 .filter(sprite -> sprite.getType().equals(myOtherGroup))
                 .forEach(sprite -> myApplyToOtherGroup
                         .forEach(effect -> sprite.applyEffect(effect)));

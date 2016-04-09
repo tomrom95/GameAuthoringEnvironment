@@ -7,6 +7,7 @@ import engine.IPositionable;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -36,12 +37,14 @@ public abstract class Mover implements IMovementModule {
 
     private ObjectProperty<Coordinate> getLocation () {
         return myParent.getLocation();
+        
     }
 
     protected void move (TimeDuration duration) {
+        
         double xChange = distance(getXVel().get().getValueProperty().get(), duration.getMillis());
         double yChange = distance(getYVel().get().getValueProperty().get(), duration.getMillis());
-        getLocation().set(getNextCoordinate(xChange, yChange));
+        myParent.getLocation().set(getNextCoordinate(xChange, yChange));
     }
 
     protected void move (Coordinate coordinate) {

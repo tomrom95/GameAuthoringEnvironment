@@ -15,13 +15,13 @@ public class Key {
     
     public boolean isEqual(Key key)  {
         // TODO implement
-        return myKeyCode == key.getKeyCode();
+        return myKeyCode.equals(key.getKeyCode());
        
     }
    
     //TODO delete 
     
-    private String getKeyCode () {
+    public String getKeyCode () {
         return myKeyCode;
     }
 }

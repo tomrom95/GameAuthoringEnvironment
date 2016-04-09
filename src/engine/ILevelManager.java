@@ -38,7 +38,7 @@ public interface ILevelManager extends IAdder {
      * 
      * @return
      */
-    ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
+    ObservableList<? extends Drawable> getDrawables ();
 
     /**
      * @param list of key events to internalize

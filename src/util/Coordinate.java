@@ -1,5 +1,8 @@
 package util;
 
+import java.io.Serializable;
+
+
 /**
  * Utility class that stores two double values as a coordinate and manipulates them.
  * 

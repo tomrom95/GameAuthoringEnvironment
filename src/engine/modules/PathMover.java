@@ -7,6 +7,7 @@ import engine.IAttribute;
 import engine.IPositionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -22,7 +23,7 @@ import util.TimeDuration;
  *
  */
 
-public class PathFollowMover extends Mover {
+public class PathMover extends Mover {
 
     public static final int PIXEL_RANGE = 5;
 
@@ -30,13 +31,14 @@ public class PathFollowMover extends Mover {
     private List<Coordinate> myPoints;
     private int myNextDestination;
 
-    public PathFollowMover (double speed,
+    public PathMover (double speed,
                             List<Coordinate> points,
                             IPositionable positionable) {
         super(positionable);
         mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));
         myPoints = points;
         myNextDestination = 0;
+        
 
     }
 

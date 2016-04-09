@@ -46,7 +46,7 @@ public interface ILevel extends Updateable, IAdder {
     /**
      * @return an observable list of the sprites in this level
      */
-    ObservableList<ObjectProperty<ISprite>> getSprites ();
+    ObservableList<ISprite> getSprites ();
 
     /**
      * This method call will control transition between levels, to stay on the current
@@ -61,7 +61,9 @@ public interface ILevel extends Updateable, IAdder {
      */
     boolean shouldSwitchLevel ();
 
-    ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
+
+    ObservableList<? extends Drawable> getDrawables ();
+    
 
     /**
      * @param list of key events to be processed

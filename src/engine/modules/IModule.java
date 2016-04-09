@@ -14,6 +14,6 @@ import engine.Updateable;
  * @author Jonathan Im
  *
  */
-public interface IModule extends Updateable, Affectable {
+public interface IModule extends Updateable, Affectable{
 
 }
