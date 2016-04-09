@@ -4,6 +4,8 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,24 +16,31 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 
-public class ImageEntryView implements IEntryView {
+public class ImageEntryView extends EntryView {
     private String myLabel;
     private HBox myContainer;
-    private String myImageChoice;
+    private StringProperty myImageChoice = new SimpleStringProperty();// TODO Add default Image
     private Button myChooseImage = new Button("Choose Image");
     private ImageView myImage;
     private double width;
     private double height;
 
-    public ImageEntryView (String label, double spacing, double width, double height) {
-        this.myLabel = label;
+    public ImageEntryView (String label, IFormDataManager data, double spacing, double width, double height) {
+        super(label,data);
         this.width = width;
         this.height = height;
         this.myContainer = new HBox(spacing);
+        this.myImageChoice.bindBidirectional(getData().getValueProperty());
+        initFileChooser(new FileChooser());   
+        initImageView();
         myContainer.getChildren().add(new Label(myLabel));
         myContainer.getChildren().add(myChooseImage);
-        myContainer.getChildren().add(myImage);
-        initFileChooser(new FileChooser());        
+        myContainer.getChildren().add(myImage);        
+    }
+
+    private void initImageView () {        
+        myImage = new ImageView(new Image(myImageChoice.get())); //TODO add default image
+        myImageChoice.addListener(c->{myImage.setImage(new Image(myImageChoice.get()));});
     }
 
     private void initFileChooser (FileChooser imageChoice) {
@@ -46,9 +55,7 @@ public class ImageEntryView implements IEntryView {
         if (file != null) {
             try {
                 String fileName = file.toURI().toURL().toString();
-                myImageChoice = fileName;
-                myImage = new ImageView(new Image(fileName));
-                myImage.resize(width, height);
+                myImageChoice.setValue(fileName);
             }
             catch (MalformedURLException e) {
                 ErrorMessage err = new ErrorMessage("BAD URL");
@@ -62,20 +69,6 @@ public class ImageEntryView implements IEntryView {
     public void update () {
         // TODO Auto-generated method stub
 
-    }
-
-    @Override
-    public FormData getData () {
-        String key = myLabel;
-        String value = myImageChoice;
-        return new FormData(key, new ArrayList<String>(Arrays.asList(value)));
-    }
-
-    @Override
-    public void populateWithData (FormData data) {
-        this.myImage.setImage(new Image(data.getMyValue().get(0)));
-        this.myImage.resize(width, height);
-        
     }
    
 

@@ -22,8 +22,8 @@ public class TextEntryView extends EntryView {
     private boolean isNumberData;
     
 
-    public TextEntryView (String label, double spacing, double width, double height, boolean isNumberData) {
-        this.myLabel = label;
+    public TextEntryView (String label, IFormDataManager data, double spacing, double width, double height, boolean isNumberData) {
+        super(label, data);
         this.isNumberData = isNumberData;
         this.myTextInput.setPrefSize(width, height);
         this.myTextInput.textProperty().bindBidirectional(getData().getValueProperty());
@@ -38,15 +38,6 @@ public class TextEntryView extends EntryView {
 
     }
 
-    @Override
-    public FormData getData () {
-        String key = myLabel;
-        String value = myTextInput.getText();
-        if (isNumberData) {
-            return getDataWithErrorCheck(key, value);
-        }
-        return new FormData(key, new ArrayList<String>(Arrays.asList(value)));
-    }
 
     /**
      * Ensures that entry is a double value if it is required
@@ -66,11 +57,6 @@ public class TextEntryView extends EntryView {
             return null;
         }
     }
-
-    @Override
-    public void populateWithData (FormData data) {
-        this.myTextInput.setText(data.getMyValue().get(0));
-    }  
 
     @Override
     public Node draw () {

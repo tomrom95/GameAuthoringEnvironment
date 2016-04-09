@@ -10,23 +10,22 @@ import javafx.scene.layout.GridPane;
 public class ProfileSubFormView extends SubFormView{
 
     private GridPane myPane = new GridPane();
-    private IEntryView myName = new TextEntryView("Name: ", 20, 10, 40, false); // maybe change these
+    private String myNameKey = "Name: ";
+    private String myDescriptionKey = "Description: ";
+    private String myImageKey = "Image: ";   
+    
+    private IEntryView myName = new TextEntryView(myNameKey,this.getData(), 20, 10, 40, false); // maybe change these
                                                                                // constructor
                                                                                // Arguments to
                                                                                // getters/setters
-    private IEntryView myImage = new ImageEntryView("Image: ", 20, 20, 20);
-    private IEntryView myDescription = new TextEntryView("Description: ", 20, 40, 60, false);
-    private String myNameKey = "name";
-    private String myDescriptionKey = "desctiption";
-    private String myImageKey = "image";
-    
+    private IEntryView myImage = new ImageEntryView(myImageKey, 20, 20, 20);
+    private IEntryView myDescription = new TextEntryView(myDescriptionKey, this.getData(), 20, 40, 60, false);
     private List<IEntryView> myEntryViews = new ArrayList<IEntryView>(Arrays.asList(myName,myImage,myDescription));
     
 
-    public ProfileSubFormView () {
+    public ProfileSubFormView (IFormDataManager data) {
+        super(data);
         initView();
-        initData();
-        //getData()
     }
 
 
@@ -35,9 +34,6 @@ public class ProfileSubFormView extends SubFormView{
         myPane.add(myName.draw(), 0, 0);
         myPane.add(myImage.draw(), 0, 1);
         myPane.add(myDescription.draw(), 1, 0, 1, 1);
-    }
-    private void initData(){
-        this.getData().add();
     }
 
     @Override

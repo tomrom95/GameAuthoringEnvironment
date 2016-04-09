@@ -19,33 +19,21 @@ import javafx.scene.layout.HBox;
  * @author JoeLilien
  *
  */
-public class SingleChoiceEntryView implements IEntryView {
+public class SingleChoiceEntryView extends EntryView{
     private String myLabel;
     private HBox myContainer;
     private ChoiceBox<String> myChoices;
 
-    public SingleChoiceEntryView (String label, List<Object> choices, double spacing) {
-        List<String> stringChoices = generateStringList(choices);
-        ObservableList<String> obsChoices = FXCollections.observableList(stringChoices);
-        this.myLabel = label;
+    public SingleChoiceEntryView (String label, IFormDataManager data, List<String> choices, double spacing) {
+        super(label,data);
+        ObservableList<String> obsChoices = FXCollections.observableList(choices);
         this.myContainer = new HBox(spacing);
         this.myChoices = new ChoiceBox<String>(obsChoices);
+        myChoices.valueProperty().bindBidirectional(this.getData().getValueProperty());
         myContainer.getChildren().add(new Label(myLabel));
         myContainer.getChildren().add(myChoices);
     }
 
-    /*
-     * NOTE: We need to decide if we want the choice box is driven by a list of objects or a list of
-     * strings
-     * 
-     */
-    private List<String> generateStringList (List<Object> choices) {
-        List<String> strings = new ArrayList<String>();
-        for (Object object : choices) {
-            strings.add(object != null ? object.toString() : null);
-        }
-        return strings;
-    }
 
     @Override
     public void update () {
@@ -53,18 +41,6 @@ public class SingleChoiceEntryView implements IEntryView {
 
     }
 
-    @Override
-    public FormData getData () {
-        String key = myLabel;
-        String value = (String) myChoices.getSelectionModel().getSelectedItem();
-        return new FormData(key, new ArrayList<String>(Arrays.asList(value)));
-    }
-
-    @Override
-    public void populateWithData (FormData data) {
-        String value = data.getMyValue().get(0);
-        this.myChoices.getSelectionModel().select(value);
-    }
 
     @Override
     public Node draw () {

@@ -16,10 +16,7 @@ public abstract class SubFormView implements ISubFormView{
     private List<IEntryView> myEntryViews;
     private IFormDataManager myData;
 
-    public SubFormView() {
-        
-    }
-    
+
     public SubFormView(IFormDataManager formDataManager){
         myData = formDataManager;
     }
@@ -35,10 +32,6 @@ public abstract class SubFormView implements ISubFormView{
      */
     @Override
     public IFormDataManager getData () {
-        /*for (IEntryView e : getMyEntryViews()) {
-            myData.add(e.getData());
-        }
-        */
         return myData;
     }
    
