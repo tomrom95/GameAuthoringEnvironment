@@ -1,15 +1,16 @@
 package gameauthoring;
 
-import modules.GraphicModule;
-import modules.IGraphicModule;
+import engine.modules.GraphicModule;
+import engine.modules.IGraphicModule;
 import util.RGBColor;
 import engine.ConditionManager;
 import engine.Game;
 import engine.ILevel;
-import engine.ISprite;
+import engine.sprite.ISprite;
+import engine.sprite.SpriteType;
 import engine.Level;
 import engine.LevelManager;
-import engine.Sprite;
+import engine.sprite.Sprite;
 import gameauthoring.levels.LevelEditorView;
 import graphics.Block;
 import graphics.ImageGraphic;
@@ -17,11 +18,9 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.BorderPane;
 
 
 /**
@@ -108,6 +107,8 @@ public class SceneTabViewer implements ITabViewer {
 
     private ISprite createFirstSprite () {
         ISprite sprite = new Sprite();
+        sprite.getType().set(new SpriteType("Person"));
+
         ObjectProperty<IGraphicModule> g =
                 new SimpleObjectProperty<>(new GraphicModule(new ImageGraphic(30, 30,
                                                                               "images/photo.png")));
@@ -117,6 +118,7 @@ public class SceneTabViewer implements ITabViewer {
 
     private ISprite createSecondSprite () {
         ISprite sprite = new Sprite();
+        sprite.getType().set(new SpriteType("Block"));
         ObjectProperty<IGraphicModule> g =
                 new SimpleObjectProperty<>(new GraphicModule(new Block(40, 40, RGBColor.BLACK)));
         sprite.getDrawer().set(g.get());
