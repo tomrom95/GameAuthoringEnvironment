@@ -26,7 +26,7 @@ import util.TimeDuration;
  * @author Dhrumil
  *
  */
-public class UserShooter extends Shooter {
+public class UserFirer extends Firer {
 
     private Key myFireKey;
     private IAdder myAdder;
@@ -34,7 +34,7 @@ public class UserShooter extends Shooter {
     private SpriteDefinition myProjectile;
     private ObjectProperty<IAttribute> myAmmo;
 
-    public UserShooter (SpriteDefinition fireSprite, Key fireKey, IAdder adder, double ammo) {
+    public UserFirer (SpriteDefinition fireSprite, Key fireKey, IAdder adder, double ammo) {
 
         myFireKey = fireKey;
         myProjectile = fireSprite;

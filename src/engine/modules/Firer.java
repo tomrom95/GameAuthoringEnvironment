@@ -8,7 +8,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
 
-public class Shooter implements IFireModule{
+public class Firer implements IFireModule{
     
     private ObjectProperty<IAttribute> myAmmo;
 
