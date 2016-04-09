@@ -2,7 +2,7 @@ package engine.definitions;
 
 import util.Coordinate;
 
-public class LocationDefinition {
+public class LocationDefinition implements IDefinition {
 
     private double myX;
     private double myY;
