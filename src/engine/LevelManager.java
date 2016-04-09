@@ -84,11 +84,17 @@ public class LevelManager implements ILevelManager {
     @Override
     public void remove (ObjectProperty<ISprite> sprite) {
         myCurrentLevel.get().remove(sprite);
-
     }
 
     @Override
     public ImageGraphic getBackgroundImage () {
         return myCurrentLevel.get().getBackgroundImageProperty().get();
+
     }
+
+    @Override
+    public void createNewLevel (ObjectProperty<ILevel> newLevel) {
+        myCurrentLevel = newLevel;
+    }
+
 }

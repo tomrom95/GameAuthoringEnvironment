@@ -26,6 +26,7 @@ import util.Bounds;
  * @author Jeremy Schreck
  *
  */
+
 public interface ISprite extends Drawable, Updateable, Affectable, IPositionable {
 
     ObjectProperty<IMovementModule> getMovementStrategyProperty ();

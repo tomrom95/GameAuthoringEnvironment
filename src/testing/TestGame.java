@@ -55,8 +55,7 @@ public class TestGame extends Application {
 
     }
 
-    protected static ISprite createFollowSprite () {
-
+    private ISprite createFollowSprite () {
         ISprite sprite = new Sprite();
         List<Coordinate> list = getListOfCoordinates();
         ObjectProperty<IMovementModule> mover =
@@ -68,7 +67,8 @@ public class TestGame extends Application {
         return sprite;
     }
 
-    protected static ISprite createUserSprite () {
+    private ISprite createUserSprite () {
+
         ISprite sprite = new Sprite();
         ControlKeys keys =
                 new ControlKeys(new Key("Up"), new Key("Left"), new Key("Right"), new Key("Down"));

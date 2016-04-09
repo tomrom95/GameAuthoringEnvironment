@@ -59,5 +59,10 @@ public interface ILevelManager extends IAdder {
      * @return the background image of the current level
      */
     ImageGraphic getBackgroundImage ();
-
+    
+    /**
+     * 
+     * @param newLevel the level to add to the game 
+     */
+    void createNewLevel (ObjectProperty<ILevel> newLevel);
 }
