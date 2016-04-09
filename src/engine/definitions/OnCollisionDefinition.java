@@ -36,4 +36,61 @@ public class OnCollisionDefinition implements IDefinition {
         this.myGame = myGame;
     }
 
+    public SpriteGroupDefinition getMyGroupA () {
+        return myGroupA;
+    }
+
+    public void setMyGroupA (SpriteGroupDefinition myGroupA) {
+        this.myGroupA = myGroupA;
+    }
+
+    public SpriteGroupDefinition getMyGroupB () {
+        return myGroupB;
+    }
+
+    public void setMyGroupB (SpriteGroupDefinition myGroupB) {
+        this.myGroupB = myGroupB;
+    }
+
+    public ListIEffectDefinition getMyApplyToA () {
+        return myApplyToA;
+    }
+
+    public void setMyApplyToA (ListIEffectDefinition myApplyToA) {
+        this.myApplyToA = myApplyToA;
+    }
+
+    public ListIEffectDefinition getMyApplyToB () {
+        return myApplyToB;
+    }
+
+    public void setMyApplyToB (ListIEffectDefinition myApplyToB) {
+        this.myApplyToB = myApplyToB;
+    }
+
+    public ListIEffectDefinition getMyApplyToOtherGroup () {
+        return myApplyToOtherGroup;
+    }
+
+    public void setMyApplyToOtherGroup (ListIEffectDefinition myApplyToOtherGroup) {
+        this.myApplyToOtherGroup = myApplyToOtherGroup;
+    }
+
+    public SpriteGroupDefinition getMyOtherGroup () {
+        return myOtherGroup;
+    }
+
+    public void setMyOtherGroup (SpriteGroupDefinition myOtherGroup) {
+        this.myOtherGroup = myOtherGroup;
+    }
+
+    public ListIEffectDefinition getMyApplyToGlobalAttys () {
+        return myApplyToGlobalAttys;
+    }
+
+    public void setMyApplyToGlobalAttys (ListIEffectDefinition myApplyToGlobalAttys) {
+        this.myApplyToGlobalAttys = myApplyToGlobalAttys;
+    }
+
+
 }

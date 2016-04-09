@@ -35,4 +35,46 @@ public class OnClickDefinition implements IDefinition {
         this.myGame = myGame;
     }
 
+    public SpriteGroupDefinition getMyGroupToCheck () {
+        return myGroupToCheck;
+    }
+
+    public void setMyGroupToCheck (SpriteGroupDefinition myGroupToCheck) {
+        this.myGroupToCheck = myGroupToCheck;
+    }
+
+    public ListIEffectDefinition getMyApplyToSelf () {
+        return myApplyToSelf;
+    }
+
+    public void setMyApplyToSelf (ListIEffectDefinition myApplyToSelf) {
+        this.myApplyToSelf = myApplyToSelf;
+    }
+
+    public SpriteGroupDefinition getMyOtherGroup () {
+        return myOtherGroup;
+    }
+
+    public void setMyOtherGroup (SpriteGroupDefinition myOtherGroup) {
+        this.myOtherGroup = myOtherGroup;
+    }
+
+    public ListIEffectDefinition getMyApplyToOtherGroup () {
+        return myApplyToOtherGroup;
+    }
+
+    public void setMyApplyToOtherGroup (ListIEffectDefinition myApplyToOtherGroup) {
+        this.myApplyToOtherGroup = myApplyToOtherGroup;
+    }
+
+    public ListIEffectDefinition getMyApplyToGlobalAttys () {
+        return myApplyToGlobalAttys;
+    }
+
+    public void setMyApplyToGlobalAttys (ListIEffectDefinition myApplyToGlobalAttys) {
+        this.myApplyToGlobalAttys = myApplyToGlobalAttys;
+    }
+
+ 
+
 }
