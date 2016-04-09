@@ -29,7 +29,7 @@ public interface IGamePlayable extends Updateable {
     /**
      * @return list of Drawable objects that a game contains
      */
-    ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
+    ObservableList<? extends Drawable> getDrawables ();
 
     /**
      * @return the global attributes for this game
