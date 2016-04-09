@@ -149,6 +149,4 @@ public class Sprite implements ISprite {
         return myProfile;
     }
 
- 
-   
 }

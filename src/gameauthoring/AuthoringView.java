@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class AuthoringView implements IAuthoringView {
 
     private GameTabViewer myGameTabViewer;
-    private CharTabViewer myCharTabViewer;
+    private ObjectCreationTabViewer myCreationTabViewer;
     private SceneTabViewer mySceneTabViewer;
     private GridPane myLayout;
     private static final int WIDTH = 1200;
@@ -27,8 +27,8 @@ public class AuthoringView implements IAuthoringView {
     }
 
     @Override
-    public CharTabViewer getCharTabViewer () {
-        return myCharTabViewer;
+    public ObjectCreationTabViewer getCreationTabViewer () {
+        return myCreationTabViewer;
     }
 
     @Override
@@ -43,8 +43,8 @@ public class AuthoringView implements IAuthoringView {
         myLayout = new GridPane();
         myLayout.add(menuBar, 0, 0);
         myLayout.add(tabPane, 0, 2);
-        Group root =
-                new Group(myGameTabViewer.draw(), myCharTabViewer.draw(), mySceneTabViewer.draw());
+        Group root = new Group(myGameTabViewer.draw(), myCreationTabViewer.draw(),
+                               mySceneTabViewer.draw());
         root.getChildren().addAll(myLayout);
         s.setScene(new Scene(root, WIDTH, HEIGHT));
     }
@@ -67,10 +67,10 @@ public class AuthoringView implements IAuthoringView {
     private TabPane createAllTabs () {
         TabPane tabpane = new TabPane();
         myGameTabViewer = new GameTabViewer(createTab("Game"));
-        myCharTabViewer = new CharTabViewer(createTab("Create Objects"));
+        myCreationTabViewer = new ObjectCreationTabViewer(createTab("Create Objects"));
         mySceneTabViewer = new SceneTabViewer(createTab("Build Scenes/Levels"));
 
-        tabpane.getTabs().addAll(myGameTabViewer.getTab(), myCharTabViewer.getTab(),
+        tabpane.getTabs().addAll(myGameTabViewer.getTab(), myCreationTabViewer.getTab(),
                                  mySceneTabViewer.getTab());
         return tabpane;
     }
