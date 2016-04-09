@@ -1,6 +1,7 @@
 package gameauthoring.characters;
 
 import java.util.*;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 
@@ -21,25 +22,21 @@ public class FormDataManager implements IFormDataManager {
 
     @Override
     public void add (FormData data) {
-        List<StringProperty> curValue = myStorage.get(data.getMyKey());
-        for (int i = 0; i < curValue.size(); i++) {
-            
-            data.getMyValue());
-        }
+       myStorage.put(data.getMyKey(), data.getMyValueProperties());
         
     }
     
     @Override
     public void add (String key, String value) {
-        List<String> values = new ArrayList<String>();
-        values.add(value);
+        List<StringProperty> values = new ArrayList<StringProperty>();
+        values.add(new SimpleStringProperty(value));
         myStorage.put(key, values);
         
     }
 
     @Override
     public void add (String key, List<String> values) {
-        myStorage.put(key, values);
+        //myStorage.put(key, values);
         
     }
 
@@ -56,7 +53,7 @@ public class FormDataManager implements IFormDataManager {
     }
     
     @Override
-    public String getValue (String key) {
+    public StringProperty getValue (String key) {
         try {
             // TODO: maybe return error if myStorage.get(key).size ! = 1
             return myStorage.get(key).get(0);
