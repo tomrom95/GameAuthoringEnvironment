@@ -50,7 +50,7 @@ public class TestConditions extends Application {
     private void initThings () {
         myHealthAttyType = new AttributeType("Health");
         myEffectDurationAttribute = new AttributeType("CoolDown");
-        myEffectDuration = new Attribute(10d, myEffectDurationAttribute);
+        myEffectDuration = new Attribute(0, myEffectDurationAttribute);
     }
 
     private List<IEffect> effectToApplyToSelf () {

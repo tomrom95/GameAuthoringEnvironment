@@ -93,10 +93,7 @@ public class Attribute implements IAttribute {
      * @param duration frame rate specified by the level
      */
     private void removeCompletedEffects (TimeDuration duration) {
-
-        myEffects.stream().filter(e -> !e.get().hasCompleted())
-                .collect(Collectors.toList());
-
+        myEffects.removeIf(e -> e.get().hasCompleted());        
     }
 
     @Override
