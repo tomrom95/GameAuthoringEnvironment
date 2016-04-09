@@ -52,8 +52,7 @@ public class OnGlobalAttributeCondition implements ICondition {
             myApplyToOtherGroup.forEach(
                                         effect -> myGame.getLevelManager().getCurrentLevel().get()
                                                 .getSprites().stream()
-                                                .filter(sprite -> sprite.getType().equals(
-                                                                                                myOtherGroup))
+                                                .filter(sprite -> myOtherGroup.contains(sprite.getType().get()))
                                                 .forEach(sprite -> sprite
                                                         .applyEffect(effect)));
             myApplyToGlobalAttys

@@ -81,6 +81,9 @@ public class Attribute implements IAttribute {
         myEffects.forEach(e -> e.get().applyToAttribute(this));
         myEffects.forEach(e -> e.get().update(duration));
         removeCompletedEffects(duration);
+        
+        System.out.print(myType.getType() + " ");
+        System.out.println(myValue.get());
     }
 
     /**
@@ -90,10 +93,7 @@ public class Attribute implements IAttribute {
      * @param duration frame rate specified by the level
      */
     private void removeCompletedEffects (TimeDuration duration) {
-
-        myEffects.stream().filter(e -> !e.get().hasCompleted())
-                .collect(Collectors.toList());
-
+        myEffects.removeIf(e -> e.get().hasCompleted());        
     }
 
     @Override
