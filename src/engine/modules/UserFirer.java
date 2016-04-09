@@ -13,6 +13,7 @@ import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.Key;
 import util.TimeDuration;
@@ -77,7 +78,9 @@ public class UserFirer extends Shooter {
 
     @Override
     public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
-        // TODO Auto-generated method stub
-        return null;
+        ObservableList<ObjectProperty<IAttribute>> attributeList =
+                FXCollections.observableArrayList();
+        attributeList.add(myAmmo);
+        return attributeList;
     }
 }
