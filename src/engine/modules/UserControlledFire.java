@@ -1,6 +1,8 @@
 package engine.modules;
 
 import java.util.List;
+import engine.Attribute;
+import engine.AttributeType;
 import engine.IAdder;
 import engine.IAttribute;
 import engine.effects.IEffect;
@@ -28,12 +30,14 @@ public class UserControlledFire extends Shooter {
     private IAdder myAdder;
     private List<ISpriteDefinition> myProjectileList;
     private ISpriteDefinition myProjectile;
+    private ObjectProperty<IAttribute> myAmmo;
 
-    public UserControlledFire (ISpriteDefinition fireSprite, Key fireKey, IAdder adder) {
+    public UserControlledFire (ISpriteDefinition fireSprite, Key fireKey, IAdder adder, double ammo) {
 
         myFireKey = fireKey;
         myProjectile = fireSprite;
         myAdder = adder;
+        myAmmo = new SimpleObjectProperty<>(new Attribute(ammo, AttributeType.AMMO));
 
     }
 
