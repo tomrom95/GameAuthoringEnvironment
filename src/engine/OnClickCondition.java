@@ -44,9 +44,11 @@ public class OnClickCondition implements ICondition {
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
+        
         Coordinate coord = new Coordinate(mouseEvent.getX(), mouseEvent.getY());
+        System.out.println(coord.getX() + " "  + coord.getY());
         myGame.getLevelManager().getCurrentLevel().get().getSprites().stream()
-                .filter(sprite -> sprite.getType().equals(myGroupToCheck))
+                .filter(sprite -> myGroupToCheck.contains(sprite.getType().get()))
                 .filter(sprite -> sprite.getBounds().contains(coord))
                 .forEach(sprite -> handleAction(sprite));
     }
@@ -56,7 +58,7 @@ public class OnClickCondition implements ICondition {
         myApplyToOtherGroup
                 .forEach(effect -> myGame.getLevelManager().getCurrentLevel().get().getSprites()
                         .stream()
-                        .filter(otherSprite -> otherSprite.getType().equals(myGroupToCheck))
+                        .filter(otherSprite -> myGroupToCheck.contains(otherSprite.getType().get()))
                         .forEach(otherSprite -> otherSprite.applyEffect(effect)));
         myApplyToGlobalAttys
                 .forEach(effect -> myGame.getAttributeManager().applyEffect(effect));

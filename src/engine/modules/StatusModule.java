@@ -6,6 +6,7 @@ import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
 
@@ -45,8 +46,7 @@ public class StatusModule implements IStatusModule {
 
     @Override
     public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
-        // TODO Auto-generated method stub
-        return null;
+        return FXCollections.observableArrayList();
     }
 
     /**
