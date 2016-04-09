@@ -23,7 +23,7 @@ import util.TimeDuration;
  *
  */
 
-public class PathFollowMover extends Mover {
+public class PathMover extends Mover {
 
     public static final int PIXEL_RANGE = 5;
 
@@ -31,7 +31,7 @@ public class PathFollowMover extends Mover {
     private List<Coordinate> myPoints;
     private int myNextDestination;
 
-    public PathFollowMover (double speed,
+    public PathMover (double speed,
                             List<Coordinate> points,
                             IPositionable positionable) {
         super(positionable);

@@ -5,6 +5,7 @@ import engine.Attribute;
 import engine.AttributeType;
 import engine.IAdder;
 import engine.IAttribute;
+import engine.definitions.SpriteDefinition;
 import engine.effects.IEffect;
 import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
@@ -24,15 +25,15 @@ import util.TimeDuration;
  * @author Dhrumil
  *
  */
-public class UserControlledFire extends Shooter {
+public class UserFirer extends Shooter {
 
     private Key myFireKey;
     private IAdder myAdder;
-    private List<ISpriteDefinition> myProjectileList;
-    private ISpriteDefinition myProjectile;
+    private List<SpriteDefinition> myProjectileList;
+    private SpriteDefinition myProjectile;
     private ObjectProperty<IAttribute> myAmmo;
 
-    public UserControlledFire (ISpriteDefinition fireSprite, Key fireKey, IAdder adder, double ammo) {
+    public UserFirer (SpriteDefinition fireSprite, Key fireKey, IAdder adder, double ammo) {
 
         myFireKey = fireKey;
         myProjectile = fireSprite;
@@ -64,7 +65,7 @@ public class UserControlledFire extends Shooter {
 
     private void registerKeyPress (Key fire) {
         ISprite bullet = myProjectile.create();
-        myAdder.add(bullet,bullet.getLocation().get());
+        myAdder.add(bullet, bullet.getLocation().get());
 
     }
 
@@ -79,5 +80,4 @@ public class UserControlledFire extends Shooter {
         // TODO Auto-generated method stub
         return null;
     }
-
 }

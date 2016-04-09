@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import engine.ISpriteManager;
 import engine.SpriteManager;
-import engine.modules.PathFollowMover;
+import engine.modules.PathMover;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
 import util.Coordinate;
@@ -40,7 +40,7 @@ public class TestSpriteManager {
         ISprite mySprite = new Sprite();
         mySprite.getLocation().set(new Coordinate(10, 10));
         List<Coordinate> path = new ArrayList<>();
-        PathFollowMover mover = new PathFollowMover(1, path, mySprite);
+        PathMover mover = new PathMover(1, path, mySprite);
         mySprite.getMovementStrategyProperty().set(mover);
         return mySprite;
 
