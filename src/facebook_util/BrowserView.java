@@ -21,12 +21,14 @@ import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
+
 public class BrowserView {
-    
+
     public static final Dimension DEFAULT_SIZE = new Dimension(800, 600);
     private static final String PROTECTED_RESOURCE_URL = "https://graph.facebook.com/v2.5/me";
-    private static final String CALLBACK_URL = "https://github.com/duke-compsci308-spring2016/voogasalad_GitDepends/";
-    
+    private static final String CALLBACK_URL =
+            "https://github.com/duke-compsci308-spring2016/voogasalad_GitDepends/";
+
     private OAuth20Service service;
     private Scene myScene;
     private WebView myPage;
@@ -37,11 +39,10 @@ public class BrowserView {
         BorderPane root = new BorderPane();
         root.setCenter(makePageDisplay());
         facebookExample();
-        
-        myScene = new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
-        
-    }
 
+        myScene = new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
+
+    }
 
     public Scene getScene () {
         return myScene;
@@ -65,11 +66,16 @@ public class BrowserView {
                 if (m.find()) {
 
                     System.out.println(m.group(1));
-                    final OAuth2AccessToken accessToken = service.getAccessToken(m.group(1));
+                    OAuth2AccessToken accessToken = service.getAccessToken(m.group(1));
                     System.out.println("Got the Access Token!");
                     System.out.println("(if your curious it looks like this: " + accessToken +
                                        ", 'rawResponse'='" + accessToken.getRawResponse() + "')");
-                    System.out.println();
+                    System.out.println(accessToken.getAccessToken());
+                    System.out.println(" blah " + accessToken.getAccessToken().split("\\|")[1]);
+                    accessToken =
+                            new OAuth2AccessToken(accessToken.getAccessToken().split("\\|")[1]);
+
+                    System.out.println(accessToken.getAccessToken());
 
                     // Now let's go and ask for a protected resource!
                     System.out.println("Now we're going to access a protected resource...");
@@ -77,27 +83,31 @@ public class BrowserView {
                             new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL, service);
                     service.signRequest(accessToken, request);
                     final Response response = request.send();
+                    System.out.println(request.getBodyContents());
                     System.out.println("Got it! Lets see what we found...");
                     System.out.println();
                     System.out.println(response.getCode());
                     System.out.println(response.getBody());
-                    
-                    OAuthRequest nextRequest = new OAuthRequest(Verb.POST, "https://graph.facebook.com/me/feed", service);
-                    String message = "test message - ";
-                    nextRequest.addBodyParameter("message", message);
-                    String link = "http://codeoftheday.blogspot.com/";
-                    nextRequest.addBodyParameter("link", link);
-                    service.signRequest(accessToken, nextRequest);
+
+                    OAuthRequest nextRequest =
+                            new OAuthRequest(Verb.POST,
+                                             "https://graph.facebook.com/me/notifications",
+                                             service);
+                    String message = "Let's make tower defense!";
+                    nextRequest.addBodyParameter("access_token", accessToken.getAccessToken());
+                    nextRequest.addBodyParameter("template", message);
+                    // service.signRequest(accessToken, nextRequest);
 
                     Response nextResponse = nextRequest.send();
                     System.out.println("here");
+                    System.out.println(nextRequest.getBodyContents());
                     System.out.println(nextResponse.getCode());
                     String responseBody = nextResponse.getBody();
                     System.out.println(responseBody);
 
                 }
                 else {
-                    
+
                 }
             }
         }
@@ -107,13 +117,12 @@ public class BrowserView {
         // Replace these with your client id and secret
         final String clientId = mySecrets.getString("clientId");
         final String clientSecret = mySecrets.getString("clientSecret");
-        final String secretState = "secret" + new Random().nextInt(999_999);
         service = new ServiceBuilder()
                 .apiKey(clientId)
                 .apiSecret(clientSecret)
-                .state(secretState)
                 .callback(CALLBACK_URL)
-                .scope("publish_actions")
+                .grantType("client_credentials")
+                // .scope("publish_actions")
                 .build(FacebookApi.instance());
 
         System.out.println();
