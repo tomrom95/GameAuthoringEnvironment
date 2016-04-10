@@ -2,8 +2,6 @@ package gameauthoring.characters;
 
 import engine.definitions.SpriteDefinition;
 
-public interface ISubFormControllerSprite extends ISubFormController {
-    void updateGameModel (SpriteDefinition item);
-
-    void populateViewsWithData (SpriteDefinition item);
+public interface ISubFormControllerSprite extends ISubFormController<SpriteDefinition> {
+   
 }

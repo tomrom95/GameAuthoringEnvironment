@@ -2,8 +2,6 @@ package gameauthoring.characters;
 
 import engine.definitions.ConditionDefinition;
 
-public interface ISubFormControllerCondition extends ISubFormController {
-    void updateGameModel (ConditionDefinition item);
+public interface ISubFormControllerCondition extends ISubFormController<ConditionDefinition>{
 
-    void populateViewsWithData (ConditionDefinition item);
 }

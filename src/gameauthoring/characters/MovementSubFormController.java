@@ -2,7 +2,7 @@ package gameauthoring.characters;
 
 import engine.definitions.SpriteDefinition;
 
-public class MovementSubFormController implements SpriteSubFormController {
+public class MovementSubFormController implements ISubFormControllerSprite {
 
     @Override
     public void updateGameModel (SpriteDefinition item) {
