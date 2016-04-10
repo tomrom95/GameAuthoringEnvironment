@@ -1,9 +1,8 @@
 package gameauthoring.characters;
 
-
 /**
  * 
- * @author JoeLilien
+ * @author JoeLilien, Jeremy Schreck
  *
  */
 
@@ -17,4 +16,7 @@ public interface ISubFormController<T> {
     void updateGameModel (T item);
 
     void populateViewsWithData (T item);
+    
+    ISubFormView getSubFormView();
+
 }

@@ -3,6 +3,8 @@ package gameauthoring.characters;
 import java.util.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -15,14 +17,13 @@ import javafx.beans.property.StringProperty;
 
 public class FormData {
     private String myKey;
-    private List<StringProperty> myValues;
+    private ObservableList<StringProperty> myValues;
 
     public FormData (String key, List<String> values) {
         List<StringProperty> valuesP = new ArrayList<StringProperty>();
         for (String value : values) {
             valuesP.add(new SimpleStringProperty(value));
-        }
-
+        }        
         init(key, valuesP);
 
     }
@@ -33,20 +34,17 @@ public class FormData {
         init(key, valuesP);
     }
 
-//    public FormData (String key, List<StringProperty> values) {
-//        init(key, values);
-//    }
 
     private void init (String key, List<StringProperty> values) {
         myKey = key;
-        myValues = values;
+        myValues = FXCollections.observableList(values);
     }
 
     public String getMyKey () {
         return myKey;
     }
 
-    public List<StringProperty> getMyValueProperties () {
+    public ObservableList<StringProperty> getMyValueProperties () {
         return myValues;
     }
 

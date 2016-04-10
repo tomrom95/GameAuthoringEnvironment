@@ -1,5 +1,8 @@
 package gameauthoring.characters;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Abstract class for an simple implementation of IEntryView
  * 
@@ -12,16 +15,24 @@ package gameauthoring.characters;
  * design decision: state vs functional programming
  * 
  * @author Jeremy Schreck
- *
+ * @author Joe Lilien
+ * 
  */
 public abstract class EntryView implements IEntryView {
 
     private FormData myFormData;
-
-    /*public EntryView (FormData formData) {
-        myFormData = formData;
-    }*/
-
+    private String myLabel;
+ 
+    public EntryView(String label, IFormDataManager data){
+        this.myLabel = label;
+        this.myFormData = new FormData(label, new ArrayList<String>(Arrays.asList("")));
+        data.add(myFormData);
+    }
+    
+    public String getLabel(){
+        return myLabel;
+    }
+    
     @Override
     public FormData getData () {
         return myFormData;
