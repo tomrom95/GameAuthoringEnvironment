@@ -97,4 +97,10 @@ public class LevelManager implements ILevelManager {
         myCurrentLevel = newLevel;
     }
 
+    @Override
+    public void add (ISprite sprite) {
+        myCurrentLevel.get().add(sprite);
+        
+    }
+
 }

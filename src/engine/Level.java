@@ -117,4 +117,10 @@ public class Level implements ILevel {
         return myAttributeManager;
     }
 
+    @Override
+    public void add (ISprite sprite) {
+        mySpriteManager.get().add(sprite);
+        
+    }
+
 }

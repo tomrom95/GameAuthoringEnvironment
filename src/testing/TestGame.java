@@ -35,12 +35,12 @@ public class TestGame extends Application {
     @Override
     public void start (Stage primaryStage) throws Exception {
 
-        XStream xstream = new XStream(new DomDriver());
-        FXConverters.configure(xstream);
+       // XStream xstream = new XStream(new DomDriver());
+        //FXConverters.configure(xstream);
 
         ObjectProperty<ILevel> startingLevel = new SimpleObjectProperty<>(new Level());
         LevelManager levelManager = new LevelManager(startingLevel);
-        xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
+        //xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
 
         ISprite sprite = createFollowSprite();
         // levelManager.add(sprite, new Coordinate(0,0));
@@ -49,9 +49,9 @@ public class TestGame extends Application {
         ConditionManager conditionManager = new ConditionManager();
         Game game = new Game(levelManager, new GameInformation("r", "r", "r"), conditionManager);
 
-        Game game2 = (Game) xstream.fromXML(xstream.toXML(game));
+        //Game game2 = (Game) xstream.fromXML(xstream.toXML(game));
 
-        GamePlayer player = new GamePlayer(game2);
+        GamePlayer player = new GamePlayer(game);
 
     }
 

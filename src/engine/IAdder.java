@@ -23,5 +23,7 @@ public interface IAdder extends Updateable {
 
     void add (ISprite sprite, Coordinate coordinate);
     
+    void add (ISprite sprite);
+    
     
 }
