@@ -2,6 +2,8 @@ package gameauthoring.characters;
 
 import java.util.List;
 import java.util.function.Consumer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -31,10 +33,27 @@ public class ObjectCreationView<E> implements IObjectCreationView<E> {
      * @param objectListView The IObjectListView that displays the list of created objects
      * @param formView The IFormView that displays the form to create a new object
      */
-    public ObjectCreationView (IObjectListView objectListView, IFormView formView) {
+    public ObjectCreationView (IObjectListView<E> objectListView, IFormView formView) {
         setObjectListView(objectListView);
         setFormView(formView);
         init();
+    }
+    
+    public ObjectCreationView(List<ISubFormView> subFormViews) {
+        setObjectListView(createListView());
+        setFormView(createFormView(subFormViews));
+        init();
+    }
+    
+    private IObjectListView<E> createListView () {
+        ObservableList<E> objectList = FXCollections.observableArrayList();
+        IObjectListView<E> objectListView = new ObjectListView<E>(objectList);
+        return objectListView;
+    }
+    
+    private IFormView createFormView (List<ISubFormView> subFormViews) {
+        IFormView formView = new FormView(subFormViews);
+        return formView;
     }
 
     /**

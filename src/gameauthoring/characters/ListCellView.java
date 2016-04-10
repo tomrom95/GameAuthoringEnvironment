@@ -12,6 +12,7 @@ public class ListCellView<E> implements IListCellView<E> {
     @Override
     public Node draw () {
         // TODO Auto-generated method stub
+        
         return null;
     }
 

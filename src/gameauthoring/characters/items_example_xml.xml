@@ -1,0 +1,18 @@
+<creationTabs>
+	<Enemies>
+		<title>Enemies</title>
+		<creationController>engine.authoring.CreationControllerSprite</creationController>
+		<subforms>
+			<subform>
+				<Controller>engine.authoring.ProfileSubFormController</Controller>
+			</subform>	
+			<subform>
+				<Controller>AttributeSubFormController</Controller>
+			</subform>
+			<subform>
+				<Controller>MovementSubFormController</Controller>
+			</subform>
+		</subforms>
+	</Enemies>
+</creationTabs>
+	

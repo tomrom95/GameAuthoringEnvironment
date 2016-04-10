@@ -1,5 +1,6 @@
 package gameauthoring.characters;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import com.sun.org.apache.bcel.internal.classfile.Attribute;
@@ -65,15 +66,44 @@ public class XMLParser {
          *              
          */
         
-        for (int i = 0; i<6; i++){// for each creation tab in xml
+        // for each creation tab in xml
             String name = "Enemies";
-            String itemClassName = "engine.sprite.ISprite";
-            Class<?> itemClass = Class.forName(itemClassName);
-            List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
-            Class<?> test =  itemClass.getComponentType();
-            List<ISubFormController<Sprite>> subFormControllers = new ArrayList<ISubFormController<ISprite>>();
-
+            String itemClassName = "ISprite"; //maps to SpriteCreationController, SpriteObservableList, SpriteObjectListView, SpriteObjectCreationView
             
+            List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
+            List<ISubFormController<?>> subFormControllers = new ArrayList<ISubFormController<?>>();
+            
+            //for each <subform> in <subforms>
+                String subFormName = "Profile"; //maps to ProfileController, ProfileView (or one them is instantiated in the other)
+                String subFormControllerName = "authoring.ProfileSubFormController";
+                String subFormViewName = "authoring.ProfileSubFormView";
+
+                String arrangementClass = "Arrangement 1";
+                
+                Class<?> subFormViewClass = Class.forName(subFormViewName);
+                ISubFormView subFormView = (ISubFormView) subFormViewClass.newInstance();
+                
+                Class<?> subFormControllerClass = Class.forName(subFormControllerName);
+                Constructor<?> ctor = subFormControllerClass.getDeclaredConstructor(ISubFormView.class);
+                ISubFormController<?> subFormController = (ISubFormController<?>) ctor.newInstance(subFormView);
+                
+                
+                
+                subFormControllers.add(subFormController);
+                subFormViews.add(subFormView);
+                
+           //end for
+            String creationViewName = "authoring.SpriteObjectCreationView";
+            Class<?> creationViewClass = Class.forName(creationViewName);
+            Constructor<?> creationViewCtor = creationViewClass.getDeclaredConstructor(List.class);
+            IObjectCreationView<?> creationView = (IObjectCreationView<?>) creationViewCtor.newInstance(subFormViews);
+            
+            String creationControllerName = "authoring.SpriteCreationController";
+            Class<?> creationControllerClass = Class.forName(itemClassName);
+            Constructor<?> creationControllersCtor = creationControllerClass.getDeclaredConstructor(IObjectCreationView.class, ISubFormController.class);
+            ICreationController<?> creationController = (ICreationController<?>) creationControllersCtor.newInstance(creationView, subFormControllers);
+            
+        //endfor 
             
             
         }

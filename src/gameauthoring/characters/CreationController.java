@@ -26,6 +26,10 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
     public CreationController () {
 
     }
+    public CreationController(IObjectCreationView<ItemType> objectCreationView, List<ISubFormController<ItemType>> subFormControllers){
+        myView = objectCreationView;
+        mySubFormControllers = subFormControllers;
+    }
 
     public CreationController (ObservableList<ItemType> items,
                                IObjectCreationView objectCreationView) {
