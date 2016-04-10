@@ -14,12 +14,12 @@ import util.Coordinate;
 public class SpriteContextMenu {
     
     private LevelRenderer levelView;
-    private ObjectProperty<ISprite> mySprite;
+    private ISprite mySprite;
     private SpriteController myController;
     private ResourceBundle myResources;
     
     public SpriteContextMenu (LevelRenderer renderer, SpriteController controller,
-                              ObjectProperty<ISprite> sprite) {
+                              ISprite sprite) {
         levelView = renderer;
         myController = controller;
         mySprite = sprite;
@@ -64,7 +64,7 @@ public class SpriteContextMenu {
     }
     
     public void createPath () {
-        Coordinate point = mySprite.get().getLocation().get();
+        Coordinate point = mySprite.getLocation();
         myController.createNewPath(point, levelView.getPane());
     }
     
