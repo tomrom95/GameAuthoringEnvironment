@@ -35,7 +35,7 @@ public class UserFirer extends Firer {
     private ObjectProperty<IAttribute> myAmmo;
 
     public UserFirer (SpriteDefinition fireSprite, Key fireKey, IAdder adder, double ammo) {
-
+        
         myFireKey = fireKey;
         myProjectile = fireSprite;
         myAdder = adder;
@@ -56,6 +56,7 @@ public class UserFirer extends Firer {
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
+        
         if (keyEvent.getType() == InputType.KEY_PRESSED &&
             keyEvent.getKey().isEqual(myFireKey)) {
             registerKeyPress(keyEvent.getKey());
@@ -64,6 +65,7 @@ public class UserFirer extends Firer {
     }
 
     private void registerKeyPress (Key fire) {
+        System.out.println("FIRE");
         ISprite bullet = myProjectile.create();
         myAdder.add(bullet, bullet.getLocation().get());
 
