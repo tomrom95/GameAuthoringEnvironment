@@ -40,7 +40,7 @@ public class SpriteManager implements ISpriteManager {
    
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
-        mySpriteList.add(sprite);
+        add(sprite);
         sprite.getLocation().get().setLocation(coordinate.getX(), coordinate.getY());
     }
 
@@ -68,6 +68,12 @@ public class SpriteManager implements ISpriteManager {
     @Override
     public ObservableList<ISprite> getSprites () {
         return mySpriteList;
+    }
+
+    @Override
+    public void add (ISprite sprite) {
+        mySpriteList.add(sprite);
+        
     }
 
 }
