@@ -29,17 +29,17 @@ public class ProfileSubFormView extends SubFormView{
     }
 
     // Button for binding testing
-    private Button testButton(){
-        Button button = new Button("Test Map");
-        button.setOnAction(e->{System.out.println(this.getData().getValueProperty(myNameKey));
-                                System.out.println(this.getData().getValueProperty(myImageKey));});
-        return button;
-    }
-    private Button testSave(){
-        Button button = new Button("Update Map");
-        button.setOnAction(e->{this.getData().set(myNameKey, "cool");});
-        return button;
-    }
+//    private Button testButton(){
+//        Button button = new Button("Test Map");
+//        button.setOnAction(e->{System.out.println(this.getData().getValueProperty(myNameKey));
+//                                System.out.println(this.getData().getValueProperty(myImageKey));});
+//        return button;
+//    }
+//    private Button testSave(){
+//        Button button = new Button("Update Map");
+//        button.setOnAction(e->{this.getData().set(myNameKey, "cool");});
+//        return button;
+//    }
     
     //
     private void initView () {
@@ -47,9 +47,7 @@ public class ProfileSubFormView extends SubFormView{
         myPane.setGridLinesVisible(true);
         myPane.add(myName.draw(), 0, 0);
         myPane.add(myDescription.draw(), 0, 1);
-        myPane.add(myImage.draw(), 1,0, 1, 1);    
-        myPane.add(testButton(), 0, 2);
-        myPane.add(testSave(), 1, 2);
+        myPane.add(myImage.draw(), 1,0, 1, 1);            
     }
     
     public String getMyNameKey () {
