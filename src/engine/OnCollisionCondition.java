@@ -27,7 +27,10 @@ public class OnCollisionCondition implements ICondition {
     // private ISpriteGroup myOtherGroup;
     // private List<IEffect> myApplyToGlobalAttys;
 
-    private IEventPackage myGroupAPackage, myGroupBPackage, myOtherPackage, myGlobalPackage;
+    private IEventPackage myGroupAPackage;
+    private IEventPackage myGroupBPackage;
+    private IEventPackage myOtherPackage; 
+    private IEventPackage myGlobalPackage;
 
 //    public OnCollisionCondition (IGame game,
 //                                 ISpriteGroup groupA,
@@ -42,13 +45,13 @@ public class OnCollisionCondition implements ICondition {
     public OnCollisionCondition (IGame game,
                                  IEventPackage groupA,
                                  IEventPackage groupB,
-                                 IEventPackage other,
+                                 IEventPackage otherPackage,
                                  IEventPackage globalPackage) {
 
         myGame = game;
         myGroupAPackage = groupA;
         myGroupBPackage = groupB;
-        myOtherPackage = other;
+        myOtherPackage = otherPackage;
         myGlobalPackage = globalPackage;
 
         // myGame = game;
@@ -85,13 +88,13 @@ public class OnCollisionCondition implements ICondition {
     }
 
     private void handleCollision (ISprite outerSprite, ISprite innerSprite) {
-        myGroupAPackage.getMyEffects().forEach(effect -> outerSprite.applyEffect(effect));
-        myGroupBPackage.getMyEffects().forEach(effect -> innerSprite.applyEffect(effect));
+        applyPackageEffectsToSprite(myGroupAPackage, outerSprite);
+        applyPackageEffectsToSprite(myGroupBPackage, innerSprite);
         List<ISprite> sprites =
                 myGame.getLevelManager().getCurrentLevel().get().getSprites();
         sprites.stream()
                 // CONCERN here as to what myApplyToOtherGroup is
-                .filter(sprite -> myGroupBPackage.getTargetedSpriteGroup()
+                .filter(sprite -> myOtherPackage.getTargetedSpriteGroup()
                         .contains(sprite.getType().get()))
                 .forEach(sprite -> myOtherPackage.getMyEffects()
                         .forEach(effect -> sprite.applyEffect(effect)));
@@ -100,6 +103,10 @@ public class OnCollisionCondition implements ICondition {
         myGlobalPackage.getMyEffects()
                 .forEach(effect -> myGame.getLevelManager().getCurrentLevel().get()
                         .getAttributeManager().get().applyEffect(effect));
+    }
+    
+    private void applyPackageEffectsToSprite(IEventPackage myPackage, ISprite mySprite){
+        myPackage.getMyEffects().forEach(effect -> mySprite.applyEffect(effect));
     }
 
     @Override
