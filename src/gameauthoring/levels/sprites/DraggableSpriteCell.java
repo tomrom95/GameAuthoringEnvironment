@@ -1,9 +1,9 @@
 package gameauthoring.levels.sprites;
 
+import engine.rendering.AuthoringRenderer;
 import engine.rendering.UnscaledFactory;
 import gameauthoring.SpriteCellView;
 import gameauthoring.UIFactory;
-import gameauthoring.levels.LevelRenderer;
 import gameauthoring.levels.SceneController;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -15,10 +15,10 @@ import javafx.scene.input.TransferMode;
 public class DraggableSpriteCell extends SpriteCellView implements Draggable{
     private static final String DRAG_STRING = "Sprite";
 
-    private LevelRenderer myTarget;
+    private AuthoringRenderer myTarget;
     private SceneController myController;
     
-    public DraggableSpriteCell (LevelRenderer target, SceneController controller) {
+    public DraggableSpriteCell (AuthoringRenderer target, SceneController controller) {
         myTarget = target;
         myController = controller;
     }

@@ -3,6 +3,7 @@ package gameauthoring.levels;
 import java.io.File;
 import engine.ILevel;
 import engine.sprite.ISprite;
+import graphics.ImageGraphic;
 import javafx.stage.FileChooser;
 import util.Coordinate;
 
@@ -19,7 +20,12 @@ public class SceneController {
         File newImage = (new FileChooser()).showOpenDialog(null);
         if (newImage == null)
             return;
-        //myScene.setBackground(newImage.toURI().toString());
+        setBackground(newImage.toURI().toString());
+    }
+    
+    public void setBackground(String imageURL) {
+        ImageGraphic background = new ImageGraphic(800, 500, imageURL);
+        myLevel.getBackgroundImageProperty().set(background);
     }
 
     public void addSprite (double x, double y, ISprite sprite) {

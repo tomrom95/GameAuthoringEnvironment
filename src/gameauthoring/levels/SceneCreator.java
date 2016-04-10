@@ -2,6 +2,7 @@ package gameauthoring.levels;
 
 import engine.IGame;
 import engine.ILevel;
+import engine.rendering.AuthoringRenderer;
 import engine.sprite.ISprite;
 import gameauthoring.Glyph;
 import gameauthoring.levels.sprites.DraggableSpriteCell;
@@ -26,7 +27,7 @@ public class SceneCreator implements Glyph {
     public final static int WIDTH = 700;
 
     private IGame gameModel;
-    private LevelRenderer levelView;
+    private AuthoringRenderer levelView;
     private ILevel myLevel;
     private SceneController myController;
     private DoubleProperty myHeight;
@@ -73,10 +74,10 @@ public class SceneCreator implements Glyph {
     
     private Node createLevelView () {
         Pane levelPane = new Pane();
-        levelView = new LevelRenderer(myLevel, levelPane);
+        levelView = new AuthoringRenderer(myLevel, levelPane);
         levelView.render();
         
-        levelView.setBackground(DEFAULT_BACKGROUND);
+        myController.setBackground(DEFAULT_BACKGROUND);
 
         levelPane.setOnMouseClicked(e -> handleMouseClick(e));
         return levelPane;

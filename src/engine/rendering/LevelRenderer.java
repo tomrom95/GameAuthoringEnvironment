@@ -1,9 +1,7 @@
-package gameauthoring.levels;
+package engine.rendering;
 
-import engine.ILevel;
-import engine.rendering.IRenderer;
-import engine.sprite.ISprite;
-import gameauthoring.levels.sprites.OnScreenSprite;
+import engine.Drawable;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -11,33 +9,39 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
+import util.Coordinate;
 
-public class LevelRenderer implements IRenderer{
+public abstract class LevelRenderer implements IRenderer{
     
     private Pane myPane;
-    private ILevel myLevel;
 
-    public LevelRenderer (ILevel level, Pane pane) {
+    public LevelRenderer (Pane pane) {
         myPane = pane;
-        myLevel = level;
     }
-    
-    public Pane getPane(){
-        return myPane;
-    }
-    
+
     @Override
     public void render () {
         myPane.getChildren().clear();
-        myLevel.getSprites().forEach(sprite -> createOnScreenSprite(sprite));
+        drawBackground(getBackgroundURL());
+        drawSprites();
     }
     
-    private void createOnScreenSprite (ISprite sprite) {
-        myPane.getChildren().add((new OnScreenSprite(this, myLevel, sprite)).draw());
+    public Pane getPane() {
+        return myPane;
     }
 
-    public void setBackground (String imagePath) {
-        Image img = new Image(imagePath, SceneCreator.WIDTH, SceneCreator.HEIGHT, true, true);
+    abstract void drawSprites ();
+    
+    abstract String getBackgroundURL();
+
+    protected void draw (Node node, Drawable sprite) {
+        Coordinate location = sprite.getLocation().get();
+        node.relocate(location.getX(), location.getY());
+        myPane.getChildren().add(node);
+    }    
+
+    private void drawBackground (String url) {
+        Image img = new Image(url);
         BackgroundImage background = new BackgroundImage(img,
                                                          BackgroundRepeat.NO_REPEAT,
                                                          BackgroundRepeat.NO_REPEAT,
@@ -47,7 +51,5 @@ public class LevelRenderer implements IRenderer{
         myPane.setMinWidth(img.getWidth());
         myPane.setMinHeight(img.getHeight());
     }
-
     
-
 }
