@@ -8,7 +8,13 @@ import engine.GameInformation;
 import engine.ILevel;
 import engine.Level;
 import engine.LevelManager;
+import engine.definitions.AttributeDefinition;
+import engine.definitions.KeyControlDefinition;
+import engine.definitions.LocationDefinition;
+import engine.definitions.ModuleDefiniton;
+import engine.definitions.MovementDefinition;
 import engine.definitions.SpriteDefinition;
+import engine.definitions.UserMoverDefinition;
 import engine.modules.GraphicModule;
 import engine.modules.IFireModule;
 import engine.modules.IGraphicModule;
@@ -82,6 +88,22 @@ public class TestFiring extends Application {
                 new SimpleObjectProperty<>(new UserMover(1, keys, sprite));
         
         SpriteDefinition bullet = new SpriteDefinition();
+        UserMoverDefinition move = new UserMoverDefinition();
+        bullet.setMovementDefinition(move);
+        move.setSpeed(10);
+        KeyControlDefinition control = new KeyControlDefinition();
+        control.setUp("Up");
+        control.setDown("Down");
+        control.setLeft("Left");
+        control.setRight("Right");
+        
+        ModuleDefinition moduleDef = new ModuleDefiniton();
+        
+        
+        List<ModuleDefiniton> myModuleDefinitions;
+        LocationDefinition myLocation;
+        List<AttributeDefinition> myAttributes;
+        move.setKeyControlDefintion(control);
         
         
         ObjectProperty<IFireModule> firer = new SimpleObjectProperty<>(new UserFirer(bullet, fireKey, start, 10));

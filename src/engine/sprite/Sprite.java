@@ -113,7 +113,6 @@ public class Sprite implements ISprite {
 
     @Override
     public void registerKeyEvent (KeyIOEvent event) {
-
         applyToAffectable(a -> a.registerKeyEvent(event));
 
     }
