@@ -19,12 +19,12 @@ public class SpriteController {
         pathCreator = new PathCreator();
     }
     
-    public void deleteSprite(ObjectProperty<ISprite> sprite){
+    public void deleteSprite(ISprite sprite){
         myLevel.remove(sprite);
     }
     
-    public void moveSprite(ObjectProperty<ISprite> sprite, double x, double y){
-        sprite.get().getLocation().set(new Coordinate(x, y));
+    public void moveSprite(ISprite sprite, double x, double y){
+        sprite.setLocation(new Coordinate(x, y));
     }
     
     public void createNewPath(Coordinate startPoint, Pane container){
