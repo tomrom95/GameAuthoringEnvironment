@@ -7,6 +7,7 @@ import gameauthoring.Glyph;
  * its SubFormController to control it
  * 
  * @author Jeremy Schreck
+ * @author Joe Lilien
  *
  */
 public interface ISubFormView extends Glyph {
@@ -17,11 +18,6 @@ public interface ISubFormView extends Glyph {
      * @return An IFormDataManager object that holds the data
      */
     IFormDataManager getData ();
+    
 
-    /**
-     * Populate the SubFormView's fields with new data
-     * 
-     * @param data An IFormDataManager object containing the new data
-     */
-    void populateWithData (IFormDataManager data);
 }

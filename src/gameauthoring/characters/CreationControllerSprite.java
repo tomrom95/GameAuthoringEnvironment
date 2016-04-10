@@ -1,5 +1,6 @@
 package gameauthoring.characters;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import engine.definitions.IDefinition;
@@ -110,5 +111,11 @@ public class CreationControllerSprite {
     private IObjectCreationView<SpriteDefinition> getMyObjectCreationView () {
         return myView;
     }
+
+=======
+import engine.definitions.SpriteDefinition;
+
+public class CreationControllerSprite {
+
 
 }
