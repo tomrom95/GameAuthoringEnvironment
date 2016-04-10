@@ -5,7 +5,7 @@ import engine.Affectable;
 import engine.AttributeManager;
 import engine.IAttribute;
 import engine.IResource;
-import engine.IStatusModule;
+import engine.IStatus;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
@@ -13,7 +13,7 @@ import engine.modules.GraphicModule;
 import engine.modules.IGraphicModule;
 import engine.modules.IModule;
 import engine.modules.IMovementModule;
-import engine.modules.StatusModule;
+import engine.modules.SpriteStatus;
 import graphics.Block;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -43,7 +43,7 @@ public class Sprite implements ISprite {
     private ObjectProperty<IProfile> myProfile;
     private ObservableList<ObjectProperty<? extends IModule>> myModules;
     private ObjectProperty<Coordinate> myLocation;
-    private ObjectProperty<IStatusModule> myStatusModule;
+    private ObjectProperty<IStatus> myStatus;
     private ObjectProperty<AttributeManager> myAttributeManager;
     private ObjectProperty<SpriteType> myType;
 
@@ -62,9 +62,8 @@ public class Sprite implements ISprite {
 
     private void initializeRequiredModules () {
         myModules = FXCollections.observableArrayList();
-        myStatusModule = new SimpleObjectProperty<>(new StatusModule());
+        myStatus = new SimpleObjectProperty<>(new SpriteStatus());
         myModules.add(myMover);
-        myModules.add(myStatusModule);
         myModules.add(myGraphic);
     }
 

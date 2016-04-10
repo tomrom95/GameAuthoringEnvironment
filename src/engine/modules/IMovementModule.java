@@ -1,7 +1,5 @@
 package engine.modules;
 
-import engine.IPositionable;
-
 /**
  * This interface represents a module of a sprite that handles its movement and positioning
  *
