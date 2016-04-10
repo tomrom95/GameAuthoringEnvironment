@@ -25,7 +25,7 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 public class BrowserView {
 
     public static final Dimension DEFAULT_SIZE = new Dimension(800, 600);
-    private static final String PROTECTED_RESOURCE_URL = "https://graph.facebook.com/v2.5/me";
+    private static final String PROTECTED_RESOURCE_URL = "https://graph.facebook.com/v2.5/10204226196654701";
     private static final String CALLBACK_URL =
             "https://github.com/duke-compsci308-spring2016/voogasalad_GitDepends/";
 
@@ -71,9 +71,6 @@ public class BrowserView {
                     System.out.println("(if your curious it looks like this: " + accessToken +
                                        ", 'rawResponse'='" + accessToken.getRawResponse() + "')");
                     System.out.println(accessToken.getAccessToken());
-                    System.out.println(" blah " + accessToken.getAccessToken().split("\\|")[1]);
-                    accessToken =
-                            new OAuth2AccessToken(accessToken.getAccessToken().split("\\|")[1]);
 
                     System.out.println(accessToken.getAccessToken());
 
@@ -91,7 +88,7 @@ public class BrowserView {
 
                     OAuthRequest nextRequest =
                             new OAuthRequest(Verb.POST,
-                                             "https://graph.facebook.com/me/notifications",
+                                             "https://graph.facebook.com/10204226196654701/notifications",
                                              service);
                     String message = "Let's make tower defense!";
                     nextRequest.addBodyParameter("access_token", accessToken.getAccessToken());
@@ -122,7 +119,7 @@ public class BrowserView {
                 .apiSecret(clientSecret)
                 .callback(CALLBACK_URL)
                 .grantType("client_credentials")
-                // .scope("publish_actions")
+                //.scope("publish_actions")
                 .build(FacebookApi.instance());
 
         System.out.println();
