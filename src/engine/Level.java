@@ -85,12 +85,14 @@ public class Level implements ILevel {
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
         mySpriteManager.get().internalizeKeyEvents(list);
+        myConditionManager.get().internalizeKeyEvents(list);
 
     }
 
     @Override
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
         mySpriteManager.get().internalizeMouseEvents(list);
+        myConditionManager.get().internalizeMouseEvents(list);
 
     }
 

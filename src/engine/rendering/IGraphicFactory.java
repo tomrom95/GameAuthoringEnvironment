@@ -6,7 +6,6 @@ import graphics.Block;
 import graphics.ImageGraphic;
 import graphics.TextGraphic;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 
 

@@ -11,6 +11,7 @@ import java.io.Serializable;
  */
 
 public class Coordinate {
+    private final static String FORMATTER = "(%.2f,%.2f)";
 
     private double xCoordinate;
     private double yCoordinate;
@@ -40,6 +41,10 @@ public class Coordinate {
         setX(x);
         setY(y);
 
+    }
+    
+    public String toString () {
+        return String.format(FORMATTER, getX(), getY());
     }
 
 }

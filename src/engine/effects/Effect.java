@@ -62,6 +62,6 @@ public abstract class Effect implements IEffect {
     }
     
     public void update (TimeDuration duration) {
-        myEffectLength.getValueProperty().set(duration.getMillis());
+        myEffectLength.getValueProperty().set(myEffectLength.getValueProperty().get() - duration.getMillis());
     }
 }

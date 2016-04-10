@@ -37,11 +37,11 @@ public class Launcher extends Application {
     private Sprite mySprite;
     private Pane myPane;
     private Renderer myRenderer;
-    
+
     public static void main (String[] args) {
         launch(args);
     }
-    
+
     private void initializeTimeline () {
         Timeline timeline = new Timeline();
         Duration frameDuration = Duration.seconds(1.0d / 60);
@@ -53,15 +53,15 @@ public class Launcher extends Application {
 
     private void step (Duration frameDuration) {
         mySprite.update(new TimeDuration(10));
-        myIO.deQueueKeyEvents().forEach(e-> mySprite.registerKeyEvent(e));
+        myIO.deQueueKeyEvents().forEach(e -> mySprite.registerKeyEvent(e));
         myRenderer.render();
         myRenderer.draw(mySprite);
-      
+
     }
-    
+
     @Override
     public void start (Stage primaryStage) throws Exception {
-        
+
         Stage myStage = new Stage();
         myPane = new Pane();
         myPane.setStyle("-fx-background-color: blue;");
@@ -69,18 +69,21 @@ public class Launcher extends Application {
         myPane.setPrefSize(1000, 400);
         myStage.setScene(myScene);
         myStage.show();
-        myPane.setOnKeyPressed(e-> System.out.println("Pane"));
-        myIO = new IOInterpeter (myScene, myPane);
+        myPane.setOnKeyPressed(e -> System.out.println("Pane"));
+        myIO = new IOInterpeter(myScene, myPane);
         myPane.requestFocus();
-        ControlKeys keys = new ControlKeys(new Key("Up"), new Key("Left"), new Key("Right"), new Key("Down"));
+        ControlKeys keys =
+                new ControlKeys(new Key("Up"), new Key("Left"), new Key("Right"), new Key("Down"));
         List<Coordinate> list = new ArrayList<>();
-        list.add(new Coordinate(100,100));
+        list.add(new Coordinate(100, 100));
         list.add(new Coordinate(20, 20));
         list.add(new Coordinate(200, 2));
         list.add(new Coordinate(500, 30));
         mySprite = new Sprite();
-        ObjectProperty<IMovementModule> mover = new SimpleObjectProperty<>(new PathMover(.10, list, mySprite));
-        ObjectProperty<IGraphicModule> g = new SimpleObjectProperty<>(new GraphicModule(new Block(20, 20, RGBColor.BLACK)));
+        ObjectProperty<IMovementModule> mover =
+                new SimpleObjectProperty<>(new PathMover(.10, list, mySprite));
+        ObjectProperty<IGraphicModule> g =
+                new SimpleObjectProperty<>(new GraphicModule(new Block(20, 20, RGBColor.BLACK)));
         mySprite.getMovementStrategyProperty().set(mover.get());
         mySprite.getDrawer().set(g.get());
         initializeTimeline();
@@ -88,6 +91,5 @@ public class Launcher extends Application {
         myStage.show();
         myRenderer.draw(mySprite);
     }
-    
 
 }

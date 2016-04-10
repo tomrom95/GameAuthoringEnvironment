@@ -1,6 +1,7 @@
 package engine.sprite;
 
 import engine.Affectable;
+import engine.AttributeManager;
 import engine.Drawable;
 import engine.IAttribute;
 import engine.IPositionable;
@@ -25,6 +26,7 @@ import util.Bounds;
  * @author Jeremy Schreck
  *
  */
+
 public interface ISprite extends Drawable, Updateable, Affectable, IPositionable {
 
     ObjectProperty<IMovementModule> getMovementStrategyProperty ();
@@ -34,6 +36,8 @@ public interface ISprite extends Drawable, Updateable, Affectable, IPositionable
     ObservableList<ObjectProperty<IAttribute>> getAttributes ();
 
     ObservableList<ObjectProperty<IResource>> getResourcesProperty ();
+    
+    ObjectProperty<AttributeManager> getAttributeManager();
 
     Bounds getBounds ();
 

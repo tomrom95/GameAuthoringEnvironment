@@ -12,7 +12,7 @@ import engine.modules.IModule;
  * @author Jonathan Im
  *
  */
-public interface IStatusModule extends IModule {
+public interface IStatus extends GameEventHandler {
 
     /**
      * @return whether this sprite should be removed from the game

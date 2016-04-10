@@ -7,6 +7,7 @@ import engine.interactionevents.MouseIOEvent;
 import engine.rendering.IGraphicFactory;
 import graphics.IGraphic;
 import javafx.beans.property.ObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import util.TimeDuration;
@@ -62,7 +63,7 @@ public class GraphicModule implements IGraphicModule {
     @Override
     public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
         // TODO Auto-generated method stub
-        return null;
+        return FXCollections.observableArrayList();
     }
 
 }
