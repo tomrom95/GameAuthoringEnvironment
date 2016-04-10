@@ -2,6 +2,7 @@ package gameauthoring.characters;
 
 import java.util.function.Consumer;
 import gameauthoring.Glyph;
+import javafx.collections.ObservableList;
 
 /**
  * This is an interface for a view class that displays a list of objects
@@ -17,4 +18,12 @@ public interface IObjectListView<E> extends Glyph {
      * @param action The action to take when the user decides to edit a different item
      */
     void setEditAction(Consumer<E> action);
+    
+    /**
+     * Get the items in the list
+     * 
+     * @return The list of items
+     */
+    ObservableList<E> getMyItems ();
+
 }

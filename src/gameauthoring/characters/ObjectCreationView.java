@@ -2,6 +2,7 @@ package gameauthoring.characters;
 
 import java.util.List;
 import java.util.function.Consumer;
+import engine.definitions.IDefinition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -17,28 +18,26 @@ import javafx.scene.layout.GridPane;
  * @author JoeLilien, Jeremy Schreck
  *
  */
-public class ObjectCreationView<E> implements IObjectCreationView<E> {
+public class ObjectCreationView<E extends IDefinition> implements IObjectCreationView<E> {
 
-    private GridPane myCreationPane = new GridPane();
     private IObjectListView<E> myObjectListView;
-    private IFormView myFormView;
-    private List<ISubFormView> mySubFormViews;
-    private String myTitle;
+    private IFormView myFormView;    
+    
     private Button myNewButton = new Button("New");
+    private GridPane myCreationPane = new GridPane();
 
 
     /**
      * Constructor
      * 
-     * @param objectListView The IObjectListView that displays the list of created objects
-     * @param formView The IFormView that displays the form to create a new object
+     * Note: the sumformviews in an ObjectCreationView are customizable
+     * - this way, we can add classes that implement IObjectCreationView and
+     * lay out their subforms in different ways
+     * - the only requirement is that they have a list of ISubFormViews, so that
+     * we can generate those reflectively
+     * 
+     * @param subFormViews The subformviews to create the FormView with
      */
-    public ObjectCreationView (IObjectListView<E> objectListView, IFormView formView) {
-        setObjectListView(objectListView);
-        setFormView(formView);
-        init();
-    }
-    
     public ObjectCreationView(List<ISubFormView> subFormViews) {
         setObjectListView(createListView());
         setFormView(createFormView(subFormViews));
@@ -78,17 +77,7 @@ public class ObjectCreationView<E> implements IObjectCreationView<E> {
     // Getters and Setters
 
     @Override
-    public void setObjectListView (IObjectListView objectListView) {
-        this.myObjectListView = objectListView;
-    }
-
-    @Override
-    public void setFormView (IFormView formView) {
-        this.myFormView = formView;
-    }
-
-    @Override
-    public IObjectListView getObjectListView () {
+    public IObjectListView<E> getObjectListView () {
         // TODO Auto-generated method stub
         return myObjectListView;
     }
@@ -98,18 +87,7 @@ public class ObjectCreationView<E> implements IObjectCreationView<E> {
         // TODO Auto-generated method stub
         return myFormView;
     }
-
-    @Override
-    public void setSubFormViews (List<ISubFormView> subFormViews) {
-        this.mySubFormViews = subFormViews;
-        
-    }
-
-    @Override
-    public void setTitle (String name) {
-        myTitle = name;
-    }
-
+    
     @Override
     public void setNewAction (Consumer<?> action) {
         myNewButton.setOnAction(e -> action.accept(null));
@@ -117,10 +95,14 @@ public class ObjectCreationView<E> implements IObjectCreationView<E> {
 
     @Override
     public void setEditAction (Consumer<E> action) {
-        // TODO Auto-generated method stub
         //set listcell's edit button's setOnAction to call action
-        //how to retrieve which item is associated with that list cell?
         getObjectListView().setEditAction(action);
+        
+    }
+
+    @Override
+    public ObservableList<E> getItems () {
+        return getObjectListView().getMyItems();
         
     }
 

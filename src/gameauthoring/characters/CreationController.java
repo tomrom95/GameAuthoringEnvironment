@@ -3,7 +3,10 @@ package gameauthoring.characters;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import engine.definitions.IDefinition;
+import engine.definitions.ProfileDefinition;
 import javafx.collections.ObservableList;
+
 
 /**
  * This class is the high level controller for a creation/list view
@@ -13,41 +16,43 @@ import javafx.collections.ObservableList;
  * 
  * @author Jeremy Schreck
  *
- * @param <ItemType> The type of object to be created and stored -- ex: Sprite, Interaction,
+ * @param <T> The type of object to be created and stored -- ex: Sprite, Interaction,
  *        Attribute
  */
-public class CreationController<ItemType> implements ICreationController<ItemType> {
-    private ObservableList<ItemType> myItems;
-    private IObjectCreationView<ItemType> myView;
-    private List<ISubFormController<ItemType>> mySubFormControllers;
-    private ItemType myCurrentItem;
-    private Factory<? extends ItemType> myFactory;
+public abstract class CreationController<T extends ProfileDefinition> {
+    private IObjectCreationView<T> myView;
+    private List<ISubFormController<T>> mySubFormControllers;
+    private T myCurrentItem;
 
-    public CreationController () {
-
-    }
-    public CreationController(IObjectCreationView<ItemType> objectCreationView, List<ISubFormController<ItemType>> subFormControllers){
-        myView = objectCreationView;
+    public CreationController (List<ISubFormController<T>> subFormControllers) {
         mySubFormControllers = subFormControllers;
-    }
-
-    public CreationController (ObservableList<ItemType> items,
-                               IObjectCreationView objectCreationView) {
-        setItems(items);
-        setObjectCreationView(objectCreationView);
-        mySubFormControllers = new ArrayList<ISubFormController<ItemType>>();
+        List<ISubFormView> subFormViews = getSubFormViews(mySubFormControllers);
+        myView = new ObjectCreationView<T>(subFormViews);
         init();
+
     }
 
+    private List<ISubFormView> getSubFormViews (List<ISubFormController<T>> subFormControllers) {
+        List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
+
+        for (ISubFormController<T> subFormController : subFormControllers) {
+            subFormViews.add(subFormController.getSubFormView());
+        }
+        return subFormViews;
+    }
+
+    /**
+     * Set up event handler connections
+     */
     private void init () {
         IFormView formView = getMyObjectCreationView().getFormView();
         formView.setSaveAction(e -> saveItem());
         formView.setDeleteAction(e -> deleteItem());
-        
-        IObjectCreationView<ItemType> creationView = getMyObjectCreationView();
+
+        IObjectCreationView<T> creationView = getMyObjectCreationView();
         creationView.setEditAction(e -> showAndEdit(e));
-        creationView.setNewAction(e -> createBlankItem());
-        
+        creationView.setNewAction(e -> newItem());
+
     }
 
     /**
@@ -55,10 +60,9 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
      * 
      */
     private void saveItem () {
-        for (ISubFormController<ItemType> subFormController : getMySubFormControllers()) {
-            subFormController.updateGameModel(getMyCurrentItem()); //make more generic later
+        for (ISubFormController<T> subFormController : getMySubFormControllers()) {
+            subFormController.updateGameModel(getMyCurrentItem()); // make more generic later
         }
-        addItem(getMyCurrentItem());
     }
 
     /**
@@ -70,84 +74,68 @@ public class CreationController<ItemType> implements ICreationController<ItemTyp
      * 
      * @param item the item to delete
      * 
-     * Instead: delete the item currently being edited in the form
+     *        Instead: delete the item currently being edited in the form
      */
     private void deleteItem () {
         getMyItems().remove(getMyCurrentItem());
     }
 
-    
-    private void createBlankItem() {
-        //create new itemType() using factory class
-        //show and edit itemType
-        ItemType item = myFactory.create();
+    /**
+     * Method handler when user clicks "new" object
+     * 
+     * Note: need blank definitions to have empty strings instead of null so that
+     * no front end erros occur
+     * 
+     * 
+     */
+    private void newItem () {
+        T item = createBlankItem();
         showAndEdit(item);
+        addItem(item);
     }
     
-    private void showAndEdit(ItemType item) {
+    protected abstract T createBlankItem();
+
+    /**
+     * Method called when user clicks a cell in the list view
+     * 
+     * @param item The item contained in the cell that was clicked
+     */
+    private void showAndEdit (T item) {
         setMyCurrentItem(item);
-        for (ISubFormController<ItemType> subFormController : getMySubFormControllers()) {
+        for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.populateViewsWithData(item);
         }
-        
+
     }
-    
+
     /**
      * Add the given item to the list of available items in the model
      * 
      * @param item The item to add
      */
-    private void addItem (ItemType item) {
-        // add to model
-        //model.addItem(getMyCurrentItem());
-
+    private void addItem (T item) {
         getMyItems().add(item);
     }
 
     // Getters and setters
-    private ObservableList<ItemType> getMyItems () {
-        return myItems;
+    private ObservableList<T> getMyItems () {
+        return getMyObjectCreationView().getItems();
     }
 
-    private IObjectCreationView<ItemType> getMyObjectCreationView () {
+    private IObjectCreationView<T> getMyObjectCreationView () {
         return myView;
     }
 
-    @Override
-    public void setItems (ObservableList<ItemType> items) {
-        this.myItems = items;
-    }
-
-    @Override
-    public void setObjectCreationView (IObjectCreationView objectCreationView) {
-        this.myView = objectCreationView;
-    }
-
-    @Override
-    public void addSubFormController (ISubFormController<ItemType> subFormController) {
-        mySubFormControllers.add(subFormController);
-    }
-
-    @Override
-    public void setSubFormControllers (List<ISubFormController<ItemType>> subFormControllers) {
-        this.mySubFormControllers = subFormControllers;
-        
-    }
-    
-    private List<ISubFormController<ItemType>> getMySubFormControllers () {
+    private List<ISubFormController<T>> getMySubFormControllers () {
         return mySubFormControllers;
     }
-    
-    private ItemType getMyCurrentItem() {
+
+    private T getMyCurrentItem () {
         return myCurrentItem;
     }
-    
-    private void setMyCurrentItem(ItemType item) {
-        this.myCurrentItem = item;
-    }
 
-    @Override
-    public void setFactory (Factory<? extends ItemType> factory) {
-        this.myFactory = factory;
+    private void setMyCurrentItem (T item) {
+        this.myCurrentItem = item;
     }
 }
