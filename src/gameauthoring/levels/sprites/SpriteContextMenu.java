@@ -6,7 +6,6 @@ import java.util.Enumeration;
 import java.util.ResourceBundle;
 import engine.sprite.ISprite;
 import gameauthoring.levels.LevelRenderer;
-import javafx.beans.property.ObjectProperty;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import util.Coordinate;
@@ -14,12 +13,12 @@ import util.Coordinate;
 public class SpriteContextMenu {
     
     private LevelRenderer levelView;
-    private ObjectProperty<ISprite> mySprite;
+    private ISprite mySprite;
     private SpriteController myController;
     private ResourceBundle myResources;
     
     public SpriteContextMenu (LevelRenderer renderer, SpriteController controller,
-                              ObjectProperty<ISprite> sprite) {
+                              ISprite sprite) {
         levelView = renderer;
         myController = controller;
         mySprite = sprite;
@@ -64,7 +63,7 @@ public class SpriteContextMenu {
     }
     
     public void createPath () {
-        Coordinate point = mySprite.get().getLocation().get();
+        Coordinate point = mySprite.getLocation().get();
         myController.createNewPath(point, levelView.getPane());
     }
     

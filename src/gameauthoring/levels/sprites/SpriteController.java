@@ -4,6 +4,7 @@ import engine.ILevel;
 import engine.sprite.ISprite;
 import gameauthoring.levels.PathCreator;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -19,12 +20,12 @@ public class SpriteController {
         pathCreator = new PathCreator();
     }
     
-    public void deleteSprite(ObjectProperty<ISprite> sprite){
-        myLevel.remove(sprite);
+    public void deleteSprite(ISprite sprite){
+        myLevel.remove(new SimpleObjectProperty<>(sprite));
     }
     
-    public void moveSprite(ObjectProperty<ISprite> sprite, double x, double y){
-        sprite.get().getLocation().set(new Coordinate(x, y));
+    public void moveSprite(ISprite sprite, double x, double y){
+        sprite.getLocation().set(new Coordinate(x, y));
     }
     
     public void createNewPath(Coordinate startPoint, Pane container){
