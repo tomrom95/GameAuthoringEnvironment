@@ -50,7 +50,6 @@ public class Sprite implements ISprite {
     public Sprite (SpriteType type) {
         // TODO add default constructions for some modules so there aren't nulls 
         myType = type;
-        
         myStatus = new SpriteStatus();
         myAttributeManager = new AttributeManager();
 
@@ -148,6 +147,10 @@ public class Sprite implements ISprite {
     @Override
     public void setLocation (Coordinate location) {
         myLocation = location;
+    }
+    
+    protected void setMovementModule (IMovementModule mover) {
+        myMover = mover;
     }
 
 }

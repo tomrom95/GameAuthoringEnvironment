@@ -1,5 +1,7 @@
 package engine.modules;
 
+import java.util.ArrayList;
+import java.util.List;
 import engine.IAdder;
 import engine.IAttribute;
 import engine.effects.IEffect;
@@ -44,8 +46,8 @@ public class SpawningModule implements IModule {
     }
 
     @Override
-    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
-        return FXCollections.observableArrayList();
+    public List<IAttribute> getAttributes () {
+        return new ArrayList<>();
     }
 
 }
