@@ -1,13 +1,11 @@
 package engine.modules;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import util.ControlKeys;
 import util.Key;
 import util.TimeDuration;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import engine.Attribute;
 import engine.AttributeType;
@@ -17,7 +15,6 @@ import engine.effects.IEffect;
 import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import engine.sprite.ISprite;
 import util.Direction;
 
 
@@ -29,15 +26,16 @@ import util.Direction;
 
 public class UserMover extends Mover {
 
-    private ObjectProperty<IAttribute> mySpeed;
+    private IAttribute mySpeed;
 
     private Map<Direction, Key> myKeys;
     private Map<Direction, Boolean> myTraveling;
 
     public UserMover (double speed,
-                                ControlKeys controls, IPositionable sprite) {
+                      ControlKeys controls,
+                      IPositionable sprite) {
         super(sprite);
-        mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));
+        mySpeed = new Attribute(speed, AttributeType.SPEED);
         makeKeyMap(controls);
         makeTravelingMap();
 
@@ -76,8 +74,8 @@ public class UserMover extends Mover {
 
     @Override
     public void applyEffect (IEffect effect) {
-        getXVel().get().applyEffect(effect);
-        getYVel().get().applyEffect(effect);
+        getXVel().applyEffect(effect);
+        getYVel().applyEffect(effect);
     }
 
     @Override
@@ -97,7 +95,6 @@ public class UserMover extends Mover {
 
     private void registerKeyPress (Key key) {
 
-        
         if (key.isEqual(myKeys.get(Direction.RIGHT))) {
             goRight();
         }
@@ -158,41 +155,40 @@ public class UserMover extends Mover {
     }
 
     private void stopVertical () {
-        getYVel().get().setValue(NO_MOTION);
+        getYVel().setValue(NO_MOTION);
         myTraveling.put(Direction.DOWN, false);
         myTraveling.put(Direction.UP, false);
     }
 
     private void goRight () {
-        getXVel().get().setValue(mySpeed.get().getValueProperty().get());
+        getXVel().setValue(mySpeed.getValueProperty().get());
         myTraveling.put(Direction.RIGHT, true);
     }
 
     private void goLeft () {
-        getXVel().get().setValue(-mySpeed.get().getValueProperty().get());
+        getXVel().setValue(-mySpeed.getValueProperty().get());
         myTraveling.put(Direction.LEFT, true);
     }
 
     private void goUp () {
-        getYVel().get().setValue(-mySpeed.get().getValueProperty().get());
+        getYVel().setValue(-mySpeed.getValueProperty().get());
         myTraveling.put(Direction.UP, true);
     }
 
     private void goDown () {
-        getYVel().get().setValue(mySpeed.get().getValueProperty().get());
+        getYVel().setValue(mySpeed.getValueProperty().get());
         myTraveling.put(Direction.DOWN, true);
     }
 
     private void stopHorizontal () {
-        getXVel().get().setValue(NO_MOTION);
+        getXVel().setValue(NO_MOTION);
         myTraveling.put(Direction.RIGHT, false);
         myTraveling.put(Direction.LEFT, false);
     }
 
     @Override
-    public ObservableList<ObjectProperty<IAttribute>> getSpecificAttributes () {
-        ObservableList<ObjectProperty<IAttribute>> attributeList =
-                FXCollections.observableArrayList();
+    public List<IAttribute> getSpecificAttributes () {
+        List<IAttribute> attributeList = new ArrayList<>();
         attributeList.add(mySpeed);
         return attributeList;
     }

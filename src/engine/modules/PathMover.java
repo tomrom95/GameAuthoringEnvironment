@@ -1,5 +1,6 @@
 package engine.modules;
 
+import java.util.ArrayList;
 import java.util.List;
 import engine.Attribute;
 import engine.AttributeType;
@@ -7,11 +8,6 @@ import engine.IAttribute;
 import engine.IPositionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import engine.sprite.ISprite;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
 
@@ -27,18 +23,17 @@ public class PathMover extends Mover {
 
     public static final int PIXEL_RANGE = 5;
 
-    private ObjectProperty<IAttribute> mySpeed;
+    private IAttribute mySpeed;
     private List<Coordinate> myPoints;
     private int myNextDestination;
 
     public PathMover (double speed,
-                            List<Coordinate> points,
-                            IPositionable positionable) {
+                      List<Coordinate> points,
+                      IPositionable positionable) {
         super(positionable);
-        mySpeed = new SimpleObjectProperty<>(new Attribute(speed, AttributeType.SPEED));
+        mySpeed = new Attribute(speed, AttributeType.SPEED);
         myPoints = points;
         myNextDestination = 0;
-        
 
     }
 
@@ -66,7 +61,7 @@ public class PathMover extends Mover {
      * @return boolean flagging whether the sprite will overshoot its coordinate target
      */
     private boolean overshootNext (TimeDuration duration) {
-        double distancePossible = duration.getMillis() * mySpeed.get().getValueProperty().get();
+        double distancePossible = duration.getMillis() * mySpeed.getValueProperty().get();
         double distance = Math.sqrt(xDifference() * xDifference() + yDifference() * yDifference());
         return distancePossible > distance;
     }
@@ -94,7 +89,7 @@ public class PathMover extends Mover {
         double xDiff = xDifference();
         double yDiff = yDifference();
         double constant =
-                Math.sqrt(square(mySpeed.get().getValueProperty().get()) /
+                Math.sqrt(square(mySpeed.getValueProperty().get()) /
                           (square(xDiff) + square(yDiff)));
         if (!isZero(constant)) {
             setXVelocity(xDiff * constant);
@@ -112,11 +107,11 @@ public class PathMover extends Mover {
     }
 
     private void setXVelocity (double vel) {
-        getXVel().get().getValueProperty().set(vel);
+        getXVel().getValueProperty().set(vel);
     }
 
     private void setYVelocity (double vel) {
-        getYVel().get().getValueProperty().set(vel);
+        getYVel().getValueProperty().set(vel);
     }
 
     private double square (double input) {
@@ -134,10 +129,10 @@ public class PathMover extends Mover {
     }
 
     @Override
-    protected ObservableList<ObjectProperty<IAttribute>> getSpecificAttributes () {
-        ObservableList<ObjectProperty<IAttribute>> attributes = FXCollections.observableArrayList();
-        attributes.add(mySpeed);
-        return attributes;
+    protected List<IAttribute> getSpecificAttributes () {
+        List<IAttribute> specialAttributes = new ArrayList<>();
+        specialAttributes.add(mySpeed);
+        return specialAttributes;
     }
 
 }

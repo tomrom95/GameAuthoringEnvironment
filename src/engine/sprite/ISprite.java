@@ -1,5 +1,6 @@
 package engine.sprite;
 
+import java.util.List;
 import engine.Affectable;
 import engine.AttributeManager;
 import engine.Drawable;
@@ -7,11 +8,11 @@ import engine.IAttribute;
 import engine.IPositionable;
 import engine.IResource;
 import engine.Updateable;
+import engine.modules.IGraphicModule;
 import engine.modules.IModule;
 import engine.modules.IMovementModule;
-import javafx.beans.property.ObjectProperty;
-import javafx.collections.ObservableList;
 import util.Bounds;
+import util.Coordinate;
 
 
 /**
@@ -29,20 +30,24 @@ import util.Bounds;
 
 public interface ISprite extends Drawable, Updateable, Affectable, IPositionable {
 
-    ObjectProperty<IMovementModule> getMovementStrategyProperty ();
+    void initialize (IMovementModule movementModule,
+                     IGraphicModule graphicModule,
+                     List<IModule> otherModules,
+                     List<IAttribute> attributes,
+                     Coordinate coord);
 
-    ObservableList<ObjectProperty<? extends IModule>> getModulesProperty ();
+    IMovementModule getMovementStrategy ();
 
-    ObservableList<ObjectProperty<IAttribute>> getAttributes ();
+    List<? extends IModule> getModules ();
 
-    ObservableList<ObjectProperty<IResource>> getResourcesProperty ();
-    
-    ObjectProperty<AttributeManager> getAttributeManager();
+    List<IAttribute> getAttributes ();
+
+    List<IResource> getResources ();
+
+    AttributeManager getAttributeManager ();
 
     Bounds getBounds ();
 
-    ObjectProperty<SpriteType> getType ();
-    
-    ObjectProperty<IProfile> getProfile ();
+    SpriteType getType ();
 
 }
