@@ -19,8 +19,8 @@ public class OnGlobalAttributeCondition implements ICondition {
     public OnGlobalAttributeCondition (IGame game,
                                        AttributeType attributeType,
                                        DoublePredicate valueCheck,
-                                       EventPackage otherPackage,
-                                       EventPackage globalPackage) {
+                                       IEventPackage otherPackage,
+                                       IEventPackage globalPackage) {
         myGame = game;
         myAttributeType = attributeType;
         myValueCheck = valueCheck;

@@ -1,18 +1,27 @@
 package engine.definitions.concrete;
-
-import engine.IAdder;
 import engine.definitions.SpriteDefinition;
-import engine.definitions.WaveDefinition;
-import engine.modules.IWave;
+import engine.modules.StaticMover;
+import engine.sprite.ISprite;
+import engine.definitions.SpawnerModuleDefinition;;
 
 public class SpawnerDefinition extends SpriteDefinition {
 
-    public SpawnerDefinition (IAdder adder, WaveDefinition wave) {
-       
+    private SpawnerModuleDefinition mySpawningModule;
+    
+    public SpawnerDefinition (SpawnerModuleDefinition spawningModule) {
+        setSpawningModule(spawningModule);
+    }
+    
+    private void setSpawningModule (SpawnerModuleDefinition spawningModule) {
+        mySpawningModule = spawningModule;   
     }
 
-    private void init (IAdder adder, IWave wave) {
-        
-        
+    public ISprite create () {
+        ISprite sprite = super.create();
+        addModule(mySpawningModule);
+        sprite.initialize(new StaticMover(sprite), createGraphicModule(), createModules(), createAttributes(),
+                          createCoordinate());
+        return sprite;
+
     }
 }

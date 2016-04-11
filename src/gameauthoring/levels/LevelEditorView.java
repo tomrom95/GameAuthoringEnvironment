@@ -4,7 +4,7 @@ import java.io.File;
 import engine.IGame;
 import engine.ILevel;
 import gameauthoring.Glyph;
-import gameauthoring.SpriteCellView;
+import gameauthoring.ProfileCellView;
 import gameauthoring.characters.FormDataManager;
 import gameauthoring.characters.IEntryView;
 import gameauthoring.characters.IFormDataManager;

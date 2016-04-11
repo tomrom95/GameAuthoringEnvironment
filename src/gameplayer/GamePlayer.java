@@ -3,6 +3,7 @@ package gameplayer;
 import engine.IGame;
 import engine.IOInterpeter;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -17,24 +18,35 @@ import javafx.stage.Stage;
 public class GamePlayer {
 
     private Stage myStage = new Stage();
-    private Pane myPane = new Pane();
+    private BorderPane myPane = new BorderPane();
+    private Pane levelPane = new Pane();
     private Scene myScene = new Scene(myPane);
     private IGameEngine myGameEngine;
     
     public GamePlayer (IGame game) {
+        createEnvironment(game);
         initializeGameEngine(game);
         stylePane();
+    }
+    
+    public void start () {
         myStage.setScene(myScene);
         myStage.show();
     }
+    
+    private void createEnvironment (IGame game) {
+        myPane.setCenter(levelPane);
+        myPane.setLeft((new HeadsUpDisplay(game)).draw());
+        myPane.setRight((new SideBarDisplay(game)).draw());
+    }
 
     private void stylePane () {
-        myPane.setPrefSize(600, 600);
+        myPane.setPrefSize(1000, 600);
     }
 
     private void initializeGameEngine (IGame game) {
-        IOInterpeter IO = new IOInterpeter(myScene, myPane);
-        myGameEngine = new GameEngine(game, myPane, IO);
+        IOInterpeter IO = new IOInterpeter(myScene, levelPane);
+        myGameEngine = new GameEngine(game, levelPane, IO);
     }
 
     public void play () {

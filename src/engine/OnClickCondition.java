@@ -20,7 +20,6 @@ import util.TimeDuration;
 public class OnClickCondition implements ICondition {
 
     private IGame myGame;
-
     private IEventPackage mySelfPackage;
     private IEventPackage myOtherPackage;
     private IEventPackage myGlobalPackage;

@@ -19,7 +19,7 @@ import javafx.util.Callback;
 
 
 public class SceneCreator implements Glyph {
-    private final static String DEFAULT_BACKGROUND = "images/pvz.jpg";
+    private final static String DEFAULT_BACKGROUND = "images/grass.jpg";
     public final static int HEIGHT = 400;
     public final static int WIDTH = 700;
 

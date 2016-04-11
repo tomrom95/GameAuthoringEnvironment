@@ -12,65 +12,45 @@ import engine.OnClickCondition;
 public class OnClickDefinition implements IDefinition {
 
     private GameDefinition myGame;
-    private SpriteGroupDefinition myGroupToCheck;
-    private ListIEffectDefinition myApplyToSelf;
-    private SpriteGroupDefinition myOtherGroup;
-    private ListIEffectDefinition myApplyToOtherGroup;
-    private ListIEffectDefinition myApplyToGlobalAttys;
+    private EventPackageDefinition mySelfPackage;
+    private EventPackageDefinition myOtherPackage;
+    private EventPackageDefinition myGlobalPackage;
 
     public OnClickCondition create () {
-        return new OnClickCondition(myGame.create(), myGroupToCheck.create(),
-                                    myApplyToSelf.create(),
-                                    myApplyToOtherGroup.create(),
-                                    myOtherGroup.create(), myApplyToGlobalAttys.create());
+        return new OnClickCondition(myGame.create(), mySelfPackage.create(),
+                                    myOtherPackage.create(), myGlobalPackage.create());
     }
 
     public GameDefinition getMyGame () {
         return myGame;
     }
 
-    public void setMyGame (GameDefinition myGame) {
-        this.myGame = myGame;
+    public void setMyGame (GameDefinition game) {
+        this.myGame = game;
     }
 
-    public SpriteGroupDefinition getMyGroupToCheck () {
-        return myGroupToCheck;
+    public EventPackageDefinition getMySelfPackage () {
+        return mySelfPackage;
     }
 
-    public void setMyGroupToCheck (SpriteGroupDefinition myGroupToCheck) {
-        this.myGroupToCheck = myGroupToCheck;
+    public void setMySelfPackage (EventPackageDefinition selfPackage) {
+        this.mySelfPackage = selfPackage;
     }
 
-    public ListIEffectDefinition getMyApplyToSelf () {
-        return myApplyToSelf;
+    public EventPackageDefinition getMyOtherPackage () {
+        return myOtherPackage;
     }
 
-    public void setMyApplyToSelf (ListIEffectDefinition myApplyToSelf) {
-        this.myApplyToSelf = myApplyToSelf;
+    public void setMyOtherPackage (EventPackageDefinition otherPackage) {
+        this.myOtherPackage = otherPackage;
     }
 
-    public SpriteGroupDefinition getMyOtherGroup () {
-        return myOtherGroup;
+    public EventPackageDefinition getMyGlobalPackage () {
+        return myGlobalPackage;
     }
 
-    public void setMyOtherGroup (SpriteGroupDefinition myOtherGroup) {
-        this.myOtherGroup = myOtherGroup;
-    }
-
-    public ListIEffectDefinition getMyApplyToOtherGroup () {
-        return myApplyToOtherGroup;
-    }
-
-    public void setMyApplyToOtherGroup (ListIEffectDefinition myApplyToOtherGroup) {
-        this.myApplyToOtherGroup = myApplyToOtherGroup;
-    }
-
-    public ListIEffectDefinition getMyApplyToGlobalAttys () {
-        return myApplyToGlobalAttys;
-    }
-
-    public void setMyApplyToGlobalAttys (ListIEffectDefinition myApplyToGlobalAttys) {
-        this.myApplyToGlobalAttys = myApplyToGlobalAttys;
+    public void setMyGlobalPackage (EventPackageDefinition globalPackage) {
+        this.myGlobalPackage = globalPackage;
     }
 
 }
