@@ -1,6 +1,5 @@
 package engine.definitions;
 
-import engine.profile.IProfile;
 import util.ControlKeys;
 import util.Key;
 
@@ -11,7 +10,6 @@ public class KeyControlDefinition implements IDefinition {
     private String myLeft;
     private String myRight;
     private String myDown;
-    private IProfile myProfile;
 
     public ControlKeys create () {
         return new ControlKeys(new Key(myUp), new Key(myLeft), new Key(myRight), new Key(myDown));
@@ -47,16 +45,5 @@ public class KeyControlDefinition implements IDefinition {
 
     public String getRight () {
         return myRight;
-    }
-
-    @Override
-    public IProfile getProfile () {
-        return myProfile;
-    }
-
-    @Override
-    public void setProfile (IProfile profile) {
-        myProfile = profile;
-
     }
 }

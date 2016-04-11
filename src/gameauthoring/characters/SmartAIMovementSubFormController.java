@@ -28,7 +28,7 @@ public class SmartAIMovementSubFormController implements ISubFormControllerSprit
     @Override
     public ISubFormView getSubFormView () {
         // TODO Auto-generated method stub
-        return null;
+        return myView;
     }
 
 }

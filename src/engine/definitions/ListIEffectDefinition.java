@@ -8,7 +8,6 @@ import engine.profile.IProfile;
 public class ListIEffectDefinition implements IDefinition {
 
     private List<IEffect> myEffectList;
-    private IProfile myProfile;
 
     public List<IEffect> create () {
         return myEffectList;
@@ -22,13 +21,4 @@ public class ListIEffectDefinition implements IDefinition {
         return myEffectList;
     }
 
-    @Override
-    public IProfile getProfile () {
-        return myProfile;
-    }
-
-    @Override
-    public void setProfile (IProfile profile) {
-        myProfile = profile;
-    }
 }

@@ -15,7 +15,6 @@ import engine.profile.IProfile;
 public class GameDefinition implements IDefinition {
 
     private Game myGame;
-    private IProfile myProfile;
 
     public Game create () {
         return myGame;
@@ -27,17 +26,6 @@ public class GameDefinition implements IDefinition {
 
     public void setMyGame (Game game) {
         this.myGame = game;
-    }
-
-    @Override
-    public IProfile getProfile () {
-        return myProfile;
-    }
-
-    @Override
-    public void setProfile (IProfile profile) {
-        myProfile = profile;
-
     }
 
 }
