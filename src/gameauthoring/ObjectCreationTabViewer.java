@@ -1,21 +1,20 @@
 package gameauthoring;
 
 import gameauthoring.ITabViewer;
-import gameauthoring.conditiontab.ConditionView;
-import gameauthoring.object_creation_tab.AttributeEditorView;
-import gameauthoring.object_creation_tab.DefenderEditorView;
-import gameauthoring.object_creation_tab.EnemyEditorView;
+
+import gameauthoring.characters.CreationControllerFactory;
+import gameauthoring.characters.CreationControllerSprite;
+import gameauthoring.characters.IObjectCreationView;
+import gameauthoring.characters.ISubFormControllerSprite;
+import gameauthoring.characters.SubFormControllerFactory;
 import gameauthoring.object_creation_tab.InteractionEditorView;
 import gameauthoring.object_creation_tab.WeaponEditorView;
+import java.util.ArrayList;
 import java.util.List;
 import engine.ICondition;
-import engine.OnClickCondition;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.BorderPane;
 
 
 /**
@@ -28,32 +27,68 @@ import javafx.scene.layout.BorderPane;
  */
 public class ObjectCreationTabViewer implements ITabViewer {
 
-    private Tab myCharTab;
-    private BorderPane myLayout;
-    private AttributeEditorView myAttributeView;
-    private DefenderEditorView myDefenderView;
-    private EnemyEditorView myEnemyView;
+    private TabPane myTabPane;
+
+    private List<CreationControllerSprite> mySpriteCCs;
+    private List<IObjectCreationView<?>> myCreationViews;
+    private CreationControllerFactory ccFactory;
+    private SubFormControllerFactory sfcFactory;
+
+    private void init () {
+        ccFactory = new CreationControllerFactory();
+        sfcFactory = new SubFormControllerFactory();
+
+        myCreationViews = new ArrayList<IObjectCreationView<?>>();
+
+        String[] subForms = {"profile", "movement", "attributes", "groups" };
+
+        List<ISubFormControllerSprite> enemiesSfcs =
+                sfcFactory.createSpriteSubFormControllers(subForms);
+        CreationControllerSprite enemyCC = ccFactory.createSpriteCreationController(enemiesSfcs);
+        myCreationViews.add(enemyCC.getMyObjectCreationView());
+
+        List<ISubFormControllerSprite> defendersSfcs =
+                sfcFactory.createSpriteSubFormControllers(subForms);
+        CreationControllerSprite defenderCC =
+                ccFactory.createSpriteCreationController(defendersSfcs);
+        myCreationViews.add(defenderCC.getMyObjectCreationView());
+
+        /*
+        String[] attSubForms = { "attribute" };
+        List<ISubFormControllerAttribute> attributeSfcs =
+                sfcFactory.createAttributeSubFormControllers(subForms);
+        CreationControllerAttribute attributeCC =
+                ccFactory.createAttributeCreationController(attributeSfcs);
+        myCreationViews.add(defenderCC.getMyObjectCreationView());
+        */
+
+    }
+
     private InteractionEditorView myInteractionView;
     private WeaponEditorView myWeaponView;
     private ListDisplay<ICondition> myConditionView;
 
-    public ObjectCreationTabViewer (Tab charTab) {
-        myCharTab = charTab;
-        TabPane tabPane = createAllSubTabs();
-        myCharTab.setContent(tabPane);
+    public ObjectCreationTabViewer () {
+        init();
+        myTabPane = createAllSubTabs();
     }
 
     private TabPane createAllSubTabs () {
         TabPane tabpane = new TabPane();
-        myAttributeView = new AttributeEditorView(createSubTab("Attributes"));
-        myDefenderView = new DefenderEditorView(createSubTab("Defenders"));
-        myEnemyView = new EnemyEditorView(createSubTab("Enemies"));
+        for (IObjectCreationView<?> creationView : myCreationViews) {
+            Tab tab = new Tab();
+            tab.setContent(creationView.draw());
+
+            tabpane.getTabs().add(tab);
+        }
+        /*
         myInteractionView = new InteractionEditorView(createSubTab("Interactions"));
         myWeaponView = new WeaponEditorView(createSubTab("Weapons"));
         myConditionView = new ConditionView(createSubTab("Conditions"), getTestConditions(), getOptions());
 
         tabpane.getTabs().addAll(myAttributeView.getTab(), myDefenderView.getTab(),
                                  myEnemyView.getTab(), myInteractionView.getTab(),
+<<<<<<< HEAD
                                  myWeaponView.getTab(), myConditionView.getTab());
         return tabpane;
     }
@@ -90,6 +125,16 @@ public class ObjectCreationTabViewer implements ITabViewer {
         myLayout = new BorderPane();
         myLayout = (BorderPane) myConditionView.draw();
         return myLayout;
+=======
+                                 myWeaponView.getTab());
+                                 */
+        return tabpane;
+    }
+
+    @Override
+    public Node draw () {
+        return myTabPane;
+
     }
 
     @Override

@@ -28,6 +28,7 @@ public class Level implements ILevel {
     public Level () {
         // TODO need to actually instantiate internal manager objects
         // after creating the concrete classes
+
         myAttributeManager = new AttributeManager();
         myConditionManager = new ConditionManager();
         mySpriteManager = new SpriteManager();
@@ -114,6 +115,11 @@ public class Level implements ILevel {
     @Override
     public void add (ISprite sprite) {
         mySpriteManager.add(sprite);
+    }
+
+    @Override
+    public void setBackgroundImage (ImageGraphic graphic) {
+        myBackgroundImage = graphic;
     }
 
 }

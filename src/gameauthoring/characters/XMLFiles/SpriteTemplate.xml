@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE FilePath [
+<!ENTITY MovementModules SYSTEM "MovementModules.xml">
+<!ENTITY FiringModules SYSTEM "FiringModules.xml">
+]>
+
+<FilePath>
+	<Movement>
+		&MovementModules;
+	</Movement>
+	<Firing>
+		&FiringModules;
+	</Firing>
+</FilePath>
+
+<ClassPath>
+	<GraphicModule ClassName = "engine.modules.GraphicModule">
+
+	</GraphicModule>
+	<SpriteType ClassName = "engine.sprite.SpriteType"?>
+		<Key>Type
+			<Value>
+				String
+			</Value>
+		</Key>
+	</SpriteType>
+</ClassPath>

@@ -17,4 +17,16 @@ public class AttributeTypeDefinition  {
     public AttributeType create () {
         return myAttributeType;
     }
+    
+    
+    public ProfileDefinition getProfileDefinition () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    
+    public void setProfileDefinition (ProfileDefinition profileDef) {
+        // TODO Auto-generated method stub
+        
+    }
 }

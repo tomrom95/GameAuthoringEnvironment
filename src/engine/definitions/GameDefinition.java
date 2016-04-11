@@ -27,4 +27,16 @@ public class GameDefinition  {
         this.myGame = myGame;
     }
 
+    
+    public ProfileDefinition getProfileDefinition () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    
+    public void setProfileDefinition (ProfileDefinition profileDef) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }
