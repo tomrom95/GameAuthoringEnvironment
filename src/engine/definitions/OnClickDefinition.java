@@ -1,6 +1,6 @@
 package engine.definitions;
 
-import engine.OnClickCondition;
+import engine.conditions.OnClickCondition;
 
 
 /**

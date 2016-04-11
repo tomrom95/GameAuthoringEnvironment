@@ -1,7 +1,7 @@
 package engine.definitions;
 
 import java.util.function.DoublePredicate;
-import engine.OnGlobalAttributeCondition;
+import engine.conditions.OnGlobalAttributeCondition;
 
 
 /**

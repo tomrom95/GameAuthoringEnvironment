@@ -1,9 +1,9 @@
-package engine;
+package engine.conditions;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import engine.interactionevents.KeyIOEvent;
-import engine.interactionevents.MouseIOEvent;
+import engine.IEventPackage;
+import engine.IGame;
 import engine.sprite.ISprite;
 import util.TimeDuration;
 
@@ -14,7 +14,7 @@ import util.TimeDuration;
  *
  */
 
-public class OnCollisionCondition implements ICondition {
+public class OnCollisionCondition extends Condition implements ICondition {
 
     private IGame myGame;
     private IEventPackage myGroupAPackage;
@@ -44,14 +44,8 @@ public class OnCollisionCondition implements ICondition {
     public void update (TimeDuration duration) {
         List<ISprite> sprites =
                 myGame.getLevelManager().getCurrentLevel().getSprites();
-        for (ISprite outerSprite : sprites.stream()
-                .filter(sprite -> myGroupAPackage.getTargetedSpriteGroup()
-                        .contains(sprite.getType()))
-                .collect(Collectors.toList())) {
-            for (ISprite innerSprite : sprites.stream()
-                    .filter(sprite -> myGroupBPackage.getTargetedSpriteGroup()
-                            .contains(sprite.getType()))
-                    .collect(Collectors.toList())) {
+        for (ISprite outerSprite : filterSpriteListWithPackage(sprites, myGroupAPackage)) {
+            for (ISprite innerSprite : filterSpriteListWithPackage(sprites, myGroupBPackage)) {
                 if (outerSprite.getBounds().collide(innerSprite.getBounds())) {
                     handleCollision(outerSprite, innerSprite);
                 }
@@ -59,22 +53,17 @@ public class OnCollisionCondition implements ICondition {
         }
     }
 
+    private List<ISprite> filterSpriteListWithPackage (List<ISprite> mySprites,
+                                                       IEventPackage myFilterPackage) {
+        return mySprites.stream().filter(sprite -> myFilterPackage.getTargetedSpriteGroup()
+                .contains(sprite.getType())).collect(Collectors.toList());
+
+    }
+
     private void handleCollision (ISprite outerSprite, ISprite innerSprite) {
         applyPackageEffectsToSprite(myGroupAPackage, outerSprite);
         applyPackageEffectsToSprite(myGroupBPackage, innerSprite);
-        List<ISprite> sprites =
-                myGame.getLevelManager().getCurrentLevel().getSprites();
-        sprites.stream()
-                // CONCERN here as to what myApplyToOtherGroup is
-                .filter(sprite -> myOtherPackage.getTargetedSpriteGroup()
-                        .contains(sprite.getType()))
-                .forEach(sprite -> myOtherPackage.getMyEffects()
-                        .forEach(effect -> sprite.applyEffect(effect)));
-        myGlobalPackage.getMyEffects()
-                .forEach(effect -> myGame.getAttributeManager().applyEffect(effect));
-        myGlobalPackage.getMyEffects()
-                .forEach(effect -> myGame.getLevelManager().getCurrentLevel()
-                        .getAttributeManager().applyEffect(effect));
+        applyOtherAndGlobalEventPackages(myGame, myOtherPackage, myGlobalPackage);
     }
 
     private void applyPackageEffectsToSprite (IEventPackage myPackage, ISprite mySprite) {
@@ -82,16 +71,6 @@ public class OnCollisionCondition implements ICondition {
 
     }
 
-    @Override
-    public void registerKeyEvent (KeyIOEvent keyEvent) {
-        // do nothing
 
-    }
-
-    @Override
-    public void registerMouseEvent (MouseIOEvent mouseEvent) {
-        // do nothing
-
-    }
 
 }
