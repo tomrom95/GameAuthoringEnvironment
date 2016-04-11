@@ -3,9 +3,12 @@ package engine.definitions;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
+import engine.profile.IProfile;
+
 
 /**
  * Definition for Attribute. Have getter/setter methods for each attribute.
+ * 
  * @author Jin An
  *
  */
@@ -13,32 +16,17 @@ import engine.IAttribute;
 public class AttributeDefinition implements IDefinition {
 
     private String myType;
-    private double myMaxValue, myMinValue;
     private boolean myIsGlobal;
     private AttributeDefinition myAttributeDefinition;
-    
-    public AttributeDefinition (double max, double min, boolean isGlobal){
-        setMaxValue(max);
-        setMinValue(min);
-        setIsGlobal(isGlobal);
-    }
+    private double myStartingValue;
+    private IProfile myProfile;
 
-    
-    //TODO: Work on Attribute Class with engine group so that it can deal with max/min/isglobal
     public IAttribute create () {
-        return new Attribute(myMaxValue, new AttributeType(myType));
+        return new Attribute(myStartingValue, new AttributeType(myType));
     }
 
     public void setType (String type) {
         myType = type;
-    }
-
-    public void setMaxValue (double value) {
-        myMaxValue = value;
-    }
-
-    public void setMinValue (double value) {
-        myMinValue = value;
     }
 
     public void setIsGlobal (boolean bool) {
@@ -49,14 +37,6 @@ public class AttributeDefinition implements IDefinition {
         return myType;
     }
 
-    public double getMaxValue () {
-        return myMaxValue;
-    }
-
-    public double getMinValue () {
-        return myMinValue;
-    }
-
     public boolean getIsGlobal () {
         return myIsGlobal;
     }
@@ -64,23 +44,27 @@ public class AttributeDefinition implements IDefinition {
     public AttributeDefinition getAttributeDefinition () {
         return myAttributeDefinition;
     }
-    
-    public void setAttributeDefinition(AttributeDefinition attributeDef){
+
+    public void setAttributeDefinition (AttributeDefinition attributeDef) {
         this.myAttributeDefinition = attributeDef;
-
     }
 
+    public double getStartingValue () {
+        return myStartingValue;
+    }
+
+    public void setStartingValue (double startingValue) {
+        myStartingValue = startingValue;
+    }
 
     @Override
-    public ProfileDefinition getProfileDefinition () {
-        // TODO Auto-generated method stub
-        return null;
+    public IProfile getProfile () {
+        return myProfile;
     }
-
 
     @Override
-    public void setProfileDefinition (ProfileDefinition profileDef) {
-        // TODO Auto-generated method stub
-        
+    public void setProfile (IProfile profile) {
+        myProfile = profile;
     }
+
 }

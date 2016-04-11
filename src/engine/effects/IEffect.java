@@ -34,4 +34,12 @@ public interface IEffect extends Updateable {
      * @return true if the effect has completed, false otherwise
      */
     boolean hasCompleted ();
+
+    /**
+     * To support proper tracking of internal state when applied across attributes
+     * separate instances of the prototypical effect must be created
+     * 
+     * @return
+     */
+    IEffect makeCopy ();
 }

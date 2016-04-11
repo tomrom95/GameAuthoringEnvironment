@@ -6,8 +6,9 @@ import engine.modules.TrackingFirer;
 import engine.sprite.ISprite;
 
 
-public class TrackingFirerDefinition extends ModuleDefiniton {
-
+public class TrackingFirerDefinition extends ModuleDefinition {
+    
+    
     private List<SpriteDefinition> myTargets;
 
     public TrackingFirerDefinition (List<SpriteDefinition> targets) {
@@ -26,4 +27,6 @@ public class TrackingFirerDefinition extends ModuleDefiniton {
         return new TrackingFirer(targets);
 
     }
+
+ 
 }

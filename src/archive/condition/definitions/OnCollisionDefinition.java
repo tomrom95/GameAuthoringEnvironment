@@ -1,6 +1,9 @@
-package engine.definitions;
+package archive.condition.definitions;
 
 import engine.conditions.OnCollisionCondition;
+import engine.definitions.EventPackageDefinition;
+import engine.definitions.GameDefinition;
+import engine.definitions.IDefinition;
 
 
 /**

@@ -1,7 +1,11 @@
-package engine.definitions;
+package archive.condition.definitions;
 
 import java.util.function.DoublePredicate;
 import engine.conditions.OnSpriteAttributeCondition;
+import engine.definitions.AttributeTypeDefinition;
+import engine.definitions.EventPackageDefinition;
+import engine.definitions.GameDefinition;
+import engine.definitions.IDefinition;
 
 
 /**
