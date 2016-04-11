@@ -1,12 +1,14 @@
 package gameauthoring.characters;
 
+import engine.definitions.IDefinition;
+
 /**
  * 
  * @author JoeLilien, Jeremy Schreck
  *
  */
 
-public interface ISubFormController<T> {
+public interface ISubFormController<T extends IDefinition> {
 
     // Has a subFormView
     // Need to make this more generic

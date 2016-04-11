@@ -2,6 +2,7 @@ package gameauthoring.characters;
 
 import java.util.List;
 import java.util.function.Consumer;
+import engine.definitions.IDefinition;
 import gameauthoring.Glyph;
 import javafx.collections.ObservableList;
 
