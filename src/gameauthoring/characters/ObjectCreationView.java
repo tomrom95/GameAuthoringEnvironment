@@ -39,8 +39,8 @@ public class ObjectCreationView<E extends IDefinition> implements IObjectCreatio
      * @param subFormViews The subformviews to create the FormView with
      */
     public ObjectCreationView(List<ISubFormView> subFormViews) {
-        setObjectListView(createListView());
-        setFormView(createFormView(subFormViews));
+        this.myObjectListView = createListView();
+        this.myFormView = createFormView(subFormViews);
         init();
     }
     

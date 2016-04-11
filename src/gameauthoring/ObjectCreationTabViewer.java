@@ -25,12 +25,8 @@ import javafx.scene.layout.BorderPane;
 public class ObjectCreationTabViewer implements ITabViewer {
 
     private Tab myCharTab;
-    private BorderPane myLayout;
-    private AttributeEditorView myAttributeView;
-    private DefenderEditorView myDefenderView;
-    private EnemyEditorView myEnemyView;
-    private InteractionEditorView myInteractionView;
-    private WeaponEditorView myWeaponView;
+    private BorderPane myLayout;   
+    
 
     public ObjectCreationTabViewer (Tab charTab) {
         myCharTab = charTab;
