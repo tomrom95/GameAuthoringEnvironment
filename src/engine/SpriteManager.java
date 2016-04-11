@@ -2,6 +2,7 @@ package engine;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
@@ -29,10 +30,17 @@ public class SpriteManager implements ISpriteManager {
     @Override
     public void update (TimeDuration duration) {
         loopThroughSpritesAndDo(sprite -> sprite.update(duration));
+        loopSpritesAndDoIf(sprite -> sprite.shouldBeRemoved(), sprite -> remove(sprite));
+    }
+
+    private void loopSpritesAndDoIf (Predicate<ISprite> spriteCondition,
+                                     Consumer<ISprite> consumer) {
+        getSprites().filtered(sprite -> spriteCondition.test(sprite))
+                .forEach(sprite -> consumer.accept(sprite));
     }
 
     private void loopThroughSpritesAndDo (Consumer<ISprite> consumer) {
-        getSprites().forEach(sprite -> consumer.accept(sprite));
+        loopSpritesAndDoIf(sprite -> true, consumer);
     }
 
     @Override
