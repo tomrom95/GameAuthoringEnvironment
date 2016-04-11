@@ -8,6 +8,9 @@ import javafx.scene.control.Button;
 public class ListCellView<E> implements IListCellView<E> {
     private E myItem;
     private Button myEditButton;
+    
+    myItem.
+    
 
     @Override
     public Node draw () {

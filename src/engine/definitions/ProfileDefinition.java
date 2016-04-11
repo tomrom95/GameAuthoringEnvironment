@@ -1,6 +1,8 @@
 package engine.definitions;
 
-public class ProfileDefinition implements IDefinition {
+import engine.sprite.Profile;
+
+public class ProfileDefinition {
 
     private String myName;
     private String myDescription;
@@ -28,5 +30,9 @@ public class ProfileDefinition implements IDefinition {
     
     public String getDescription () {
         return myDescription;
+    }
+    
+    public Profile makeProfile () {
+        return new Profile(getName(), getDescription(), getURL());
     }
 }

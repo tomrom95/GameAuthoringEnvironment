@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import engine.definitions.IDefinition;
 import engine.definitions.ProfileDefinition;
+import engine.definitions.SpriteDefinition;
 import javafx.collections.ObservableList;
 
 
@@ -19,7 +20,7 @@ import javafx.collections.ObservableList;
  * @param <T> The type of object to be created and stored -- ex: Sprite, Interaction,
  *        Attribute
  */
-public abstract class CreationController<T extends ProfileDefinition> {
+public abstract class CreationController<T extends IDefinition> {
     private IObjectCreationView<T> myView;
     private List<ISubFormController<T>> mySubFormControllers;
     private T myCurrentItem;
@@ -30,6 +31,7 @@ public abstract class CreationController<T extends ProfileDefinition> {
         myView = new ObjectCreationView<T>(subFormViews);
         init();
 
+       
     }
 
     private List<ISubFormView> getSubFormViews (List<ISubFormController<T>> subFormControllers) {
@@ -61,7 +63,7 @@ public abstract class CreationController<T extends ProfileDefinition> {
      */
     private void saveItem () {
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
-            subFormController.updateGameModel(getMyCurrentItem()); // make more generic later
+            subFormController.updateItem(getMyCurrentItem()); // make more generic later
         }
     }
 
@@ -93,8 +95,8 @@ public abstract class CreationController<T extends ProfileDefinition> {
         showAndEdit(item);
         addItem(item);
     }
-    
-    protected abstract T createBlankItem();
+
+    protected abstract T createBlankItem ();
 
     /**
      * Method called when user clicks a cell in the list view

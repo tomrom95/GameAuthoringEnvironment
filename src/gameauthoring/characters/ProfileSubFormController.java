@@ -34,7 +34,7 @@ public class ProfileSubFormController implements ISubFormControllerSprite {
  
 
     @Override
-    public void updateGameModel (SpriteDefinition item) {
+    public void updateItem (SpriteDefinition item) {
         item.setName(myFormData.getValueProperty(myView.getMyNameKey()).get());
         item.setURL(myFormData.getValueProperty(myView.getMyImageKey()).get());
         //Same process for description

@@ -13,7 +13,7 @@ public interface ISubFormController<T> {
     // Probably take in full model and general Game object eventually (common identifier for sprite,
     // module, attribute, etc.)
     
-    void updateGameModel (T item);
+    void updateItem (T item);
 
     void populateViewsWithData (T item);
     

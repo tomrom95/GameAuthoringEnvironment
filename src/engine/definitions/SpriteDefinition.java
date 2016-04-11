@@ -4,7 +4,6 @@ import java.util.List;
 import engine.modules.IModule;
 import engine.sprite.IProfile;
 import engine.sprite.ISprite;
-import engine.sprite.Profile;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
 import javafx.beans.property.ObjectProperty;
@@ -13,13 +12,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
-public class SpriteDefinition extends ProfileDefinition {
+public class SpriteDefinition implements IDefinition {
 
     private String myType;
     private MovementDefinition myMovementDefinition;
     private List<ModuleDefinition> myModuleDefinitions;
     private LocationDefinition myLocation;
     private List<AttributeDefinition> myAttributes;
+    private ProfileDefinition myProfileDefinition;
 
     public ISprite create () {
         ISprite sprite = new Sprite();
@@ -33,7 +33,7 @@ public class SpriteDefinition extends ProfileDefinition {
     }
 
     private void makeProfile (ISprite sprite) {
-        IProfile profile = new Profile(getName(), getDescription(), getURL());
+        IProfile profile = getProfileDefinition().makeProfile();
         sprite.getProfile().set(profile);
 
     }
@@ -50,7 +50,7 @@ public class SpriteDefinition extends ProfileDefinition {
         sprite.getModulesProperty().addAll(modules);
     }
 
-    public void addModule (ModuleDefiniton definition) {
+    public void addModule (ModuleDefinition definition) {
         myModuleDefinitions.add(definition);
     }
 
@@ -66,7 +66,7 @@ public class SpriteDefinition extends ProfileDefinition {
         myLocation = location;
     }
 
-    public void remove (ModuleDefiniton definition) {
+    public void remove (ModuleDefinition definition) {
         myModuleDefinitions.remove(definition);
     }
 
@@ -76,5 +76,16 @@ public class SpriteDefinition extends ProfileDefinition {
 
     public void setType (String type) {
         myType = type;
+    }
+
+    @Override
+    public ProfileDefinition getProfileDefinition () {
+        return myProfileDefinition;
+    }
+
+    @Override
+    public void setProfileDefinition (ProfileDefinition profileDef) {
+        this.myProfileDefinition = profileDef;
+        
     }
 }
