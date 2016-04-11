@@ -1,6 +1,5 @@
 package engine;
 
-import java.util.stream.Collectors;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
@@ -68,11 +67,11 @@ public class Attribute implements IAttribute {
     }
 
     @Override
-    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
+    public ObservableList<IAttribute> getAttributes () {
 
-        ObservableList<ObjectProperty<IAttribute>> attributes =
+        ObservableList<IAttribute> attributes =
                 FXCollections.observableArrayList();
-        attributes.add(new SimpleObjectProperty<>(this));
+        attributes.add(this);
         return attributes;
     }
 

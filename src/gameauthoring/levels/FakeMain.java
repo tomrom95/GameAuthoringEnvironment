@@ -3,14 +3,11 @@ package gameauthoring.levels;
 import engine.ConditionManager;
 import engine.Game;
 import engine.ILevel;
-import engine.sprite.ISprite;
 import engine.Level;
 import engine.LevelManager;
-import engine.modules.GraphicModule;
-import engine.modules.IGraphicModule;
-import engine.sprite.Sprite;
-import engine.sprite.SpriteType;
+import engine.definitions.SpriteDefinition;
 import graphics.Block;
+import graphics.IGraphic;
 import graphics.ImageGraphic;
 import javafx.application.Application;
 import javafx.beans.property.ObjectProperty;
@@ -79,33 +76,30 @@ public class FakeMain extends Application {
     private void makeSomeSprites (Game game) {
         for (int i = 0; i < 20; i++) {
             if (i % 2 == 0) {
-                game.getAuthorshipData().getCreatedSprites()
-                        .add(new SimpleObjectProperty<>(createFirstSprite()));
+                game.getAuthorshipData().getCreatedSprites().add(createFirstSprite());
             }
             else {
-                game.getAuthorshipData().getCreatedSprites()
-                        .add(new SimpleObjectProperty<>(createSecondSprite()));
+                game.getAuthorshipData().getCreatedSprites().add(createSecondSprite());
             }
         }
     }
 
-    private ISprite createFirstSprite () {
-        ISprite sprite = new Sprite();
-        sprite.getType().set(new SpriteType("Person"));
+    private SpriteDefinition createFirstSprite () {
+        SpriteDefinition sprite = new SpriteDefinition();
 
-        ObjectProperty<IGraphicModule> g =
-                new SimpleObjectProperty<>(new GraphicModule(new ImageGraphic(30, 30,
-                                                                              "images/photo.png")));
-        sprite.getDrawer().set(g.get());
+        IGraphic graphic = new ImageGraphic(30, 30,"images/photo.png");
+        sprite.setGraphic(graphic);
+        sprite.setType("Person");
+        sprite.setDescription("This is a person");
         return sprite;
     }
 
-    private ISprite createSecondSprite () {
-        ISprite sprite = new Sprite();
-        sprite.getType().set(new SpriteType("Block"));
-        ObjectProperty<IGraphicModule> g =
-                new SimpleObjectProperty<>(new GraphicModule(new Block(40, 40, RGBColor.BLACK)));
-        sprite.getDrawer().set(g.get());
+    private SpriteDefinition createSecondSprite () {
+        SpriteDefinition sprite = new SpriteDefinition();
+        sprite.setType("Block");
+        IGraphic graphic = new Block(40, 40, RGBColor.BLACK);
+        sprite.setGraphic(graphic);
+        sprite.setDescription("This is a block");
         return sprite;
     }
 

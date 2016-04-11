@@ -2,7 +2,7 @@ package gameauthoring.levels;
 
 import java.io.File;
 import engine.ILevel;
-import engine.sprite.ISprite;
+import engine.definitions.SpriteDefinition;
 import graphics.ImageGraphic;
 import javafx.stage.FileChooser;
 import util.Coordinate;
@@ -28,8 +28,8 @@ public class SceneController {
         myLevel.getBackgroundImageProperty().set(background);
     }
 
-    public void addSprite (double x, double y, ISprite sprite) {
-        myLevel.add(sprite, new Coordinate(x, y));
+    public void addSprite (double x, double y, SpriteDefinition spriteDefinition) {
+        myLevel.add(spriteDefinition.create(), new Coordinate(x, y));
     }
     
 }

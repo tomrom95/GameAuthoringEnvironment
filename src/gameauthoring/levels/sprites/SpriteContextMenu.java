@@ -63,7 +63,7 @@ public class SpriteContextMenu {
     }
     
     public void createPath () {
-        Coordinate point = mySprite.getLocation().get();
+        Coordinate point = mySprite.getLocation();
         myController.createNewPath(point, levelView.getPane());
     }
     

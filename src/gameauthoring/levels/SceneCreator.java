@@ -2,13 +2,10 @@ package gameauthoring.levels;
 
 import engine.IGame;
 import engine.ILevel;
+import engine.definitions.SpriteDefinition;
 import engine.rendering.AuthoringRenderer;
-import engine.sprite.ISprite;
 import gameauthoring.Glyph;
 import gameauthoring.levels.sprites.DraggableSpriteCell;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.ListCell;
@@ -30,12 +27,10 @@ public class SceneCreator implements Glyph {
     private AuthoringRenderer levelView;
     private ILevel myLevel;
     private SceneController myController;
-    private DoubleProperty myHeight;
 
     public SceneCreator (IGame model, ILevel level) {
         gameModel = model;
         myLevel = level;
-        myHeight = new SimpleDoubleProperty(HEIGHT);
         myController = new SceneController(myLevel);
     }
 
@@ -54,14 +49,14 @@ public class SceneCreator implements Glyph {
 
     private Node createSpriteSelection () {
         Accordion selector = new Accordion();
-        selector.maxHeightProperty().bind(myHeight);
-        ListView<ObjectProperty<ISprite>> spriteList = new ListView<ObjectProperty<ISprite>>();
+        //selector.maxHeightProperty().bind(myHeight);
+        ListView<SpriteDefinition> spriteList = new ListView<SpriteDefinition>();
        
         spriteList.setItems(gameModel.getAuthorshipData().getCreatedSprites());
         
-        spriteList.setCellFactory(new Callback<ListView<ObjectProperty<ISprite>>, ListCell<ObjectProperty<ISprite>>>() {
+        spriteList.setCellFactory(new Callback<ListView<SpriteDefinition>, ListCell<SpriteDefinition>>() {
             @Override 
-            public ListCell<ObjectProperty<ISprite>> call(ListView<ObjectProperty<ISprite>> list) {
+            public ListCell<SpriteDefinition> call(ListView<SpriteDefinition> list) {
                 return new DraggableSpriteCell(levelView, myController);
             }
         });
@@ -74,10 +69,11 @@ public class SceneCreator implements Glyph {
     
     private Node createLevelView () {
         Pane levelPane = new Pane();
+        
         levelView = new AuthoringRenderer(myLevel, levelPane);
-        levelView.render();
         
         myController.setBackground(DEFAULT_BACKGROUND);
+        levelView.render();
 
         levelPane.setOnMouseClicked(e -> handleMouseClick(e));
         return levelPane;
@@ -86,6 +82,7 @@ public class SceneCreator implements Glyph {
     private void handleMouseClick (MouseEvent e) {
         if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
             myController.uploadNewBackground();
+            levelView.render();
         } 
     }
 

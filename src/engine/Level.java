@@ -3,7 +3,6 @@ package engine;
 import java.util.List;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import engine.modules.GraphicModule;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.beans.property.ObjectProperty;
@@ -36,7 +35,7 @@ public class Level implements ILevel {
         mySpriteManager = new SimpleObjectProperty<>(new SpriteManager());
         myNextLevelManager = new SimpleObjectProperty<>(new NextLevelManager());
         //TODO add default
-       // myBackgroundImage = new SimpleObjectProperty<>(new ImageGraphic(400, 400, "/image/blank.jpg"));
+        myBackgroundImage = new SimpleObjectProperty<>(null);
     }
 
     @Override
@@ -100,7 +99,7 @@ public class Level implements ILevel {
      * Removes a sprite from the level whenever a sprite meets a particular death condition
      */
     @Override
-    public void remove (ObjectProperty<ISprite> sprite) {
+    public void remove (ISprite sprite) {
         mySpriteManager.get().remove(sprite);
 
     }
@@ -115,6 +114,12 @@ public class Level implements ILevel {
     @Override
     public ObjectProperty<IAttributeManager> getAttributeManager () {
         return myAttributeManager;
+    }
+
+    @Override
+    public void add (ISprite sprite) {
+        mySpriteManager.get().add(sprite);
+        
     }
 
 }

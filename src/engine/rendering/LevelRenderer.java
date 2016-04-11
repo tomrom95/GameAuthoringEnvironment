@@ -12,6 +12,8 @@ import javafx.scene.layout.Pane;
 import util.Coordinate;
 
 public abstract class LevelRenderer implements IRenderer{
+    private static final int MAX_HEIGHT = 400;
+    private static final int MAX_WIDTH = 800;
     
     private Pane myPane;
 
@@ -35,13 +37,15 @@ public abstract class LevelRenderer implements IRenderer{
     abstract String getBackgroundURL();
 
     protected void draw (Node node, Drawable sprite) {
-        Coordinate location = sprite.getLocation().get();
-        node.relocate(location.getX(), location.getY());
+        Coordinate location = sprite.getLocation();
+        node.relocate(location.getX() - sprite.getDrawer().getGraphic().getWidth().get()/2,
+                      location.getY() - sprite.getDrawer().getGraphic().getHeight().get()/2);
         myPane.getChildren().add(node);
     }    
 
     private void drawBackground (String url) {
-        Image img = new Image(url);
+        if (url == null) return;
+        Image img = new Image(url, MAX_WIDTH, MAX_HEIGHT, true, true);
         BackgroundImage background = new BackgroundImage(img,
                                                          BackgroundRepeat.NO_REPEAT,
                                                          BackgroundRepeat.NO_REPEAT,

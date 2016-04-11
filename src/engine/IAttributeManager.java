@@ -1,5 +1,6 @@
 package engine;
 
+import java.util.List;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
@@ -21,7 +22,7 @@ import javafx.collections.ObservableList;
  */
 public interface IAttributeManager extends Updateable, Affectable {
 
-    ObservableList<ObjectProperty<IResource>> getResourceList ();
+    List<IResource> getResourceList ();
 
     void addResource (IResource resource);
 

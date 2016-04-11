@@ -79,6 +79,6 @@ public interface ILevel extends Updateable, IAdder {
      * @param sprite to be removed
      */
 
-    void remove (ObjectProperty<ISprite> sprite);
+    void remove (ISprite sprite);
 
 }

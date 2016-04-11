@@ -53,7 +53,7 @@ public interface ILevelManager extends IAdder {
     /**
      * @param sprite to be removed from the current level
      */
-    void remove (ObjectProperty<ISprite> sprite);
+    void remove (ISprite sprite);
 
     /**
      * @return the background image of the current level

@@ -82,7 +82,7 @@ public class LevelManager implements ILevelManager {
     }
 
     @Override
-    public void remove (ObjectProperty<ISprite> sprite) {
+    public void remove (ISprite sprite) {
         myCurrentLevel.get().remove(sprite);
     }
 
@@ -95,6 +95,12 @@ public class LevelManager implements ILevelManager {
     @Override
     public void createNewLevel (ObjectProperty<ILevel> newLevel) {
         myCurrentLevel = newLevel;
+    }
+
+    @Override
+    public void add (ISprite sprite) {
+        myCurrentLevel.get().add(sprite);
+        
     }
 
 }

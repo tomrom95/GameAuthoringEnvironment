@@ -4,9 +4,7 @@ import java.util.List;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
-import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
-import util.Coordinate;
 
 
 /**
@@ -44,7 +42,7 @@ public interface ISpriteManager extends Updateable, IAdder {
     /**
      * @param sprite to be removed
      */
-    void remove (ObjectProperty<ISprite> sprite);
+    void remove (ISprite sprite);
 
     
 

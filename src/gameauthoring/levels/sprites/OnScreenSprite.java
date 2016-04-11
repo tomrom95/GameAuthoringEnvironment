@@ -32,7 +32,7 @@ public class OnScreenSprite implements Draggable, Glyph {
 
     @Override
     public Node draw () {
-        Node node = mySprite.getDrawer().get().getVisualRepresentation(new UnscaledFactory());
+        Node node = mySprite.getDrawer().getVisualRepresentation(new UnscaledFactory());
         this.setActions(node);
         this.createRightClickMenu(node);
         return node;

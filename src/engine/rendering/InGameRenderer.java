@@ -25,7 +25,7 @@ public class InGameRenderer extends LevelRenderer {
     @Override
     void drawSprites () {
         myGame.getDrawables().forEach(d -> {
-            this.draw(d.getDrawer().get().getVisualRepresentation(myFactory), d);
+            this.draw(d.getDrawer().getVisualRepresentation(myFactory), d);
         });
     }
 

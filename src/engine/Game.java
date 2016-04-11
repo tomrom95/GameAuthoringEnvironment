@@ -102,7 +102,7 @@ public class Game implements IGame {
     }
 
     @Override
-    public ObservableList<ObjectProperty<IAttribute>> getGlobalAttributes () {
+    public List<IAttribute> getGlobalAttributes () {
         return getAttributeManager().getAttributes();
     }
 

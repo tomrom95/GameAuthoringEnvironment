@@ -1,11 +1,11 @@
 package engine.modules;
 
+import java.util.List;
 import engine.IAttribute;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
-import javafx.collections.ObservableList;
 import util.TimeDuration;
 
 
@@ -32,7 +32,7 @@ public class Firer implements IFireModule {
     }
 
     @Override
-    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
+    public List<IAttribute> getAttributes () {
         // TODO Auto-generated method stub
         return null;
     }
