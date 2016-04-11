@@ -59,5 +59,4 @@ public class SpriteCellView extends ListCell<SpriteDefinition> {
     protected SpriteDefinition getSprite () {
         return mySprite;
     }
-
 }

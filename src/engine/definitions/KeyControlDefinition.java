@@ -30,4 +30,20 @@ public class KeyControlDefinition implements IDefinition {
     public void setRight (String right) {
         myRight = right;
     }
+    
+    public String getUp(){
+        return myUp;
+    }
+    
+    public String getDown(){
+        return myDown;
+    }
+    
+    public String getLeft(){
+        return myLeft;
+    }
+    
+    public String getRight(){
+        return myRight;
+    }
 }
