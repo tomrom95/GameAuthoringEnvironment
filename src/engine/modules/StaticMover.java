@@ -1,5 +1,7 @@
 package engine.modules;
 
+import java.util.ArrayList;
+import java.util.List;
 import engine.IAttribute;
 import engine.IPositionable;
 import engine.interactionevents.KeyIOEvent;
@@ -35,8 +37,8 @@ public class StaticMover extends Mover {
     }
 
     @Override
-    protected ObservableList<ObjectProperty<IAttribute>> getSpecificAttributes () {
-        return FXCollections.observableArrayList();
+    protected List<IAttribute> getSpecificAttributes () {
+        return new ArrayList<>();
     }
 
     
