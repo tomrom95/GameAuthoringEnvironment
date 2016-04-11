@@ -32,7 +32,7 @@ public class SpriteDefinition implements IProfilable {
         myModuleDefinitions = new ArrayList<ModuleDefinition>();
         myAttributes = new ArrayList<AttributeDefinition>();
         myLocation = new LocationDefinition();
-       
+
     }
 
     public ISprite create () {
@@ -83,6 +83,10 @@ public class SpriteDefinition implements IProfilable {
 
     public void remove (ModuleDefinition definition) {
         myModuleDefinitions.remove(definition);
+    }
+
+    public MovementDefinition getMovementDefinition () {
+        return myMovementDefinition;
     }
 
     public void setMovementDefinition (MovementDefinition definition) {

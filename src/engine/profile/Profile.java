@@ -18,6 +18,9 @@ public class Profile implements IProfile {
     public Profile () {
         init("", "", new ImageGraphic(0, 0, ""));
     }
+    public Profile (String name, String description, String url) {
+        init(name, description, new ImageGraphic(0, 0, ""));
+    }
 
     public Profile (String name, String description, ImageGraphic graphic) {
         init(name, description, graphic);
@@ -43,6 +46,10 @@ public class Profile implements IProfile {
     @Override
     public ImageGraphic getImage () {
         return myImage;
+    }
+    
+    public String getImageURL () {
+        return myImage.getUrlProperty().get();
     }
 
 }

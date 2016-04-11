@@ -32,4 +32,10 @@ public interface IProfile {
      */
     ImageGraphic getImage ();
 
+    /**
+     * Get the url of the ImageGraphic
+     * 
+     * @return A ImageGraphic's url as a string
+     */
+    String getImageURL ();
 }
