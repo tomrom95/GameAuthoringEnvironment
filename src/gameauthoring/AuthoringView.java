@@ -1,5 +1,6 @@
 package gameauthoring;
 
+import java.util.ResourceBundle;
 import data.GameWriter;
 import data.IGameWriter;
 import javafx.event.ActionEvent;
@@ -26,6 +27,7 @@ public class AuthoringView implements IAuthoringView {
     private GameTabViewer myGameTabViewer;
     private ObjectCreationTabViewer myCreationTabViewer;
     private SceneTabViewer mySceneTabViewer;
+    private ResourceBundle myResources;
     private GridPane myLayout;
     private static final int WIDTH = 1200;
     private static final int HEIGHT = 800;
@@ -52,13 +54,14 @@ public class AuthoringView implements IAuthoringView {
         myLayout = new GridPane();
         myLayout.add(menuBar, 0, 0);
         myLayout.add(tabPane, 0, 2);
+        myResources = ResourceBundle.getBundle("resource/MainAuthoringTab");
         s.setScene(new Scene(myLayout, WIDTH, HEIGHT));
     }
 
     private MenuBar createMenuBar () {
         MenuBar menuBar = new MenuBar();
-        Menu fileMenu = new Menu("File");
-        MenuItem saveItem = createMenuItems("Save your game as XML Files", e -> saveToXML());
+        Menu fileMenu = new Menu(myResources.getString("file"));
+        MenuItem saveItem = createMenuItems(myResources.getString("save"), e -> saveToXML());
         fileMenu.getItems().add(saveItem);
         menuBar.getMenus().add(fileMenu);
         return menuBar;
@@ -78,15 +81,15 @@ public class AuthoringView implements IAuthoringView {
     private TabPane createAllTabs () {
         TabPane tabpane = new TabPane();
 
-        Tab gameTab = createTab("Game");
+        Tab gameTab = createTab(myResources.getString("game"));
         myGameTabViewer = new GameTabViewer();
         gameTab.setContent(myGameTabViewer.draw());
 
-        Tab creationTab = createTab("Create Objects");
+        Tab creationTab = createTab(myResources.getString("object"));
         myCreationTabViewer = new ObjectCreationTabViewer();
         creationTab.setContent(myCreationTabViewer.draw());
 
-        Tab sceneTab = createTab("Build Scenes/Levels");
+        Tab sceneTab = createTab(myResources.getString("scene"));
         mySceneTabViewer = new SceneTabViewer();
         sceneTab.setContent(mySceneTabViewer.draw());
 

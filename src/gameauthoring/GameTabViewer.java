@@ -6,6 +6,7 @@ import gameauthoring.characters.IFormDataManager;
 import gameauthoring.characters.ImageEntryView;
 import gameauthoring.characters.TextEntryView;
 import java.io.File;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -30,16 +31,20 @@ public class GameTabViewer implements ITabViewer {
 
     private BorderPane myLayout;
     private IFormDataManager myData = new FormDataManager();
-    
-    private String myNameKey = "Name of the Game: ";
-    private String myAuthorKey = "Author: ";
-    private String mySplashScreenKey = "Splash Screen: ";
+    private ResourceBundle myResources;
+    private String myNameKey;
+    private String myAuthorKey;
+    private String mySplashScreenKey;
     
     private IEntryView myName = new TextEntryView(myNameKey, myData, 20, 150, 30);
     private IEntryView myAuthor = new TextEntryView(myAuthorKey, myData, 20, 150, 30);
     private IEntryView mySplashScreen = new ImageEntryView(mySplashScreenKey, myData, 20, 150, 30);
 
     public GameTabViewer(){
+        myResources = ResourceBundle.getBundle("resource/GameInformationTab");
+        myNameKey = myResources.getString("name");
+        myAuthorKey = myResources.getString("author");
+        mySplashScreenKey = myResources.getString("splashscreen");
         init();
     }
     

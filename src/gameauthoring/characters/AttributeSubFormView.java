@@ -3,6 +3,7 @@ package gameauthoring.characters;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ResourceBundle;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
@@ -15,9 +16,10 @@ import javafx.scene.layout.GridPane;
 public class AttributeSubFormView extends SubFormView {
 
     private GridPane myPane = new GridPane();
-    private String myMaxKey = "Max Value: ";
-    private String myMinKey = "Min Value: ";
-    private String myIsGlobalKey = "Global or Local Attribute: ";
+    private ResourceBundle myResources;
+    private String myMaxKey;
+    private String myMinKey;
+    private String myIsGlobalKey;
 
     private IEntryView myMaxValue = new TextEntryView(myMaxKey, this.getData(), 20, 150, 30);
     private IEntryView myMinValue = new TextEntryView(myMinKey, this.getData(), 20, 100, 100);
@@ -27,6 +29,10 @@ public class AttributeSubFormView extends SubFormView {
                                                                                     myIsGlobal));
 
     public AttributeSubFormView () {
+        myResources = ResourceBundle.getBundle("resource/AttributeSubForm");
+        myMaxKey = myResources.getString("Max");
+        myMinKey = myResources.getString("Min");
+        myIsGlobalKey = myResources.getString("Global");
         initView();
     }
 
