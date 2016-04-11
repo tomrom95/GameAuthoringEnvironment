@@ -57,6 +57,7 @@ public class GameTabViewer implements ITabViewer {
 //        form.add(new TextEntryView("Name of the Game: ").draw(), 0, 1);
 //        form.add(new TextFormData("Author: ").draw(), 0, 2);
 //        form.add(new TextFormData("Splash Sreen: ").draw(), 0, 3);
+
         form.add(loadImage, 1, 3);
         return form;
     }

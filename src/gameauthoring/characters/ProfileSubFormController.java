@@ -1,12 +1,7 @@
 package gameauthoring.characters;
 
-import java.util.List;
-import engine.IProfile;
-import engine.sprite.ISprite;
-import engine.Profile;
 import engine.definitions.ProfileDefinition;
 import engine.definitions.SpriteDefinition;
-
 
 
 public class ProfileSubFormController implements ISubFormControllerSprite {
@@ -19,8 +14,9 @@ public class ProfileSubFormController implements ISubFormControllerSprite {
      * 
      * Hidden Dependencies VS Flexibility
      * 
-     * Maybe best solution is to interface or superclass ProfileSubFormView and just have it take any
-     * implementation of that in constructor,  but still issues to work out  (current Implementation)
+     * Maybe best solution is to interface or superclass ProfileSubFormView and just have it take
+     * any
+     * implementation of that in constructor, but still issues to work out (current Implementation)
      * 
      */
     private ProfileSubFormView myView;
@@ -31,26 +27,27 @@ public class ProfileSubFormController implements ISubFormControllerSprite {
         this.myFormData = myView.getData();
     }
 
- 
-
     @Override
-    public void updateGameModel (SpriteDefinition item) {
-        item.setName(myFormData.getValueProperty(myView.getMyNameKey()).get());
-        item.setURL(myFormData.getValueProperty(myView.getMyImageKey()).get());
-        //Same process for description
+    public void updateItem (SpriteDefinition item) {
+        String name = myFormData.getValueProperty(myView.getMyNameKey()).get();
+        String desc = myFormData.getValueProperty(myView.getMyDescriptionKey()).get();
+        String url = myFormData.getValueProperty(myView.getMyImageKey()).get();
+
+        ProfileDefinition profDef = new ProfileDefinition(name, desc, url);
+        item.setProfileDefinition(profDef);
+
     }
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-       myFormData.set(myView.getMyNameKey(), item.getName());
-       myFormData.set(myView.getMyImageKey(), item.getURL());
-       // Same Process for Description
+        myFormData.set(myView.getMyNameKey(), item.getProfileDefinition().getName());
+        myFormData.set(myView.getMyDescriptionKey(), item.getProfileDefinition().getDescription());
+        myFormData.set(myView.getMyImageKey(), item.getProfileDefinition().getURL());
     }
 
     @Override
     public ISubFormView getSubFormView () {
         return myView;
     }
-    
 
 }

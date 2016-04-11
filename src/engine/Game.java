@@ -63,6 +63,7 @@ public class Game implements IGame {
 
     @Override
     public ILevelManager getLevelManager () {
+       
         return myLevelManager;
     }
 
@@ -79,12 +80,15 @@ public class Game implements IGame {
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
         myLevelManager.internalizeKeyEvents(list);
+        myConditionManager.internalizeKeyEvents(list);
+        
 
     }
 
     @Override
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
         myLevelManager.internalizeMouseEvents(list);
+        myConditionManager.internalizeMouseEvents(list);
     }
 
     @Override

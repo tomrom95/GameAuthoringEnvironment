@@ -1,7 +1,6 @@
 package engine.modules;
 
 import engine.IAttribute;
-import engine.IStatusModule;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
@@ -10,20 +9,9 @@ import javafx.collections.ObservableList;
 import util.TimeDuration;
 
 
-/**
- * This class implements IStatusModule and handles the status of a sprite over the course of a level
- * and game
- * 
- * @author Dhrumil
- *
- */
-public class StatusModule implements IStatusModule {
+public class Firer implements IFireModule {
 
-    @Override
-    public void update (TimeDuration duration) {
-        // TODO Auto-generated method stub
-
-    }
+    private ObjectProperty<IAttribute> myAmmo;
 
     @Override
     public void applyEffect (IEffect effect) {
@@ -49,13 +37,14 @@ public class StatusModule implements IStatusModule {
         return null;
     }
 
-    /**
-     * Handles removing the sprite from the game after a death condition has been met
-     */
     @Override
-    public boolean shouldBeRemoved () {
+    public void update (TimeDuration duration) {
         // TODO Auto-generated method stub
-        return false;
+
+    }
+
+    protected ObjectProperty<IAttribute> getAmmo () {
+        return myAmmo;
     }
 
 }

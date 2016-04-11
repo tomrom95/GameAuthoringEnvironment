@@ -20,8 +20,8 @@ public class MovementSubFormController implements ISubFormControllerSprite {
         myCurrentMovementController = mySubFormControllers.get(comboSelectionIndex);
     }
     @Override
-    public void updateGameModel (SpriteDefinition item) {
-        myCurrentMovementController.updateGameModel(item);
+    public void updateItem (SpriteDefinition item) {
+        myCurrentMovementController.updateItem(item);
     }
 
     @Override

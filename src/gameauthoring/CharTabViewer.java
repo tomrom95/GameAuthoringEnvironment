@@ -24,6 +24,7 @@ public class CharTabViewer implements ITabViewer {
 
     private Tab myCharTab;
     private BorderPane myLayout;
+    private List<ICreationController>
 
     public CharTabViewer (Tab charTab) {
         myCharTab = charTab;

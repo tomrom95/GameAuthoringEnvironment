@@ -14,7 +14,7 @@ public class SmartAIMovementSubFormController implements ISubFormControllerSprit
     }
     
     @Override
-    public void updateGameModel (SpriteDefinition item) {
+    public void updateItem (SpriteDefinition item) {
         // TODO Auto-generated method stub
 
     }

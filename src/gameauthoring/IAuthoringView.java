@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public interface IAuthoringView {
 
     GameTabViewer getGameTabViewer();
-    CharTabViewer getCharTabViewer();
+    ObjectCreationTabViewer getCreationTabViewer();
     SceneTabViewer getLevelTabViewer();
     
     /**

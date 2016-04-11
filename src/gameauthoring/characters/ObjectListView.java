@@ -1,6 +1,8 @@
 package gameauthoring.characters;
 
 import java.util.function.Consumer;
+import engine.definitions.IDefinition;
+import engine.definitions.ProfileDefinition;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
@@ -19,7 +21,7 @@ import javafx.scene.input.MouseEvent;
  * @author Jin An, Jeremy Schreck
  *
  */
-public class ObjectListView<E> implements IObjectListView<E> {
+public class ObjectListView<E extends IDefinition> implements IObjectListView<E> {
 
     private ObservableList<E> myItems; // maybe change to SpriteListHolder
     private ListView<E> myListView;
@@ -28,7 +30,7 @@ public class ObjectListView<E> implements IObjectListView<E> {
         myItems = items;
         myListView = new ListView<E>();
         myListView.setItems(getMyItems());
-
+        
     }
 
     @Override
@@ -60,7 +62,8 @@ public class ObjectListView<E> implements IObjectListView<E> {
         action.accept(item);
     }
 
-    private ObservableList<E> getMyItems () {
+    @Override
+    public ObservableList<E> getMyItems () {
         return myItems;
     }
 

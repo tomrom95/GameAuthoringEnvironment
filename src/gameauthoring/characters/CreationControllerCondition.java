@@ -1,8 +1,17 @@
 package gameauthoring.characters;
 
+import java.util.List;
 import engine.definitions.ConditionDefinition;
 
-public class CreationControllerCondition {
+public class CreationControllerCondition extends CreationController<ConditionDefinition> {
 
-    private ConditionDefinition myConditionDefinition;
+    public CreationControllerCondition (List<ISubFormController<ConditionDefinition>> subFormControllers) {
+        super(subFormControllers);
+    }
+
+    @Override
+    protected ConditionDefinition createBlankItem () {
+        //return new ConditionDefinition();
+    }
+
 }
