@@ -1,5 +1,6 @@
-package gameauthoring;
+package gameauthoring.conditiontab;
 
+import engine.IGame;
 import javafx.stage.Popup;
 
 
@@ -12,11 +13,11 @@ import javafx.stage.Popup;
 public class CondController {
 
     private ConditionView myView;
-    private IPopUpFactory myFactory;
+    private ConditionPopUpFactory myFactory;
 
-    public CondController (ConditionView conditionView) {
+    public CondController (ConditionView conditionView, IGame game) {
         myView = conditionView;
-        myFactory = new ConditionPopUpFactory();
+        myFactory = new ConditionPopUpFactory(game);
         setActions();
 
     }
@@ -29,7 +30,7 @@ public class CondController {
     }
 
     private void createPopUp (String selection) {
-        
+        myFactory.get(selection, myView.getList()).show();
     }
 
 }

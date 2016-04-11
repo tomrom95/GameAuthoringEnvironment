@@ -1,5 +1,6 @@
 package gameauthoring;
 
+import engine.ICondition;
 import gameauthoring.object_creation_tab.SubTabEditorView;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -18,9 +19,11 @@ public class ListDisplay<T> extends SubTabEditorView {
     private BorderPane myPane;
     private ComboBox<String> myBox;
     private Button myButton;
-
+    private ObservableList<T> myList;
+    
     public ListDisplay (Tab tab, ObservableList<T> conditionList, ObservableList<String> myOptions) {
         super(tab);
+        myList = conditionList;
         myPane = new BorderPane();
         myListView = new ListView<>(conditionList);
         myButton = new Button ("+");
@@ -29,6 +32,9 @@ public class ListDisplay<T> extends SubTabEditorView {
         
     }
 
+    public ObservableList<T> getList () {
+       return myList;
+    }
     private void initBox (ObservableList<String> myOptions) {
         myBox = new ComboBox<>(myOptions);       
     }

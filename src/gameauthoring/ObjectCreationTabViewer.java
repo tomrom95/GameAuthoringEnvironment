@@ -1,6 +1,7 @@
 package gameauthoring;
 
 import gameauthoring.ITabViewer;
+import gameauthoring.conditiontab.ConditionView;
 import gameauthoring.object_creation_tab.AttributeEditorView;
 import gameauthoring.object_creation_tab.DefenderEditorView;
 import gameauthoring.object_creation_tab.EnemyEditorView;
