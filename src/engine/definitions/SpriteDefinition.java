@@ -77,4 +77,8 @@ public class SpriteDefinition extends ProfileDefinition {
     public void setType (String type) {
         myType = type;
     }
+    
+    public MovementDefinition getMovementDefinition(){
+        return this.myMovementDefinition;
+    }
 }
