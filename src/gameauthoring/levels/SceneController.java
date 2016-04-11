@@ -25,6 +25,7 @@ public class SceneController {
     
     public void setBackground(String imageURL) {
         ImageGraphic background = new ImageGraphic(0, 0, imageURL);
+        System.out.println("Here");
         myLevel.setBackgroundImage(background);
     }
 

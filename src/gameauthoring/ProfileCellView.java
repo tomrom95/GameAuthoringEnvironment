@@ -1,6 +1,6 @@
 package gameauthoring;
 
-import engine.definitions.SpriteDefinition;
+import engine.definitions.ProfileDefinition;
 import engine.rendering.GraphicFactory;
 import engine.rendering.ScaleFactory;
 import javafx.geometry.Pos;
@@ -11,36 +11,37 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 
-public class SpriteCellView extends ListCell<SpriteDefinition> {
+public class ProfileCellView<E extends ProfileDefinition> extends ListCell<E> {
 
     private static final double PIC_SIZE = 30;
     private static final String DEFAULT_NAME = "<No Name>";
     private static final String DEFAULT_DESCRIPTION = "<No Description>";
 
-    private SpriteDefinition mySprite;
+    private E myProfile;
 
     @Override
-    protected void updateItem (SpriteDefinition item, boolean empty) {
+    protected void updateItem (E item, boolean empty) {
         super.updateItem(item, empty);
         if (item != null) {
-            mySprite = item;
-            setGraphic(createSpriteCell());
+            myProfile = item;
+            setGraphic(createSpriteCell(item));
         }
     }
 
-    protected Node createSpriteCell () {
+    protected Node createSpriteCell (E profile) {
         HBox container = new HBox(10);
         container.setAlignment(Pos.CENTER_LEFT);
-        container.getChildren().add(createImageProfile());
-        container.getChildren().add(createTextProfile());
+        
+        container.getChildren().add(createImageProfile(profile));
+        container.getChildren().add(createTextProfile(profile));
         return container;
     }
 
-    private Node createTextProfile () {
+    private Node createTextProfile (ProfileDefinition profile) {
         VBox container = new VBox();
 
-        Text name = new Text(getStringOrDefault(getSprite().getName(), DEFAULT_NAME));
-        Text description = new Text(getStringOrDefault(getSprite().getDescription(),
+        Text name = new Text(getStringOrDefault(profile.getName(), DEFAULT_NAME));
+        Text description = new Text(getStringOrDefault(profile.getDescription(),
                                                        DEFAULT_DESCRIPTION));
         container.getChildren().addAll(name, description);
         return container;
@@ -50,13 +51,14 @@ public class SpriteCellView extends ListCell<SpriteDefinition> {
         return (name == null) ? defaultName : name;
     }
 
-    private Node createImageProfile () {
+    private Node createImageProfile (ProfileDefinition profile) {
         GraphicFactory graphics = new ScaleFactory(PIC_SIZE, PIC_SIZE);
-        Node node = mySprite.getGraphic().getVisualRepresentation(graphics);
+        Node node = new HBox(5);//myProfile.getGraphic().getVisualRepresentation(graphics);
         return node;
     }
-
-    protected SpriteDefinition getSprite () {
-        return mySprite;
+    
+    protected E getProfile () {
+        return myProfile;
     }
+
 }
