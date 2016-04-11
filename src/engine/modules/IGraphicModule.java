@@ -18,7 +18,7 @@ import javafx.scene.Node;
 public interface IGraphicModule extends IModule {
 
     Node getVisualRepresentation (IGraphicFactory factory);
-    
+
     IGraphic getGraphic ();
 
 }

@@ -4,6 +4,7 @@ import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
 
+
 public class AttributeDefinition implements IDefinition {
 
     private String myType;
@@ -12,12 +13,12 @@ public class AttributeDefinition implements IDefinition {
     public IAttribute create () {
         return new Attribute(myValue, new AttributeType(myType));
     }
-    
-    public void setType(String type) {
+
+    public void setType (String type) {
         myType = type;
     }
-    
-    public void setValue(double value) {
+
+    public void setValue (double value) {
         myValue = value;
     }
 

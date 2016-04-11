@@ -42,7 +42,7 @@ public class DraggableSpriteCell extends SpriteCellView implements Draggable{
     }
     
     private Image getSpriteImage(){
-        Node spriteNode = this.getSprite().get().getDrawer().get().getVisualRepresentation(new UnscaledFactory());
+        Node spriteNode = this.getSprite().get().getDrawer().getVisualRepresentation(new UnscaledFactory());
         return (new UIFactory()).getImageFromNode(spriteNode);
     }
 

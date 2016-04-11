@@ -6,7 +6,6 @@ import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
-import javafx.beans.property.ObjectProperty;
 import util.TimeDuration;
 
 
@@ -52,13 +51,13 @@ public class OnCollisionCondition implements ICondition {
     @Override
     public void update (TimeDuration duration) {
         List<ISprite> sprites =
-                myGame.getLevelManager().getCurrentLevel().get().getSprites();
+                myGame.getLevelManager().getCurrentLevel().getSprites();
         for (ISprite outerSprite : sprites.stream()
-                
-                .filter(sprite -> myGroupA.contains(sprite.getType().get()))
+
+                .filter(sprite -> myGroupA.contains(sprite.getType()))
                 .collect(Collectors.toList())) {
             for (ISprite innerSprite : sprites.stream()
-                    .filter(sprite -> myGroupB.contains(sprite.getType().get()))
+                    .filter(sprite -> myGroupB.contains(sprite.getType()))
                     .collect(Collectors.toList())) {
                 if (outerSprite.getBounds().collide(innerSprite.getBounds())) {
                     handleCollision(outerSprite, innerSprite);
@@ -71,14 +70,14 @@ public class OnCollisionCondition implements ICondition {
         myApplyToA.forEach(effect -> outerSprite.applyEffect(effect));
         myApplyToB.forEach(effect -> innerSprite.applyEffect(effect));
         List<ISprite> sprites =
-                myGame.getLevelManager().getCurrentLevel().get().getSprites();
+                myGame.getLevelManager().getCurrentLevel().getSprites();
         sprites.stream()
-                .filter(sprite -> myOtherGroup.contains(sprite.getType().get()))
+                .filter(sprite -> myOtherGroup.contains(sprite.getType()))
                 .forEach(sprite -> myApplyToOtherGroup
                         .forEach(effect -> sprite.applyEffect(effect)));
         myApplyToGlobalAttys.forEach(effect -> myGame.getAttributeManager().applyEffect(effect));
-        myApplyToGlobalAttys.forEach(effect -> myGame.getLevelManager().getCurrentLevel().get()
-                .getAttributeManager().get().applyEffect(effect));
+        myApplyToGlobalAttys.forEach(effect -> myGame.getLevelManager().getCurrentLevel()
+                .getAttributeManager().applyEffect(effect));
     }
 
     @Override

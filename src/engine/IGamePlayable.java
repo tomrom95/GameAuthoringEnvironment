@@ -4,8 +4,6 @@ import java.util.List;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import graphics.ImageGraphic;
-import javafx.beans.property.ObjectProperty;
-import javafx.collections.ObservableList;
 
 
 /**
@@ -29,20 +27,20 @@ public interface IGamePlayable extends Updateable {
     /**
      * @return list of Drawable objects that a game contains
      */
-    ObservableList<? extends Drawable> getDrawables ();
+    List<? extends Drawable> getDrawables ();
 
     /**
      * @return the global attributes for this game
      */
-    ObservableList<ObjectProperty<IAttribute>> getGlobalAttributes ();
-    
+    List<IAttribute> getGlobalAttributes ();
+
     /**
      * @return the background image of the running level of the game
      */
     ImageGraphic getBackroundImage ();
 
     void internalizeKeyEvents (List<KeyIOEvent> list);
-    
+
     void internalizeMouseEvents (List<MouseIOEvent> list);
 
 }

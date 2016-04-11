@@ -1,12 +1,11 @@
 package engine.definitions;
 
-
 import engine.OnCollisionCondition;
 
 
 /**
  * 'Definition' class for the OnCollisionCondition
- * 
+ *
  * @author jonathanim
  *
  */
@@ -91,6 +90,5 @@ public class OnCollisionDefinition implements IDefinition {
     public void setMyApplyToGlobalAttys (ListIEffectDefinition myApplyToGlobalAttys) {
         this.myApplyToGlobalAttys = myApplyToGlobalAttys;
     }
-
 
 }

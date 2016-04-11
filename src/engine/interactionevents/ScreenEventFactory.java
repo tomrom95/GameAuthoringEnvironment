@@ -45,7 +45,7 @@ public class ScreenEventFactory implements IScreenEventFactory {
     /**
      * Converts the JavaFX ActionEvent into an InputType, a class that is understood by the
      * GameEngine.
-     * 
+     *
      * @param str string representing the ActionEvent
      * @return InputType that corresponds to the IOEvent that the GameEngine interprets
      * @throws ClassNotFoundException
