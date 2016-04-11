@@ -10,7 +10,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-
+/**
+ * 
+ * @author Jin An
+ *
+ * @param <E>
+ */
 public class ProfileCellView<E extends ProfileDefinition> extends ListCell<E> {
 
     private static final double PIC_SIZE = 30;

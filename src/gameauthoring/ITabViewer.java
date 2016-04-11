@@ -1,7 +1,7 @@
 package gameauthoring;
 
 /**
- * An interface for two main tab view classes
+ * An interface for three main tab view classes
  * Implemented by GameTabViewer, CharTabViewer, and SceneTabViewer
  * 
  * @author Jin An

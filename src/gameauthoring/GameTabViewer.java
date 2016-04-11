@@ -22,7 +22,11 @@ import javafx.stage.Stage;
 
 
 /**
- * Handles selection between different games
+ * This class serves to allow users to input game information such as name of the game, author of
+ * the game, and image for splashscreen. In order to avoid repetition of codes, we created and used
+ * Text(Image) EntryView, which takes in a string label and dataManager and creates text field (load
+ * button) for users to write in.
+ * and creates
  * 
  * @author Jin An
  *
@@ -35,38 +39,39 @@ public class GameTabViewer implements ITabViewer {
     private String myNameKey;
     private String myAuthorKey;
     private String mySplashScreenKey;
-    
+
     private IEntryView myName = new TextEntryView(myNameKey, myData, 20, 150, 30);
     private IEntryView myAuthor = new TextEntryView(myAuthorKey, myData, 20, 150, 30);
     private IEntryView mySplashScreen = new ImageEntryView(mySplashScreenKey, myData, 20, 150, 30);
 
-    public GameTabViewer(){
+    public GameTabViewer () {
         myResources = ResourceBundle.getBundle("resource/GameInformationTab");
         myNameKey = myResources.getString("name");
         myAuthorKey = myResources.getString("author");
         mySplashScreenKey = myResources.getString("splashscreen");
         init();
     }
-    
-    public void init(){
+
+    @Override
+    public void init () {
         myLayout = new BorderPane();
         myLayout.setPrefSize(1200, 800);
-        myLayout.setCenter(createForms());        
+        myLayout.setCenter(createForms());
     }
-    
+
     @Override
     public Node draw () {
         return myLayout;
     }
 
-    private Node createForms(){
+    private Node createForms () {
         HBox box = new HBox(800);
         box.setAlignment(Pos.BOTTOM_CENTER);
         box.getChildren().add(createGameInfoForm());
         return box;
     }
-    
-    private Node createGameInfoForm(){
+
+    private Node createGameInfoForm () {
         GridPane form = new GridPane();
         form.add(myName.draw(), 0, 0);
         form.add(myAuthor.draw(), 0, 1);
@@ -74,7 +79,7 @@ public class GameTabViewer implements ITabViewer {
         form.setMinSize(200, 200);
         return form;
     }
-    
+
     @Override
     public void update () {
         // TODO Auto-generated method stub

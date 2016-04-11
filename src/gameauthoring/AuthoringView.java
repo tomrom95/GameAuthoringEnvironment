@@ -17,7 +17,10 @@ import javafx.stage.Stage;
 
 
 /**
- * Highest hierarchy class for authoring environment. Used composition for each tab viewers
+ * Highest hierarchy class for authoring environment. Used composition for each tab viewers. It
+ * creates a Menubar which has "Save game as XML" menu item and a tab pane which contains
+ * "game information", "create objects", and "build scene" tabs. These are divided in order for the
+ * users to easily create their own game.
  * 
  * @author Jin An
  *

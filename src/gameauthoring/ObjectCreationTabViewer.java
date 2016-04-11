@@ -1,7 +1,6 @@
 package gameauthoring;
 
 import gameauthoring.ITabViewer;
-
 import gameauthoring.characters.CreationControllerFactory;
 import gameauthoring.characters.CreationControllerSprite;
 import gameauthoring.characters.IObjectCreationView;
@@ -19,8 +18,8 @@ import javafx.scene.control.TabPane;
 
 /**
  * Character(Sprite) tab view class which allows users to create all weapons, enemies, defenders,
- * and obstacles.
- * Handles selection between different SpriteEditorViews.
+ * obstacles, and interactions. Handles selection between these sub-tabs. Serves to make creation
+ * controller and subform controller using factory design.
  * 
  * @author Jin An
  *
@@ -40,7 +39,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         myCreationViews = new ArrayList<IObjectCreationView<?>>();
 
-        String[] subForms = {"profile", "movement", "attributes", "groups" };
+        String[] subForms = { "profile", "movement", "attributes", "groups" };
 
         List<ISubFormControllerSprite> enemiesSfcs =
                 sfcFactory.createSpriteSubFormControllers(subForms);
@@ -54,13 +53,13 @@ public class ObjectCreationTabViewer implements ITabViewer {
         myCreationViews.add(defenderCC.getMyObjectCreationView());
 
         /*
-        String[] attSubForms = { "attribute" };
-        List<ISubFormControllerAttribute> attributeSfcs =
-                sfcFactory.createAttributeSubFormControllers(subForms);
-        CreationControllerAttribute attributeCC =
-                ccFactory.createAttributeCreationController(attributeSfcs);
-        myCreationViews.add(defenderCC.getMyObjectCreationView());
-        */
+         * String[] attSubForms = { "attribute" };
+         * List<ISubFormControllerAttribute> attributeSfcs =
+         * sfcFactory.createAttributeSubFormControllers(subForms);
+         * CreationControllerAttribute attributeCC =
+         * ccFactory.createAttributeCreationController(attributeSfcs);
+         * myCreationViews.add(defenderCC.getMyObjectCreationView());
+         */
 
     }
 
@@ -82,52 +81,53 @@ public class ObjectCreationTabViewer implements ITabViewer {
             tabpane.getTabs().add(tab);
         }
         /*
-        myInteractionView = new InteractionEditorView(createSubTab("Interactions"));
-        myWeaponView = new WeaponEditorView(createSubTab("Weapons"));
-        myConditionView = new ConditionView(createSubTab("Conditions"), getTestConditions(), getOptions());
-
-        tabpane.getTabs().addAll(myAttributeView.getTab(), myDefenderView.getTab(),
-                                 myEnemyView.getTab(), myInteractionView.getTab(),
-<<<<<<< HEAD
-                                 myWeaponView.getTab(), myConditionView.getTab());
-        return tabpane;
-    }
-
-    private ObservableList<String> getOptions () {
-        ObservableList<String> options = FXCollections.observableArrayList();
-        options.add("Ryan");
-        return options;
-    }
-
-    private ObservableList<ICondition> getTestConditions () {
-        ObservableList<ICondition> conditions = FXCollections.observableArrayList();
-        ICondition c = new OnClickCondition(null, null, null, null);
-        conditions.add(c);
-        return conditions;
-    }
-
-    private Tab createSubTab (String tabName) {
-        Tab newTab = new Tab();
-        newTab.setText(tabName);
-        return newTab;
-    }
-
-    List<ObjectCreationView> getObjectCreationView () {
-        return null;
-    }
-
-    public Tab getTab () {
-        return myCharTab;
-    }
-
-    @Override
-    public Node draw () {
-        myLayout = new BorderPane();
-        myLayout = (BorderPane) myConditionView.draw();
-        return myLayout;
-=======
-                                 myWeaponView.getTab());
-                                 */
+         * myInteractionView = new InteractionEditorView(createSubTab("Interactions"));
+         * myWeaponView = new WeaponEditorView(createSubTab("Weapons"));
+         * myConditionView = new ConditionView(createSubTab("Conditions"), getTestConditions(),
+         * getOptions());
+         * 
+         * tabpane.getTabs().addAll(myAttributeView.getTab(), myDefenderView.getTab(),
+         * myEnemyView.getTab(), myInteractionView.getTab(),
+         * <<<<<<< HEAD
+         * myWeaponView.getTab(), myConditionView.getTab());
+         * return tabpane;
+         * }
+         * 
+         * private ObservableList<String> getOptions () {
+         * ObservableList<String> options = FXCollections.observableArrayList();
+         * options.add("Ryan");
+         * return options;
+         * }
+         * 
+         * private ObservableList<ICondition> getTestConditions () {
+         * ObservableList<ICondition> conditions = FXCollections.observableArrayList();
+         * ICondition c = new OnClickCondition(null, null, null, null);
+         * conditions.add(c);
+         * return conditions;
+         * }
+         * 
+         * private Tab createSubTab (String tabName) {
+         * Tab newTab = new Tab();
+         * newTab.setText(tabName);
+         * return newTab;
+         * }
+         * 
+         * List<ObjectCreationView> getObjectCreationView () {
+         * return null;
+         * }
+         * 
+         * public Tab getTab () {
+         * return myCharTab;
+         * }
+         * 
+         * @Override
+         * public Node draw () {
+         * myLayout = new BorderPane();
+         * myLayout = (BorderPane) myConditionView.draw();
+         * return myLayout;
+         * =======
+         * myWeaponView.getTab());
+         */
         return tabpane;
     }
 
