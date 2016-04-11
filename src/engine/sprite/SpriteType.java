@@ -2,6 +2,7 @@ package engine.sprite;
 
 import engine.StringBasedType;
 
+
 /**
  * This class represents the type of a sprite, with the appropriate implementation to allow for
  * equality tests
@@ -14,11 +15,11 @@ import engine.StringBasedType;
  *
  */
 public class SpriteType extends StringBasedType {
-    
-    public SpriteType(String type) {
+
+    public SpriteType (String type) {
         super(type);
     }
-    
+
     @Override
     protected boolean isSameClass (Object obj) {
         return obj instanceof SpriteType;

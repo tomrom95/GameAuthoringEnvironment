@@ -3,7 +3,6 @@ package engine;
 import java.util.function.DoublePredicate;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import javafx.beans.property.ObjectProperty;
 import util.TimeDuration;
 
 
@@ -12,7 +11,6 @@ public class OnSpriteAttributeCondition implements ICondition {
     private IGame myGame;
     private AttributeType myAttributeType;
     private DoublePredicate myValueCheck;
-
     private IEventPackage mySpritePackage;
     private IEventPackage myOtherPackage;
     private IEventPackage myGlobalPackage;
@@ -34,32 +32,31 @@ public class OnSpriteAttributeCondition implements ICondition {
 
     @Override
     public void update (TimeDuration duration) {
-
-        myGame.getLevelManager().getCurrentLevel().get().getSprites().stream()
+        myGame.getLevelManager().getCurrentLevel().getSprites().stream()
                 .filter(sprite -> mySpritePackage.getTargetedSpriteGroup()
-                        .contains(sprite.getType().get()))
+                        .contains(sprite.getType()))
                 .forEach(sprite -> sprite.getAttributes().stream()
-                        .filter(atty -> atty.get().getType().equals(myAttributeType))
+                        .filter(atty -> atty.getType().equals(myAttributeType))
                         .forEach(atty -> checkAttribute(atty)));
     }
 
-    private void checkAttribute (ObjectProperty<IAttribute> atty) {
-        if (myValueCheck.test(atty.get().getValueProperty().get())) {
-            mySpritePackage.getMyEffects().forEach(effect -> atty.get().applyEffect(effect));
+    private void checkAttribute (IAttribute atty) {
+        if (myValueCheck.test(atty.getValueProperty().get())) {
+            mySpritePackage.getMyEffects().forEach(effect -> atty.applyEffect(effect));
             myOtherPackage.getMyEffects().forEach(
                                                   effect -> myGame.getLevelManager()
-                                                          .getCurrentLevel().get()
+                                                          .getCurrentLevel()
                                                           .getSprites().stream()
                                                           .filter(sprite -> myOtherPackage
                                                                   .getTargetedSpriteGroup()
-                                                                  .contains(sprite.getType().get()))
+                                                                  .contains(sprite.getType()))
                                                           .forEach(sprite -> sprite
                                                                   .applyEffect(effect)));
             myGlobalPackage.getMyEffects()
                     .forEach(effect -> myGame.getAttributeManager().applyEffect(effect));
             myGlobalPackage.getMyEffects()
-                    .forEach(effect -> myGame.getLevelManager().getCurrentLevel().get()
-                            .getAttributeManager().get().applyEffect(effect));
+                    .forEach(effect -> myGame.getLevelManager().getCurrentLevel()
+                            .getAttributeManager().applyEffect(effect));
         }
     }
 

@@ -9,7 +9,7 @@ import javafx.beans.property.StringProperty;
 
 /**
  * Stores the display information of a given object that holds this class by composition
- * 
+ *
  * @author RyanStPierre
  *
  */
@@ -30,7 +30,9 @@ public class Profile implements IProfile {
     public Profile (String name, String description, String url) {
         myName = new SimpleStringProperty(name);
         myDescription = new SimpleStringProperty(description);
-        myImage = new SimpleObjectProperty<>(new ImageGraphic(DEFAULT_IMAGE_SIZE, DEFAULT_IMAGE_SIZE, url));
+        myImage =
+                new SimpleObjectProperty<>(new ImageGraphic(DEFAULT_IMAGE_SIZE, DEFAULT_IMAGE_SIZE,
+                                                            url));
 
     }
 

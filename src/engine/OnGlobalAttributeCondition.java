@@ -1,10 +1,8 @@
 package engine;
 
-
 import java.util.function.DoublePredicate;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import javafx.beans.property.ObjectProperty;
 import util.TimeDuration;
 
 
@@ -14,7 +12,6 @@ public class OnGlobalAttributeCondition implements ICondition {
     private AttributeType myAttributeType;
     private DoublePredicate myValueCheck;
 
-    
     private IEventPackage myOtherPackage;
     private IEventPackage myGlobalPackage;
 
@@ -22,8 +19,7 @@ public class OnGlobalAttributeCondition implements ICondition {
                                        AttributeType attributeType,
                                        DoublePredicate valueCheck,
                                        EventPackage otherPackage,
-                                       EventPackage globalPackage
-                                       ) {
+                                       EventPackage globalPackage) {
         myGame = game;
         myAttributeType = attributeType;
         myValueCheck = valueCheck;
@@ -34,28 +30,34 @@ public class OnGlobalAttributeCondition implements ICondition {
     @Override
     public void update (TimeDuration duration) {
         checkAttributes(duration, myGame.getAttributeManager());
-        checkAttributes(duration, myGame.getLevelManager().getCurrentLevel().get().getAttributeManager().get());
-    }
-    
-    private void checkAttributes(TimeDuration duration, IAttributeManager myManager){
-        myManager.getAttributes().stream()
-        .filter(atty -> atty.get().getType().equals(myAttributeType))
-        .forEach(atty -> checkAttribute(atty));
+        checkAttributes(duration, myGame.getLevelManager().getCurrentLevel().getAttributeManager());
     }
 
-    private void checkAttribute (ObjectProperty<IAttribute> atty) {
-        if (myValueCheck.test(atty.get().getValueProperty().get())) {
-            myGlobalPackage.getMyEffects().forEach(effect -> atty.get().applyEffect(effect));
+    private void checkAttributes (TimeDuration duration, IAttributeManager myManager) {
+        myManager.getAttributes().stream()
+                .filter(atty -> atty.getType().equals(myAttributeType))
+                .forEach(atty -> checkAttribute(atty));
+    }
+
+    private void checkAttribute (IAttribute atty) {
+        if (myValueCheck.test(atty.getValueProperty().get())) {
+            myGlobalPackage.getMyEffects().forEach(effect -> atty.applyEffect(effect));
             myOtherPackage.getMyEffects().forEach(
-                                        effect -> myGame.getLevelManager().getCurrentLevel().get()
-                                                .getSprites().stream()
-                                                .filter(sprite -> myOtherPackage.getTargetedSpriteGroup().contains(sprite.getType().get()))
-                                                .forEach(sprite -> sprite
-                                                        .applyEffect(effect)));
+                                                  effect -> myGame.getLevelManager()
+                                                          .getCurrentLevel()
+                                                          .getSprites().stream()
+                                                          .filter(sprite -> myOtherPackage
+                                                                  .getTargetedSpriteGroup()
+                                                                  .contains(sprite.getType()))
+
+                                                          .forEach(sprite -> sprite
+                                                                  .applyEffect(effect)));
             myGlobalPackage.getMyEffects()
                     .forEach(effect -> myGame.getAttributeManager().applyEffect(effect));
-            myGlobalPackage.getMyEffects().forEach(effect -> myGame.getLevelManager().getCurrentLevel().get()
-                    .getAttributeManager().get().applyEffect(effect));
+            myGlobalPackage.getMyEffects()
+                    .forEach(effect -> myGame.getLevelManager().getCurrentLevel()
+                            .getAttributeManager().applyEffect(effect));
+
         }
     }
 

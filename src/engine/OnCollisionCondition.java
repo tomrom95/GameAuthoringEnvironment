@@ -2,11 +2,9 @@ package engine;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
-import javafx.beans.property.ObjectProperty;
 import util.TimeDuration;
 
 
@@ -19,28 +17,10 @@ import util.TimeDuration;
 public class OnCollisionCondition implements ICondition {
 
     private IGame myGame;
-    // private ISpriteGroup myGroupA;
-    // private ISpriteGroup myGroupB;
-    // private List<IEffect> myApplyToA;
-    // private List<IEffect> myApplyToB;
-    // private List<IEffect> myApplyToOtherGroup;
-    // private ISpriteGroup myOtherGroup;
-    // private List<IEffect> myApplyToGlobalAttys;
-
     private IEventPackage myGroupAPackage;
     private IEventPackage myGroupBPackage;
-    private IEventPackage myOtherPackage; 
+    private IEventPackage myOtherPackage;
     private IEventPackage myGlobalPackage;
-
-//    public OnCollisionCondition (IGame game,
-//                                 ISpriteGroup groupA,
-//                                 ISpriteGroup groupB,
-//                                 List<IEffect> applyToA,
-//                                 List<IEffect> applyToB,
-//                                 List<IEffect> applyToOtherGroup,
-//                                 ISpriteGroup otherGroup,
-//                                 List<IEffect> applyToGlobalAttys) {
-//    }
 
     public OnCollisionCondition (IGame game,
                                  IEventPackage groupA,
@@ -54,14 +34,6 @@ public class OnCollisionCondition implements ICondition {
         myOtherPackage = otherPackage;
         myGlobalPackage = globalPackage;
 
-        // myGame = game;
-        // myGroupA = groupA;
-        // myGroupB = groupB;
-        // myApplyToA = applyToA;
-        // myApplyToB = applyToB;
-        // myApplyToOtherGroup = applyToOtherGroup;
-        // myOtherGroup = otherGroup;
-        // myApplyToGlobalAttys = applyToGlobalAttys;
     }
 
     /**
@@ -71,14 +43,14 @@ public class OnCollisionCondition implements ICondition {
     @Override
     public void update (TimeDuration duration) {
         List<ISprite> sprites =
-                myGame.getLevelManager().getCurrentLevel().get().getSprites();
+                myGame.getLevelManager().getCurrentLevel().getSprites();
         for (ISprite outerSprite : sprites.stream()
                 .filter(sprite -> myGroupAPackage.getTargetedSpriteGroup()
-                        .contains(sprite.getType().get()))
+                        .contains(sprite.getType()))
                 .collect(Collectors.toList())) {
             for (ISprite innerSprite : sprites.stream()
                     .filter(sprite -> myGroupBPackage.getTargetedSpriteGroup()
-                            .contains(sprite.getType().get()))
+                            .contains(sprite.getType()))
                     .collect(Collectors.toList())) {
                 if (outerSprite.getBounds().collide(innerSprite.getBounds())) {
                     handleCollision(outerSprite, innerSprite);
@@ -91,22 +63,23 @@ public class OnCollisionCondition implements ICondition {
         applyPackageEffectsToSprite(myGroupAPackage, outerSprite);
         applyPackageEffectsToSprite(myGroupBPackage, innerSprite);
         List<ISprite> sprites =
-                myGame.getLevelManager().getCurrentLevel().get().getSprites();
+                myGame.getLevelManager().getCurrentLevel().getSprites();
         sprites.stream()
                 // CONCERN here as to what myApplyToOtherGroup is
                 .filter(sprite -> myOtherPackage.getTargetedSpriteGroup()
-                        .contains(sprite.getType().get()))
+                        .contains(sprite.getType()))
                 .forEach(sprite -> myOtherPackage.getMyEffects()
                         .forEach(effect -> sprite.applyEffect(effect)));
         myGlobalPackage.getMyEffects()
                 .forEach(effect -> myGame.getAttributeManager().applyEffect(effect));
         myGlobalPackage.getMyEffects()
-                .forEach(effect -> myGame.getLevelManager().getCurrentLevel().get()
-                        .getAttributeManager().get().applyEffect(effect));
+                .forEach(effect -> myGame.getLevelManager().getCurrentLevel()
+                        .getAttributeManager().applyEffect(effect));
     }
-    
-    private void applyPackageEffectsToSprite(IEventPackage myPackage, ISprite mySprite){
+
+    private void applyPackageEffectsToSprite (IEventPackage myPackage, ISprite mySprite) {
         myPackage.getMyEffects().forEach(effect -> mySprite.applyEffect(effect));
+
     }
 
     @Override

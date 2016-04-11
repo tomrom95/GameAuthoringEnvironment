@@ -1,5 +1,6 @@
 package engine.modules;
 
+import java.util.ArrayList;
 import java.util.List;
 import engine.Attribute;
 import engine.AttributeType;
@@ -11,10 +12,6 @@ import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import util.Key;
 import util.TimeDuration;
 
@@ -22,7 +19,7 @@ import util.TimeDuration;
 /**
  * This class provides the behavior necessary to implement a user controlled fire module in the
  * game.
- * 
+ *
  * @author Dhrumil
  *
  */
@@ -32,14 +29,14 @@ public class UserFirer extends Firer {
     private IAdder myAdder;
     private List<SpriteDefinition> myProjectileList;
     private SpriteDefinition myProjectile;
-    private ObjectProperty<IAttribute> myAmmo;
+    private IAttribute myAmmo;
 
     public UserFirer (SpriteDefinition fireSprite, Key fireKey, IAdder adder, double ammo) {
 
         myFireKey = fireKey;
         myProjectile = fireSprite;
         myAdder = adder;
-        myAmmo = new SimpleObjectProperty<>(new Attribute(ammo, AttributeType.AMMO));
+        myAmmo = new Attribute(ammo, AttributeType.AMMO);
 
     }
 
@@ -65,7 +62,7 @@ public class UserFirer extends Firer {
 
     private void registerKeyPress (Key fire) {
         ISprite bullet = myProjectile.create();
-        myAdder.add(bullet, bullet.getLocation().get());
+        myAdder.add(bullet, bullet.getLocation());
 
     }
 
@@ -76,9 +73,8 @@ public class UserFirer extends Firer {
     }
 
     @Override
-    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
-        ObservableList<ObjectProperty<IAttribute>> attributeList =
-                FXCollections.observableArrayList();
+    public List<IAttribute> getAttributes () {
+        List<IAttribute> attributeList = new ArrayList<>();
         attributeList.add(myAmmo);
         return attributeList;
     }
