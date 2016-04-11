@@ -32,18 +32,19 @@ public class ProfileSubFormController implements ISubFormControllerSprite {
         String name = myFormData.getValueProperty(myView.getMyNameKey()).get();
         String desc = myFormData.getValueProperty(myView.getMyDescriptionKey()).get();
         String url = myFormData.getValueProperty(myView.getMyImageKey()).get();
-
-        ProfileDefinition profDef = new ProfileDefinition(name, desc, url);
-        item.setProfileDefinition(profDef);
+        
+        item.setName(name);
+        item.setDescription(desc);
+        item.setURL(url);
 
     }
 
     @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-        myFormData.set(myView.getMyNameKey(), item.getProfileDefinition().getName());
-        myFormData.set(myView.getMyDescriptionKey(), item.getProfileDefinition().getDescription());
+    public void populateViewsWithData (SpriteDefinition item) {        
+        myFormData.set(myView.getMyNameKey(), item.getName());
+        myFormData.set(myView.getMyDescriptionKey(), item.getDescription());
         
-        myFormData.set(myView.getMyImageKey(), item.getProfileDefinition().getURL());
+        myFormData.set(myView.getMyImageKey(), item.getURL());
     }
 
     @Override

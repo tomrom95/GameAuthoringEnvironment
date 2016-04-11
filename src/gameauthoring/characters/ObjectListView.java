@@ -35,7 +35,6 @@ public class ObjectListView<E extends IDefinition> implements IObjectListView<E>
 
     @Override
     public Node draw () {
-        // TODO Auto-generated method stub
         return myListView;
     }
 
@@ -60,7 +59,6 @@ public class ObjectListView<E extends IDefinition> implements IObjectListView<E>
     private void handleEditCell (Consumer<E> action) {
         E item = getMyListView().getSelectionModel().getSelectedItem();
         action.accept(item);
-        System.out.println(item.getProfileDefinition().getName());
     }
 
     @Override
@@ -70,6 +68,11 @@ public class ObjectListView<E extends IDefinition> implements IObjectListView<E>
 
     private ListView<E> getMyListView () {
         return myListView;
+    }
+
+    @Override
+    public E getSelectedItem () {
+        return this.myListView.getSelectionModel().getSelectedItem();
     }
 
 }

@@ -4,9 +4,9 @@ import engine.sprite.Profile;
 
 public class ProfileDefinition implements IDefinition{
 
-    private String myName;
-    private String myDescription;
-    private String myURL;
+    private String myName = "";
+    private String myDescription = "";
+    private String myURL = "";
     
     public ProfileDefinition(String name, String desc, String url){
         setName(name);

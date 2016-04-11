@@ -59,4 +59,6 @@ public interface IObjectCreationView<E> extends Glyph {
      * 
      */
     ObservableList<E> getItems ();
+
+    E getCurrentItem ();
 }

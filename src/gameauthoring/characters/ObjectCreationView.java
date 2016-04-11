@@ -15,17 +15,16 @@ import javafx.scene.layout.GridPane;
 /**
  * Object that holds and displays both view items that make up object creation interface
  * 
- * @author JoeLilien, Jeremy Schreck
+ * @author Joe Lilien, Jeremy Schreck
  *
  */
 public class ObjectCreationView<E extends IDefinition> implements IObjectCreationView<E> {
 
     private IObjectListView<E> myObjectListView;
-    private IFormView myFormView;    
-    
+    private IFormView myFormView;
+
     private Button myNewButton = new Button("New");
     private GridPane myCreationPane = new GridPane();
-
 
     /**
      * Constructor
@@ -38,18 +37,23 @@ public class ObjectCreationView<E extends IDefinition> implements IObjectCreatio
      * 
      * @param subFormViews The subformviews to create the FormView with
      */
-    public ObjectCreationView(List<ISubFormView> subFormViews) {
+    public ObjectCreationView (List<ISubFormView> subFormViews) {
         this.myObjectListView = createListView();
         this.myFormView = createFormView(subFormViews);
         init();
     }
-    
+
     private IObjectListView<E> createListView () {
+        /*
+         * ****NOTE*** Here is where we must add the list to Authorship Data (call a set method)
+         * Think it might be best to put this list in a map according to the title, which should be
+         * a constructor arguement as well
+         */
         ObservableList<E> objectList = FXCollections.observableArrayList();
         IObjectListView<E> objectListView = new ObjectListView<E>(objectList);
         return objectListView;
     }
-    
+
     private IFormView createFormView (List<ISubFormView> subFormViews) {
         IFormView formView = new FormView(subFormViews);
         return formView;
@@ -59,7 +63,7 @@ public class ObjectCreationView<E extends IDefinition> implements IObjectCreatio
      * Initialize view
      */
     private void init () {
-     
+
         myCreationPane.add(myObjectListView.draw(), 0, 0);
         myCreationPane.add(myFormView.draw(), 1, 0);
     }
@@ -88,7 +92,7 @@ public class ObjectCreationView<E extends IDefinition> implements IObjectCreatio
         // TODO Auto-generated method stub
         return myFormView;
     }
-    
+
     @Override
     public void setNewAction (Consumer<?> action) {
         myNewButton.setOnAction(e -> action.accept(null));
@@ -96,15 +100,20 @@ public class ObjectCreationView<E extends IDefinition> implements IObjectCreatio
 
     @Override
     public void setEditAction (Consumer<E> action) {
-        //set listcell's edit button's setOnAction to call action
+        // set listcell's edit button's setOnAction to call action
         getObjectListView().setEditAction(action);
-        
+
     }
 
     @Override
     public ObservableList<E> getItems () {
         return getObjectListView().getMyItems();
-        
+
+    }
+
+    @Override
+    public E getCurrentItem () {
+        return getObjectListView().getSelectedItem();
     }
 
 }

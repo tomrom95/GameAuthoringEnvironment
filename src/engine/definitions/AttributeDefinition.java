@@ -12,7 +12,7 @@ import engine.IAttribute;
 
 public class AttributeDefinition implements IDefinition {
 
-    private String myType;
+    private String myType = "";
     private double myMaxValue, myMinValue;
     private boolean myIsGlobal;
     private AttributeDefinition myAttributeDefinition;
