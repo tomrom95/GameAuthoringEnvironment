@@ -1,6 +1,7 @@
 package engine.modules;
 
 import java.util.List;
+import java.util.Optional;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
@@ -21,7 +22,7 @@ public class TrackingMover extends Mover {
 
     private IAttribute mySpeed;
     private List<ISprite> myEnemyList;
-    private ISprite myEnemy;
+    private Optional<ISprite> myEnemy;
     private IPositionable mySprite;
 
     public TrackingMover (double speed,
@@ -34,28 +35,30 @@ public class TrackingMover extends Mover {
 
     }
 
-    private ISprite selectEnemy () {
-        ISprite closestEnemy = null;
-        double distance = Double.MAX_VALUE;
+    private Optional<ISprite> selectEnemy () {
+        return myEnemyList.stream().sorted( (s1, s2) -> Double.compare(getDistance(s1), getDistance(s2))).findFirst();
 
-        for (ISprite sprite : myEnemyList) {
-            double xDiff = sprite.getLocation().getX() - mySprite.getLocation().getX();
-            double yDiff = sprite.getLocation().getY() - mySprite.getLocation().getY();
-            Double currDistance = Math.abs(xDiff + yDiff);
-            if (currDistance < distance) {
-                distance = currDistance;
-                closestEnemy = sprite;
-            }
-        }
-
-        return closestEnemy;
+//        ISprite closestEnemy = null;
+//        double distance = Double.MAX_VALUE;
+//
+//        for (ISprite sprite : myEnemyList) {
+//            double xDiff = sprite.getLocation().getX() - mySprite.getLocation().getX();
+//            double yDiff = sprite.getLocation().getY() - mySprite.getLocation().getY();
+//            Double currDistance = Math.abs(xDiff + yDiff);
+//            if (currDistance < distance) {
+//                distance = currDistance;
+//                closestEnemy = sprite;
+//            }
+//        }
+//
+//        return closestEnemy;
     }
 
-    // private Double getDistance (ISprite sprite) {
-    // double xDiff = sprite.getLocation().getX()- mySprite.getLocation().getX();
-    // double yDiff = sprite.getLocation().getY()- mySprite.getLocation().getY();
-    // return Math.abs(xDiff + yDiff);
-    // }
+    private double getDistance (ISprite sprite) {
+        double xDiff = sprite.getLocation().getX() - mySprite.getLocation().getX();
+        double yDiff = sprite.getLocation().getY() - mySprite.getLocation().getY();
+        return Math.abs(xDiff + yDiff);
+    }
 
     @Override
     public void update (TimeDuration duration) {

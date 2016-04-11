@@ -2,6 +2,7 @@ package engine.modules;
 
 import java.util.ArrayList;
 import java.util.List;
+import engine.IAdder;
 import engine.IAttribute;
 import engine.effects.IEffect;
 import engine.interactionevents.InputType;
@@ -20,6 +21,9 @@ public class TrackingFirer extends Firer {
 
     private List<ISprite> myTargets; 
     private Key myFireKey;
+    private ISprite myProjectile;
+    private IAdder myAdder;
+    private IAttribute myAmmo;
     
     public TrackingFirer (List<ISprite> targets, Key fire) {
         myTargets = targets;
@@ -48,7 +52,6 @@ public class TrackingFirer extends Firer {
     }
 
     private void registerKeyPress (Key fire) {
-        System.out.println("FIRE");
         ISprite bullet = myProjectile.create();
         myAdder.add(bullet, bullet.getLocation());
 
