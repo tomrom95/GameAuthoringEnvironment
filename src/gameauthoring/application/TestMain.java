@@ -46,6 +46,8 @@ public class TestMain extends Application {
         ObservableList<String> options = FXCollections.observableArrayList();
         options.add("OnClickCondition");
         options.add("OnCollisionCondition");
+        options.add("OnGlobalAttributeCondition");
+        options.add("OnSpriteAttributeCondtion");
         return options;
     }
 

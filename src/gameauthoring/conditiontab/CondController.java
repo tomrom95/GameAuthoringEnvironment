@@ -1,7 +1,6 @@
 package gameauthoring.conditiontab;
 
 import engine.IGame;
-import javafx.stage.Popup;
 
 
 /**

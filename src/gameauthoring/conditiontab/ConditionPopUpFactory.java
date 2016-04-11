@@ -14,6 +14,19 @@ public class ConditionPopUpFactory {
     }
 
     public ConditionPopUp get (String selection, ObservableList<ICondition> list) {
-        return new OnClickPopUp(list, myGame);
+        
+        //TODO replace with reflection
+        switch(selection) {
+            case "OnClickCondition": 
+                return new OnClickPopUp(list, myGame);
+            case "OnCollisionCondition": 
+                return new OnCollisionPopUp(list, myGame);
+            case "OnGlobalAttributeCondition": 
+                return new OnGlobalPopUp(list, myGame);
+            case "OnSpriteAttributeCondition": 
+                return new OnSpritePopUp(list, myGame);
+        }
+        
+        return null;
     }
 }

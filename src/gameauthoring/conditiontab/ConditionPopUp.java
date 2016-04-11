@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 public abstract class ConditionPopUp {
 
+    protected static final double CUSHION = 10;
     private static final double POP_UP_WIDTH = 700;
     private static final double POP_UP_HEIGHT = 300;
     private Stage myStage;
