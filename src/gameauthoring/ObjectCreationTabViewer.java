@@ -1,25 +1,20 @@
 package gameauthoring;
 
 import gameauthoring.ITabViewer;
-import gameauthoring.characters.CreationControllerAttribute;
+
 import gameauthoring.characters.CreationControllerFactory;
 import gameauthoring.characters.CreationControllerSprite;
 import gameauthoring.characters.IObjectCreationView;
-import gameauthoring.characters.ISubFormControllerAttribute;
 import gameauthoring.characters.ISubFormControllerSprite;
-import gameauthoring.characters.ObjectCreationView;
 import gameauthoring.characters.SubFormControllerFactory;
-import gameauthoring.object_creation_tab.AttributeEditorView;
-import gameauthoring.object_creation_tab.DefenderEditorView;
-import gameauthoring.object_creation_tab.EnemyEditorView;
 import gameauthoring.object_creation_tab.InteractionEditorView;
 import gameauthoring.object_creation_tab.WeaponEditorView;
 import java.util.ArrayList;
 import java.util.List;
+import engine.ICondition;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.BorderPane;
 
 
 /**
@@ -71,6 +66,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private InteractionEditorView myInteractionView;
     private WeaponEditorView myWeaponView;
+    private ListDisplay<ICondition> myConditionView;
 
     public ObjectCreationTabViewer () {
         init();
@@ -88,9 +84,48 @@ public class ObjectCreationTabViewer implements ITabViewer {
         /*
         myInteractionView = new InteractionEditorView(createSubTab("Interactions"));
         myWeaponView = new WeaponEditorView(createSubTab("Weapons"));
+        myConditionView = new ConditionView(createSubTab("Conditions"), getTestConditions(), getOptions());
 
         tabpane.getTabs().addAll(myAttributeView.getTab(), myDefenderView.getTab(),
                                  myEnemyView.getTab(), myInteractionView.getTab(),
+<<<<<<< HEAD
+                                 myWeaponView.getTab(), myConditionView.getTab());
+        return tabpane;
+    }
+
+    private ObservableList<String> getOptions () {
+        ObservableList<String> options = FXCollections.observableArrayList();
+        options.add("Ryan");
+        return options;
+    }
+
+    private ObservableList<ICondition> getTestConditions () {
+        ObservableList<ICondition> conditions = FXCollections.observableArrayList();
+        ICondition c = new OnClickCondition(null, null, null, null);
+        conditions.add(c);
+        return conditions;
+    }
+
+    private Tab createSubTab (String tabName) {
+        Tab newTab = new Tab();
+        newTab.setText(tabName);
+        return newTab;
+    }
+
+    List<ObjectCreationView> getObjectCreationView () {
+        return null;
+    }
+
+    public Tab getTab () {
+        return myCharTab;
+    }
+
+    @Override
+    public Node draw () {
+        myLayout = new BorderPane();
+        myLayout = (BorderPane) myConditionView.draw();
+        return myLayout;
+=======
                                  myWeaponView.getTab());
                                  */
         return tabpane;
@@ -99,6 +134,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
     @Override
     public Node draw () {
         return myTabPane;
+
     }
 
     @Override
