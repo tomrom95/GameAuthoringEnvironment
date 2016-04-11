@@ -27,4 +27,16 @@ public class GameDefinition implements IDefinition {
         this.myGame = myGame;
     }
 
+    @Override
+    public ProfileDefinition getProfileDefinition () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setProfileDefinition (ProfileDefinition profileDef) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

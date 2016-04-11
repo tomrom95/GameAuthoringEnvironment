@@ -96,12 +96,6 @@ public class ObjectCreationTabViewer implements ITabViewer {
         return tabpane;
     }
 
-    private Tab createSubTab (String tabName) {
-        Tab newTab = new Tab();
-        newTab.setText(tabName);
-        return newTab;
-    }
-
     @Override
     public Node draw () {
         return myTabPane;

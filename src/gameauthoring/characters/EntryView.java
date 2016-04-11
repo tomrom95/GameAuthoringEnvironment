@@ -20,8 +20,8 @@ import java.util.Arrays;
  */
 public abstract class EntryView implements IEntryView {
 
-    private FormData myFormData;
-    private String myLabel;
+    protected FormData myFormData;
+    protected String myLabel;
  
     public EntryView(String label, IFormDataManager data){
         this.myLabel = label;

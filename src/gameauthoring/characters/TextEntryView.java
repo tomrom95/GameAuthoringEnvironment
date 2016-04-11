@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -18,8 +19,7 @@ import javafx.stage.FileChooser;
  *
  */
 public class TextEntryView extends EntryView {
-    private String myLabel;
-    private VBox myContainer; // TODO Magic Number and Factory
+    private GridPane myContainer; // TODO Magic Number and Factory
     private TextArea myTextInput = new TextArea();
     
 
@@ -28,9 +28,9 @@ public class TextEntryView extends EntryView {
         this.myTextInput.setMinSize(width, height);
         this.myTextInput.setMaxSize(width, height);
         this.myTextInput.textProperty().bindBidirectional(getData().getValueProperty());
-        this.myContainer = new VBox(spacing);
-        myContainer.getChildren().add(new Label(myLabel));
-        myContainer.getChildren().add(myTextInput);
+        this.myContainer = new GridPane();
+        myContainer.add(new Label(myLabel), 0, 0);
+        myContainer.add(myTextInput, 1, 0);
     }
 
     @Override
