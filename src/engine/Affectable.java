@@ -17,7 +17,7 @@ import engine.interactionevents.MouseIOEvent;
  * @author Jonathan Im
  *
  */
-public interface Affectable extends IOAffectable {
+public interface Affectable extends IOAffectable, GameEventHandler {
 
     /**
      * Apply a given effect to this object

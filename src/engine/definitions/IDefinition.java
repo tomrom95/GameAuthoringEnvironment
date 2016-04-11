@@ -1,8 +1,8 @@
 package engine.definitions;
 
-public interface IDefinition {
-    ProfileDefinition getProfileDefinition ();
+import engine.profile.IProfilable;
 
-    void setProfileDefinition (ProfileDefinition profileDef);
+public interface IDefinition extends IProfilable {
+   
 
 }

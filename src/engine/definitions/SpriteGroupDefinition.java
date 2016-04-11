@@ -1,6 +1,7 @@
 package engine.definitions;
 
 import engine.ISpriteGroup;
+import engine.profile.IProfile;
 
 
 /**
@@ -17,7 +18,7 @@ import engine.ISpriteGroup;
 public class SpriteGroupDefinition implements IDefinition {
 
     private int mySpriteGroupIndexVal;
-    // private someStateObject myPlaceWhereICanGetSpriteGroups;
+    private IProfile myProfile;
 
     public ISpriteGroup create () {
         return getSpriteGroupForIndex(mySpriteGroupIndexVal);
@@ -25,6 +26,16 @@ public class SpriteGroupDefinition implements IDefinition {
 
     private ISpriteGroup getSpriteGroupForIndex (int index) {
         return null;
+    }
+
+    @Override
+    public IProfile getProfile () {
+        return myProfile;
+    }
+
+    @Override
+    public void setProfile (IProfile profile) {
+        myProfile = profile;
     }
 
 }

@@ -1,16 +1,11 @@
 package engine.modules;
 
-import java.util.ArrayList;
-import java.util.List;
 import engine.IAdder;
-import engine.IAttribute;
-import engine.effects.IEffect;
-import engine.interactionevents.KeyIOEvent;
-import engine.interactionevents.MouseIOEvent;
+import engine.effects.DefaultAffectable;
 import util.TimeDuration;
 
 
-public class SpawningModule implements IModule {
+public class SpawningModule extends DefaultAffectable implements IModule {
 
     private IAdder myAdder;
     private IWave myWave;
@@ -25,27 +20,6 @@ public class SpawningModule implements IModule {
         myAdder.add(myWave.getNextSprite());
     }
 
-    @Override
-    public void applyEffect (IEffect effect) {
-        // Do nothing
-
-    }
-
-    @Override
-    public void registerKeyEvent (KeyIOEvent keyEvent) {
-        // Do nothing
-
-    }
-
-    @Override
-    public void registerMouseEvent (MouseIOEvent mouseEvent) {
-        // Do nothing
-
-    }
-
-    @Override
-    public List<IAttribute> getAttributes () {
-        return new ArrayList<>();
-    }
+  
 
 }

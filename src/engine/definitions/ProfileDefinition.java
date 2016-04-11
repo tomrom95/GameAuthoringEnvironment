@@ -1,25 +1,22 @@
 package engine.definitions;
 
-import engine.sprite.Profile;
+import engine.profile.IProfile;
+import engine.profile.Profile;
+import graphics.ImageGraphic;
 
-public class ProfileDefinition implements IDefinition{
+
+public class ProfileDefinition implements IDefinition {
 
     private String myName;
     private String myDescription;
-    private String myURL;
-    
-    public ProfileDefinition(String name, String desc, String url){
-        setName(name);
-        setDescription(desc);
-        setURL(url);
+    private ImageGraphic myImage;
+
+    public void setImage (ImageGraphic image) {
+        myImage = image;
     }
 
-    public void setURL (String url) {
-        myURL = url;
-    }
-
-    public String getURL () {
-        return myURL;
+    public ImageGraphic getImage () {
+        return myImage;
     }
 
     public void setName (String name) {
@@ -37,20 +34,20 @@ public class ProfileDefinition implements IDefinition{
     public String getDescription () {
         return myDescription;
     }
-    
+
     public Profile makeProfile () {
-        return new Profile(getName(), getDescription(), getURL());
+        return new Profile(getName(), getDescription(), myImage);
     }
 
     @Override
-    public ProfileDefinition getProfileDefinition () {
-        // TODO Auto-generated method stub
-        return null;
+    public IProfile getProfile () {
+        return new Profile(getName(), getDescription(), myImage);
     }
 
     @Override
-    public void setProfileDefinition (ProfileDefinition profileDef) {
-        // TODO Auto-generated method stub
-        
+    public void setProfile (IProfile profile) {
+        setName(profile.getName());
+        setDescription(profile.getDescription());
+        setImage(profile.getImage());
     }
 }

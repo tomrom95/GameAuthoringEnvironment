@@ -1,4 +1,6 @@
-package engine;
+package engine.conditions;
+
+import engine.IOAffectable;
 
 /**
  * This interface represents a generic Condition that will have a trigger condition that it checks

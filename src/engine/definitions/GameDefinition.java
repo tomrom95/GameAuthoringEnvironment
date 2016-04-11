@@ -1,10 +1,11 @@
 package engine.definitions;
 
 import engine.Game;
+import engine.profile.IProfile;
 
 
 /**
- * Engine Game defintion class
+ * Engine Game definition class
  * Will only be a place holder for an object that is already constructed but then placed into the
  * definitions
  *
@@ -14,6 +15,7 @@ import engine.Game;
 public class GameDefinition implements IDefinition {
 
     private Game myGame;
+    private IProfile myProfile;
 
     public Game create () {
         return myGame;
@@ -23,20 +25,19 @@ public class GameDefinition implements IDefinition {
         return myGame;
     }
 
-    public void setMyGame (Game myGame) {
-        this.myGame = myGame;
+    public void setMyGame (Game game) {
+        this.myGame = game;
     }
 
     @Override
-    public ProfileDefinition getProfileDefinition () {
-        // TODO Auto-generated method stub
-        return null;
+    public IProfile getProfile () {
+        return myProfile;
     }
 
     @Override
-    public void setProfileDefinition (ProfileDefinition profileDef) {
-        // TODO Auto-generated method stub
-        
+    public void setProfile (IProfile profile) {
+        myProfile = profile;
+
     }
 
 }
