@@ -15,7 +15,7 @@ import gameauthoring.Glyph;
  * @author Jeremy Schreck
  *
  */
-public interface IObjectCreationView<E> extends Glyph {
+public interface IObjectCreationView extends Glyph {
     
     /**
      * Tell the view which method it should call to create a "new" item

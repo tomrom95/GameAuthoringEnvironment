@@ -50,8 +50,6 @@ public class CharTabViewer implements ITabViewer {
     private Tab createSubTab (String tabName) {
         Tab newTab = new Tab();
         newTab.setText(tabName);  
-        ObjectCreationView view = new ObjectCreationView(new FormView(new ArrayList<IEntryView>()));
-        newTab.setContent(view.draw());
         return newTab;
     }
 
