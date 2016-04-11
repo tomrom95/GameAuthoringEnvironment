@@ -86,6 +86,9 @@ public class SpriteDefinition implements IDefinition {
     @Override
     public void setProfileDefinition (ProfileDefinition profileDef) {
         this.myProfileDefinition = profileDef;
-        
+    }
+
+    public MovementDefinition getMovementDefinition () {
+        return this.myMovementDefinition;
     }
 }
