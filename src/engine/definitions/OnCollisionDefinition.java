@@ -1,6 +1,6 @@
 package engine.definitions;
 
-import engine.OnCollisionCondition;
+import engine.conditions.OnCollisionCondition;
 
 
 /**
