@@ -12,7 +12,7 @@ public class SceneController {
 
     private ILevel myLevel;
     
-    public SceneController(ILevel level) {//, LevelRenderer renderer) {
+    public SceneController(ILevel level) {
         myLevel = level;
     }
     
