@@ -16,16 +16,11 @@ public class SceneTabViewer implements ITabViewer {
 
     // Has multiple LevelEditorViews
 
-    private Tab mySceneTab;
     private BorderPane myLayout;
 
-    public SceneTabViewer (Tab sceneTab) {
-        mySceneTab = sceneTab;
+    public SceneTabViewer () {
     }
 
-    public Tab getTab(){
-        return mySceneTab;
-    }
     @Override
     public Node draw () {
         myLayout = new BorderPane();

@@ -5,7 +5,7 @@ import engine.definitions.SpriteDefinition;
 
 public class CreationControllerSprite extends CreationController<SpriteDefinition> {
 
-    public CreationControllerSprite (List<ISubFormController<SpriteDefinition>> subFormControllers) {
+    public CreationControllerSprite (List<? extends ISubFormController<SpriteDefinition>> subFormControllers) {
         super(subFormControllers);
     }
 

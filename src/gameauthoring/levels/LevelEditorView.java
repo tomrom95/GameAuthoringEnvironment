@@ -4,7 +4,7 @@ import engine.IGame;
 import engine.ILevel;
 import gameauthoring.Glyph;
 import gameauthoring.SpriteCellView;
-import gameauthoring.TextFormData;
+//import gameauthoring.TextFormData;
 import gameauthoring.characters.IListCellView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;

@@ -21,6 +21,9 @@ public class SpriteDefinition implements IDefinition {
     private List<AttributeDefinition> myAttributes;
     private ProfileDefinition myProfileDefinition;
 
+    public SpriteDefinition() {
+        myProfileDefinition = new ProfileDefinition("", "", "");
+    }
     public ISprite create () {
         ISprite sprite = new Sprite();
         makeProfile(sprite);
