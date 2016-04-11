@@ -1,5 +1,6 @@
 package engine.definitions;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import engine.IAttribute;
@@ -16,15 +17,23 @@ import util.Coordinate;
 
 public class SpriteDefinition extends ProfileDefinition {
 
-    private String myType;
     private MovementDefinition myMovementDefinition;
     private List<ModuleDefiniton> myModuleDefinitions;
     private LocationDefinition myLocation;
     private List<AttributeDefinition> myAttributes;
     private IGraphic myGraphic;
+    
+    public SpriteDefinition () {
+        // TODO Set a default. THis is just for view testing
+        myMovementDefinition = new StaticMoverDefinition();
+        myModuleDefinitions = new ArrayList<ModuleDefiniton>();
+        myAttributes = new ArrayList<AttributeDefinition>();
+        myLocation = new LocationDefinition();
+    }
 
     public ISprite create () {
-        ISprite sprite = new Sprite(new SpriteType(myType));
+        ISprite sprite = new Sprite(new SpriteType(getName()));
+        
         IMovementModule mover = myMovementDefinition.create(sprite);
         IGraphicModule graphicModule = createGraphicModule();
         sprite.initialize(mover, graphicModule, createModules(), createAttributes(),
@@ -77,6 +86,14 @@ public class SpriteDefinition extends ProfileDefinition {
     }
 
     public void setType (String type) {
-        myType = type;
+        this.setName(type);
+    }
+    
+    public void setGraphic(IGraphic graphic){
+        myGraphic = graphic;
+    }
+    
+    public IGraphic getGraphic() {
+        return myGraphic;
     }
 }

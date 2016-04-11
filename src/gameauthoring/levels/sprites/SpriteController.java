@@ -3,7 +3,6 @@ package gameauthoring.levels.sprites;
 import engine.ILevel;
 import engine.sprite.ISprite;
 import gameauthoring.levels.PathCreator;
-import javafx.beans.property.ObjectProperty;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;

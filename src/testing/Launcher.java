@@ -8,7 +8,7 @@ import engine.modules.IGraphicModule;
 import engine.modules.IMovementModule;
 import engine.modules.PathMover;
 import engine.modules.UserMover;
-import engine.rendering.Renderer;
+import engine.rendering.InGameRenderer;
 import engine.sprite.Sprite;
 import gameplayer.GamePlayer;
 import javafx.animation.Animation;
@@ -36,7 +36,7 @@ public class Launcher extends Application {
     private IOInterpeter myIO;
     private Sprite mySprite;
     private Pane myPane;
-    private Renderer myRenderer;
+    private InGameRenderer myRenderer;
 
     public static void main (String[] args) {
         launch(args);
@@ -87,7 +87,7 @@ public class Launcher extends Application {
         mySprite.getMovementStrategyProperty().set(mover.get());
         mySprite.getDrawer().set(g.get());
         initializeTimeline();
-        myRenderer = new Renderer(null, myPane);
+        myRenderer = new InGameRenderer(null, myPane);
         myStage.show();
         myRenderer.draw(mySprite);
     }

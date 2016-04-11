@@ -69,6 +69,7 @@ public class Attribute implements IAttribute {
     }
 
     @Override
+
     public List<IAttribute> getAttributes () {
         List<IAttribute> attributes = new ArrayList<>();
         attributes.add(this);
