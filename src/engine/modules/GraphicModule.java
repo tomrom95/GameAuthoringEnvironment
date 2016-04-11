@@ -1,5 +1,6 @@
 package engine.modules;
 
+import java.util.List;
 import engine.IAttribute;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
@@ -61,9 +62,9 @@ public class GraphicModule implements IGraphicModule {
     }
 
     @Override
-    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
+    public List<IAttribute> getAttributes () {
         // TODO Auto-generated method stub
-        return FXCollections.observableArrayList();
+        return null;
     }
 
 }

@@ -1,5 +1,7 @@
 package engine.modules;
 
+import java.util.ArrayList;
+import java.util.List;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
@@ -7,11 +9,6 @@ import engine.IPositionable;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import engine.sprite.ISprite;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
 
@@ -25,35 +22,33 @@ import util.TimeDuration;
 public abstract class Mover implements IMovementModule {
 
     public static final double NO_MOTION = 0;
-    private ObjectProperty<IAttribute> myXVel;
-    private ObjectProperty<IAttribute> myYVel;
+    private IAttribute myXVel;
+    private IAttribute myYVel;
     private IPositionable myParent;
 
     public Mover (IPositionable positionable) {
-        myXVel = new SimpleObjectProperty<>(new Attribute(AttributeType.X_VEL));
-        myYVel = new SimpleObjectProperty<>(new Attribute(AttributeType.Y_VEL));
+        myXVel = new Attribute(AttributeType.X_VEL);
+        myYVel = new Attribute(AttributeType.Y_VEL);
         myParent = positionable;
     }
 
-    private ObjectProperty<Coordinate> getLocation () {
+    private Coordinate getLocation () {
         return myParent.getLocation();
-        
     }
 
     protected void move (TimeDuration duration) {
-        
-        double xChange = distance(getXVel().get().getValueProperty().get(), duration.getMillis());
-        double yChange = distance(getYVel().get().getValueProperty().get(), duration.getMillis());
-        myParent.getLocation().set(getNextCoordinate(xChange, yChange));
+        double xChange = distance(getXVel().getValueProperty().get(), duration.getMillis());
+        double yChange = distance(getYVel().getValueProperty().get(), duration.getMillis());
+        move(getNextCoordinate(xChange, yChange));
     }
 
     protected void move (Coordinate coordinate) {
-        getLocation().set(coordinate);
+        myParent.setLocation(coordinate);
     }
 
     private Coordinate getNextCoordinate (double xChange, double yChange) {
-        return new Coordinate(getLocation().get().getX() + xChange,
-                              getLocation().get().getY() + yChange);
+        return new Coordinate(getLocation().getX() + xChange,
+                              getLocation().getY() + yChange);
     }
 
     private double distance (double rate, double time) {
@@ -61,42 +56,43 @@ public abstract class Mover implements IMovementModule {
     }
 
     protected double getXDiff (double input) {
-        return input - getLocation().get().getX();
+        return input - getLocation().getX();
     }
 
     protected double getYDiff (double input) {
-        return input - getLocation().get().getY();
+        return input - getLocation().getY();
     }
 
-    abstract public void update (TimeDuration duration);
+    public abstract void update (TimeDuration duration);
 
     @Override
     public void applyEffect (IEffect effect) {
-        getAttributes().forEach(a -> effect.applyToAttribute(a.get()));
+        getAttributes().forEach(a -> effect.applyToAttribute(a));
 
     }
 
     @Override
-    abstract public void registerKeyEvent (KeyIOEvent keyEvent);
+    public abstract void registerKeyEvent (KeyIOEvent keyEvent);
 
     @Override
-    abstract public void registerMouseEvent (MouseIOEvent mouseEvent);
+    public abstract void registerMouseEvent (MouseIOEvent mouseEvent);
 
     @Override
-    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
-        ObservableList<ObjectProperty<IAttribute>> attributes = FXCollections.observableArrayList();
-        attributes.addAll(myXVel, myYVel);
+    public List<IAttribute> getAttributes () {
+        List<IAttribute> attributes = new ArrayList<>();
+        attributes.add(getXVel());
+        attributes.add(getYVel());
         attributes.addAll(getSpecificAttributes());
         return attributes;
     }
 
-    abstract protected ObservableList<ObjectProperty<IAttribute>> getSpecificAttributes ();
+    protected abstract List<IAttribute> getSpecificAttributes ();
 
-    protected ObjectProperty<IAttribute> getXVel () {
+    protected IAttribute getXVel () {
         return myXVel;
     }
 
-    protected ObjectProperty<IAttribute> getYVel () {
+    protected IAttribute getYVel () {
         return myYVel;
     }
 

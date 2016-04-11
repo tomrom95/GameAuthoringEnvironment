@@ -35,7 +35,7 @@ public class TestGame extends Application {
     @Override
     public void start (Stage primaryStage) throws Exception {
 
-        //XStream xstream = new XStream(new DomDriver());
+       // XStream xstream = new XStream(new DomDriver());
         //FXConverters.configure(xstream);
 
         ObjectProperty<ILevel> startingLevel = new SimpleObjectProperty<>(new Level());
@@ -56,12 +56,13 @@ public class TestGame extends Application {
     }
 
     private ISprite createFollowSprite () {
-        ISprite sprite = new Sprite();
+        ISprite sprite = new Sprite(null);
         List<Coordinate> list = getListOfCoordinates();
         ObjectProperty<IMovementModule> mover =
                 new SimpleObjectProperty<>(new PathMover(.10, list, sprite));
         ObjectProperty<IGraphicModule> g =
                 new SimpleObjectProperty<>(new GraphicModule(new Block(20, 20, RGBColor.BLACK)));
+        sprite.getMovementStrategy();
         sprite.getMovementStrategyProperty().set(mover.get());
         sprite.getDrawer().set(g.get());
         return sprite;

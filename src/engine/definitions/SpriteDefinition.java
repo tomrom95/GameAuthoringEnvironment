@@ -1,16 +1,17 @@
 package engine.definitions;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import engine.IAttribute;
+import engine.modules.GraphicModule;
+import engine.modules.IGraphicModule;
 import engine.modules.IModule;
-import engine.sprite.IProfile;
+import engine.modules.IMovementModule;
 import engine.sprite.ISprite;
-import engine.sprite.Profile;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import graphics.IGraphic;
+import util.Coordinate;
 
 
 public class SpriteDefinition extends ProfileDefinition {
@@ -20,34 +21,27 @@ public class SpriteDefinition extends ProfileDefinition {
     private List<ModuleDefiniton> myModuleDefinitions;
     private LocationDefinition myLocation;
     private List<AttributeDefinition> myAttributes;
+    private IGraphic myGraphic;
 
     public ISprite create () {
-        ISprite sprite = new Sprite();
-        makeProfile(sprite);
-        sprite.getType().set(new SpriteType(myType));
-        sprite.getMovementStrategyProperty().set(myMovementDefinition.create(sprite));
-        initModules(sprite);
-        initAttributes(sprite);
-        sprite.getLocation().set(myLocation.create());
+        ISprite sprite = new Sprite(new SpriteType(myType));
+        IMovementModule mover = myMovementDefinition.create(sprite);
+        IGraphicModule graphicModule = new GraphicModule(myGraphic);
+        Coordinate coord = myLocation.create();
+        sprite.initialize(mover, graphicModule, createModules(), createAttributes(), coord);
         return sprite;
     }
 
-    private void makeProfile (ISprite sprite) {
-        IProfile profile = new Profile(getName(), getDescription(), getURL());
-        sprite.getProfile().set(profile);
-
+    private List<IModule> createModules () {
+        return myModuleDefinitions.stream()
+                .map(modDef -> modDef.create())
+                .collect(Collectors.toList());
     }
 
-    private void initAttributes (ISprite sprite) {
-        myAttributes
-                .forEach(a -> sprite.getAttributes().add(new SimpleObjectProperty<>(a.create())));
-
-    }
-
-    private void initModules (ISprite sprite) {
-        ObservableList<ObjectProperty<IModule>> modules = FXCollections.observableArrayList();
-        myModuleDefinitions.forEach(mod -> modules.add(new SimpleObjectProperty<>(mod.create())));
-        sprite.getModulesProperty().addAll(modules);
+    private List<IAttribute> createAttributes () {
+        return myAttributes.stream()
+                .map(attDef -> attDef.create())
+                .collect(Collectors.toList());
     }
 
     public void addModule (ModuleDefiniton definition) {

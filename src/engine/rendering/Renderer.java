@@ -34,20 +34,17 @@ public class Renderer implements IRenderer {
     }
 
     private void drawBackground () {
-        
         add(myFactory.getVisual(myGame.getBackroundImage()));
-        
     }
 
     private void draw (Drawable drawable) {
-        Node node = drawable.getDrawer().get().getVisualRepresentation(myFactory);
-        Coordinate location = drawable.getLocation().get();
+        Node node = drawable.getDrawer().getVisualRepresentation(myFactory);
+        Coordinate location = drawable.getLocation();
         node.relocate(location.getX(), location.getY());
         add(node);
     }
 
     private void add (Node node) {
         myPane.getChildren().add(node);
-
     }
 }

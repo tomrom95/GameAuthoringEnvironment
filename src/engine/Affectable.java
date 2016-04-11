@@ -1,5 +1,6 @@
 package engine;
 
+import java.util.List;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
@@ -47,6 +48,6 @@ public interface Affectable extends IOAffectable {
      * 
      * @return observable list of attribute properties
      */
-    ObservableList<ObjectProperty<IAttribute>> getAttributes ();
+    List<IAttribute> getAttributes ();
 
 }

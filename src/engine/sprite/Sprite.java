@@ -1,5 +1,6 @@
 package engine.sprite;
 
+import java.util.List;
 import java.util.function.Consumer;
 import engine.Affectable;
 import engine.AttributeManager;
@@ -38,44 +39,45 @@ import util.TimeDuration;
  */
 public class Sprite implements ISprite {
 
-    private ObjectProperty<IMovementModule> myMover;
-    private ObjectProperty<IGraphicModule> myGraphic;
-    private ObjectProperty<IProfile> myProfile;
-    private ObservableList<ObjectProperty<? extends IModule>> myModules;
-    private ObjectProperty<Coordinate> myLocation;
-    private ObjectProperty<IStatus> myStatus;
-    private ObjectProperty<AttributeManager> myAttributeManager;
-    private ObjectProperty<SpriteType> myType;
+    private SpriteType myType;
+    private IMovementModule myMover;
+    private IGraphicModule myGraphic;
+    private List<IModule> myOtherModules;
+    private Coordinate myLocation;
+    private IStatus myStatus;
+    private AttributeManager myAttributeManager;
 
-    public Sprite () {
-        myAttributeManager = new SimpleObjectProperty<>(new AttributeManager());
-        myMover = new SimpleObjectProperty<>();
-        myGraphic = new SimpleObjectProperty<>(new GraphicModule(new Block(0, 0, RGBColor.BLACK)));
-        initializeRequiredModules();
-        myLocation = new SimpleObjectProperty<>(new Coordinate(0, 0));
-
-        myType = new SimpleObjectProperty<>();
-
-        myProfile = new SimpleObjectProperty<>(new Profile());
+    public Sprite (SpriteType type) {
+        // TODO add default constructions for some modules so there aren't nulls 
+        myType = type;
+        
+        myStatus = new SpriteStatus();
+        myAttributeManager = new AttributeManager();
 
     }
-
-    private void initializeRequiredModules () {
-        myModules = FXCollections.observableArrayList();
-        myStatus = new SimpleObjectProperty<>(new SpriteStatus());
-        myModules.add(myMover);
-        myModules.add(myGraphic);
+    
+    public void initialize (IMovementModule movementModule,
+                            IGraphicModule graphicModule,
+                            List<IModule> otherModules,
+                            List<IAttribute> attributes,
+                            Coordinate coord) {
+        myMover = movementModule;
+        myGraphic = graphicModule;
+        myOtherModules = otherModules;
+        myLocation = coord;
     }
+
 
     @Override
-    public ObjectProperty<IGraphicModule> getDrawer () {
+    public IGraphicModule getDrawer () {
         return myGraphic;
     }
 
     @Override
     public void update (TimeDuration duration) {
-        myAttributeManager.get().update(duration);
-        myModules.forEach(m -> m.get().update(duration));
+        myAttributeManager.update(duration);
+        myStatus.update(duration);
+        myOtherModules.forEach(m -> m.update(duration));
     }
 
     @Override
@@ -84,78 +86,68 @@ public class Sprite implements ISprite {
     }
 
     private void applyToAffectable (Consumer<Affectable> function) {
-        function.accept(myAttributeManager.get());
-        myModules.forEach(m -> function.accept(m.get()));
-
+        function.accept(myAttributeManager);
+        function.accept(myStatus);
+        myOtherModules.forEach(m -> function.accept(m));
     }
 
     @Override
-    public ObjectProperty<Coordinate> getLocation () {
+    public Coordinate getLocation () {
         return myLocation;
     }
 
     @Override
-    public ObjectProperty<IMovementModule> getMovementStrategyProperty () {
+    public IMovementModule getMovementStrategy () {
         return myMover;
     }
 
     @Override
-    public ObservableList<ObjectProperty<? extends IModule>> getModulesProperty () {
-        return myModules;
+    public List<IModule> getModules () {
+        return myOtherModules;
     }
 
     @Override
-    public ObservableList<ObjectProperty<IResource>> getResourcesProperty () {
-        ObservableList<ObjectProperty<IResource>> resources = FXCollections.observableArrayList();
-        resources.addAll(myAttributeManager.get().getResourceList());
-        return resources;
+    public List<IResource> getResources () {
+        return myAttributeManager.getResourceList();
     }
 
     @Override
     public void registerKeyEvent (KeyIOEvent event) {
         applyToAffectable(a -> a.registerKeyEvent(event));
-
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent event) {
-
         applyToAffectable(a -> a.registerMouseEvent(event));
-
     }
 
     @Override
-    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
-
-        ObservableList<ObjectProperty<IAttribute>> attributes = FXCollections.observableArrayList();
-        applyToAffectable(a -> attributes.addAll(a.getAttributes()));
-        return attributes;
+    public List<IAttribute> getAttributes () {
+        return myAttributeManager.getAttributes();
     }
 
     @Override
     public Bounds getBounds () {
-        double x = getLocation().get().getX();
-        double y = getLocation().get().getY();
-        double width = getDrawer().get().getGraphic().getWidth().get();
-        double height = getDrawer().get().getGraphic().getHeight().get();
-        System.out.println(new Bounds(x, y, width, height));
+        double x = getLocation().getX();
+        double y = getLocation().getY();
+        double width = getDrawer().getGraphic().getWidth().get();
+        double height = getDrawer().getGraphic().getHeight().get();
         return new Bounds(x, y, width, height);
     }
 
     @Override
-    public ObjectProperty<SpriteType> getType () {
+    public SpriteType getType () {
         return myType;
     }
 
     @Override
-    public ObjectProperty<AttributeManager> getAttributeManager () {
+    public AttributeManager getAttributeManager () {
         return myAttributeManager;
     }
 
     @Override
-    public ObjectProperty<IProfile> getProfile () {
-        return myProfile;
-
+    public void setLocation (Coordinate location) {
+        myLocation = location;
     }
 
 }

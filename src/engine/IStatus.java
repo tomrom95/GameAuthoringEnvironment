@@ -12,7 +12,7 @@ import engine.modules.IModule;
  * @author Jonathan Im
  *
  */
-public interface IStatus extends GameEventHandler {
+public interface IStatus extends Affectable, GameEventHandler {
 
     /**
      * @return whether this sprite should be removed from the game

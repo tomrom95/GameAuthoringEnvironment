@@ -23,10 +23,10 @@ public class OnScreenSprite implements Draggable, Glyph {
     private static final String MOVE_STRING = "Moving";
 
     private LevelRenderer levelView;
-    private ObjectProperty<ISprite> mySprite;
+    private ISprite mySprite;
     private SpriteController myController;
 
-    public OnScreenSprite (LevelRenderer renderer, ILevel level, ObjectProperty<ISprite> sprite) {
+    public OnScreenSprite (LevelRenderer renderer, ILevel level, ISprite sprite) {
         levelView = renderer;
         mySprite = sprite;
         myController = new SpriteController(level);
@@ -34,11 +34,11 @@ public class OnScreenSprite implements Draggable, Glyph {
 
     @Override
     public Node draw () {
-        Node node = mySprite.get().getDrawer().get().getVisualRepresentation(new UnscaledFactory());
-        Coordinate location = mySprite.get().getLocation().get();
+        Node node = mySprite.getDrawer().getVisualRepresentation(new UnscaledFactory());
+        Coordinate location = mySprite.getLocation();
         node.relocate(location.getX() -
-                      mySprite.get().getDrawer().get().getGraphic().getWidth().get() / 2,
-                      location.getY() - mySprite.get().getDrawer().get().getGraphic().getHeight()
+                      mySprite.getDrawer().getGraphic().getWidth().get() / 2,
+                      location.getY() - mySprite.getDrawer().getGraphic().getHeight()
                               .get() / 2);
         this.setActions(node);
         this.createRightClickMenu(node);
@@ -89,7 +89,7 @@ public class OnScreenSprite implements Draggable, Glyph {
         return menu.createActionMenu();
     }
 
-    protected ObjectProperty<ISprite> getSprite () {
+    protected ISprite getSprite () {
         return mySprite;
     }
 
