@@ -29,7 +29,7 @@ public abstract class Condition implements ICondition {
                                                IEventPackage toApply) {
         toApply.getMyEffects()
                 .forEach(effect -> getPackageFilteredSprites(game, toApply)
-                        .forEach(otherSprite -> otherSprite.applyEffect(effect)));
+                        .forEach(otherSprite -> otherSprite.applyEffect(effect.makeCopy())));
         toApply.getMyEvents()
                 .forEach(event -> getPackageFilteredSprites(game, toApply)
                         .forEach(otherSprite -> otherSprite.registerEvent(event)));
@@ -46,7 +46,7 @@ public abstract class Condition implements ICondition {
 
         globalPackage.getMyEffects()
                 .forEach(effect -> game.getLevelManager().getCurrentLevel()
-                        .getAttributeManager().applyEffect(effect));
+                        .getAttributeManager().applyEffect(effect.makeCopy()));
         globalPackage.getMyEvents()
                 .forEach(event -> game.getLevelManager().getCurrentLevel()
                         .getAttributeManager().registerEvent(event));

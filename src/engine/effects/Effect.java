@@ -16,8 +16,8 @@ import util.TimeDuration;
 public abstract class Effect implements IEffect {
 
     private AttributeType myAttributeType;
-    private IAttribute myEffectLength;
-    private IAttribute myAlteringValue;
+    private IAttribute myEffectLengthAttribute;
+    private IAttribute myAlteringAttribute;
 
     /**
      * Constructor for an incoming constant.
@@ -27,8 +27,8 @@ public abstract class Effect implements IEffect {
      */
     public Effect (AttributeType type, IAttribute effectLength, double alteringValue) {
         myAttributeType = type;
-        myEffectLength = effectLength;
-        myAlteringValue = new Attribute(alteringValue, AttributeType.CONSTANT);
+        myEffectLengthAttribute = effectLength;
+        myAlteringAttribute = new Attribute(alteringValue, AttributeType.CONSTANT);
     }
 
     /**
@@ -40,12 +40,24 @@ public abstract class Effect implements IEffect {
      */
     public Effect (AttributeType type, IAttribute effectLength, IAttribute alteringValue) {
         myAttributeType = type;
-        myEffectLength = effectLength;
-        myAlteringValue = alteringValue;
+        myEffectLengthAttribute = effectLength;
+        myAlteringAttribute = alteringValue;
+    }
+
+    public IAttribute getEffectLengthAttribute () {
+        return myEffectLengthAttribute;
+    }
+
+    public IAttribute getAlteringAttribute () {
+        return myAlteringAttribute;
     }
 
     protected double getAlteringValue () {
-        return myAlteringValue.getValueProperty().get();
+        return myAlteringAttribute.getValueProperty().get();
+    }
+
+    protected void setAlteringValue (double value) {
+        myAlteringAttribute.getValueProperty().set(value);
     }
 
     protected boolean matchesMyType (AttributeType other) {
@@ -59,12 +71,14 @@ public abstract class Effect implements IEffect {
 
     @Override
     public boolean hasCompleted () {
-        return myEffectLength.getValueProperty().get() < 0;
+        return myEffectLengthAttribute.getValueProperty().get() < 0;
     }
 
     @Override
     public void update (TimeDuration duration) {
-        myEffectLength.getValueProperty()
-                .set(myEffectLength.getValueProperty().get() - duration.getMillis());
+        myEffectLengthAttribute.getValueProperty()
+                .set(myEffectLengthAttribute.getValueProperty().get() - duration.getMillis());
     }
+
+  
 }

@@ -6,6 +6,7 @@ import engine.ISpriteGroup;
 import engine.effects.IEffect;
 import engine.events.EventPackage;
 import engine.events.GameEvent;
+import engine.profile.IProfile;
 
 
 public class EventPackageDefinition implements IDefinition {
@@ -13,6 +14,7 @@ public class EventPackageDefinition implements IDefinition {
     private ISpriteGroup mySpriteGroup;
     private List<IEffect> myEffectsList;
     private List<GameEvent> myEventsList;
+    private IProfile myProfile;
 
     public IEventPackage create () {
         return new EventPackage(mySpriteGroup, myEffectsList, myEventsList);
@@ -40,6 +42,16 @@ public class EventPackageDefinition implements IDefinition {
 
     public void setMyEventsList (List<GameEvent> eventList) {
         this.myEventsList = eventList;
+    }
+
+    @Override
+    public IProfile getProfile () {
+        return myProfile;
+    }
+
+    @Override
+    public void setProfile (IProfile profile) {
+        myProfile = profile;
     }
 
 }

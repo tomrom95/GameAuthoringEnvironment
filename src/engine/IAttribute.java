@@ -1,6 +1,5 @@
 package engine;
 
-import java.io.Serializable;
 import engine.effects.IEffect;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
@@ -17,7 +16,7 @@ import javafx.collections.ObservableList;
  * @author Jonathan Im
  *
  */
-public interface IAttribute extends Affectable, Serializable {
+public interface IAttribute extends Affectable {
     /**
      * @return the type of this attribute
      */
@@ -42,5 +41,12 @@ public interface IAttribute extends Affectable, Serializable {
      * @return
      */
     ObservableList<ObjectProperty<IEffect>> getEffects ();
+
+    /**
+     * To support cloning of effects, attributes must be cloneable as well
+     * 
+     * @return
+     */
+    IAttribute makeCopy ();
 
 }

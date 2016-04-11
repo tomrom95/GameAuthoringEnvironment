@@ -11,11 +11,9 @@ public class EnemyDefinition extends SpriteDefinition {
 
     private List<Coordinate> myPath;
     private double mySpeed;
+    
+   
 
-    public EnemyDefinition (double speed, List<Coordinate> path) {
-        setSpeed(speed);
-        setPath(path);
-    }
 
     public void setPath (List<Coordinate> path) {
         myPath = path;
@@ -30,7 +28,8 @@ public class EnemyDefinition extends SpriteDefinition {
     @Override
     public ISprite create () {
         ISprite sprite = super.create();
-        sprite.initialize(new PathMover(mySpeed, myPath, sprite), createGraphicModule(), createModules(),
+        sprite.initialize(new PathMover(mySpeed, myPath, sprite), createGraphicModule(),
+                          createModules(),
                           createAttributes(),
                           createCoordinate());
         return sprite;
