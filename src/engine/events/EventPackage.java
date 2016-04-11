@@ -1,8 +1,9 @@
-package engine;
+package engine.events;
 
 import java.util.List;
+import engine.IEventPackage;
+import engine.ISpriteGroup;
 import engine.effects.IEffect;
-import engine.events.GameEvent;
 
 /**
  * Need to alter the definition classes to use this class instead

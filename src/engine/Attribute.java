@@ -2,9 +2,8 @@ package engine;
 
 import java.util.ArrayList;
 import java.util.List;
+import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
-import engine.interactionevents.KeyIOEvent;
-import engine.interactionevents.MouseIOEvent;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -21,12 +20,12 @@ import util.TimeDuration;
  *
  */
 
-public class Attribute implements IAttribute {
-
+public class Attribute extends DefaultAffectable implements IAttribute {
+    private static final double DEFAULT_STARTING_VALUE = 0;
     private DoubleProperty myValue;
     private AttributeType myType;
     private ObservableList<ObjectProperty<IEffect>> myEffects;
-    private static final double DEFAULT_STARTING_VALUE = 0;
+    
 
     public Attribute (AttributeType type) {
         this(DEFAULT_STARTING_VALUE, type);
@@ -58,15 +57,6 @@ public class Attribute implements IAttribute {
         myValue.set(valueToSet);
     }
 
-    @Override
-    public void registerKeyEvent (KeyIOEvent event) {
-        // do nothing
-    }
-
-    @Override
-    public void registerMouseEvent (MouseIOEvent event) {
-        // do nothing
-    }
 
     @Override
     public List<IAttribute> getAttributes () {

@@ -2,7 +2,7 @@ package engine.modules;
 
 import java.util.List;
 import engine.definitions.SpriteDefinition;
-import engine.sprite.ISprite;;
+import engine.sprite.ISprite;
 
 
 public class Wave implements IWave {
