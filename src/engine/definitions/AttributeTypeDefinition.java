@@ -10,7 +10,7 @@ import engine.AttributeType;
  * @author jonathanim
  *
  */
-public class AttributeTypeDefinition implements IDefinition {
+public class AttributeTypeDefinition  {
 
     private AttributeType myAttributeType;
 

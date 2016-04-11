@@ -4,7 +4,7 @@ import java.util.List;
 import engine.effects.IEffect;
 
 
-public class ListIEffectDefinition implements IDefinition {
+public class ListIEffectDefinition  {
 
     private List<IEffect> myEffectList;
 

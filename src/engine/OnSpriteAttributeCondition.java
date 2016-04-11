@@ -1,6 +1,7 @@
 package engine;
 
 import java.util.function.DoublePredicate;
+import engine.definitions.ProfileDefinition;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import util.TimeDuration;
@@ -68,6 +69,20 @@ public class OnSpriteAttributeCondition implements ICondition {
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
         // do nothing
+    }
+
+    @Override
+    public ProfileDefinition getProfileDefinition () {
+        //TODO
+        ProfileDefinition profile = new ProfileDefinition();
+        profile.setName("OnSpriteAtti");
+        return profile;
+    }
+
+    @Override
+    public void setProfileDefinition (ProfileDefinition profileDef) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

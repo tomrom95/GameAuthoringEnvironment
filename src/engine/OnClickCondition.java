@@ -1,6 +1,7 @@
 package engine;
 
 import java.util.function.Predicate;
+import engine.definitions.ProfileDefinition;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
@@ -76,6 +77,20 @@ public class OnClickCondition implements ICondition {
                 .filter(additionalFilter)
                 .forEach(sprite -> handleAction(sprite));
 
+    }
+
+    @Override
+    public ProfileDefinition getProfileDefinition () {
+        //TODO
+        ProfileDefinition profile = new ProfileDefinition();
+        profile.setName("OnClick");
+        return profile;
+    }
+
+    @Override
+    public void setProfileDefinition (ProfileDefinition profileDef) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

@@ -22,4 +22,16 @@ public class AttributeDefinition implements IDefinition {
         myValue = value;
     }
 
+    @Override
+    public ProfileDefinition getProfileDefinition () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setProfileDefinition (ProfileDefinition profileDef) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

@@ -6,8 +6,11 @@ import gameauthoring.object_creation_tab.DefenderEditorView;
 import gameauthoring.object_creation_tab.EnemyEditorView;
 import gameauthoring.object_creation_tab.InteractionEditorView;
 import gameauthoring.object_creation_tab.WeaponEditorView;
-import java.util.ArrayList;
 import java.util.List;
+import engine.ICondition;
+import engine.OnClickCondition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -31,6 +34,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
     private EnemyEditorView myEnemyView;
     private InteractionEditorView myInteractionView;
     private WeaponEditorView myWeaponView;
+    private ListDisplay<ICondition> myConditionView;
 
     public ObjectCreationTabViewer (Tab charTab) {
         myCharTab = charTab;
@@ -45,11 +49,25 @@ public class ObjectCreationTabViewer implements ITabViewer {
         myEnemyView = new EnemyEditorView(createSubTab("Enemies"));
         myInteractionView = new InteractionEditorView(createSubTab("Interactions"));
         myWeaponView = new WeaponEditorView(createSubTab("Weapons"));
+        myConditionView = new ConditionView(createSubTab("Conditions"), getTestConditions(), getOptions());
 
         tabpane.getTabs().addAll(myAttributeView.getTab(), myDefenderView.getTab(),
                                  myEnemyView.getTab(), myInteractionView.getTab(),
-                                 myWeaponView.getTab());
+                                 myWeaponView.getTab(), myConditionView.getTab());
         return tabpane;
+    }
+
+    private ObservableList<String> getOptions () {
+        ObservableList<String> options = FXCollections.observableArrayList();
+        options.add("Ryan");
+        return options;
+    }
+
+    private ObservableList<ICondition> getTestConditions () {
+        ObservableList<ICondition> conditions = FXCollections.observableArrayList();
+        ICondition c = new OnClickCondition(null, null, null, null);
+        conditions.add(c);
+        return conditions;
     }
 
     private Tab createSubTab (String tabName) {
@@ -69,7 +87,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
     @Override
     public Node draw () {
         myLayout = new BorderPane();
-
+        myLayout = (BorderPane) myConditionView.draw();
         return myLayout;
     }
 
