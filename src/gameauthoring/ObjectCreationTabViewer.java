@@ -1,6 +1,7 @@
 package gameauthoring;
 
 import gameauthoring.ITabViewer;
+import gameauthoring.characters.CreationController;
 import gameauthoring.characters.CreationControllerAttribute;
 import gameauthoring.characters.CreationControllerFactory;
 import gameauthoring.characters.CreationControllerSprite;
@@ -15,6 +16,7 @@ import gameauthoring.object_creation_tab.EnemyEditorView;
 import gameauthoring.object_creation_tab.InteractionEditorView;
 import gameauthoring.object_creation_tab.WeaponEditorView;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
@@ -28,17 +30,15 @@ import javafx.scene.layout.BorderPane;
  * Handles selection between different SpriteEditorViews.
  * 
  * @author Jin An
+ * @author Joe Lilien
  *
  */
-public class ObjectCreationTabViewer implements ITabViewer {
-
-    private Tab myCharTab;
-    private BorderPane myLayout;   
+public class ObjectCreationTabViewer implements ITabViewer {     
     
-
     private TabPane myTabPane;
 
-    private List<CreationControllerSprite> mySpriteCCs;
+    private List<SubFormControllerSprite> myEnemySubforms = new ArrayList<Sprite> 
+    private List<CreationController<?>> mySpriteCCs = new ArrayList<CreationController<?>>(Arrays.asList(new CreationControllerSprite(null)));
     private List<IObjectCreationView<?>> myCreationViews;
     private CreationControllerFactory ccFactory;
     private SubFormControllerFactory sfcFactory;
@@ -73,8 +73,6 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     }
 
-    private InteractionEditorView myInteractionView;
-    private WeaponEditorView myWeaponView;
 
     public ObjectCreationTabViewer () {
         init();
