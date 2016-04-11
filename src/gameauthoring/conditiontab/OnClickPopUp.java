@@ -1,8 +1,8 @@
 package gameauthoring.conditiontab;
 
-import java.util.List;
 import engine.ICondition;
 import engine.IGame;
+import engine.OnClickCondition;
 import engine.definitions.SpriteDefinition;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -26,8 +26,7 @@ public class OnClickPopUp extends ConditionPopUp{
 
     @Override
     protected ICondition createCondition () {
-        // TODO Auto-generated method stub
-        return null;
+        return new OnClickCondition(myGame, null, null, null);
     }
 
     @Override
@@ -39,7 +38,10 @@ public class OnClickPopUp extends ConditionPopUp{
     private Node getHBox () {
        HBox hbox = new HBox(CUSHION);
        hbox.getChildren().add(getCombo("Target", myGame.getAuthorshipData().getCreatedSprites()));
-       hbox.getChildren().add(getCombo("Tayla", null));
+       hbox.getChildren().add(getCombo("Self Effects", null));
+       hbox.getChildren().add(getCombo("Other Group", null));
+       hbox.getChildren().add(getCombo("Group Effects", null));
+       hbox.getChildren().add(getCombo("Global Effects", null));
        
        return hbox;
        
