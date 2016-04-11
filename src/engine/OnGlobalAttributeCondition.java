@@ -5,7 +5,6 @@ import java.util.function.DoublePredicate;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import javafx.beans.property.ObjectProperty;
 import util.TimeDuration;
 
 
@@ -38,28 +37,28 @@ public class OnGlobalAttributeCondition implements ICondition {
     @Override
     public void update (TimeDuration duration) {
         myGame.getAttributeManager().getAttributes().stream()
-                .filter(atty -> atty.get().getType().equals(myAttributeType))
+                .filter(atty -> atty.getType().equals(myAttributeType))
                 .forEach(atty -> checkAttribute(atty));
-        myGame.getLevelManager().getCurrentLevel().get().getAttributeManager().get().getAttributes()
+        myGame.getLevelManager().getCurrentLevel().getAttributeManager().getAttributes()
                 .stream()
-                .filter(atty -> atty.get().getType().equals(myAttributeType))
+                .filter(atty -> atty.getType().equals(myAttributeType))
                 .forEach(atty -> checkAttribute(atty));
     }
 
-    private void checkAttribute (ObjectProperty<IAttribute> atty) {
-        if (myValueCheck.test(atty.get().getValueProperty().get())) {
-            myApplyToSelf.forEach(effect -> atty.get().applyEffect(effect));
+    private void checkAttribute (IAttribute atty) {
+        if (myValueCheck.test(atty.getValueProperty().get())) {
+            myApplyToSelf.forEach(effect -> atty.applyEffect(effect));
             myApplyToOtherGroup.forEach(
-                                        effect -> myGame.getLevelManager().getCurrentLevel().get()
+                                        effect -> myGame.getLevelManager().getCurrentLevel()
                                                 .getSprites().stream()
                                                 .filter(sprite -> myOtherGroup
-                                                        .contains(sprite.getType().get()))
+                                                        .contains(sprite.getType()))
                                                 .forEach(sprite -> sprite
                                                         .applyEffect(effect)));
             myApplyToGlobalAttys
                     .forEach(effect -> myGame.getAttributeManager().applyEffect(effect));
-            myApplyToGlobalAttys.forEach(effect -> myGame.getLevelManager().getCurrentLevel().get()
-                    .getAttributeManager().get().applyEffect(effect));
+            myApplyToGlobalAttys.forEach(effect -> myGame.getLevelManager().getCurrentLevel()
+                    .getAttributeManager().applyEffect(effect));
         }
     }
 
