@@ -14,7 +14,7 @@ public class AttributeTypeDefinition implements IDefinition {
     public AttributeType create(){
         return myAttributeType;
     }
-
+    
     @Override
     public ProfileDefinition getProfileDefinition () {
         // TODO Auto-generated method stub
