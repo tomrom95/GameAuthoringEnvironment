@@ -59,6 +59,7 @@ public class ObjectCreationView<E extends IDefinition> implements IObjectCreatio
      * Initialize view
      */
     private void init () {
+     
         myCreationPane.add(myObjectListView.draw(), 0, 0);
         myCreationPane.add(myFormView.draw(), 1, 0);
     }

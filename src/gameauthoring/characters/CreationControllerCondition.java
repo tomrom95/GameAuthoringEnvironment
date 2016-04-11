@@ -12,6 +12,7 @@ public class CreationControllerCondition extends CreationController<ConditionDef
     @Override
     protected ConditionDefinition createBlankItem () {
         //return new ConditionDefinition();
+        return null
     }
 
 }

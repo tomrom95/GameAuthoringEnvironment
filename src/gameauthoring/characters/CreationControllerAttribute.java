@@ -5,7 +5,7 @@ import engine.definitions.AttributeDefinition;
 
 public class CreationControllerAttribute extends CreationController<AttributeDefinition> {
 
-    public CreationControllerAttribute (List<ISubFormController<AttributeDefinition>> subFormControllers) {
+    public CreationControllerAttribute (List<? extends ISubFormController<AttributeDefinition>> subFormControllers) {
         super(subFormControllers);
     }
 

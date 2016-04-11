@@ -1,6 +1,7 @@
 package gameauthoring;
 
 import java.io.File;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -54,7 +55,7 @@ public class GameTabViewer implements ITabViewer {
         GridPane form = new GridPane();
         Button loadImage = makeButton("Load", e -> fileLoader());
         form.setMinSize(200, 200);
-    /*    form.add(new TextFormData("Name of the Game: ").draw(), 0, 1);
+    /*form.add(new TextFormData("Name of the Game: ").draw(), 0, 1);
         form.add(new TextFormData("Author: ").draw(), 0, 2);
         form.add(new TextFormData("Splash Sreen: ").draw(), 0, 3);*/
         form.add(loadImage, 1, 3);
