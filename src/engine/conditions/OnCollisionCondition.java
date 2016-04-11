@@ -61,16 +61,11 @@ public class OnCollisionCondition extends Condition implements ICondition {
     }
 
     private void handleCollision (ISprite outerSprite, ISprite innerSprite) {
-        applyPackageEffectsToSprite(myGroupAPackage, outerSprite);
-        applyPackageEffectsToSprite(myGroupBPackage, innerSprite);
+        applyPackageToSprite(myGroupAPackage, outerSprite);
+        applyPackageToSprite(myGroupBPackage, innerSprite);
         applyOtherAndGlobalEventPackages(myGame, myOtherPackage, myGlobalPackage);
     }
 
-    private void applyPackageEffectsToSprite (IEventPackage myPackage, ISprite mySprite) {
-        myPackage.getMyEffects().forEach(effect -> mySprite.applyEffect(effect));
-
-    }
-
-
+   
 
 }

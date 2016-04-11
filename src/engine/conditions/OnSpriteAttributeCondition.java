@@ -2,7 +2,6 @@ package engine.conditions;
 
 import java.util.function.DoublePredicate;
 import engine.AttributeType;
-import engine.IAttribute;
 import engine.IEventPackage;
 import engine.IGame;
 import util.TimeDuration;
@@ -36,15 +35,15 @@ public class OnSpriteAttributeCondition extends Condition implements ICondition 
     public void update (TimeDuration duration) {
         getPackageFilteredSprites(myGame, mySpritePackage)
             .forEach(sprite -> sprite.getAttributes().stream()
-                        .filter(atty -> atty.getType().equals(myAttributeType))
-                        .forEach(atty -> checkAttribute(atty)));
-    }
-
-    private void checkAttribute (IAttribute atty) {
-        if (myValueCheck.test(atty.getValueProperty().get())) {
-            applyEventPackageToSprites(myGame, mySpritePackage);
-            applyOtherAndGlobalEventPackages(myGame, myOtherPackage, myGlobalPackage);
-        }
+                     .filter(atty -> atty.getType().equals(myAttributeType))
+                     .forEach(attribute -> checkAttribute(attribute, myValueCheck, new FunctionalDoer() {
+                         @Override
+                         public void doIt () {
+                             applyEventPackageToSprites(myGame, mySpritePackage);
+                             applyOtherAndGlobalEventPackages(myGame,myOtherPackage, myGlobalPackage);
+                            }
+                        })));
+                           
     }
 
 

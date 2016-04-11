@@ -2,7 +2,6 @@ package engine.conditions;
 
 import java.util.function.DoublePredicate;
 import engine.AttributeType;
-import engine.IAttribute;
 import engine.IAttributeManager;
 import engine.IEventPackage;
 import engine.IGame;
@@ -39,13 +38,13 @@ public class OnGlobalAttributeCondition extends Condition implements ICondition 
     private void checkAttributes (TimeDuration duration, IAttributeManager myManager) {
         myManager.getAttributes().stream()
                 .filter(atty -> atty.getType().equals(myAttributeType))
-                .forEach(atty -> checkAttribute(atty));
+                .forEach(attribute -> checkAttribute(attribute, myValueCheck, new FunctionalDoer() {
+                    @Override
+                    public void doIt () {
+                        applyOtherAndGlobalEventPackages(myGame, myOtherPackage, myGlobalPackage);
+                    }
+                }));
     }
 
-    private void checkAttribute (IAttribute atty) {
-        if (myValueCheck.test(atty.getValueProperty().get())) {
-            applyOtherAndGlobalEventPackages(myGame, myOtherPackage, myGlobalPackage);
-        }
-    }
 
 }

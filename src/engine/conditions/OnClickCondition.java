@@ -1,6 +1,5 @@
 package engine.conditions;
 
-
 import java.util.function.Predicate;
 import engine.IEventPackage;
 import engine.IGame;
@@ -35,7 +34,6 @@ public class OnClickCondition extends Condition implements ICondition {
         myGlobalPackage = globalPackage;
     }
 
-
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
 
@@ -45,11 +43,9 @@ public class OnClickCondition extends Condition implements ICondition {
     }
 
     private void handleAction (ISprite sprite) {
-        mySelfPackage.getMyEffects().forEach(effect -> sprite.applyEffect(effect));
-        mySelfPackage.getMyEvents().forEach(event -> sprite.registerEvent(event));
-       applyOtherAndGlobalEventPackages(myGame, myOtherPackage, myGlobalPackage);
+        applyPackageToSprite(mySelfPackage, sprite);
+        applyOtherAndGlobalEventPackages(myGame, myOtherPackage, myGlobalPackage);
     }
-
 
     private void filterAndHandleSprites (IGame game, Predicate<ISprite> additionalFilter) {
         getPackageFilteredSprites(game, mySelfPackage)

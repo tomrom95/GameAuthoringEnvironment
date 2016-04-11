@@ -1,6 +1,8 @@
 package engine.conditions;
 
+import java.util.function.DoublePredicate;
 import java.util.stream.Stream;
+import engine.IAttribute;
 import engine.IEventPackage;
 import engine.IGame;
 import engine.interactionevents.KeyIOEvent;
@@ -54,6 +56,20 @@ public abstract class Condition implements ICondition {
         return game.getLevelManager().getCurrentLevel().getSprites().stream()
                 .filter(sprite -> filterPackage.getTargetedSpriteGroup()
                         .contains(sprite.getType()));
+    }
+
+    protected void applyPackageToSprite (IEventPackage myPackage, ISprite mySprite) {
+        myPackage.getMyEffects().forEach(effect -> mySprite.applyEffect(effect));
+        myPackage.getMyEvents().forEach(event -> mySprite.registerEvent(event));
+
+    }
+
+    protected void checkAttribute (IAttribute attribute,
+                                   DoublePredicate valueCheck,
+                                   FunctionalDoer myDo) {
+        if (valueCheck.test(attribute.getValueProperty().get())) {
+            myDo.doIt();
+        }
     }
 
 }
