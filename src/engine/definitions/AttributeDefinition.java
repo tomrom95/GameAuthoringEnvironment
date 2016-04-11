@@ -10,9 +10,9 @@ import engine.IAttribute;
  *
  */
 
-public class AttributeDefinition implements IDefinition {
+public class AttributeDefinition extends ProfileDefinition implements IDefinition {
 
-    private String myType;
+    private String myType = "";
     private double myMaxValue, myMinValue;
     private boolean myIsGlobal;
     private AttributeDefinition myAttributeDefinition;
@@ -21,6 +21,8 @@ public class AttributeDefinition implements IDefinition {
         
     }
     public AttributeDefinition (double max, double min, boolean isGlobal){
+        super("", "", "");
+        // TODO Set a default. THis is just for view testing
         setMaxValue(max);
         setMinValue(min);
         setIsGlobal(isGlobal);

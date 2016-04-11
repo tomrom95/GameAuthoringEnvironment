@@ -43,7 +43,16 @@ public class ImageEntryView extends EntryView {
         myImage = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(imagePath))); //TODO add default image
         myImage.setFitWidth(width);
         myImage.setFitHeight(height);
-        myImageChoice.addListener(c->{myImage.setImage(new Image(myImageChoice.get()));});
+        myImageChoice.addListener(c->updateImage());
+    }
+
+    private void updateImage () {
+        if(myImageChoice.get()!=""){
+            myImage.setImage(new Image(myImageChoice.get()));
+        }
+        else{
+            myImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(imagePath)));
+        }
     }
 
     private void initFileChooser (FileChooser imageChoice) {
