@@ -3,11 +3,8 @@ package engine;
 import java.util.List;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import engine.modules.GraphicModule;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
@@ -35,8 +32,9 @@ public class Level implements ILevel {
         myConditionManager = new ConditionManager();
         mySpriteManager = new SpriteManager();
         myNextLevelManager = new NextLevelManager();
-        //TODO add default
-       // myBackgroundImage = new SimpleObjectProperty<>(new ImageGraphic(400, 400, "/image/blank.jpg"));
+        // TODO add default
+        // myBackgroundImage = new SimpleObjectProperty<>(new ImageGraphic(400, 400,
+        // "/image/blank.jpg"));
     }
 
     @Override
@@ -105,7 +103,7 @@ public class Level implements ILevel {
 
     @Override
     public ImageGraphic getBackgroundImage () {
-       return myBackgroundImage;
+        return myBackgroundImage;
     }
 
     @Override

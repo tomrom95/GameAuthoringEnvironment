@@ -6,13 +6,16 @@ import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
+
 /**
- * Scales based on specified user definition of the graphic (draws graphic as is - defined by its bounds)
+ * Scales based on specified user definition of the graphic (draws graphic as is - defined by its
+ * bounds)
+ * 
  * @author RyanStPierre
  *
  */
-public class UnscaledFactory extends GraphicFactory{
-    
+public class UnscaledFactory extends GraphicFactory {
+
     @Override
     public Node getVisual (Block block) {
         Rectangle rect = super.getRectangle(block);
@@ -20,7 +23,7 @@ public class UnscaledFactory extends GraphicFactory{
         rect.setHeight(block.getHeight().get());
         return rect;
     }
-    
+
     @Override
     public Node getVisual (ImageGraphic imageGraphic) {
         ImageView imageView = super.getImageView(imageGraphic);

@@ -5,7 +5,6 @@ import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
-import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
 
@@ -51,7 +50,7 @@ public interface ILevel extends Updateable, IAdder {
     /**
      * This method call will control transition between levels, to stay on the current
      * level
-     * 
+     *
      * @return the next level after this one
      */
     ILevel getNextLevel ();

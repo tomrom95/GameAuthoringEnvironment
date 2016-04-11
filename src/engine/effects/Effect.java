@@ -8,7 +8,7 @@ import util.TimeDuration;
 
 /**
  * Class intended to grab the common functionality of IEffect sub-types.
- * 
+ *
  * @author RyanStPierre
  *
  */
@@ -21,19 +21,19 @@ public abstract class Effect implements IEffect {
 
     /**
      * Constructor for an incoming constant.
-     * 
+     *
      * @param type AttributeType to which the Effect applied
      * @param alteringValue the amount of the decrement
      */
-    public Effect (AttributeType type,  IAttribute effectLength, double alteringValue) {
+    public Effect (AttributeType type, IAttribute effectLength, double alteringValue) {
         myAttributeType = type;
         myEffectLength = effectLength;
         myAlteringValue = new Attribute(alteringValue, AttributeType.CONSTANT);
     }
-    
+
     /**
      * Constructor where altering value amount is tied to another attribute .
-     * 
+     *
      * @param type type AttributeType to which the Effect applied
      * @param alteringValue the amount of the decrement- tied to another dynamic
      *        attribute
@@ -52,16 +52,19 @@ public abstract class Effect implements IEffect {
         return getAttributeType().equals(other);
     }
 
+    @Override
     public AttributeType getAttributeType () {
         return myAttributeType;
     }
-    
-   
+
+    @Override
     public boolean hasCompleted () {
         return myEffectLength.getValueProperty().get() < 0;
     }
-    
+
+    @Override
     public void update (TimeDuration duration) {
-        myEffectLength.getValueProperty().set(myEffectLength.getValueProperty().get() - duration.getMillis());
+        myEffectLength.getValueProperty()
+                .set(myEffectLength.getValueProperty().get() - duration.getMillis());
     }
 }

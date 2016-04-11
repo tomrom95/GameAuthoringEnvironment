@@ -20,7 +20,7 @@ import util.RGBColor;
 /**
  * Defines uniform functionality between scale and bound factory
  * Returns nodes with no notion of size
- * 
+ *
  * @author RyanStPierre
  *
  */

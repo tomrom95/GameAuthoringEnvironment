@@ -10,19 +10,12 @@ import engine.IStatus;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import engine.modules.GraphicModule;
 import engine.modules.IGraphicModule;
 import engine.modules.IModule;
 import engine.modules.IMovementModule;
 import engine.modules.SpriteStatus;
-import graphics.Block;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import util.Bounds;
 import util.Coordinate;
-import util.RGBColor;
 import util.TimeDuration;
 
 
@@ -48,13 +41,14 @@ public class Sprite implements ISprite {
     private AttributeManager myAttributeManager;
 
     public Sprite (SpriteType type) {
-        // TODO add default constructions for some modules so there aren't nulls 
+        // TODO add default constructions for some modules so there aren't nulls
         myType = type;
         myStatus = new SpriteStatus();
         myAttributeManager = new AttributeManager();
 
     }
-    
+
+    @Override
     public void initialize (IMovementModule movementModule,
                             IGraphicModule graphicModule,
                             List<IModule> otherModules,
@@ -65,7 +59,6 @@ public class Sprite implements ISprite {
         myOtherModules = otherModules;
         myLocation = coord;
     }
-
 
     @Override
     public IGraphicModule getDrawer () {
@@ -148,7 +141,7 @@ public class Sprite implements ISprite {
     public void setLocation (Coordinate location) {
         myLocation = location;
     }
-    
+
     protected void setMovementModule (IMovementModule mover) {
         myMover = mover;
     }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
@@ -52,12 +51,12 @@ public class ConditionManager implements IConditionManager {
 
     @Override
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
-       myMouseQueue.addAll(list);
+        myMouseQueue.addAll(list);
     }
-    
+
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
-       myKeyQueue.addAll(list);
+        myKeyQueue.addAll(list);
     }
 
 }

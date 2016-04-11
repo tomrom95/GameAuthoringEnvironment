@@ -1,8 +1,8 @@
 package engine;
 
 import engine.sprite.ISprite;
-import javafx.beans.property.ObjectProperty;
 import util.Coordinate;
+
 
 /**
  * Stores queue of Sprites to be added on next game cycle
@@ -22,8 +22,7 @@ public interface IAdder extends Updateable {
      */
 
     void add (ISprite sprite, Coordinate coordinate);
-    
+
     void add (ISprite sprite);
-    
-    
+
 }

@@ -2,6 +2,7 @@ package engine;
 
 import engine.sprite.ISprite;
 
+
 public interface ISpriteCloner {
 
     /**

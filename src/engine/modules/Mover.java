@@ -16,7 +16,7 @@ import util.TimeDuration;
 /**
  * This abstract class provides the framework required to move sprites. Movement is handled as a
  * function of rate and time or as a coordinate specifying the next position.
- * 
+ *
  */
 
 public abstract class Mover implements IMovementModule {
@@ -63,6 +63,7 @@ public abstract class Mover implements IMovementModule {
         return input - getLocation().getY();
     }
 
+    @Override
     public abstract void update (TimeDuration duration);
 
     @Override

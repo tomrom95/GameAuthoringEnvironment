@@ -2,7 +2,6 @@ package engine;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
@@ -89,7 +88,7 @@ public class Attribute implements IAttribute {
     /**
      * Removes time or condition dependent effects that are invalid or have
      * expired
-     * 
+     *
      * @param duration frame rate specified by the level
      */
     private void removeCompletedEffects (TimeDuration duration) {

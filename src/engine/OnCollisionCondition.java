@@ -6,7 +6,6 @@ import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
-import javafx.beans.property.ObjectProperty;
 import util.TimeDuration;
 
 
@@ -54,7 +53,7 @@ public class OnCollisionCondition implements ICondition {
         List<ISprite> sprites =
                 myGame.getLevelManager().getCurrentLevel().get().getSprites();
         for (ISprite outerSprite : sprites.stream()
-                
+
                 .filter(sprite -> myGroupA.contains(sprite.getType().get()))
                 .collect(Collectors.toList())) {
             for (ISprite innerSprite : sprites.stream()

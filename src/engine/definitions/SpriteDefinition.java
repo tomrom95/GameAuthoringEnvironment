@@ -27,7 +27,8 @@ public class SpriteDefinition extends ProfileDefinition {
         ISprite sprite = new Sprite(new SpriteType(myType));
         IMovementModule mover = myMovementDefinition.create(sprite);
         IGraphicModule graphicModule = createGraphicModule();
-        sprite.initialize(mover, graphicModule, createModules(), createAttributes(), createCoordinate());
+        sprite.initialize(mover, graphicModule, createModules(), createAttributes(),
+                          createCoordinate());
         return sprite;
     }
 
@@ -38,7 +39,7 @@ public class SpriteDefinition extends ProfileDefinition {
     protected Coordinate createCoordinate () {
         return myLocation.create();
     }
-    
+
     protected List<IModule> createModules () {
         return myModuleDefinitions.stream()
                 .map(modDef -> modDef.create())

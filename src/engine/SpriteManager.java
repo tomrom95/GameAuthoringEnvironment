@@ -5,8 +5,6 @@ import java.util.function.Consumer;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.Coordinate;
@@ -37,7 +35,6 @@ public class SpriteManager implements ISpriteManager {
         getSprites().forEach(sprite -> consumer.accept(sprite));
     }
 
-   
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
         add(sprite);
@@ -73,7 +70,7 @@ public class SpriteManager implements ISpriteManager {
     @Override
     public void add (ISprite sprite) {
         mySpriteList.add(sprite);
-        
+
     }
 
 }

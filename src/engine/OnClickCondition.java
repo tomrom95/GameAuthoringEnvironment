@@ -4,9 +4,9 @@ import java.util.List;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
 import util.Coordinate;
 import util.TimeDuration;
-import engine.sprite.ISprite;
 
 
 public class OnClickCondition implements ICondition {
@@ -44,9 +44,9 @@ public class OnClickCondition implements ICondition {
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
-        
+
         Coordinate coord = new Coordinate(mouseEvent.getX(), mouseEvent.getY());
-        System.out.println(coord.getX() + " "  + coord.getY());
+        System.out.println(coord.getX() + " " + coord.getY());
         myGame.getLevelManager().getCurrentLevel().get().getSprites().stream()
                 .filter(sprite -> myGroupToCheck.contains(sprite.getType().get()))
                 .filter(sprite -> sprite.getBounds().contains(coord))
