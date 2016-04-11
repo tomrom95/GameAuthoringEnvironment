@@ -9,6 +9,7 @@ import engine.IAttribute;
  * @author Jin An
  *
  */
+
 public class AttributeDefinition implements IDefinition {
 
     private String myType;
@@ -21,6 +22,7 @@ public class AttributeDefinition implements IDefinition {
         setMinValue(min);
         setIsGlobal(isGlobal);
     }
+
     
     //TODO: Work on Attribute Class with engine group so that it can deal with max/min/isglobal
     public IAttribute create () {
@@ -65,13 +67,16 @@ public class AttributeDefinition implements IDefinition {
     
     public void setAttributeDefinition(AttributeDefinition attributeDef){
         this.myAttributeDefinition = attributeDef;
+
     }
+
 
     @Override
     public ProfileDefinition getProfileDefinition () {
         // TODO Auto-generated method stub
         return null;
     }
+
 
     @Override
     public void setProfileDefinition (ProfileDefinition profileDef) {

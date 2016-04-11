@@ -1,14 +1,12 @@
 package engine.modules;
 
+import java.util.List;
 import engine.IAttribute;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.rendering.IGraphicFactory;
 import graphics.IGraphic;
-import javafx.beans.property.ObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import util.TimeDuration;
 
@@ -16,7 +14,7 @@ import util.TimeDuration;
 /**
  * This class implements IGraphicModule and serves as the manages and manipulates the visual
  * properties of a sprite.
- * 
+ *
  */
 
 public class GraphicModule implements IGraphicModule {
@@ -27,6 +25,7 @@ public class GraphicModule implements IGraphicModule {
         myGraphic = graphic;
     }
 
+    @Override
     public IGraphic getGraphic () {
         return myGraphic;
     }
@@ -61,9 +60,9 @@ public class GraphicModule implements IGraphicModule {
     }
 
     @Override
-    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
+    public List<IAttribute> getAttributes () {
         // TODO Auto-generated method stub
-        return FXCollections.observableArrayList();
+        return null;
     }
 
 }

@@ -1,7 +1,7 @@
 package engine;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
@@ -40,7 +40,7 @@ public class Attribute implements IAttribute {
     }
     
     public Attribute (AttributeType type) {
-        this(DEFAULT_STARTING_VALUE, type);  
+        this(DEFAULT_STARTING_VALUE, type);
     }
 
     public Attribute (double value, AttributeType type) {
@@ -80,11 +80,10 @@ public class Attribute implements IAttribute {
     }
 
     @Override
-    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
 
-        ObservableList<ObjectProperty<IAttribute>> attributes =
-                FXCollections.observableArrayList();
-        attributes.add(new SimpleObjectProperty<>(this));
+    public List<IAttribute> getAttributes () {
+        List<IAttribute> attributes = new ArrayList<>();
+        attributes.add(this);
         return attributes;
     }
 
@@ -93,7 +92,7 @@ public class Attribute implements IAttribute {
         myEffects.forEach(e -> e.get().applyToAttribute(this));
         myEffects.forEach(e -> e.get().update(duration));
         removeCompletedEffects(duration);
-        
+
         System.out.print(myType.getType() + " ");
         System.out.println(myValue.get());
     }
@@ -101,11 +100,11 @@ public class Attribute implements IAttribute {
     /**
      * Removes time or condition dependent effects that are invalid or have
      * expired
-     * 
+     *
      * @param duration frame rate specified by the level
      */
     private void removeCompletedEffects (TimeDuration duration) {
-        myEffects.removeIf(e -> e.get().hasCompleted());        
+        myEffects.removeIf(e -> e.get().hasCompleted());
     }
 
     @Override

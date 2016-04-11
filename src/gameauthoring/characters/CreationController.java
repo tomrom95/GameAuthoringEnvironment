@@ -94,7 +94,7 @@ public abstract class CreationController<T extends IDefinition> {
      */
     private void newItem () {
         T item = createBlankItem();
-        showAndEdit(item);
+//        showAndEdit(item);
         addItem(item);
     }
 

@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
  * Created at 21/09/11 09:32.<br>
  *
  * @author Antoine Mischler <antoine@dooapp.com>
- * @author hotzst
+ * @author hotzst http://stackoverflow.com/questions/33291530/javafx-collections-and-javafx-properties-xstream-serialization-problems
  * @since 2.2
  */
 public class ObservableListConverter extends CollectionConverter implements Converter {

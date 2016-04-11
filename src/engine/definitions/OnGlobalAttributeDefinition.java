@@ -6,7 +6,7 @@ import engine.OnGlobalAttributeCondition;
 
 /**
  * 'Definition' class for the OnGlobalAttributeCondition
- * 
+ *
  * @author jonathanim
  *
  */

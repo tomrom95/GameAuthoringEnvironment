@@ -1,10 +1,8 @@
 package engine.definitions;
 
 public interface IDefinition {
+    ProfileDefinition getProfileDefinition ();
 
-    ProfileDefinition getProfileDefinition();
-    
-    void setProfileDefinition(ProfileDefinition profileDef);
+    void setProfileDefinition (ProfileDefinition profileDef);
 
-   
 }

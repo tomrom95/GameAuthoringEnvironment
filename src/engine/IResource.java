@@ -1,6 +1,5 @@
 package engine;
 
-
 /**
  * This class represents a resource, or a group of attributes that manages their behavior so as to
  * prevent the current value from going below the minimum or above the maximum

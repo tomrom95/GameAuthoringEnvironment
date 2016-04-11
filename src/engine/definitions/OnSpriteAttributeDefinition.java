@@ -6,7 +6,7 @@ import engine.OnSpriteAttributeCondition;
 
 /**
  * 'Definition' class for the OnSpriteAttributeDefinition
- * 
+ *
  * @author jonathanim
  *
  */

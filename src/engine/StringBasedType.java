@@ -1,9 +1,9 @@
 package engine;
 
 public abstract class StringBasedType {
-    
+
     private String myType;
-    
+
     public StringBasedType (String type) {
         myType = type;
     }
