@@ -15,18 +15,19 @@ import graphics.IGraphic;
 import util.Coordinate;
 
 
-public class SpriteDefinition extends ProfileDefinition {
+public class SpriteDefinition extends ProfileDefinition implements IDefinition {
 
     private MovementDefinition myMovementDefinition;
-    private List<ModuleDefiniton> myModuleDefinitions;
+    private List<ModuleDefinition> myModuleDefinitions;
     private LocationDefinition myLocation;
     private List<AttributeDefinition> myAttributes;
     private IGraphic myGraphic;
     
     public SpriteDefinition () {
+        super("", "", "");
         // TODO Set a default. THis is just for view testing
         myMovementDefinition = new StaticMoverDefinition();
-        myModuleDefinitions = new ArrayList<ModuleDefiniton>();
+        myModuleDefinitions = new ArrayList<ModuleDefinition>();
         myAttributes = new ArrayList<AttributeDefinition>();
         myLocation = new LocationDefinition();
     }
@@ -61,7 +62,7 @@ public class SpriteDefinition extends ProfileDefinition {
                 .collect(Collectors.toList());
     }
 
-    public void addModule (ModuleDefiniton definition) {
+    public void addModule (ModuleDefinition definition) {
         myModuleDefinitions.add(definition);
     }
 
@@ -77,7 +78,7 @@ public class SpriteDefinition extends ProfileDefinition {
         myLocation = location;
     }
 
-    public void remove (ModuleDefiniton definition) {
+    public void remove (ModuleDefinition definition) {
         myModuleDefinitions.remove(definition);
     }
 

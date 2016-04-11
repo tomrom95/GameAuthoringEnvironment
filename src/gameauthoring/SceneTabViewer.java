@@ -1,5 +1,6 @@
 package gameauthoring;
 
+import engine.definitions.SpriteDefinition;
 import engine.modules.GraphicModule;
 import engine.modules.IGraphicModule;
 import util.RGBColor;
@@ -13,6 +14,7 @@ import engine.LevelManager;
 import engine.sprite.Sprite;
 import gameauthoring.levels.LevelEditorView;
 import graphics.Block;
+import graphics.IGraphic;
 import graphics.ImageGraphic;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -32,23 +34,17 @@ import javafx.scene.control.TabPane;
  */
 public class SceneTabViewer implements ITabViewer {
 
-    private Tab mySceneTab;
     private TabPane myLevelTabs;
     private LevelManager myLevelManager;
     private ConditionManager myConditionManager;
 
-    public SceneTabViewer (Tab sceneTab) {
-        mySceneTab = sceneTab;
+    public SceneTabViewer () {
+        init();
     }
 
-    public Tab getTab () {
-        return mySceneTab;
-    }
-
-    @Override
-    public Node draw () {
+    private void init () {
         ObjectProperty<ILevel> startingLevel = new SimpleObjectProperty<>(new Level());
-        myLevelManager = new LevelManager(startingLevel);
+        myLevelManager = new LevelManager(startingLevel.get());
         myConditionManager = new ConditionManager();
         Game game = new Game(myLevelManager, null, myConditionManager);
         makeSomeSprites(game);
@@ -60,13 +56,11 @@ public class SceneTabViewer implements ITabViewer {
         myLevelTabs.getSelectionModel().select(firstLevelTab);
         firstLevelTab.setContent(view.draw());
         myLevelTabs.getTabs().addAll(createLevelTab, firstLevelTab);
-        mySceneTab.setContent(myLevelTabs);
-        return myLevelTabs;
     }
 
     @Override
-    public void update () {
-        // TODO Auto-generated method stub
+    public Node draw () {
+        return myLevelTabs;
     }
 
     private Tab createButtonTab () {
@@ -83,7 +77,7 @@ public class SceneTabViewer implements ITabViewer {
         myLevelTabs.getTabs().add(newLevelTab);
         myLevelTabs.getSelectionModel().select(newLevelTab);
         ObjectProperty<ILevel> newLevel = new SimpleObjectProperty<>(new Level());
-        myLevelManager.createNewLevel(newLevel);
+        myLevelManager.createNewLevel(newLevel.get());
 
         Game game = new Game(myLevelManager, null, myConditionManager);
         makeSomeSprites(game);
@@ -95,33 +89,35 @@ public class SceneTabViewer implements ITabViewer {
     private void makeSomeSprites (Game game) {
         for (int i = 0; i < 20; i++) {
             if (i % 2 == 0) {
-                game.getAuthorshipData().getCreatedSprites()
-                        .add(new SimpleObjectProperty<>(createFirstSprite()));
+                game.getAuthorshipData().getCreatedSprites().add(createFirstSprite());
             }
             else {
-                game.getAuthorshipData().getCreatedSprites()
-                        .add(new SimpleObjectProperty<>(createSecondSprite()));
+                game.getAuthorshipData().getCreatedSprites().add(createSecondSprite());
             }
         }
     }
 
-    private ISprite createFirstSprite () {
-        ISprite sprite = new Sprite();
-        sprite.getType().set(new SpriteType("Person"));
+    private SpriteDefinition createFirstSprite () {
+        SpriteDefinition sprite = new SpriteDefinition();
 
-        ObjectProperty<IGraphicModule> g =
-                new SimpleObjectProperty<>(new GraphicModule(new ImageGraphic(30, 30,
-                                                                              "images/photo.png")));
-        sprite.getDrawer().set(g.get());
+        IGraphic graphic = new ImageGraphic(30, 30,"images/photo.png");
+        sprite.setGraphic(graphic);
+        sprite.setType("Person");
+        sprite.setDescription("This is a person");
         return sprite;
     }
 
-    private ISprite createSecondSprite () {
-        ISprite sprite = new Sprite();
-        sprite.getType().set(new SpriteType("Block"));
-        ObjectProperty<IGraphicModule> g =
-                new SimpleObjectProperty<>(new GraphicModule(new Block(40, 40, RGBColor.BLACK)));
-        sprite.getDrawer().set(g.get());
+    private SpriteDefinition createSecondSprite () {
+        SpriteDefinition sprite = new SpriteDefinition();
+        sprite.setType("Block");
+        IGraphic graphic = new Block(40, 40, RGBColor.BLACK);
+        sprite.setGraphic(graphic);
+        sprite.setDescription("This is a block");
         return sprite;
+    }
+    
+    @Override
+    public void update () {
+        // TODO Auto-generated method stub
     }
 }

@@ -1,7 +1,8 @@
-package gameauthoring;
+package gameauthoring.characters;
 
 import java.util.List;
 import java.util.function.Consumer;
+import gameauthoring.Glyph;
 
 /**
  * View wrapper for the form to create new objects
@@ -11,7 +12,7 @@ import java.util.function.Consumer;
  * @author Jin An
  *
  */
-public interface FormView extends Glyph{
+public interface IFormView extends Glyph{
     /**
      * Has SpriteEditorController
      * Has save button (e -> stc.editSprite(List<SubFormView>))
@@ -23,5 +24,7 @@ public interface FormView extends Glyph{
     
     void setDeleteAction(Consumer<?> action);
     
-    List<SubFormView> getSubFormView();
+    List<ISubFormView> getSubFormViews();
+    
+    //or setSubFormViews
 }
