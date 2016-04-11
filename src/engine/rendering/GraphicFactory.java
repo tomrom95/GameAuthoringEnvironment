@@ -16,9 +16,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import util.RGBColor;
 
+
 /**
  * Defines uniform functionality between scale and bound factory
  * Returns nodes with no notion of size
+ *
  * @author RyanStPierre
  *
  */
@@ -33,13 +35,12 @@ public abstract class GraphicFactory implements IGraphicFactory {
         myResources = ResourceBundle.getBundle(DEFAULT_PATH);
     }
 
-   
     protected Rectangle getRectangle (Block block) {
         Rectangle rect = new Rectangle();
         rect.setFill(rgbToColor(block.getFillProeprty().get()));
         return rect;
     }
-    
+
     protected ImageView getImageView (ImageGraphic imageGraphic) {
         Image image = new Image(imageGraphic.getUrlProperty().get());
         ImageView imageView = new ImageView(image);

@@ -35,12 +35,12 @@ public class TestGame extends Application {
     @Override
     public void start (Stage primaryStage) throws Exception {
 
-        XStream xstream = new XStream(new DomDriver());
-        FXConverters.configure(xstream);
+       // XStream xstream = new XStream(new DomDriver());
+        //FXConverters.configure(xstream);
 
         ObjectProperty<ILevel> startingLevel = new SimpleObjectProperty<>(new Level());
         LevelManager levelManager = new LevelManager(startingLevel);
-        xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
+        //xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
 
         ISprite sprite = createFollowSprite();
         // levelManager.add(sprite, new Coordinate(0,0));
@@ -49,14 +49,13 @@ public class TestGame extends Application {
         ConditionManager conditionManager = new ConditionManager();
         Game game = new Game(levelManager, new GameInformation("r", "r", "r"), conditionManager);
 
-        Game game2 = (Game) xstream.fromXML(xstream.toXML(game));
+        //Game game2 = (Game) xstream.fromXML(xstream.toXML(game));
 
-        GamePlayer player = new GamePlayer(game2);
+        GamePlayer player = new GamePlayer(game);
 
     }
 
-    protected static ISprite createFollowSprite () {
-
+    private ISprite createFollowSprite () {
         ISprite sprite = new Sprite();
         List<Coordinate> list = getListOfCoordinates();
         ObjectProperty<IMovementModule> mover =
@@ -68,7 +67,8 @@ public class TestGame extends Application {
         return sprite;
     }
 
-    protected static ISprite createUserSprite () {
+    private ISprite createUserSprite () {
+
         ISprite sprite = new Sprite();
         ControlKeys keys =
                 new ControlKeys(new Key("Up"), new Key("Left"), new Key("Right"), new Key("Down"));

@@ -6,29 +6,27 @@ import engine.OnSpriteAttributeCondition;
 
 /**
  * 'Definition' class for the OnSpriteAttributeDefinition
- * 
+ *
  * @author jonathanim
  *
  */
 public class OnSpriteAttributeDefinition implements IDefinition {
 
     private GameDefinition myGame;
-    private SpriteGroupDefinition myGroupToCheck;
-
     private AttributeTypeDefinition myAttributeType;
     private DoublePredicate myValueCheck;
 
-    private ListIEffectDefinition myApplyToSelf;
-    private SpriteGroupDefinition myOtherGroup;
-    private ListIEffectDefinition myApplyToOtherGroup;
-    private ListIEffectDefinition myApplyToGlobalAttys;
+    private EventPackageDefinition mySpritePackage;
+    private EventPackageDefinition myOtherPackage;
+    private EventPackageDefinition myGlobalPackage;
 
     public OnSpriteAttributeCondition create () {
-        return new OnSpriteAttributeCondition(myGame.create(), myGroupToCheck.create(),
-                                              myAttributeType.create(), myValueCheck,
-                                              myApplyToSelf.create(), myApplyToOtherGroup.create(),
-                                              myOtherGroup.create(),
-                                              myApplyToGlobalAttys.create());
+        return new OnSpriteAttributeCondition(myGame.create(), 
+                                              myAttributeType.create(), 
+                                              myValueCheck,
+                                              mySpritePackage.create(),
+                                              myOtherPackage.create(),
+                                              myGlobalPackage.create());
 
     }
 
@@ -36,64 +34,51 @@ public class OnSpriteAttributeDefinition implements IDefinition {
         return myGame;
     }
 
-    public void setMyGame (GameDefinition myGame) {
-        this.myGame = myGame;
-    }
-
-    public SpriteGroupDefinition getMyGroupToCheck () {
-        return myGroupToCheck;
-    }
-
-    public void setMyGroupToCheck (SpriteGroupDefinition myGroupToCheck) {
-        this.myGroupToCheck = myGroupToCheck;
+    public void setMyGame (GameDefinition game) {
+        this.myGame = game;
     }
 
     public AttributeTypeDefinition getMyAttributeType () {
         return myAttributeType;
     }
 
-    public void setMyAttributeType (AttributeTypeDefinition myAttributeType) {
-        this.myAttributeType = myAttributeType;
+    public void setMyAttributeType (AttributeTypeDefinition attributeType) {
+        this.myAttributeType = attributeType;
     }
 
     public DoublePredicate getMyValueCheck () {
         return myValueCheck;
     }
 
-    public void setMyValueCheck (DoublePredicate myValueCheck) {
-        this.myValueCheck = myValueCheck;
+    public void setMyValueCheck (DoublePredicate valueCheck) {
+        this.myValueCheck = valueCheck;
     }
 
-    public ListIEffectDefinition getMyApplyToSelf () {
-        return myApplyToSelf;
+    public EventPackageDefinition getMySpritePackage () {
+        return mySpritePackage;
     }
 
-    public void setMyApplyToSelf (ListIEffectDefinition myApplyToSelf) {
-        this.myApplyToSelf = myApplyToSelf;
+    public void setMySpritePackage (EventPackageDefinition spritePackage) {
+        this.mySpritePackage = spritePackage;
     }
 
-    public SpriteGroupDefinition getMyOtherGroup () {
-        return myOtherGroup;
+    public EventPackageDefinition getMyOtherPackage () {
+        return myOtherPackage;
     }
 
-    public void setMyOtherGroup (SpriteGroupDefinition myOtherGroup) {
-        this.myOtherGroup = myOtherGroup;
+    public void setMyOtherPackage (EventPackageDefinition otherPackage) {
+        this.myOtherPackage = otherPackage;
     }
 
-    public ListIEffectDefinition getMyApplyToOtherGroup () {
-        return myApplyToOtherGroup;
+    public EventPackageDefinition getMyGlobalPackage () {
+        return myGlobalPackage;
     }
 
-    public void setMyApplyToOtherGroup (ListIEffectDefinition myApplyToOtherGroup) {
-        this.myApplyToOtherGroup = myApplyToOtherGroup;
+    public void setMyGlobalPackage (EventPackageDefinition globalPackage) {
+        this.myGlobalPackage = globalPackage;
     }
 
-    public ListIEffectDefinition getMyApplyToGlobalAttys () {
-        return myApplyToGlobalAttys;
-    }
-
-    public void setMyApplyToGlobalAttys (ListIEffectDefinition myApplyToGlobalAttys) {
-        this.myApplyToGlobalAttys = myApplyToGlobalAttys;
-    }
+   
+    
 
 }
