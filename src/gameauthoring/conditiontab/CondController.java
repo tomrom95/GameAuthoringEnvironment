@@ -1,6 +1,7 @@
 package gameauthoring.conditiontab;
 
 import engine.IGame;
+import javafx.scene.layout.Pane;
 
 
 /**
@@ -23,13 +24,13 @@ public class CondController {
 
     private void setActions () {
        
-        myView.getButton().setOnAction(e-> createPopUp(myView.getBox().getSelectionModel().getSelectedItem()));
+        myView.getButton().setOnAction(e-> myView.setRight(createPopUp(myView.getBox().getSelectionModel().getSelectedItem())));
        
         
     }
 
-    private void createPopUp (String selection) {
-        myFactory.get(selection, myView.getList()).show();
+    private Pane createPopUp (String selection) {
+        return myFactory.get(selection, myView.getList()).show();
     }
 
 }

@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -16,7 +17,6 @@ public abstract class ConditionPopUp {
     protected static final double CUSHION = 10;
     private static final double POP_UP_WIDTH = 700;
     private static final double POP_UP_HEIGHT = 300;
-    private Stage myStage;
     private GridPane myGroup;
     private ObservableList<ICondition> myList;
     
@@ -26,9 +26,8 @@ public abstract class ConditionPopUp {
     
 
     protected void initStage () {
-        myStage = new Stage ();
+        
         myGroup = new GridPane ();
-        myStage.setScene(new Scene(myGroup, POP_UP_WIDTH, POP_UP_HEIGHT, Color.ALICEBLUE)); 
         initializeDisplay();
         myGroup.add(createButton(), 0, 1);
         
@@ -54,7 +53,7 @@ public abstract class ConditionPopUp {
 
     protected abstract ICondition createCondition ();
 
-    public void show () {
-        myStage.show();
+    public Pane show () {
+        return myGroup;
     }
 }

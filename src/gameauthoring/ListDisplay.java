@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 
@@ -44,6 +45,10 @@ public class ListDisplay<T> extends SubTabEditorView {
         myPane.topProperty().set(createTop());
         myPane.centerProperty().set(myListView);
 
+    }
+    
+    public void setRight (Pane pane) {
+        myPane.rightProperty().set(pane);
     }
     
     private Node createTop () {
