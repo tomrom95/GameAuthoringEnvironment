@@ -27,4 +27,11 @@ public class ProportionEffect extends Effect {
             incoming.setValue(newValue);
         }
     }
+
+    @Override
+    public IEffect makeCopy () {
+        return new ProportionEffect(this.getAttributeType(),
+                                    this.getEffectLengthAttribute().makeCopy(),
+                                    this.getAlteringValue());
+    }
 }

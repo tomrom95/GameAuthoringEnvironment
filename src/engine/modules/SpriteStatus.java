@@ -1,14 +1,10 @@
 package engine.modules;
 
-import java.util.List;
-import engine.IAttribute;
 import engine.IStatus;
-import engine.effects.IEffect;
+import engine.effects.DefaultAffectable;
 import engine.events.EventType;
 import engine.events.GameEvent;
-import engine.interactionevents.KeyIOEvent;
-import engine.interactionevents.MouseIOEvent;
-import util.TimeDuration;
+
 
 
 /**
@@ -18,7 +14,7 @@ import util.TimeDuration;
  * @author Dhrumil
  *
  */
-public class SpriteStatus implements IStatus {
+public class SpriteStatus extends DefaultAffectable implements IStatus {
 
     private boolean myIsDead;
 
@@ -37,34 +33,5 @@ public class SpriteStatus implements IStatus {
         return myIsDead;
     }
 
-    @Override
-    public void applyEffect (IEffect effect) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void registerKeyEvent (KeyIOEvent keyEvent) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void registerMouseEvent (MouseIOEvent mouseEvent) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public List<IAttribute> getAttributes () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void update (TimeDuration duration) {
-        // TODO Auto-generated method stub
-
-    }
 
 }

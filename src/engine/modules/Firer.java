@@ -2,6 +2,7 @@ package engine.modules;
 
 import java.util.List;
 import engine.IAttribute;
+import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
@@ -9,7 +10,7 @@ import javafx.beans.property.ObjectProperty;
 import util.TimeDuration;
 
 
-public class Firer implements IFireModule {
+public class Firer extends DefaultAffectable implements IFireModule {
 
     private ObjectProperty<IAttribute> myAmmo;
 

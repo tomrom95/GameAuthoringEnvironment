@@ -1,6 +1,7 @@
 package engine;
 
 import java.util.List;
+import engine.conditions.ICondition;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import javafx.collections.ObservableList;

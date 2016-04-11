@@ -6,6 +6,7 @@ import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
 import engine.IPositionable;
+import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
@@ -19,7 +20,7 @@ import util.TimeDuration;
  *
  */
 
-public abstract class Mover implements IMovementModule {
+public abstract class Mover extends DefaultAffectable implements IMovementModule {
 
     public static final double NO_MOTION = 0;
     private IAttribute myXVel;

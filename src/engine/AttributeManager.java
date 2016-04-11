@@ -3,6 +3,7 @@ package engine;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
@@ -16,7 +17,7 @@ import util.TimeDuration;
  *
  */
 
-public class AttributeManager implements IAttributeManager {
+public class AttributeManager extends DefaultAffectable implements IAttributeManager {
 
     private List<IAttribute> myAttributes;
     private List<IResource> myResources;

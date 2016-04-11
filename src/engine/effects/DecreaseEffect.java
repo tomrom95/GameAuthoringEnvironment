@@ -30,4 +30,11 @@ public class DecreaseEffect extends Effect {
 
     }
 
+    @Override
+    public IEffect makeCopy () {
+        return new DecreaseEffect(this.getAttributeType(),
+                                  this.getEffectLengthAttribute().makeCopy(),
+                                  this.getAlteringValue());
+    }
+
 }

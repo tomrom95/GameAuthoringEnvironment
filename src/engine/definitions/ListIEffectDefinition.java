@@ -2,6 +2,7 @@ package engine.definitions;
 
 import java.util.List;
 import engine.effects.IEffect;
+import engine.profile.IProfile;
 
 
 public class ListIEffectDefinition implements IDefinition {
@@ -15,4 +16,9 @@ public class ListIEffectDefinition implements IDefinition {
     public void setMyEffectList (List<IEffect> effectList) {
         myEffectList = effectList;
     }
+
+    public List<IEffect> getMyEffectList () {
+        return myEffectList;
+    }
+
 }
