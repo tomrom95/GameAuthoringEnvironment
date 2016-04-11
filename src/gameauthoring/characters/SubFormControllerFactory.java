@@ -6,15 +6,30 @@ import java.util.List;
 public class SubFormControllerFactory {
 
     public ISubFormControllerSprite createSpriteSubFormController(String type){
-        /*
+        
         if (type.equals("Profile")){
+            System.out.println("profile");
             return new ProfileSubFormController();
             
-        }else if (type.equals("Movement")){
+        }
+        /*else if (type.equals("Movement")){
             
         }
         */
-        return new ProfileSubFormController();
+        else if (type.equals("SmartAI")){
+            System.out.println("smartAI");
+
+            return new SmartAIMovementSubFormController();
+        }else if (type.equals("UserMover")){
+            System.out.println("userMover");
+
+            return new UserMoverSubFormController();
+        }else if (type.equals("")){
+            
+        }
+        System.out.println("null");
+
+        return null;
     }
     
     public List<ISubFormControllerSprite> createSpriteSubFormControllers(String[] subFormStrings){
@@ -35,6 +50,12 @@ public class SubFormControllerFactory {
         return list;
     }
     public ISubFormControllerAttribute createAttributeSubFormController(String type){
+        if(type.equals("Attribute")){
+            System.out.println("attribute");
+            return new AttributeSubFormController();
+        }
+        System.out.println("null");
+
         return null;
         //return new AttributeSubFormController();
     }

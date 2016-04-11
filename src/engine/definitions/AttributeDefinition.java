@@ -17,6 +17,9 @@ public class AttributeDefinition implements IDefinition {
     private boolean myIsGlobal;
     private AttributeDefinition myAttributeDefinition;
     
+    public AttributeDefinition(){
+        
+    }
     public AttributeDefinition (double max, double min, boolean isGlobal){
         setMaxValue(max);
         setMinValue(min);

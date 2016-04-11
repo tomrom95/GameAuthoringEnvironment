@@ -45,7 +45,9 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         myCreationViews = new ArrayList<IObjectCreationView<?>>();
 
-        String[] subForms = {"profile", "movement", "attributes", "groups" };
+        //String[] subForms = {"Profile", "SmartAI", "Attribute", "Groups" };
+        String[] subForms = {"Profile", "UserMover"};
+
 
         List<ISubFormControllerSprite> enemiesSfcs =
                 sfcFactory.createSpriteSubFormControllers(subForms);
@@ -58,14 +60,14 @@ public class ObjectCreationTabViewer implements ITabViewer {
                 ccFactory.createSpriteCreationController(defendersSfcs);
         myCreationViews.add(defenderCC.getMyObjectCreationView());
 
-        /*
-        String[] attSubForms = { "attribute" };
+        
+        String[] attSubForms = { "Attribute" };
         List<ISubFormControllerAttribute> attributeSfcs =
-                sfcFactory.createAttributeSubFormControllers(subForms);
+                sfcFactory.createAttributeSubFormControllers(attSubForms);
         CreationControllerAttribute attributeCC =
                 ccFactory.createAttributeCreationController(attributeSfcs);
-        myCreationViews.add(defenderCC.getMyObjectCreationView());
-        */
+        myCreationViews.add(attributeCC.getMyObjectCreationView());
+        
 
     }
 
