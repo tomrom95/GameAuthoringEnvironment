@@ -12,9 +12,14 @@ import engine.AttributeType;
  */
 public class AttributeTypeDefinition implements IDefinition {
 
-    private AttributeType myAttributeType;
+    // private AttributeType myAttributeType;
+    private String myAttyType;
 
     public AttributeType create () {
-        return myAttributeType;
+        return new AttributeType(myAttyType);
+    }
+
+    public void setAttributeType (String toSet) {
+        myAttyType = toSet;
     }
 }

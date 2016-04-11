@@ -15,7 +15,7 @@ public class EventPackage implements IEventPackage {
     private List<IEffect> myEffectsList;
     private List<GameEvent> myEventsList;
 
-    EventPackage (ISpriteGroup myGroup, List<IEffect> myEffects, List<GameEvent> myEvents) {
+    public EventPackage (ISpriteGroup myGroup, List<IEffect> myEffects, List<GameEvent> myEvents) {
         mySpriteGroup = myGroup;
         myEffectsList = myEffects;
         myEventsList = myEvents;
