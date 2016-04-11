@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 
 /**
  * Class for holding the structures the user creates during authorship that want to be saved
- * 
+ *
  * @author RyanStPierre
  *
  */

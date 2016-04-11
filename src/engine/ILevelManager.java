@@ -5,8 +5,6 @@ import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
-import javafx.beans.property.ObjectProperty;
-import javafx.collections.ObservableList;
 
 
 /**
@@ -26,19 +24,19 @@ public interface ILevelManager extends IAdder {
     /**
      * @return the current level
      */
-    ObjectProperty<ILevel> getCurrentLevel ();
+    ILevel getCurrentLevel ();
 
     /**
      * @return an ObservableList of all the levels associated with this manager
      */
-    ObservableList<ObjectProperty<ILevel>> getLevels ();
+    List<ILevel> getLevels ();
 
     /**
      * returns the Drawables of the current level
-     * 
+     *
      * @return
      */
-    ObservableList<? extends Drawable> getDrawables ();
+    List<? extends Drawable> getDrawables ();
 
     /**
      * @param list of key events to internalize
@@ -59,10 +57,10 @@ public interface ILevelManager extends IAdder {
      * @return the background image of the current level
      */
     ImageGraphic getBackgroundImage ();
-    
+
     /**
-     * 
-     * @param newLevel the level to add to the game 
+     *
+     * @param newLevel the level to add to the game
      */
-    void createNewLevel (ObjectProperty<ILevel> newLevel);
+    void createNewLevel (ILevel newLevel);
 }

@@ -1,14 +1,12 @@
 package engine;
 
 import java.util.List;
-import javafx.beans.property.ObjectProperty;
-import javafx.collections.ObservableList;
 
 
 /**
  * This interface represents a component of a game that manages the global attributes that a game
  * can contain
- * 
+ *
  * Any implementation class will also be responsible for tracking any tied groups of these
  * attributes, and then indirectly maintaining resource behavior be calling update
  * on the resource objects when all attributes are told to update

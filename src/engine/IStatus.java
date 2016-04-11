@@ -1,7 +1,5 @@
 package engine;
 
-import engine.modules.IModule;
-
 /**
  * This interface represents a module that handles the status of a sprite
  *

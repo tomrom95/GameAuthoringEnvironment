@@ -14,7 +14,7 @@ import util.TimeDuration;
 /**
  * This class implements IStatusModule and handles the status of a sprite over the course of a level
  * and game
- * 
+ *
  * @author Dhrumil
  *
  */

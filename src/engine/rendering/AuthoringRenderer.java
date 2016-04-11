@@ -27,7 +27,7 @@ public class AuthoringRenderer extends LevelRenderer{
 
     @Override
     String getBackgroundURL () {
-        return myLevel.getBackgroundImageProperty().get().getUrlProperty().get();
+        return myLevel.getBackgroundImage().getUrlProperty().get();
     }
 
     

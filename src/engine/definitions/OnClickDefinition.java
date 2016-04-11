@@ -1,13 +1,11 @@
 package engine.definitions;
 
-
 import engine.OnClickCondition;
-
 
 
 /**
  * 'Definition' class for the OnClickCondition
- * 
+ *
  * @author jonathanim
  *
  */
@@ -74,7 +72,5 @@ public class OnClickDefinition implements IDefinition {
     public void setMyApplyToGlobalAttys (ListIEffectDefinition myApplyToGlobalAttys) {
         this.myApplyToGlobalAttys = myApplyToGlobalAttys;
     }
-
- 
 
 }

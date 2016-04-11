@@ -35,7 +35,6 @@ public class SpriteManager implements ISpriteManager {
         getSprites().forEach(sprite -> consumer.accept(sprite));
     }
 
-   
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
         add(sprite);
@@ -71,7 +70,7 @@ public class SpriteManager implements ISpriteManager {
     @Override
     public void add (ISprite sprite) {
         mySpriteList.add(sprite);
-        
+
     }
 
 }

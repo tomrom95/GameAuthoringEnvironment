@@ -3,17 +3,19 @@ package engine.effects;
 import engine.AttributeType;
 import engine.IAttribute;
 
+
 /**
  * Effect intended to multiply an incoming attribute by a proportion
+ * 
  * @author RyanStPierre
  *
  */
 public class ProportionEffect extends Effect {
 
     public ProportionEffect (AttributeType type, IAttribute effectLength, double proportion) {
-        super(type,  effectLength, proportion);
+        super(type, effectLength, proportion);
     }
- 
+
     public ProportionEffect (AttributeType type, IAttribute effectLength, IAttribute proportion) {
         super(type, effectLength, proportion);
     }

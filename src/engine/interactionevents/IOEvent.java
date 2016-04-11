@@ -3,7 +3,7 @@ package engine.interactionevents;
 /**
  * This class serves as the converted event type that is understood by the GameEngine. This class
  * implements IInteractionEvent and creates an event that removes the JavaFX dependency.
- * 
+ *
  *
  */
 

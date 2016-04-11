@@ -1,7 +1,6 @@
 package engine;
 
 import engine.modules.IGraphicModule;
-import javafx.beans.property.ObjectProperty;
 import util.Coordinate;
 
 

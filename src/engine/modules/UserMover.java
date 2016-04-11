@@ -1,8 +1,5 @@
 package engine.modules;
 
-import util.ControlKeys;
-import util.Key;
-import util.TimeDuration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,13 +12,16 @@ import engine.effects.IEffect;
 import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import util.ControlKeys;
 import util.Direction;
+import util.Key;
+import util.TimeDuration;
 
 
 /**
  * This class serves as an implementation of Mover that serves as a module for a sprite that moves
  * based on specified IOEvents.
- * 
+ *
  */
 
 public class UserMover extends Mover {
@@ -55,7 +55,7 @@ public class UserMover extends Mover {
 
     /**
      * Creates a map to reference the Keys that map to the cardinal directions
-     * 
+     *
      * @param controls ControlKeys that specify what Key represents a direction
      */
     private void makeKeyMap (ControlKeys controls) {
@@ -112,7 +112,7 @@ public class UserMover extends Mover {
     /**
      * Moves the sprite based on the given Key. Handles the case if a sprite moves into an edge of
      * the game screen.
-     * 
+     *
      * @param key Key that is specified by the user
      */
     private void registerKeyRelease (Key key) {

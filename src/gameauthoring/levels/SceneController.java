@@ -24,8 +24,8 @@ public class SceneController {
     }
     
     public void setBackground(String imageURL) {
-        ImageGraphic background = new ImageGraphic(800, 500, imageURL);
-        myLevel.getBackgroundImageProperty().set(background);
+        ImageGraphic background = new ImageGraphic(0, 0, imageURL);
+        myLevel.setBackgroundImage(background);
     }
 
     public void addSprite (double x, double y, SpriteDefinition spriteDefinition) {

@@ -12,5 +12,4 @@ package engine.modules;
  */
 public interface IMovementModule extends IModule {
 
-  
 }

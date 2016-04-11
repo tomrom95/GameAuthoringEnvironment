@@ -35,19 +35,27 @@ public class SpriteDefinition extends ProfileDefinition {
         ISprite sprite = new Sprite(new SpriteType(getName()));
         
         IMovementModule mover = myMovementDefinition.create(sprite);
-        IGraphicModule graphicModule = new GraphicModule(myGraphic);
-        Coordinate coord = myLocation.create();
-        sprite.initialize(mover, graphicModule, createModules(), createAttributes(), coord);
+        IGraphicModule graphicModule = createGraphicModule();
+        sprite.initialize(mover, graphicModule, createModules(), createAttributes(),
+                          createCoordinate());
         return sprite;
     }
 
-    private List<IModule> createModules () {
+    protected IGraphicModule createGraphicModule () {
+        return new GraphicModule(myGraphic);
+    }
+
+    protected Coordinate createCoordinate () {
+        return myLocation.create();
+    }
+
+    protected List<IModule> createModules () {
         return myModuleDefinitions.stream()
                 .map(modDef -> modDef.create())
                 .collect(Collectors.toList());
     }
 
-    private List<IAttribute> createAttributes () {
+    protected List<IAttribute> createAttributes () {
         return myAttributes.stream()
                 .map(attDef -> attDef.create())
                 .collect(Collectors.toList());

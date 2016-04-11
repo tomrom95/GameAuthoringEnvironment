@@ -1,5 +1,5 @@
 package engine.definitions;
 
-public interface IDefinition {
+public class WaveDefinition {
 
 }

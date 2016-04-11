@@ -34,7 +34,7 @@ public class FakeMain extends Application {
     @Override
     public void start (Stage stage) {
         ObjectProperty<ILevel> startingLevel = new SimpleObjectProperty<>(new Level());
-        myLevelManager = new LevelManager(startingLevel);
+        myLevelManager = new LevelManager(startingLevel.get());
         myConditionManager = new ConditionManager();
         Game game = new Game(myLevelManager, null, myConditionManager);
         makeSomeSprites(game);
@@ -64,7 +64,7 @@ public class FakeMain extends Application {
         myLevelTabs.getTabs().add(newLevelTab);
         myLevelTabs.getSelectionModel().select(newLevelTab);
         ObjectProperty<ILevel> newLevel = new SimpleObjectProperty<>(new Level());
-        myLevelManager.createNewLevel(newLevel);
+        myLevelManager.createNewLevel(newLevel.get());
 
         Game game = new Game(myLevelManager, null, myConditionManager);
         makeSomeSprites(game);

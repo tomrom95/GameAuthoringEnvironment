@@ -3,7 +3,7 @@ package engine.effects;
 import engine.AttributeType;
 import engine.IAttribute;
 import engine.Updateable;
-import util.TimeDuration;
+
 
 /**
  * This class represents an effect to be applied to an attribute.
@@ -29,7 +29,7 @@ public interface IEffect extends Updateable {
      * @param attribute to be affected
      */
     void applyToAttribute (IAttribute attribute);
-    
+
     /**
      * @return true if the effect has completed, false otherwise
      */

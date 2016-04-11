@@ -2,6 +2,7 @@ package engine.modules;
 
 import engine.sprite.ISprite;
 
+
 public interface IWave {
 
     /**
