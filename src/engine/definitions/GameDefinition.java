@@ -7,7 +7,7 @@ import engine.Game;
  * Engine Game defintion class
  * Will only be a place holder for an object that is already constructed but then placed into the
  * definitions
- * 
+ *
  * @author jonathanim
  *
  */
@@ -25,6 +25,18 @@ public class GameDefinition implements IDefinition {
 
     public void setMyGame (Game myGame) {
         this.myGame = myGame;
+    }
+
+    @Override
+    public ProfileDefinition getProfileDefinition () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setProfileDefinition (ProfileDefinition profileDef) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

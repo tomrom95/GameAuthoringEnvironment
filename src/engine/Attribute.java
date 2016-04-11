@@ -1,11 +1,14 @@
 package engine;
 
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -23,12 +26,21 @@ import util.TimeDuration;
 public class Attribute implements IAttribute {
 
     private DoubleProperty myValue;
+    private DoubleProperty myMaxValue;
+    private DoubleProperty myMinValue;
+    private BooleanProperty myIsGlobal;
     private AttributeType myType;
     private ObservableList<ObjectProperty<IEffect>> myEffects;
     private static final double DEFAULT_STARTING_VALUE = 0;
 
+    public Attribute (List<Double> listOfValues, boolean isGlobal, AttributeType type){
+        myMaxValue = new SimpleDoubleProperty(listOfValues.get(0));
+        myMinValue = new SimpleDoubleProperty(listOfValues.get(1));
+        myIsGlobal = new SimpleBooleanProperty(isGlobal);
+    }
+    
     public Attribute (AttributeType type) {
-        this(DEFAULT_STARTING_VALUE, type);  
+        this(DEFAULT_STARTING_VALUE, type);
     }
 
     public Attribute (double value, AttributeType type) {
@@ -68,11 +80,10 @@ public class Attribute implements IAttribute {
     }
 
     @Override
-    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
 
-        ObservableList<ObjectProperty<IAttribute>> attributes =
-                FXCollections.observableArrayList();
-        attributes.add(new SimpleObjectProperty<>(this));
+    public List<IAttribute> getAttributes () {
+        List<IAttribute> attributes = new ArrayList<>();
+        attributes.add(this);
         return attributes;
     }
 
@@ -81,7 +92,7 @@ public class Attribute implements IAttribute {
         myEffects.forEach(e -> e.get().applyToAttribute(this));
         myEffects.forEach(e -> e.get().update(duration));
         removeCompletedEffects(duration);
-        
+
         System.out.print(myType.getType() + " ");
         System.out.println(myValue.get());
     }
@@ -89,11 +100,11 @@ public class Attribute implements IAttribute {
     /**
      * Removes time or condition dependent effects that are invalid or have
      * expired
-     * 
+     *
      * @param duration frame rate specified by the level
      */
     private void removeCompletedEffects (TimeDuration duration) {
-        myEffects.removeIf(e -> e.get().hasCompleted());        
+        myEffects.removeIf(e -> e.get().hasCompleted());
     }
 
     @Override

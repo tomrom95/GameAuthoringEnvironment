@@ -1,5 +1,10 @@
 package gameauthoring;
 
+import gameauthoring.characters.FormDataManager;
+import gameauthoring.characters.IEntryView;
+import gameauthoring.characters.IFormDataManager;
+import gameauthoring.characters.ImageEntryView;
+import gameauthoring.characters.TextEntryView;
 import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,30 +20,36 @@ import javafx.stage.Stage;
 
 
 /**
- * Handles selection between differnet games
+ * Handles selection between different games
  * 
  * @author Jin An
  *
  */
 public class GameTabViewer implements ITabViewer {
 
-    private Tab myGameTab;
     private BorderPane myLayout;
+    private IFormDataManager myData = new FormDataManager();
+    
+    private String myNameKey = "Name of the Game: ";
+    private String myAuthorKey = "Author: ";
+    private String mySplashScreenKey = "Splash Screen: ";
+    
+    private IEntryView myName = new TextEntryView(myNameKey, myData, 20, 150, 30);
+    private IEntryView myAuthor = new TextEntryView(myAuthorKey, myData, 20, 150, 30);
+    private IEntryView mySplashScreen = new ImageEntryView(mySplashScreenKey, myData, 20, 150, 30);
 
-    public GameTabViewer (Tab gameTab) {
-        myGameTab = gameTab;
+    public GameTabViewer(){
+        init();
     }
-
-    public Tab getTab () {
-        return myGameTab;
-    }
-
-    @Override
-    public Node draw () {
+    
+    public void init(){
         myLayout = new BorderPane();
         myLayout.setPrefSize(1200, 800);
-        myLayout.setCenter(createForms());
-        myGameTab.setContent(myLayout);
+        myLayout.setCenter(createForms());        
+    }
+    
+    @Override
+    public Node draw () {
         return myLayout;
     }
 
@@ -51,28 +62,16 @@ public class GameTabViewer implements ITabViewer {
     
     private Node createGameInfoForm(){
         GridPane form = new GridPane();
-        Button loadImage = makeButton("Load", e -> fileLoader());
+        form.add(myName.draw(), 0, 0);
+        form.add(myAuthor.draw(), 0, 1);
+        form.add(mySplashScreen.draw(), 0, 2);
         form.setMinSize(200, 200);
-//        form.add(new TextEntryView("Name of the Game: ").draw(), 0, 1);
-//        form.add(new TextFormData("Author: ").draw(), 0, 2);
-//        form.add(new TextFormData("Splash Sreen: ").draw(), 0, 3);
 
-        form.add(loadImage, 1, 3);
+//        form.add(loadImage, 1, 3);
+
         return form;
     }
     
-    private Button makeButton(String buttonName, EventHandler<ActionEvent> e){
-        Button b = new Button(buttonName);
-        b.setOnAction(e);
-        return b;
-    }
-    
-    private void fileLoader() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose your Splash Screen");
-        File file = fileChooser.showOpenDialog(new Stage());
-        //TODO: Fill out the path route on the textbox.
-    }
     @Override
     public void update () {
         // TODO Auto-generated method stub

@@ -9,7 +9,6 @@ public class ListCellView<E> implements IListCellView<E> {
     private E myItem;
     private Button myEditButton;
     
-    myItem.
     
 
     @Override

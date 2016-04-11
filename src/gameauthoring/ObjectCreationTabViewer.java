@@ -1,6 +1,14 @@
 package gameauthoring;
 
 import gameauthoring.ITabViewer;
+import gameauthoring.characters.CreationControllerAttribute;
+import gameauthoring.characters.CreationControllerFactory;
+import gameauthoring.characters.CreationControllerSprite;
+import gameauthoring.characters.IObjectCreationView;
+import gameauthoring.characters.ISubFormControllerAttribute;
+import gameauthoring.characters.ISubFormControllerSprite;
+import gameauthoring.characters.ObjectCreationView;
+import gameauthoring.characters.SubFormControllerFactory;
 import gameauthoring.object_creation_tab.AttributeEditorView;
 import gameauthoring.object_creation_tab.DefenderEditorView;
 import gameauthoring.object_creation_tab.EnemyEditorView;
@@ -28,45 +36,73 @@ public class ObjectCreationTabViewer implements ITabViewer {
     private BorderPane myLayout;   
     
 
-    public ObjectCreationTabViewer (Tab charTab) {
-        myCharTab = charTab;
-        TabPane tabPane = createAllSubTabs();
-        myCharTab.setContent(tabPane);
+    private TabPane myTabPane;
+
+    private List<CreationControllerSprite> mySpriteCCs;
+    private List<IObjectCreationView<?>> myCreationViews;
+    private CreationControllerFactory ccFactory;
+    private SubFormControllerFactory sfcFactory;
+
+    private void init () {
+        ccFactory = new CreationControllerFactory();
+        sfcFactory = new SubFormControllerFactory();
+
+        myCreationViews = new ArrayList<IObjectCreationView<?>>();
+
+        String[] subForms = {"profile", "movement", "attributes", "groups" };
+
+        List<ISubFormControllerSprite> enemiesSfcs =
+                sfcFactory.createSpriteSubFormControllers(subForms);
+        CreationControllerSprite enemyCC = ccFactory.createSpriteCreationController(enemiesSfcs);
+        myCreationViews.add(enemyCC.getMyObjectCreationView());
+
+        List<ISubFormControllerSprite> defendersSfcs =
+                sfcFactory.createSpriteSubFormControllers(subForms);
+        CreationControllerSprite defenderCC =
+                ccFactory.createSpriteCreationController(defendersSfcs);
+        myCreationViews.add(defenderCC.getMyObjectCreationView());
+
+        /*
+        String[] attSubForms = { "attribute" };
+        List<ISubFormControllerAttribute> attributeSfcs =
+                sfcFactory.createAttributeSubFormControllers(subForms);
+        CreationControllerAttribute attributeCC =
+                ccFactory.createAttributeCreationController(attributeSfcs);
+        myCreationViews.add(defenderCC.getMyObjectCreationView());
+        */
+
+    }
+
+    private InteractionEditorView myInteractionView;
+    private WeaponEditorView myWeaponView;
+
+    public ObjectCreationTabViewer () {
+        init();
+        myTabPane = createAllSubTabs();
     }
 
     private TabPane createAllSubTabs () {
         TabPane tabpane = new TabPane();
-        myAttributeView = new AttributeEditorView(createSubTab("Attributes"));
-        myDefenderView = new DefenderEditorView(createSubTab("Defenders"));
-        myEnemyView = new EnemyEditorView(createSubTab("Enemies"));
+        for (IObjectCreationView<?> creationView : myCreationViews) {
+            Tab tab = new Tab();
+            tab.setContent(creationView.draw());
+
+            tabpane.getTabs().add(tab);
+        }
+        /*
         myInteractionView = new InteractionEditorView(createSubTab("Interactions"));
         myWeaponView = new WeaponEditorView(createSubTab("Weapons"));
 
         tabpane.getTabs().addAll(myAttributeView.getTab(), myDefenderView.getTab(),
                                  myEnemyView.getTab(), myInteractionView.getTab(),
                                  myWeaponView.getTab());
+                                 */
         return tabpane;
-    }
-
-    private Tab createSubTab (String tabName) {
-        Tab newTab = new Tab();
-        newTab.setText(tabName);
-        return newTab;
-    }
-
-    List<ObjectCreationView> getObjectCreationView () {
-        return null;
-    }
-
-    public Tab getTab () {
-        return myCharTab;
     }
 
     @Override
     public Node draw () {
-        myLayout = new BorderPane();
-
-        return myLayout;
+        return myTabPane;
     }
 
     @Override

@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -20,8 +21,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 
 public class ImageEntryView extends EntryView {
-    private String myLabel;
-    private VBox myContainer;
+    private GridPane myContainer;
     private StringProperty myImageChoice = new SimpleStringProperty();// TODO Add default Image
     private Button myChooseImage = new Button("Choose Image");
     private ImageView myImage;
@@ -30,13 +30,13 @@ public class ImageEntryView extends EntryView {
 
     public ImageEntryView (String label, IFormDataManager data, double spacing, double width, double height) {
         super(label,data);
-        this.myContainer = new VBox(spacing);
+        this.myContainer = new GridPane(); 
         this.myImageChoice.bindBidirectional(getData().getValueProperty());
         initFileChooser(new FileChooser());   
         initImageView(width,height);
-        myContainer.getChildren().add(new Label(myLabel));
-        myContainer.getChildren().add(myChooseImage);
-        myContainer.getChildren().add(myImage);        
+        myContainer.add(new Label(myLabel), 0, 0);
+        myContainer.add(myChooseImage, 1, 0);
+        myContainer.add(myImage, 0, 1);        
     }
 
     private void initImageView (double width, double height) {        

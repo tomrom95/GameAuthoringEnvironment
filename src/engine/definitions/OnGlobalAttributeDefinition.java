@@ -6,84 +6,63 @@ import engine.OnGlobalAttributeCondition;
 
 /**
  * 'Definition' class for the OnGlobalAttributeCondition
- * 
+ *
  * @author jonathanim
  *
  */
 public class OnGlobalAttributeDefinition implements IDefinition {
 
     private GameDefinition myGame;
-
     private AttributeTypeDefinition myAttributeType;
-    private DoublePredicate myValueCheck; // need to create something that will actually get this
-                                          // from the gui
-    private ListIEffectDefinition myApplyToSelf;
-    private SpriteGroupDefinition myOtherGroup;
-    private ListIEffectDefinition myApplyToOtherGroup;
-    private ListIEffectDefinition myApplyToGlobalAttys;
+    private DoublePredicate myValueCheck;
+    private EventPackageDefinition myOtherPackage;
+    private EventPackageDefinition myGlobalPackage;
 
     public OnGlobalAttributeCondition create () {
         return new OnGlobalAttributeCondition(myGame.create(), myAttributeType.create(),
                                               myValueCheck,
-                                              myApplyToSelf.create(),
-                                              myApplyToOtherGroup.create(), myOtherGroup.create(),
-                                              myApplyToGlobalAttys.create());
+                                              myOtherPackage.create(),
+                                              myGlobalPackage.create());
     }
 
     public GameDefinition getMyGame () {
         return myGame;
     }
 
-    public void setMyGame (GameDefinition myGame) {
-        this.myGame = myGame;
+    public void setMyGame (GameDefinition game) {
+        this.myGame = game;
     }
 
     public AttributeTypeDefinition getMyAttributeType () {
         return myAttributeType;
     }
 
-    public void setMyAttributeType (AttributeTypeDefinition myAttributeType) {
-        this.myAttributeType = myAttributeType;
+    public void setMyAttributeType (AttributeTypeDefinition attributeType) {
+        this.myAttributeType = attributeType;
     }
 
     public DoublePredicate getMyValueCheck () {
         return myValueCheck;
     }
 
-    public void setMyValueCheck (DoublePredicate myValueCheck) {
-        this.myValueCheck = myValueCheck;
+    public void setMyValueCheck (DoublePredicate valueCheck) {
+        this.myValueCheck = valueCheck;
     }
 
-    public ListIEffectDefinition getMyApplyToSelf () {
-        return myApplyToSelf;
+    public EventPackageDefinition getMyOtherPackage () {
+        return myOtherPackage;
     }
 
-    public void setMyApplyToSelf (ListIEffectDefinition myApplyToSelf) {
-        this.myApplyToSelf = myApplyToSelf;
+    public void setMyOtherPackage (EventPackageDefinition otherPackage) {
+        this.myOtherPackage = otherPackage;
     }
 
-    public SpriteGroupDefinition getMyOtherGroup () {
-        return myOtherGroup;
+    public EventPackageDefinition getMyGlobalPackage () {
+        return myGlobalPackage;
     }
 
-    public void setMyOtherGroup (SpriteGroupDefinition myOtherGroup) {
-        this.myOtherGroup = myOtherGroup;
-    }
-
-    public ListIEffectDefinition getMyApplyToOtherGroup () {
-        return myApplyToOtherGroup;
-    }
-
-    public void setMyApplyToOtherGroup (ListIEffectDefinition myApplyToOtherGroup) {
-        this.myApplyToOtherGroup = myApplyToOtherGroup;
-    }
-
-    public ListIEffectDefinition getMyApplyToGlobalAttys () {
-        return myApplyToGlobalAttys;
-    }
-
-    public void setMyApplyToGlobalAttys (ListIEffectDefinition myApplyToGlobalAttys) {
-        this.myApplyToGlobalAttys = myApplyToGlobalAttys;
+    public void setMyGlobalPackage (EventPackageDefinition globalPackage) {
+        this.myGlobalPackage = globalPackage;
     }
 
 }

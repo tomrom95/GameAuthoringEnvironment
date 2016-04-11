@@ -48,6 +48,7 @@ public class UserMoverSubFormController implements ISubFormControllerSprite {
         myFormData.set(myView.getDownKey(), thisUMD.getKeyControlDefintion().getDown());
         myFormData.set(myView.getLeftKey(), thisUMD.getKeyControlDefintion().getLeft());
         myFormData.set(myView.getRightKey(), thisUMD.getKeyControlDefintion().getRight());
+        
          
 
     }

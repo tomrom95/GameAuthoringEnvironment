@@ -22,19 +22,19 @@ import javafx.collections.ObservableList;
  */
 public abstract class CreationController<T extends IDefinition> {
     private IObjectCreationView<T> myView;
-    private List<ISubFormController<T>> mySubFormControllers;
+    private List<? extends ISubFormController<T>> mySubFormControllers;
     private T myCurrentItem;
 
-    public CreationController (List<ISubFormController<T>> subFormControllers) {
+    public CreationController (List<? extends ISubFormController<T>> subFormControllers) {
         mySubFormControllers = subFormControllers;
         List<ISubFormView> subFormViews = getSubFormViews(mySubFormControllers);
         myView = new ObjectCreationView<T>(subFormViews);
         init();
-
+        newItem();
        
     }
 
-    private List<ISubFormView> getSubFormViews (List<ISubFormController<T>> subFormControllers) {
+    private List<ISubFormView> getSubFormViews (List<? extends ISubFormController<T>> subFormControllers) {
         List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
 
         for (ISubFormController<T> subFormController : subFormControllers) {
@@ -65,6 +65,8 @@ public abstract class CreationController<T extends IDefinition> {
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.updateItem(getMyCurrentItem()); // make more generic later
         }
+        System.out.println(getMyCurrentItem().getProfileDefinition().getName());
+        
     }
 
     /**
@@ -92,7 +94,7 @@ public abstract class CreationController<T extends IDefinition> {
      */
     private void newItem () {
         T item = createBlankItem();
-        showAndEdit(item);
+//        showAndEdit(item);
         addItem(item);
     }
 
@@ -125,11 +127,11 @@ public abstract class CreationController<T extends IDefinition> {
         return getMyObjectCreationView().getItems();
     }
 
-    private IObjectCreationView<T> getMyObjectCreationView () {
+    public IObjectCreationView<T> getMyObjectCreationView () {
         return myView;
     }
 
-    private List<ISubFormController<T>> getMySubFormControllers () {
+    private List<? extends ISubFormController<T>> getMySubFormControllers () {
         return mySubFormControllers;
     }
 

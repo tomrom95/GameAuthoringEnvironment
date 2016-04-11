@@ -1,16 +1,34 @@
 package gameauthoring.levels;
 
+import java.io.File;
 import engine.IGame;
 import engine.ILevel;
 import gameauthoring.Glyph;
 import gameauthoring.SpriteCellView;
-import gameauthoring.TextFormData;
+import gameauthoring.characters.FormDataManager;
+import gameauthoring.characters.IEntryView;
+import gameauthoring.characters.IFormDataManager;
+//import gameauthoring.TextFormData;
 import gameauthoring.characters.IListCellView;
+import gameauthoring.characters.TextEntryView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Accordion;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TitledPane;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.stage.FileChooser;
 
 
 /**
@@ -25,9 +43,19 @@ import javafx.scene.layout.HBox;
 public class LevelEditorView implements Glyph {
 
     private BorderPane myLayout;
+    private IFormDataManager myData = new FormDataManager();
     private IGame myGame;
     private ILevel myLevel;
-
+    private String myNumberEnemyKey = "Number of Enemies: ";
+    private String myRateKey = "Rate: ";
+    private String myWinConditionKey = "Win Condition: ";
+    private String myLoseConditionKey = "Lose Condition: ";
+    
+    private IEntryView myNumberEnemy = new TextEntryView(myNumberEnemyKey, myData, 20, 150, 30);
+    private IEntryView myRate = new TextEntryView(myRateKey, myData, 20, 150, 30);
+    private IEntryView myWinCondition = new TextEntryView(myWinConditionKey, myData, 20, 150, 30);
+    private IEntryView myLoseCondition = new TextEntryView(myLoseConditionKey, myData, 20, 150, 30);
+    
     public LevelEditorView (IGame gameModel, ILevel level) {
         myGame = gameModel;
         myLevel = level;
@@ -55,8 +83,8 @@ public class LevelEditorView implements Glyph {
         form.setAlignment(Pos.CENTER_RIGHT);
         form.setMinHeight(300);
         form.setMinWidth(200);
-        form.add((new TextFormData("Number of Enemies: ")).draw(), 0, 1);
-        form.add((new TextFormData("Rate: ")).draw(), 0, 2);
+        form.add(myNumberEnemy.draw(), 0, 1);
+        form.add(myRate.draw(), 0, 2);
         return form;
     }
 
@@ -65,60 +93,10 @@ public class LevelEditorView implements Glyph {
         form.setAlignment(Pos.CENTER_LEFT);
         form.setMinHeight(300);
         form.setMinWidth(200);
-        form.add((new TextFormData("Win Condition: ")).draw(), 0, 1);
-        form.add((new TextFormData("Loss Condition: ")).draw(), 0, 2);
-        form.add((new TextFormData("Loss Condition: ")).draw(), 0, 2);
+        form.add(myWinCondition.draw(), 0, 1);
+        form.add(myLoseCondition.draw(), 0, 2);
         return form;
     }
-
-    private Node createSpriteSelection () {
-        Accordion selector = new Accordion();
-        ListView<Node> testList = new ListView<Node>();
-        for(int i = 0; i < 5; i ++){
-            IListCellView sprite = new SpriteCellView(null);
-            testList.getItems().add(sprite.draw());
-        }
-        TitledPane friendlies = new TitledPane("Enemies", testList);
-        selector.getPanes().add(friendlies);
-        return selector;
-    }
-
-    private Node createLevelView () {
-        Region container = new Region();
-        
-        Image img = new Image("images/pvz.jpg");
-        BackgroundImage background = new BackgroundImage(
-                 img,
-                 BackgroundRepeat.NO_REPEAT,
-                 BackgroundRepeat.NO_REPEAT,
-                 BackgroundPosition.DEFAULT,
-                 BackgroundSize.DEFAULT);
-        container.setBackground(new Background(background));
-        container.setMinWidth(img.getWidth());
-        container.setMinHeight(img.getHeight());
-        //container.heightProperty().bind(myLayout.heightProperty());
-        container.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            if(e.getButton() == MouseButton.SECONDARY){
-                uploadNewBackground(container);
-            }
-        });
-        return container;
-    }
-
-    private void uploadNewBackground (Region container) {
-        File newImage = (new FileChooser()).showOpenDialog(null);
-        if (newImage == null) return;
-        Image img = new Image(newImage.toURI().toString(), 0, 300, true, true);
-        BackgroundImage background = new BackgroundImage(img,
-                                                         BackgroundRepeat.NO_REPEAT,
-                                                         BackgroundRepeat.NO_REPEAT,
-                                                         BackgroundPosition.DEFAULT,
-                                                         BackgroundSize.DEFAULT);
-        container.setBackground(new Background(background));
-        container.setMinWidth(img.getWidth());
-        container.setMinHeight(img.getHeight());
-    }
-
 
     @Override
     public void update () {
