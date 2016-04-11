@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -23,10 +25,19 @@ import util.TimeDuration;
 public class Attribute extends DefaultAffectable implements IAttribute {
     private static final double DEFAULT_STARTING_VALUE = 0;
     private DoubleProperty myValue;
+    private DoubleProperty myMaxValue;
+    private DoubleProperty myMinValue;
+    private BooleanProperty myIsGlobal;
     private AttributeType myType;
     private ObservableList<ObjectProperty<IEffect>> myEffects;
     
 
+    public Attribute (List<Double> listOfValues, boolean isGlobal, AttributeType type){
+        myMaxValue = new SimpleDoubleProperty(listOfValues.get(0));
+        myMinValue = new SimpleDoubleProperty(listOfValues.get(1));
+        myIsGlobal = new SimpleBooleanProperty(isGlobal);
+    }
+    
     public Attribute (AttributeType type) {
         this(DEFAULT_STARTING_VALUE, type);
     }
@@ -59,6 +70,7 @@ public class Attribute extends DefaultAffectable implements IAttribute {
 
 
     @Override
+
     public List<IAttribute> getAttributes () {
         List<IAttribute> attributes = new ArrayList<>();
         attributes.add(this);
