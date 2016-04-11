@@ -1,10 +1,10 @@
 package engine.definitions;
 
 import java.util.List;
-import engine.EventPackage;
 import engine.IEventPackage;
 import engine.ISpriteGroup;
 import engine.effects.IEffect;
+import engine.events.EventPackage;
 import engine.events.GameEvent;
 
 
