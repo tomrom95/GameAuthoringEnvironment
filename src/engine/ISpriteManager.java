@@ -27,9 +27,9 @@ public interface ISpriteManager extends Updateable, IAdder {
     /**
      * @return the observable list of sprites
      */
-    ObservableList<ISprite> getSprites ();
+    List<ISprite> getSprites ();
 
-    ObservableList<? extends Drawable> getDrawables ();
+    List<? extends Drawable> getDrawables ();
 
     /**
      * @param list of key events to be processed
@@ -44,7 +44,7 @@ public interface ISpriteManager extends Updateable, IAdder {
     /**
      * @param sprite to be removed
      */
-    void remove (ObjectProperty<ISprite> sprite);
+    void remove (ISprite sprite);
 
     
 

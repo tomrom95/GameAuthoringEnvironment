@@ -73,7 +73,7 @@ public class Game implements IGame {
     }
 
     @Override
-    public ObservableList<? extends Drawable> getDrawables () {
+    public List<? extends Drawable> getDrawables () {
        return myLevelManager.getDrawables();
     }
 
@@ -102,7 +102,7 @@ public class Game implements IGame {
     }
 
     @Override
-    public ObservableList<ObjectProperty<IAttribute>> getGlobalAttributes () {
+    public List<IAttribute> getGlobalAttributes () {
         return getAttributeManager().getAttributes();
     }
 

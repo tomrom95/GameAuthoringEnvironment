@@ -41,7 +41,7 @@ public class SpriteManager implements ISpriteManager {
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
         add(sprite);
-        sprite.getLocation().get().setLocation(coordinate.getX(), coordinate.getY());
+        sprite.getLocation().setLocation(coordinate.getX(), coordinate.getY());
     }
 
     @Override
@@ -61,7 +61,7 @@ public class SpriteManager implements ISpriteManager {
     }
 
     @Override
-    public void remove (ObjectProperty<ISprite> sprite) {
+    public void remove (ISprite sprite) {
         mySpriteList.remove(sprite);
     }
 

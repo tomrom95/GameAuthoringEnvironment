@@ -24,17 +24,17 @@ public interface ILevel extends Updateable, IAdder {
     /**
      * @return the condition manager for this level
      */
-    ObservableList<ObjectProperty<ICondition>> getConditionsPropertyList ();
-    
+    ObservableList<ICondition> getConditionsListProperty ();
+
     /**
-     * @return the global attribute manager for this level 
+     * @return the global attribute manager for this level
      */
-    ObjectProperty<IAttributeManager> getAttributeManager ();
+    IAttributeManager getAttributeManager ();
 
     /**
      * @return the Image of the background of the level
      */
-    ObjectProperty<ImageGraphic> getBackgroundImageProperty ();
+    ImageGraphic getBackgroundImage ();
 
     /**
      * Add a global resource to this level
@@ -46,7 +46,7 @@ public interface ILevel extends Updateable, IAdder {
     /**
      * @return an observable list of the sprites in this level
      */
-    ObservableList<ISprite> getSprites ();
+    List<ISprite> getSprites ();
 
     /**
      * This method call will control transition between levels, to stay on the current
@@ -61,9 +61,7 @@ public interface ILevel extends Updateable, IAdder {
      */
     boolean shouldSwitchLevel ();
 
-
-    ObservableList<? extends Drawable> getDrawables ();
-    
+    List<? extends Drawable> getDrawables ();
 
     /**
      * @param list of key events to be processed
@@ -79,6 +77,6 @@ public interface ILevel extends Updateable, IAdder {
      * @param sprite to be removed
      */
 
-    void remove (ObjectProperty<ISprite> sprite);
+    void remove (ISprite sprite);
 
 }

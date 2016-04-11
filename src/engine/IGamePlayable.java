@@ -29,12 +29,12 @@ public interface IGamePlayable extends Updateable {
     /**
      * @return list of Drawable objects that a game contains
      */
-    ObservableList<? extends Drawable> getDrawables ();
+    List<? extends Drawable> getDrawables ();
 
     /**
      * @return the global attributes for this game
      */
-    ObservableList<ObjectProperty<IAttribute>> getGlobalAttributes ();
+    List<IAttribute> getGlobalAttributes ();
     
     /**
      * @return the background image of the running level of the game
