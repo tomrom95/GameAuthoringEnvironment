@@ -51,6 +51,15 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
         return new Coordinate(getLocation().getX() + xChange,
                               getLocation().getY() + yChange);
     }
+    
+    /*
+     * overloaded method to account for orientation below
+     */
+    private Coordinate getNextCoordinate(double xChange, double yChange, double orientationChange) {
+        return new Coordinate(getLocation().getX() + xChange,
+                              getLocation().getY() + yChange, 
+                              getLocation().getOrientation() + orientationChange);
+    }
 
     private double distance (double rate, double time) {
         return rate * time;
