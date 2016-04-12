@@ -11,8 +11,8 @@ import gameauthoring.creation.subforms.ISubFormControllerAttribute;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.MovementSubFormController;
 import gameauthoring.creation.subforms.ProfileSubFormController;
+import gameauthoring.creation.subforms.SelectAttributeSubFormController;
 import gameauthoring.creation.subforms.SubFormControllerFactory;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,49 +36,61 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private TabPane myTabPane;
 
-    private List<String> myTitles = new ArrayList<String>(Arrays.asList("Enemies", "Defenders", "Attributes"));
-    private List<ISubFormControllerSprite> myEnemySFC =
-            new ArrayList<ISubFormControllerSprite>(Arrays.asList(new ProfileSubFormController()));
-    private List<ISubFormControllerSprite> myDefenderSFC =
-            new ArrayList<ISubFormControllerSprite>(Arrays.asList(new ProfileSubFormController()));
-    private List<ISubFormControllerAttribute> myAttributeSFC =
-            new ArrayList<ISubFormControllerAttribute>(Arrays
-                    .asList(new AttributeSubFormController()));
     private AuthorshipData myAuthorshipData;
-
-    private List<CreationController<?>> myCCs =
-            new ArrayList<CreationController<?>>(Arrays
-                    .asList(new CreationControllerSprite(myEnemySFC, myAuthorshipData),
-                            new CreationControllerSprite(myDefenderSFC, myAuthorshipData),
-                            new CreationControllerAttribute(myAttributeSFC, myAuthorshipData)));
+    private List<String> myTitles =
+            new ArrayList<String>(Arrays.asList("Enemies", "Defenders", "Attributes"));
+    private List<ISubFormControllerSprite> myEnemySFC ;
+    private List<ISubFormControllerSprite> myDefenderSFC;
+    private List<ISubFormControllerAttribute> myAttributeSFC;
+    private List<CreationController<?>> myCCs;
     private List<IObjectCreationView<?>> myCVs;
 
-    
     public ObjectCreationTabViewer () {
+        initializeLists();
         init();
     }
 
     public ObjectCreationTabViewer (Game game) {
         myAuthorshipData = game.getAuthorshipData();
+        initializeLists();
         init();
     }
 
-    private void init () {      
+    private void initializeLists () {
+        myEnemySFC =
+                new ArrayList<ISubFormControllerSprite>(Arrays
+                        .asList(new ProfileSubFormController(),
+                                new SelectAttributeSubFormController(myAuthorshipData
+                                                                     .getMyCreatedAttributes())));
+        myDefenderSFC =
+                new ArrayList<ISubFormControllerSprite>(Arrays
+                        .asList(new ProfileSubFormController()));
+        myAttributeSFC =
+                new ArrayList<ISubFormControllerAttribute>(Arrays
+                        .asList(new AttributeSubFormController()));
+
+        myCCs =
+                new ArrayList<CreationController<?>>(Arrays
+                        .asList(new CreationControllerSprite(myEnemySFC, myAuthorshipData),
+                                new CreationControllerSprite(myDefenderSFC, myAuthorshipData),
+                                new CreationControllerAttribute(myAttributeSFC, myAuthorshipData.getMyCreatedAttributes())));
+    }
+
+    private void init () {
         myTabPane = new TabPane();
         generateCreationViewList();
         generateAllSubTabs();
     }
 
-
     private void generateCreationViewList () {
         myCVs = new ArrayList<IObjectCreationView<?>>();
-        for(CreationController<?> cc:myCCs){          
+        for (CreationController<?> cc : myCCs) {
             myCVs.add(cc.getMyObjectCreationView());
         }
     }
 
-    private void generateAllSubTabs () {  
-        for (int i=0;i<myCCs.size();i++) {
+    private void generateAllSubTabs () {
+        for (int i = 0; i < myCCs.size(); i++) {
             Tab tab = new Tab(myTitles.get(i));
             tab.setContent(myCVs.get(i).draw());
             myTabPane.getTabs().add(tab);
@@ -99,5 +111,4 @@ public class ObjectCreationTabViewer implements ITabViewer {
         return myAuthorshipData;
     }
 
-   
 }

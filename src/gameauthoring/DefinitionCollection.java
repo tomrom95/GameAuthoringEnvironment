@@ -1,34 +1,38 @@
 package gameauthoring;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
 /**
- * This interface defines a wrapper for an object that holds lists of items
  * 
- * @author Jeremy Schreck
+ * @author Jeremy Schreck, Joe Lilien
  *
+ * @param <E>
  */
-public interface DefinitionCollection<E> {
 
-    /**
-     * The title of the collection
-     * 
-     * @return The title
-     */
-    String getTitle ();
+public class DefinitionCollection<E> implements IDefinitionCollection<E>{
 
-    /**
-     * Get the items stored in this holder
-     * 
-     * @return An observable list of editable items
-     */
-    ObservableList<E> getItems ();
+    String myTitle;
+    ObservableList<E> myItems;
+ 
+    
+    public DefinitionCollection(String title){
+        myTitle = title;
+        myItems = FXCollections.observableArrayList();
+    }
+    @Override
+    public String getTitle () {
+        return myTitle;
+    }
 
-    /**
-     * Add a item to the list
-     * 
-     * @param item The item to add
-     */
-    void addItem (E item);
+    @Override
+    public ObservableList<E> getItems () {
+        return myItems;
+    }
+
+    @Override
+    public void addItem (E item) {
+        myItems.add(item);
+    }
+
 }

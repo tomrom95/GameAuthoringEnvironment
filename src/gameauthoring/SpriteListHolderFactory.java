@@ -19,6 +19,6 @@ public interface SpriteListHolderFactory {
      * 
      * @return A list of sprite holders
      */
-    List<DefinitionCollection> createSpriteHolders ();
+    List<IDefinitionCollection> createSpriteHolders ();
 
 }

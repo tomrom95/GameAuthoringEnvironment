@@ -32,7 +32,7 @@ public interface SpriteListHolderManager {
      * 
      * @return The list of SpriteListHolder objects
      */
-    List<DefinitionCollection> getSpriteListHolders ();
+    List<IDefinitionCollection> getSpriteListHolders ();
 
     /**
      * Get the SpriteListHolder located at the specified index
@@ -40,7 +40,7 @@ public interface SpriteListHolderManager {
      * @param index The index of the SpriteListHolder of interest
      * @return The SpriteListHolder at the given index
      */
-    DefinitionCollection getSpriteListHolderAtIndex (int index);
+    IDefinitionCollection getSpriteListHolderAtIndex (int index);
     
     /**
      * Get the list of SpriteEditorControllers that this manager is in charge of

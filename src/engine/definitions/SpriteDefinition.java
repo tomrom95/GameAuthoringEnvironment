@@ -73,6 +73,14 @@ public class SpriteDefinition implements IProfilable {
     public void addAttribute (AttributeDefinition attribute) {
         myAttributes.add(attribute);
     }
+    
+    public List<AttributeDefinition> getAttributes(){
+        return myAttributes;
+    }
+    
+    public void SetAttributes(List<AttributeDefinition> attributes){
+        myAttributes = attributes;
+    }
 
     public void removeAttribute (AttributeDefinition attribute) {
         myAttributes.remove(attribute);

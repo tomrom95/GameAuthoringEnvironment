@@ -7,6 +7,7 @@ import engine.AuthorshipData;
 import engine.definitions.IDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
+import gameauthoring.IDefinitionCollection;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 import javafx.collections.ObservableList;
@@ -25,23 +26,13 @@ import javafx.collections.ObservableList;
 public abstract class CreationController<T extends IProfilable> {
     private IObjectCreationView<T> myView;
     private List<? extends ISubFormController<T>> mySubFormControllers;
-    private AuthorshipData myAuthorshipData;
 
-    public CreationController (List<? extends ISubFormController<T>> subFormControllers) {
-        mySubFormControllers = subFormControllers;
-        List<ISubFormView> subFormViews = getSubFormViews(mySubFormControllers);
-        myView = new ObjectCreationView<T>(subFormViews);
-        init();
-        newItem();
-       
-    }
-    public CreationController (List<? extends ISubFormController<T>> subFormControllers,
-                                          AuthorshipData authorshipData) {
-        myAuthorshipData = authorshipData;
+
+    public CreationController (List<? extends ISubFormController<T>> subFormControllers, IDefinitionCollection<T> defCol) {
         
         mySubFormControllers = subFormControllers;
         List<ISubFormView> subFormViews = getSubFormViews(mySubFormControllers);
-        myView = new ObjectCreationView<T>(subFormViews);
+        myView = new ObjectCreationView<T>(subFormViews, defCol);
         init();
         newItem();
              
@@ -121,8 +112,6 @@ public abstract class CreationController<T extends IProfilable> {
      * @param item The item contained in the cell that was clicked
      */
     private void showAndEdit (T item) {
-//        setMyCurrentItem(item);
-        System.out.println(item);
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.populateViewsWithData(getMyCurrentItem());
         }

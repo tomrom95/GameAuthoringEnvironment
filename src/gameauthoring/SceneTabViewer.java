@@ -41,7 +41,7 @@ public class SceneTabViewer implements ITabViewer {
     private TabPane myLevelTabs;
     private ILevelManager myLevelManager;
     private IConditionManager myConditionManager;
-    private List<DefinitionCollection<SpriteDefinition>> mySprites;
+    private List<IDefinitionCollection<SpriteDefinition>> mySprites;
 
     public SceneTabViewer () {
         init();
@@ -50,24 +50,25 @@ public class SceneTabViewer implements ITabViewer {
     public SceneTabViewer (Game game) {
         myLevelManager = game.getLevelManager();
         myConditionManager = game.getConditionManager();
-        mySprites = game.getAuthorshipData().getMyCreatedSprites();
-        init();
+
+       // mySprites = game.getAuthorshipData().getMyCreatedSprites();
+        //init();
     }
 
     private void init () {
         ObjectProperty<ILevel> startingLevel = new SimpleObjectProperty<>(new Level());
         myLevelManager = new LevelManager(startingLevel.get());
         myConditionManager = new ConditionManager();
-        Game game = new Game(myLevelManager, null, myConditionManager);
+      //  Game game = new Game(myLevelManager, null, myConditionManager);
         
-        makeSomeSprites(game);
-        LevelEditorView view = new LevelEditorView(game, startingLevel.get());
+     //   makeSomeSprites(game);
+     //   LevelEditorView view = new LevelEditorView(game, startingLevel.get());
 
         myLevelTabs = new TabPane();
         Tab createLevelTab = createButtonTab();
         Tab firstLevelTab = new Tab("Level 1");
         myLevelTabs.getSelectionModel().select(firstLevelTab);
-        firstLevelTab.setContent(view.draw());
+      //  firstLevelTab.setContent(view.draw());
         myLevelTabs.getTabs().addAll(createLevelTab, firstLevelTab);
     }
 
@@ -92,20 +93,20 @@ public class SceneTabViewer implements ITabViewer {
         ObjectProperty<ILevel> newLevel = new SimpleObjectProperty<>(new Level());
         myLevelManager.createNewLevel(newLevel.get());
 
-        Game game = new Game(myLevelManager, null, myConditionManager);
-        makeSomeSprites(game);
-        LevelEditorView view = new LevelEditorView(game, newLevel.get());
-        Group nextLevel = new Group(view.draw());
-        newLevelTab.setContent(nextLevel);
+      //  Game game = new Game(myLevelManager, null, myConditionManager);
+     //   makeSomeSprites(game);
+    //    LevelEditorView view = new LevelEditorView(game, newLevel.get());
+      //  Group nextLevel = new Group(view.draw());
+     //   newLevelTab.setContent(nextLevel);
     }
 
     private void makeSomeSprites (Game game) {
         for (int i = 0; i < 20; i++) {
             if (i % 2 == 0) {
-                game.getAuthorshipData().getCreatedSprites().add(createFirstSprite());
+        //        game.getAuthorshipData().getCreatedSprites().add(createFirstSprite());
             }
             else {
-                game.getAuthorshipData().getCreatedSprites().add(createSecondSprite());
+        //        game.getAuthorshipData().getCreatedSprites().add(createSecondSprite());
             }
         }
     }
@@ -115,17 +116,17 @@ public class SceneTabViewer implements ITabViewer {
 
         IGraphic graphic = new ImageGraphic(30, 30,"images/photo.png");
         sprite.setGraphic(graphic);
-        sprite.setType("Person");
-        sprite.setDescription("This is a person");
+      //  sprite.setType("Person");
+     //   sprite.setDescription("This is a person");
         return sprite;
     }
 
     private SpriteDefinition createSecondSprite () {
         SpriteDefinition sprite = new SpriteDefinition();
-        sprite.setType("Block");
+     //   sprite.setType("Block");
         IGraphic graphic = new Block(40, 40, RGBColor.BLACK);
         sprite.setGraphic(graphic);
-        sprite.setDescription("This is a block");
+     //   sprite.setDescription("This is a block");
         return sprite;
     }
     

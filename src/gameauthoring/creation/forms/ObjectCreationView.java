@@ -3,6 +3,8 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import java.util.function.Consumer;
 import engine.profile.IProfilable;
+import gameauthoring.DefinitionCollection;
+import gameauthoring.IDefinitionCollection;
 import gameauthoring.creation.subforms.ISubFormView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,26 +38,10 @@ public class ObjectCreationView<E extends IProfilable> implements IObjectCreatio
      * 
      * @param subFormViews The subformviews to create the FormView with
      */
-    public ObjectCreationView (List<ISubFormView> subFormViews) {
-        this.myObjectListView = createListView();
-        this.myFormView = createFormView(subFormViews);
+    public ObjectCreationView (List<ISubFormView> subFormViews, IDefinitionCollection<E> defCol) {
+        this.myObjectListView = new ObjectListView<E>(defCol.getItems());
+        this.myFormView = new FormView(subFormViews);
         init();
-    }
-
-    private IObjectListView<E> createListView () {
-        /*
-         * ****NOTE*** Here is where we must add the list to Authorship Data (call a set method)
-         * Think it might be best to put this list in a map according to the title, which should be
-         * a constructor arguement as well
-         */
-        ObservableList<E> objectList = FXCollections.observableArrayList();
-        IObjectListView<E> objectListView = new ObjectListView<E>(objectList);
-        return objectListView;
-    }
-
-    private IFormView createFormView (List<ISubFormView> subFormViews) {
-        IFormView formView = new FormView(subFormViews);
-        return formView;
     }
 
     /**
