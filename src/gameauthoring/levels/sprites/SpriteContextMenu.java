@@ -10,6 +10,13 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import util.Coordinate;
 
+/**
+ * Creates the action menu for editing a sprite. This uses a
+ * resource file and reflection to create the menu items and
+ * their actions
+ * @author Tommy
+ *
+ */
 public class SpriteContextMenu {
     
     private AuthoringRenderer levelView;

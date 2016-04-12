@@ -3,14 +3,17 @@ package gameplayer;
 import engine.IAttribute;
 import gameauthoring.Glyph;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import javafx.util.StringConverter;
-import javafx.util.converter.NumberStringConverter;
 
+/**
+ * View class to show an attribute on screen. Will be updated
+ * for a better view experience than 2 text fields. Uses binding
+ * to automatically update the value
+ * @author Tommy
+ *
+ */
 public class AttributeCell implements Glyph {
     private static final String FORMATTER = "%s : ";
     
@@ -28,11 +31,19 @@ public class AttributeCell implements Glyph {
         return container;
     }
 
+    /**
+     * Create label for the attribute
+     * @param container
+     */
     private void addName (HBox container) {
         Text name = new Text(String.format(FORMATTER, myAttribute.getType().getType()));
         container.getChildren().add(name);
     }
     
+    /**
+     * Adds binded value
+     * @param container
+     */
     private void addValue (HBox container) {
         Text value = new Text();
         System.out.println(myAttribute.getValueProperty().get());

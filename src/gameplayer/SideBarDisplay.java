@@ -11,6 +11,14 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
 
+
+/**
+ * Creates side bar display of sprite that can be added to the screen.
+ * Currently very similar to the authoring version, but will be changed when
+ * costs are incorporated.
+ * @author Tommy
+ *
+ */
 public class SideBarDisplay implements Glyph {
     
     private IGame myGame;

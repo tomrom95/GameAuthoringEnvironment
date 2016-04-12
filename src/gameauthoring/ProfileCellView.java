@@ -11,7 +11,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-
+/**
+ * Class to help visualize a profilable definition in a list view.
+ * Anything that implements IProfilable can use this to create its
+ * cells in a user friendly way.
+ * @author Tommy
+ *
+ * @param <E>
+ */
 public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     private static final double PIC_SIZE = 30;
