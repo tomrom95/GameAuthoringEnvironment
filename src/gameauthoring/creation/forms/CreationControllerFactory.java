@@ -2,26 +2,21 @@ package gameauthoring.creation.forms;
 
 import java.util.ArrayList;
 import java.util.List;
+import engine.AuthorshipData;
 import engine.definitions.AttributeDefinition;
 import engine.definitions.SpriteDefinition;
-import gameauthoring.IDefinitionCollection;
-import gameauthoring.creation.subforms.ISubFormController;
-import gameauthoring.creation.subforms.ISubFormControllerSprite;
 
 
 public class CreationControllerFactory {
 
-    public CreationControllerFactory () {
-        List<ISubFormControllerSprite> sfcs = new ArrayList<ISubFormControllerSprite>();
-        createSpriteCreationController(sfcs);
+    public CreationControllerFactory(){
+     
     }
-
-    public CreationControllerSprite createSpriteCreationController (List<? extends ISubFormController<SpriteDefinition>> sfcs) {
-        return new CreationControllerSprite(sfcs);
+    
+    public CreationControllerSprite createSpriteCreationController(String title, List<String> sfcs,  AuthorshipData authorshipData ){
+        return new CreationControllerSprite(title, sfcs, authorshipData);
     }
-
-    public CreationControllerAttribute createAttributeCreationController (List<? extends ISubFormController<AttributeDefinition>> sfcs,
-                                                                          IDefinitionCollection<AttributeDefinition> defCol) {
-        return new CreationControllerAttribute(sfcs, defCol);
+    public CreationControllerAttribute createAttributeCreationController(String title, List<String> sfcs,  AuthorshipData authorshipData ){
+        return new CreationControllerAttribute(title, sfcs, authorshipData);
     }
 }

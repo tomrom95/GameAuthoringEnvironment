@@ -28,10 +28,10 @@ public class AttributeSubFormController implements ISubFormControllerAttribute {
     @Override
     public void updateItem (AttributeDefinition item) {
         try {
-            double max =
-                    Double.parseDouble(myFormData.getValueProperty(myView.getMyMaxKey()).get());
-            double min =
-                    Double.parseDouble(myFormData.getValueProperty(myView.getMyMinKey()).get());
+            //double max =
+                    //Double.parseDouble(myFormData.getValueProperty(myView.getMyMaxKey()).get());
+            //double min =
+                    //Double.parseDouble(myFormData.getValueProperty(myView.getMyMinKey()).get());
             boolean isGlobal =
                     Boolean.parseBoolean(myFormData.getValueProperty(myView.getMyIsGlobalKey())
                             .get());

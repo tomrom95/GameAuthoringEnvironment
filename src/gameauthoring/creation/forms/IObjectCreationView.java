@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import engine.definitions.IDefinition;
 import gameauthoring.Glyph;
+import gameauthoring.creation.subforms.ISubFormView;
 import javafx.collections.ObservableList;
 
 
@@ -61,4 +62,6 @@ public interface IObjectCreationView<E> extends Glyph {
     ObservableList<E> getItems ();
 
     E getCurrentItem ();
+    
+    void init(List<ISubFormView> subFormViews);
 }

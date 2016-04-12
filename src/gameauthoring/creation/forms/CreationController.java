@@ -10,6 +10,7 @@ import engine.profile.IProfilable;
 import gameauthoring.IDefinitionCollection;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
+import gameauthoring.creation.subforms.SubFormControllerFactory;
 import javafx.collections.ObservableList;
 
 
@@ -26,17 +27,19 @@ import javafx.collections.ObservableList;
 public abstract class CreationController<T extends IProfilable> {
     private IObjectCreationView<T> myView;
     private List<? extends ISubFormController<T>> mySubFormControllers;
+    private AuthorshipData myAuthorshipData;
+    private String myTitle;
+    private SubFormControllerFactory mySFCFactory;
 
+    public CreationController (String title,
+                               List<String> subFormStrings,
+                               AuthorshipData authorshipData) {
 
-    public CreationController (List<? extends ISubFormController<T>> subFormControllers, IDefinitionCollection<T> defCol) {
-        
-        mySubFormControllers = subFormControllers;
-        List<ISubFormView> subFormViews = getSubFormViews(mySubFormControllers);
-        myView = new ObjectCreationView<T>(subFormViews, defCol);
-        init();
-        newItem();
-             
-     }
+        myTitle = title;
+        mySFCFactory = new SubFormControllerFactory(authorshipData);
+        myView = new ObjectCreationView<T>();
+
+    }
 
     private List<ISubFormView> getSubFormViews (List<? extends ISubFormController<T>> subFormControllers) {
         List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
@@ -50,15 +53,27 @@ public abstract class CreationController<T extends IProfilable> {
     /**
      * Set up event handler connections
      */
-    private void init () {
+    public void init (List<String> subFormStrings) {
+        ///TODO: fix casting issue
+        mySubFormControllers =
+                (List<? extends ISubFormController<T>>) getMySFCFactory()
+                        .createSubFormControllers(subFormStrings);
+
+        List<ISubFormView> subFormViews = getSubFormViews(getMySubFormControllers());
+        myView.init(subFormViews);
+        setupConnections();
+        newItem();
+
+    }
+
+    private void setupConnections () {
         IFormView formView = getMyObjectCreationView().getFormView();
         formView.setSaveAction(e -> saveItem());
         formView.setDeleteAction(e -> deleteItem());
-        formView.setNewAction(e-> newItem());
+        formView.setNewAction(e -> newItem());
 
         IObjectCreationView<T> creationView = getMyObjectCreationView();
         creationView.setEditAction(e -> showAndEdit(e));
-
     }
 
     /**
@@ -68,7 +83,7 @@ public abstract class CreationController<T extends IProfilable> {
     private void saveItem () {
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.updateItem(getMyCurrentItem()); // make more generic later
-        }        
+        }
     }
 
     /**
@@ -84,7 +99,7 @@ public abstract class CreationController<T extends IProfilable> {
      */
     private void deleteItem () {
         getMyItems().remove(getMyCurrentItem());
-        //showAndEdit(null);
+        // showAndEdit(null);
     }
 
     /**
@@ -100,8 +115,7 @@ public abstract class CreationController<T extends IProfilable> {
         addItem(item);
         getMyObjectCreationView().getObjectListView().setSelectedItem(item);
         showAndEdit(item);
-        
-        
+
     }
 
     protected abstract T createBlankItem ();
@@ -144,7 +158,20 @@ public abstract class CreationController<T extends IProfilable> {
         return this.myView.getCurrentItem();
     }
 
-//    private void setMyCurrentItem (T item) {
-//        this.myCurrentItem = item;
-//    }
+    protected AuthorshipData getMyAuthorshipData () {
+        return myAuthorshipData;
+    }
+
+    public String getMyTitle () {
+        return myTitle;
+    }
+
+    public SubFormControllerFactory getMySFCFactory () {
+        return mySFCFactory;
+    }
+
+    protected void setMySubFormControllers (List<? extends ISubFormController<T>> mySubFormControllers) {
+        this.mySubFormControllers = mySubFormControllers;
+    }
+
 }

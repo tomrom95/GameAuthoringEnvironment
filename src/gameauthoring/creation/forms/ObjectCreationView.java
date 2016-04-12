@@ -38,16 +38,18 @@ public class ObjectCreationView<E extends IProfilable> implements IObjectCreatio
      * 
      * @param subFormViews The subformviews to create the FormView with
      */
-    public ObjectCreationView (List<ISubFormView> subFormViews, IDefinitionCollection<E> defCol) {
-        this.myObjectListView = new ObjectListView<E>(defCol.getItems());
-        this.myFormView = new FormView(subFormViews);
-        init();
+    public ObjectCreationView (){//(List<ISubFormView> subFormViews) {
+        ObservableList<E> items = FXCollections.observableArrayList();
+        this.myObjectListView = new ObjectListView<E>(items);
+        //this.myFormView = new FormView(subFormViews);
+        //init();
     }
 
     /**
      * Initialize view
      */
-    private void init () {
+    public void init (List<ISubFormView> subFormViews) {
+        this.myFormView = new FormView(subFormViews);
 
         myCreationPane.add(myObjectListView.draw(), 0, 0);
         myCreationPane.add(myFormView.draw(), 1, 0);

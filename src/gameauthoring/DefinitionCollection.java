@@ -3,6 +3,7 @@ package gameauthoring;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+
 /**
  * 
  * @author Jeremy Schreck, Joe Lilien
@@ -10,16 +11,16 @@ import javafx.collections.ObservableList;
  * @param <E>
  */
 
-public class DefinitionCollection<E> implements IDefinitionCollection<E>{
+public class DefinitionCollection<E> implements IDefinitionCollection<E> {
 
     String myTitle;
     ObservableList<E> myItems;
- 
-    
-    public DefinitionCollection(String title){
+
+    public DefinitionCollection (String title, ObservableList<E> items) {
         myTitle = title;
-        myItems = FXCollections.observableArrayList();
+        myItems = items;
     }
+
     @Override
     public String getTitle () {
         return myTitle;

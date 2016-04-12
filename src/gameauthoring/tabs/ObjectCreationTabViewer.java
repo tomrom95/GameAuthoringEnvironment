@@ -1,5 +1,7 @@
 package gameauthoring.tabs;
 
+import gameauthoring.DefinitionCollection;
+import gameauthoring.IDefinitionCollection;
 import gameauthoring.creation.forms.CreationController;
 import gameauthoring.creation.forms.CreationControllerAttribute;
 import gameauthoring.creation.forms.CreationControllerFactory;
@@ -18,6 +20,8 @@ import java.util.Arrays;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.Game;
+import engine.definitions.GroupDefinition;
+import engine.definitions.SpriteDefinition;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -37,11 +41,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
     private TabPane myTabPane;
 
     private AuthorshipData myAuthorshipData;
-    private List<String> myTitles =
-            new ArrayList<String>(Arrays.asList("Enemies", "Defenders", "Attributes"));
-    private List<ISubFormControllerSprite> myEnemySFC ;
-    private List<ISubFormControllerSprite> myDefenderSFC;
-    private List<ISubFormControllerAttribute> myAttributeSFC;
+
     private List<CreationController<?>> myCCs;
     private List<IObjectCreationView<?>> myCVs;
 
@@ -57,23 +57,35 @@ public class ObjectCreationTabViewer implements ITabViewer {
     }
 
     private void initializeLists () {
-        myEnemySFC =
-                new ArrayList<ISubFormControllerSprite>(Arrays
-                        .asList(new ProfileSubFormController(),
-                                new SelectAttributeSubFormController(myAuthorshipData
-                                                                     .getMyCreatedAttributes())));
-        myDefenderSFC =
-                new ArrayList<ISubFormControllerSprite>(Arrays
-                        .asList(new ProfileSubFormController()));
-        myAttributeSFC =
-                new ArrayList<ISubFormControllerAttribute>(Arrays
-                        .asList(new AttributeSubFormController()));
 
-        myCCs =
-                new ArrayList<CreationController<?>>(Arrays
-                        .asList(new CreationControllerSprite(myEnemySFC, myAuthorshipData),
-                                new CreationControllerSprite(myDefenderSFC, myAuthorshipData),
-                                new CreationControllerAttribute(myAttributeSFC, myAuthorshipData.getMyCreatedAttributes())));
+        List<String> myEnemySFCs =
+                new ArrayList<String>(Arrays.asList("Profile", "SelectAttribute"));
+        List<String> myDefenderSFCs =
+                new ArrayList<String>(Arrays.asList("Profile", "SelectAttribute"));
+        List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
+
+        CreationControllerFactory ccFactory = new CreationControllerFactory();
+        // TODO: take sfcs out of cc constructors
+        CreationController<?> ccAttributes =
+                ccFactory.createAttributeCreationController("Attribute", myAttributeSFCs,
+                                                         myAuthorshipData);
+        CreationController<?> ccEnemies =
+                ccFactory.createSpriteCreationController("Enemies", myEnemySFCs,
+                                                         myAuthorshipData);
+        CreationController<?> ccDefenders =
+                ccFactory.createSpriteCreationController("Defender", myDefenderSFCs,
+                                                         myAuthorshipData);
+       
+        myCCs = new ArrayList<CreationController<?>>();
+        myCCs.add(ccAttributes);
+
+        myCCs.add(ccEnemies);
+        myCCs.add(ccDefenders);
+        
+        ccAttributes.init(myAttributeSFCs);
+        ccEnemies.init(myEnemySFCs);
+        ccDefenders.init(myDefenderSFCs);
+
     }
 
     private void init () {
@@ -91,7 +103,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private void generateAllSubTabs () {
         for (int i = 0; i < myCCs.size(); i++) {
-            Tab tab = new Tab(myTitles.get(i));
+            Tab tab = new Tab(myCCs.get(i).getMyTitle());
             tab.setContent(myCVs.get(i).draw());
             myTabPane.getTabs().add(tab);
         }

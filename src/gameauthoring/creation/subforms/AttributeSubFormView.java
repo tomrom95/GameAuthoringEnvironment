@@ -21,11 +21,10 @@ public class AttributeSubFormView extends SubFormView {
     private String myMinKey = "Min Value: ";
     private String myIsGlobalKey = "Global or Local Attribute: ";
 
-    private IEntryView myMaxValue = new TextEntryView(myMaxKey, this.getData(), 20, 150, 30);
-    private IEntryView myMinValue = new TextEntryView(myMinKey, this.getData(), 20, 100, 100);
+    //private IEntryView myMaxValue = new TextEntryView(myMaxKey, this.getData(), 20, 150, 30);
+   // private IEntryView myMinValue = new TextEntryView(myMinKey, this.getData(), 20, 100, 100);
     private IEntryView myIsGlobal = new TextEntryView(myIsGlobalKey, this.getData(), 20, 150, 90);
-    private List<IEntryView> myEntryViews = new ArrayList<IEntryView>(Arrays.asList(myMaxValue,
-                                                                                    myMinValue,
+    private List<IEntryView> myEntryViews = new ArrayList<IEntryView>(Arrays.asList(
                                                                                     myIsGlobal));
 
     public AttributeSubFormView () {
@@ -35,8 +34,8 @@ public class AttributeSubFormView extends SubFormView {
     private void initView () {
         super.setMyEntryViews(myEntryViews);
         myPane.setGridLinesVisible(true);
-        myPane.add(myMaxValue.draw(), 0, 0);
-        myPane.add(myMinValue.draw(), 0, 0);
+        //myPane.add(myMaxValue.draw(), 0, 0);
+        //myPane.add(myMinValue.draw(), 0, 0);
         myPane.add(myIsGlobal.draw(), 1, 0, 1, 1);
     }
 
