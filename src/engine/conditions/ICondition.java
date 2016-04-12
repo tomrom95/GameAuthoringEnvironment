@@ -2,6 +2,8 @@ package engine.conditions;
 
 import engine.IOAffectable;
 
+import engine.definitions.IDefinition;
+
 /**
  * This interface represents a generic Condition that will have a trigger condition that it checks
  * each game loop and an effect to fire upon that condition
@@ -13,6 +15,6 @@ import engine.IOAffectable;
  * @author Jonathan Im
  *
  */
-public interface ICondition extends IOAffectable {
+public interface ICondition extends IOAffectable, IDefinition {
 
 }
