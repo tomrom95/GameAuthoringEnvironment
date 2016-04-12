@@ -30,9 +30,11 @@ import javafx.scene.layout.BorderPane;
 
 /**
  * Character(Sprite) tab view class which allows users to create all weapons, enemies, defenders,
- * and obstacles.
- * Handles selection between different SpriteEditorViews.
+ * obstacles, and interactions. Handles selection between these sub-tabs. Serves to make creation
+ * controller and subform controller using factory design.
  * 
+ * @TODO: Resourcebundle for unprotectedString
+ * @TODO: Interaction, Obstacle subtabs.
  * @author Jin An
  *
  */
@@ -68,29 +70,28 @@ public class ObjectCreationTabViewer implements ITabViewer {
         // TODO: take sfcs out of cc constructors
         CreationController<?> ccAttributes =
                 ccFactory.createAttributeCreationController("Attribute", myAttributeSFCs,
-                                                         myAuthorshipData);
+                                                            myAuthorshipData);
         CreationController<?> ccEnemies =
                 ccFactory.createSpriteCreationController("Enemies", myEnemySFCs,
                                                          myAuthorshipData);
         CreationController<?> ccDefenders =
                 ccFactory.createSpriteCreationController("Defender", myDefenderSFCs,
                                                          myAuthorshipData);
-       
+
         myCCs = new ArrayList<CreationController<?>>();
 
         myCCs.add(ccEnemies);
         myCCs.add(ccDefenders);
         myCCs.add(ccAttributes);
 
-        
         ccEnemies.init(myEnemySFCs);
         ccDefenders.init(myDefenderSFCs);
         ccAttributes.init(myAttributeSFCs);
 
-
     }
 
-    private void init () {
+    @Override
+    public void init () {
         myTabPane = new TabPane();
         generateCreationViewList();
         generateAllSubTabs();

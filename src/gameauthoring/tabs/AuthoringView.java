@@ -1,11 +1,8 @@
 package gameauthoring.tabs;
 
-import data.GameWriter;
-import data.IGameWriter;
 import engine.Game;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -17,11 +14,17 @@ import javafx.stage.Stage;
 
 
 /**
- * Highest hierarchy class for authoring environment. Used composition for each tab viewers
+ * Highest hierarchy class for authoring environment. Used composition for each tab viewers and
+ * gameFactory. It creates a Menubar which has "Save game as XML" menu item and a tab pane which
+ * contains "game information", "create objects", and "build scene" tabs. These are divided in order
+ * for the users to easily create their own game.
  * 
+ * TODO: Resourcebundle for unprotected string values
+ * TODO: Create gamewriter class and save it as XML
  * @author Jin An
  *
  */
+
 public class AuthoringView implements IAuthoringView {
 
     private GameTabViewer myGameTabViewer;
@@ -31,17 +34,13 @@ public class AuthoringView implements IAuthoringView {
     private Game myGame;
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
-   
 
-    
-    public AuthoringView() {
+    public AuthoringView () {
         GameFactory gameFactory = new GameFactory();
         myGame = gameFactory.createGame();
-        
-        
-        
+
     }
-    
+
     @Override
     public GameTabViewer getGameTabViewer () {
         return myGameTabViewer;
@@ -111,8 +110,8 @@ public class AuthoringView implements IAuthoringView {
         newTab.setText(tabName);
         return newTab;
     }
-    
-    private Game getMyGame(){
+
+    private Game getMyGame () {
         return myGame;
     }
 }
