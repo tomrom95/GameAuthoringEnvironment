@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import engine.IAdder;
 import engine.IAttribute;
+import engine.definitions.SpriteDefinition;
 import engine.effects.IEffect;
 import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
@@ -19,13 +20,13 @@ import util.TimeDuration;
  */
 public class TrackingFirer extends Firer {
 
-    private List<ISprite> myTargets;
+    private List<SpriteDefinition> myTargets;
     private Key myFireKey;
-    private ISprite myProjectile;
+    private SpriteDefinition myProjectile;
     private IAdder myAdder;
     private IAttribute myAmmo;
 
-    public TrackingFirer (List<ISprite> targets, Key fire) {
+    public TrackingFirer (List<SpriteDefinition> targets, Key fire) {
         myTargets = targets;
         myFireKey = fire;
     }
@@ -52,8 +53,8 @@ public class TrackingFirer extends Firer {
     }
 
     private void registerKeyPress (Key fire) {
-        //ISprite bullet = myProjectile.create();
-        //myAdder.add(bullet, bullet.getLocation());
+        ISprite bullet = myProjectile.create();
+        myAdder.add(bullet, bullet.getLocation());
 
     }
 
