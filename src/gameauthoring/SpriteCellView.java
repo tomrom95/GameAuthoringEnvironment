@@ -31,7 +31,7 @@ public class SpriteCellView extends ListCell<SpriteDefinition> {
     protected Node createSpriteCell () {
         HBox container = new HBox(10);
         container.setAlignment(Pos.CENTER_LEFT);
-        container.getChildren().add(createImageProfile());
+        //container.getChildren().add(createImageProfile());
         container.getChildren().add(createTextProfile());
         return container;
     }
@@ -39,8 +39,8 @@ public class SpriteCellView extends ListCell<SpriteDefinition> {
     private Node createTextProfile () {
         VBox container = new VBox();
 
-        Text name = new Text(getStringOrDefault(getSprite().getName(), DEFAULT_NAME));
-        Text description = new Text(getStringOrDefault(getSprite().getDescription(),
+        Text name = new Text(getStringOrDefault(getSprite().getMyProfile().getName(), DEFAULT_NAME));
+        Text description = new Text(getStringOrDefault(getSprite().getMyProfile().getDescription(),
                                                        DEFAULT_DESCRIPTION));
         container.getChildren().addAll(name, description);
         return container;
@@ -53,6 +53,8 @@ public class SpriteCellView extends ListCell<SpriteDefinition> {
     private Node createImageProfile () {
         GraphicFactory graphics = new ScaleFactory(PIC_SIZE, PIC_SIZE);
         Node node = mySprite.getGraphic().getVisualRepresentation(graphics);
+        //Node node = mySprite.getMyProfile().getImage().getVisualRepresentation(graphics);
+
         return node;
     }
 

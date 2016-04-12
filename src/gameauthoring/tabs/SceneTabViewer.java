@@ -16,6 +16,7 @@ import engine.Level;
 import engine.LevelManager;
 import engine.sprite.Sprite;
 import gameauthoring.levels.LevelEditorView;
+import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.shareddata.IDefinitionCollection;
 import graphics.Block;
 import graphics.IGraphic;
@@ -41,7 +42,8 @@ public class SceneTabViewer implements ITabViewer {
     private TabPane myLevelTabs;
     private ILevelManager myLevelManager;
     private IConditionManager myConditionManager;
-    private List<IDefinitionCollection<SpriteDefinition>> mySprites;
+    private List<DefinitionCollection<SpriteDefinition>> mySprites;
+    private Game myGame;
 
     public SceneTabViewer () {
         init();
@@ -51,24 +53,26 @@ public class SceneTabViewer implements ITabViewer {
         myLevelManager = game.getLevelManager();
         myConditionManager = game.getConditionManager();
 
-       // mySprites = game.getAuthorshipData().getMyCreatedSprites();
-        //init();
+        mySprites = game.getAuthorshipData().getMyCreatedSprites();
+        myGame = game;
+        init();
     }
 
     private void init () {
-        ObjectProperty<ILevel> startingLevel = new SimpleObjectProperty<>(new Level());
-        myLevelManager = new LevelManager(startingLevel.get());
-        myConditionManager = new ConditionManager();
+        //ObjectProperty<ILevel> startingLevel = new SimpleObjectProperty<>(new Level());
+        //myLevelManager = new LevelManager(startingLevel.get());
+        //myConditionManager = new ConditionManager();
       //  Game game = new Game(myLevelManager, null, myConditionManager);
         
      //   makeSomeSprites(game);
      //   LevelEditorView view = new LevelEditorView(game, startingLevel.get());
+        LevelEditorView view = new LevelEditorView(myGame, myGame.getLevelManager().getCurrentLevel());
 
         myLevelTabs = new TabPane();
         Tab createLevelTab = createButtonTab();
         Tab firstLevelTab = new Tab("Level 1");
         myLevelTabs.getSelectionModel().select(firstLevelTab);
-      //  firstLevelTab.setContent(view.draw());
+       firstLevelTab.setContent(view.draw());
         myLevelTabs.getTabs().addAll(createLevelTab, firstLevelTab);
     }
 

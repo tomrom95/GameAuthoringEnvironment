@@ -99,8 +99,8 @@ public class AuthoringView implements IAuthoringView {
         creationTab.setContent(myCreationTabViewer.draw());
 
         Tab sceneTab = createTab("Build Scenes/Levels");
-       // mySceneTabViewer = new SceneTabViewer(getMyGame());
-       // sceneTab.setContent(mySceneTabViewer.draw());
+        mySceneTabViewer = new SceneTabViewer(getMyGame());
+        sceneTab.setContent(mySceneTabViewer.draw());
 
         tabpane.getTabs().addAll(gameTab, creationTab, sceneTab);
         return tabpane;

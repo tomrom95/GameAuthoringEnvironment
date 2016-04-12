@@ -52,7 +52,7 @@ public class SceneCreator implements Glyph {
         //selector.maxHeightProperty().bind(myHeight);
         ListView<SpriteDefinition> spriteList = new ListView<SpriteDefinition>();
        
-        spriteList.setItems(gameModel.getAuthorshipData().getCreatedSprites());
+        spriteList.setItems(gameModel.getAuthorshipData().getMyCreatedSprites().get(0).getItems());//0 is only enemies. change to put this in accordion view
         
         spriteList.setCellFactory(new Callback<ListView<SpriteDefinition>, ListCell<SpriteDefinition>>() {
             @Override 
