@@ -1,8 +1,7 @@
 package gameauthoring.conditiontab;
 
-import engine.ICondition;
 import engine.IGame;
-import gameauthoring.ListDisplay;
+import engine.conditions.ICondition;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Tab;
 
