@@ -13,12 +13,12 @@ import engine.interactionevents.KeyIOEvent;
 import engine.sprite.ISprite;
 import util.Key;
 
+
 /**
  * This class provides the behavior necessary to implement a user controlled fire module in the
  * game.
  *
  * @author Dhrumil
- * 
  *
  */
 public class UserFirer extends Firer {
@@ -30,7 +30,7 @@ public class UserFirer extends Firer {
     private IAttribute myAmmo;
 
     public UserFirer (SpriteDefinition fireSprite, Key fireKey, IAdder adder, double ammo) {
-        
+
         myFireKey = fireKey;
         myProjectile = fireSprite;
         myAdder = adder;
@@ -45,7 +45,7 @@ public class UserFirer extends Firer {
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
-        
+
         if (keyEvent.getType() == InputType.KEY_PRESSED &&
             keyEvent.getKey().isEqual(myFireKey)) {
             registerKeyPress(keyEvent.getKey());
@@ -54,12 +54,11 @@ public class UserFirer extends Firer {
     }
 
     private void registerKeyPress (Key fire) {
-        
+
         ISprite bullet = myProjectile.create();
         myAdder.add(bullet, bullet.getLocation());
 
     }
-
 
     @Override
     public List<IAttribute> getAttributes () {

@@ -13,6 +13,7 @@ import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import engine.sprite.SpriteType;
+import util.Coordinate;
 import util.TimeDuration;
 
 
@@ -39,17 +40,19 @@ public class TrackingMover extends Mover {
         mySpeed = new Attribute(speed, AttributeType.SPEED);
         myEnemyList = attackGroup;
         myTracker = new EnemyTracker();
-       
 
     }
 
-    
     @Override
     public void update (TimeDuration duration) {
-        double newXVel = myTracker.calculateXVelToClosestEnemy(mySprite.getLocation(), myPotentialTargets(), mySpeed.getValueProperty().get());
+        double newXVel =
+                myTracker.calculateXVelToClosestEnemy(mySprite.getLocation(), myPotentialTargets(),
+                                                      mySpeed.getValueProperty().get());
         setXVel(newXVel);
-        
-        double newYVel = myTracker.calculateYVelToClosestEnemy(mySprite.getLocation(), myPotentialTargets(), mySpeed.getValueProperty().get());
+
+        double newYVel =
+                myTracker.calculateYVelToClosestEnemy(mySprite.getLocation(), myPotentialTargets(),
+                                                      mySpeed.getValueProperty().get());
         setYVel(newYVel);
 
     }
@@ -63,13 +66,13 @@ public class TrackingMover extends Mover {
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -78,6 +81,16 @@ public class TrackingMover extends Mover {
         return null;
     }
 
-   
+    @Override
+    public void setPath (List<Coordinate> newPath) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public List<Coordinate> getPath () {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

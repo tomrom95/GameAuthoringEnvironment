@@ -3,6 +3,11 @@ package engine.modules;
 import engine.sprite.ISprite;
 
 
+/**
+ * This interface provdes the method 
+ * @author Dhrumil
+ *
+ */
 public interface IWave {
 
     /**
