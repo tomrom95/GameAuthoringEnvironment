@@ -26,15 +26,16 @@ public class SpriteController {
         sprite.setLocation(new Coordinate(x, y));
     }
     
-    public void createNewPath(Coordinate startPoint, Pane container){
+    public void createNewPath(ISprite sprite, Coordinate startPoint, Pane container){
         pathCreator.newPath(startPoint, container);
         container.setOnMouseClicked(e -> pathCreator.addToPath(e, container));
-        container.setOnKeyPressed(e -> handleKeyPress(e, container));
+        container.setOnKeyPressed(e -> handleKeyPress(e, container, sprite));
     }
     
-    private void handleKeyPress (KeyEvent e, Pane container) {
+    private void handleKeyPress (KeyEvent e, Pane container, ISprite sprite) {
         if (e.getCode() == KeyCode.ESCAPE) {
             pathCreator.endPath(container);
+            sprite.getMovementStrategy().setPath(pathCreator.getPathPoints());
         }
     }
 
