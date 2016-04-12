@@ -13,6 +13,7 @@ import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import engine.sprite.SpriteType;
+import util.Coordinate;
 import util.TimeDuration;
 
 
@@ -76,6 +77,20 @@ public class TrackingMover extends Mover {
 
     @Override
     protected List<IAttribute> getSpecificAttributes () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public void setPath (List<Coordinate> newPath) {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+    @Override
+    public List<Coordinate> getPath () {
         // TODO Auto-generated method stub
         return null;
     }

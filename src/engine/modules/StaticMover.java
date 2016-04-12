@@ -6,6 +6,7 @@ import engine.IAttribute;
 import engine.IPositionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import util.Coordinate;
 import util.TimeDuration;
 
 
@@ -36,6 +37,18 @@ public class StaticMover extends Mover {
     @Override
     protected List<IAttribute> getSpecificAttributes () {
         return new ArrayList<>();
+    }
+
+    @Override
+    public void setPath (List<Coordinate> newPath) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public List<Coordinate> getPath () {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
