@@ -44,14 +44,4 @@ public class EventPackageDefinition implements IDefinition {
         this.myEventsList = eventList;
     }
 
-    @Override
-    public IProfile getProfile () {
-        return myProfile;
-    }
-
-    @Override
-    public void setProfile (IProfile profile) {
-        myProfile = profile;
-    }
-
 }

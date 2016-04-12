@@ -29,14 +29,5 @@ public class AttributeTypeDefinition implements IDefinition {
         return myAttyType;
     }
 
-    @Override
-    public IProfile getProfile () {
-        return myProfile;
-    }
-
-    @Override
-    public void setProfile (IProfile profile) {
-        myProfile = profile;
-    }
 
 }

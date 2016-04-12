@@ -17,7 +17,7 @@ import graphics.IGraphic;
 import util.Coordinate;
 
 
-public class SpriteDefinition implements IDefinition, IProfilable {
+public class SpriteDefinition implements IProfilable {
 
     private MovementDefinition myMovementDefinition;
     private List<ModuleDefinition> myModuleDefinitions;

@@ -1,6 +1,7 @@
 package engine.definitions;
 
 import engine.ISpriteGroup;
+import engine.profile.IProfilable;
 import engine.profile.IProfile;
 
 
@@ -12,10 +13,10 @@ import engine.profile.IProfile;
  *
  * Using the index value, or some other form of communication i think will be better
  * 
- * @author jonathanim
+ * @author jonathanim, Jeremy Schreck, Joe Lilien
  *
  */
-public class SpriteGroupDefinition implements IDefinition {
+public class SpriteGroupDefinition implements IProfilable {
 
     private int mySpriteGroupIndexVal;
     private IProfile myProfile;

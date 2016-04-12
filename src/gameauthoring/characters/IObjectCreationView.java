@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
  * @author Jeremy Schreck
  *
  */
+
 public interface IObjectCreationView<E> extends Glyph {
 
     /**
@@ -58,4 +59,6 @@ public interface IObjectCreationView<E> extends Glyph {
      * 
      */
     ObservableList<E> getItems ();
+
+    E getCurrentItem ();
 }

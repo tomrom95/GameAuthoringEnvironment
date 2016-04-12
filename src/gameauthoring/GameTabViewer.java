@@ -11,7 +11,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -67,6 +66,9 @@ public class GameTabViewer implements ITabViewer {
         form.add(myAuthor.draw(), 0, 1);
         form.add(mySplashScreen.draw(), 0, 2);
         form.setMinSize(200, 200);
+
+//        form.add(loadImage, 1, 3);
+
         return form;
     }
     

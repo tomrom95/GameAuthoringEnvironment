@@ -1,13 +1,17 @@
 package gameauthoring;
 
 import gameauthoring.ITabViewer;
+import gameauthoring.characters.AttributeSubFormController;
+import gameauthoring.characters.CreationController;
 import gameauthoring.characters.CreationControllerAttribute;
 import gameauthoring.characters.CreationControllerFactory;
 import gameauthoring.characters.CreationControllerSprite;
 import gameauthoring.characters.IObjectCreationView;
 import gameauthoring.characters.ISubFormControllerAttribute;
 import gameauthoring.characters.ISubFormControllerSprite;
+import gameauthoring.characters.MovementSubFormController;
 import gameauthoring.characters.ObjectCreationView;
+import gameauthoring.characters.ProfileSubFormController;
 import gameauthoring.characters.SubFormControllerFactory;
 import gameauthoring.object_creation_tab.AttributeEditorView;
 import gameauthoring.object_creation_tab.DefenderEditorView;
@@ -15,6 +19,7 @@ import gameauthoring.object_creation_tab.EnemyEditorView;
 import gameauthoring.object_creation_tab.InteractionEditorView;
 import gameauthoring.object_creation_tab.WeaponEditorView;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
@@ -34,66 +39,47 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private TabPane myTabPane;
 
-    private List<CreationControllerSprite> mySpriteCCs;
-    private List<IObjectCreationView<?>> myCreationViews;
-    private CreationControllerFactory ccFactory;
-    private SubFormControllerFactory sfcFactory;
+    private List<String> myTitles = new ArrayList<String>(Arrays.asList("Enemies", "Defenders", "Attributes"));
+    private List<ISubFormControllerSprite> myEnemySFC =
+            new ArrayList<ISubFormControllerSprite>(Arrays.asList(new ProfileSubFormController()));
+    private List<ISubFormControllerSprite> myDefenderSFC =
+            new ArrayList<ISubFormControllerSprite>(Arrays.asList(new ProfileSubFormController()));
+    private List<ISubFormControllerAttribute> myAttributeSFC =
+            new ArrayList<ISubFormControllerAttribute>(Arrays
+                    .asList(new AttributeSubFormController()));
 
-    private void init () {
-        ccFactory = new CreationControllerFactory();
-        sfcFactory = new SubFormControllerFactory();
+    private List<CreationController<?>> myCCs =
+            new ArrayList<CreationController<?>>(Arrays
+                    .asList(new CreationControllerSprite(myEnemySFC),
+                            new CreationControllerSprite(myDefenderSFC),
+                            new CreationControllerAttribute(myAttributeSFC)));
+    private List<IObjectCreationView<?>> myCVs;
 
-        myCreationViews = new ArrayList<IObjectCreationView<?>>();
-
-        String[] subForms = {"profile", "movement", "attributes", "groups" };
-
-        List<ISubFormControllerSprite> enemiesSfcs =
-                sfcFactory.createSpriteSubFormControllers(subForms);
-        CreationControllerSprite enemyCC = ccFactory.createSpriteCreationController(enemiesSfcs);
-        myCreationViews.add(enemyCC.getMyObjectCreationView());
-
-        List<ISubFormControllerSprite> defendersSfcs =
-                sfcFactory.createSpriteSubFormControllers(subForms);
-        CreationControllerSprite defenderCC =
-                ccFactory.createSpriteCreationController(defendersSfcs);
-        myCreationViews.add(defenderCC.getMyObjectCreationView());
-
-        /*
-        String[] attSubForms = { "attribute" };
-        List<ISubFormControllerAttribute> attributeSfcs =
-                sfcFactory.createAttributeSubFormControllers(subForms);
-        CreationControllerAttribute attributeCC =
-                ccFactory.createAttributeCreationController(attributeSfcs);
-        myCreationViews.add(defenderCC.getMyObjectCreationView());
-        */
-
-    }
-
-    private InteractionEditorView myInteractionView;
-    private WeaponEditorView myWeaponView;
-
+    
     public ObjectCreationTabViewer () {
         init();
-        myTabPane = createAllSubTabs();
     }
 
-    private TabPane createAllSubTabs () {
-        TabPane tabpane = new TabPane();
-        for (IObjectCreationView<?> creationView : myCreationViews) {
-            Tab tab = new Tab();
-            tab.setContent(creationView.draw());
+    private void init () {      
+        myTabPane = new TabPane();
+        generateCreationViewList();
+        generateAllSubTabs();
+    }
 
-            tabpane.getTabs().add(tab);
+
+    private void generateCreationViewList () {
+        myCVs = new ArrayList<IObjectCreationView<?>>();
+        for(CreationController<?> cc:myCCs){          
+            myCVs.add(cc.getMyObjectCreationView());
         }
-        /*
-        myInteractionView = new InteractionEditorView(createSubTab("Interactions"));
-        myWeaponView = new WeaponEditorView(createSubTab("Weapons"));
+    }
 
-        tabpane.getTabs().addAll(myAttributeView.getTab(), myDefenderView.getTab(),
-                                 myEnemyView.getTab(), myInteractionView.getTab(),
-                                 myWeaponView.getTab());
-                                 */
-        return tabpane;
+    private void generateAllSubTabs () {  
+        for (int i=0;i<myCCs.size();i++) {
+            Tab tab = new Tab(myTitles.get(i));
+            tab.setContent(myCVs.get(i).draw());
+            myTabPane.getTabs().add(tab);
+        }
     }
 
     @Override

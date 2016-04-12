@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
  * this elsewhere
  * 
  * @author Jeremy Schreck
+ * @author Joe Lilien
  *
  * @param <T> The type of object to be created and stored -- ex: Sprite, Interaction,
  *        Attribute
@@ -23,7 +24,7 @@ import javafx.collections.ObservableList;
 public abstract class CreationController<T extends IDefinition> {
     private IObjectCreationView<T> myView;
     private List<? extends ISubFormController<T>> mySubFormControllers;
-    private T myCurrentItem;
+   // private T myCurrentItem;
 
     public CreationController (List<? extends ISubFormController<T>> subFormControllers) {
         mySubFormControllers = subFormControllers;
@@ -50,10 +51,10 @@ public abstract class CreationController<T extends IDefinition> {
         IFormView formView = getMyObjectCreationView().getFormView();
         formView.setSaveAction(e -> saveItem());
         formView.setDeleteAction(e -> deleteItem());
+        formView.setNewAction(e-> newItem());
 
         IObjectCreationView<T> creationView = getMyObjectCreationView();
         creationView.setEditAction(e -> showAndEdit(e));
-        creationView.setNewAction(e -> newItem());
 
     }
 
@@ -64,9 +65,7 @@ public abstract class CreationController<T extends IDefinition> {
     private void saveItem () {
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.updateItem(getMyCurrentItem()); // make more generic later
-        }
-        System.out.println(getMyCurrentItem().getProfileDefinition().getName());
-        
+        }        
     }
 
     /**
@@ -94,7 +93,7 @@ public abstract class CreationController<T extends IDefinition> {
      */
     private void newItem () {
         T item = createBlankItem();
-//        showAndEdit(item);
+        showAndEdit(item);
         addItem(item);
     }
 
@@ -106,7 +105,8 @@ public abstract class CreationController<T extends IDefinition> {
      * @param item The item contained in the cell that was clicked
      */
     private void showAndEdit (T item) {
-        setMyCurrentItem(item);
+//        setMyCurrentItem(item);
+        System.out.println(item);
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.populateViewsWithData(item);
         }
@@ -136,10 +136,10 @@ public abstract class CreationController<T extends IDefinition> {
     }
 
     private T getMyCurrentItem () {
-        return myCurrentItem;
+        return this.myView.getCurrentItem();
     }
 
-    private void setMyCurrentItem (T item) {
-        this.myCurrentItem = item;
-    }
+//    private void setMyCurrentItem (T item) {
+//        this.myCurrentItem = item;
+//    }
 }
