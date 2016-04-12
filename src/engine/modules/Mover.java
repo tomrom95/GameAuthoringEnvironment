@@ -130,5 +130,12 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     protected IAttribute getYVel () {
         return myYVel;
     }
-
+    
+    protected void setXVel(double theta){
+        
+    }
+    
+    protected void setYVel(double theta){
+        
+    }
 }

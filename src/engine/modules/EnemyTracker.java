@@ -7,28 +7,32 @@ import util.Coordinate;
 
 public class EnemyTracker {
 
-    protected ISprite getClosestEnemy(List<ISprite> enemies, Coordinate myLocation){
+    private ISprite getClosestEnemy(List<ISprite> enemies, Coordinate myLocation){
         final Comparator<ISprite> closer = (e1,e2) -> Double.compare(calculateDistance(myLocation,e1.getLocation()),
                                                                      calculateDistance(myLocation, e2.getLocation()));
         return enemies.stream().min(closer).get();
          
     }
-    
-    
-    protected double getOrientationToClosestEnemy(List<ISprite> enemies, Coordinate myLocation){
-        ISprite closestEnemy = getClosestEnemy(enemies, myLocation);
-        return calculateAbsoluteOrientationToEnemy(myLocation, closestEnemy.getLocation());  
-    }
-    
-    
-    
+        
     private double calculateDistance(Coordinate myLocation, Coordinate enemyLocation){
         
       return Math.sqrt(Math.pow((myLocation.getX() - enemyLocation.getX()), 2) + Math.pow((myLocation.getY() - enemyLocation.getY()), 2)); 
         
     }
     
-    protected double calculateAbsoluteOrientationToEnemy(Coordinate myLocation, Coordinate enemyLocation){
+    protected double calculateXVelToClosestEnemy(Coordinate myLocation, List<ISprite> enemies, double speed){
+        ISprite closestEnemy = getClosestEnemy(enemies, myLocation);
+        double newAngle = calculateAbsoluteOrientationToEnemy(myLocation, closestEnemy.getLocation());
+        return Math.cos(newAngle) * speed;
+    }
+    protected double calculateYVelToClosestEnemy(Coordinate myLocation, List<ISprite> enemies, double speed){
+        ISprite closestEnemy = getClosestEnemy(enemies, myLocation);
+        double newAngle = calculateAbsoluteOrientationToEnemy(myLocation, closestEnemy.getLocation());
+        return Math.sin(newAngle) * speed;
+    }
+    
+    
+    private double calculateAbsoluteOrientationToEnemy(Coordinate myLocation, Coordinate enemyLocation){
         double xDelta = enemyLocation.getX() - myLocation.getX();
         double yDelta = enemyLocation.getY() - myLocation.getY();
         double arctangent = Math.atan(yDelta/xDelta) * 180 / Math.PI; 
@@ -47,7 +51,8 @@ public class EnemyTracker {
                 angleToEnemy = 180 + arctangent;
         }
         
-        return angleToEnemy;
+        double backToRads = angleToEnemy * Math.PI / 180;
+        return backToRads;
         
     }
     
