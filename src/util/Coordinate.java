@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * Utility class that stores two double values as a coordinate and manipulates them.
  * 
- * @author Dhrumil
+ * @author Dhrumil Timko
  *
  */
 
@@ -20,7 +20,10 @@ public class Coordinate {
         setX(xCor);
         setY(yCor);
     }
+    
+   
 
+    
     public double getX () {
         return xCoordinate;
     }
@@ -46,5 +49,5 @@ public class Coordinate {
     public String toString () {
         return String.format(FORMATTER, getX(), getY());
     }
-
+   
 }

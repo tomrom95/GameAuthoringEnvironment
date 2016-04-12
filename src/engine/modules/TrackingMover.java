@@ -2,80 +2,74 @@ package engine.modules;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
+import engine.IGame;
 import engine.IPositionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
+import engine.sprite.SpriteType;
 import util.TimeDuration;
 
 
 /**
  * This class builds a module that follows the closest enemy
  * 
- * @author Dhrumil
+ * @author Dhrumil Timko
  *
  */
 public class TrackingMover extends Mover {
 
     private IAttribute mySpeed;
-    private List<ISprite> myEnemyList;
-    private Optional<ISprite> myEnemy;
+    private List<SpriteType> myEnemyList;
     private IPositionable mySprite;
+    private EnemyTracker myTracker;
+    private IGame myGame;
 
     public TrackingMover (double speed,
-                          List<ISprite> enemies,
+                          IGame game,
+                          List<SpriteType> attackGroup,
                           IPositionable sprite) {
         super(sprite);
+        myGame = game;
         mySpeed = new Attribute(speed, AttributeType.SPEED);
-        myEnemyList = enemies;
-        myEnemy = selectEnemy();
+        myEnemyList = attackGroup;
+        myTracker = new EnemyTracker();
+       
 
     }
 
-    private Optional<ISprite> selectEnemy () {
-        return myEnemyList.stream().sorted( (s1, s2) -> Double.compare(getDistance(s1), getDistance(s2))).findFirst();
-
-//        ISprite closestEnemy = null;
-//        double distance = Double.MAX_VALUE;
-//
-//        for (ISprite sprite : myEnemyList) {
-//            double xDiff = sprite.getLocation().getX() - mySprite.getLocation().getX();
-//            double yDiff = sprite.getLocation().getY() - mySprite.getLocation().getY();
-//            Double currDistance = Math.abs(xDiff + yDiff);
-//            if (currDistance < distance) {
-//                distance = currDistance;
-//                closestEnemy = sprite;
-//            }
-//        }
-//
-//        return closestEnemy;
-    }
-
-    private double getDistance (ISprite sprite) {
-        double xDiff = sprite.getLocation().getX() - mySprite.getLocation().getX();
-        double yDiff = sprite.getLocation().getY() - mySprite.getLocation().getY();
-        return Math.abs(xDiff + yDiff);
-    }
-
+    
     @Override
     public void update (TimeDuration duration) {
-        move(duration);
+        double newXVel = myTracker.calculateXVelToClosestEnemy(mySprite.getLocation(), myPotentialTargets(), mySpeed.getValueProperty().get());
+        setXVel(newXVel);
+        
+        double newYVel = myTracker.calculateYVelToClosestEnemy(mySprite.getLocation(), myPotentialTargets(), mySpeed.getValueProperty().get());
+        setYVel(newYVel);
 
+    }
+
+    private List<ISprite> myPotentialTargets () {
+        return myGame.getLevelManager().getCurrentLevel().getSprites().stream()
+                .filter(sprite -> myEnemyList.contains(sprite))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -83,5 +77,7 @@ public class TrackingMover extends Mover {
         // TODO Auto-generated method stub
         return null;
     }
+
+   
 
 }

@@ -55,7 +55,7 @@ public class UserFirer extends Firer {
     }
 
     private void registerKeyPress (Key fire) {
-        System.out.println("FIRE");
+        
         ISprite bullet = myProjectile.create();
         myAdder.add(bullet, bullet.getLocation());
 

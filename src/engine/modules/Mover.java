@@ -51,10 +51,12 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
         return new Coordinate(getLocation().getX() + xChange,
                               getLocation().getY() + yChange);
     }
-
+    
     private double distance (double rate, double time) {
         return rate * time;
     }
+    
+    
 
     protected double getXDiff (double input) {
         return input - getLocation().getX();
@@ -98,5 +100,14 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     protected IAttribute getYVel () {
         return myYVel;
     }
-
+    
+    @Override
+    public void setXVel(double newVel){
+        myXVel.setValue(newVel);
+    }
+    
+    @Override
+    public void setYVel(double newVel){
+        myYVel.setValue(newVel);
+    }
 }
