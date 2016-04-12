@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
 
@@ -28,20 +27,6 @@ public class ProfileSubFormView extends SubFormView{
         initView();
     }
 
-    // Button for binding testing
-//    private Button testButton(){
-//        Button button = new Button("Test Map");
-//        button.setOnAction(e->{System.out.println(this.getData().getValueProperty(myNameKey));
-//                                System.out.println(this.getData().getValueProperty(myImageKey));});
-//        return button;
-//    }
-//    private Button testSave(){
-//        Button button = new Button("Update Map");
-//        button.setOnAction(e->{this.getData().set(myNameKey, "cool");});
-//        return button;
-//    }
-    
-    //
     private void initView () {
         super.setMyEntryViews(myEntryViews);
         myPane.setGridLinesVisible(true);

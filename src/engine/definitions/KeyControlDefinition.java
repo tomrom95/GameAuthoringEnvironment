@@ -30,20 +30,20 @@ public class KeyControlDefinition  {
     public void setRight (String right) {
         myRight = right;
     }
-    
-    public String getUp(){
+
+    public String getUp () {
         return myUp;
     }
-    
-    public String getDown(){
+
+    public String getDown () {
         return myDown;
     }
-    
-    public String getLeft(){
+
+    public String getLeft () {
         return myLeft;
     }
-    
-    public String getRight(){
+
+    public String getRight () {
         return myRight;
     }
 }

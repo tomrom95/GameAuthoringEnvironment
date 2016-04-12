@@ -18,6 +18,6 @@ public class PathMoverDefinition extends MovementDefinition {
 
     @Override
     public IMovementModule create (IPositionable parent) {
-        return new PathMover(getSpeed(), new ArrayList(myList), parent);
+        return new PathMover(getSpeed(), new ArrayList<Coordinate>(myList), parent);
     }
 }

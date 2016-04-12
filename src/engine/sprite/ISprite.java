@@ -51,4 +51,6 @@ public interface ISprite extends Drawable, Updateable, Affectable, IPositionable
 
     SpriteType getType ();
 
+    boolean shouldBeRemoved ();
+
 }

@@ -1,8 +1,6 @@
-package engine.sprite;
+package engine.profile;
 
 import graphics.ImageGraphic;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.StringProperty;
 
 
 /**
@@ -18,20 +16,20 @@ public interface IProfile {
      *
      * @return A SimpleStringProperty containing the name of the sprite
      */
-    StringProperty getNameProperty ();
+    String getName ();
 
     /**
      * Gets the description
      *
      * @return A SimpleStringProperty containing the name of the sprite
      */
-    StringProperty getDescription ();
+    String getDescription ();
 
     /**
      * Get's the sprite display graphic
      *
      * @return The ImageGraphic
      */
-    ObjectProperty<ImageGraphic> getImage ();
+    ImageGraphic getImage ();
 
 }

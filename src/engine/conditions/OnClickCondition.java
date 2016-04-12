@@ -1,12 +1,16 @@
-package engine;
+package engine.conditions;
 
 import java.util.function.Predicate;
+<<<<<<< HEAD:src/engine/OnClickCondition.java
 import engine.definitions.ProfileDefinition;
 import engine.interactionevents.KeyIOEvent;
+=======
+import engine.IEventPackage;
+import engine.IGame;
+>>>>>>> 5c956e7a2a513d379853c626b1bd2924f5d9bd91:src/engine/conditions/OnClickCondition.java
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import util.Coordinate;
-import util.TimeDuration;
 
 
 /**
@@ -17,7 +21,7 @@ import util.TimeDuration;
  *
  */
 
-public class OnClickCondition implements ICondition {
+public class OnClickCondition extends Condition implements ICondition {
 
     private IGame myGame;
     private IEventPackage mySelfPackage;
@@ -36,16 +40,6 @@ public class OnClickCondition implements ICondition {
     }
 
     @Override
-    public void update (TimeDuration duration) {
-        // do nothing
-    }
-
-    @Override
-    public void registerKeyEvent (KeyIOEvent keyEvent) {
-        // do nothing
-    }
-
-    @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
 
         Coordinate coord = new Coordinate(mouseEvent.getX(), mouseEvent.getY());
@@ -54,25 +48,12 @@ public class OnClickCondition implements ICondition {
     }
 
     private void handleAction (ISprite sprite) {
-        mySelfPackage.getMyEffects().forEach(effect -> sprite.applyEffect(effect));
-        myOtherPackage.getMyEffects()
-                .forEach(effect -> myGame.getLevelManager().getCurrentLevel().getSprites()
-                        .stream()
-                        .filter(otherSprite -> myOtherPackage.getTargetedSpriteGroup()
-                                .contains(otherSprite.getType()))
-                        .forEach(otherSprite -> otherSprite.applyEffect(effect)));
-        myGlobalPackage.getMyEffects()
-                .forEach(effect -> myGame.getAttributeManager().applyEffect(effect));
-
-        myGlobalPackage.getMyEffects()
-                .forEach(effect -> myGame.getLevelManager().getCurrentLevel()
-                        .getAttributeManager().applyEffect(effect));
+        applyPackageToSprite(mySelfPackage, sprite);
+        applyOtherAndGlobalEventPackages(myGame, myOtherPackage, myGlobalPackage);
     }
 
     private void filterAndHandleSprites (IGame game, Predicate<ISprite> additionalFilter) {
-        game.getLevelManager().getCurrentLevel().getSprites().stream()
-                .filter(sprite -> mySelfPackage.getTargetedSpriteGroup()
-                        .contains(sprite.getType()))
+        getPackageFilteredSprites(game, mySelfPackage)
                 .filter(additionalFilter)
                 .forEach(sprite -> handleAction(sprite));
 

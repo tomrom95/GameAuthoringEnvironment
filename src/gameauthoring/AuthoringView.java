@@ -32,8 +32,8 @@ public class AuthoringView implements IAuthoringView {
     private SceneTabViewer mySceneTabViewer;
     private ResourceBundle myResources;
     private GridPane myLayout;
-    private static final int WIDTH = 1200;
-    private static final int HEIGHT = 800;
+    public static final int WIDTH = 1200;
+    public static final int HEIGHT = 800;
 
     @Override
     public GameTabViewer getGameTabViewer () {

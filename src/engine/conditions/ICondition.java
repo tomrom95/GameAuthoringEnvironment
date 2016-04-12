@@ -1,4 +1,6 @@
-package engine;
+package engine.conditions;
+
+import engine.IOAffectable;
 
 import engine.definitions.IDefinition;
 

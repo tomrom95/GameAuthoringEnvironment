@@ -19,4 +19,5 @@ public class LocationDefinition  {
     public void setY (int y) {
         myY = y;
     }
+
 }

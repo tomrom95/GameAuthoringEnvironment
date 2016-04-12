@@ -26,6 +26,12 @@ public class IncreaseEffect extends Effect {
             double newValue = incoming.getValueProperty().get() + getAlteringValue();
             incoming.setValue(newValue);
         }
+    }
 
+    @Override
+    public IEffect makeCopy () {
+        return new IncreaseEffect(this.getAttributeType(),
+                                  this.getEffectLengthAttribute().makeCopy(),
+                                  this.getAlteringValue());
     }
 }

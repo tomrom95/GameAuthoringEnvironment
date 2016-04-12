@@ -10,21 +10,26 @@ import engine.sprite.ISprite;
 public class TowerDefinition extends SpriteDefinition {
 
     private List<SpriteDefinition> myTargets;
-    
+
     public void setTargets (List<SpriteDefinition> targets) {
         myTargets = targets;
     }
-    
+
+    public List<SpriteDefinition> getTargets () {
+        return myTargets;
+    }
+
     @Override
     public ISprite create () {
         ISprite sprite = super.create();
         addModule(getFirer());
-        sprite.initialize(new StaticMover(sprite), createGraphicModule(), createModules(), createAttributes(),
+        sprite.initialize(new StaticMover(sprite), createGraphicModule(), createModules(),
+                          createAttributes(),
                           createCoordinate());
         return sprite;
     }
 
     private TrackingFirerDefinition getFirer () {
-       return new TrackingFirerDefinition(myTargets);
+        return new TrackingFirerDefinition(myTargets);
     }
 }

@@ -1,14 +1,27 @@
 package gameauthoring;
 
 import gameauthoring.ITabViewer;
+<<<<<<< HEAD
+=======
+import gameauthoring.characters.AttributeSubFormController;
+import gameauthoring.characters.CreationController;
+import gameauthoring.characters.CreationControllerAttribute;
+>>>>>>> 5c956e7a2a513d379853c626b1bd2924f5d9bd91
 import gameauthoring.characters.CreationControllerFactory;
 import gameauthoring.characters.CreationControllerSprite;
 import gameauthoring.characters.IObjectCreationView;
 import gameauthoring.characters.ISubFormControllerSprite;
+<<<<<<< HEAD
+=======
+import gameauthoring.characters.MovementSubFormController;
+import gameauthoring.characters.ObjectCreationView;
+import gameauthoring.characters.ProfileSubFormController;
+>>>>>>> 5c956e7a2a513d379853c626b1bd2924f5d9bd91
 import gameauthoring.characters.SubFormControllerFactory;
 import gameauthoring.object_creation_tab.InteractionEditorView;
 import gameauthoring.object_creation_tab.WeaponEditorView;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import engine.ICondition;
 import javafx.scene.Node;
@@ -28,6 +41,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private TabPane myTabPane;
 
+<<<<<<< HEAD
     private List<CreationControllerSprite> mySpriteCCs;
     private List<IObjectCreationView<?>> myCreationViews;
     private CreationControllerFactory ccFactory;
@@ -67,19 +81,42 @@ public class ObjectCreationTabViewer implements ITabViewer {
     private WeaponEditorView myWeaponView;
     private ListDisplay<ICondition> myConditionView;
 
+=======
+    private List<String> myTitles = new ArrayList<String>(Arrays.asList("Enemies", "Defenders", "Attributes"));
+    private List<ISubFormControllerSprite> myEnemySFC =
+            new ArrayList<ISubFormControllerSprite>(Arrays.asList(new ProfileSubFormController()));
+    private List<ISubFormControllerSprite> myDefenderSFC =
+            new ArrayList<ISubFormControllerSprite>(Arrays.asList(new ProfileSubFormController()));
+    private List<ISubFormControllerAttribute> myAttributeSFC =
+            new ArrayList<ISubFormControllerAttribute>(Arrays
+                    .asList(new AttributeSubFormController()));
+
+    private List<CreationController<?>> myCCs =
+            new ArrayList<CreationController<?>>(Arrays
+                    .asList(new CreationControllerSprite(myEnemySFC),
+                            new CreationControllerSprite(myDefenderSFC),
+                            new CreationControllerAttribute(myAttributeSFC)));
+    private List<IObjectCreationView<?>> myCVs;
+
+    
+>>>>>>> 5c956e7a2a513d379853c626b1bd2924f5d9bd91
     public ObjectCreationTabViewer () {
         init();
-        myTabPane = createAllSubTabs();
     }
 
-    private TabPane createAllSubTabs () {
-        TabPane tabpane = new TabPane();
-        for (IObjectCreationView<?> creationView : myCreationViews) {
-            Tab tab = new Tab();
-            tab.setContent(creationView.draw());
+    private void init () {      
+        myTabPane = new TabPane();
+        generateCreationViewList();
+        generateAllSubTabs();
+    }
 
-            tabpane.getTabs().add(tab);
+
+    private void generateCreationViewList () {
+        myCVs = new ArrayList<IObjectCreationView<?>>();
+        for(CreationController<?> cc:myCCs){          
+            myCVs.add(cc.getMyObjectCreationView());
         }
+<<<<<<< HEAD
         /*
          * myInteractionView = new InteractionEditorView(createSubTab("Interactions"));
          * myWeaponView = new WeaponEditorView(createSubTab("Weapons"));
@@ -129,6 +166,16 @@ public class ObjectCreationTabViewer implements ITabViewer {
          * myWeaponView.getTab());
          */
         return tabpane;
+=======
+    }
+
+    private void generateAllSubTabs () {  
+        for (int i=0;i<myCCs.size();i++) {
+            Tab tab = new Tab(myTitles.get(i));
+            tab.setContent(myCVs.get(i).draw());
+            myTabPane.getTabs().add(tab);
+        }
+>>>>>>> 5c956e7a2a513d379853c626b1bd2924f5d9bd91
     }
 
     @Override

@@ -53,7 +53,7 @@ public class ProfileCellView<E extends ProfileDefinition> extends ListCell<E> {
     }
 
     private String getStringOrDefault (String name, String defaultName) {
-        return (name == null) ? defaultName : name;
+        return (name == "") ? defaultName : name;
     }
 
     private Node createImageProfile (ProfileDefinition profile) {

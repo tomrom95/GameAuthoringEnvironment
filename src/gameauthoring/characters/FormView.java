@@ -17,7 +17,8 @@ public class FormView implements IFormView {
     private GridPane myFormView = new GridPane();
     private Button mySaveButton = new Button("Save");
     private Button myDeleteButton = new Button("Delete");
-    private List<Node> myButtons = new ArrayList<Node>(Arrays.asList(mySaveButton,myDeleteButton));
+    private Button myNewButton = new Button("New");
+    private List<Node> myButtons = new ArrayList<Node>(Arrays.asList(mySaveButton,myDeleteButton, myNewButton));
     private List<ISubFormView> mySubFormViews;
     
 
@@ -57,6 +58,14 @@ public class FormView implements IFormView {
         myDeleteButton.setOnAction(e->action.accept(null)); //Not sure what the input should be here
     }
 
+    /**
+     * Define new action for button
+     */
+    @Override
+    public void setNewAction(Consumer<?> action){
+        myNewButton.setOnAction(e->action.accept(null));
+    }
+    
     @Override
     public List<ISubFormView> getSubFormViews () {
         return mySubFormViews;
