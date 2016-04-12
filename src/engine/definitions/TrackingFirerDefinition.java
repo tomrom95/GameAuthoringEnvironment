@@ -1,37 +1,46 @@
 package engine.definitions;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import engine.IGame;
 import engine.modules.TrackingFirer;
-import engine.sprite.ISprite;
+import engine.sprite.SpriteType;
 
 
 public class TrackingFirerDefinition extends ModuleDefinition {
-    
-    
-    private List<SpriteDefinition> myTargets;
-    private double waitTime;
 
-    public TrackingFirerDefinition (List<SpriteDefinition> targets) {
-        myTargets = targets;
-    }
+    private List<SpriteType> myTargets;
+    private double myWaitTime;
+    private IGame myGame;
 
-    public void setTargets (List<SpriteDefinition> targets) {
+    public void setTargets (List<SpriteType> targets) {
         myTargets = targets;
-    }
-    
-    public void setWaitTime (double wait){
-        waitTime = wait;
     }
 
     @Override
     public TrackingFirer create () {
-        List<ISprite> targets = myTargets.stream()
-                .map(spriteDef -> spriteDef.create())
-                .collect(Collectors.toList());
-        return new TrackingFirer(targets, waitTime);
+        return new TrackingFirer(myTargets, myGame, myWaitTime);
 
     }
 
- 
+    public List<SpriteType> getTargets () {
+        return myTargets;
+    }
+
+    public void setWaitTime (double time) {
+        myWaitTime = time;
+    }
+
+    public double getWaitTime () {
+        return myWaitTime;
+    }
+
+    public void setGame (IGame game) {
+        myGame = game;
+    }
+
+    public IGame getGame () {
+        return myGame;
+
+    }
+
 }
