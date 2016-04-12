@@ -1,6 +1,7 @@
 package gameauthoring;
 
-import engine.definitions.ProfileDefinition;
+import engine.profile.IProfilable;
+import engine.profile.IProfile;
 import engine.rendering.GraphicFactory;
 import engine.rendering.ScaleFactory;
 import javafx.geometry.Pos;
@@ -11,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 
-public class ProfileCellView<E extends ProfileDefinition> extends ListCell<E> {
+public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     private static final double PIC_SIZE = 30;
     private static final String DEFAULT_NAME = "<No Name>";
@@ -32,14 +33,13 @@ public class ProfileCellView<E extends ProfileDefinition> extends ListCell<E> {
         HBox container = new HBox(10);
         container.setAlignment(Pos.CENTER_LEFT);
         
-        container.getChildren().add(createImageProfile(profile));
-        container.getChildren().add(createTextProfile(profile));
+        container.getChildren().add(createImageProfile(profile.getProfile()));
+        container.getChildren().add(createTextProfile(profile.getProfile()));
         return container;
     }
 
-    private Node createTextProfile (ProfileDefinition profile) {
+    private Node createTextProfile (IProfile profile) {
         VBox container = new VBox();
-
         Text name = new Text(getStringOrDefault(profile.getName(), DEFAULT_NAME));
         Text description = new Text(getStringOrDefault(profile.getDescription(),
                                                        DEFAULT_DESCRIPTION));
@@ -51,9 +51,9 @@ public class ProfileCellView<E extends ProfileDefinition> extends ListCell<E> {
         return (name == null) ? defaultName : name;
     }
 
-    private Node createImageProfile (ProfileDefinition profile) {
+    private Node createImageProfile (IProfile profile) {
         GraphicFactory graphics = new ScaleFactory(PIC_SIZE, PIC_SIZE);
-        Node node = new HBox(5);//myProfile.getGraphic().getVisualRepresentation(graphics);
+        Node node = profile.getImage().getVisualRepresentation(graphics);
         return node;
     }
     
