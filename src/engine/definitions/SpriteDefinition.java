@@ -10,6 +10,7 @@ import engine.modules.IModule;
 import engine.modules.IMovementModule;
 import engine.profile.IProfilable;
 import engine.profile.IProfile;
+import engine.profile.Profile;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
@@ -32,7 +33,7 @@ public class SpriteDefinition implements IProfilable {
         myModuleDefinitions = new ArrayList<ModuleDefinition>();
         myAttributes = new ArrayList<AttributeDefinition>();
         myLocation = new LocationDefinition();
-
+        myProfile = new Profile();
     }
 
     public ISprite create () {

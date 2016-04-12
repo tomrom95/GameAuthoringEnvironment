@@ -12,11 +12,7 @@ import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.MovementSubFormController;
 import gameauthoring.creation.subforms.ProfileSubFormController;
 import gameauthoring.creation.subforms.SubFormControllerFactory;
-import gameauthoring.object_creation_tab.AttributeEditorView;
-import gameauthoring.object_creation_tab.DefenderEditorView;
-import gameauthoring.object_creation_tab.EnemyEditorView;
-import gameauthoring.object_creation_tab.InteractionEditorView;
-import gameauthoring.object_creation_tab.WeaponEditorView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

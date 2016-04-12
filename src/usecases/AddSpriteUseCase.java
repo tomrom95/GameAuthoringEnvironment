@@ -7,7 +7,7 @@ import engine.sprite.ISprite;
 import engine.sprite.SpriteType;
 import gameauthoring.FormData;
 import gameauthoring.ISpriteEditorController;
-import gameauthoring.SpriteListHolder;
+import gameauthoring.DefinitionCollection;
 import gameauthoring.SubFormController;
 import gameauthoring.SubFormView;
 import javafx.collections.ObservableList;
@@ -64,7 +64,7 @@ public class AddSpriteUseCase {
     public class SpriteEditorController implements ISpriteEditorController {
 
         private List<ISubFormController> mySubFormControllers;
-        private SpriteListHolder mySprites;
+        private DefinitionCollection mySprites;
 
         private SpriteEditorController () {
             mySubFormControllers = new ArrayList<ISubFormController>();
@@ -72,7 +72,7 @@ public class AddSpriteUseCase {
         }
 
         @Override
-        public void setSprites (SpriteListHolder sprites) {
+        public void setSprites (DefinitionCollection sprites) {
             // TODO Auto-generated method stub
 
         }
