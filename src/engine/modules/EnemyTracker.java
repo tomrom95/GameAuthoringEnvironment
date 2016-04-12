@@ -5,8 +5,22 @@ import java.util.List;
 import engine.sprite.ISprite;
 import util.Coordinate;
 
+/**
+ * This class serves to locate and alter the orientation of objects based on the proximity of other sprites.
+ * <p>
+ * This class uses a comparator to query available sprites on the level and located the nearest one.
+ * @author Timko 
+ *
+ */
+
 public class EnemyTracker {
 
+    /**
+     * Locate the distance of the closest sprite using a comparator based on manhattan distance
+     * @param enemies sprites available on the level
+     * @param myLocation Coordinate of the sprite
+     * @return
+     */
     private ISprite getClosestEnemy(List<ISprite> enemies, Coordinate myLocation){
         final Comparator<ISprite> closer = (e1,e2) -> Double.compare(calculateDistance(myLocation,e1.getLocation()),
                                                                      calculateDistance(myLocation, e2.getLocation()));
@@ -56,20 +70,8 @@ public class EnemyTracker {
         
     }
     
-    private int getQuadrant(boolean right, boolean above){
-        if(right){
-            if(above){
-                return 1;
-            } else{
-                return 4;
-            }
-        } else{
-            if(above){
-                return 2;
-            } else{
-                return 3;
-            }
-        }
-        
+    private int getQuadrant(boolean right, boolean above){        
+        return right? (above? 1: 4) : (above? 2: 3);
+
     }
 }
