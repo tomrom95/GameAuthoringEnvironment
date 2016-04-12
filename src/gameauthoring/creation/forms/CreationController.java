@@ -13,16 +13,14 @@ import javafx.collections.ObservableList;
 
 
 /**
- * This class is the high level controller for a creation/list view
+ * This class is the high level controller for a creation form/list view
  * 
  * TODO: not sure if we need to give it the observable list. We could connect
  * this elsewhere
  * 
- * @author Jeremy Schreck
- * @author Joe Lilien
+ * @author Jeremy Schreck, Joe Lilien
  *
- * @param <T> The type of object to be created and stored -- ex: Sprite, Interaction,
- *        Attribute
+ * @param <T> The type of object to be created and stored -- ex: Sprite, Attribute, Group
  */
 public abstract class CreationController<T extends IProfilable> {
     private IObjectCreationView<T> myView;
@@ -95,8 +93,7 @@ public abstract class CreationController<T extends IProfilable> {
      */
     private void deleteItem () {
         getMyItems().remove(getMyCurrentItem());
-        
-        showAndEdit(null);
+        //showAndEdit(null);
     }
 
     /**
@@ -127,7 +124,7 @@ public abstract class CreationController<T extends IProfilable> {
 //        setMyCurrentItem(item);
         System.out.println(item);
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
-            subFormController.populateViewsWithData(item);
+            subFormController.populateViewsWithData(getMyCurrentItem());
         }
 
     }

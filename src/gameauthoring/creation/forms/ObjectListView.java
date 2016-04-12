@@ -28,7 +28,7 @@ public class ObjectListView<E extends IProfilable> implements IObjectListView<E>
         myItems = items;
         myListView = new ListView<E>();
         myListView.setItems(getMyItems());
-        
+
     }
 
     @Override
@@ -76,13 +76,7 @@ public class ObjectListView<E extends IProfilable> implements IObjectListView<E>
     @Override
     public void setSelectedItem (E item) {
         this.myListView.getSelectionModel().select(item);
-        
-    }
 
-    @Override
-    public void setPreviousItem (E item) {
-        //this.myListView.getSelectionModel().g
-        
     }
 
 }

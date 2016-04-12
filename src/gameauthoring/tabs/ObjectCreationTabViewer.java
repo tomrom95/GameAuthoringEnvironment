@@ -60,6 +60,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     public ObjectCreationTabViewer (Game game) {
         myAuthorshipData = game.getAuthorshipData();
+        init();
     }
 
     private void init () {      

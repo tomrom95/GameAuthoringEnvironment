@@ -51,6 +51,7 @@ public class SceneTabViewer implements ITabViewer {
         myLevelManager = game.getLevelManager();
         myConditionManager = game.getConditionManager();
         mySprites = game.getAuthorshipData().getMyCreatedSprites();
+        init();
     }
 
     private void init () {

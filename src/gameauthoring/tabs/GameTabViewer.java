@@ -44,7 +44,7 @@ public class GameTabViewer implements ITabViewer {
     }
     
     public GameTabViewer (Game game) {
-        // TODO Auto-generated constructor stub
+        init();
     }
 
     public void init(){
