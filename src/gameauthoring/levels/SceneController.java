@@ -7,12 +7,18 @@ import graphics.ImageGraphic;
 import javafx.stage.FileChooser;
 import util.Coordinate;
 
-
+/**
+ * Controller for the scene actions. Can do actions like
+ * swapping the background and adding a sprite to the screen.
+ * This is also used by the game player to add sprites to the screen 
+ * @author Tommy
+ *
+ */
 public class SceneController {
 
     private ILevel myLevel;
     
-    public SceneController(ILevel level) {//, LevelRenderer renderer) {
+    public SceneController(ILevel level) {
         myLevel = level;
     }
     
@@ -25,6 +31,7 @@ public class SceneController {
     
     public void setBackground(String imageURL) {
         ImageGraphic background = new ImageGraphic(0, 0, imageURL);
+        System.out.println("Here");
         myLevel.setBackgroundImage(background);
     }
 

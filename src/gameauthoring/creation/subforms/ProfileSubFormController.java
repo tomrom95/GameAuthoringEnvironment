@@ -33,10 +33,8 @@ public class ProfileSubFormController implements ISubFormControllerSprite {
         String name = myFormData.getValueProperty(myView.getMyNameKey()).get();
         String desc = myFormData.getValueProperty(myView.getMyDescriptionKey()).get();
         String url = myFormData.getValueProperty(myView.getMyImageKey()).get();
-        System.out.println("url is:");
-        System.out.println(url);
+
         item.setProfile(new Profile(name, desc, url));
-        System.out.println(item.getProfile().getImageURL());
 
     }
 
@@ -46,6 +44,7 @@ public class ProfileSubFormController implements ISubFormControllerSprite {
         myFormData.set(myView.getMyDescriptionKey(), item.getProfile().getDescription());
         System.out.println(item.getProfile().getImageURL());
         myFormData.set(myView.getMyImageKey(), item.getProfile().getImageURL());
+
     }
 
     @Override

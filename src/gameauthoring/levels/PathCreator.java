@@ -9,11 +9,25 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import util.Coordinate;
 
+
+/**
+ * Controller to help create a path on the screen. Uses the JavaFX
+ * path object. Basically works like how you define a polygon in
+ * a simple paint application.
+ * @author Tommy
+ *
+ */
 public class PathCreator {
     
     private boolean makingPath = false;
     private Path myPath;
 
+    /**
+     * Begin a new path with a start point and a pane that the
+     * mouse moves around in
+     * @param startPoint
+     * @param container
+     */
     public void newPath (Coordinate startPoint, Pane container) {
         if(makingPath) return;
         container.getChildren().remove(myPath);
@@ -25,6 +39,10 @@ public class PathCreator {
         addToPath(startPoint, container);
     }
     
+    /**
+     * Ends the current path if one is being created
+     * @param container
+     */
     public void endPath (Pane container) {
         if (!makingPath) return;
         
@@ -36,16 +54,32 @@ public class PathCreator {
         }
     }
     
+    /**
+     * Has the line follow the mouse whereever it goes
+     * @param event
+     * @param line
+     */
     private void followMouse (MouseEvent event, LineTo line) {
         line.setX(event.getX());
         line.setY(event.getY());
     }
     
+    /**
+     * Adds new point to path from external mouse event
+     * @param e
+     * @param container
+     */
     public void addToPath (MouseEvent e, Pane container) {
         Coordinate point = new Coordinate(e.getX(), e.getY());
         addToPath(point, container);
     }
 
+    /**
+     * Overloads previous class to add a coordinate to the current
+     * path
+     * @param point
+     * @param container
+     */
     public void addToPath (Coordinate point, Pane container) {
         if(!makingPath) return;
         
@@ -56,6 +90,10 @@ public class PathCreator {
         container.setOnMouseMoved(e -> followMouse(e, line));
     }
     
+    /**
+     * Gets the path points of the currently created path
+     * @return
+     */
     public List<Coordinate> getPathPoints(){
         if (myPath == null) {
             return null;

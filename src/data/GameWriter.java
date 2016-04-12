@@ -8,7 +8,10 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.Game;
 
-
+/**
+ * This class takes in a Game and converts it into an XML file for the user to store 
+ *
+ */
 
 public class GameWriter implements IGameWriter {
 
