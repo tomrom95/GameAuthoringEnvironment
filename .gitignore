@@ -1,5 +1,5 @@
 my_stuff/
-secret.properties
+src/facebook_util/secret.properties
 # IDEA Ignores #
 ################
 *.iml

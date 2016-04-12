@@ -1,7 +1,6 @@
-package facebook_util;
+package facebook_util.test;
 
 import java.awt.Dimension;
-import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
