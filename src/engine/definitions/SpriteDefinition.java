@@ -39,7 +39,7 @@ public class SpriteDefinition implements IProfilable {
 
         IMovementModule mover = myMovementDefinition.create(sprite);
         IGraphicModule graphicModule = createGraphicModule();
-        sprite.initialize(mover, graphicModule, createModules(), createAttributes(),
+        sprite.initialize(mover, graphicModule, createModules(sprite), createAttributes(),
                           createCoordinate());
         return sprite;
     }
@@ -52,9 +52,9 @@ public class SpriteDefinition implements IProfilable {
         return myLocation.create();
     }
 
-    protected List<IModule> createModules () {
+    protected List<IModule> createModules (ISprite sprite) {
         return myModuleDefinitions.stream()
-                .map(modDef -> modDef.create())
+                .map(modDef -> modDef.create(sprite))
                 .collect(Collectors.toList());
     }
 
