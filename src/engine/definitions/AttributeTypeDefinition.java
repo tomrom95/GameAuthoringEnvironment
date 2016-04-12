@@ -1,6 +1,7 @@
 package engine.definitions;
 
 import engine.AttributeType;
+import engine.profile.IProfile;
 
 
 /**
@@ -14,6 +15,7 @@ public class AttributeTypeDefinition implements IDefinition {
 
     // private AttributeType myAttributeType;
     private String myAttyType;
+    private IProfile myProfile;
 
     public AttributeType create () {
         return new AttributeType(myAttyType);
@@ -22,16 +24,10 @@ public class AttributeTypeDefinition implements IDefinition {
     public void setAttributeType (String toSet) {
         myAttyType = toSet;
     }
-    
-    @Override
-    public ProfileDefinition getProfileDefinition () {
-        // TODO Auto-generated method stub
-        return null;
+
+    public String getAttributeType () {
+        return myAttyType;
     }
 
-    @Override
-    public void setProfileDefinition (ProfileDefinition profileDef) {
-        // TODO Auto-generated method stub
-        
-    }
+
 }

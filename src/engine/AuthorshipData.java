@@ -1,25 +1,41 @@
 package engine;
 
+import java.util.List;
+import engine.definitions.AttributeDefinition;
+import engine.definitions.GroupDefinition;
 import engine.definitions.SpriteDefinition;
+import gameauthoring.DefinitionCollection;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 
 /**
  * Class for holding the structures the user creates during authorship that want to be saved
  *
- * @author RyanStPierre
+ * @author RyanStPierre, Jeremy Schreck, Joe Lilien
  *
  */
 public class AuthorshipData {
 
-    ObservableList<SpriteDefinition> myCreatedSprites;
+    List<DefinitionCollection<SpriteDefinition>> myCreatedSprites;
+    List<DefinitionCollection<AttributeDefinition>> myCreatedAttributes;
+    List<DefinitionCollection<GroupDefinition>> myCreatedGroups;
 
     public AuthorshipData () {
         myCreatedSprites = FXCollections.observableArrayList();
+        myCreatedAttributes = FXCollections.observableArrayList();
+        myCreatedGroups = FXCollections.observableArrayList();
     }
 
-    public ObservableList<SpriteDefinition> getCreatedSprites () {
+    public List<DefinitionCollection<SpriteDefinition>> getMyCreatedSprites () {
         return myCreatedSprites;
     }
+
+    public List<DefinitionCollection<AttributeDefinition>> getMyCreatedAttributes () {
+        return myCreatedAttributes;
+    }
+
+    public List<DefinitionCollection<GroupDefinition>> getMyCreatedGroups () {
+        return myCreatedGroups;
+    }
+
 }

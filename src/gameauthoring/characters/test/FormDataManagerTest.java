@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
-import gameauthoring.characters.FormData;
-import gameauthoring.characters.FormDataManager;
+import gameauthoring.creation.entryviews.FormData;
+import gameauthoring.creation.entryviews.FormDataManager;
 
 public class FormDataManagerTest {
     

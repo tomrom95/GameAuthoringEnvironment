@@ -14,7 +14,8 @@ public abstract class MovementDefinition implements IDefinition {
         mySpeed = speed;
     }
 
-    protected double getSpeed () {
+    public double getSpeed () {
         return mySpeed;
     }
+
 }

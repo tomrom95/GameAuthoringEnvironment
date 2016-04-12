@@ -1,9 +1,9 @@
 package usecases;
 
-import gameauthoring.AuthoringView;
 import gameauthoring.CharTabViewer;
 import gameauthoring.LevelTabViewer;
 import gameauthoring.TabViewer;
+import gameauthoring.tabs.AuthoringView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 

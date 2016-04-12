@@ -7,7 +7,9 @@ import engine.AttributeManager;
 import engine.IAttribute;
 import engine.IResource;
 import engine.IStatus;
+import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
+import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.modules.IGraphicModule;
@@ -30,7 +32,7 @@ import util.TimeDuration;
  * @author Jonathan Im
  *
  */
-public class Sprite implements ISprite {
+public class Sprite extends DefaultAffectable implements ISprite {
 
     private SpriteType myType;
     private IMovementModule myMover;
@@ -145,5 +147,17 @@ public class Sprite implements ISprite {
     protected void setMovementModule (IMovementModule mover) {
         myMover = mover;
     }
+
+    @Override
+    public void registerEvent (GameEvent event) {
+       applyToAffectable(a -> a.registerEvent(event));
+    }
+
+    @Override
+    public boolean shouldBeRemoved () {
+        return myStatus.shouldBeRemoved();
+    }
+    
+    
 
 }

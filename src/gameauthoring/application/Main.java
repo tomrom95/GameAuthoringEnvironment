@@ -1,6 +1,6 @@
 package gameauthoring.application;
 
-import gameauthoring.AuthoringView;
+import gameauthoring.tabs.AuthoringView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

@@ -47,7 +47,7 @@ public class SpriteCellView extends ListCell<SpriteDefinition> {
     }
 
     private String getStringOrDefault (String name, String defaultName) {
-        return (name == null) ? defaultName : name;
+        return (name == "") ? defaultName : name;
     }
 
     private Node createImageProfile () {

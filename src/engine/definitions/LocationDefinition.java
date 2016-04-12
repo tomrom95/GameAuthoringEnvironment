@@ -19,4 +19,5 @@ public class LocationDefinition implements IDefinition {
     public void setY (int y) {
         myY = y;
     }
+
 }

@@ -4,15 +4,19 @@ import engine.definitions.SpriteDefinition;
 import engine.modules.GraphicModule;
 import engine.modules.IGraphicModule;
 import util.RGBColor;
+import java.util.List;
 import engine.ConditionManager;
 import engine.Game;
+import engine.IConditionManager;
 import engine.ILevel;
+import engine.ILevelManager;
 import engine.sprite.ISprite;
 import engine.sprite.SpriteType;
 import engine.Level;
 import engine.LevelManager;
 import engine.sprite.Sprite;
 import gameauthoring.levels.LevelEditorView;
+import gameauthoring.tabs.ITabViewer;
 import graphics.Block;
 import graphics.IGraphic;
 import graphics.ImageGraphic;
@@ -35,11 +39,18 @@ import javafx.scene.control.TabPane;
 public class SceneTabViewer implements ITabViewer {
 
     private TabPane myLevelTabs;
-    private LevelManager myLevelManager;
-    private ConditionManager myConditionManager;
+    private ILevelManager myLevelManager;
+    private IConditionManager myConditionManager;
+    private List<DefinitionCollection<SpriteDefinition>> mySprites;
 
     public SceneTabViewer () {
         init();
+    }
+
+    public SceneTabViewer (Game game) {
+        myLevelManager = game.getLevelManager();
+        myConditionManager = game.getConditionManager();
+        mySprites = game.getAuthorshipData().getMyCreatedSprites();
     }
 
     private void init () {
@@ -47,6 +58,7 @@ public class SceneTabViewer implements ITabViewer {
         myLevelManager = new LevelManager(startingLevel.get());
         myConditionManager = new ConditionManager();
         Game game = new Game(myLevelManager, null, myConditionManager);
+        
         makeSomeSprites(game);
         LevelEditorView view = new LevelEditorView(game, startingLevel.get());
 
