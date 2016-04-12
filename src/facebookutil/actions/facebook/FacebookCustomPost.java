@@ -1,6 +1,6 @@
-package facebook_util.actions.facebook;
+package facebookutil.actions.facebook;
 
-import facebook_util.actions.CustomPost;
+import facebookutil.actions.CustomPost;
 
 public class FacebookCustomPost implements CustomPost{
 

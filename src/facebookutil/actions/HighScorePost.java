@@ -1,6 +1,6 @@
-package facebook_util.actions;
+package facebookutil.actions;
 
-import facebook_util.IUser;
+import facebookutil.IUser;
 
 public interface HighScorePost extends CustomPost{
 

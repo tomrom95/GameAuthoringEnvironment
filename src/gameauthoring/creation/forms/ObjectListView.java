@@ -2,6 +2,7 @@ package gameauthoring.creation.forms;
 
 import java.util.function.Consumer;
 import engine.profile.IProfilable;
+import gameauthoring.ProfileCellView;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
@@ -22,7 +23,7 @@ public class ObjectListView<E extends IProfilable> implements IObjectListView<E>
         myItems = items;
         myListView = new ListView<E>();
         myListView.setItems(getMyItems());
-
+        myListView.setCellFactory( c -> new ProfileCellView<E> () );
     }
 
     @Override
