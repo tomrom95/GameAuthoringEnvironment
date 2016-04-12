@@ -4,8 +4,8 @@ import engine.ILevel;
 import engine.rendering.AuthoringRenderer;
 import engine.rendering.UnscaledFactory;
 import engine.sprite.ISprite;
-import gameauthoring.Glyph;
-import gameauthoring.UIFactory;
+import gameauthoring.util.Glyph;
+import gameauthoring.util.UIFactory;
 import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.image.Image;
@@ -16,7 +16,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 
-
+/**
+ * Authoring environment sprite that allows for moving around the screen and includes
+ * a context menu for deletion and path creation
+ * @author Tommy
+ *
+ */
 public class OnScreenSprite implements Draggable, Glyph {
     private static final String MOVE_STRING = "Moving";
 
@@ -67,6 +72,10 @@ public class OnScreenSprite implements Draggable, Glyph {
         levelView.render();
     }
 
+    /**
+     * Sets the sprite action menu on right click
+     * @param node
+     */
     private void createRightClickMenu (Node node) {
         node.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.SECONDARY) {
@@ -77,6 +86,12 @@ public class OnScreenSprite implements Draggable, Glyph {
         });
     }
 
+    /**
+     * Helper to get the context menu. Can be overridden for various
+     * context menus
+     * @param container
+     * @return
+     */
     protected ContextMenu spriteActionsMenu (Pane container) {
         SpriteContextMenu menu = new SpriteContextMenu(levelView, myController, mySprite);
         return menu.createActionMenu();

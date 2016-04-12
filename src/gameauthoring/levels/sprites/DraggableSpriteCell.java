@@ -1,11 +1,11 @@
 package gameauthoring.levels.sprites;
 
 import engine.definitions.SpriteDefinition;
-import engine.rendering.AuthoringRenderer;
+import engine.rendering.LevelRenderer;
 import engine.rendering.UnscaledFactory;
 import gameauthoring.ProfileCellView;
-import gameauthoring.UIFactory;
 import gameauthoring.levels.SceneController;
+import gameauthoring.util.UIFactory;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
@@ -13,13 +13,20 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 
+/**
+ * ListView ListCell that allows for dragging of sprites to the screen. Is used by both
+ * the authoring environment and the engine for dragging new sprites onto the screen. Eventually
+ * this will be extended for the engine to incorporate costs
+ * @author Tommy
+ *
+ */
 public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> implements Draggable{
     private static final String DRAG_STRING = "Sprite";
 
-    private AuthoringRenderer myTarget;
+    private LevelRenderer myTarget;
     private SceneController myController;
     
-    public DraggableSpriteCell (AuthoringRenderer target, SceneController controller) {
+    public DraggableSpriteCell (LevelRenderer target, SceneController controller) {
         myTarget = target;
         myController = controller;
     }
@@ -42,9 +49,13 @@ public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> imple
         myTarget.getPane().setOnDragDropped(event -> setOnDragDropped(event));
     }
     
+    /**
+     * Helper to get a the correct image from the sprite
+     * @return
+     */
     private Image getSpriteImage(){
         Node spriteNode = getProfile().getGraphic().getVisualRepresentation(new UnscaledFactory());
-        return (new UIFactory()).getImageFromNode(spriteNode);
+        return new UIFactory().getImageFromNode(spriteNode);
     }
 
     @Override

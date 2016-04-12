@@ -56,12 +56,13 @@ public class TestGame extends Application {
     }
 
     private ISprite createFollowSprite () {
-        ISprite sprite = new Sprite();
+        ISprite sprite = new Sprite(null);
         List<Coordinate> list = getListOfCoordinates();
         ObjectProperty<IMovementModule> mover =
                 new SimpleObjectProperty<>(new PathMover(.10, list, sprite));
         ObjectProperty<IGraphicModule> g =
                 new SimpleObjectProperty<>(new GraphicModule(new Block(20, 20, RGBColor.BLACK)));
+        sprite.getMovementStrategy();
         sprite.getMovementStrategyProperty().set(mover.get());
         sprite.getDrawer().set(g.get());
         return sprite;

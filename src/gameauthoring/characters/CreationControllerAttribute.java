@@ -11,7 +11,7 @@ public class CreationControllerAttribute extends CreationController<AttributeDef
 
     @Override
     protected AttributeDefinition createBlankItem () {
-        return new AttributeDefinition(0, 0, false);
+        return new AttributeDefinition();
     }
 
 }

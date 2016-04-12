@@ -1,6 +1,7 @@
 package gameauthoring;
 
-import engine.definitions.ProfileDefinition;
+import engine.profile.IProfilable;
+import engine.profile.IProfile;
 import engine.rendering.GraphicFactory;
 import engine.rendering.ScaleFactory;
 import javafx.geometry.Pos;
@@ -10,13 +11,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+
 /**
+ * Class to help visualize a profilable definition in a list view.
+ * Anything that implements IProfilable can use this to create its
+ * cells in a user friendly way.
  * 
- * @author Jin An
+ * @author Tommy
  *
  * @param <E>
  */
-public class ProfileCellView<E extends ProfileDefinition> extends ListCell<E> {
+public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     private static final double PIC_SIZE = 30;
     private static final String DEFAULT_NAME = "<No Name>";
@@ -36,13 +41,13 @@ public class ProfileCellView<E extends ProfileDefinition> extends ListCell<E> {
     protected Node createSpriteCell (E profile) {
         HBox container = new HBox(10);
         container.setAlignment(Pos.CENTER_LEFT);
-        
-        container.getChildren().add(createImageProfile(profile));
-        container.getChildren().add(createTextProfile(profile));
+
+        container.getChildren().add(createImageProfile(profile.getProfile()));
+        container.getChildren().add(createTextProfile(profile.getProfile()));
         return container;
     }
 
-    private Node createTextProfile (ProfileDefinition profile) {
+    private Node createTextProfile (IProfile profile) {
         VBox container = new VBox();
 
         Text name = new Text(getStringOrDefault(profile.getName(), DEFAULT_NAME));
@@ -56,12 +61,13 @@ public class ProfileCellView<E extends ProfileDefinition> extends ListCell<E> {
         return (name == "") ? defaultName : name;
     }
 
-    private Node createImageProfile (ProfileDefinition profile) {
+    private Node createImageProfile (IProfile profile) {
         GraphicFactory graphics = new ScaleFactory(PIC_SIZE, PIC_SIZE);
-        Node node = new HBox(5);//myProfile.getGraphic().getVisualRepresentation(graphics);
+
+        Node node = profile.getImage().getVisualRepresentation(graphics);
         return node;
     }
-    
+
     protected E getProfile () {
         return myProfile;
     }

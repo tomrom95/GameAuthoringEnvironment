@@ -1,12 +1,15 @@
 package gameplayer;
 
+import engine.IGame;
 import engine.IGamePlayable;
 import engine.IOInterpeter;
 import engine.rendering.IRenderer;
 import engine.rendering.InGameRenderer;
+import engine.rendering.LevelRenderer;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import util.TimeDuration;
@@ -22,16 +25,23 @@ public class GameEngine implements IGameEngine {
 
     private static final int FPS = 60;
 
-    private IGamePlayable myGame;
-    private IRenderer myRenderer;
+    private IGame myGame;
+    private LevelRenderer myRenderer;
     private IOInterpeter myIOIntercepter;
     private Timeline myTimeline = new Timeline();
 
-    public GameEngine (IGamePlayable game, Pane pane, IOInterpeter ioInterpreter) {
+    public GameEngine (IGame game, BorderPane gamePane, Pane levelPane, IOInterpeter ioInterpreter) {
         myGame = game;
-        myRenderer = new InGameRenderer(game, pane);
+        myRenderer = new InGameRenderer(game, levelPane);
         myIOIntercepter = ioInterpreter;
+        createLevelView(gamePane);
         initializeTimeline();
+    }
+
+    private void createLevelView (BorderPane gamePane) {
+        gamePane.setCenter(myRenderer.getPane());
+        gamePane.setRight(new SideBarDisplay(myGame, myRenderer).draw());
+        gamePane.setLeft(new HeadsUpDisplay(myGame).draw());
     }
 
     private void initializeTimeline () {

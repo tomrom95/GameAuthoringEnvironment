@@ -24,7 +24,6 @@ public class GamePlayer {
     private IGameEngine myGameEngine;
     
     public GamePlayer (IGame game) {
-        createEnvironment(game);
         initializeGameEngine(game);
         stylePane();
     }
@@ -33,12 +32,6 @@ public class GamePlayer {
         myStage.setScene(myScene);
         myStage.show();
     }
-    
-    private void createEnvironment (IGame game) {
-        myPane.setCenter(levelPane);
-        myPane.setLeft((new HeadsUpDisplay(game)).draw());
-        myPane.setRight((new SideBarDisplay(game)).draw());
-    }
 
     private void stylePane () {
         myPane.setPrefSize(1000, 600);
@@ -46,7 +39,7 @@ public class GamePlayer {
 
     private void initializeGameEngine (IGame game) {
         IOInterpeter IO = new IOInterpeter(myScene, levelPane);
-        myGameEngine = new GameEngine(game, levelPane, IO);
+        myGameEngine = new GameEngine(game, myPane, levelPane, IO);
     }
 
     public void play () {

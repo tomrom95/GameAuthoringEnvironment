@@ -6,12 +6,15 @@ import engine.ILevel;
 import engine.Level;
 import engine.LevelManager;
 import engine.definitions.SpriteDefinition;
+import engine.profile.Profile;
+import gameauthoring.shareddata.DefinitionCollection;
 import graphics.Block;
 import graphics.IGraphic;
 import graphics.ImageGraphic;
 import javafx.application.Application;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -74,12 +77,13 @@ public class FakeMain extends Application {
     }
 
     private void makeSomeSprites (Game game) {
+        game.getAuthorshipData().addCreatedSprites(new DefinitionCollection<SpriteDefinition>("Sprites", FXCollections.observableArrayList()));
         for (int i = 0; i < 20; i++) {
             if (i % 2 == 0) {
-                game.getAuthorshipData().getCreatedSprites().add(createFirstSprite());
+                game.getAuthorshipData().getMyCreatedSprites().get(0).addItem(createFirstSprite());
             }
             else {
-                game.getAuthorshipData().getCreatedSprites().add(createSecondSprite());
+                game.getAuthorshipData().getMyCreatedSprites().get(0).addItem(createSecondSprite());
             }
         }
     }
@@ -87,19 +91,22 @@ public class FakeMain extends Application {
     private SpriteDefinition createFirstSprite () {
         SpriteDefinition sprite = new SpriteDefinition();
 
-        IGraphic graphic = new ImageGraphic(30, 30,"images/photo.png");
-        sprite.setGraphic(graphic);
-        sprite.setType("Person");
-        sprite.setDescription("This is a person");
+        ImageGraphic graphic = new ImageGraphic(30, 30, "images/photo.png");
+        // sprite.setType("Person");
+        sprite.setProfile(new Profile("Person", "This is a person", graphic));
+
         return sprite;
     }
 
     private SpriteDefinition createSecondSprite () {
         SpriteDefinition sprite = new SpriteDefinition();
-        sprite.setType("Block");
+        //sprite.setType("Block");
+        
         IGraphic graphic = new Block(40, 40, RGBColor.BLACK);
         sprite.setGraphic(graphic);
-        sprite.setDescription("This is a block");
+        //might need to change profile to take in ImageGraphic instead of Igraphic
+        sprite.setProfile(new Profile("Block", "This is a block", ""));
+
         return sprite;
     }
 

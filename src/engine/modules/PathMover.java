@@ -26,6 +26,7 @@ public class PathMover extends Mover {
     private IAttribute mySpeed;
     private List<Coordinate> myPoints;
     private int myNextDestination;
+    private List<Coordinate> myPath;
 
     public PathMover (double speed,
                       List<Coordinate> points,
@@ -34,7 +35,7 @@ public class PathMover extends Mover {
         mySpeed = new Attribute(speed, AttributeType.SPEED);
         myPoints = points;
         myNextDestination = 0;
-
+        myPath = getPath();
     }
 
     @Override
@@ -116,6 +117,14 @@ public class PathMover extends Mover {
 
     private double square (double input) {
         return input * input;
+    }
+    
+    public void setPath(List<Coordinate> newPath) {
+        myPath = newPath;
+    }
+    
+    public List<Coordinate> getPath() {
+        return myPath;
     }
 
     @Override

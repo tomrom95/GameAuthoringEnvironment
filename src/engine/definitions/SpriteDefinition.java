@@ -10,6 +10,7 @@ import engine.modules.IModule;
 import engine.modules.IMovementModule;
 import engine.profile.IProfilable;
 import engine.profile.IProfile;
+import engine.profile.Profile;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
@@ -32,7 +33,7 @@ public class SpriteDefinition implements IProfilable {
         myModuleDefinitions = new ArrayList<ModuleDefinition>();
         myAttributes = new ArrayList<AttributeDefinition>();
         myLocation = new LocationDefinition();
-       
+        myProfile = new Profile();
     }
 
     public ISprite create () {
@@ -72,6 +73,14 @@ public class SpriteDefinition implements IProfilable {
     public void addAttribute (AttributeDefinition attribute) {
         myAttributes.add(attribute);
     }
+    
+    public List<AttributeDefinition> getAttributes(){
+        return myAttributes;
+    }
+    
+    public void setAttributes(List<AttributeDefinition> attributes){
+        myAttributes = new ArrayList<AttributeDefinition>(attributes);
+    }
 
     public void removeAttribute (AttributeDefinition attribute) {
         myAttributes.remove(attribute);
@@ -83,6 +92,10 @@ public class SpriteDefinition implements IProfilable {
 
     public void remove (ModuleDefinition definition) {
         myModuleDefinitions.remove(definition);
+    }
+
+    public MovementDefinition getMovementDefinition () {
+        return myMovementDefinition;
     }
 
     public void setMovementDefinition (MovementDefinition definition) {
@@ -107,11 +120,4 @@ public class SpriteDefinition implements IProfilable {
         myProfile = profile;
     }
 
-    public IProfile getMyProfile () {
-        return myProfile;
-    }
-
-    public void setMyProfile (IProfile profile) {
-        this.myProfile = profile;
-    }
 }
