@@ -1,6 +1,6 @@
 package gameauthoring.creation.subforms;
 
-import engine.definitions.IDefinition;
+import engine.profile.IProfilable;
 
 
 /**
@@ -14,7 +14,7 @@ import engine.definitions.IDefinition;
  *
  */
 
-public interface ISubFormController<T extends IDefinition> {
+public interface ISubFormController<T extends IProfilable> {
 
     /**
      * Update the given item
