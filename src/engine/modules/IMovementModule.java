@@ -11,5 +11,9 @@ package engine.modules;
  *
  */
 public interface IMovementModule extends IModule {
+    
+    void setXVel(double newVel);
+    
+    void setYVel(double newVel);
 
 }

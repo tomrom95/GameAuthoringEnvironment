@@ -8,6 +8,7 @@ import engine.AttributeType;
 import engine.IAdder;
 import engine.IAttribute;
 import engine.IGame;
+import engine.IPositionable;
 import engine.definitions.SpriteDefinition;
 import engine.effects.IEffect;
 import engine.interactionevents.InputType;
@@ -26,27 +27,26 @@ import util.TimeDuration;
  */
 public class TrackingFirer extends Firer {
 
-    // private List<SpriteDefinition> myTargets;
     private List<SpriteType> myTargets;
     private SpriteDefinition myProjectile;
     private IAdder myAdder;
     private IAttribute myWaitTime;
     private EnemyTracker myTracker;
-    //private boolean userControlled;
     private IAttribute myAmmo;
     private TimeDuration lastFire;
     private IGame myGame;
+    private IPositionable mySprite;
    
 
-    // public TrackingFirer (List<SpriteDefinition> targets, Key fire, double waitTime, boolean
-    // userControls) {
-    public TrackingFirer (List<SpriteType> targets, IGame game, double waitTime) {
+  
+    public TrackingFirer (List<SpriteType> targets, IGame game, double waitTime, IPositionable sprite) {
 
         myTargets = targets;
         myGame = game;
         myWaitTime = new Attribute(waitTime, AttributeType.FIRE_RATE);
         myTracker = new EnemyTracker();
         lastFire = new TimeDuration(0);
+        mySprite = sprite;
         
     }
 
@@ -58,9 +58,13 @@ public class TrackingFirer extends Firer {
     private void fire (TimeDuration duration) {
         if((duration.getMillis() - lastFire.getMillis()) >= myWaitTime.getValueProperty().get()){
             ISprite bullet = myProjectile.create();
-            //TODO tower location
-            bullet.setLocation(new Coordinate(bullet.getLocation().getX(), bullet.getLocation()
-                    .getY(), myTracker.getOrientationToClosestEnemy(getTargets(), bullet.getLocation())));
+            bullet.setLocation(new Coordinate(mySprite.getLocation().getX(), mySprite.getLocation().getY()));
+            
+            //access to the velocity of the sprite
+            double initialXVel = myTracker.calculateXVelToClosestEnemy(bullet.getLocation(), getTargets(), myProjectile.getMovementDefinition().getSpeed()); 
+            bullet.getMovementStrategy().setXVel(initialXVel);
+            double initialYVel = myTracker.calculateYVelToClosestEnemy(bullet.getLocation(), getTargets(), myProjectile.getMovementDefinition().getSpeed());
+            bullet.getMovementStrategy().setYVel(initialYVel);
             myAdder.add(bullet, bullet.getLocation());
             lastFire = new TimeDuration(duration.getMillis());
             
@@ -81,24 +85,17 @@ public class TrackingFirer extends Firer {
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
-        //
-        // if (keyEvent.getType() == InputType.KEY_PRESSED &&
-        // keyEvent.getKey().isEqual(myFireKey)) {
-        // registerKeyPress(keyEvent.getKey());
-        // }
+       
 
     }
 
+    @SuppressWarnings("unused")
     private void registerKeyPress (Key fire) {
-        //
-        // ISprite bullet = myProjectile.create();
-        // myAdder.add(bullet, bullet.getLocation());
-        //
+      
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
-        // do nothing
 
     }
 
