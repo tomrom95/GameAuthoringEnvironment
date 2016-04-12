@@ -2,13 +2,17 @@ package engine.modules;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
+import engine.IGame;
 import engine.IPositionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
+import engine.sprite.SpriteType;
 import util.TimeDuration;
 
 
@@ -21,19 +25,21 @@ import util.TimeDuration;
 public class TrackingMover extends Mover {
 
     private IAttribute mySpeed;
-    private List<ISprite> myEnemyList;
-    private ISprite myEnemy;
+    private List<SpriteType> myEnemyList;
     private IPositionable mySprite;
     private EnemyTracker myTracker;
+    private IGame myGame;
 
     public TrackingMover (double speed,
-                          List<ISprite> enemies,
+                          IGame game,
+                          List<SpriteType> attackGroup,
                           IPositionable sprite) {
         super(sprite);
+        myGame = game;
         mySpeed = new Attribute(speed, AttributeType.SPEED);
-        myEnemyList = enemies;
+        myEnemyList = attackGroup;
         myTracker = new EnemyTracker();
-        myEnemy = myTracker.getClosestEnemy(myEnemyList, mySprite.getLocation());
+       
 
     }
 
@@ -70,21 +76,29 @@ public class TrackingMover extends Mover {
      */
     @Override
     public void update (TimeDuration duration) {
-       double nextHeading = myTracker.calculateAbsoluteOrientationToEnemy(mySprite.getLocation(), myEnemy.getLocation());
+        
+        ISprite myEnemy = myTracker.getClosestEnemy(myPotentialTargets(), mySprite.getLocation());
+        double nextHeading = myTracker.calculateAbsoluteOrientationToEnemy(mySprite.getLocation(), myEnemy.getLocation());
         moveTrig(duration, nextHeading);
 
+    }
+
+    private List<ISprite> myPotentialTargets () {
+        return myGame.getLevelManager().getCurrentLevel().getSprites().stream()
+                .filter(sprite -> myEnemyList.contains(sprite))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -92,5 +106,7 @@ public class TrackingMover extends Mover {
         // TODO Auto-generated method stub
         return null;
     }
+
+   
 
 }
