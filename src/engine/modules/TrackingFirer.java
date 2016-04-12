@@ -10,6 +10,7 @@ import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
+import util.Coordinate;
 import util.Key;
 import util.TimeDuration;
 
@@ -20,21 +21,42 @@ import util.TimeDuration;
  */
 public class TrackingFirer extends Firer {
 
-    private List<SpriteDefinition> myTargets;
-    private Key myFireKey;
+    // private List<SpriteDefinition> myTargets;
+    private List<ISprite> myTargets;
     private SpriteDefinition myProjectile;
     private IAdder myAdder;
+    private double myWaitTime;
+    private EnemyTracker myTracker;
+    private boolean userControlled;
     private IAttribute myAmmo;
+    private TimeDuration lastFire;
+    private int timesFired;
 
-    public TrackingFirer (List<SpriteDefinition> targets, Key fire) {
+    // public TrackingFirer (List<SpriteDefinition> targets, Key fire, double waitTime, boolean
+    // userControls) {
+    public TrackingFirer (List<ISprite> targets, double waitTime) {
+
         myTargets = targets;
-        myFireKey = fire;
+        myWaitTime = waitTime;
+        myTracker = new EnemyTracker();
+        lastFire = new TimeDuration(0);
+        timesFired = 0;
     }
 
     @Override
     public void update (TimeDuration duration) {
-        // TODO Auto-generated method stub
+        fire(duration);
+    }
 
+    private void fire (TimeDuration duration) {
+        if((duration.getMillis() - lastFire.getMillis()) >= myWaitTime){
+            ISprite bullet = myProjectile.create();
+            bullet.setLocation(new Coordinate(bullet.getLocation().getX(), bullet.getLocation()
+                    .getY(), myTracker.getOrientationToClosestEnemy(myTargets, bullet.getLocation())));
+            myAdder.add(bullet, bullet.getLocation());
+            lastFire = new TimeDuration(duration.getMillis());
+            timesFired += 1;
+        } 
     }
 
     @Override
@@ -44,18 +66,19 @@ public class TrackingFirer extends Firer {
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
-
-        if (keyEvent.getType() == InputType.KEY_PRESSED &&
-            keyEvent.getKey().isEqual(myFireKey)) {
-            registerKeyPress(keyEvent.getKey());
-        }
+        //
+        // if (keyEvent.getType() == InputType.KEY_PRESSED &&
+        // keyEvent.getKey().isEqual(myFireKey)) {
+        // registerKeyPress(keyEvent.getKey());
+        // }
 
     }
 
     private void registerKeyPress (Key fire) {
-        ISprite bullet = myProjectile.create();
-        myAdder.add(bullet, bullet.getLocation());
-
+        //
+        // ISprite bullet = myProjectile.create();
+        // myAdder.add(bullet, bullet.getLocation());
+        //
     }
 
     @Override
