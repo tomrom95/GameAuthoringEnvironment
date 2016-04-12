@@ -1,10 +1,8 @@
 package gameauthoring;
 
+import engine.definitions.SpriteDefinition;
 import engine.rendering.GraphicFactory;
 import engine.rendering.ScaleFactory;
-import engine.sprite.ISprite;
-import engine.sprite.SpriteType;
-import javafx.beans.property.ObjectProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
@@ -13,15 +11,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 
-public class SpriteCellView extends ListCell<ObjectProperty<ISprite>> {
+public class SpriteCellView extends ListCell<SpriteDefinition> {
 
     private static final double PIC_SIZE = 30;
     private static final String DEFAULT_NAME = "<No Name>";
+    private static final String DEFAULT_DESCRIPTION = "<No Description>";
 
-    private ObjectProperty<ISprite> mySprite;
+    private SpriteDefinition mySprite;
 
     @Override
-    protected void updateItem (ObjectProperty<ISprite> item, boolean empty) {
+    protected void updateItem (SpriteDefinition item, boolean empty) {
         super.updateItem(item, empty);
         if (item != null) {
             mySprite = item;
@@ -40,26 +39,24 @@ public class SpriteCellView extends ListCell<ObjectProperty<ISprite>> {
     private Node createTextProfile () {
         VBox container = new VBox();
 
-        Text name = new Text(getNameString());
-        Text description = new Text("");
+        Text name = new Text(getStringOrDefault(getSprite().getName(), DEFAULT_NAME));
+        Text description = new Text(getStringOrDefault(getSprite().getDescription(),
+                                                       DEFAULT_DESCRIPTION));
         container.getChildren().addAll(name, description);
         return container;
     }
 
-    private String getNameString () {
-        SpriteType spriteType = getSprite().get().getType();
-        String nameString = (spriteType == null) ? DEFAULT_NAME : spriteType.getType();
-        return nameString;
+    private String getStringOrDefault (String name, String defaultName) {
+        return (name == "") ? defaultName : name;
     }
 
     private Node createImageProfile () {
         GraphicFactory graphics = new ScaleFactory(PIC_SIZE, PIC_SIZE);
-        Node node = mySprite.get().getDrawer().getVisualRepresentation(graphics);
+        Node node = mySprite.getGraphic().getVisualRepresentation(graphics);
         return node;
     }
 
-    protected ObjectProperty<ISprite> getSprite () {
+    protected SpriteDefinition getSprite () {
         return mySprite;
     }
-
 }

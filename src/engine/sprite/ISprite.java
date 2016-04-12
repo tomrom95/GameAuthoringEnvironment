@@ -40,6 +40,7 @@ public interface ISprite extends Drawable, Updateable, Affectable, IPositionable
 
     List<? extends IModule> getModules ();
 
+    @Override
     List<IAttribute> getAttributes ();
 
     List<IResource> getResources ();
@@ -49,5 +50,7 @@ public interface ISprite extends Drawable, Updateable, Affectable, IPositionable
     Bounds getBounds ();
 
     SpriteType getType ();
+
+    boolean shouldBeRemoved ();
 
 }

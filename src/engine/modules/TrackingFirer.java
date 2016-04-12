@@ -12,24 +12,26 @@ import engine.sprite.ISprite;
 import util.Key;
 import util.TimeDuration;
 
+
 /**
- * Locates the nearest enemy and fires 
+ * Locates the nearest enemy and fires
+ * 
  * @author RyanStPierre
  *
  */
 public class TrackingFirer extends Firer {
 
-    private List<ISprite> myTargets; 
+    private List<ISprite> myTargets;
     private Key myFireKey;
     private ISprite myProjectile;
     private IAdder myAdder;
     private IAttribute myAmmo;
-    
+
     public TrackingFirer (List<ISprite> targets, Key fire) {
         myTargets = targets;
         myFireKey = fire;
     }
-    
+
     @Override
     public void update (TimeDuration duration) {
         // TODO Auto-generated method stub
@@ -43,7 +45,7 @@ public class TrackingFirer extends Firer {
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
-        
+
         if (keyEvent.getType() == InputType.KEY_PRESSED &&
             keyEvent.getKey().isEqual(myFireKey)) {
             registerKeyPress(keyEvent.getKey());
@@ -52,8 +54,8 @@ public class TrackingFirer extends Firer {
     }
 
     private void registerKeyPress (Key fire) {
-        ISprite bullet = myProjectile.create();
-        myAdder.add(bullet, bullet.getLocation());
+        //ISprite bullet = myProjectile.create();
+        //myAdder.add(bullet, bullet.getLocation());
 
     }
 

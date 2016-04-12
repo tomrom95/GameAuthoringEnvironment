@@ -1,9 +1,9 @@
 package engine;
 
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
-import engine.interactionevents.KeyIOEvent;
-import engine.interactionevents.MouseIOEvent;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -20,26 +20,30 @@ import util.TimeDuration;
  *
  */
 
-public class Attribute implements IAttribute {
-
+public class Attribute extends DefaultAffectable implements IAttribute {
+    private static final double DEFAULT_STARTING_VALUE = 0;
+    private double myStartingValue;
     private DoubleProperty myValue;
     private AttributeType myType;
     private ObservableList<ObjectProperty<IEffect>> myEffects;
-    private static final double DEFAULT_STARTING_VALUE = 0;
 
     public Attribute (AttributeType type) {
-        this(DEFAULT_STARTING_VALUE, type);  
+        this(DEFAULT_STARTING_VALUE, type);
+        myStartingValue = DEFAULT_STARTING_VALUE;
     }
 
     public Attribute (double value, AttributeType type) {
         myValue = new SimpleDoubleProperty(value);
         myType = type;
         myEffects = FXCollections.observableArrayList();
+        myStartingValue = value;
     }
 
     @Override
     public void applyEffect (IEffect effect) {
-        myEffects.add(new SimpleObjectProperty<>(effect));
+        // make copy to prevent errors with state being called on the 
+        // same instance of the effect object
+        myEffects.add(new SimpleObjectProperty<>(effect.makeCopy()));
     }
 
     @Override
@@ -58,21 +62,10 @@ public class Attribute implements IAttribute {
     }
 
     @Override
-    public void registerKeyEvent (KeyIOEvent event) {
-        // do nothing
-    }
 
-    @Override
-    public void registerMouseEvent (MouseIOEvent event) {
-        // do nothing
-    }
-
-    @Override
-    public ObservableList<ObjectProperty<IAttribute>> getAttributes () {
-
-        ObservableList<ObjectProperty<IAttribute>> attributes =
-                FXCollections.observableArrayList();
-        attributes.add(new SimpleObjectProperty<>(this));
+    public List<IAttribute> getAttributes () {
+        List<IAttribute> attributes = new ArrayList<>();
+        attributes.add(this);
         return attributes;
     }
 
@@ -81,7 +74,7 @@ public class Attribute implements IAttribute {
         myEffects.forEach(e -> e.get().applyToAttribute(this));
         myEffects.forEach(e -> e.get().update(duration));
         removeCompletedEffects(duration);
-        
+
         System.out.print(myType.getType() + " ");
         System.out.println(myValue.get());
     }
@@ -89,16 +82,21 @@ public class Attribute implements IAttribute {
     /**
      * Removes time or condition dependent effects that are invalid or have
      * expired
-     * 
+     *
      * @param duration frame rate specified by the level
      */
     private void removeCompletedEffects (TimeDuration duration) {
-        myEffects.removeIf(e -> e.get().hasCompleted());        
+        myEffects.removeIf(e -> e.get().hasCompleted());
     }
 
     @Override
     public ObservableList<ObjectProperty<IEffect>> getEffects () {
         return myEffects;
+    }
+
+    @Override
+    public Attribute makeCopy () {
+        return new Attribute(myStartingValue, myType);
     }
 
 }

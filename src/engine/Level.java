@@ -1,13 +1,11 @@
 package engine;
 
 import java.util.List;
+import engine.conditions.ICondition;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import engine.modules.GraphicModule;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
@@ -22,105 +20,107 @@ import util.TimeDuration;
  */
 public class Level implements ILevel {
 
-    private ObjectProperty<IConditionManager> myConditionManager;
-    private ObjectProperty<ImageGraphic> myBackgroundImage;
-    private ObjectProperty<ISpriteManager> mySpriteManager;
-    private ObjectProperty<IAttributeManager> myAttributeManager;
-    private ObjectProperty<INextLevelManager> myNextLevelManager;
+    private IConditionManager myConditionManager;
+    private ImageGraphic myBackgroundImage;
+    private ISpriteManager mySpriteManager;
+    private IAttributeManager myAttributeManager;
+    private INextLevelManager myNextLevelManager;
 
     public Level () {
         // TODO need to actually instantiate internal manager objects
         // after creating the concrete classes
-        myAttributeManager = new SimpleObjectProperty<>(new AttributeManager());
-        myConditionManager = new SimpleObjectProperty<>(new ConditionManager());
-        mySpriteManager = new SimpleObjectProperty<>(new SpriteManager());
-        myNextLevelManager = new SimpleObjectProperty<>(new NextLevelManager());
-        //TODO add default
-       // myBackgroundImage = new SimpleObjectProperty<>(new ImageGraphic(400, 400, "/image/blank.jpg"));
+
+        myAttributeManager = new AttributeManager();
+        myConditionManager = new ConditionManager();
+        mySpriteManager = new SpriteManager();
+        myNextLevelManager = new NextLevelManager();
+        // TODO add default
+        // myBackgroundImage = new SimpleObjectProperty<>(new ImageGraphic(400, 400,
+        // "/image/blank.jpg"));
     }
 
     @Override
     public void update (TimeDuration duration) {
-        mySpriteManager.get().update(duration);
-        myConditionManager.get().update(duration);
-        myAttributeManager.get().update(duration);
-        myNextLevelManager.get().update(duration);
+        mySpriteManager.update(duration);
+        myConditionManager.update(duration);
+        myAttributeManager.update(duration);
+        myNextLevelManager.update(duration);
     }
 
     @Override
-    public ObservableList<ObjectProperty<ICondition>> getConditionsPropertyList () {
-        return myConditionManager.get().getConditionListProperty();
+    public ObservableList<ICondition> getConditionsListProperty () {
+        return myConditionManager.getConditionListProperty();
     }
 
     @Override
     public void addGlobalResource (IResource resource) {
-        myAttributeManager.get().addResource(resource);
+        myAttributeManager.addResource(resource);
     }
 
     @Override
-    public ObservableList<ISprite> getSprites () {
-        return mySpriteManager.get().getSprites();
+    public List<ISprite> getSprites () {
+        return mySpriteManager.getSprites();
     }
 
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
-        mySpriteManager.get().add(sprite, coordinate);
+        mySpriteManager.add(sprite, coordinate);
     }
 
     @Override
     public ILevel getNextLevel () {
-        return myNextLevelManager.get().getNextLevel();
+        return myNextLevelManager.getNextLevel();
     }
 
     @Override
     public boolean shouldSwitchLevel () {
-        return myNextLevelManager.get().shouldGoToNextLevel();
+        return myNextLevelManager.shouldGoToNextLevel();
     }
 
     @Override
-    public ObservableList<? extends Drawable> getDrawables () {
-        return mySpriteManager.get().getDrawables();
+    public List<? extends Drawable> getDrawables () {
+        return mySpriteManager.getDrawables();
     }
 
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
-        mySpriteManager.get().internalizeKeyEvents(list);
-        myConditionManager.get().internalizeKeyEvents(list);
+        mySpriteManager.internalizeKeyEvents(list);
+        myConditionManager.internalizeKeyEvents(list);
 
     }
 
     @Override
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
-        mySpriteManager.get().internalizeMouseEvents(list);
-        myConditionManager.get().internalizeMouseEvents(list);
-
+        mySpriteManager.internalizeMouseEvents(list);
+        myConditionManager.internalizeMouseEvents(list);
     }
 
     /**
      * Removes a sprite from the level whenever a sprite meets a particular death condition
      */
     @Override
-    public void remove (ObjectProperty<ISprite> sprite) {
-        mySpriteManager.get().remove(sprite);
-
+    public void remove (ISprite sprite) {
+        mySpriteManager.remove(sprite);
     }
 
     @Override
-    public ObjectProperty<ImageGraphic> getBackgroundImageProperty () {
-       return myBackgroundImage;
+    public ImageGraphic getBackgroundImage () {
+        return myBackgroundImage;
     }
-    
-    
 
     @Override
-    public ObjectProperty<IAttributeManager> getAttributeManager () {
+    public IAttributeManager getAttributeManager () {
         return myAttributeManager;
     }
 
     @Override
     public void add (ISprite sprite) {
-        mySpriteManager.get().add(sprite);
-        
+        mySpriteManager.add(sprite);
+    }
+
+    @Override
+    public void setBackgroundImage (ImageGraphic graphic) {
+        myBackgroundImage = graphic;
     }
 
 }

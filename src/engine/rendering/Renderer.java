@@ -9,7 +9,7 @@ import util.Coordinate;
 
 /**
  * Used to render the back-end components into JavaFX responsive objects for the screen
- * 
+ *
  * @author RyanStPierre
  *
  */
@@ -28,7 +28,7 @@ public class Renderer implements IRenderer {
     @Override
     public void render () {
         myPane.getChildren().clear();
-        //drawBackground();
+        // drawBackground();
         myGame.getDrawables().forEach(d -> draw(d));
 
     }

@@ -3,22 +3,73 @@ package engine.definitions;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
+import engine.profile.IProfilable;
+import engine.profile.IProfile;
+import engine.profile.Profile;
 
-public class AttributeDefinition implements IDefinition {
 
+/**
+ * Definition for Attribute. Have getter/setter methods for each attribute.
+ * 
+ * @author Jin An, Jeremy Schreck, Joe Lilien
+ *
+ */
+
+public class AttributeDefinition implements IProfilable {
+
+  
+  
     private String myType;
-    private double myValue;
+    private boolean myIsGlobal;
+    private double myStartingValue;
+    private IProfile myProfile;
 
-    public IAttribute create () {
-        return new Attribute(myValue, new AttributeType(myType));
+    /**
+     * Constructor initialized with defaults
+     */
+    public AttributeDefinition(){
+        myType = "";
+        myIsGlobal = false;
+        myStartingValue = 0; 
+        myProfile = new Profile();
     }
-    
-    public void setType(String type) {
+   
+    public IAttribute create () {
+        return new Attribute(myStartingValue, new AttributeType(myType));
+    }
+
+    public void setType (String type) {
         myType = type;
     }
-    
-    public void setValue(double value) {
-        myValue = value;
+
+    public void setIsGlobal (boolean bool) {
+        myIsGlobal = bool;
+    }
+
+    public String getType () {
+        return myType;
+    }
+
+    public boolean getIsGlobal () {
+        return myIsGlobal;
+    }
+
+    public double getStartingValue () {
+        return myStartingValue;
+    }
+
+    public void setStartingValue (double startingValue) {
+        myStartingValue = startingValue;
+    }
+
+    @Override
+    public IProfile getProfile () {
+        return myProfile;
+    }
+
+    @Override
+    public void setProfile (IProfile profile) {
+        myProfile = profile;
     }
 
 }

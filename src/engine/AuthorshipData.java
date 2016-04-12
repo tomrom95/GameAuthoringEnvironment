@@ -1,26 +1,25 @@
 package engine;
 
-import engine.sprite.ISprite;
-import javafx.beans.property.ObjectProperty;
+import engine.definitions.SpriteDefinition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
 /**
  * Class for holding the structures the user creates during authorship that want to be saved
- * 
+ *
  * @author RyanStPierre
  *
  */
 public class AuthorshipData {
 
-    ObservableList<ObjectProperty<ISprite>> myCreatedSprites;
+    ObservableList<SpriteDefinition> myCreatedSprites;
 
     public AuthorshipData () {
         myCreatedSprites = FXCollections.observableArrayList();
     }
 
-    public ObservableList<ObjectProperty<ISprite>> getCreatedSprites () {
+    public ObservableList<SpriteDefinition> getCreatedSprites () {
         return myCreatedSprites;
     }
 }

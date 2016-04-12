@@ -1,5 +1,6 @@
 package engine.definitions;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import engine.IAttribute;
@@ -7,6 +8,8 @@ import engine.modules.GraphicModule;
 import engine.modules.IGraphicModule;
 import engine.modules.IModule;
 import engine.modules.IMovementModule;
+import engine.profile.IProfilable;
+import engine.profile.IProfile;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
@@ -14,20 +17,31 @@ import graphics.IGraphic;
 import util.Coordinate;
 
 
-public class SpriteDefinition extends ProfileDefinition {
+public class SpriteDefinition implements IProfilable {
 
-    private String myType;
     private MovementDefinition myMovementDefinition;
-    private List<ModuleDefiniton> myModuleDefinitions;
+    private List<ModuleDefinition> myModuleDefinitions;
     private LocationDefinition myLocation;
     private List<AttributeDefinition> myAttributes;
     private IGraphic myGraphic;
+    private IProfile myProfile;
+
+    public SpriteDefinition () {
+        // TODO Set a default. THis is just for view testing
+        myMovementDefinition = new StaticMoverDefinition();
+        myModuleDefinitions = new ArrayList<ModuleDefinition>();
+        myAttributes = new ArrayList<AttributeDefinition>();
+        myLocation = new LocationDefinition();
+       
+    }
 
     public ISprite create () {
-        ISprite sprite = new Sprite(new SpriteType(myType));
+        ISprite sprite = new Sprite(new SpriteType(myProfile.getName()));
+
         IMovementModule mover = myMovementDefinition.create(sprite);
         IGraphicModule graphicModule = createGraphicModule();
-        sprite.initialize(mover, graphicModule, createModules(), createAttributes(), createCoordinate());
+        sprite.initialize(mover, graphicModule, createModules(), createAttributes(),
+                          createCoordinate());
         return sprite;
     }
 
@@ -38,7 +52,7 @@ public class SpriteDefinition extends ProfileDefinition {
     protected Coordinate createCoordinate () {
         return myLocation.create();
     }
-    
+
     protected List<IModule> createModules () {
         return myModuleDefinitions.stream()
                 .map(modDef -> modDef.create())
@@ -51,7 +65,7 @@ public class SpriteDefinition extends ProfileDefinition {
                 .collect(Collectors.toList());
     }
 
-    public void addModule (ModuleDefiniton definition) {
+    public void addModule (ModuleDefinition definition) {
         myModuleDefinitions.add(definition);
     }
 
@@ -67,7 +81,7 @@ public class SpriteDefinition extends ProfileDefinition {
         myLocation = location;
     }
 
-    public void remove (ModuleDefiniton definition) {
+    public void remove (ModuleDefinition definition) {
         myModuleDefinitions.remove(definition);
     }
 
@@ -75,7 +89,29 @@ public class SpriteDefinition extends ProfileDefinition {
         myMovementDefinition = definition;
     }
 
-    public void setType (String type) {
-        myType = type;
+    public void setGraphic (IGraphic graphic) {
+        myGraphic = graphic;
+    }
+
+    public IGraphic getGraphic () {
+        return myGraphic;
+    }
+
+    @Override
+    public IProfile getProfile () {
+        return myProfile;
+    }
+
+    @Override
+    public void setProfile (IProfile profile) {
+        myProfile = profile;
+    }
+
+    public IProfile getMyProfile () {
+        return myProfile;
+    }
+
+    public void setMyProfile (IProfile profile) {
+        this.myProfile = profile;
     }
 }

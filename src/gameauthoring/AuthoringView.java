@@ -1,6 +1,9 @@
 package gameauthoring;
 
+import data.GameWriter;
+import data.IGameWriter;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
@@ -12,14 +15,20 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 
+/**
+ * Highest hierarchy class for authoring environment. Used composition for each tab viewers
+ * 
+ * @author Jin An
+ *
+ */
 public class AuthoringView implements IAuthoringView {
 
     private GameTabViewer myGameTabViewer;
     private ObjectCreationTabViewer myCreationTabViewer;
     private SceneTabViewer mySceneTabViewer;
     private GridPane myLayout;
-    private static final int WIDTH = 1200;
-    private static final int HEIGHT = 800;
+    public static final int WIDTH = 1200;
+    public static final int HEIGHT = 800;
 
     @Override
     public GameTabViewer getGameTabViewer () {
@@ -43,35 +52,45 @@ public class AuthoringView implements IAuthoringView {
         myLayout = new GridPane();
         myLayout.add(menuBar, 0, 0);
         myLayout.add(tabPane, 0, 2);
-        Group root = new Group(myGameTabViewer.draw(), myCreationTabViewer.draw(),
-                               mySceneTabViewer.draw());
-        root.getChildren().addAll(myLayout);
-        s.setScene(new Scene(root, WIDTH, HEIGHT));
+        s.setScene(new Scene(myLayout, WIDTH, HEIGHT));
     }
 
     private MenuBar createMenuBar () {
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
-        MenuItem saveItem = createMenuItems("Save as XML Files", null); // Connect with Save Actions
+        MenuItem saveItem = createMenuItems("Save your game as XML Files", e -> saveToXML());
         fileMenu.getItems().add(saveItem);
         menuBar.getMenus().add(fileMenu);
         return menuBar;
     }
 
-    private MenuItem createMenuItems (String itemName, ActionEvent action) {
+    // TODO: Create GameWriter Class and save it as XML
+    private void saveToXML () {
+
+    }
+
+    private MenuItem createMenuItems (String itemName, EventHandler<ActionEvent> action) {
         MenuItem newMenuItem = new MenuItem(itemName);
-        newMenuItem.setOnAction(null);
+        newMenuItem.setOnAction(action);
         return newMenuItem;
     }
 
     private TabPane createAllTabs () {
         TabPane tabpane = new TabPane();
-        myGameTabViewer = new GameTabViewer(createTab("Game"));
-        myCreationTabViewer = new ObjectCreationTabViewer(createTab("Create Objects"));
-        mySceneTabViewer = new SceneTabViewer(createTab("Build Scenes/Levels"));
 
-        tabpane.getTabs().addAll(myGameTabViewer.getTab(), myCreationTabViewer.getTab(),
-                                 mySceneTabViewer.getTab());
+        Tab gameTab = createTab("Game");
+        myGameTabViewer = new GameTabViewer();
+        gameTab.setContent(myGameTabViewer.draw());
+
+        Tab creationTab = createTab("Create Objects");
+        myCreationTabViewer = new ObjectCreationTabViewer();
+        creationTab.setContent(myCreationTabViewer.draw());
+
+        Tab sceneTab = createTab("Build Scenes/Levels");
+        mySceneTabViewer = new SceneTabViewer();
+        sceneTab.setContent(mySceneTabViewer.draw());
+
+        tabpane.getTabs().addAll(gameTab, creationTab, sceneTab);
         return tabpane;
     }
 

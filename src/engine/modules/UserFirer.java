@@ -10,16 +10,13 @@ import engine.definitions.SpriteDefinition;
 import engine.effects.IEffect;
 import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
-import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import util.Key;
-import util.TimeDuration;
-
 
 /**
  * This class provides the behavior necessary to implement a user controlled fire module in the
  * game.
- * 
+ *
  * @author Dhrumil
  *
  */
@@ -40,11 +37,7 @@ public class UserFirer extends Firer {
 
     }
 
-    @Override
-    public void update (TimeDuration duration) {
-        // TODO Auto-generated method stub
 
-    }
 
     @Override
     public void applyEffect (IEffect effect) {
@@ -68,11 +61,6 @@ public class UserFirer extends Firer {
 
     }
 
-    @Override
-    public void registerMouseEvent (MouseIOEvent mouseEvent) {
-        // do nothing
-
-    }
 
     @Override
     public List<IAttribute> getAttributes () {

@@ -1,12 +1,25 @@
 package gameauthoring;
 
 import gameauthoring.ITabViewer;
+import gameauthoring.characters.AttributeSubFormController;
+import gameauthoring.characters.CreationController;
+import gameauthoring.characters.CreationControllerAttribute;
+import gameauthoring.characters.CreationControllerFactory;
+import gameauthoring.characters.CreationControllerSprite;
+import gameauthoring.characters.IObjectCreationView;
+import gameauthoring.characters.ISubFormControllerAttribute;
+import gameauthoring.characters.ISubFormControllerSprite;
+import gameauthoring.characters.MovementSubFormController;
+import gameauthoring.characters.ObjectCreationView;
+import gameauthoring.characters.ProfileSubFormController;
+import gameauthoring.characters.SubFormControllerFactory;
 import gameauthoring.object_creation_tab.AttributeEditorView;
 import gameauthoring.object_creation_tab.DefenderEditorView;
 import gameauthoring.object_creation_tab.EnemyEditorView;
 import gameauthoring.object_creation_tab.InteractionEditorView;
 import gameauthoring.object_creation_tab.WeaponEditorView;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
@@ -24,53 +37,54 @@ import javafx.scene.layout.BorderPane;
  */
 public class ObjectCreationTabViewer implements ITabViewer {
 
-    private Tab myCharTab;
-    private BorderPane myLayout;
-    private AttributeEditorView myAttributeView;
-    private DefenderEditorView myDefenderView;
-    private EnemyEditorView myEnemyView;
-    private InteractionEditorView myInteractionView;
-    private WeaponEditorView myWeaponView;
+    private TabPane myTabPane;
 
-    public ObjectCreationTabViewer (Tab charTab) {
-        myCharTab = charTab;
-        TabPane tabPane = createAllSubTabs();
-        myCharTab.setContent(tabPane);
+    private List<String> myTitles = new ArrayList<String>(Arrays.asList("Enemies", "Defenders", "Attributes"));
+    private List<ISubFormControllerSprite> myEnemySFC =
+            new ArrayList<ISubFormControllerSprite>(Arrays.asList(new ProfileSubFormController()));
+    private List<ISubFormControllerSprite> myDefenderSFC =
+            new ArrayList<ISubFormControllerSprite>(Arrays.asList(new ProfileSubFormController()));
+    private List<ISubFormControllerAttribute> myAttributeSFC =
+            new ArrayList<ISubFormControllerAttribute>(Arrays
+                    .asList(new AttributeSubFormController()));
+
+    private List<CreationController<?>> myCCs =
+            new ArrayList<CreationController<?>>(Arrays
+                    .asList(new CreationControllerSprite(myEnemySFC),
+                            new CreationControllerSprite(myDefenderSFC),
+                            new CreationControllerAttribute(myAttributeSFC)));
+    private List<IObjectCreationView<?>> myCVs;
+
+    
+    public ObjectCreationTabViewer () {
+        init();
     }
 
-    private TabPane createAllSubTabs () {
-        TabPane tabpane = new TabPane();
-        myAttributeView = new AttributeEditorView(createSubTab("Attributes"));
-        myDefenderView = new DefenderEditorView(createSubTab("Defenders"));
-        myEnemyView = new EnemyEditorView(createSubTab("Enemies"));
-        myInteractionView = new InteractionEditorView(createSubTab("Interactions"));
-        myWeaponView = new WeaponEditorView(createSubTab("Weapons"));
-
-        tabpane.getTabs().addAll(myAttributeView.getTab(), myDefenderView.getTab(),
-                                 myEnemyView.getTab(), myInteractionView.getTab(),
-                                 myWeaponView.getTab());
-        return tabpane;
+    private void init () {      
+        myTabPane = new TabPane();
+        generateCreationViewList();
+        generateAllSubTabs();
     }
 
-    private Tab createSubTab (String tabName) {
-        Tab newTab = new Tab();
-        newTab.setText(tabName);
-        return newTab;
+
+    private void generateCreationViewList () {
+        myCVs = new ArrayList<IObjectCreationView<?>>();
+        for(CreationController<?> cc:myCCs){          
+            myCVs.add(cc.getMyObjectCreationView());
+        }
     }
 
-    List<ObjectCreationView> getObjectCreationView () {
-        return null;
-    }
-
-    public Tab getTab () {
-        return myCharTab;
+    private void generateAllSubTabs () {  
+        for (int i=0;i<myCCs.size();i++) {
+            Tab tab = new Tab(myTitles.get(i));
+            tab.setContent(myCVs.get(i).draw());
+            myTabPane.getTabs().add(tab);
+        }
     }
 
     @Override
     public Node draw () {
-        myLayout = new BorderPane();
-
-        return myLayout;
+        return myTabPane;
     }
 
     @Override

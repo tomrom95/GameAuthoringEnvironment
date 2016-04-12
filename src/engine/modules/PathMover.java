@@ -15,7 +15,7 @@ import util.TimeDuration;
 /**
  * This class provides an implementation of Mover that serves as a module that moves sprites based
  * on a specified coordinate path.
- * 
+ *
  *
  */
 
@@ -56,7 +56,7 @@ public class PathMover extends Mover {
     /**
      * Prevents movement glitches on the GUI by moving the sprite to the next coordinate instead of
      * overshooting the location and portraying an invalid path
-     * 
+     *
      * @param duration time frame of the game that is computed to provide the animation
      * @return boolean flagging whether the sprite will overshoot its coordinate target
      */

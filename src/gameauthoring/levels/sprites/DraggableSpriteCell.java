@@ -1,9 +1,9 @@
 package gameauthoring.levels.sprites;
 
+import engine.rendering.AuthoringRenderer;
 import engine.rendering.UnscaledFactory;
 import gameauthoring.SpriteCellView;
 import gameauthoring.UIFactory;
-import gameauthoring.levels.LevelRenderer;
 import gameauthoring.levels.SceneController;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -15,10 +15,10 @@ import javafx.scene.input.TransferMode;
 public class DraggableSpriteCell extends SpriteCellView implements Draggable{
     private static final String DRAG_STRING = "Sprite";
 
-    private LevelRenderer myTarget;
+    private AuthoringRenderer myTarget;
     private SceneController myController;
     
-    public DraggableSpriteCell (LevelRenderer target, SceneController controller) {
+    public DraggableSpriteCell (AuthoringRenderer target, SceneController controller) {
         myTarget = target;
         myController = controller;
     }
@@ -42,7 +42,7 @@ public class DraggableSpriteCell extends SpriteCellView implements Draggable{
     }
     
     private Image getSpriteImage(){
-        Node spriteNode = this.getSprite().get().getDrawer().getVisualRepresentation(new UnscaledFactory());
+        Node spriteNode = this.getSprite().getGraphic().getVisualRepresentation(new UnscaledFactory());
         return (new UIFactory()).getImageFromNode(spriteNode);
     }
 
@@ -55,7 +55,7 @@ public class DraggableSpriteCell extends SpriteCellView implements Draggable{
     public void setOnDragDropped (DragEvent e) {
         Dragboard db = e.getDragboard();
         if (db.hasString()) {
-            myController.addSprite(e.getX(), e.getY(), this.getSprite().get());
+            myController.addSprite(e.getX(), e.getY(), getSprite());
             myTarget.render();
         }
     }

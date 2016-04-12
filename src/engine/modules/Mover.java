@@ -6,6 +6,7 @@ import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
 import engine.IPositionable;
+import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
@@ -16,10 +17,10 @@ import util.TimeDuration;
 /**
  * This abstract class provides the framework required to move sprites. Movement is handled as a
  * function of rate and time or as a coordinate specifying the next position.
- * 
+ *
  */
 
-public abstract class Mover implements IMovementModule {
+public abstract class Mover extends DefaultAffectable implements IMovementModule {
 
     public static final double NO_MOTION = 0;
     private IAttribute myXVel;
@@ -63,6 +64,7 @@ public abstract class Mover implements IMovementModule {
         return input - getLocation().getY();
     }
 
+    @Override
     public abstract void update (TimeDuration duration);
 
     @Override
