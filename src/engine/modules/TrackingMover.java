@@ -70,8 +70,8 @@ public class TrackingMover extends Mover {
      */
     @Override
     public void update (TimeDuration duration) {
-       
-        move(duration);
+       double nextHeading = myTracker.calculateAbsoluteOrientationToEnemy(mySprite.getLocation(), myEnemy.getLocation());
+        moveTrig(duration, nextHeading);
 
     }
 
