@@ -1,6 +1,6 @@
 package engine.profile;
 
-import graphics.ImageGraphic;
+import graphics.IGraphic;
 
 
 /**
@@ -28,9 +28,9 @@ public interface IProfile {
     /**
      * Get's the sprite display graphic
      *
-     * @return The ImageGraphic
+     * @return The IGraphic
      */
-    ImageGraphic getImage ();
+    IGraphic getImage ();
 
     /**
      * Get the url of the ImageGraphic

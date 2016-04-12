@@ -1,5 +1,6 @@
 package engine.profile;
 
+import graphics.IGraphic;
 import graphics.ImageGraphic;
 
 
@@ -44,10 +45,11 @@ public class Profile implements IProfile {
     }
 
     @Override
-    public ImageGraphic getImage () {
+    public IGraphic getImage () {
         return myImage;
     }
     
+    @Override
     public String getImageURL () {
         return myImage.getUrlProperty().get();
     }
