@@ -107,6 +107,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
     private void generateAllSubTabs () {
         for (int i = 0; i < myCCs.size(); i++) {
             Tab tab = new Tab(myCCs.get(i).getMyTitle());
+            tab.setClosable(false);
             tab.setContent(myCVs.get(i).draw());
             myTabPane.getTabs().add(tab);
         }
