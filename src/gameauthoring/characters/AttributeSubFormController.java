@@ -33,8 +33,8 @@ public class AttributeSubFormController implements ISubFormControllerAttribute {
             boolean isGlobal =
                     Boolean.parseBoolean(myFormData.getValueProperty(myView.getMyIsGlobalKey())
                             .get());
-            item.setMaxValue(max);
-            item.setMinValue(min);
+            //item.setMaxValue(max);
+            //item.setMinValue(min);
             item.setIsGlobal(isGlobal);
         }
         catch (NumberFormatException e) {
@@ -45,8 +45,8 @@ public class AttributeSubFormController implements ISubFormControllerAttribute {
 
     @Override
     public void populateViewsWithData (AttributeDefinition item) {
-        myFormData.set(myView.getMyMaxKey(), String.valueOf(item.getMaxValue()));
-        myFormData.set(myView.getMyMinKey(), String.valueOf(item.getMinValue()));
+        //myFormData.set(myView.getMyMaxKey(), String.valueOf(item.getMaxValue()));
+        //myFormData.set(myView.getMyMinKey(), String.valueOf(item.getMinValue()));
         myFormData.set(myView.getMyIsGlobalKey(), String.valueOf(item.getIsGlobal()));
     }
 
