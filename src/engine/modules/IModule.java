@@ -3,6 +3,7 @@ package engine.modules;
 import engine.Affectable;
 import engine.Updateable;
 
+
 /**
  * This interface represents a generic module, which defines some compartmentalized functionality
  * for a sprite

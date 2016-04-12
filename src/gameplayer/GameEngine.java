@@ -3,7 +3,7 @@ package gameplayer;
 import engine.IGamePlayable;
 import engine.IOInterpeter;
 import engine.rendering.IRenderer;
-import engine.rendering.Renderer;
+import engine.rendering.InGameRenderer;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -29,14 +29,15 @@ public class GameEngine implements IGameEngine {
 
     public GameEngine (IGamePlayable game, Pane pane, IOInterpeter ioInterpreter) {
         myGame = game;
-        myRenderer = new Renderer(game, pane);
+        myRenderer = new InGameRenderer(game, pane);
         myIOIntercepter = ioInterpreter;
         initializeTimeline();
     }
 
     private void initializeTimeline () {
         Timeline timeline = getTimeline();
-        Duration frameDuration = Duration.seconds(1.0d / FPS);
+        //Duration frameDuration = Duration.seconds(1.0d / FPS);
+        Duration frameDuration = Duration.seconds(1.0d / 5);
         KeyFrame repeatedFrame = new KeyFrame(frameDuration, e -> step(frameDuration));
         timeline.getKeyFrames().add(repeatedFrame);
         timeline.setCycleCount(Animation.INDEFINITE);

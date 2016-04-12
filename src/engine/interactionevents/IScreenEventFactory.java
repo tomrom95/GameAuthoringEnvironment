@@ -28,5 +28,4 @@ public interface IScreenEventFactory {
      */
     KeyIOEvent interpretEvent (KeyEvent event);
 
-
 }

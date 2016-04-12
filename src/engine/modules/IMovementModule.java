@@ -1,7 +1,5 @@
 package engine.modules;
 
-
-
 /**
  * This interface represents a module of a sprite that handles its movement and positioning
  *
@@ -14,5 +12,4 @@ package engine.modules;
  */
 public interface IMovementModule extends IModule {
 
-    
 }

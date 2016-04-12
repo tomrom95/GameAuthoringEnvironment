@@ -1,7 +1,6 @@
 package engine;
 
 import engine.modules.IGraphicModule;
-import javafx.beans.property.ObjectProperty;
 import util.Coordinate;
 
 
@@ -22,10 +21,10 @@ public interface Drawable {
      * @return the component for this class that is capable of generating a visual representation
      *         for it.
      */
-    ObjectProperty<IGraphicModule> getDrawer ();
-    
+    IGraphicModule getDrawer ();
+
     /**
      * @return the location of the drawable
      */
-    ObjectProperty<Coordinate> getLocation ();
+    Coordinate getLocation ();
 }

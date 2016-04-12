@@ -3,6 +3,7 @@ package engine;
 import engine.sprite.ISprite;
 import util.Coordinate;
 
+
 /**
  * Stores queue of Sprites to be added on next game cycle
  *
@@ -19,8 +20,9 @@ public interface IAdder extends Updateable {
      * @param sprite to be added in the next game cycle
      * @param coordinate where the Sprite is added
      */
-    
+
     void add (ISprite sprite, Coordinate coordinate);
-    
-    
+
+    void add (ISprite sprite);
+
 }

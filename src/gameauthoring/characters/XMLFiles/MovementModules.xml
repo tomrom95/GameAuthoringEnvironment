@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassName FilePath = "engine.modules">
+	<Mover DisplayName="Mover">
+		.Mover
+	</Mover>
+	<PathFollowMover DisplayName="PathFollow">
+		.PathFollowMover
+	</PathFollowMover>
+	<UserControlledMover DisplayName="UserControlled">
+		.UserControlledMover
+	</UserControlledMover>	
+</ClassName>

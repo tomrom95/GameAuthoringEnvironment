@@ -1,21 +1,23 @@
 package engine.sprite;
 
+import java.util.List;
 import engine.Affectable;
+import engine.AttributeManager;
 import engine.Drawable;
 import engine.IAttribute;
 import engine.IPositionable;
 import engine.IResource;
 import engine.Updateable;
+import engine.modules.IGraphicModule;
 import engine.modules.IModule;
 import engine.modules.IMovementModule;
-import javafx.beans.property.ObjectProperty;
-import javafx.collections.ObservableList;
-import util.Bound;
+import util.Bounds;
+import util.Coordinate;
 
 
 /**
  * This interface represents a sprite in a game, that can be updated and can respond to external
- * events and stimuli. 
+ * events and stimuli.
  *
  * @author Joe Timko
  * @author Dhrumil Patel
@@ -28,16 +30,27 @@ import util.Bound;
 
 public interface ISprite extends Drawable, Updateable, Affectable, IPositionable {
 
-    ObjectProperty<IMovementModule> getMovementStrategyProperty ();
+    void initialize (IMovementModule movementModule,
+                     IGraphicModule graphicModule,
+                     List<IModule> otherModules,
+                     List<IAttribute> attributes,
+                     Coordinate coord);
 
-    ObservableList<ObjectProperty<? extends IModule>> getModulesProperty ();
+    IMovementModule getMovementStrategy ();
 
-    ObservableList<ObjectProperty<IAttribute>> getAttributes ();
+    List<? extends IModule> getModules ();
 
-    ObservableList<ObjectProperty<IResource>> getResourcesProperty ();
+    @Override
+    List<IAttribute> getAttributes ();
 
-    Bound getBounds ();
+    List<IResource> getResources ();
 
-    ObjectProperty<SpriteType> getType ();
+    AttributeManager getAttributeManager ();
+
+    Bounds getBounds ();
+
+    SpriteType getType ();
+
+    boolean shouldBeRemoved ();
 
 }

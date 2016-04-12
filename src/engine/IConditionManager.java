@@ -1,6 +1,9 @@
 package engine;
 
-import javafx.beans.property.ObjectProperty;
+import java.util.List;
+import engine.conditions.ICondition;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
 import javafx.collections.ObservableList;
 
 
@@ -20,5 +23,9 @@ public interface IConditionManager extends Updateable {
     /**
      * @return the observable list of condition that this class manages
      */
-    ObservableList<ObjectProperty<ICondition>> getConditionListProperty ();
+    ObservableList<ICondition> getConditionListProperty ();
+
+    void internalizeMouseEvents (List<MouseIOEvent> list);
+
+    void internalizeKeyEvents (List<KeyIOEvent> list);
 }

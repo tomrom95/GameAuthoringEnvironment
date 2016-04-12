@@ -1,11 +1,11 @@
 package engine;
 
 import java.util.List;
+import engine.conditions.ICondition;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
-import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
 
@@ -24,12 +24,19 @@ public interface ILevel extends Updateable, IAdder {
     /**
      * @return the condition manager for this level
      */
-    ObservableList<ObjectProperty<ICondition>> getConditionsPropertyList ();
-    
+    ObservableList<ICondition> getConditionsListProperty ();
+
+    /**
+     * @return the global attribute manager for this level
+     */
+    IAttributeManager getAttributeManager ();
+
     /**
      * @return the Image of the background of the level
      */
-    ObjectProperty<ImageGraphic> getBackgroundImageProperty ();
+    ImageGraphic getBackgroundImage ();
+    
+    void setBackgroundImage (ImageGraphic graphic);
 
     /**
      * Add a global resource to this level
@@ -41,12 +48,12 @@ public interface ILevel extends Updateable, IAdder {
     /**
      * @return an observable list of the sprites in this level
      */
-    ObservableList<ObjectProperty<ISprite>> getSprites ();
+    List<ISprite> getSprites ();
 
     /**
      * This method call will control transition between levels, to stay on the current
      * level
-     * 
+     *
      * @return the next level after this one
      */
     ILevel getNextLevel ();
@@ -56,8 +63,8 @@ public interface ILevel extends Updateable, IAdder {
      */
     boolean shouldSwitchLevel ();
 
-    ObservableList<? extends ObjectProperty<? extends Drawable>> getDrawables ();
-    
+    List<? extends Drawable> getDrawables ();
+
     /**
      * @param list of key events to be processed
      */
@@ -67,11 +74,12 @@ public interface ILevel extends Updateable, IAdder {
      * @param list of key events to be processed
      */
     void internalizeMouseEvents (List<MouseIOEvent> list);
-    
+
     /**
      * @param sprite to be removed
      */
+
+    void remove (ISprite sprite);
     
-    void remove(ObjectProperty<ISprite> sprite);
-   
+
 }

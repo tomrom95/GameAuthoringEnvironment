@@ -1,12 +1,9 @@
 package engine;
 
-
-
+import java.util.List;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import javafx.beans.property.ObjectProperty;
-import javafx.collections.ObservableList;
 
 
 /**
@@ -20,7 +17,7 @@ import javafx.collections.ObservableList;
  * @author Jonathan Im
  *
  */
-public interface Affectable extends Updateable {
+public interface Affectable extends IOAffectable, GameEventHandler {
 
     /**
      * Apply a given effect to this object
@@ -31,24 +28,26 @@ public interface Affectable extends Updateable {
 
     /**
      * Respond appropriately to a global key interaction event
-     * 
+     *
      * @param keyEvent to respond to
      */
+    @Override
     void registerKeyEvent (KeyIOEvent keyEvent);
-    
+
     /**
      * Respond appropriately to a global mouse interaction event
-     * 
+     *
      * @param mouseEvent to respond to
      */
+    @Override
     void registerMouseEvent (MouseIOEvent mouseEvent);
 
     /**
      * Any object that is affectable must have attributes that can be affected.
      * We are thus combining these two notions in this one interface.
-     * 
+     *
      * @return observable list of attribute properties
      */
-    ObservableList<ObjectProperty<IAttribute>> getAttributes ();
+    List<IAttribute> getAttributes ();
 
 }
