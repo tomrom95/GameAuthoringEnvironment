@@ -5,7 +5,7 @@ import engine.effects.IEffect;
 import engine.profile.IProfile;
 
 
-public class ListIEffectDefinition implements IDefinition {
+public class ListIEffectDefinition  {
 
     private List<IEffect> myEffectList;
 

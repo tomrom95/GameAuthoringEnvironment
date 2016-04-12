@@ -4,9 +4,8 @@ import javafx.stage.Stage;
 
 
 /**
- * The main view class for the authoring environment.
- * This will handle the selection between different parts of
- * the authoring environment.
+ * The main view class for the authoring environment. This will create the game and handle the
+ * selection between different parts of the authoring * environment.
  * 
  * @author Tommy
  * @author Jin An
