@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
  * @author Jeremy Schreck
  *
  */
-public interface DefinitionCollection<E> {
+public interface IDefinitionCollection<E> {
 
     /**
      * The title of the collection

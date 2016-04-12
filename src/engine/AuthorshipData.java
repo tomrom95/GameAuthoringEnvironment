@@ -17,24 +17,25 @@ import javafx.collections.FXCollections;
 public class AuthorshipData {
 
     List<DefinitionCollection<SpriteDefinition>> myCreatedSprites;
-    List<DefinitionCollection<AttributeDefinition>> myCreatedAttributes;
-    List<DefinitionCollection<GroupDefinition>> myCreatedGroups;
+    DefinitionCollection<AttributeDefinition> myCreatedAttributes;
+    DefinitionCollection<GroupDefinition> myCreatedGroups;
 
     public AuthorshipData () {
+        
         myCreatedSprites = FXCollections.observableArrayList();
-        myCreatedAttributes = FXCollections.observableArrayList();
-        myCreatedGroups = FXCollections.observableArrayList();
+        myCreatedAttributes = new DefinitionCollection<AttributeDefinition>("Attributes");
+        myCreatedGroups = new DefinitionCollection<GroupDefinition>("Groups");
     }
 
     public List<DefinitionCollection<SpriteDefinition>> getMyCreatedSprites () {
         return myCreatedSprites;
     }
 
-    public List<DefinitionCollection<AttributeDefinition>> getMyCreatedAttributes () {
+    public DefinitionCollection<AttributeDefinition> getMyCreatedAttributes () {
         return myCreatedAttributes;
     }
 
-    public List<DefinitionCollection<GroupDefinition>> getMyCreatedGroups () {
+    public DefinitionCollection<GroupDefinition> getMyCreatedGroups () {
         return myCreatedGroups;
     }
 

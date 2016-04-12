@@ -31,6 +31,8 @@ public interface IObjectListView<E> extends Glyph {
     void setSelectedItem (E item);
     
     void setPreviousItem (E item);
+    
+    void setMyItems(ObservableList<E> items);
 
 
 

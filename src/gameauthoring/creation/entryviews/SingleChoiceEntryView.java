@@ -3,6 +3,8 @@ package gameauthoring.creation.entryviews;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import engine.definitions.AttributeDefinition;
+import engine.profile.IProfilable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -19,22 +21,26 @@ import javafx.scene.layout.HBox;
  * @author JoeLilien
  *
  */
-public class SingleChoiceEntryView extends EntryView{
+public class SingleChoiceEntryView<E extends IProfilable> extends EntryView{
     private String myLabel;
     private HBox myContainer;
-    private ChoiceBox<String> myChoices;
+    private ChoiceBox<E> myChoices;
 
-    public SingleChoiceEntryView (String label, IFormDataManager data, List<String> choices, double spacing) {
-        super(label,data);
-        ObservableList<String> obsChoices = FXCollections.observableList(choices);
+    public SingleChoiceEntryView (String label, ObservableList<E> observableList, double spacing) {
+        super(label);
         this.myContainer = new HBox(spacing);
-        this.myChoices = new ChoiceBox<String>(obsChoices);
-        myChoices.valueProperty().bindBidirectional(this.getData().getValueProperty());
+        this.myChoices = new ChoiceBox<E>(observableList);
         myContainer.getChildren().add(new Label(myLabel));
         myContainer.getChildren().add(myChoices);
     }
 
-
+    public void setSelected(E item){
+        myChoices.getSelectionModel().select(item);
+    }
+    
+    public E getSelected(){
+        return myChoices.getSelectionModel().getSelectedItem();
+    }
     @Override
     public void update () {
         // TODO Auto-generated method stub

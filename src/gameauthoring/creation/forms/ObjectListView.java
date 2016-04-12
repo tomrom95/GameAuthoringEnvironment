@@ -85,4 +85,9 @@ public class ObjectListView<E extends IProfilable> implements IObjectListView<E>
         
     }
 
+    @Override
+    public void setMyItems (ObservableList<E> items) {
+        this.myItems = items;
+    }
+
 }

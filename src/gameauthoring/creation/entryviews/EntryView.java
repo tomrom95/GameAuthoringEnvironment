@@ -23,6 +23,10 @@ public abstract class EntryView implements IEntryView {
     protected FormData myFormData;
     protected String myLabel;
  
+    public EntryView(String label){
+        this.myLabel = label;
+    }
+    
     public EntryView(String label, IFormDataManager data){
         this.myLabel = label;
         this.myFormData = new FormData(label, new ArrayList<String>(Arrays.asList("")));
