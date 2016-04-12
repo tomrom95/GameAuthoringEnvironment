@@ -7,9 +7,9 @@ import engine.sprite.ISprite;
 import engine.sprite.SpriteType;
 import gameauthoring.FormData;
 import gameauthoring.ISpriteEditorController;
-import gameauthoring.IDefinitionCollection;
 import gameauthoring.SubFormController;
 import gameauthoring.SubFormView;
+import gameauthoring.shareddata.IDefinitionCollection;
 import javafx.collections.ObservableList;
 
 

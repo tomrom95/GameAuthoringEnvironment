@@ -1,8 +1,11 @@
-package gameauthoring.creation.subforms;
+package gameauthoring.creation.subforms.movement;
 
 import java.util.List;
 import engine.definitions.SpriteDefinition;
 import gameauthoring.creation.entryviews.IFormDataManager;
+import gameauthoring.creation.subforms.ISubFormController;
+import gameauthoring.creation.subforms.ISubFormControllerSprite;
+import gameauthoring.creation.subforms.ISubFormView;
 
 public class MovementSubFormController implements ISubFormControllerSprite {
 

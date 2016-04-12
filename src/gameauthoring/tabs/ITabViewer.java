@@ -1,6 +1,6 @@
 package gameauthoring.tabs;
 
-import gameauthoring.Glyph;
+import gameauthoring.util.Glyph;
 
 /**
  * An interface for two main tab view classes

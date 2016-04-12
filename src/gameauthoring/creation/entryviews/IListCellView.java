@@ -1,7 +1,7 @@
 package gameauthoring.creation.entryviews;
 
 import java.util.function.Consumer;
-import gameauthoring.Glyph;
+import gameauthoring.util.Glyph;
 
 /**
  * Interface for defining how a "List Item" looks

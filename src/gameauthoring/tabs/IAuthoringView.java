@@ -1,6 +1,5 @@
 package gameauthoring.tabs;
 
-import gameauthoring.SceneTabViewer;
 import javafx.stage.Stage;
 
 

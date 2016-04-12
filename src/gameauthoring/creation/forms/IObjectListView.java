@@ -1,7 +1,7 @@
 package gameauthoring.creation.forms;
 
 import java.util.function.Consumer;
-import gameauthoring.Glyph;
+import gameauthoring.util.Glyph;
 import javafx.collections.ObservableList;
 
 
@@ -27,10 +27,25 @@ public interface IObjectListView<E> extends Glyph {
      */
     ObservableList<E> getMyItems ();
 
+    /**
+     * Set the items in the list
+     * 
+     * @param items the list of items
+     */
     void setMyItems (ObservableList<E> items);
 
+    /**
+     * Returns the currently selected item in the list view
+     * 
+     * @return The item
+     */
     E getSelectedItem ();
 
+    /**
+     * Selects the given item
+     * 
+     * @param item The item to be selected
+     */
     void setSelectedItem (E item);
 
 }

@@ -1,6 +1,7 @@
 package gameauthoring;
 
 import java.util.List;
+import gameauthoring.shareddata.IDefinitionCollection;
 
 
 /**

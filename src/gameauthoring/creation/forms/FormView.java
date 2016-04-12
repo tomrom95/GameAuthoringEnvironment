@@ -10,7 +10,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-
+/**
+ * 
+ * @author Joe Lilien
+ *
+ */
 public class FormView implements IFormView {
 
     private VBox mySubFormContainer = new VBox();

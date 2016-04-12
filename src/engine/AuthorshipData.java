@@ -4,7 +4,7 @@ import java.util.List;
 import engine.definitions.AttributeDefinition;
 import engine.definitions.GroupDefinition;
 import engine.definitions.SpriteDefinition;
-import gameauthoring.DefinitionCollection;
+import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.FXCollections;
 
 

@@ -1,7 +1,7 @@
 package gameauthoring.creation.entryviews;
 
 import java.util.*;
-import gameauthoring.creation.ErrorMessage;
+import gameauthoring.util.ErrorMessage;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;

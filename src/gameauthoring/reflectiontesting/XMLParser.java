@@ -1,4 +1,4 @@
-package gameauthoring.creation;
+package gameauthoring.reflectiontesting;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;

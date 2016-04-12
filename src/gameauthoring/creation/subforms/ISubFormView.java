@@ -1,7 +1,7 @@
 package gameauthoring.creation.subforms;
 
-import gameauthoring.Glyph;
 import gameauthoring.creation.entryviews.IFormDataManager;
+import gameauthoring.util.Glyph;
 
 /**
  * This interface specifies the methods each SubFormView must implement to allow

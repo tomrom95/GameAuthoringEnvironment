@@ -1,12 +1,14 @@
 package gameauthoring.creation.forms;
 
-import java.util.ArrayList;
 import java.util.List;
 import engine.AuthorshipData;
-import engine.definitions.AttributeDefinition;
-import engine.definitions.SpriteDefinition;
 
-
+/**
+ * This is a factory class for the creation of Creation Controllers
+ * 
+ * @author Jeremy Schreck
+ *
+ */
 public class CreationControllerFactory {
 
     public CreationControllerFactory(){

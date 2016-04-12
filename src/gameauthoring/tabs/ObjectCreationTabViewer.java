@@ -1,20 +1,20 @@
 package gameauthoring.tabs;
 
-import gameauthoring.DefinitionCollection;
-import gameauthoring.IDefinitionCollection;
 import gameauthoring.creation.forms.CreationController;
 import gameauthoring.creation.forms.CreationControllerAttribute;
 import gameauthoring.creation.forms.CreationControllerFactory;
 import gameauthoring.creation.forms.CreationControllerSprite;
 import gameauthoring.creation.forms.IObjectCreationView;
 import gameauthoring.creation.forms.ObjectCreationView;
-import gameauthoring.creation.subforms.AttributeSubFormController;
+import gameauthoring.creation.subforms.MakeAttributeSubFormController;
 import gameauthoring.creation.subforms.ISubFormControllerAttribute;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
-import gameauthoring.creation.subforms.MovementSubFormController;
 import gameauthoring.creation.subforms.ProfileSubFormController;
 import gameauthoring.creation.subforms.SelectAttributeSubFormController;
 import gameauthoring.creation.subforms.SubFormControllerFactory;
+import gameauthoring.creation.subforms.movement.MovementSubFormController;
+import gameauthoring.shareddata.DefinitionCollection;
+import gameauthoring.shareddata.IDefinitionCollection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -77,14 +77,16 @@ public class ObjectCreationTabViewer implements ITabViewer {
                                                          myAuthorshipData);
        
         myCCs = new ArrayList<CreationController<?>>();
-        myCCs.add(ccAttributes);
 
         myCCs.add(ccEnemies);
         myCCs.add(ccDefenders);
+        myCCs.add(ccAttributes);
+
         
-        ccAttributes.init(myAttributeSFCs);
         ccEnemies.init(myEnemySFCs);
         ccDefenders.init(myDefenderSFCs);
+        ccAttributes.init(myAttributeSFCs);
+
 
     }
 

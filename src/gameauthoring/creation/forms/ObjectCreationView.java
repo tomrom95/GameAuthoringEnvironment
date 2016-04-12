@@ -3,9 +3,9 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import java.util.function.Consumer;
 import engine.profile.IProfilable;
-import gameauthoring.DefinitionCollection;
-import gameauthoring.IDefinitionCollection;
 import gameauthoring.creation.subforms.ISubFormView;
+import gameauthoring.shareddata.DefinitionCollection;
+import gameauthoring.shareddata.IDefinitionCollection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -30,19 +30,22 @@ public class ObjectCreationView<E extends IProfilable> implements IObjectCreatio
     /**
      * Constructor
      * 
-     * Note: the sumformviews in an ObjectCreationView are customizable
+     * Note: the subformviews in an ObjectCreationView are customizable
      * - this way, we can add classes that implement IObjectCreationView and
      * lay out their subforms in different ways
      * - the only requirement is that they have a list of ISubFormViews, so that
      * we can generate those reflectively
      * 
+     * Note: part of constructor moved to init method to fix weird dependency
+     * issue with some creation controllers needing to share authorshipData with
+     * other creation controller's subforms
+     * 
      * @param subFormViews The subformviews to create the FormView with
      */
-    public ObjectCreationView (){//(List<ISubFormView> subFormViews) {
+    public ObjectCreationView () {
         ObservableList<E> items = FXCollections.observableArrayList();
         this.myObjectListView = new ObjectListView<E>(items);
-        //this.myFormView = new FormView(subFormViews);
-        //init();
+
     }
 
     /**

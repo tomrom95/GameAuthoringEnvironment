@@ -1,4 +1,4 @@
-package gameauthoring;
+package gameauthoring.util;
 
 import java.util.List;
 import javafx.event.ActionEvent;

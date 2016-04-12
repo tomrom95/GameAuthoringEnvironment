@@ -5,12 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import engine.definitions.AttributeDefinition;
 import engine.profile.IProfilable;
-import gameauthoring.IDefinitionCollection;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.entryviews.ImageEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
+import gameauthoring.shareddata.IDefinitionCollection;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 

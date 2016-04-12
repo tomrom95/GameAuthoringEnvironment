@@ -6,7 +6,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-import gameauthoring.creation.ErrorMessage;
+import gameauthoring.util.ErrorMessage;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Node;

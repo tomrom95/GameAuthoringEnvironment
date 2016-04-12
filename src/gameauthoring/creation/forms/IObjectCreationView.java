@@ -3,8 +3,8 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import java.util.function.Consumer;
 import engine.definitions.IDefinition;
-import gameauthoring.Glyph;
 import gameauthoring.creation.subforms.ISubFormView;
+import gameauthoring.util.Glyph;
 import javafx.collections.ObservableList;
 
 
@@ -35,7 +35,6 @@ public interface IObjectCreationView<E> extends Glyph {
      */
     void setEditAction (Consumer<E> action);
 
-
     /**
      * Get the IObjectListView, which is the view containing the list of objects
      * 
@@ -52,7 +51,6 @@ public interface IObjectCreationView<E> extends Glyph {
      */
     IFormView getFormView ();
 
-
     /**
      * Get the observable list of items stored in the list view
      * 
@@ -61,7 +59,17 @@ public interface IObjectCreationView<E> extends Glyph {
      */
     ObservableList<E> getItems ();
 
+    /**
+     * Get the currently selected item
+     * 
+     * @return The item
+     */
     E getCurrentItem ();
-    
-    void init(List<ISubFormView> subFormViews);
+
+    /**
+     * Init method to pass subformviews
+     * 
+     * @param subFormViews The subformviews of which the formview should consist of
+     */
+    void init (List<ISubFormView> subFormViews);
 }

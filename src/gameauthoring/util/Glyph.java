@@ -1,4 +1,4 @@
-package gameauthoring;
+package gameauthoring.util;
 
 import javafx.scene.Node;
 

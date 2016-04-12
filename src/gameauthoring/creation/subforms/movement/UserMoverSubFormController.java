@@ -1,9 +1,11 @@
-package gameauthoring.creation.subforms;
+package gameauthoring.creation.subforms.movement;
 
 import engine.definitions.KeyControlDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.UserMoverDefinition;
 import gameauthoring.creation.entryviews.IFormDataManager;
+import gameauthoring.creation.subforms.ISubFormControllerSprite;
+import gameauthoring.creation.subforms.ISubFormView;
 
 public class UserMoverSubFormController implements ISubFormControllerSprite {
 

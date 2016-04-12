@@ -1,10 +1,11 @@
-package gameauthoring.creation.subforms;
+package gameauthoring.creation.subforms.movement;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
+import gameauthoring.creation.subforms.SubFormView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 

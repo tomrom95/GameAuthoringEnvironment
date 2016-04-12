@@ -3,7 +3,6 @@ package gameauthoring.tabs;
 import data.GameWriter;
 import data.IGameWriter;
 import engine.Game;
-import gameauthoring.SceneTabViewer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;

@@ -1,4 +1,4 @@
-package gameauthoring.characters.test;
+package gameauthoring.junittests;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;

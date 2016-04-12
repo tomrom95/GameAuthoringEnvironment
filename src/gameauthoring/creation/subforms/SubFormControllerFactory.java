@@ -3,6 +3,8 @@ package gameauthoring.creation.subforms;
 import java.util.ArrayList;
 import java.util.List;
 import engine.AuthorshipData;
+import gameauthoring.creation.subforms.movement.SmartAIMovementSubFormController;
+import gameauthoring.creation.subforms.movement.UserMoverSubFormController;
 
 
 public class SubFormControllerFactory {
@@ -51,7 +53,7 @@ public class SubFormControllerFactory {
         }
         else if (type.equals("Attribute")) {
             System.out.println("attribute");
-            return new AttributeSubFormController();
+            return new MakeAttributeSubFormController();
         }
         System.out.println("null");
 
@@ -109,7 +111,7 @@ public class SubFormControllerFactory {
     public ISubFormControllerAttribute createAttributeSubFormController (String type) {
         if (type.equals("Attribute")) {
             System.out.println("attribute");
-            return new AttributeSubFormController();
+            return new MakeAttributeSubFormController();
         }
         System.out.println("null");
 

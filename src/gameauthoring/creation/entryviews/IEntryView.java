@@ -1,6 +1,6 @@
 package gameauthoring.creation.entryviews;
 
-import gameauthoring.Glyph;
+import gameauthoring.util.Glyph;
 
 
 /**

@@ -1,4 +1,4 @@
-package gameauthoring;
+package gameauthoring.tabs;
 
 import engine.definitions.SpriteDefinition;
 import engine.modules.GraphicModule;
@@ -16,7 +16,7 @@ import engine.Level;
 import engine.LevelManager;
 import engine.sprite.Sprite;
 import gameauthoring.levels.LevelEditorView;
-import gameauthoring.tabs.ITabViewer;
+import gameauthoring.shareddata.IDefinitionCollection;
 import graphics.Block;
 import graphics.IGraphic;
 import graphics.ImageGraphic;

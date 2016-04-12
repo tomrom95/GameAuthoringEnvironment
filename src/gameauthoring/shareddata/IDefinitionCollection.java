@@ -1,4 +1,4 @@
-package gameauthoring;
+package gameauthoring.shareddata;
 
 import javafx.collections.ObservableList;
 

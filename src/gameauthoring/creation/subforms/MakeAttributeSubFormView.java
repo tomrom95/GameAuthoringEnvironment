@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
  * @author Jin An
  *
  */
-public class AttributeSubFormView extends SubFormView {
+public class MakeAttributeSubFormView extends SubFormView {
 
     private GridPane myPane = new GridPane();
     private String myMaxKey = "Max Value: ";
@@ -27,7 +27,7 @@ public class AttributeSubFormView extends SubFormView {
     private List<IEntryView> myEntryViews = new ArrayList<IEntryView>(Arrays.asList(
                                                                                     myIsGlobal));
 
-    public AttributeSubFormView () {
+    public MakeAttributeSubFormView () {
         initView();
     }
 

@@ -2,10 +2,10 @@ package gameauthoring.creation.subforms;
 
 import java.util.ArrayList;
 import java.util.List;
-import gameauthoring.Glyph;
 import gameauthoring.creation.entryviews.FormDataManager;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.IFormDataManager;
+import gameauthoring.util.Glyph;
 
 
 /**

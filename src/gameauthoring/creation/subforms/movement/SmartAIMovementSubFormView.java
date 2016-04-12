@@ -1,6 +1,7 @@
-package gameauthoring.creation.subforms;
+package gameauthoring.creation.subforms.movement;
 
 import gameauthoring.creation.entryviews.IFormDataManager;
+import gameauthoring.creation.subforms.ISubFormView;
 import javafx.scene.Node;
 
 public class SmartAIMovementSubFormView implements ISubFormView {

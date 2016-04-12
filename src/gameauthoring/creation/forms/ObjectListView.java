@@ -8,20 +8,14 @@ import javafx.scene.control.ListView;
 
 
 /**
- * View class for individual object list in Object Creation Tab.
- * Has "Show and Edit" button for the user to load specific ListCell on the right
- * Has "Create" button to create a FormView and load it on the right
- * 
- * Has SpriteEditorController
- * Has buttons that map cells to CreationController.showAndEdit()
- * Create button (e -> stc.createBlankSprite())
+ * View class for individual object lists in Object Creation Tabs
  * 
  * @author Jin An, Jeremy Schreck
  *
  */
 public class ObjectListView<E extends IProfilable> implements IObjectListView<E> {
 
-    private ObservableList<E> myItems; // maybe change to SpriteListHolder
+    private ObservableList<E> myItems;
     private ListView<E> myListView;
 
     public ObjectListView (ObservableList<E> items) {
@@ -51,6 +45,8 @@ public class ObjectListView<E extends IProfilable> implements IObjectListView<E>
     /**
      * Event handler for cell selection. Passes the item in the listview to the
      * given Consumer action
+     * 
+     * Note: can delete this if we want because selection is now hooked up automatically
      * 
      * @param action The consumer to which to pass the selected item
      */

@@ -1,4 +1,4 @@
-package gameauthoring.creation;
+package gameauthoring.junittests;
 
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.ProfileSubFormView;

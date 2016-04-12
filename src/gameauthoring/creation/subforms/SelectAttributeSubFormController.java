@@ -2,7 +2,7 @@ package gameauthoring.creation.subforms;
 
 import engine.definitions.AttributeDefinition;
 import engine.definitions.SpriteDefinition;
-import gameauthoring.IDefinitionCollection;
+import gameauthoring.shareddata.IDefinitionCollection;
 
 
 

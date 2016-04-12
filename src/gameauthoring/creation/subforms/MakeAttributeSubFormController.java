@@ -1,8 +1,8 @@
 package gameauthoring.creation.subforms;
 
 import engine.definitions.AttributeDefinition;
-import gameauthoring.creation.ErrorMessage;
 import gameauthoring.creation.entryviews.IFormDataManager;
+import gameauthoring.util.ErrorMessage;
 
 
 /**
@@ -11,13 +11,13 @@ import gameauthoring.creation.entryviews.IFormDataManager;
  * @author Jin An
  *
  */
-public class AttributeSubFormController implements ISubFormControllerAttribute {
+public class MakeAttributeSubFormController implements ISubFormControllerAttribute {
 
-    private AttributeSubFormView myView;
+    private MakeAttributeSubFormView myView;
     private IFormDataManager myFormData;
 
-    public AttributeSubFormController () {
-        this.myView = new AttributeSubFormView();
+    public MakeAttributeSubFormController () {
+        this.myView = new MakeAttributeSubFormView();
         this.myFormData = myView.getData();
     }
 

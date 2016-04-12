@@ -1,4 +1,4 @@
-package gameauthoring.creation;
+package gameauthoring.reflectiontesting;
 
 public class ItemFactory<E> implements Factory<E> {
 

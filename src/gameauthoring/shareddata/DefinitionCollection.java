@@ -1,14 +1,14 @@
-package gameauthoring;
+package gameauthoring.shareddata;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
 /**
+ * A wrapper for an object that holds a list of items
  * 
  * @author Jeremy Schreck, Joe Lilien
  *
- * @param <E>
+ * @param <E> The type of item that this class holds in its list
  */
 
 public class DefinitionCollection<E> implements IDefinitionCollection<E> {

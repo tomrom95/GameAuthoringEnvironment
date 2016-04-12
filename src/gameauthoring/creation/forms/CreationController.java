@@ -2,12 +2,8 @@ package gameauthoring.creation.forms;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import engine.AuthorshipData;
-import engine.definitions.IDefinition;
-import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
-import gameauthoring.IDefinitionCollection;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.SubFormControllerFactory;
@@ -17,8 +13,6 @@ import javafx.collections.ObservableList;
 /**
  * This class is the high level controller for a creation form/list view
  * 
- * TODO: not sure if we need to give it the observable list. We could connect
- * this elsewhere
  * 
  * @author Jeremy Schreck, Joe Lilien
  *
@@ -31,6 +25,16 @@ public abstract class CreationController<T extends IProfilable> {
     private String myTitle;
     private SubFormControllerFactory mySFCFactory;
 
+    /**
+     * Constructor
+     * 
+     * Note: subFormStrings moved to init, but kept here for now in case we want to
+     * change back
+     * 
+     * @param title The creation controller's title
+     * @param subFormStrings
+     * @param authorshipData Data shared by various authorship elements (listsof created items)
+     */
     public CreationController (String title,
                                List<String> subFormStrings,
                                AuthorshipData authorshipData) {
@@ -41,20 +45,21 @@ public abstract class CreationController<T extends IProfilable> {
 
     }
 
-    private List<ISubFormView> getSubFormViews (List<? extends ISubFormController<T>> subFormControllers) {
-        List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
-
-        for (ISubFormController<T> subFormController : subFormControllers) {
-            subFormViews.add(subFormController.getSubFormView());
-        }
-        return subFormViews;
-    }
-
     /**
-     * Set up event handler connections
+     * Initialization. Creates its subFormControllers from a factory, passes
+     * the subformviews to init its creationview, and sets up up action connections
+     * like save, new, edit, delete
+     * 
+     * Note: this method must be called before use of full functionality CreationController
+     * 
+     * Note: did this to erase dependency between AttributeCreationController
+     * needing to be created before SelectAttribute subformcontroller
+     * 
+     * @param subFormStrings The strings from xml representing which subforms to create
      */
     public void init (List<String> subFormStrings) {
-        ///TODO: fix casting issue
+        /// TODO: fix casting issue. move to abstract method that calls
+        // more specific factory method below, or come up with new solution
         mySubFormControllers =
                 (List<? extends ISubFormController<T>>) getMySFCFactory()
                         .createSubFormControllers(subFormStrings);
@@ -62,10 +67,12 @@ public abstract class CreationController<T extends IProfilable> {
         List<ISubFormView> subFormViews = getSubFormViews(getMySubFormControllers());
         myView.init(subFormViews);
         setupConnections();
-        newItem();
 
     }
 
+    /**
+     * Set up event handler connections
+     */
     private void setupConnections () {
         IFormView formView = getMyObjectCreationView().getFormView();
         formView.setSaveAction(e -> saveItem());
@@ -74,6 +81,21 @@ public abstract class CreationController<T extends IProfilable> {
 
         IObjectCreationView<T> creationView = getMyObjectCreationView();
         creationView.setEditAction(e -> showAndEdit(e));
+    }
+
+    /**
+     * Generate list of subformviews from the list of subformcontrollers
+     * 
+     * @param subFormControllers The subformcontrollers
+     * @return The list of subformviews
+     */
+    private List<ISubFormView> getSubFormViews (List<? extends ISubFormController<T>> subFormControllers) {
+        List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
+
+        for (ISubFormController<T> subFormController : subFormControllers) {
+            subFormViews.add(subFormController.getSubFormView());
+        }
+        return subFormViews;
     }
 
     /**
@@ -88,26 +110,18 @@ public abstract class CreationController<T extends IProfilable> {
 
     /**
      * Delete the given item
-     * 
-     * TODO: it gives me an error when I say ItemType item. How do I make this not give
-     * me an error? Do I have to change IFormView to setDeleteAction(Consumer<ItemType>)
-     * instead of setDeleteAction(Consumer<?>) ?
-     * 
+     *
      * @param item the item to delete
-     * 
-     *        Instead: delete the item currently being edited in the form
      */
     private void deleteItem () {
         getMyItems().remove(getMyCurrentItem());
-        // showAndEdit(null);
     }
 
     /**
      * Method handler when user clicks "new" object
      * 
      * Note: need blank definitions to have empty strings instead of null so that
-     * no front end erros occur
-     * 
+     * no front end errors occur
      * 
      */
     private void newItem () {
@@ -118,10 +132,19 @@ public abstract class CreationController<T extends IProfilable> {
 
     }
 
+    /**
+     * Method to be overwritten by subclasses that creates a blank object of type T
+     * 
+     * @return The item
+     */
     protected abstract T createBlankItem ();
 
     /**
      * Method called when user clicks a cell in the list view
+     * 
+     * Note: The item parameter is no longer completely necessary, as we are always
+     * using getMyCurrentItem(), which is always set to the listview's current
+     * selected item
      * 
      * @param item The item contained in the cell that was clicked
      */
