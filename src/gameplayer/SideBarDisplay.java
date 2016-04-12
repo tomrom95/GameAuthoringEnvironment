@@ -32,6 +32,7 @@ public class SideBarDisplay implements Glyph {
     public SideBarDisplay (IGame game, LevelRenderer renderer) {
         myGame = game;
         myController = new SceneController(game.getLevelManager().getCurrentLevel());
+        levelView = renderer;
     }
 
     @Override

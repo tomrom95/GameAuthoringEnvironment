@@ -1,6 +1,6 @@
-package facebook_util.actions;
+package facebookutil.actions;
 
-import facebook_util.HighScoreBoard;
+import facebookutil.HighScoreBoard;
 
 public interface HighScoreBoardPost extends Post{
 

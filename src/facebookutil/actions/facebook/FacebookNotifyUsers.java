@@ -1,8 +1,8 @@
-package facebook_util.actions.facebook;
+package facebookutil.actions.facebook;
 
 import java.util.List;
-import facebook_util.IUser;
-import facebook_util.actions.NotifyUsers;
+import facebookutil.IUser;
+import facebookutil.actions.NotifyUsers;
 
 public class FacebookNotifyUsers implements NotifyUsers {
 

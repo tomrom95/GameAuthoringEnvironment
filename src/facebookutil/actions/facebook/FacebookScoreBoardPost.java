@@ -1,9 +1,9 @@
-package facebook_util.actions.facebook;
+package facebookutil.actions.facebook;
 
-import facebook_util.HighScoreBoard;
-import facebook_util.actions.HighScoreBoardPost;
+import facebookutil.HighScoreBoard;
+import facebookutil.actions.HighScoreBoardPost;
 
-public class FacebookHighScorePost implements HighScoreBoardPost {
+public class FacebookScoreBoardPost implements HighScoreBoardPost {
 
     @Override
     public void send () {

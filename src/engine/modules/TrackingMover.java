@@ -54,6 +54,7 @@ public class TrackingMover extends Mover {
                 myTracker.calculateYVelToClosestEnemy(mySprite.getLocation(), myPotentialTargets(),
                                                       mySpeed.getValueProperty().get());
         setYVel(newYVel);
+        move(duration);
 
     }
 
@@ -92,5 +93,4 @@ public class TrackingMover extends Mover {
         // TODO Auto-generated method stub
         return null;
     }
-
 }

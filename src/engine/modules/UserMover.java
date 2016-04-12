@@ -13,6 +13,7 @@ import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import util.ControlKeys;
+import util.Coordinate;
 import util.Direction;
 import util.Key;
 import util.TimeDuration;
@@ -191,6 +192,18 @@ public class UserMover extends Mover {
         List<IAttribute> attributeList = new ArrayList<>();
         attributeList.add(mySpeed);
         return attributeList;
+    }
+
+    @Override
+    public void setPath (List<Coordinate> newPath) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public List<Coordinate> getPath () {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

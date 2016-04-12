@@ -14,7 +14,6 @@ import engine.profile.Profile;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
-import graphics.IGraphic;
 import util.Coordinate;
 
 
@@ -24,7 +23,6 @@ public class SpriteDefinition implements IProfilable {
     private List<ModuleDefinition> myModuleDefinitions;
     private LocationDefinition myLocation;
     private List<AttributeDefinition> myAttributes;
-    private IGraphic myGraphic;
     private IProfile myProfile;
 
     public SpriteDefinition () {
@@ -41,22 +39,22 @@ public class SpriteDefinition implements IProfilable {
 
         IMovementModule mover = myMovementDefinition.create(sprite);
         IGraphicModule graphicModule = createGraphicModule();
-        sprite.initialize(mover, graphicModule, createModules(), createAttributes(),
+        sprite.initialize(mover, graphicModule, createModules(sprite), createAttributes(),
                           createCoordinate());
         return sprite;
     }
 
     protected IGraphicModule createGraphicModule () {
-        return new GraphicModule(myGraphic);
+        return new GraphicModule(myProfile.getImage());
     }
 
     protected Coordinate createCoordinate () {
         return myLocation.create();
     }
 
-    protected List<IModule> createModules () {
+    protected List<IModule> createModules (ISprite sprite) {
         return myModuleDefinitions.stream()
-                .map(modDef -> modDef.create())
+                .map(modDef -> modDef.create(sprite))
                 .collect(Collectors.toList());
     }
 
@@ -73,12 +71,12 @@ public class SpriteDefinition implements IProfilable {
     public void addAttribute (AttributeDefinition attribute) {
         myAttributes.add(attribute);
     }
-    
-    public List<AttributeDefinition> getAttributes(){
+
+    public List<AttributeDefinition> getAttributes () {
         return myAttributes;
     }
-    
-    public void setAttributes(List<AttributeDefinition> attributes){
+
+    public void setAttributes (List<AttributeDefinition> attributes) {
         myAttributes = new ArrayList<AttributeDefinition>(attributes);
     }
 
@@ -100,18 +98,6 @@ public class SpriteDefinition implements IProfilable {
 
     public void setMovementDefinition (MovementDefinition definition) {
         myMovementDefinition = definition;
-    }
-    
-    public MovementDefinition getMovementDefinition(){
-        return myMovementDefinition;
-    }
-
-    public void setGraphic (IGraphic graphic) {
-        myGraphic = graphic;
-    }
-
-    public IGraphic getGraphic () {
-        return myGraphic;
     }
 
     @Override

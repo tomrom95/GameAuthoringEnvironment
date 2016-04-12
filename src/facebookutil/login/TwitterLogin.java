@@ -1,9 +1,9 @@
-package facebook_util.login;
+package facebookutil.login;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
-public class LocalLogin implements Login {
+public class TwitterLogin implements Login{
 
     @Override
     public void createToken () {

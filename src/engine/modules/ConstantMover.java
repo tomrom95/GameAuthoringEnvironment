@@ -48,7 +48,6 @@ public class ConstantMover extends Mover {
     @Override
     public void setPath (List<Coordinate> newPath) {
         // TODO Auto-generated method stub
-
     }
 
     @Override

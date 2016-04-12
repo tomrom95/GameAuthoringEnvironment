@@ -4,7 +4,7 @@ import engine.sprite.ISprite;
 
 
 /**
- * This interface provdes the method 
+ * This interface provides the method 
  * @author Dhrumil
  *
  */

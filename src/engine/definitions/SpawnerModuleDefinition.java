@@ -1,6 +1,7 @@
 package engine.definitions;
 
 import engine.IAdder;
+import engine.IPositionable;
 import engine.modules.IModule;
 import engine.modules.SpawningModule;
 
@@ -25,7 +26,7 @@ public class SpawnerModuleDefinition extends ModuleDefinition {
 
 
     @Override
-    public IModule create () {
+    public IModule create (IPositionable parent) {
         return new SpawningModule(myAdder, myWave.create());
     }
 
