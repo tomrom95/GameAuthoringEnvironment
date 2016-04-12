@@ -39,8 +39,8 @@ public class SpriteCellView extends ListCell<SpriteDefinition> {
     private Node createTextProfile () {
         VBox container = new VBox();
 
-        Text name = new Text(getStringOrDefault(getSprite().getMyProfile().getName(), DEFAULT_NAME));
-        Text description = new Text(getStringOrDefault(getSprite().getMyProfile().getDescription(),
+        Text name = new Text(getStringOrDefault(getSprite().getProfile().getName(), DEFAULT_NAME));
+        Text description = new Text(getStringOrDefault(getSprite().getProfile().getDescription(),
                                                        DEFAULT_DESCRIPTION));
         container.getChildren().addAll(name, description);
         return container;
