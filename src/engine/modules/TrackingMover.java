@@ -51,6 +51,8 @@ public class TrackingMover extends Mover {
         
         double newYVel = myTracker.calculateYVelToClosestEnemy(mySprite.getLocation(), myPotentialTargets(), mySpeed.getValueProperty().get());
         setYVel(newYVel);
+        move(duration);
+
 
     }
 
