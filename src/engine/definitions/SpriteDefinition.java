@@ -99,10 +99,6 @@ public class SpriteDefinition implements IProfilable {
     public void setMovementDefinition (MovementDefinition definition) {
         myMovementDefinition = definition;
     }
-    
-    public MovementDefinition getMovementDefinition(){
-        return myMovementDefinition;
-    }
 
     @Override
     public IProfile getProfile () {
