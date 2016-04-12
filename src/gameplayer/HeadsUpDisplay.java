@@ -2,7 +2,7 @@ package gameplayer;
 
 import engine.IAttribute;
 import engine.IGame;
-import gameauthoring.Glyph;
+import gameauthoring.util.Glyph;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
