@@ -36,22 +36,25 @@ public class TrackingMover extends Mover {
     }
 
     private Optional<ISprite> selectEnemy () {
-        return myEnemyList.stream().sorted( (s1, s2) -> Double.compare(getDistance(s1), getDistance(s2))).findFirst();
 
-//        ISprite closestEnemy = null;
-//        double distance = Double.MAX_VALUE;
-//
-//        for (ISprite sprite : myEnemyList) {
-//            double xDiff = sprite.getLocation().getX() - mySprite.getLocation().getX();
-//            double yDiff = sprite.getLocation().getY() - mySprite.getLocation().getY();
-//            Double currDistance = Math.abs(xDiff + yDiff);
-//            if (currDistance < distance) {
-//                distance = currDistance;
-//                closestEnemy = sprite;
-//            }
-//        }
-//
-//        return closestEnemy;
+        // find the closest enemy and orient yourself in that direction
+        return myEnemyList.stream()
+                .sorted( (s1, s2) -> Double.compare(getDistance(s1), getDistance(s2))).findFirst();
+
+        // ISprite closestEnemy = null;
+        // double distance = Double.MAX_VALUE;
+        //
+        // for (ISprite sprite : myEnemyList) {
+        // double xDiff = sprite.getLocation().getX() - mySprite.getLocation().getX();
+        // double yDiff = sprite.getLocation().getY() - mySprite.getLocation().getY();
+        // Double currDistance = Math.abs(xDiff + yDiff);
+        // if (currDistance < distance) {
+        // distance = currDistance;
+        // closestEnemy = sprite;
+        // }
+        // }
+        //
+        // return closestEnemy;
     }
 
     private double getDistance (ISprite sprite) {

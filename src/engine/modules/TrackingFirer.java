@@ -26,9 +26,10 @@ public class TrackingFirer extends Firer {
     private IAdder myAdder;
     private IAttribute myAmmo;
 
-    public TrackingFirer (List<SpriteDefinition> targets, Key fire) {
+    public TrackingFirer (List<SpriteDefinition> targets, Key fire, IAdder adder) {
         myTargets = targets;
         myFireKey = fire;
+        myAdder = adder;
     }
 
     @Override
