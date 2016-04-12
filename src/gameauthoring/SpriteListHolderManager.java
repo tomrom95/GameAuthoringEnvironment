@@ -1,6 +1,7 @@
 package gameauthoring;
 
 import java.util.List;
+import gameauthoring.shareddata.IDefinitionCollection;
 
 
 /**
@@ -32,7 +33,7 @@ public interface SpriteListHolderManager {
      * 
      * @return The list of SpriteListHolder objects
      */
-    List<SpriteListHolder> getSpriteListHolders ();
+    List<IDefinitionCollection> getSpriteListHolders ();
 
     /**
      * Get the SpriteListHolder located at the specified index
@@ -40,7 +41,7 @@ public interface SpriteListHolderManager {
      * @param index The index of the SpriteListHolder of interest
      * @return The SpriteListHolder at the given index
      */
-    SpriteListHolder getSpriteListHolderAtIndex (int index);
+    IDefinitionCollection getSpriteListHolderAtIndex (int index);
     
     /**
      * Get the list of SpriteEditorControllers that this manager is in charge of

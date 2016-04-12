@@ -11,11 +11,10 @@ import engine.profile.IProfile;
  * @author jonathanim
  *
  */
-public class AttributeTypeDefinition implements IDefinition {
+public class AttributeTypeDefinition {
 
     // private AttributeType myAttributeType;
     private String myAttyType;
-    private IProfile myProfile;
 
     public AttributeType create () {
         return new AttributeType(myAttyType);
@@ -28,6 +27,5 @@ public class AttributeTypeDefinition implements IDefinition {
     public String getAttributeType () {
         return myAttyType;
     }
-
 
 }

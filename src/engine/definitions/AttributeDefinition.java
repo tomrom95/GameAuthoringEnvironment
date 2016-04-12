@@ -17,8 +17,6 @@ import engine.profile.Profile;
 
 public class AttributeDefinition implements IProfilable {
 
-  
-  
     private String myType;
     private boolean myIsGlobal;
     private double myStartingValue;
@@ -27,13 +25,13 @@ public class AttributeDefinition implements IProfilable {
     /**
      * Constructor initialized with defaults
      */
-    public AttributeDefinition(){
+    public AttributeDefinition () {
         myType = "";
         myIsGlobal = false;
-        myStartingValue = 0; 
+        myStartingValue = 0;
         myProfile = new Profile();
     }
-   
+
     public IAttribute create () {
         return new Attribute(myStartingValue, new AttributeType(myType));
     }
