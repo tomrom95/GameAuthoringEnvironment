@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import engine.definitions.IDefinition;
-import engine.definitions.ProfileDefinition;
 import engine.definitions.SpriteDefinition;
 import javafx.collections.ObservableList;
 

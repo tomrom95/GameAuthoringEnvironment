@@ -2,7 +2,6 @@ package gameauthoring.characters;
 
 import java.util.function.Consumer;
 import engine.definitions.IDefinition;
-import engine.definitions.ProfileDefinition;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;

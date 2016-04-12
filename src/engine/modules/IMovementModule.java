@@ -1,5 +1,8 @@
 package engine.modules;
 
+import java.util.List;
+import util.Coordinate;
+
 /**
  * This interface represents a module of a sprite that handles its movement and positioning
  *
@@ -11,6 +14,10 @@ package engine.modules;
  *
  */
 public interface IMovementModule extends IModule {
+    
+    void setPath(List<Coordinate> newPath);
+    
+    List<Coordinate> getPath();
     
     void setXVel(double newVel);
     
