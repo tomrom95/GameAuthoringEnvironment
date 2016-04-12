@@ -54,16 +54,40 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     
     /*
      * overloaded method to account for orientation below
+     * need to discuss
      */
+    protected void moveTrig (TimeDuration duration, double heading){
+        double xChange = distanceTrigX(getXVel().getValueProperty().get(), duration.getMillis(), myParent.getLocation().getOrientation());
+        double yChange = distanceTrigY(getYVel().getValueProperty().get(), duration.getMillis(), myParent.getLocation().getOrientation());
+        move(getNextCoordinate(xChange, yChange, heading));
+    }
+        
     private Coordinate getNextCoordinate(double xChange, double yChange, double orientationChange) {
         return new Coordinate(getLocation().getX() + xChange,
                               getLocation().getY() + yChange, 
-                              getLocation().getOrientation() + orientationChange);
+//                              getLocation().getOrientation() + orientationChange);
+                              orientationChange);
     }
 
+    /*
+     * new method to move with angles below
+     */
+    private double distanceTrigX(double rate, double time, double heading){
+        double hypotenuse = rate*time;
+        return Math.cos(heading) * hypotenuse;
+    }
+    
+    private double distanceTrigY(double rate, double time, double heading){
+        double hypotenuse = rate*time;
+        return Math.sin(heading) * hypotenuse;
+        
+    }
+    
     private double distance (double rate, double time) {
         return rate * time;
     }
+    
+    
 
     protected double getXDiff (double input) {
         return input - getLocation().getX();

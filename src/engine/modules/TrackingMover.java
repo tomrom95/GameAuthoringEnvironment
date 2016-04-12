@@ -22,8 +22,9 @@ public class TrackingMover extends Mover {
 
     private IAttribute mySpeed;
     private List<ISprite> myEnemyList;
-    private Optional<ISprite> myEnemy;
+    private ISprite myEnemy;
     private IPositionable mySprite;
+    private EnemyTracker myTracker;
 
     public TrackingMover (double speed,
                           List<ISprite> enemies,
@@ -31,37 +32,45 @@ public class TrackingMover extends Mover {
         super(sprite);
         mySpeed = new Attribute(speed, AttributeType.SPEED);
         myEnemyList = enemies;
-        myEnemy = selectEnemy();
+        myTracker = new EnemyTracker();
+        myEnemy = myTracker.getClosestEnemy(myEnemyList, mySprite.getLocation());
 
     }
 
-    private Optional<ISprite> selectEnemy () {
-        return myEnemyList.stream().sorted( (s1, s2) -> Double.compare(getDistance(s1), getDistance(s2))).findFirst();
-
-//        ISprite closestEnemy = null;
-//        double distance = Double.MAX_VALUE;
+//    private Optional<ISprite> selectEnemy () {
+//        return myEnemyList.stream().sorted( (s1, s2) -> Double.compare(getDistance(s1), getDistance(s2))).findFirst();
 //
-//        for (ISprite sprite : myEnemyList) {
-//            double xDiff = sprite.getLocation().getX() - mySprite.getLocation().getX();
-//            double yDiff = sprite.getLocation().getY() - mySprite.getLocation().getY();
-//            Double currDistance = Math.abs(xDiff + yDiff);
-//            if (currDistance < distance) {
-//                distance = currDistance;
-//                closestEnemy = sprite;
-//            }
-//        }
+////        ISprite closestEnemy = null;
+////        double distance = Double.MAX_VALUE;
+////
+////        for (ISprite sprite : myEnemyList) {
+////            double xDiff = sprite.getLocation().getX() - mySprite.getLocation().getX();
+////            double yDiff = sprite.getLocation().getY() - mySprite.getLocation().getY();
+////            Double currDistance = Math.abs(xDiff + yDiff);
+////            if (currDistance < distance) {
+////                distance = currDistance;
+////                closestEnemy = sprite;
+////            }
+////        }
+////
+////        return closestEnemy;
+//    }
 //
-//        return closestEnemy;
-    }
+//    private double getDistance (ISprite sprite) {
+//        double xDiff = sprite.getLocation().getX() - mySprite.getLocation().getX();
+//        double yDiff = sprite.getLocation().getY() - mySprite.getLocation().getY();
+//        return Math.abs(xDiff + yDiff);
+//    }
 
-    private double getDistance (ISprite sprite) {
-        double xDiff = sprite.getLocation().getX() - mySprite.getLocation().getX();
-        double yDiff = sprite.getLocation().getY() - mySprite.getLocation().getY();
-        return Math.abs(xDiff + yDiff);
-    }
-
+    /*
+     * it seems super odd that the modules handle calculating the angle but not the absolute distance?
+     * we can make angle calculation relative, i just don't know what it adds
+     * (non-Javadoc)
+     * @see engine.modules.Mover#update(util.TimeDuration)
+     */
     @Override
     public void update (TimeDuration duration) {
+       
         move(duration);
 
     }
