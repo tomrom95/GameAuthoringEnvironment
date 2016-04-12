@@ -1,5 +1,10 @@
 package data;
 
+/**
+ * This error class is responsible for managing errors responsible with invalid or erroneous file
+ * selection
+ *
+ */
 public class LoadErrorException extends Exception {
 
     public LoadErrorException () {

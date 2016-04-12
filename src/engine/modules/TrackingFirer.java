@@ -14,9 +14,7 @@ import util.TimeDuration;
 
 
 /**
- * Locates the nearest enemy and fires
- * 
- * @author RyanStPierre
+ * Locates the nearest enemy and fires an object
  *
  */
 public class TrackingFirer extends Firer {
