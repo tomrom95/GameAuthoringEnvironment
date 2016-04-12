@@ -2,6 +2,7 @@ package gameauthoring.tabs;
 
 import data.GameWriter;
 import data.IGameWriter;
+import engine.Game;
 import gameauthoring.SceneTabViewer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -28,9 +29,20 @@ public class AuthoringView implements IAuthoringView {
     private ObjectCreationTabViewer myCreationTabViewer;
     private SceneTabViewer mySceneTabViewer;
     private GridPane myLayout;
+    private Game myGame;
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
+   
 
+    
+    public AuthoringView() {
+        GameFactory gameFactory = new GameFactory();
+        myGame = gameFactory.createGame();
+        
+        
+        
+    }
+    
     @Override
     public GameTabViewer getGameTabViewer () {
         return myGameTabViewer;
@@ -80,15 +92,15 @@ public class AuthoringView implements IAuthoringView {
         TabPane tabpane = new TabPane();
 
         Tab gameTab = createTab("Game");
-        myGameTabViewer = new GameTabViewer();
+        myGameTabViewer = new GameTabViewer(getMyGame());
         gameTab.setContent(myGameTabViewer.draw());
 
         Tab creationTab = createTab("Create Objects");
-        myCreationTabViewer = new ObjectCreationTabViewer();
+        myCreationTabViewer = new ObjectCreationTabViewer(getMyGame());
         creationTab.setContent(myCreationTabViewer.draw());
 
         Tab sceneTab = createTab("Build Scenes/Levels");
-        mySceneTabViewer = new SceneTabViewer();
+        mySceneTabViewer = new SceneTabViewer(getMyGame());
         sceneTab.setContent(mySceneTabViewer.draw());
 
         tabpane.getTabs().addAll(gameTab, creationTab, sceneTab);
@@ -99,5 +111,9 @@ public class AuthoringView implements IAuthoringView {
         Tab newTab = new Tab();
         newTab.setText(tabName);
         return newTab;
+    }
+    
+    private Game getMyGame(){
+        return myGame;
     }
 }

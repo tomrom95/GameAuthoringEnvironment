@@ -73,4 +73,16 @@ public class ObjectListView<E extends IProfilable> implements IObjectListView<E>
         return this.myListView.getSelectionModel().getSelectedItem();
     }
 
+    @Override
+    public void setSelectedItem (E item) {
+        this.myListView.getSelectionModel().select(item);
+        
+    }
+
+    @Override
+    public void setPreviousItem (E item) {
+        //this.myListView.getSelectionModel().g
+        
+    }
+
 }

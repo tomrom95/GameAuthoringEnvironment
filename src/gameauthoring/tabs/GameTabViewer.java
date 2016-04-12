@@ -1,6 +1,7 @@
 package gameauthoring.tabs;
 
 import java.io.File;
+import engine.Game;
 import gameauthoring.creation.entryviews.FormDataManager;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.IFormDataManager;
@@ -42,6 +43,10 @@ public class GameTabViewer implements ITabViewer {
         init();
     }
     
+    public GameTabViewer (Game game) {
+        // TODO Auto-generated constructor stub
+    }
+
     public void init(){
         myLayout = new BorderPane();
         myLayout.setPrefSize(1200, 800);

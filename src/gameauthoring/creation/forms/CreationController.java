@@ -3,6 +3,7 @@ package gameauthoring.creation.forms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import engine.AuthorshipData;
 import engine.definitions.IDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
@@ -26,7 +27,7 @@ import javafx.collections.ObservableList;
 public abstract class CreationController<T extends IProfilable> {
     private IObjectCreationView<T> myView;
     private List<? extends ISubFormController<T>> mySubFormControllers;
-   // private T myCurrentItem;
+    private AuthorshipData myAuthorshipData;
 
     public CreationController (List<? extends ISubFormController<T>> subFormControllers) {
         mySubFormControllers = subFormControllers;
@@ -36,6 +37,17 @@ public abstract class CreationController<T extends IProfilable> {
         newItem();
        
     }
+    public CreationController (List<? extends ISubFormController<T>> subFormControllers,
+                                          AuthorshipData authorshipData) {
+        myAuthorshipData = authorshipData;
+        
+        mySubFormControllers = subFormControllers;
+        List<ISubFormView> subFormViews = getSubFormViews(mySubFormControllers);
+        myView = new ObjectCreationView<T>(subFormViews);
+        init();
+        newItem();
+             
+     }
 
     private List<ISubFormView> getSubFormViews (List<? extends ISubFormController<T>> subFormControllers) {
         List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
@@ -83,6 +95,8 @@ public abstract class CreationController<T extends IProfilable> {
      */
     private void deleteItem () {
         getMyItems().remove(getMyCurrentItem());
+        
+        showAndEdit(null);
     }
 
     /**
@@ -95,8 +109,11 @@ public abstract class CreationController<T extends IProfilable> {
      */
     private void newItem () {
         T item = createBlankItem();
-        showAndEdit(item);
         addItem(item);
+        getMyObjectCreationView().getObjectListView().setSelectedItem(item);
+        showAndEdit(item);
+        
+        
     }
 
     protected abstract T createBlankItem ();

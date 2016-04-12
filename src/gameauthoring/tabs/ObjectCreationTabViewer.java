@@ -16,6 +16,8 @@ import gameauthoring.creation.subforms.SubFormControllerFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import engine.AuthorshipData;
+import engine.Game;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -42,17 +44,22 @@ public class ObjectCreationTabViewer implements ITabViewer {
     private List<ISubFormControllerAttribute> myAttributeSFC =
             new ArrayList<ISubFormControllerAttribute>(Arrays
                     .asList(new AttributeSubFormController()));
+    private AuthorshipData myAuthorshipData;
 
     private List<CreationController<?>> myCCs =
             new ArrayList<CreationController<?>>(Arrays
-                    .asList(new CreationControllerSprite(myEnemySFC),
-                            new CreationControllerSprite(myDefenderSFC),
-                            new CreationControllerAttribute(myAttributeSFC)));
+                    .asList(new CreationControllerSprite(myEnemySFC, myAuthorshipData),
+                            new CreationControllerSprite(myDefenderSFC, myAuthorshipData),
+                            new CreationControllerAttribute(myAttributeSFC, myAuthorshipData)));
     private List<IObjectCreationView<?>> myCVs;
 
     
     public ObjectCreationTabViewer () {
         init();
+    }
+
+    public ObjectCreationTabViewer (Game game) {
+        myAuthorshipData = game.getAuthorshipData();
     }
 
     private void init () {      
@@ -86,4 +93,10 @@ public class ObjectCreationTabViewer implements ITabViewer {
     public void update () {
         // TODO Auto-generated method stub
     }
+
+    private AuthorshipData getMyAuthorshipData () {
+        return myAuthorshipData;
+    }
+
+   
 }
