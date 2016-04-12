@@ -1,4 +1,4 @@
-package facebook_util;
+package facebookutil;
 
 import java.util.Map;
 

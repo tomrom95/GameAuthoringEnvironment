@@ -17,7 +17,7 @@ public class Profile implements IProfile {
     private ImageGraphic myImage;
 
     public Profile () {
-        init("", "", new ImageGraphic(0, 0, ""));
+        init("", "", new ImageGraphic(0, 0, "images/photo.png"));
     }
     public Profile (String name, String description, String url) {
         init(name, description, new ImageGraphic(0, 0, url));

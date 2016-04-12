@@ -1,7 +1,7 @@
-package facebook_util.actions.facebook;
+package facebookutil.actions.facebook;
 
-import facebook_util.IUser;
-import facebook_util.actions.Challenge;
+import facebookutil.IUser;
+import facebookutil.actions.Challenge;
 
 public class FacebookChallenge implements Challenge{
 

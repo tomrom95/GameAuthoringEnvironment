@@ -1,6 +1,6 @@
-package facebook_util;
+package facebookutil;
 
-import facebook_util.login.Login;
+import facebookutil.login.Login;
 
 public interface IUser {
     

@@ -1,4 +1,4 @@
-package facebook_util.test;
+package facebookutil.test;
 
 import java.awt.Dimension;
 import java.util.ResourceBundle;

@@ -1,4 +1,4 @@
-package facebook_util.actions;
+package facebookutil.actions;
 
 public interface CustomPost extends Post {
 

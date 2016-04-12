@@ -1,7 +1,7 @@
-package facebook_util.actions;
+package facebookutil.actions;
 
 import java.util.List;
-import facebook_util.IUser;
+import facebookutil.IUser;
 
 public interface NotifyUsers extends SocialAction {
 
