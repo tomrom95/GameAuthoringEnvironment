@@ -9,7 +9,10 @@ import engine.interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
 import util.TimeDuration;
 
-
+/**
+ * This class creates a firer that handles and manages actions involving a creating an object to fire 
+ *
+ */
 public class Firer extends DefaultAffectable implements IFireModule {
 
     private ObjectProperty<IAttribute> myAmmo;

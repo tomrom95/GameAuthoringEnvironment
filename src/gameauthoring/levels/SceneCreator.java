@@ -17,9 +17,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Callback;
 
-
+/**
+ * View class for creating the scene creator, which consists
+ * of the level itself and a sidebar view of created sprites to add
+ * @author Tommy
+ *
+ */
 public class SceneCreator implements Glyph {
-    private final static String DEFAULT_BACKGROUND = "images/pvz.jpg";
+    private final static String DEFAULT_BACKGROUND = "images/grass.jpg";
     public final static int HEIGHT = 400;
     public final static int WIDTH = 700;
 
@@ -47,9 +52,15 @@ public class SceneCreator implements Glyph {
 
     }
 
+    /**
+     * Makes the sprite selection side bar. Uses a list view
+     * of custom listcells to visualize the sprites based on their
+     * profiles. TODO - make its own class
+     * @return
+     */
     private Node createSpriteSelection () {
+        // TODO implement grouping
         Accordion selector = new Accordion();
-        //selector.maxHeightProperty().bind(myHeight);
         ListView<SpriteDefinition> spriteList = new ListView<SpriteDefinition>();
        
         spriteList.setItems(gameModel.getAuthorshipData().getMyCreatedSprites().get(0).getItems());//0 is only enemies. change to put this in accordion view
@@ -67,6 +78,11 @@ public class SceneCreator implements Glyph {
         return selector;
     }
     
+    /**
+     * Creates the level view using an authoring renderer to
+     * keep track of the sprites on screen
+     * @return
+     */
     private Node createLevelView () {
         Pane levelPane = new Pane();
         
@@ -79,6 +95,10 @@ public class SceneCreator implements Glyph {
         return levelPane;
     }
 
+    /**
+     * Handles mouse click actions for the scene
+     * @param e
+     */
     private void handleMouseClick (MouseEvent e) {
         if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
             myController.uploadNewBackground();

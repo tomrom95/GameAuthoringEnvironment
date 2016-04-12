@@ -1,6 +1,5 @@
 package data;
 
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,6 +11,11 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.Game;
 
 
+/**
+ * This class takes in a file, checks if the file is a valid xml, and converts it to a game for the
+ * user
+ *
+ */
 public class GameReader implements IGameReader {
 
     @Override

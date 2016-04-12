@@ -3,13 +3,13 @@ package gameauthoring.levels;
 import java.io.File;
 import engine.IGame;
 import engine.ILevel;
-import gameauthoring.SpriteCellView;
 import gameauthoring.creation.entryviews.FormDataManager;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.entryviews.IListCellView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.util.Glyph;
+
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
@@ -49,12 +49,13 @@ public class LevelEditorView implements Glyph {
     private String myRateKey = "Rate: ";
     private String myWinConditionKey = "Win Condition: ";
     private String myLoseConditionKey = "Lose Condition: ";
-    
+
+    // TODO
     private IEntryView myNumberEnemy = new TextEntryView(myNumberEnemyKey, myData, 20, 150, 30);
     private IEntryView myRate = new TextEntryView(myRateKey, myData, 20, 150, 30);
     private IEntryView myWinCondition = new TextEntryView(myWinConditionKey, myData, 20, 150, 30);
     private IEntryView myLoseCondition = new TextEntryView(myLoseConditionKey, myData, 20, 150, 30);
-    
+
     public LevelEditorView (IGame gameModel, ILevel level) {
         myGame = gameModel;
         myLevel = level;
@@ -78,6 +79,7 @@ public class LevelEditorView implements Glyph {
     }
 
     private Node createWinLoseForm () {
+        // TODO
         GridPane form = new GridPane();
         form.setAlignment(Pos.CENTER_RIGHT);
         form.setMinHeight(300);
@@ -88,6 +90,7 @@ public class LevelEditorView implements Glyph {
     }
 
     private Node createWavesForm () {
+        // TODO
         GridPane form = new GridPane();
         form.setAlignment(Pos.CENTER_LEFT);
         form.setMinHeight(300);
