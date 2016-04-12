@@ -63,6 +63,7 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     protected double getYDiff (double input) {
         return input - getLocation().getY();
     }
+    
 
     @Override
     public abstract void update (TimeDuration duration);

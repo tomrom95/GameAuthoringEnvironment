@@ -1,20 +1,13 @@
 package gameauthoring;
 
 import engine.definitions.SpriteDefinition;
-import engine.modules.GraphicModule;
-import engine.modules.IGraphicModule;
-import util.RGBColor;
+import engine.profile.Profile;
 import engine.ConditionManager;
 import engine.Game;
 import engine.ILevel;
-import engine.sprite.ISprite;
-import engine.sprite.SpriteType;
 import engine.Level;
 import engine.LevelManager;
-import engine.sprite.Sprite;
 import gameauthoring.levels.LevelEditorView;
-import graphics.Block;
-import graphics.IGraphic;
 import graphics.ImageGraphic;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -88,31 +81,16 @@ public class SceneTabViewer implements ITabViewer {
 
     private void makeSomeSprites (Game game) {
         for (int i = 0; i < 20; i++) {
-            if (i % 2 == 0) {
-                game.getAuthorshipData().getCreatedSprites().add(createFirstSprite());
-            }
-            else {
-                game.getAuthorshipData().getCreatedSprites().add(createSecondSprite());
-            }
+            game.getAuthorshipData().getCreatedSprites().add(createFirstSprite(i));
         }
     }
 
-    private SpriteDefinition createFirstSprite () {
+    private SpriteDefinition createFirstSprite (int i) {
         SpriteDefinition sprite = new SpriteDefinition();
 
-        IGraphic graphic = new ImageGraphic(30, 30,"images/photo.png");
+        ImageGraphic graphic = new ImageGraphic(30, 30,"images/photo.png");
         sprite.setGraphic(graphic);
-        sprite.setType("Person");
-        sprite.setDescription("This is a person");
-        return sprite;
-    }
-
-    private SpriteDefinition createSecondSprite () {
-        SpriteDefinition sprite = new SpriteDefinition();
-        sprite.setType("Block");
-        IGraphic graphic = new Block(40, 40, RGBColor.BLACK);
-        sprite.setGraphic(graphic);
-        sprite.setDescription("This is a block");
+        sprite.setProfile(new Profile("Person" + i, "This is a person", graphic));
         return sprite;
     }
     

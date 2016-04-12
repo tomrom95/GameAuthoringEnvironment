@@ -1,8 +1,9 @@
 package gameauthoring.levels.sprites;
 
-import engine.rendering.AuthoringRenderer;
+import engine.definitions.SpriteDefinition;
+import engine.rendering.LevelRenderer;
 import engine.rendering.UnscaledFactory;
-import gameauthoring.SpriteCellView;
+import gameauthoring.ProfileCellView;
 import gameauthoring.UIFactory;
 import gameauthoring.levels.SceneController;
 import javafx.scene.Node;
@@ -12,20 +13,27 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 
-public class DraggableSpriteCell extends SpriteCellView implements Draggable{
+/**
+ * ListView ListCell that allows for dragging of sprites to the screen. Is used by both
+ * the authoring environment and the engine for dragging new sprites onto the screen. Eventually
+ * this will be extended for the engine to incorporate costs
+ * @author Tommy
+ *
+ */
+public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> implements Draggable{
     private static final String DRAG_STRING = "Sprite";
 
-    private AuthoringRenderer myTarget;
+    private LevelRenderer myTarget;
     private SceneController myController;
     
-    public DraggableSpriteCell (AuthoringRenderer target, SceneController controller) {
+    public DraggableSpriteCell (LevelRenderer target, SceneController controller) {
         myTarget = target;
         myController = controller;
     }
    
     @Override
-    protected Node createSpriteCell () {
-        Node node = super.createSpriteCell();
+    protected Node createSpriteCell (SpriteDefinition profile) {
+        Node node = super.createSpriteCell(profile);
         this.setActions(node);
         return node;
     }
@@ -41,9 +49,13 @@ public class DraggableSpriteCell extends SpriteCellView implements Draggable{
         myTarget.getPane().setOnDragDropped(event -> setOnDragDropped(event));
     }
     
+    /**
+     * Helper to get a the correct image from the sprite
+     * @return
+     */
     private Image getSpriteImage(){
-        Node spriteNode = this.getSprite().getGraphic().getVisualRepresentation(new UnscaledFactory());
-        return (new UIFactory()).getImageFromNode(spriteNode);
+        Node spriteNode = getProfile().getGraphic().getVisualRepresentation(new UnscaledFactory());
+        return new UIFactory().getImageFromNode(spriteNode);
     }
 
     @Override
@@ -55,7 +67,7 @@ public class DraggableSpriteCell extends SpriteCellView implements Draggable{
     public void setOnDragDropped (DragEvent e) {
         Dragboard db = e.getDragboard();
         if (db.hasString()) {
-            myController.addSprite(e.getX(), e.getY(), getSprite());
+            myController.addSprite(e.getX(), e.getY(), getProfile());
             myTarget.render();
         }
     }

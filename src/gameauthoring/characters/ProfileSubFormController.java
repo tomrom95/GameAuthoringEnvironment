@@ -1,6 +1,5 @@
 package gameauthoring.characters;
 
-import engine.definitions.ProfileDefinition;
 import engine.definitions.SpriteDefinition;
 
 
@@ -33,18 +32,18 @@ public class ProfileSubFormController implements ISubFormControllerSprite {
         String desc = myFormData.getValueProperty(myView.getMyDescriptionKey()).get();
         String url = myFormData.getValueProperty(myView.getMyImageKey()).get();
         
-        item.setName(name);
-        item.setDescription(desc);
-        item.setURL(url);
+        //item.setName(name);
+        //item.setDescription(desc);
+        //item.setURL(url);
 
     }
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {        
-        myFormData.set(myView.getMyNameKey(), item.getName());
-        myFormData.set(myView.getMyDescriptionKey(), item.getDescription());   
-        System.out.println(item.getURL());
-        myFormData.set(myView.getMyImageKey(), item.getURL());
+        //myFormData.set(myView.getMyNameKey(), item.getName());
+        //myFormData.set(myView.getMyDescriptionKey(), item.getDescription());   
+        //System.out.println(item.getURL());
+        //myFormData.set(myView.getMyImageKey(), item.getURL());
     }
 
     @Override

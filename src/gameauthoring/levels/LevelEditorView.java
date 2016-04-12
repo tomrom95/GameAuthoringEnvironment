@@ -4,7 +4,7 @@ import java.io.File;
 import engine.IGame;
 import engine.ILevel;
 import gameauthoring.Glyph;
-import gameauthoring.SpriteCellView;
+import gameauthoring.ProfileCellView;
 import gameauthoring.characters.FormDataManager;
 import gameauthoring.characters.IEntryView;
 import gameauthoring.characters.IFormDataManager;
@@ -51,6 +51,8 @@ public class LevelEditorView implements Glyph {
     private String myWinConditionKey = "Win Condition: ";
     private String myLoseConditionKey = "Lose Condition: ";
     
+    
+    //TODO
     private IEntryView myNumberEnemy = new TextEntryView(myNumberEnemyKey, myData, 20, 150, 30);
     private IEntryView myRate = new TextEntryView(myRateKey, myData, 20, 150, 30);
     private IEntryView myWinCondition = new TextEntryView(myWinConditionKey, myData, 20, 150, 30);
@@ -79,6 +81,7 @@ public class LevelEditorView implements Glyph {
     }
 
     private Node createWinLoseForm () {
+        //TODO
         GridPane form = new GridPane();
         form.setAlignment(Pos.CENTER_RIGHT);
         form.setMinHeight(300);
@@ -89,6 +92,7 @@ public class LevelEditorView implements Glyph {
     }
 
     private Node createWavesForm () {
+        //TODO
         GridPane form = new GridPane();
         form.setAlignment(Pos.CENTER_LEFT);
         form.setMinHeight(300);
