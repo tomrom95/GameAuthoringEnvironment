@@ -5,30 +5,23 @@ import engine.definitions.SpriteDefinition;
 import gameauthoring.shareddata.IDefinitionCollection;
 
 
-
 public class SelectAttributeSubFormController implements ISubFormControllerSprite {
 
     private SelectAttributeSubFormView myView;
-    
-    public SelectAttributeSubFormController(IDefinitionCollection<AttributeDefinition> attributes){
+
+    public SelectAttributeSubFormController (IDefinitionCollection<AttributeDefinition> attributes) {
         myView = new SelectAttributeSubFormView(attributes);
     }
-    
+
     @Override
     public void updateItem (SpriteDefinition item) {
-        AttributeDefinition selection = myView.getEntryView().getSelected();
-        item.addAttribute(selection);
+        item.setAttributes(myView.getEntryView().getSelected());
     }
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-        try{
-            AttributeDefinition selection = item.getAttributes().get(0);
-            myView.getEntryView().setSelected(selection);
-        }
-        catch(IndexOutOfBoundsException e){
-            myView.getEntryView().setSelected(null);
-        }
+        myView.getEntryView().setSelected(item.getAttributes());
+
     }
 
     @Override

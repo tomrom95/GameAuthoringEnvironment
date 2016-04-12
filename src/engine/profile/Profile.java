@@ -19,7 +19,7 @@ public class Profile implements IProfile {
         init("", "", new ImageGraphic(0, 0, ""));
     }
     public Profile (String name, String description, String url) {
-        init(name, description, new ImageGraphic(0, 0, ""));
+        init(name, description, new ImageGraphic(0, 0, url));
     }
 
     public Profile (String name, String description, ImageGraphic graphic) {

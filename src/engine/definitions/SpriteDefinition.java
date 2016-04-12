@@ -78,8 +78,8 @@ public class SpriteDefinition implements IProfilable {
         return myAttributes;
     }
     
-    public void SetAttributes(List<AttributeDefinition> attributes){
-        myAttributes = attributes;
+    public void setAttributes(List<AttributeDefinition> attributes){
+        myAttributes = new ArrayList<AttributeDefinition>(attributes);
     }
 
     public void removeAttribute (AttributeDefinition attribute) {
@@ -120,11 +120,4 @@ public class SpriteDefinition implements IProfilable {
         myProfile = profile;
     }
 
-    public IProfile getMyProfile () {
-        return myProfile;
-    }
-
-    public void setMyProfile (IProfile profile) {
-        this.myProfile = profile;
-    }
 }

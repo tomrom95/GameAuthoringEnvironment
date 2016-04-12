@@ -8,6 +8,7 @@ import engine.profile.IProfilable;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.entryviews.ImageEntryView;
+import gameauthoring.creation.entryviews.MultiChoiceEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.shareddata.IDefinitionCollection;
@@ -17,10 +18,10 @@ import javafx.scene.layout.GridPane;
 public class SelectAttributeSubFormView extends SubFormView{
 
    private String myAttributesKey = "Attributes :";
-   private SingleChoiceEntryView<AttributeDefinition> myAttributeSelector;
+   private MultiChoiceEntryView<AttributeDefinition> myAttributeSelector;
    
     public SelectAttributeSubFormView (IDefinitionCollection<AttributeDefinition> attributes) {
-        myAttributeSelector = new SingleChoiceEntryView<AttributeDefinition>(myAttributesKey,attributes.getItems(), 20);
+        myAttributeSelector = new MultiChoiceEntryView<AttributeDefinition>(myAttributesKey,attributes.getItems(), 20);
     }
 
     @Override
@@ -28,7 +29,7 @@ public class SelectAttributeSubFormView extends SubFormView{
         return myAttributeSelector.draw();
     }
     
-    public SingleChoiceEntryView<AttributeDefinition> getEntryView(){
+    public MultiChoiceEntryView<AttributeDefinition> getEntryView(){
         return myAttributeSelector;
     }
     

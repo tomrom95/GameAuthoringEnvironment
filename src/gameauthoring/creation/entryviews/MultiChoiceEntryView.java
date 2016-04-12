@@ -1,8 +1,13 @@
 package gameauthoring.creation.entryviews;
 
 import java.util.List;
+import engine.profile.IProfilable;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.HBox;
 
 
@@ -16,20 +21,38 @@ import javafx.scene.layout.HBox;
  * @author JoeLilien
  *
  */
-public class MultiChoiceEntryView implements IEntryView {
+public class MultiChoiceEntryView<E extends IProfilable> extends EntryView {
     private String myLabel;
     private HBox myContainer;
-    
-    public MultiChoiceEntryView(String label, double spacing, List<Object> choices){
-        this.myLabel = label;
+    private ListView<E> myChoices;
+
+    public MultiChoiceEntryView (String label, ObservableList<E> observableList, double spacing) {
+        super(label);
         this.myContainer = new HBox(spacing);
+        this.myChoices = new ListView<E>(observableList);
+        this.myChoices.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         myContainer.getChildren().add(new Label(myLabel));
+        myContainer.getChildren().add(myChoices);
+    }
+
+    public void setSelected (List<E> items) {
+        myChoices.getSelectionModel().clearSelection();
+        if(items!=null){
+            for (E item : items) {                
+                myChoices.getSelectionModel().select(item);
+                System.out.println(item);
+            }
+        }
+        
+    }
+
+    public List<E> getSelected () {
+        return myChoices.getSelectionModel().getSelectedItems();
     }
 
     @Override
     public Node draw () {
-        // TODO Auto-generated method stub
-        return null;
+        return myContainer;
     }
 
     @Override
@@ -37,18 +60,5 @@ public class MultiChoiceEntryView implements IEntryView {
         // TODO Auto-generated method stub
 
     }
-
-    @Override
-    public FormData getData () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void populateWithData (FormData data) {
-        // TODO Auto-generated method stub
-
-    }
-
 
 }
