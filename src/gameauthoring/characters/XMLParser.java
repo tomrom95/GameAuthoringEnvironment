@@ -106,7 +106,7 @@ public class XMLParser {
         //endfor 
             
             
-        }
+        
         
         
         // Example for Enemies tab
