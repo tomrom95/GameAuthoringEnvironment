@@ -48,10 +48,9 @@ public class OnGlobalPopUp extends ConditionPopUp {
 
     private void initBoxes () {
         myAttributeType =
-                new ComboBox<>(FXCollections.observableArrayList(myGame.getAuthorshipData()
-                        .getMyCreatedAttributes().getItems()
-                        .stream().map(def -> new AttributeType(def.getType()))
-                        .collect(Collectors.toList())));
+                new ComboBox<>(FXCollections
+                        .observableArrayList(myGame.getAttributeManager().getAttributes().stream()
+                                .map(atty -> atty.getType()).collect(Collectors.toList())));
         myChecks =
                 new ComboBox<>(FXCollections.observableArrayList(getCheckTypes()));
         myValueToCompare = new TextField();
