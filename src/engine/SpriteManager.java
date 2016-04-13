@@ -49,8 +49,8 @@ public class SpriteManager implements ISpriteManager {
     }
 
     @Override
-    public void add (ISprite sprite, Coordinate coordinate) {
-        add(sprite);
+    public void bufferedAdd (ISprite sprite, Coordinate coordinate) {
+        bufferedAdd(sprite);
         sprite.getLocation().setLocation(coordinate.getX(), coordinate.getY());
     }
 
@@ -81,9 +81,15 @@ public class SpriteManager implements ISpriteManager {
     }
 
     @Override
-    public void add (ISprite sprite) {
+    public void bufferedAdd (ISprite sprite) {
         myBufferList.add(sprite);
 
+    }
+
+    @Override
+    public void add (ISprite sprite, Coordinate coordinate) {
+        mySpriteList.add(sprite);
+        sprite.getLocation().setLocation(coordinate.getX(), coordinate.getY());
     }
 
 }
