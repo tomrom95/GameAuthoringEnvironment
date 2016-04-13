@@ -21,7 +21,6 @@ import javafx.collections.ObservableList;
 public abstract class CreationController<T extends IProfilable> {
     private IObjectCreationView<T> myView;
     private List<? extends ISubFormController<T>> mySubFormControllers;
-    private AuthorshipData myAuthorshipData;
     private String myTitle;
     private SubFormControllerFactory mySFCFactory;
 
@@ -42,6 +41,7 @@ public abstract class CreationController<T extends IProfilable> {
         myTitle = title;
         mySFCFactory = new SubFormControllerFactory(authorshipData);
         myView = new ObjectCreationView<T>();
+        addToAuthorshipData(authorshipData);
 
     }
 
@@ -69,6 +69,13 @@ public abstract class CreationController<T extends IProfilable> {
         setupConnections();
 
     }
+
+    /**
+     * Hook up observable list of items to authorship data so other views can have access
+     * 
+     * @param authorshipData
+     */
+    protected abstract void addToAuthorshipData (AuthorshipData authorshipData);
 
     /**
      * Set up event handler connections
@@ -179,10 +186,6 @@ public abstract class CreationController<T extends IProfilable> {
 
     private T getMyCurrentItem () {
         return this.myView.getCurrentItem();
-    }
-
-    protected AuthorshipData getMyAuthorshipData () {
-        return myAuthorshipData;
     }
 
     public String getMyTitle () {

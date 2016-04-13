@@ -5,6 +5,7 @@ import engine.AuthorshipData;
 import engine.definitions.AttributeDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
 
+
 /**
  * This class controls the creation of attributes
  * 
@@ -14,25 +15,34 @@ import gameauthoring.shareddata.DefinitionCollection;
 public class CreationControllerAttribute extends CreationController<AttributeDefinition> {
 
     /**
-     * Constructor 
+     * Constructor
+     * 
      * @param title The controller's title
-     * @param subFormStrings Strings specifying which subforms to use 
+     * @param subFormStrings Strings specifying which subforms to use
      * @param authorshipData Data shared by authoring elements
      */
-    public CreationControllerAttribute (String title, List<String> subFormStrings,
+    public CreationControllerAttribute (String title,
+                                        List<String> subFormStrings,
                                         AuthorshipData authorshipData) {
         super(title, subFormStrings, authorshipData);
-        //TODO: add this back
-        //setMySubFormControllers(getMySFCFactory().createAttributeSubFormControllers(subFormStrings));
+        // TODO: add this back
+        // setMySubFormControllers(getMySFCFactory().createAttributeSubFormControllers(subFormStrings));
 
-        // Hook up observable list of attributes created in view with authorship data's attributesList
-        DefinitionCollection<AttributeDefinition> defCol = new DefinitionCollection<AttributeDefinition>(getMyTitle(), getMyObjectCreationView().getItems());
-        authorshipData.setMyCreatedAttributes(defCol);
     }
 
     @Override
     protected AttributeDefinition createBlankItem () {
         return new AttributeDefinition();
+    }
+
+    @Override
+    protected void addToAuthorshipData (AuthorshipData authorshipData) {
+
+        DefinitionCollection<AttributeDefinition> defCol =
+                new DefinitionCollection<AttributeDefinition>(getMyTitle(),
+                                                              getMyObjectCreationView().getItems());
+        authorshipData.setMyCreatedAttributes(defCol);
+
     }
 
 }
