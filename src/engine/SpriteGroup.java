@@ -34,6 +34,10 @@ public class SpriteGroup implements ISpriteGroup, IProfilable {
         mySpriteDefinitions = spriteTypes;
         myProfile = new Profile();
     }
+    
+    public List<SpriteDefinition> getSpriteDefinitions(){
+        return mySpriteDefinitions;
+    }
 
     public void setSpriteDefinitions (List<SpriteDefinition> sprites) {
         this.mySpriteDefinitions = new ArrayList<>(sprites);
