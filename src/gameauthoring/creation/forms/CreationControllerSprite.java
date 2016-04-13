@@ -14,16 +14,13 @@ import gameauthoring.shareddata.DefinitionCollection;
  */
 public class CreationControllerSprite extends CreationController<SpriteDefinition> {
 
-    private DefinitionCollection<SpriteDefinition> myDefinitionCollection;
-
     public CreationControllerSprite (String title,
                                      List<String> subFormStrings,
                                      AuthorshipData authorshipData) {
         super(title, subFormStrings, authorshipData);
         // TODO: Change back to this to fix casting issue
         // setMySubFormControllers(getMySFCFactory().createSpriteSubFormControllers(subFormStrings));
-        myDefinitionCollection = new DefinitionCollection<SpriteDefinition>(getMyTitle(),
-                getMyObjectCreationView().getItems());
+
     }
 
     public void init (List<String> sfcs) {
@@ -38,10 +35,6 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
     @Override
     protected void addToAuthorshipData (AuthorshipData authorshipData) {
         authorshipData.addCreatedSprites(getMyDefinitionCollection());
-    }
-    
-    protected DefinitionCollection<SpriteDefinition> getMyDefinitionCollection() {
-        return myDefinitionCollection;
     }
 
 }

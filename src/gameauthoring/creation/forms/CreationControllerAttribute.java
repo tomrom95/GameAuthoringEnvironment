@@ -38,10 +38,7 @@ public class CreationControllerAttribute extends CreationController<AttributeDef
     @Override
     protected void addToAuthorshipData (AuthorshipData authorshipData) {
 
-        DefinitionCollection<AttributeDefinition> defCol =
-                new DefinitionCollection<AttributeDefinition>(getMyTitle(),
-                                                              getMyObjectCreationView().getItems());
-        authorshipData.setMyCreatedAttributes(defCol);
+        authorshipData.setMyCreatedAttributes(getMyDefinitionCollection());
 
     }
 

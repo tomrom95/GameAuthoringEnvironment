@@ -3,10 +3,12 @@ package gameauthoring.creation.forms;
 import java.util.ArrayList;
 import java.util.List;
 import engine.AuthorshipData;
+import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.SubFormControllerFactory;
+import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.ObservableList;
 
 
@@ -23,6 +25,7 @@ public abstract class CreationController<T extends IProfilable> {
     private List<? extends ISubFormController<T>> mySubFormControllers;
     private String myTitle;
     private SubFormControllerFactory mySFCFactory;
+    private DefinitionCollection<T> myDefinitionCollection;
 
     /**
      * Constructor
@@ -41,6 +44,8 @@ public abstract class CreationController<T extends IProfilable> {
         myTitle = title;
         mySFCFactory = new SubFormControllerFactory(authorshipData);
         myView = new ObjectCreationView<T>();
+        myDefinitionCollection = new DefinitionCollection<>(getMyTitle(),
+                                                            getMyObjectCreationView().getItems());
         addToAuthorshipData(authorshipData);
 
     }
@@ -198,6 +203,10 @@ public abstract class CreationController<T extends IProfilable> {
 
     protected void setMySubFormControllers (List<? extends ISubFormController<T>> mySubFormControllers) {
         this.mySubFormControllers = mySubFormControllers;
+    }
+
+    protected DefinitionCollection<T> getMyDefinitionCollection () {
+        return myDefinitionCollection;
     }
 
 }
