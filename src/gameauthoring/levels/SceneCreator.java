@@ -4,7 +4,6 @@ import engine.IGame;
 import engine.ILevel;
 import engine.rendering.AuthoringRenderer;
 import gameauthoring.util.Glyph;
-import gameplayer.SideBarDisplay;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -53,7 +52,7 @@ public class SceneCreator implements Glyph {
      * @return
      */
     private Node createSpriteSelection () {
-        return new SideBarDisplay(gameModel, levelView).draw();
+        return new AuthoringSideBar(gameModel, levelView).draw();
     }
     
     /**
