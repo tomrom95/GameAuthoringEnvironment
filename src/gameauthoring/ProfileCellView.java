@@ -31,7 +31,11 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
     @Override
     protected void updateItem (E item, boolean empty) {
         super.updateItem(item, empty);
-        if (item != null) {
+        if (empty || item == null) {
+            myProfile = null;
+            setGraphic(null);
+        }
+        else {
             myProfile = item;
             setGraphic(createSpriteCell(item));
         }
