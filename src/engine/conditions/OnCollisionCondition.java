@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import engine.IEventPackage;
 import engine.IGame;
+import engine.profile.IProfile;
+import engine.profile.Profile;
 import engine.sprite.ISprite;
 import util.TimeDuration;
 
@@ -64,6 +66,17 @@ public class OnCollisionCondition extends Condition implements ICondition {
         applyPackageToSprite(myGroupAPackage, outerSprite);
         applyPackageToSprite(myGroupBPackage, innerSprite);
         applyOtherAndGlobalEventPackages(myGame, myOtherPackage, myGlobalPackage);
+    }
+
+    @Override
+    public IProfile getProfile () {
+        return new Profile("On Collision Condition", "Collision between two sprites", "images/c.png");
+    }
+
+    @Override
+    public void setProfile (IProfile profile) {
+        // TODO Auto-generated method stub
+        
     }
 
    
