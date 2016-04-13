@@ -2,10 +2,8 @@ package gameauthoring.creation.entryviews;
 
 import java.util.function.Consumer;
 import engine.profile.IProfilable;
-import gameauthoring.ProfileCellView;
+import gameauthoring.creation.cellviews.NameCellView;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
