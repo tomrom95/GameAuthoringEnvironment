@@ -1,6 +1,5 @@
 package gameauthoring.conditiontab;
 
-
 import engine.IGame;
 import engine.ISpriteGroup;
 import engine.OnCollisionCondition;
@@ -12,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+
 /**
  * Need to refractor heavily, crunched for demo
  *
@@ -19,7 +19,6 @@ import javafx.scene.layout.VBox;
 
 public class OnCollisionPopUp extends ConditionPopUp {
 
-    
     private IGame myGame;
     private ComboBox<ISpriteGroup> myGroupA;
     private ComboBox<EventPackageDefinition> myEventsA;
@@ -28,7 +27,7 @@ public class OnCollisionPopUp extends ConditionPopUp {
     private ComboBox<ISpriteGroup> myThirdParty;
     private ComboBox<EventPackageDefinition> myThirdEvents;
     private ComboBox<EventPackageDefinition> myGlobalEvents;
-    
+
     public OnCollisionPopUp (IGame game) {
         super(game.getConditionManager().getConditionListProperty());
         myGame = game;
@@ -41,22 +40,26 @@ public class OnCollisionPopUp extends ConditionPopUp {
         add(getHBox(), 0, 0);
 
     }
-    
-     private void initBoxes () {
+
+    private void initBoxes () {
         // TODO Auto-generated method stub
         myGroupA = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
-        myEventsA = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+        myEventsA =
+                new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
         myGroupB = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
-        myEventsB = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+        myEventsB =
+                new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
         myThirdParty = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
-        myThirdEvents = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
-        myGlobalEvents = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
-        
+        myThirdEvents =
+                new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+        myGlobalEvents =
+                new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+
     }
 
     private Node getHBox () {
         HBox hbox = new HBox(CUSHION);
-        //Connections
+        // Connections
         hbox.getChildren().add(getCombo("Group A", myGroupA));
         hbox.getChildren().add(getCombo("GroupB", myGroupB));
         hbox.getChildren().add(getCombo("Third Party", myThirdParty));
@@ -65,16 +68,14 @@ public class OnCollisionPopUp extends ConditionPopUp {
         hbox.getChildren().add(getCombo("Third Party Effects", myThirdEvents));
         hbox.getChildren().add(getCombo("Global Effects", myGlobalEvents));
         return hbox;
-        
-     }
-    
+
+    }
 
     private Node getCombo (String label, Node node) {
         VBox vbox = new VBox();
         vbox.getChildren().addAll(new Label(label), node);
         return vbox;
     }
-
 
     @Override
     protected ICondition createCondition () {
@@ -84,8 +85,9 @@ public class OnCollisionPopUp extends ConditionPopUp {
         packageB.setMySpriteGroup(myGroupB.getSelectionModel().getSelectedItem());
         EventPackageDefinition other = myThirdEvents.getSelectionModel().getSelectedItem();
         other.setMySpriteGroup(myThirdParty.getSelectionModel().getSelectedItem());
-        EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();        
-        return new OnCollisionCondition(myGame, packageA.create(), packageB.create(), other.create(), global.create());
+        EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();
+        return new OnCollisionCondition(myGame, packageA.create(), packageB.create(),
+                                        other.create(), global.create());
     }
 
 }

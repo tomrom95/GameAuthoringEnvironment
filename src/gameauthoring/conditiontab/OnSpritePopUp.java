@@ -1,120 +1,19 @@
 package gameauthoring.conditiontab;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.DoublePredicate;
 import java.util.stream.Collectors;
 import engine.AttributeType;
 import engine.IGame;
-import engine.ISpriteGroup;
-import engine.OnGlobalAttributeCondition;
-import engine.conditions.ICondition;
-import engine.definitions.EventPackageDefinition;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import util.RealDoublePredicate;
 
-public class OnSpritePopUp extends ConditionPopUp {
 
-    private IGame myGame;
-    private ComboBox<AttributeType> myAttributeType;
-    private ComboBox<String> myChecks;
-    private TextField myValueToCompare;
-    private ComboBox<ISpriteGroup> myThirdParty;
-    private ComboBox<EventPackageDefinition> myThirdEvents;
-    private ComboBox<EventPackageDefinition> myGlobalEvents;
+public class OnSpritePopUp extends OnAttributePopUp {
 
     public OnSpritePopUp (IGame game) {
-        super(game.getConditionManager().getConditionListProperty());
-        myGame = game;
-        initStage();
-    }
-
-    @Override
-    protected void initializeDisplay () {
-        initBoxes();
-        add(getHBox(), 0, 0);
-    }
-
-    private void initBoxes () {
-        myAttributeType =
-                new ComboBox<>(FXCollections
-                        .observableArrayList(myGame.getAuthorshipData().getMyCreatedAttributes().getItems().stream()
-                                .map(atty -> new AttributeType(atty.getType())).collect(Collectors.toList())));
-        myChecks =
-                new ComboBox<>(FXCollections.observableArrayList(getCheckTypes()));
-        myValueToCompare = new TextField();
-        myThirdParty = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
-        myThirdEvents =
-                new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
-        myGlobalEvents =
-                new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
-
-    }
-
-    private List<String> getCheckTypes () {
-        List<String> checks = new ArrayList<String>();
-        checks.add("==");
-        checks.add(">");
-        checks.add("<");
-        checks.add(">=");
-        checks.add("<=");
-        return checks;
-    }
-
-    private Node getHBox () {
-        HBox hbox = new HBox(CUSHION);
-        // Connections
-        hbox.getChildren().add(getCombo("Attribute", myAttributeType));
-        hbox.getChildren().add(getCombo("Comparison", myChecks));
-        hbox.getChildren().add(getCombo("Double value to compare with", myValueToCompare));
-        hbox.getChildren().add(getCombo("Third party", myThirdParty));
-        hbox.getChildren().add(getCombo("Third Party Effects", myThirdEvents));
-        hbox.getChildren().add(getCombo("Global Effects", myGlobalEvents));
-        return hbox;
-
-    }
-
-    private Node getCombo (String label, Node node) {
-        VBox vbox = new VBox();
-        vbox.getChildren().addAll(new Label(label), node);
-        return vbox;
-    }
-
-    @Override
-    protected ICondition createCondition () {
-        EventPackageDefinition other = myThirdEvents.getSelectionModel().getSelectedItem();
-        other.setMySpriteGroup(myThirdParty.getSelectionModel().getSelectedItem());
-        EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();
-        return new OnGlobalAttributeCondition(myGame,
-                                              myAttributeType.getSelectionModel().getSelectedItem(),
-                                              createPredicate(),
-                                              other.create(), global.create());
-    }
-
-    private DoublePredicate createPredicate () {
-        double valToCompare = Double.parseDouble(myValueToCompare.getText());
-        if (myChecks.getSelectionModel().getSelectedItem().equals("==")) {
-            return new RealDoublePredicate(val -> val == valToCompare);
-        }
-        else if (myChecks.getSelectionModel().getSelectedItem().equals(">")) {
-            return new RealDoublePredicate(val -> val > valToCompare);
-        }
-        else if (myChecks.getSelectionModel().getSelectedItem().equals("<")) {
-            return new RealDoublePredicate(val -> val < valToCompare);
-        }
-        else if (myChecks.getSelectionModel().getSelectedItem().equals(">=")) {
-            return new RealDoublePredicate(val -> val >= valToCompare);
-        }
-        else {
-            return new RealDoublePredicate(val -> val <= valToCompare);
-        }
+        super(game, FXCollections
+                .observableArrayList(game.getAuthorshipData().getMyCreatedAttributes().getItems()
+                        .stream()
+                        .map(atty -> new AttributeType(atty.getType()))
+                        .collect(Collectors.toList())));
     }
 
 }
