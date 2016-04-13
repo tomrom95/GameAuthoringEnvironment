@@ -14,104 +14,49 @@
 	-fx-min-width: 650
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//GridPane settings
-.myGridPane {
-	//-fx-grid-lines-visible: true;
+.defaultTextEntry {
 	-fx-padding: 10 10 10 10;
 	-fx-hgap: 20;
-	-fx-vgap: 20;
-}
-
-//Display settings
-.myDisplay {
-	-fx-background-color: white;
-	
-}
-
-//CommandLine settings
-.myCommandLine{
-	-fx-font-family: "Courier New";
-	-fx-font-size: 10pt;
-	-fx-text-fill: white;
-	-fx-wrap-text: true;
-}
-.myCommandLine .content{
-	-fx-background-color: black;
-}
-
-//VBox settings
-.myUserVBox{
-	-fx-alignment: top-center;
-	//-fx-spacing: 10;	
-}
-.myLabel{
-	-fx-text-fill: white;
-	-fx-font-weight: bold;
-}
-
-//TableView settings
-.myTableView{
-	-fx-cursor: hand;	
-	-fx-fill: white;
-}
-.myTableView .column-header .label{
-	-fx-text-fill: white;
-}
-.myTableView .placeholder {
-	-fx-background-color: darkgray;
-}
-
-//HBox settings
-.myUserHBox{
-	-fx-spacing: 5;
+	-fx-vgap: 10;	
 }
 
 
-//Buttons
-.buttons {
-	-fx-background-color: white;
-	-fx-text-fill: black;
-	-fx-cursor: hand;
-	-fx-stroke: black;
-	-fx-stroke-width: 3;
+.nameTextEntry {
+	-fx-max-width: 20
+	-fx-background: black
 }
-.buttons:hover{
-	-fx-background-color: gray;
+
+.label {
+	-fx-text-fill: white
+	-fx-font-weight: bold
 }
 
 
-//PrefPage
-.prefVBox{
-	-fx-alignment: center;
-	-fx-spacing: 10;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

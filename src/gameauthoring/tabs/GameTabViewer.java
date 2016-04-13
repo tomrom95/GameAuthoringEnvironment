@@ -30,10 +30,10 @@ public class GameTabViewer implements ITabViewer {
     private String myNameKey = "Name of the Game: ";
     private String myAuthorKey = "Author: ";
     private String mySplashScreenKey = "Splash Screen: ";
-
-    private IEntryView myName = new TextEntryView(myNameKey, myData, 20, 150, 30);
-    private IEntryView myAuthor = new TextEntryView(myAuthorKey, myData, 20, 150, 30);
-    private IEntryView mySplashScreen = new ImageEntryView(mySplashScreenKey, myData, 20, 150, 30);
+    private String defaultTextEntry = "defaultTextEntry";
+    private IEntryView myName = new TextEntryView(myNameKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView myAuthor = new TextEntryView(myAuthorKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView mySplashScreen = new ImageEntryView(mySplashScreenKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
 
     public GameTabViewer () {
         init();

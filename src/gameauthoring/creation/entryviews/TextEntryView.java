@@ -23,14 +23,15 @@ public class TextEntryView extends EntryView {
     private TextArea myTextInput = new TextArea();
     
 
-    public TextEntryView (String label, IFormDataManager data, double spacing, double width, double height) {
+    public TextEntryView (String label, IFormDataManager data, double width, double height, String cssClass) {
         super(label, data);
         this.myTextInput.setMinSize(width, height);
         this.myTextInput.setMaxSize(width, height);
         this.myTextInput.textProperty().bindBidirectional(getData().getValueProperty());
         this.myContainer = new GridPane();
         myContainer.add(new Label(myLabel), 0, 0);
-        myContainer.add(myTextInput, 1, 0);
+        myContainer.add(myTextInput, 0, 1);
+        myContainer.getStyleClass().add(cssClass);
     }
 
     @Override

@@ -26,18 +26,19 @@ public class ImageEntryView extends EntryView {
     private StringProperty myImageChoice = new SimpleStringProperty();// TODO Add default Image
     private Button myChooseImage = new Button("Choose Image");
     private ImageView myImage;
-    private String imagePath = "images/blank.jpg";
+    private String imagePath = "images/Square.png";
 
 
-    public ImageEntryView (String label, IFormDataManager data, double spacing, double width, double height) {
+    public ImageEntryView (String label, IFormDataManager data, double width, double height, String cssClass) {
         super(label,data);
         this.myContainer = new GridPane(); 
         this.myImageChoice.bindBidirectional(getData().getValueProperty());
         initFileChooser(new FileChooser());   
         initImageView(width,height);
         myContainer.add(new Label(myLabel), 0, 0);
-        myContainer.add(myChooseImage, 1, 0);
-        myContainer.add(myImage, 0, 1);        
+        myContainer.add(myChooseImage, 0, 1);
+        myContainer.add(myImage, 0, 2);        
+        myContainer.getStyleClass().add(cssClass);
     }
 
     private void initImageView (double width, double height) {        

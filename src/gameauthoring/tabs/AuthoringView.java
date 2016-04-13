@@ -37,6 +37,7 @@ public class AuthoringView implements IAuthoringView {
     public static final int HEIGHT = 650;
     public static final String STYLESHEET = "custom.css";
     public static final String DEFAULT_RESOURCE_PACKAGE = "resource/";
+    public static final String DEFAULT_ENTRYVIEW = "defaultTextEntry";
 
 
     public AuthoringView () {

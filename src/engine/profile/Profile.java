@@ -20,7 +20,7 @@ public class Profile implements IProfile {
     private SimpleObjectProperty<ImageGraphic> myImage;
 
     public Profile () {
-        init("", "", new ImageGraphic(0, 0, "images/Square.png"));
+        init("<NAME>", "<DESCRIPTION>", new ImageGraphic(0, 0, "images/Square.png"));
     }
     public Profile (String name, String description, String url) {
         init(name, description, new ImageGraphic(0, 0, url));

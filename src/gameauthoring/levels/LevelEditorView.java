@@ -8,6 +8,7 @@ import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.entryviews.IListCellView;
 import gameauthoring.creation.entryviews.TextEntryView;
+import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.Glyph;
 
 import javafx.geometry.Pos;
@@ -49,12 +50,11 @@ public class LevelEditorView implements Glyph {
     private String myRateKey = "Rate: ";
     private String myWinConditionKey = "Win Condition: ";
     private String myLoseConditionKey = "Lose Condition: ";
-
     // TODO
-    private IEntryView myNumberEnemy = new TextEntryView(myNumberEnemyKey, myData, 20, 150, 30);
-    private IEntryView myRate = new TextEntryView(myRateKey, myData, 20, 150, 30);
-    private IEntryView myWinCondition = new TextEntryView(myWinConditionKey, myData, 20, 150, 30);
-    private IEntryView myLoseCondition = new TextEntryView(myLoseConditionKey, myData, 20, 150, 30);
+    private IEntryView myNumberEnemy = new TextEntryView(myNumberEnemyKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView myRate = new TextEntryView(myRateKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView myWinCondition = new TextEntryView(myWinConditionKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView myLoseCondition = new TextEntryView(myLoseConditionKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
 
     public LevelEditorView (IGame gameModel, ILevel level) {
         myGame = gameModel;
