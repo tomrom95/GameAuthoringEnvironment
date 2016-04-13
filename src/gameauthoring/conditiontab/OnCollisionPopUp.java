@@ -83,7 +83,7 @@ public class OnCollisionPopUp extends ConditionPopUp {
         EventPackageDefinition packageB = myEventsB.getSelectionModel().getSelectedItem();
         packageB.setMySpriteGroup(myGroupB.getSelectionModel().getSelectedItem());
         EventPackageDefinition other = myThirdEvents.getSelectionModel().getSelectedItem();
-        packageB.setMySpriteGroup(myThirdParty.getSelectionModel().getSelectedItem());
+        other.setMySpriteGroup(myThirdParty.getSelectionModel().getSelectedItem());
         EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();        
         return new OnCollisionCondition(myGame, packageA.create(), packageB.create(), other.create(), global.create());
     }
