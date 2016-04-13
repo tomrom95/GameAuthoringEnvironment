@@ -3,7 +3,9 @@ package engine;
 import java.util.List;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
 import graphics.ImageGraphic;
+import util.Coordinate;
 import util.TimeDuration;
 
 
@@ -88,6 +90,18 @@ public class Game implements IGame {
     @Override
     public List<IAttribute> getGlobalAttributes () {
         return getAttributeManager().getAttributes();
+    }
+
+    @Override
+    public void add (ISprite sprite, Coordinate coordinate) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void add (ISprite sprite) {
+        // TODO Auto-generated method stub
+        myLevelManager.getCurrentLevel().add(sprite);
     }
 
 }
