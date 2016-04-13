@@ -7,6 +7,7 @@ import engine.IAttribute;
 import engine.IPositionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
 
@@ -29,36 +30,43 @@ public class ConstantMover extends Mover {
     }
 
     @Override
-    public void update (TimeDuration duration) {
-        super.move(duration);
-
-    }
-
-    @Override
-    public void registerKeyEvent (KeyIOEvent keyEvent) {
+    public void setPath (List<Coordinate> newPath) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
-    public void registerMouseEvent (MouseIOEvent mouseEvent) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    protected List<IAttribute> getSpecificAttributes () {
+    public List<Coordinate> getPath () {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public void setPath (List<Coordinate> newPath) {
+    public ObservableList<IAttribute> getAttributes () {
         // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
-    public List<Coordinate> getPath () {
+    public void update (TimeDuration duration) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void registerKeyEvent (KeyIOEvent keyEvent) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void registerMouseEvent (MouseIOEvent mouseEvent) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected List<IAttribute> getSpecificAttributes () {
         // TODO Auto-generated method stub
         return null;
     }

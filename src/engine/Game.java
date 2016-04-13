@@ -95,7 +95,7 @@ public class Game implements IGame {
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override

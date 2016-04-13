@@ -16,6 +16,7 @@ import engine.modules.IGraphicModule;
 import engine.modules.IModule;
 import engine.modules.IMovementModule;
 import engine.modules.SpriteStatus;
+import javafx.collections.ObservableList;
 import util.Bounds;
 import util.Coordinate;
 import util.TimeDuration;
@@ -116,7 +117,7 @@ public class Sprite extends DefaultAffectable implements ISprite {
     }
 
     @Override
-    public List<IAttribute> getAttributes () {
+    public ObservableList<IAttribute> getAttributes () {
         return myAttributeManager.getAttributes();
     }
 
