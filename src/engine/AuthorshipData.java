@@ -2,6 +2,7 @@ package engine;
 
 import java.util.List;
 import engine.definitions.AttributeDefinition;
+import engine.definitions.EventPackageDefinition;
 import engine.definitions.GroupDefinition;
 import engine.definitions.SpriteDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
@@ -18,12 +19,19 @@ public class AuthorshipData {
 
     List<DefinitionCollection<SpriteDefinition>> myCreatedSprites;
     DefinitionCollection<AttributeDefinition> myCreatedAttributes;
-
     DefinitionCollection<GroupDefinition> myCreatedGroups;
+    DefinitionCollection<EventPackageDefinition> myCreatedEventPackages;
 
     public AuthorshipData () {
 
         myCreatedSprites = FXCollections.observableArrayList();
+        myCreatedAttributes =
+                new DefinitionCollection<AttributeDefinition>("Created Attributes",
+                                                              FXCollections.observableArrayList());
+        myCreatedGroups = new DefinitionCollection<GroupDefinition>("Created Groups",
+                FXCollections.observableArrayList());
+        myCreatedEventPackages = new DefinitionCollection<EventPackageDefinition>("Created Groups",
+                FXCollections.observableArrayList());
     }
 
     public List<DefinitionCollection<SpriteDefinition>> getMyCreatedSprites () {
@@ -33,13 +41,21 @@ public class AuthorshipData {
     public DefinitionCollection<AttributeDefinition> getMyCreatedAttributes () {
         return myCreatedAttributes;
     }
+    
+    public DefinitionCollection<EventPackageDefinition> getMyCreatedEventPackages () {
+        return myCreatedEventPackages;
+    }
 
     public DefinitionCollection<GroupDefinition> getMyCreatedGroups () {
         return myCreatedGroups;
     }
-
+    
     public void addCreatedSprites (DefinitionCollection<SpriteDefinition> createdSprites) {
         this.myCreatedSprites.add(createdSprites);
+    }
+    
+    public void setMyCreatedEvents (DefinitionCollection<EventPackageDefinition> createdEvents) {
+        this.myCreatedEventPackages = createdEvents;
     }
 
     public void setMyCreatedAttributes (DefinitionCollection<AttributeDefinition> createdAttributes) {

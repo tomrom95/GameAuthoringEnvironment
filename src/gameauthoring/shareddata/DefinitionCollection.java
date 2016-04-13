@@ -1,5 +1,6 @@
 package gameauthoring.shareddata;
 
+import engine.definitions.EventPackageDefinition;
 import javafx.collections.ObservableList;
 
 
@@ -35,5 +36,6 @@ public class DefinitionCollection<E> implements IDefinitionCollection<E> {
     public void addItem (E item) {
         myItems.add(item);
     }
+    
 
 }

@@ -4,6 +4,7 @@ import java.util.function.DoublePredicate;
 import engine.AttributeType;
 import engine.IEventPackage;
 import engine.IGame;
+import engine.profile.IProfile;
 import util.TimeDuration;
 
 
@@ -44,6 +45,18 @@ public class OnSpriteAttributeCondition extends Condition implements ICondition 
                             }
                         })));
                            
+    }
+
+    @Override
+    public IProfile getProfile () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setProfile (IProfile profile) {
+        // TODO Auto-generated method stub
+        
     }
 
 

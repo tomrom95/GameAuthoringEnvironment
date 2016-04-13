@@ -5,6 +5,7 @@ import engine.AttributeType;
 import engine.IAttributeManager;
 import engine.IEventPackage;
 import engine.IGame;
+import engine.profile.IProfile;
 import util.TimeDuration;
 
 
@@ -44,6 +45,18 @@ public class OnGlobalAttributeCondition extends Condition implements ICondition 
                         applyOtherAndGlobalEventPackages(myGame, myOtherPackage, myGlobalPackage);
                     }
                 }));
+    }
+
+    @Override
+    public IProfile getProfile () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setProfile (IProfile profile) {
+        // TODO Auto-generated method stub
+        
     }
 
 

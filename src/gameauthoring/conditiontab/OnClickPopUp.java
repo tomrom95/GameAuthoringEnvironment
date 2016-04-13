@@ -1,9 +1,10 @@
 package gameauthoring.conditiontab;
 
-import engine.ICondition;
 import engine.IGame;
-import engine.OnClickCondition;
+import engine.conditions.ICondition;
+import engine.conditions.OnClickCondition;
 import engine.definitions.SpriteDefinition;
+import engine.profile.IProfilable;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
@@ -17,8 +18,8 @@ public class OnClickPopUp extends ConditionPopUp{
    
     private IGame myGame;
     
-    public OnClickPopUp(ObservableList<ICondition> conditionList, IGame game) {
-        super(conditionList);
+    public OnClickPopUp(IGame game) {
+        super(game.getConditionManager().getConditionListProperty());
         myGame = game;
         initStage();
     }
@@ -36,19 +37,19 @@ public class OnClickPopUp extends ConditionPopUp{
 
     private Node getHBox () {
        HBox hbox = new HBox(CUSHION);
-       hbox.getChildren().add(getCombo("Target", myGame.getAuthorshipData().getCreatedSprites()));
-       hbox.getChildren().add(getCombo("Self Effects", null));
-       hbox.getChildren().add(getCombo("Other Group", null));
-       hbox.getChildren().add(getCombo("Group Effects", null));
-       hbox.getChildren().add(getCombo("Global Effects", null));
+       hbox.getChildren().add(getCombo("Target", myGame.getAuthorshipData().getMyCreatedGroups().getItems()));
+       hbox.getChildren().add(getCombo("Self Effects", myGame.getAuthorshipData().getMyCreatedGroups().getItems()));
+       hbox.getChildren().add(getCombo("Other Group", myGame.getAuthorshipData().getMyCreatedGroups().getItems()));
+       hbox.getChildren().add(getCombo("Group Effects", myGame.getAuthorshipData().getMyCreatedGroups().getItems()));
+       hbox.getChildren().add(getCombo("Global Effects", myGame.getAuthorshipData().getMyCreatedGroups().getItems()));
        
        return hbox;
        
     }
 
-    private Node getCombo (String label, ObservableList<SpriteDefinition> options) {
+    private Node getCombo (String label, ObservableList<? extends IProfilable> options) {
         VBox vbox = new VBox ();
-        ComboBox<SpriteDefinition> box = new ComboBox<>(options);   
+        ComboBox<? extends IProfilable> box = new ComboBox<>(options);   
         vbox.getChildren().addAll(new Label(label), box);
         return vbox;
     }
