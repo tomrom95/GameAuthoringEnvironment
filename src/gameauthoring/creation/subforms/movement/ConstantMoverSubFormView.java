@@ -30,6 +30,10 @@ public class ConstantMoverSubFormView extends SubFormView {
     private List<IEntryView> myEntryViews =
             new ArrayList<IEntryView>(Arrays.asList(myXVel, myYVel));
 
+    public ConstantMoverSubFormView () {
+        initView();
+    }
+    
     @Override
     public Node draw () {
         return myPane;

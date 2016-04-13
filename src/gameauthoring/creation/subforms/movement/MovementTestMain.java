@@ -9,9 +9,9 @@ public class MovementTestMain extends Application{
 
     @Override
     public void start (Stage s) throws Exception {
-        MovementSubFormView a = new MovementSubFormView();
+        MovementSubFormController a = new MovementSubFormController();
         Group root = new Group();
-        root.getChildren().add(a.draw());
+        root.getChildren().add(a.getSubFormView().draw());
         s.setScene(new Scene(root, 500, 500));
         s.show();
     }
