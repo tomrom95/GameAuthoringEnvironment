@@ -21,8 +21,8 @@ public interface IAdder extends Updateable {
      * @param coordinate where the Sprite is added
      */
 
-    void add (ISprite sprite, Coordinate coordinate);
+    void bufferedAdd (ISprite sprite, Coordinate coordinate);
 
-    void add (ISprite sprite);
+    void bufferedAdd (ISprite sprite);
 
 }
