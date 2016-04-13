@@ -26,11 +26,12 @@ public class TrackingFireSubFormView extends SubFormView {
     private String myTargetsKey = "Targets: ";
 
     private IEntryView myWaitTime = new TextEntryView(myWaitTimeKey, this.getData(), 20, 150, 30);
-    private IEntryView myProjectile =
-            new TextEntryView(myProjectileKey, this.getData(), 20, 150, 30);
+//    private IEntryView myProjectile =
+//            new TextEntryView(myProjectileKey, this.getData(), 20, 150, 30);
     private IEntryView myTargets = new TextEntryView(myTargetsKey, this.getData(), 20, 150, 30);
     private List<IEntryView> myEntryViews =
-            new ArrayList<IEntryView>(Arrays.asList(myWaitTime, myProjectile, myTargets));
+//            new ArrayList<IEntryView>(Arrays.asList(myWaitTime, myProjectile, myTargets));
+    new ArrayList<IEntryView>(Arrays.asList(myWaitTime, myTargets));
 
     public TrackingFireSubFormView () {
         initView();
@@ -52,7 +53,7 @@ public class TrackingFireSubFormView extends SubFormView {
         super.setMyEntryViews(myEntryViews);
         myPane.setGridLinesVisible(true);
         myPane.add(myWaitTime.draw(), 0, 0);
-        myPane.add(myProjectile.draw(), 0, 1);
+//        myPane.add(myProjectile.draw(), 0, 1);
         myPane.add(myTargets.draw(), 1, 0);
     }
 
