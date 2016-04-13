@@ -12,6 +12,7 @@ public class TrackingFirerDefinition extends ModuleDefinition {
     private List<SpriteType> myTargets;
     private double myWaitTime;
     private IGame myGame;
+    private SpriteDefinition myProjectile;
 
     public void setTargets (List<SpriteType> targets) {
         myTargets = targets;
@@ -19,10 +20,18 @@ public class TrackingFirerDefinition extends ModuleDefinition {
 
     @Override
     public TrackingFirer create (IPositionable parent) {
-        return new TrackingFirer(myTargets, myGame, myWaitTime, parent);
+        return new TrackingFirer(myTargets, myGame, myWaitTime, myProjectile, parent);
 
     }
 
+    public void setProjectileDefinition(SpriteDefinition projectile){
+        myProjectile = projectile;
+    }
+    
+    public SpriteDefinition getProjectileDefinition(){
+        return myProjectile;
+    }
+    
     public List<SpriteType> getTargets () {
         return myTargets;
     }

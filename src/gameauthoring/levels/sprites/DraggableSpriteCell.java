@@ -54,7 +54,7 @@ public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> imple
      * @return
      */
     private Image getSpriteImage(){
-        Node spriteNode = getProfile().getProfile().getImage().getVisualRepresentation(new UnscaledFactory());
+        Node spriteNode = getProfilable().getProfile().getImage().get().getVisualRepresentation(new UnscaledFactory());
         return new UIFactory().getImageFromNode(spriteNode);
     }
 
@@ -67,7 +67,7 @@ public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> imple
     public void setOnDragDropped (DragEvent e) {
         Dragboard db = e.getDragboard();
         if (db.hasString()) {
-            myController.addSprite(e.getX(), e.getY(), getProfile());
+            myController.addSprite(e.getX(), e.getY(), getProfilable());
             myTarget.render();
         }
     }

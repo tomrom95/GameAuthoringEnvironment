@@ -3,10 +3,12 @@ package gameauthoring.creation.forms;
 import java.util.ArrayList;
 import java.util.List;
 import engine.AuthorshipData;
+import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.SubFormControllerFactory;
+import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.ObservableList;
 
 
@@ -21,9 +23,9 @@ import javafx.collections.ObservableList;
 public abstract class CreationController<T extends IProfilable> {
     private IObjectCreationView<T> myView;
     private List<? extends ISubFormController<T>> mySubFormControllers;
-    private AuthorshipData myAuthorshipData;
     private String myTitle;
     private SubFormControllerFactory mySFCFactory;
+    private DefinitionCollection<T> myDefinitionCollection;
 
     /**
      * Constructor
@@ -42,6 +44,9 @@ public abstract class CreationController<T extends IProfilable> {
         myTitle = title;
         mySFCFactory = new SubFormControllerFactory(authorshipData);
         myView = new ObjectCreationView<T>();
+        myDefinitionCollection = new DefinitionCollection<>(getMyTitle(),
+                                                            getMyObjectCreationView().getItems());
+        addToAuthorshipData(authorshipData);
 
     }
 
@@ -69,6 +74,13 @@ public abstract class CreationController<T extends IProfilable> {
         setupConnections();
 
     }
+
+    /**
+     * Hook up observable list of items to authorship data so other views can have access
+     * 
+     * @param authorshipData
+     */
+    protected abstract void addToAuthorshipData (AuthorshipData authorshipData);
 
     /**
      * Set up event handler connections
@@ -181,10 +193,6 @@ public abstract class CreationController<T extends IProfilable> {
         return this.myView.getCurrentItem();
     }
 
-    protected AuthorshipData getMyAuthorshipData () {
-        return myAuthorshipData;
-    }
-
     public String getMyTitle () {
         return myTitle;
     }
@@ -195,6 +203,10 @@ public abstract class CreationController<T extends IProfilable> {
 
     protected void setMySubFormControllers (List<? extends ISubFormController<T>> mySubFormControllers) {
         this.mySubFormControllers = mySubFormControllers;
+    }
+
+    protected DefinitionCollection<T> getMyDefinitionCollection () {
+        return myDefinitionCollection;
     }
 
 }

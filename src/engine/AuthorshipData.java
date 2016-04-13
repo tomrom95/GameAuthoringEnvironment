@@ -17,6 +17,8 @@ import javafx.collections.FXCollections;
 public class AuthorshipData {
 
     List<DefinitionCollection<SpriteDefinition>> myCreatedSprites;
+    DefinitionCollection<SpriteDefinition> myCreatedMissiles;
+
     DefinitionCollection<AttributeDefinition> myCreatedAttributes;
 
     DefinitionCollection<GroupDefinition> myCreatedGroups;
@@ -30,6 +32,10 @@ public class AuthorshipData {
         return myCreatedSprites;
     }
 
+    public DefinitionCollection<SpriteDefinition> getMyCreatedMissiles () {
+        return myCreatedMissiles;
+    }
+
     public DefinitionCollection<AttributeDefinition> getMyCreatedAttributes () {
         return myCreatedAttributes;
     }
@@ -40,6 +46,10 @@ public class AuthorshipData {
 
     public void addCreatedSprites (DefinitionCollection<SpriteDefinition> createdSprites) {
         this.myCreatedSprites.add(createdSprites);
+    }
+
+    public void setMyCreatedMissiles (DefinitionCollection<SpriteDefinition> createdMissiles) {
+        this.myCreatedMissiles = createdMissiles;
     }
 
     public void setMyCreatedAttributes (DefinitionCollection<AttributeDefinition> createdAttributes) {
