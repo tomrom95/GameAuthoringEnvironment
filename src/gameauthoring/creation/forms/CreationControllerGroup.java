@@ -3,8 +3,6 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.SpriteGroup;
-import engine.definitions.GroupDefinition;
-import engine.definitions.SpriteDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
 
 public class CreationControllerGroup extends CreationController<SpriteGroup>{
@@ -23,7 +21,7 @@ public class CreationControllerGroup extends CreationController<SpriteGroup>{
 
     @Override
     protected SpriteGroup createBlankItem () {
-        return new GroupDefinition();
+        return new SpriteGroup();
     }
 
 }
