@@ -47,11 +47,6 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
         myChoices.setOnAction(e -> action.accept(myChoices.getSelectionModel().getSelectedIndex()));
         
     }
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
-    }
 
     @Override
     public Node draw () {

@@ -99,11 +99,4 @@ public class LevelEditorView implements Glyph {
         form.add(myLoseCondition.draw(), 0, 2);
         return form;
     }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
-    }
-
 }

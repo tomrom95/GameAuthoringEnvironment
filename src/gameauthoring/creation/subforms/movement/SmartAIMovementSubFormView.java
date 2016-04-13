@@ -13,12 +13,6 @@ public class SmartAIMovementSubFormView implements ISubFormView {
     }
 
     @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public IFormDataManager getData () {
         // TODO Auto-generated method stub
         return null;

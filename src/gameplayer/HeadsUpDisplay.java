@@ -57,11 +57,4 @@ public class HeadsUpDisplay implements Glyph{
     private void addAttribute (VBox container, IAttribute attribute) {
         container.getChildren().add(new AttributeCell(attribute).draw());
     }
-
-    @Override
-    public void update () {
-    }
-    
-    
-
 }

@@ -63,12 +63,6 @@ public class MultiChoiceEntryView<E extends IProfilable> extends EntryView {
         return myContainer;
     }
 
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
-    }
-
     public void select (E spr) {
         myChoices.getSelectionModel().select(spr);
     }

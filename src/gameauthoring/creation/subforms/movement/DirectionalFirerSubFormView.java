@@ -47,10 +47,4 @@ public class DirectionalFirerSubFormView extends SubFormView {
         myPane.add(myWaitTime.draw(), 0, 0);
         myPane.add(myAngle.draw(), 0, 1);
     }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-    }
-
 }

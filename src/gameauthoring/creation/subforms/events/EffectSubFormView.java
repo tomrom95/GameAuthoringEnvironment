@@ -27,11 +27,6 @@ public class EffectSubFormView extends SubFormView{
         myValue = new TextEntryView("Amount", this.getData(), 20, 150, 30);
         super.setMyEntryViews( new ArrayList<IEntryView>(Arrays.asList(myLength, myValue)));
     }
-
-    @Override
-    public void update () {
-        
-    }
     
     public AttributeDefinition getAttribute () {
         return myAttribute.getSelectionModel().getSelectedItem();

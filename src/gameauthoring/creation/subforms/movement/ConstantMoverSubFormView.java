@@ -46,11 +46,6 @@ public class ConstantMoverSubFormView extends SubFormView {
         myPane.add(myYVel.draw(), 0, 1);
     }
 
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-    }
-
     public String getMyXVelKey () {
         return myXVelKey;
     }

@@ -16,11 +16,4 @@ public interface Glyph {
      * @return Node
      */
     Node draw();
-    
-    /**
-     * Updates the view's screen. Not sure if this
-     * is necessary but it might be. Later on this may be
-     * view-specific
-     */
-    void update();
 }
