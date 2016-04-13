@@ -61,9 +61,9 @@ public class ObjectCreationTabViewer implements ITabViewer {
     private void initializeLists () {
 
         List<String> myEnemySFCs =
-                new ArrayList<String>(Arrays.asList("Profile", "SelectAttribute"));
+                new ArrayList<String>(Arrays.asList("SelectAttribute"));
         List<String> myDefenderSFCs =
-                new ArrayList<String>(Arrays.asList("Profile", "SelectAttribute"));
+                new ArrayList<String>(Arrays.asList("SelectAttribute"));
         List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
 
         CreationControllerFactory ccFactory = new CreationControllerFactory();
