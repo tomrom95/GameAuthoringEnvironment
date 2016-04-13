@@ -23,12 +23,12 @@ public class MovementSubFormController implements ISubFormControllerSprite {
     private ConstantMoverSubFormController myConstantSubForm;
     private UserMoverSubFormController myUserSubForm;
 
-    // private TrackingMoverSubFormController myTrackingSubForm;
+    private TrackingMoverSubFormController myTrackingSubForm;
 
     public MovementSubFormController () {
         setUpSubFormControllers();
         setUpSubFormViews();
-        this.myView = new MovementSubFormView(mySubFormViews, e -> changeMovement(2));
+        this.myView = new MovementSubFormView(mySubFormViews, e -> changeMovement(e));
         this.myFormData = myView.getData();
     }
 
@@ -36,10 +36,10 @@ public class MovementSubFormController implements ISubFormControllerSprite {
         myStaticSubForm = new StaticMoverSubFormController();
         myConstantSubForm = new ConstantMoverSubFormController();
         myUserSubForm = new UserMoverSubFormController();
-        // myTrackingSubForm = new TrackingMoverSubFormController();
+        myTrackingSubForm = new TrackingMoverSubFormController(null); //TODO: add game to constructor
         mySubFormControllers = new ArrayList<>();
         mySubFormControllers.addAll(Arrays
-                .asList(myStaticSubForm, myConstantSubForm, myUserSubForm));
+                .asList(myStaticSubForm, myConstantSubForm, myUserSubForm, myTrackingSubForm));
     }
 
     private void setUpSubFormViews () {
@@ -47,12 +47,13 @@ public class MovementSubFormController implements ISubFormControllerSprite {
         mySubFormViews.add(myStaticSubForm.getSubFormView());
         mySubFormViews.add(myConstantSubForm.getSubFormView());
         mySubFormViews.add(myUserSubForm.getSubFormView());
-        // mySubFormViews.add(myTrackingSubForm.getSubFormView());
+        mySubFormViews.add(myTrackingSubForm.getSubFormView());
     }
 
     // combo box handler
     private void changeMovement (int comboSelectionIndex) {
         myCurrentMovementController = mySubFormControllers.get(comboSelectionIndex);
+        myView.changeSubMovementView(comboSelectionIndex);
         
     }
 

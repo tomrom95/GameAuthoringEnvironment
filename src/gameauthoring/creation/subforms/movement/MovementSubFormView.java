@@ -3,6 +3,7 @@ package gameauthoring.creation.subforms.movement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import engine.profile.ProfileDisplay;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
@@ -32,13 +33,13 @@ public class MovementSubFormView extends SubFormView {
     private List<IEntryView> myEntryViews;
     private Node mySubMovementView;
 
-    public MovementSubFormView (ObservableList<ISubFormView> views, EventHandler<ActionEvent> action) {
+    public MovementSubFormView (ObservableList<ISubFormView> views, Consumer<Integer> action) {
         this.myViews = views;
         updateEntryViews(action);
         initView();
     }
 
-    private void updateEntryViews (EventHandler<ActionEvent> action) {
+    private void updateEntryViews (Consumer<Integer> action) {
         myListOfMovementTypes = FXCollections.observableArrayList();
         ProfileDisplay staticMove = new ProfileDisplay("static");
         ProfileDisplay constantMove = new ProfileDisplay("constant");
@@ -48,13 +49,17 @@ public class MovementSubFormView extends SubFormView {
         myListOfMovementTypes.addAll(staticMove, constantMove, userMove, trackingMove);
         SingleChoiceEntryView<ProfileDisplay> entryView =  new SingleChoiceEntryView<ProfileDisplay>(myMoveTypeKey, myListOfMovementTypes, 20);
         entryView.addComboListener(action);
+        mySubMovementView = myViews.get(0).draw();
+        myPane.add(mySubMovementView, 1, 0);
+        entryView.setSelected(staticMove);
         myMovement = entryView;
         myEntryViews = new ArrayList<IEntryView>(Arrays.asList(myMovement));
     }
     
     public void changeSubMovementView(int index){
-        //myPane.getChildren().remove(1);
-        myPane.add(myViews.get(index).draw(), 1, 0);
+        myPane.getChildren().remove(mySubMovementView);
+        mySubMovementView = myViews.get(index).draw();
+        myPane.add(mySubMovementView, 1, 0);
     }
 
     private void initView () {

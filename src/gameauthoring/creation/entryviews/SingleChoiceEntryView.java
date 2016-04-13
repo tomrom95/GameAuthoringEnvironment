@@ -1,5 +1,6 @@
 package gameauthoring.creation.entryviews;
 
+import java.util.function.Consumer;
 import engine.profile.IProfilable;
 import gameauthoring.ProfileCellView;
 import javafx.collections.ObservableList;
@@ -42,8 +43,8 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
         return myChoices.getSelectionModel().getSelectedItem();
     }
 
-    public void addComboListener(EventHandler<ActionEvent> event){
-        myChoices.setOnAction(event);
+    public void addComboListener(Consumer<Integer> action){
+        myChoices.setOnAction(e -> action.accept(myChoices.getSelectionModel().getSelectedIndex()));
         
     }
     @Override
