@@ -1,7 +1,9 @@
 package gameauthoring.creation.subforms.movement;
 
 import java.util.List;
+import engine.definitions.MovementDefinition;
 import engine.definitions.SpriteDefinition;
+import engine.definitions.StaticMoverDefinition;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
@@ -23,15 +25,16 @@ public class MovementSubFormController implements ISubFormControllerSprite {
     private void changeMovement(int comboSelectionIndex) {
         myCurrentMovementController = mySubFormControllers.get(comboSelectionIndex);
     }
+    
     @Override
     public void updateItem (SpriteDefinition item) {
         myCurrentMovementController.updateItem(item);
+        item.setMovementDefinition(new StaticMoverDefinition());
     }
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-        myCurrentMovementController.populateViewsWithData(item);
-        
+        myCurrentMovementController.populateViewsWithData(item);        
     }
 
     @Override
