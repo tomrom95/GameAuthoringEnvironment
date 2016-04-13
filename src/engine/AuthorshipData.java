@@ -2,7 +2,6 @@ package engine;
 
 import java.util.List;
 import engine.definitions.AttributeDefinition;
-import engine.definitions.GroupDefinition;
 import engine.definitions.SpriteDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.FXCollections;
@@ -17,9 +16,11 @@ import javafx.collections.FXCollections;
 public class AuthorshipData {
 
     List<DefinitionCollection<SpriteDefinition>> myCreatedSprites;
+    DefinitionCollection<SpriteDefinition> myCreatedMissiles;
+
     DefinitionCollection<AttributeDefinition> myCreatedAttributes;
 
-    DefinitionCollection<GroupDefinition> myCreatedGroups;
+    DefinitionCollection<SpriteGroup> myCreatedGroups;
 
     public AuthorshipData () {
 
@@ -30,11 +31,15 @@ public class AuthorshipData {
         return myCreatedSprites;
     }
 
+    public DefinitionCollection<SpriteDefinition> getMyCreatedMissiles () {
+        return myCreatedMissiles;
+    }
+
     public DefinitionCollection<AttributeDefinition> getMyCreatedAttributes () {
         return myCreatedAttributes;
     }
 
-    public DefinitionCollection<GroupDefinition> getMyCreatedGroups () {
+    public DefinitionCollection<SpriteGroup> getMyCreatedGroups () {
         return myCreatedGroups;
     }
 
@@ -42,11 +47,15 @@ public class AuthorshipData {
         this.myCreatedSprites.add(createdSprites);
     }
 
+    public void setMyCreatedMissiles (DefinitionCollection<SpriteDefinition> createdMissiles) {
+        this.myCreatedMissiles = createdMissiles;
+    }
+
     public void setMyCreatedAttributes (DefinitionCollection<AttributeDefinition> createdAttributes) {
         this.myCreatedAttributes = createdAttributes;
     }
 
-    public void setMyCreatedGroups (DefinitionCollection<GroupDefinition> createdGroups) {
+    public void setMyCreatedGroups (DefinitionCollection<SpriteGroup> createdGroups) {
         this.myCreatedGroups = createdGroups;
     }
 

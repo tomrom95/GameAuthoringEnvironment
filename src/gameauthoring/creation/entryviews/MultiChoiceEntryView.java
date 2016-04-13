@@ -1,10 +1,11 @@
 package gameauthoring.creation.entryviews;
 
 import java.util.List;
+import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
+import gameauthoring.ProfileCellView;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
@@ -31,6 +32,7 @@ public class MultiChoiceEntryView<E extends IProfilable> extends EntryView {
         this.myContainer = new HBox(spacing);
         this.myChoices = new ListView<E>(observableList);
         this.myChoices.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        myChoices.setCellFactory( c -> new ProfileCellView<E>());
         myContainer.getChildren().add(new Label(myLabel));
         myContainer.getChildren().add(myChoices);
     }
@@ -46,6 +48,12 @@ public class MultiChoiceEntryView<E extends IProfilable> extends EntryView {
         
     }
 
+    public void clearSelection(){
+        myChoices.getSelectionModel().clearSelection();
+    }
+    public ListView<E> getListView(){
+        return myChoices;
+    }
     public List<E> getSelected () {
         return myChoices.getSelectionModel().getSelectedItems();
     }
@@ -59,6 +67,10 @@ public class MultiChoiceEntryView<E extends IProfilable> extends EntryView {
     public void update () {
         // TODO Auto-generated method stub
 
+    }
+
+    public void select (E spr) {
+        myChoices.getSelectionModel().select(spr);
     }
 
 }

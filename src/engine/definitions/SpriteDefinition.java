@@ -24,6 +24,7 @@ public class SpriteDefinition implements IProfilable {
     private LocationDefinition myLocation;
     private List<AttributeDefinition> myAttributes;
     private IProfile myProfile;
+    private SpriteType mySpriteType;
 
     public SpriteDefinition () {
         // TODO Set a default. THis is just for view testing
@@ -35,7 +36,7 @@ public class SpriteDefinition implements IProfilable {
     }
 
     public ISprite create () {
-        ISprite sprite = new Sprite(new SpriteType(myProfile.getName()));
+        ISprite sprite = new Sprite(new SpriteType(myProfile.getName().get()));
 
         IMovementModule mover = myMovementDefinition.create(sprite);
         IGraphicModule graphicModule = createGraphicModule();
@@ -45,7 +46,7 @@ public class SpriteDefinition implements IProfilable {
     }
 
     protected IGraphicModule createGraphicModule () {
-        return new GraphicModule(myProfile.getImage());
+        return new GraphicModule(myProfile.getImage().get());
     }
 
     protected Coordinate createCoordinate () {
@@ -108,6 +109,12 @@ public class SpriteDefinition implements IProfilable {
     @Override
     public void setProfile (IProfile profile) {
         myProfile = profile;
+    }
+    
+    public SpriteType getSpriteType() {
+        //TODO: check if this should be one reference or new one every time
+        
+        return new SpriteType(getProfile().getName());
     }
 
 }

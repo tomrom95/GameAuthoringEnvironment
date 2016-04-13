@@ -4,6 +4,7 @@ import engine.profile.IProfilable;
 import engine.profile.IProfile;
 import engine.rendering.GraphicFactory;
 import engine.rendering.ScaleFactory;
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
@@ -24,15 +25,17 @@ import javafx.scene.text.Text;
 public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     private static final double PIC_SIZE = 30;
-    private static final String DEFAULT_NAME = "<No Name>";
-    private static final String DEFAULT_DESCRIPTION = "<No Description>";
 
     private E myProfile;
 
     @Override
     protected void updateItem (E item, boolean empty) {
         super.updateItem(item, empty);
-        if (item != null) {
+        if (empty || item == null) {
+            myProfile = null;
+            setGraphic(null);
+        }
+        else {
             myProfile = item;
             setGraphic(createSpriteCell(item));
         }
@@ -50,25 +53,26 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
     private Node createTextProfile (IProfile profile) {
         VBox container = new VBox();
 
-        Text name = new Text(getStringOrDefault(profile.getName(), DEFAULT_NAME));
-        Text description = new Text(getStringOrDefault(profile.getDescription(),
-                                                       DEFAULT_DESCRIPTION));
+        Text name = bindText(profile.getName());
+        Text description = bindText(profile.getDescription());
         container.getChildren().addAll(name, description);
         return container;
     }
 
-    private String getStringOrDefault (String name, String defaultName) {
-        return (name == "") ? defaultName : name;
+    private Text bindText (StringProperty name) {
+        Text text = new Text();
+        text.textProperty().bind(name);
+        return text;
     }
 
     private Node createImageProfile (IProfile profile) {
         GraphicFactory graphics = new ScaleFactory(PIC_SIZE, PIC_SIZE);
 
-        Node node = profile.getImage().getVisualRepresentation(graphics);
+        Node node = profile.getImage().get().getVisualRepresentation(graphics);
         return node;
     }
 
-    protected E getProfile () {
+    protected E getProfilable () {
         return myProfile;
     }
 

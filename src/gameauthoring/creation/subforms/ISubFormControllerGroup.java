@@ -1,8 +1,7 @@
 package gameauthoring.creation.subforms;
 
-import engine.definitions.GroupDefinition;
+import engine.SpriteGroup;
 
-
-public interface ISubFormControllerGroup extends ISubFormController<GroupDefinition> {
+public interface ISubFormControllerGroup extends ISubFormController<SpriteGroup> {
 
 }

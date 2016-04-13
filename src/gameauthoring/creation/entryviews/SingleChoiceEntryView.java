@@ -1,19 +1,11 @@
 package gameauthoring.creation.entryviews;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import engine.definitions.AttributeDefinition;
 import engine.profile.IProfilable;
-import gameauthoring.ProfileCellView;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 
 
 /**
@@ -34,7 +26,7 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
         this.myContainer = new GridPane();
         this.myChoices = new ComboBox<E>(observableList);
         myChoices.setCellFactory(c -> new NameCellView<E>());
-        
+
         myContainer.add(new Label(myLabel), 0, 0);
         myContainer.add(myChoices, 0, 1);
     }
