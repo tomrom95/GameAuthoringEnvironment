@@ -1,20 +1,27 @@
 package gameauthoring.creation.entryviews;
 
+import engine.profile.IProfilable;
+import engine.profile.IProfile;
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import engine.profile.IProfilable;
-import engine.profile.IProfile;
-import engine.rendering.GraphicFactory;
-import engine.rendering.ScaleFactory;
 
 
+/**
+ * Class to help visualize a profilable definition in a list view with only name.
+ * Anything that implements IProfilable can use this to create its
+ * cells in a user friendly way.
+ * 
+ * @author Jeremy Schreck
+ * @author Jin An
+ *
+ * @param <E>
+ */
 public class NameCellView<E extends IProfilable> extends ListCell<E> {
-
-    private static final String DEFAULT_NAME = "<No Name>";
 
     private E myProfile;
 
@@ -23,10 +30,11 @@ public class NameCellView<E extends IProfilable> extends ListCell<E> {
         super.updateItem(item, empty);
         if (empty || item == null) {
             myProfile = null;
-            System.out.println("It's null");
+            setGraphic(null);
         }
         else {
             myProfile = item;
+            setGraphic(createSpriteCell(item));
         }
     }
 
@@ -39,16 +47,18 @@ public class NameCellView<E extends IProfilable> extends ListCell<E> {
 
     private Node createTextProfile (IProfile profile) {
         VBox container = new VBox();
-        Text name = new Text(getStringOrDefault(profile.getName(), DEFAULT_NAME));
+        Text name = bindText(profile.getName());
         container.getChildren().addAll(name);
         return container;
     }
 
-    private String getStringOrDefault (String name, String defaultName) {
-        return (name == "") ? defaultName : name;
+    private Text bindText (StringProperty name) {
+        Text text = new Text();
+        text.textProperty().bind(name);
+        return text;
     }
 
-    protected E getProfile () {
+    protected E getProfilable () {
         return myProfile;
     }
 

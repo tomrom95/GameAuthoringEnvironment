@@ -74,5 +74,10 @@ public class Profile implements IProfile {
         myDescription.set(desc);
         myName.set(name);
     }
+    
+    @Override
+    public String toString(){
+        return "kk";
+    }
 
 }

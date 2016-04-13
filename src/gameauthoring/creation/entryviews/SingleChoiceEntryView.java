@@ -1,6 +1,7 @@
 package gameauthoring.creation.entryviews;
 
 import engine.profile.IProfilable;
+import gameauthoring.ProfileCellView;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
@@ -17,7 +18,6 @@ import javafx.scene.layout.GridPane;
  *
  */
 public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
-    private String myLabel;
     private GridPane myContainer;
     private ComboBox<E> myChoices;
 
@@ -26,8 +26,9 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
         this.myContainer = new GridPane();
         this.myChoices = new ComboBox<E>(observableList);
         myChoices.setCellFactory(c -> new NameCellView<E>());
+        myChoices.setButtonCell(new NameCellView<E>());
 
-        myContainer.add(new Label(myLabel), 0, 0);
+        myContainer.add(new Label(getLabel()), 0, 0);
         myContainer.add(myChoices, 0, 1);
     }
 
