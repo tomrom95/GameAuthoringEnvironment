@@ -7,6 +7,7 @@ import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
+import gameauthoring.creation.subforms.ProfileSubFormController;
 import gameauthoring.creation.subforms.SubFormControllerFactory;
 import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.ObservableList;
@@ -23,6 +24,8 @@ import javafx.collections.ObservableList;
 public abstract class CreationController<T extends IProfilable> {
     private IObjectCreationView<T> myView;
     private List<? extends ISubFormController<T>> mySubFormControllers;
+    private ProfileSubFormController<IProfilable> myProfileSubFormController;
+
     private String myTitle;
     private SubFormControllerFactory mySFCFactory;
     private DefinitionCollection<T> myDefinitionCollection;
@@ -68,7 +71,7 @@ public abstract class CreationController<T extends IProfilable> {
         mySubFormControllers =
                 (List<? extends ISubFormController<T>>) getMySFCFactory()
                         .createSubFormControllers(subFormStrings);
-
+        setMyProfileSubFormController(getMySFCFactory().createProfileSFC());
         List<ISubFormView> subFormViews = getSubFormViews(getMySubFormControllers());
         myView.init(subFormViews);
         setupConnections();
@@ -104,6 +107,7 @@ public abstract class CreationController<T extends IProfilable> {
     private List<ISubFormView> getSubFormViews (List<? extends ISubFormController<T>> subFormControllers) {
         List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
 
+        subFormViews.add(getMyProfileSubFormController().getSubFormView());
         for (ISubFormController<T> subFormController : subFormControllers) {
             subFormViews.add(subFormController.getSubFormView());
         }
@@ -115,6 +119,7 @@ public abstract class CreationController<T extends IProfilable> {
      * 
      */
     private void saveItem () {
+        getMyProfileSubFormController().updateItem(getMyCurrentItem());
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.updateItem(getMyCurrentItem()); // make more generic later
         }
@@ -161,6 +166,7 @@ public abstract class CreationController<T extends IProfilable> {
      * @param item The item contained in the cell that was clicked
      */
     private void showAndEdit (T item) {
+        getMyProfileSubFormController().populateViewsWithData(getMyCurrentItem());
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.populateViewsWithData(getMyCurrentItem());
         }
@@ -203,6 +209,14 @@ public abstract class CreationController<T extends IProfilable> {
 
     protected void setMySubFormControllers (List<? extends ISubFormController<T>> mySubFormControllers) {
         this.mySubFormControllers = mySubFormControllers;
+    }
+
+    private ProfileSubFormController<IProfilable> getMyProfileSubFormController () {
+        return myProfileSubFormController;
+    }
+
+    private void setMyProfileSubFormController (ProfileSubFormController<IProfilable> myProfileSubFormController) {
+        this.myProfileSubFormController = myProfileSubFormController;
     }
 
     protected DefinitionCollection<T> getMyDefinitionCollection () {

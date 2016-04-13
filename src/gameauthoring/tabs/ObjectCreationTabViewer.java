@@ -64,11 +64,10 @@ public class ObjectCreationTabViewer implements ITabViewer {
         List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
         List<String> myMissileSFCs = new ArrayList<String>();
         List<String> myEnemySFCs =
-                new ArrayList<String>(Arrays.asList("Profile", "SelectAttribute"));
+                new ArrayList<String>(Arrays.asList("SelectAttribute"));
         List<String> myDefenderSFCs =
-                new ArrayList<String>(Arrays.asList("Profile", "SelectAttribute"));
-        //List<String> myGroupSFCs = new ArrayList<String>(Arrays.asList("Group"));
-
+                new ArrayList<String>(Arrays.asList("SelectAttribute"));
+     
 
         CreationControllerFactory ccFactory = new CreationControllerFactory();
         // TODO: take sfcs out of cc constructors
