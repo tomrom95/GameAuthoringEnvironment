@@ -19,7 +19,7 @@ public class AuthorshipData {
 
     List<DefinitionCollection<SpriteDefinition>> myCreatedSprites;
     DefinitionCollection<AttributeDefinition> myCreatedAttributes;
-    DefinitionCollection<GroupDefinition> myCreatedGroups;
+    DefinitionCollection<ISpriteGroup> myCreatedGroups;
     DefinitionCollection<EventPackageDefinition> myCreatedEventPackages;
 
     public AuthorshipData () {
@@ -28,7 +28,7 @@ public class AuthorshipData {
         myCreatedAttributes =
                 new DefinitionCollection<AttributeDefinition>("Created Attributes",
                                                               FXCollections.observableArrayList());
-        myCreatedGroups = new DefinitionCollection<GroupDefinition>("Created Groups",
+        myCreatedGroups = new DefinitionCollection<ISpriteGroup>("Created Groups",
                 FXCollections.observableArrayList());
         myCreatedEventPackages = new DefinitionCollection<EventPackageDefinition>("Created Groups",
                 FXCollections.observableArrayList());
@@ -46,7 +46,7 @@ public class AuthorshipData {
         return myCreatedEventPackages;
     }
 
-    public DefinitionCollection<GroupDefinition> getMyCreatedGroups () {
+    public DefinitionCollection<ISpriteGroup> getMyCreatedGroups () {
         return myCreatedGroups;
     }
     
@@ -62,7 +62,7 @@ public class AuthorshipData {
         this.myCreatedAttributes = createdAttributes;
     }
 
-    public void setMyCreatedGroups (DefinitionCollection<GroupDefinition> createdGroups) {
+    public void setMyCreatedGroups (DefinitionCollection<ISpriteGroup> createdGroups) {
         this.myCreatedGroups = createdGroups;
     }
 
