@@ -1,6 +1,5 @@
 package engine;
 
-import java.util.List;
 import engine.sprite.SpriteType;
 import javafx.collections.ObservableList;
 
