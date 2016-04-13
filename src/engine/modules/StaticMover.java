@@ -10,6 +10,11 @@ import util.Coordinate;
 import util.TimeDuration;
 
 
+/**
+ * This class creates a module that is immovable. Used primarily for towers in TowerDefense games
+ *
+ */
+
 public class StaticMover extends Mover {
 
     public StaticMover (IPositionable positionable) {
@@ -42,7 +47,6 @@ public class StaticMover extends Mover {
     @Override
     public void setPath (List<Coordinate> newPath) {
         // TODO Auto-generated method stub
-        
     }
 
     @Override

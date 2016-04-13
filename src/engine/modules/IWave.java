@@ -3,6 +3,10 @@ package engine.modules;
 import engine.sprite.ISprite;
 
 
+/**
+ * This interface provides the methods needed to spawn sprites based on a wave, or time duration step
+ *
+ */
 public interface IWave {
 
     /**

@@ -111,6 +111,10 @@ public class SpriteDefinition implements IProfilable {
         myProfile = profile;
     }
     
+    public List<ModuleDefinition> getModuleDefinitions(){
+        return myModuleDefinitions;
+    }
+    
     public SpriteType getSpriteType() {
         //TODO: check if this should be one reference or new one every time
         
