@@ -4,6 +4,7 @@ package gameauthoring.conditiontab;
 import engine.IGame;
 import engine.ISpriteGroup;
 import engine.OnCollisionCondition;
+import engine.SpriteGroup;
 import engine.conditions.ICondition;
 import engine.definitions.EventPackageDefinition;
 import javafx.scene.Node;
@@ -21,11 +22,11 @@ public class OnCollisionPopUp extends ConditionPopUp {
 
     
     private IGame myGame;
-    private ComboBox<ISpriteGroup> myGroupA;
+    private ComboBox<SpriteGroup> myGroupA;
     private ComboBox<EventPackageDefinition> myEventsA;
-    private ComboBox<ISpriteGroup> myGroupB;
+    private ComboBox<SpriteGroup> myGroupB;
     private ComboBox<EventPackageDefinition> myEventsB;
-    private ComboBox<ISpriteGroup> myThirdParty;
+    private ComboBox<SpriteGroup> myThirdParty;
     private ComboBox<EventPackageDefinition> myThirdEvents;
     private ComboBox<EventPackageDefinition> myGlobalEvents;
     

@@ -24,6 +24,7 @@ public class SpriteDefinition implements IProfilable {
     private LocationDefinition myLocation;
     private List<AttributeDefinition> myAttributes;
     private IProfile myProfile;
+    private SpriteType mySpriteType;
 
     public SpriteDefinition () {
         // TODO Set a default. THis is just for view testing
@@ -108,6 +109,12 @@ public class SpriteDefinition implements IProfilable {
     @Override
     public void setProfile (IProfile profile) {
         myProfile = profile;
+    }
+    
+    public SpriteType getSpriteType() {
+        //TODO: check if this should be one reference or new one every time
+        
+        return new SpriteType(getProfile().getName().get());
     }
 
 }

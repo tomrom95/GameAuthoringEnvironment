@@ -2,6 +2,7 @@ package gameauthoring.conditiontab;
 
 import engine.IGame;
 import engine.ISpriteGroup;
+import engine.SpriteGroup;
 import engine.conditions.ICondition;
 import engine.conditions.OnClickCondition;
 import engine.definitions.EventPackageDefinition;
@@ -18,9 +19,9 @@ import javafx.scene.layout.VBox;
 public class OnClickPopUp extends ConditionPopUp {
 
     private IGame myGame;
-    private ComboBox<ISpriteGroup> myGroupA;
+    private ComboBox<SpriteGroup> myGroupA;
     private ComboBox<EventPackageDefinition> myEventsA;
-    private ComboBox<ISpriteGroup> myGroupB;
+    private ComboBox<SpriteGroup> myGroupB;
     private ComboBox<EventPackageDefinition> myEventsB;
     private ComboBox<EventPackageDefinition> myGlobalEvents;
     
