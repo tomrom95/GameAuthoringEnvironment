@@ -1,6 +1,7 @@
 package gameauthoring.creation.entryviews;
 
 import java.util.List;
+import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.ProfileCellView;
 import javafx.collections.ObservableList;
@@ -47,6 +48,12 @@ public class MultiChoiceEntryView<E extends IProfilable> extends EntryView {
         
     }
 
+    public void clearSelection(){
+        myChoices.getSelectionModel().clearSelection();
+    }
+    public ListView<E> getListView(){
+        return myChoices;
+    }
     public List<E> getSelected () {
         return myChoices.getSelectionModel().getSelectedItems();
     }
@@ -60,6 +67,10 @@ public class MultiChoiceEntryView<E extends IProfilable> extends EntryView {
     public void update () {
         // TODO Auto-generated method stub
 
+    }
+
+    public void select (E spr) {
+        myChoices.getSelectionModel().select(spr);
     }
 
 }
