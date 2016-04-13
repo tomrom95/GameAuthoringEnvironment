@@ -1,4 +1,4 @@
-package gameauthoring.creation.subforms.movement;
+package gameauthoring.creation.subforms.fire;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,14 +21,17 @@ public class DirectionalFireSubFormView extends SubFormView {
 
     private GridPane myPane = new GridPane();
 
-    private String myXVelKey = "X Velocity: ";
-    private String myYVelKey = "Y Velocity: ";
+    private String myAngleKey = "Angle: ";
+    private String myWaitTimeKey = "Wait Time: ";
+    private String myProjectileKey = "Projectile: ";
 
-    private IEntryView myXVel = new TextEntryView(myXVelKey, this.getData(), 20, 150, 30);
-    private IEntryView myYVel = new TextEntryView(myYVelKey, this.getData(), 20, 150, 30);
+    private IEntryView myAngle = new TextEntryView(myAngleKey, this.getData(), 20, 150, 30);
+    private IEntryView myWaitTime = new TextEntryView(myWaitTimeKey, this.getData(), 20, 150, 30);
+    private IEntryView myProjectile =
+            new TextEntryView(myProjectileKey, this.getData(), 20, 150, 30);
 
     private List<IEntryView> myEntryViews =
-            new ArrayList<IEntryView>(Arrays.asList(myXVel, myYVel));
+            new ArrayList<IEntryView>(Arrays.asList(myAngle, myWaitTime, myProjectile));
 
     public DirectionalFireSubFormView () {
         initView();
@@ -42,13 +45,26 @@ public class DirectionalFireSubFormView extends SubFormView {
     public void initView () {
         super.setMyEntryViews(myEntryViews);
         myPane.setGridLinesVisible(true);
-        myPane.add(myXVel.draw(), 0, 0);
-        myPane.add(myYVel.draw(), 0, 1);
+        myPane.add(myAngle.draw(), 0, 0);
+        myPane.add(myWaitTime.draw(), 0, 1);
+        myPane.add(myProjectile.draw(), 1, 0);
     }
 
     @Override
     public void update () {
         // TODO Auto-generated method stub
+    }
+
+    public String getMyProjectileKey () {
+        return myProjectileKey;
+    }
+
+    public String getMyAngleKey () {
+        return myAngleKey;
+    }
+
+    public String getMyWaitTimeKey () {
+        return myWaitTimeKey;
     }
 
 }

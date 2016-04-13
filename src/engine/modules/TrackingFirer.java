@@ -46,10 +46,7 @@ public class TrackingFirer extends Firer {
         lastFire = new TimeDuration(0);
         mySprite = sprite;
         myProjectile = projectile;
-        
-        /*
-         * 
-         */
+  
         
     }
 
