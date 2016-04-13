@@ -7,9 +7,18 @@ import engine.definitions.SpawnerModuleDefinition;
 
 
 public class SpawnerDefinition extends SpriteDefinition {
+    
+    private static final String SPAWNER_NAME = "Spawner";
+    private static final String SPAWNER_DESCRIPTION = "General Spawner";
+    private static final String SPAWNER_URL = "images/plus.png";
 
     private SpawnerModuleDefinition mySpawningModule;
+    
+    public SpawnerDefinition () {
+        this.getProfile().setNew(SPAWNER_NAME, SPAWNER_DESCRIPTION, SPAWNER_URL);
+    }
 
+    @Override
     public ISprite create () {
         ISprite sprite = super.create();
         addModule(mySpawningModule);
