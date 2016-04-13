@@ -10,6 +10,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
@@ -32,8 +33,11 @@ public class AuthoringView implements IAuthoringView {
     private SceneTabViewer mySceneTabViewer;
     private GridPane myLayout;
     private Game myGame;
-    public static final int WIDTH = 1200;
-    public static final int HEIGHT = 800;
+    public static final int WIDTH = 1000;
+    public static final int HEIGHT = 650;
+    public static final String STYLESHEET = "custom.css";
+    public static final String DEFAULT_RESOURCE_PACKAGE = "resource/";
+
 
     public AuthoringView () {
         GameFactory gameFactory = new GameFactory();
@@ -63,7 +67,9 @@ public class AuthoringView implements IAuthoringView {
         myLayout = new GridPane();
         myLayout.add(menuBar, 0, 0);
         myLayout.add(tabPane, 0, 2);
-        s.setScene(new Scene(myLayout, WIDTH, HEIGHT));
+        Scene scene = new Scene(myLayout, WIDTH, HEIGHT);
+        scene.getStylesheets().add(DEFAULT_RESOURCE_PACKAGE+STYLESHEET);
+        s.setScene(scene);
     }
 
     private MenuBar createMenuBar () {

@@ -24,6 +24,9 @@ public class ObjectListView<E extends IProfilable> implements IObjectListView<E>
         myListView = new ListView<E>();
         myListView.setItems(getMyItems());
         myListView.setCellFactory( c -> new ProfileCellView<E> () );
+        
+        //TODO: resource file and maybe constructor arguement later
+        myListView.getStyleClass().add("myObjectListView");
     }
 
     @Override
