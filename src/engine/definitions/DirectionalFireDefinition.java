@@ -1,5 +1,5 @@
 package engine.definitions;
 
-public class DirectionalFireDefinition extends ConstantMoverDefinition {
+public class DirectionalFireDefinition {
 
 }

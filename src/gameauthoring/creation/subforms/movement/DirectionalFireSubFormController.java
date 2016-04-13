@@ -28,7 +28,7 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
         DirectionalFireDefinition movementDefinition =
-                (DirectionalFireDefinition) item.getMovementDefinition();
+                (DirectionalFireDefinition) item;
 
         // myFormData.set(myView.getMyXVelKey(),
         // Double.toString(movementDefinition.getXVel()));
