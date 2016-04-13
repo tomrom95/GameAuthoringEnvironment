@@ -26,9 +26,9 @@ public class LevelManager implements ILevelManager {
     // updateable items as
     // specified by our Updateable interface
 
-    public LevelManager (ILevel startingLevel) {
+    public LevelManager () {
         myLevelPropertyList = FXCollections.observableArrayList();
-        myCurrentLevel = startingLevel;
+        myCurrentLevel = new Level();
     }
 
     @Override

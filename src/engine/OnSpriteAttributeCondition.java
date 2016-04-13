@@ -75,13 +75,14 @@ public class OnSpriteAttributeCondition implements ICondition {
 
     @Override
     public IProfile getProfile () {
-        return new Profile("On Sprite Attribute Condition", "Acts on sprite attributes", "images/c.png");
+        return new Profile("On Sprite Attribute Condition", "Acts on sprite attributes",
+                           "images/c.png");
     }
 
     @Override
     public void setProfile (IProfile profile) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

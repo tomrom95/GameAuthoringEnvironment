@@ -1,7 +1,5 @@
 package engine;
 
-import java.util.ArrayList;
-import java.util.List;
 import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
 import javafx.beans.property.DoubleProperty;
@@ -41,7 +39,7 @@ public class Attribute extends DefaultAffectable implements IAttribute {
 
     @Override
     public void applyEffect (IEffect effect) {
-        // make copy to prevent errors with state being called on the 
+        // make copy to prevent errors with state being called on the
         // same instance of the effect object
         myEffects.add(new SimpleObjectProperty<>(effect.makeCopy()));
     }
@@ -63,8 +61,8 @@ public class Attribute extends DefaultAffectable implements IAttribute {
 
     @Override
 
-    public List<IAttribute> getAttributes () {
-        List<IAttribute> attributes = new ArrayList<>();
+    public ObservableList<IAttribute> getAttributes () {
+        ObservableList<IAttribute> attributes = FXCollections.observableArrayList();
         attributes.add(this);
         return attributes;
     }

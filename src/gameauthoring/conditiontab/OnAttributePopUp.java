@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.function.DoublePredicate;
 import engine.AttributeType;
 import engine.IGame;
-import engine.ISpriteGroup;
 import engine.OnGlobalAttributeCondition;
+import engine.SpriteGroup;
 import engine.conditions.ICondition;
 import engine.definitions.EventPackageDefinition;
 import javafx.collections.FXCollections;
@@ -26,7 +26,7 @@ public abstract class OnAttributePopUp extends ConditionPopUp {
     private ComboBox<AttributeType> myAttributeType;
     private ComboBox<String> myChecks;
     private TextField myValueToCompare;
-    private ComboBox<ISpriteGroup> myThirdParty;
+    private ComboBox<SpriteGroup> myThirdParty;
     private ComboBox<EventPackageDefinition> myThirdEvents;
     private ComboBox<EventPackageDefinition> myGlobalEvents;
 

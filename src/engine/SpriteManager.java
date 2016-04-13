@@ -24,7 +24,7 @@ public class SpriteManager implements ISpriteManager {
 
     private ObservableList<ISprite> mySpriteList;
     private List<ISprite> myBufferList;
-    
+
     public SpriteManager () {
         mySpriteList = FXCollections.observableArrayList();
         myBufferList = new ArrayList<>();
@@ -83,7 +83,6 @@ public class SpriteManager implements ISpriteManager {
     @Override
     public void add (ISprite sprite) {
         myBufferList.add(sprite);
-        
 
     }
 

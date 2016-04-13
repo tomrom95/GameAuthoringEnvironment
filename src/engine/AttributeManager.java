@@ -7,6 +7,8 @@ import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import util.TimeDuration;
 
 
@@ -19,11 +21,11 @@ import util.TimeDuration;
 
 public class AttributeManager extends DefaultAffectable implements IAttributeManager {
 
-    private List<IAttribute> myAttributes;
+    private ObservableList<IAttribute> myAttributes;
     private List<IResource> myResources;
 
     public AttributeManager () {
-        myAttributes = new ArrayList<>();
+        myAttributes = FXCollections.observableArrayList();
         myResources = new ArrayList<>();
     }
 
@@ -42,7 +44,7 @@ public class AttributeManager extends DefaultAffectable implements IAttributeMan
     }
 
     @Override
-    public List<IAttribute> getAttributes () {
+    public ObservableList<IAttribute> getAttributes () {
         return myAttributes;
     }
 
