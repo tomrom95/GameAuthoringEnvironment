@@ -3,10 +3,13 @@ package gameauthoring.creation.forms;
 import java.util.ArrayList;
 import java.util.List;
 import engine.AuthorshipData;
+import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
+import gameauthoring.creation.subforms.ProfileSubFormController;
 import gameauthoring.creation.subforms.SubFormControllerFactory;
+import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.ObservableList;
 
 
@@ -21,9 +24,11 @@ import javafx.collections.ObservableList;
 public abstract class CreationController<T extends IProfilable> {
     private IObjectCreationView<T> myView;
     private List<? extends ISubFormController<T>> mySubFormControllers;
-    private AuthorshipData myAuthorshipData;
+    private ProfileSubFormController<IProfilable> myProfileSubFormController;
+
     private String myTitle;
     private SubFormControllerFactory mySFCFactory;
+    private DefinitionCollection<T> myDefinitionCollection;
 
     /**
      * Constructor
@@ -42,6 +47,9 @@ public abstract class CreationController<T extends IProfilable> {
         myTitle = title;
         mySFCFactory = new SubFormControllerFactory(authorshipData);
         myView = new ObjectCreationView<T>();
+        myDefinitionCollection = new DefinitionCollection<>(getMyTitle(),
+                                                            getMyObjectCreationView().getItems());
+        addToAuthorshipData(authorshipData);
 
     }
 
@@ -63,12 +71,19 @@ public abstract class CreationController<T extends IProfilable> {
         mySubFormControllers =
                 (List<? extends ISubFormController<T>>) getMySFCFactory()
                         .createSubFormControllers(subFormStrings);
-
+        setMyProfileSubFormController(getMySFCFactory().createProfileSFC());
         List<ISubFormView> subFormViews = getSubFormViews(getMySubFormControllers());
         myView.init(subFormViews);
         setupConnections();
 
     }
+
+    /**
+     * Hook up observable list of items to authorship data so other views can have access
+     * 
+     * @param authorshipData
+     */
+    protected abstract void addToAuthorshipData (AuthorshipData authorshipData);
 
     /**
      * Set up event handler connections
@@ -92,6 +107,7 @@ public abstract class CreationController<T extends IProfilable> {
     private List<ISubFormView> getSubFormViews (List<? extends ISubFormController<T>> subFormControllers) {
         List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
 
+        subFormViews.add(getMyProfileSubFormController().getSubFormView());
         for (ISubFormController<T> subFormController : subFormControllers) {
             subFormViews.add(subFormController.getSubFormView());
         }
@@ -103,6 +119,7 @@ public abstract class CreationController<T extends IProfilable> {
      * 
      */
     private void saveItem () {
+        getMyProfileSubFormController().updateItem(getMyCurrentItem());
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.updateItem(getMyCurrentItem()); // make more generic later
         }
@@ -149,6 +166,7 @@ public abstract class CreationController<T extends IProfilable> {
      * @param item The item contained in the cell that was clicked
      */
     private void showAndEdit (T item) {
+        getMyProfileSubFormController().populateViewsWithData(getMyCurrentItem());
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.populateViewsWithData(getMyCurrentItem());
         }
@@ -181,10 +199,6 @@ public abstract class CreationController<T extends IProfilable> {
         return this.myView.getCurrentItem();
     }
 
-    protected AuthorshipData getMyAuthorshipData () {
-        return myAuthorshipData;
-    }
-
     public String getMyTitle () {
         return myTitle;
     }
@@ -195,6 +209,18 @@ public abstract class CreationController<T extends IProfilable> {
 
     protected void setMySubFormControllers (List<? extends ISubFormController<T>> mySubFormControllers) {
         this.mySubFormControllers = mySubFormControllers;
+    }
+
+    private ProfileSubFormController<IProfilable> getMyProfileSubFormController () {
+        return myProfileSubFormController;
+    }
+
+    private void setMyProfileSubFormController (ProfileSubFormController<IProfilable> myProfileSubFormController) {
+        this.myProfileSubFormController = myProfileSubFormController;
+    }
+
+    protected DefinitionCollection<T> getMyDefinitionCollection () {
+        return myDefinitionCollection;
     }
 
 }

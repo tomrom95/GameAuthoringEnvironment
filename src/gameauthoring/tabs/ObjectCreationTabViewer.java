@@ -59,12 +59,15 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private void initializeLists () {
 
-        List<String> myEnemySFCs =
-                new ArrayList<String>(Arrays.asList("Profile", "SelectAttribute"));
-        List<String> myDefenderSFCs =
-                new ArrayList<String>(Arrays.asList("Profile", "SelectAttribute"));
-        List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
         
+        List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
+        List<String> myMissileSFCs = new ArrayList<String>();
+        List<String> myEnemySFCs =
+                new ArrayList<String>(Arrays.asList("SelectAttribute"));
+        List<String> myDefenderSFCs =
+
+                new ArrayList<String>(Arrays.asList("SelectAttribute"));
+     
         List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("SelectSprite"));
 
         CreationControllerFactory ccFactory = new CreationControllerFactory();
@@ -73,6 +76,9 @@ public class ObjectCreationTabViewer implements ITabViewer {
         CreationController<?> ccAttributes =
                 ccFactory.createAttributeCreationController("Attribute", myAttributeSFCs,
                                                             myAuthorshipData);
+        CreationController<?> ccMissiles =
+                ccFactory.createSpriteCreationController("Missiles", myMissileSFCs,
+                                                         myAuthorshipData);
         CreationController<?> ccEnemies =
                 ccFactory.createSpriteCreationController("Enemies", myEnemySFCs,
                                                          myAuthorshipData);
@@ -88,13 +94,18 @@ public class ObjectCreationTabViewer implements ITabViewer {
         myCCs.add(ccAttributes);
         myCCs.add(ccEnemies);
         myCCs.add(ccDefenders);
-        myCCs.add(ccGroups);
         
 
+        myCCs.add(ccMissiles);
+        myCCs.add(ccGroups);
+
+
+        ccAttributes.init(myAttributeSFCs);
         ccEnemies.init(myEnemySFCs);
         ccDefenders.init(myDefenderSFCs);
-        ccAttributes.init(myAttributeSFCs);
+        ccMissiles.init(myMissileSFCs);
         ccGroups.init(myGroupSFCs);
+
 
     }
 

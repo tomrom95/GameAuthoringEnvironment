@@ -3,6 +3,7 @@ package gameauthoring.creation.subforms;
 import java.util.ArrayList;
 import java.util.List;
 import engine.AuthorshipData;
+import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.movement.SmartAIMovementSubFormController;
 import gameauthoring.creation.subforms.movement.UserMoverSubFormController;
 
@@ -29,7 +30,7 @@ public class SubFormControllerFactory {
     private ISubFormController<?> createSubFormController (String type) {
         if (type.equals("Profile")) {
             System.out.println("profile");
-            return new ProfileSubFormController();
+            //return new ProfileSubFormController();
 
         }
         /*
@@ -76,7 +77,7 @@ public class SubFormControllerFactory {
 
         if (type.equals("Profile")) {
             System.out.println("profile");
-            return new ProfileSubFormController();
+            //return new ProfileSubFormController();
 
         }
         /*
@@ -124,6 +125,10 @@ public class SubFormControllerFactory {
 
     public AuthorshipData getMyAuthorshipData () {
         return myAuthorshipData;
+    }
+
+    public ProfileSubFormController<IProfilable> createProfileSFC () {
+        return new ProfileSubFormController<IProfilable>();
     }
 
 }
