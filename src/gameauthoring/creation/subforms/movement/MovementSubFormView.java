@@ -10,6 +10,8 @@ import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.SubFormView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
@@ -28,14 +30,15 @@ public class MovementSubFormView extends SubFormView {
     private GridPane myPane = new GridPane();
     private IEntryView myMovement;
     private List<IEntryView> myEntryViews;
+    private Node mySubMovementView;
 
-    public MovementSubFormView (ObservableList<ISubFormView> views) {
+    public MovementSubFormView (ObservableList<ISubFormView> views, EventHandler<ActionEvent> action) {
         this.myViews = views;
-        updateEntryViews();
+        updateEntryViews(action);
         initView();
     }
 
-    private void updateEntryViews () {
+    private void updateEntryViews (EventHandler<ActionEvent> action) {
         myListOfMovementTypes = FXCollections.observableArrayList();
         ProfileDisplay staticMove = new ProfileDisplay("static");
         ProfileDisplay constantMove = new ProfileDisplay("constant");
@@ -43,8 +46,15 @@ public class MovementSubFormView extends SubFormView {
         ProfileDisplay trackingMove = new ProfileDisplay("Tracking");
         
         myListOfMovementTypes.addAll(staticMove, constantMove, userMove, trackingMove);
-        myMovement = new SingleChoiceEntryView<ProfileDisplay>(myMoveTypeKey, myListOfMovementTypes, 20);
+        SingleChoiceEntryView<ProfileDisplay> entryView =  new SingleChoiceEntryView<ProfileDisplay>(myMoveTypeKey, myListOfMovementTypes, 20);
+        entryView.addComboListener(action);
+        myMovement = entryView;
         myEntryViews = new ArrayList<IEntryView>(Arrays.asList(myMovement));
+    }
+    
+    public void changeSubMovementView(int index){
+        //myPane.getChildren().remove(1);
+        myPane.add(myViews.get(index).draw(), 1, 0);
     }
 
     private void initView () {

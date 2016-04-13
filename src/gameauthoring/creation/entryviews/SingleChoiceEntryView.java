@@ -3,6 +3,8 @@ package gameauthoring.creation.entryviews;
 import engine.profile.IProfilable;
 import gameauthoring.ProfileCellView;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -40,6 +42,10 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
         return myChoices.getSelectionModel().getSelectedItem();
     }
 
+    public void addComboListener(EventHandler<ActionEvent> event){
+        myChoices.setOnAction(event);
+        
+    }
     @Override
     public void update () {
         // TODO Auto-generated method stub

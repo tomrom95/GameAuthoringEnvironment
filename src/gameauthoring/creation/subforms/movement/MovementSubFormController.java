@@ -28,7 +28,7 @@ public class MovementSubFormController implements ISubFormControllerSprite {
     public MovementSubFormController () {
         setUpSubFormControllers();
         setUpSubFormViews();
-        this.myView = new MovementSubFormView(mySubFormViews);
+        this.myView = new MovementSubFormView(mySubFormViews, e -> changeMovement(2));
         this.myFormData = myView.getData();
     }
 
@@ -53,6 +53,7 @@ public class MovementSubFormController implements ISubFormControllerSprite {
     // combo box handler
     private void changeMovement (int comboSelectionIndex) {
         myCurrentMovementController = mySubFormControllers.get(comboSelectionIndex);
+        
     }
 
     @Override
