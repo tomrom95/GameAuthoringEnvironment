@@ -2,6 +2,7 @@ package engine.definitions;
 
 import java.util.List;
 import engine.IGame;
+import engine.IPositionable;
 import engine.modules.TrackingFirer;
 import engine.sprite.SpriteType;
 
@@ -17,8 +18,8 @@ public class TrackingFirerDefinition extends ModuleDefinition {
     }
 
     @Override
-    public TrackingFirer create () {
-        return new TrackingFirer(myTargets, myGame, myWaitTime);
+    public TrackingFirer create (IPositionable parent) {
+        return new TrackingFirer(myTargets, myGame, myWaitTime, parent);
 
     }
 
