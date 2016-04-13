@@ -25,4 +25,13 @@ public class CreationControllerFactory {
     public CreationControllerAttribute createAttributeCreationController(String title, List<String> sfcs,  AuthorshipData authorshipData ){
         return new CreationControllerAttribute(title, sfcs, authorshipData);
     }
+    
+    public CreationControllerEvent createEventCreationController(String title, List<String> sfcs, AuthorshipData authorshipData) {
+        return new CreationControllerEvent(title, sfcs, authorshipData);
+    }
+    
+    public CreationControllerGroup createGroupCC(String title, List<String> sfcs, AuthorshipData authorshipData){
+        return new CreationControllerGroup(title,sfcs,authorshipData);
+
+    }
 }

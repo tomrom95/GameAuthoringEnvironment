@@ -1,22 +1,15 @@
 package gameauthoring.conditiontab;
 
-import engine.ICondition;
-import engine.IGame;
+import engine.conditions.ICondition;
 import javafx.collections.ObservableList;
-import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 public abstract class ConditionPopUp {
 
     protected static final double CUSHION = 10;
-    private static final double POP_UP_WIDTH = 700;
-    private static final double POP_UP_HEIGHT = 300;
     private GridPane myGroup;
     private ObservableList<ICondition> myList;
     

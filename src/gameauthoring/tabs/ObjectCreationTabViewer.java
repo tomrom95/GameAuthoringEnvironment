@@ -20,7 +20,6 @@ import java.util.Arrays;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.Game;
-import engine.definitions.GroupDefinition;
 import engine.definitions.SpriteDefinition;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
@@ -64,14 +63,20 @@ public class ObjectCreationTabViewer implements ITabViewer {
         List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
         List<String> myMissileSFCs = new ArrayList<String>();
         List<String> myEnemySFCs =
-                new ArrayList<String>(Arrays.asList("Profile", "SelectAttribute"));
+                new ArrayList<String>(Arrays.asList("SelectAttribute"));
         List<String> myDefenderSFCs =
-                new ArrayList<String>(Arrays.asList("Profile", "SelectAttribute"));
-        //List<String> myGroupSFCs = new ArrayList<String>(Arrays.asList("Group"));
 
+                new ArrayList<String>(Arrays.asList("Profile", "SelectAttribute"));
+        List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
+
+
+                new ArrayList<String>(Arrays.asList("SelectAttribute"));
+     
+        List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("SelectSprite"));
 
         CreationControllerFactory ccFactory = new CreationControllerFactory();
         // TODO: take sfcs out of cc constructors
+        
         CreationController<?> ccAttributes =
                 ccFactory.createAttributeCreationController("Attribute", myAttributeSFCs,
                                                             myAuthorshipData);
@@ -84,20 +89,35 @@ public class ObjectCreationTabViewer implements ITabViewer {
         CreationController<?> ccDefenders =
                 ccFactory.createSpriteCreationController("Defender", myDefenderSFCs,
                                                          myAuthorshipData);
+        CreationController<?> ccEvents = 
+                ccFactory.createEventCreationController("Events", myEventSFCs, myAuthorshipData);
+
+        CreationController<?> ccGroups = ccFactory.createGroupCC("Groups", myGroupSFCs, myAuthorshipData);
+
+        
 
         myCCs = new ArrayList<CreationController<?>>();
 
         myCCs.add(ccAttributes);
-
-        myCCs.add(ccMissiles);
         myCCs.add(ccEnemies);
         myCCs.add(ccDefenders);
 
-        ccAttributes.init(myAttributeSFCs);
+        myCCs.add(ccEvents);
 
-        ccMissiles.init(myMissileSFCs);
+
+        myCCs.add(ccMissiles);
+        myCCs.add(ccGroups);
+
+
+        ccAttributes.init(myAttributeSFCs);
         ccEnemies.init(myEnemySFCs);
         ccDefenders.init(myDefenderSFCs);
+
+        ccEvents.init(myEventSFCs);
+
+        ccMissiles.init(myMissileSFCs);
+        ccGroups.init(myGroupSFCs);
+
 
     }
 
