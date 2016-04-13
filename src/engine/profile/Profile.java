@@ -15,10 +15,20 @@ public class Profile implements IProfile {
     private String myName;
     private String myDescription;
     private ImageGraphic myImage;
+    private String DEFAULT_IMAGE_NAME = "images/photo.png";
 
     public Profile () {
-        init("", "", new ImageGraphic(0, 0, "images/photo.png"));
+        init("", "", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
     }
+
+    public Profile (String name) {
+        init(name, "", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+    }
+
+    public Profile (String name, String description) {
+        init(name, description, new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+    }
+    
     public Profile (String name, String description, String url) {
         init(name, description, new ImageGraphic(0, 0, url));
     }
@@ -48,7 +58,7 @@ public class Profile implements IProfile {
     public IGraphic getImage () {
         return myImage;
     }
-    
+
     @Override
     public String getImageURL () {
         return myImage.getUrlProperty().get();
