@@ -64,9 +64,8 @@ public class ObjectCreationTabViewer implements ITabViewer {
         List<String> myMissileSFCs = new ArrayList<String>();
         List<String> myEnemySFCs =
                 new ArrayList<String>(Arrays.asList("SelectAttribute"));
-        List<String> myDefenderSFCs =
-
-                new ArrayList<String>(Arrays.asList("Profile", "SelectAttribute"));
+        List<String> myDefenderSFCs = new ArrayList<String>(Arrays.asList( "SelectAttribute"));
+        
         List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
 
 
