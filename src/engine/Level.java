@@ -62,8 +62,8 @@ public class Level implements ILevel {
     }
 
     @Override
-    public void add (ISprite sprite, Coordinate coordinate) {
-        mySpriteManager.add(sprite, coordinate);
+    public void bufferedAdd (ISprite sprite, Coordinate coordinate) {
+        mySpriteManager.bufferedAdd(sprite, coordinate);
     }
 
     @Override
@@ -113,13 +113,18 @@ public class Level implements ILevel {
     }
 
     @Override
-    public void add (ISprite sprite) {
-        mySpriteManager.add(sprite);
+    public void bufferedAdd (ISprite sprite) {
+        mySpriteManager.bufferedAdd(sprite);
     }
 
     @Override
     public void setBackgroundImage (ImageGraphic graphic) {
         myBackgroundImage = graphic;
+    }
+
+    @Override
+    public void add (ISprite sprite, Coordinate coordinate) {
+        mySpriteManager.add(sprite, coordinate);
     }
 
 }
