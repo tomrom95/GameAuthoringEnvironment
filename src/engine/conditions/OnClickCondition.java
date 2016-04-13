@@ -4,6 +4,8 @@ import java.util.function.Predicate;
 import engine.IEventPackage;
 import engine.IGame;
 import engine.interactionevents.MouseIOEvent;
+import engine.profile.IProfile;
+import engine.profile.Profile;
 import engine.sprite.ISprite;
 import util.Coordinate;
 
@@ -53,5 +55,18 @@ public class OnClickCondition extends Condition implements ICondition {
                 .forEach(sprite -> handleAction(sprite));
 
     }
+
+    @Override
+    public IProfile getProfile () {
+        return new Profile("On Click Condition", "Mouse interactions", "images/c.png");
+    }
+
+    @Override
+    public void setProfile (IProfile profile) {
+        // TODO Auto-generated method stub
+        
+    }
+
+   
 
 }

@@ -2,20 +2,13 @@ package gameauthoring.levels;
 
 import engine.IGame;
 import engine.ILevel;
-import engine.definitions.SpriteDefinition;
 import engine.rendering.AuthoringRenderer;
-import gameauthoring.Glyph;
-import gameauthoring.levels.sprites.DraggableSpriteCell;
+import gameauthoring.util.Glyph;
 import javafx.scene.Node;
-import javafx.scene.control.Accordion;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.util.Callback;
 
 /**
  * View class for creating the scene creator, which consists
@@ -55,27 +48,11 @@ public class SceneCreator implements Glyph {
     /**
      * Makes the sprite selection side bar. Uses a list view
      * of custom listcells to visualize the sprites based on their
-     * profiles. TODO - make its own class
+     * profiles. 
      * @return
      */
     private Node createSpriteSelection () {
-        // TODO implement grouping
-        Accordion selector = new Accordion();
-        ListView<SpriteDefinition> spriteList = new ListView<SpriteDefinition>();
-       
-        spriteList.setItems(gameModel.getAuthorshipData().getCreatedSprites());
-        
-        spriteList.setCellFactory(new Callback<ListView<SpriteDefinition>, ListCell<SpriteDefinition>>() {
-            @Override 
-            public ListCell<SpriteDefinition> call(ListView<SpriteDefinition> list) {
-                return new DraggableSpriteCell(levelView, myController);
-            }
-        });
-        
-        TitledPane friendlies = new TitledPane("Sprites", spriteList);
-
-        selector.getPanes().addAll(friendlies);
-        return selector;
+        return new AuthoringSideBar(gameModel, levelView).draw();
     }
     
     /**

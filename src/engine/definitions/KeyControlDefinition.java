@@ -4,7 +4,7 @@ import util.ControlKeys;
 import util.Key;
 
 
-public class KeyControlDefinition implements IDefinition {
+public class KeyControlDefinition  {
 
     private String myUp;
     private String myLeft;

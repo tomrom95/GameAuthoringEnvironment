@@ -18,6 +18,7 @@ public class AttributeType extends StringBasedType {
     public static final AttributeType Y_VEL = new AttributeType("YVelocity");
     public static final AttributeType SPEED = new AttributeType("Speed");
     public static final AttributeType AMMO = new AttributeType("Ammo");
+    public static final AttributeType FIRE_RATE = new AttributeType("Firerate");
 
     public AttributeType (String type) {
         super(type);

@@ -1,6 +1,7 @@
 package gameauthoring;
 
 import java.util.List;
+import gameauthoring.shareddata.IDefinitionCollection;
 
 
 /**
@@ -19,6 +20,6 @@ public interface SpriteListHolderFactory {
      * 
      * @return A list of sprite holders
      */
-    List<SpriteListHolder> createSpriteHolders ();
+    List<IDefinitionCollection> createSpriteHolders ();
 
 }

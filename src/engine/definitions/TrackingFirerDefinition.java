@@ -1,32 +1,57 @@
 package engine.definitions;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import engine.IGame;
+import engine.IPositionable;
 import engine.modules.TrackingFirer;
-import engine.sprite.ISprite;
+import engine.sprite.SpriteType;
 
 
 public class TrackingFirerDefinition extends ModuleDefinition {
-    
-    
-    private List<SpriteDefinition> myTargets;
 
-    public TrackingFirerDefinition (List<SpriteDefinition> targets) {
-        myTargets = targets;
-    }
+    private List<SpriteType> myTargets;
+    private double myWaitTime;
+    private IGame myGame;
+    private SpriteDefinition myProjectile;
 
-    public void setTargets (List<SpriteDefinition> targets) {
-        myTargets = targets;
-    }
 
     @Override
-    public TrackingFirer create () {
-        List<ISprite> targets = myTargets.stream()
-                .map(spriteDef -> spriteDef.create())
-                .collect(Collectors.toList());
-        return new TrackingFirer(targets);
+    public TrackingFirer create (IPositionable parent) {
+        return new TrackingFirer(myTargets, myGame, myWaitTime, myProjectile, parent);
 
     }
 
- 
+    public void setProjectileDefinition(SpriteDefinition projectile){
+        myProjectile = projectile;
+    }
+    
+    public SpriteDefinition getProjectileDefinition(){
+        return myProjectile;
+    }
+    
+    public List<SpriteType> getTargets () {
+        return myTargets;
+    }
+
+    public void setWaitTime (double time) {
+        myWaitTime = time;
+    }
+
+    public double getWaitTime () {
+        return myWaitTime;
+    }
+
+    public void setGame (IGame game) {
+        myGame = game;
+    }
+    
+    public void setTargets (List<SpriteType> targets) {
+        myTargets = targets;
+    }
+
+    public IGame getGame () {
+        return myGame;
+
+    }
+
 }

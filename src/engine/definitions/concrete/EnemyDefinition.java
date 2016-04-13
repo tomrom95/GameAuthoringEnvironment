@@ -29,7 +29,7 @@ public class EnemyDefinition extends SpriteDefinition {
     public ISprite create () {
         ISprite sprite = super.create();
         sprite.initialize(new PathMover(mySpeed, myPath, sprite), createGraphicModule(),
-                          createModules(),
+                          createModules(sprite),
                           createAttributes(),
                           createCoordinate());
         return sprite;

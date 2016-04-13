@@ -1,7 +1,7 @@
 package gameplayer;
 
 import engine.IAttribute;
-import gameauthoring.Glyph;
+import gameauthoring.util.Glyph;
 import javafx.beans.binding.Bindings;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;

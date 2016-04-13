@@ -10,10 +10,10 @@ import engine.modules.IModule;
 import engine.modules.IMovementModule;
 import engine.profile.IProfilable;
 import engine.profile.IProfile;
+import engine.profile.Profile;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
-import graphics.IGraphic;
 import util.Coordinate;
 
 
@@ -23,8 +23,8 @@ public class SpriteDefinition implements IProfilable {
     private List<ModuleDefinition> myModuleDefinitions;
     private LocationDefinition myLocation;
     private List<AttributeDefinition> myAttributes;
-    private IGraphic myGraphic;
     private IProfile myProfile;
+    private SpriteType mySpriteType;
 
     public SpriteDefinition () {
         // TODO Set a default. THis is just for view testing
@@ -32,30 +32,30 @@ public class SpriteDefinition implements IProfilable {
         myModuleDefinitions = new ArrayList<ModuleDefinition>();
         myAttributes = new ArrayList<AttributeDefinition>();
         myLocation = new LocationDefinition();
-       
+        myProfile = new Profile();
     }
 
     public ISprite create () {
-        ISprite sprite = new Sprite(new SpriteType(myProfile.getName()));
+        ISprite sprite = new Sprite(new SpriteType(myProfile.getName().get()));
 
         IMovementModule mover = myMovementDefinition.create(sprite);
         IGraphicModule graphicModule = createGraphicModule();
-        sprite.initialize(mover, graphicModule, createModules(), createAttributes(),
+        sprite.initialize(mover, graphicModule, createModules(sprite), createAttributes(),
                           createCoordinate());
         return sprite;
     }
 
     protected IGraphicModule createGraphicModule () {
-        return new GraphicModule(myGraphic);
+        return new GraphicModule(myProfile.getImage().get());
     }
 
     protected Coordinate createCoordinate () {
         return myLocation.create();
     }
 
-    protected List<IModule> createModules () {
+    protected List<IModule> createModules (ISprite sprite) {
         return myModuleDefinitions.stream()
-                .map(modDef -> modDef.create())
+                .map(modDef -> modDef.create(sprite))
                 .collect(Collectors.toList());
     }
 
@@ -73,6 +73,14 @@ public class SpriteDefinition implements IProfilable {
         myAttributes.add(attribute);
     }
 
+    public List<AttributeDefinition> getAttributes () {
+        return myAttributes;
+    }
+
+    public void setAttributes (List<AttributeDefinition> attributes) {
+        myAttributes = new ArrayList<AttributeDefinition>(attributes);
+    }
+
     public void removeAttribute (AttributeDefinition attribute) {
         myAttributes.remove(attribute);
     }
@@ -85,16 +93,12 @@ public class SpriteDefinition implements IProfilable {
         myModuleDefinitions.remove(definition);
     }
 
+    public MovementDefinition getMovementDefinition () {
+        return myMovementDefinition;
+    }
+
     public void setMovementDefinition (MovementDefinition definition) {
         myMovementDefinition = definition;
-    }
-
-    public void setGraphic (IGraphic graphic) {
-        myGraphic = graphic;
-    }
-
-    public IGraphic getGraphic () {
-        return myGraphic;
     }
 
     @Override
@@ -106,12 +110,15 @@ public class SpriteDefinition implements IProfilable {
     public void setProfile (IProfile profile) {
         myProfile = profile;
     }
-
-    public IProfile getMyProfile () {
-        return myProfile;
+    
+    public List<ModuleDefinition> getModuleDefinitions(){
+        return myModuleDefinitions;
+    }
+    
+    public SpriteType getSpriteType() {
+        //TODO: check if this should be one reference or new one every time
+        
+        return new SpriteType(getProfile().getName().get());
     }
 
-    public void setMyProfile (IProfile profile) {
-        this.myProfile = profile;
-    }
 }

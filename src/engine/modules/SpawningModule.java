@@ -5,6 +5,10 @@ import engine.effects.DefaultAffectable;
 import util.TimeDuration;
 
 
+/**
+ * This class is responsible for creating sprites and adding them to a wave for tower defense games.
+ *
+ */
 public class SpawningModule extends DefaultAffectable implements IModule {
 
     private IAdder myAdder;
@@ -19,7 +23,5 @@ public class SpawningModule extends DefaultAffectable implements IModule {
 
         myAdder.add(myWave.getNextSprite());
     }
-
-  
 
 }

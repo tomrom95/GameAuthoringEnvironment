@@ -12,7 +12,7 @@ import engine.profile.IProfile;
  * @author jonathanim
  *
  */
-public class GameDefinition implements IDefinition {
+public class GameDefinition {
 
     private Game myGame;
 

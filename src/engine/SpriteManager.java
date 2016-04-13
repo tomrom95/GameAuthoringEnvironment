@@ -1,5 +1,6 @@
 package engine;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -22,13 +23,17 @@ import util.TimeDuration;
 public class SpriteManager implements ISpriteManager {
 
     private ObservableList<ISprite> mySpriteList;
-
+    private List<ISprite> myBufferList;
+    
     public SpriteManager () {
         mySpriteList = FXCollections.observableArrayList();
+        myBufferList = new ArrayList<>();
     }
 
     @Override
     public void update (TimeDuration duration) {
+        mySpriteList.addAll(myBufferList);
+        myBufferList.clear();
         loopThroughSpritesAndDo(sprite -> sprite.update(duration));
         loopSpritesAndDoIf(sprite -> sprite.shouldBeRemoved(), sprite -> remove(sprite));
     }
@@ -77,7 +82,8 @@ public class SpriteManager implements ISpriteManager {
 
     @Override
     public void add (ISprite sprite) {
-        mySpriteList.add(sprite);
+        myBufferList.add(sprite);
+        
 
     }
 

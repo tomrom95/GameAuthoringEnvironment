@@ -6,15 +6,21 @@ import engine.ISpriteGroup;
 import engine.effects.IEffect;
 import engine.events.EventPackage;
 import engine.events.GameEvent;
+import engine.profile.IProfilable;
 import engine.profile.IProfile;
+import engine.profile.Profile;
 
 
-public class EventPackageDefinition implements IDefinition {
+public class EventPackageDefinition implements IProfilable {
 
     private ISpriteGroup mySpriteGroup;
     private List<IEffect> myEffectsList;
     private List<GameEvent> myEventsList;
-    private IProfile myProfile;
+    private Profile myProfile;
+    
+    public EventPackageDefinition () {
+        myProfile = new Profile ("Event", "Basic Event", "images/Square.png");
+    }
 
     public IEventPackage create () {
         return new EventPackage(mySpriteGroup, myEffectsList, myEventsList);
@@ -42,6 +48,18 @@ public class EventPackageDefinition implements IDefinition {
 
     public void setMyEventsList (List<GameEvent> eventList) {
         this.myEventsList = eventList;
+    }
+
+    @Override
+    public IProfile getProfile () {
+        // TODO Auto-generated method stub
+        return myProfile;
+    }
+
+    @Override
+    public void setProfile (IProfile profile) {
+        // TODO Auto-generated method stub
+        
     }
 
 }
