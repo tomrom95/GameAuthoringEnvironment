@@ -1,6 +1,6 @@
 package gameauthoring.creation.subforms.movement;
 
-import engine.definitions.DirectionalFireDefinition;
+import engine.definitions.DirectionalFirerDefinition;
 import engine.definitions.SpriteDefinition;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
@@ -26,8 +26,8 @@ public class TrackingFireSubFormController implements ISubFormControllerSprite {
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-        DirectionalFireDefinition movementDefinition =
-                (DirectionalFireDefinition) item.getMovementDefinition();
+        DirectionalFirerDefinition movementDefinition =
+                (DirectionalFirerDefinition) item.getMovementDefinition();
 
         // myFormData.set(myView.getMyXVelKey(),
         // Double.toString(movementDefinition.getXVel()));
