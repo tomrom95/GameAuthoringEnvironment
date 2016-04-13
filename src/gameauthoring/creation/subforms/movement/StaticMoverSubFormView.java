@@ -16,11 +16,16 @@ public class StaticMoverSubFormView extends SubFormView {
 
     private GridPane myPane = new GridPane();
 
+    
+    public StaticMoverSubFormView () {
+        initView();
+    }
     @Override
     public Node draw () {
         return myPane;
     }
 
+    //TODO: complete initialize view
     public void initView () {
 
     }
