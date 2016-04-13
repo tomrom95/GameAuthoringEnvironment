@@ -16,6 +16,7 @@ import gameauthoring.creation.subforms.ISubFormView;
  */
 
 public class ConstantMoverSubFormController implements ISubFormControllerSprite {
+
     private ConstantMoverSubFormView myView;
     private IFormDataManager myFormData;
 
