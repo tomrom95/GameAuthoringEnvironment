@@ -30,7 +30,7 @@ public class SubFormControllerFactory {
     private ISubFormController<?> createSubFormController (String type) {
         if (type.equals("Profile")) {
             System.out.println("profile");
-            return new ProfileSubFormController();
+            //return new ProfileSubFormController();
 
         }
         /*
@@ -125,7 +125,6 @@ public class SubFormControllerFactory {
     }
 
     public ProfileSubFormController<IProfilable> createProfileSFC () {
-        // TODO Auto-generated method stub
         return new ProfileSubFormController<IProfilable>();
     }
 

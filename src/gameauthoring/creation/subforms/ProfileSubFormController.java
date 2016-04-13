@@ -3,6 +3,7 @@ package gameauthoring.creation.subforms;
 import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
 import engine.profile.Profile;
+
 import gameauthoring.creation.entryviews.IFormDataManager;
 
 
@@ -35,14 +36,15 @@ public class ProfileSubFormController<T extends IProfilable> implements ISubForm
         String desc = myFormData.getValueProperty(myView.getMyDescriptionKey()).get();
         String url = myFormData.getValueProperty(myView.getMyImageKey()).get();
 
-        item.setProfile(new Profile(name, desc, url));
+        item.getProfile().setNew(name, desc, url);
 
     }
 
     @Override
     public void populateViewsWithData (T item) {
-        myFormData.set(myView.getMyNameKey(), item.getProfile().getName());
-        myFormData.set(myView.getMyDescriptionKey(), item.getProfile().getDescription());
+        myFormData.set(myView.getMyNameKey(), item.getProfile().getName().get());
+        myFormData.set(myView.getMyDescriptionKey(), item.getProfile().getDescription().get());
+
         System.out.println(item.getProfile().getImageURL());
         myFormData.set(myView.getMyImageKey(), item.getProfile().getImageURL());
 

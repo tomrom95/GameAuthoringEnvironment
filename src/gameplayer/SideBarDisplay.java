@@ -7,12 +7,11 @@ import gameauthoring.util.Glyph;
 import gameauthoring.levels.SceneController;
 import gameauthoring.levels.sprites.DraggableSpriteCell;
 import gameauthoring.shareddata.DefinitionCollection;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
-import javafx.util.Callback;
 
 
 /**
@@ -37,6 +36,10 @@ public class SideBarDisplay implements Glyph {
 
     @Override
     public Node draw () {
+        return createAccordion ();
+    }
+
+    protected Accordion createAccordion () {
         Accordion selector = new Accordion();
         myGame.getAuthorshipData().getMyCreatedSprites().stream().forEach(c -> {
             selector.getPanes().add(createAccordionPane(c));
@@ -45,21 +48,16 @@ public class SideBarDisplay implements Glyph {
     }
 
     private TitledPane createAccordionPane (DefinitionCollection<SpriteDefinition> collection) {
-        ListView<SpriteDefinition> spriteList = createSpriteList(collection);
+        ListView<SpriteDefinition> spriteList = createSpriteList(collection.getItems());
         TitledPane pane = new TitledPane(collection.getTitle(), spriteList);
         return pane;
     }
 
-    private ListView<SpriteDefinition> createSpriteList (DefinitionCollection<SpriteDefinition> collection) {
+    protected ListView<SpriteDefinition> createSpriteList (ObservableList<SpriteDefinition> collection) {
         
         ListView<SpriteDefinition> list = new ListView<SpriteDefinition>();
-        list.setItems(collection.getItems());
-        list.setCellFactory(new Callback<ListView<SpriteDefinition>, ListCell<SpriteDefinition>>() {
-            @Override
-            public ListCell<SpriteDefinition> call (ListView<SpriteDefinition> list) {
-                return new DraggableSpriteCell(levelView, myController);
-            }
-        });
+        list.setItems(collection);
+        list.setCellFactory(c -> new DraggableSpriteCell(levelView, myController));
         return list;
     }
 

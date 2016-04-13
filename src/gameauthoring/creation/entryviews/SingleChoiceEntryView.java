@@ -1,11 +1,6 @@
 package gameauthoring.creation.entryviews;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import engine.definitions.AttributeDefinition;
 import engine.profile.IProfilable;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
