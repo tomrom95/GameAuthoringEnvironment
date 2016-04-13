@@ -1,30 +1,16 @@
 package gameauthoring.tabs;
 
 import gameauthoring.creation.forms.CreationController;
-import gameauthoring.creation.forms.CreationControllerAttribute;
 import gameauthoring.creation.forms.CreationControllerFactory;
-import gameauthoring.creation.forms.CreationControllerSprite;
 import gameauthoring.creation.forms.IObjectCreationView;
-import gameauthoring.creation.forms.ObjectCreationView;
-import gameauthoring.creation.subforms.MakeAttributeSubFormController;
-import gameauthoring.creation.subforms.ISubFormControllerAttribute;
-import gameauthoring.creation.subforms.ISubFormControllerSprite;
-import gameauthoring.creation.subforms.ProfileSubFormController;
-import gameauthoring.creation.subforms.SelectAttributeSubFormController;
-import gameauthoring.creation.subforms.SubFormControllerFactory;
-import gameauthoring.creation.subforms.movement.MovementSubFormController;
-import gameauthoring.shareddata.DefinitionCollection;
-import gameauthoring.shareddata.IDefinitionCollection;
-import java.util.ArrayList;
+import  java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.Game;
-import engine.definitions.SpriteDefinition;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.BorderPane;
 
 
 /**
@@ -151,10 +137,6 @@ public class ObjectCreationTabViewer implements ITabViewer {
     @Override
     public void update () {
         // TODO Auto-generated method stub
-    }
-
-    private AuthorshipData getMyAuthorshipData () {
-        return myAuthorshipData;
     }
 
 }

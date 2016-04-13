@@ -35,7 +35,7 @@ public interface ILevel extends Updateable, IAdder {
      * @return the Image of the background of the level
      */
     ImageGraphic getBackgroundImage ();
-    
+
     void setBackgroundImage (ImageGraphic graphic);
 
     /**
@@ -80,6 +80,5 @@ public interface ILevel extends Updateable, IAdder {
      */
 
     void remove (ISprite sprite);
-    
 
 }

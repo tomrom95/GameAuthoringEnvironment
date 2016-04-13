@@ -16,6 +16,9 @@ import javafx.stage.Stage;
  *
  */
 public class GamePlayer {
+    
+    private static final double PREFWIDTH = 1000;
+    private static final double PREFHEIGHT = 600;
 
     private Stage myStage = new Stage();
     private BorderPane myPane = new BorderPane();
@@ -27,14 +30,11 @@ public class GamePlayer {
         initializeGameEngine(game);
         stylePane();
     }
-    
-    public void start () {
-        myStage.setScene(myScene);
-        myStage.show();
-    }
 
     private void stylePane () {
-        myPane.setPrefSize(1000, 600);
+        myPane.setPrefSize(PREFWIDTH, PREFHEIGHT);
+        myStage.setScene(myScene);
+        myStage.show();
     }
 
     private void initializeGameEngine (IGame game) {

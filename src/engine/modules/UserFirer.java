@@ -11,6 +11,8 @@ import engine.effects.IEffect;
 import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
 import engine.sprite.ISprite;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import util.Key;
 
 
@@ -69,8 +71,8 @@ public class UserFirer extends Firer {
      * @see engine.modules.Firer#getAttributes()
      */
     @Override
-    public List<IAttribute> getAttributes () {
-        List<IAttribute> attributeList = new ArrayList<>();
+    public ObservableList<IAttribute> getAttributes () {
+        ObservableList<IAttribute> attributeList = FXCollections.observableArrayList();
         attributeList.add(myAmmo);
         return attributeList;
     }

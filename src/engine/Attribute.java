@@ -39,7 +39,7 @@ public class Attribute extends DefaultAffectable implements IAttribute {
 
     @Override
     public void applyEffect (IEffect effect) {
-        // make copy to prevent errors with state being called on the 
+        // make copy to prevent errors with state being called on the
         // same instance of the effect object
         myEffects.add(new SimpleObjectProperty<>(effect.makeCopy()));
     }

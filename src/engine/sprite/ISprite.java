@@ -40,9 +40,6 @@ public interface ISprite extends Drawable, Updateable, Affectable, IPositionable
 
     List<? extends IModule> getModules ();
 
-    @Override
-    List<IAttribute> getAttributes ();
-
     List<IResource> getResources ();
 
     AttributeManager getAttributeManager ();

@@ -34,9 +34,8 @@ public class Level implements ILevel {
         myConditionManager = new ConditionManager();
         mySpriteManager = new SpriteManager();
         myNextLevelManager = new NextLevelManager();
-        // TODO add default
-        // myBackgroundImage = new SimpleObjectProperty<>(new ImageGraphic(400, 400,
-        // "/image/blank.jpg"));
+        // TODO store these defaults in properties file
+        myBackgroundImage = new ImageGraphic(400, 400,"/images/blank.jpg");
     }
 
     @Override
