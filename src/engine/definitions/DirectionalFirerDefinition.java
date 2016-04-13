@@ -3,34 +3,28 @@ package engine.definitions;
 import java.util.List;
 import engine.IGame;
 import engine.IPositionable;
-import engine.modules.TrackingFirer;
+import engine.modules.DirectionalFirer;
 import engine.sprite.SpriteType;
 
 
-public class TrackingFirerDefinition extends ModuleDefinition {
-
-    private List<SpriteType> myTargets;
+public class DirectionalFirerDefinition extends ModuleDefinition {
     private double myWaitTime;
     private IGame myGame;
     private SpriteDefinition myProjectile;
-
+    private double myAngle;
 
     @Override
-    public TrackingFirer create (IPositionable parent) {
-        return new TrackingFirer(myTargets, myGame, myWaitTime, myProjectile, parent);
+    public DirectionalFirer create (IPositionable parent) {
+        return new DirectionalFirer(myGame, myProjectile, parent, myWaitTime, myAngle);
 
     }
 
-    public void setProjectileDefinition(SpriteDefinition projectile){
+    public void setProjectileDefinition (SpriteDefinition projectile) {
         myProjectile = projectile;
     }
-    
-    public SpriteDefinition getProjectileDefinition(){
+
+    public SpriteDefinition getProjectileDefinition () {
         return myProjectile;
-    }
-    
-    public List<SpriteType> getTargets () {
-        return myTargets;
     }
 
     public void setWaitTime (double time) {
@@ -44,14 +38,17 @@ public class TrackingFirerDefinition extends ModuleDefinition {
     public void setGame (IGame game) {
         myGame = game;
     }
-    
-    public void setTargets (List<SpriteType> targets) {
-        myTargets = targets;
-    }
 
     public IGame getGame () {
         return myGame;
 
     }
 
+    public void setAngle (double theta) {
+        myAngle = theta;
+    }
+
+    public double getAngle () {
+        return myAngle;
+    }
 }

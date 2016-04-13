@@ -6,7 +6,6 @@ import engine.events.EventType;
 import engine.events.GameEvent;
 
 
-
 /**
  * This class implements IStatusModule and handles the status of a sprite over the course of a level
  * and game
@@ -32,6 +31,5 @@ public class SpriteStatus extends DefaultAffectable implements IStatus {
     public boolean shouldBeRemoved () {
         return myIsDead;
     }
-
 
 }
