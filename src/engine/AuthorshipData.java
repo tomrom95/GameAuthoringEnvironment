@@ -2,6 +2,8 @@ package engine;
 
 import java.util.List;
 import engine.definitions.AttributeDefinition;
+import engine.definitions.EventPackageDefinition;
+
 import engine.definitions.SpriteDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.FXCollections;
@@ -19,12 +21,20 @@ public class AuthorshipData {
     DefinitionCollection<SpriteDefinition> myCreatedMissiles;
 
     DefinitionCollection<AttributeDefinition> myCreatedAttributes;
-
     DefinitionCollection<SpriteGroup> myCreatedGroups;
+    DefinitionCollection<EventPackageDefinition> myCreatedEventPackages;
+
 
     public AuthorshipData () {
 
         myCreatedSprites = FXCollections.observableArrayList();
+        myCreatedAttributes =
+                new DefinitionCollection<AttributeDefinition>("Created Attributes",
+                                                              FXCollections.observableArrayList());
+        myCreatedGroups = new DefinitionCollection<SpriteGroup>("Created Groups",
+                FXCollections.observableArrayList());
+        myCreatedEventPackages = new DefinitionCollection<EventPackageDefinition>("Created Groups",
+                FXCollections.observableArrayList());
     }
 
     public List<DefinitionCollection<SpriteDefinition>> getMyCreatedSprites () {
@@ -38,13 +48,22 @@ public class AuthorshipData {
     public DefinitionCollection<AttributeDefinition> getMyCreatedAttributes () {
         return myCreatedAttributes;
     }
-
-    public DefinitionCollection<SpriteGroup> getMyCreatedGroups () {
-        return myCreatedGroups;
+    
+    public DefinitionCollection<EventPackageDefinition> getMyCreatedEventPackages () {
+        return myCreatedEventPackages;
     }
 
+    public DefinitionCollection<SpriteGroup> getMyCreatedGroups () {
+
+        return myCreatedGroups;
+    }
+    
     public void addCreatedSprites (DefinitionCollection<SpriteDefinition> createdSprites) {
         this.myCreatedSprites.add(createdSprites);
+    }
+    
+    public void setMyCreatedEvents (DefinitionCollection<EventPackageDefinition> createdEvents) {
+        this.myCreatedEventPackages = createdEvents;
     }
 
     public void setMyCreatedMissiles (DefinitionCollection<SpriteDefinition> createdMissiles) {
@@ -56,6 +75,7 @@ public class AuthorshipData {
     }
 
     public void setMyCreatedGroups (DefinitionCollection<SpriteGroup> createdGroups) {
+
         this.myCreatedGroups = createdGroups;
     }
 

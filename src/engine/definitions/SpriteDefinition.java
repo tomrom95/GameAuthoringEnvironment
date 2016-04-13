@@ -114,7 +114,7 @@ public class SpriteDefinition implements IProfilable {
     public SpriteType getSpriteType() {
         //TODO: check if this should be one reference or new one every time
         
-        return new SpriteType(getProfile().getName());
+        return new SpriteType(getProfile().getName().get());
     }
 
 }

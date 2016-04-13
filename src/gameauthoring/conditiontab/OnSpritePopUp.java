@@ -1,16 +1,16 @@
 package gameauthoring.conditiontab;
 
-import engine.ICondition;
 import engine.IGame;
+import engine.conditions.ICondition;
 import javafx.collections.ObservableList;
 
 public class OnSpritePopUp extends ConditionPopUp {
 
     private IGame myGame;
     
-    public OnSpritePopUp (ObservableList<ICondition> conditionList, IGame game) {
+    public OnSpritePopUp (IGame game) {
         
-        super(conditionList);
+        super(game.getConditionManager().getConditionListProperty());
         myGame = game;
         initStage();
     }

@@ -3,6 +3,7 @@ package engine.conditions;
 import engine.IOAffectable;
 
 import engine.definitions.IDefinition;
+import engine.profile.IProfilable;
 
 /**
  * This interface represents a generic Condition that will have a trigger condition that it checks
@@ -15,6 +16,6 @@ import engine.definitions.IDefinition;
  * @author Jonathan Im
  *
  */
-public interface ICondition extends IOAffectable, IDefinition {
+public interface ICondition extends IOAffectable, IDefinition, IProfilable {
 
 }

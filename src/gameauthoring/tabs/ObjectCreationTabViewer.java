@@ -66,6 +66,10 @@ public class ObjectCreationTabViewer implements ITabViewer {
                 new ArrayList<String>(Arrays.asList("SelectAttribute"));
         List<String> myDefenderSFCs =
 
+                new ArrayList<String>(Arrays.asList("Profile", "SelectAttribute"));
+        List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
+
+
                 new ArrayList<String>(Arrays.asList("SelectAttribute"));
      
         List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("SelectSprite"));
@@ -85,8 +89,11 @@ public class ObjectCreationTabViewer implements ITabViewer {
         CreationController<?> ccDefenders =
                 ccFactory.createSpriteCreationController("Defender", myDefenderSFCs,
                                                          myAuthorshipData);
-        
+        CreationController<?> ccEvents = 
+                ccFactory.createEventCreationController("Events", myEventSFCs, myAuthorshipData);
+
         CreationController<?> ccGroups = ccFactory.createGroupCC("Groups", myGroupSFCs, myAuthorshipData);
+
         
 
         myCCs = new ArrayList<CreationController<?>>();
@@ -94,7 +101,9 @@ public class ObjectCreationTabViewer implements ITabViewer {
         myCCs.add(ccAttributes);
         myCCs.add(ccEnemies);
         myCCs.add(ccDefenders);
-        
+
+        myCCs.add(ccEvents);
+
 
         myCCs.add(ccMissiles);
         myCCs.add(ccGroups);
@@ -103,6 +112,9 @@ public class ObjectCreationTabViewer implements ITabViewer {
         ccAttributes.init(myAttributeSFCs);
         ccEnemies.init(myEnemySFCs);
         ccDefenders.init(myDefenderSFCs);
+
+        ccEvents.init(myEventSFCs);
+
         ccMissiles.init(myMissileSFCs);
         ccGroups.init(myGroupSFCs);
 

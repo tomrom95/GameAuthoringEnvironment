@@ -5,6 +5,8 @@ import engine.AttributeType;
 import engine.IAttributeManager;
 import engine.IEventPackage;
 import engine.IGame;
+import engine.profile.IProfile;
+import engine.profile.Profile;
 import util.TimeDuration;
 
 
@@ -44,6 +46,17 @@ public class OnGlobalAttributeCondition extends Condition implements ICondition 
                         applyOtherAndGlobalEventPackages(myGame, myOtherPackage, myGlobalPackage);
                     }
                 }));
+    }
+
+    @Override
+    public IProfile getProfile () {
+        return new Profile("On Global Attribute Condition", "Acts on attributes", "images/c.png");
+    }
+
+    @Override
+    public void setProfile (IProfile profile) {
+        // TODO Auto-generated method stub
+        
     }
 
 
