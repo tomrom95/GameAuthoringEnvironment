@@ -17,7 +17,6 @@ import javafx.scene.layout.Pane;
 public class ConditionView extends ListDisplay<ICondition> {
 
     private static final double SPACING = 10;
-    private Button myCreateButton;
     private ComboBox<String> myConditionOptions;
     
     public ConditionView (Game myGame) {
@@ -33,9 +32,9 @@ public class ConditionView extends ListDisplay<ICondition> {
 
     private Node createTop () {
         HBox hbox = new HBox (SPACING);
-        myCreateButton = createButton("+");
+
         myConditionOptions = new ComboBox<>(getOptions());
-        hbox.getChildren().addAll(myConditionOptions, myCreateButton);
+        hbox.getChildren().addAll(myConditionOptions);
         return hbox;
     }
     
@@ -49,13 +48,8 @@ public class ConditionView extends ListDisplay<ICondition> {
         return list;
     }
 
-    private Button createButton (String string) {
-        Button button = new Button(string);
-        return button;
-    }
-
-    public void applyToButton (EventHandler<MouseEvent> event) {
-        myCreateButton.setOnMouseClicked(event);
+    public void applyToCombo (EventHandler<ActionEvent> event) {
+        myConditionOptions.setOnAction(event);
     }
 
     public String getComboSelection () {

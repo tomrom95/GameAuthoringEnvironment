@@ -27,7 +27,7 @@ public class CondController {
 
     private void setActions () {
 
-        myView.applyToButton(e -> myView.setCenter(createPopUp(myView.getComboSelection())));
+        myView.applyToCombo(e -> myView.setCenter(createPopUp(myView.getComboSelection())));
 
     }
 
