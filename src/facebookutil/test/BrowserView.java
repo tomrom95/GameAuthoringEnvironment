@@ -34,7 +34,7 @@ public class BrowserView {
     private ResourceBundle mySecrets;
 
     public BrowserView () {
-        mySecrets = ResourceBundle.getBundle("facebook_util/secret");
+        mySecrets = ResourceBundle.getBundle("facebookutil/secret");
         BorderPane root = new BorderPane();
         root.setCenter(makePageDisplay());
         facebookExample();
@@ -85,39 +85,39 @@ public class BrowserView {
                     System.out.println(response.getCode());
                     System.out.println(response.getBody());
                   //SEND A NOTIFICATION
-                      OAuthRequest nextRequest =
-                              new OAuthRequest(Verb.POST,
-                                               "https://graph.facebook.com/10204226196654701/apprequests",
-                                               service);
-                      String message = "Let's make tower defense!";
-                      nextRequest.addBodyParameter("access_token", accessToken.getAccessToken());
-                      nextRequest.addBodyParameter("message", message);
-                      nextRequest.addBodyParameter("to", "tommy.romanburg");
-                      service.signRequest(accessToken, nextRequest);
-    
-                      Response nextResponse = nextRequest.send();
-                      System.out.println("here");
-                      System.out.println(nextRequest.getBodyContents());
-                      System.out.println(nextResponse.getCode());
-                      String responseBody = nextResponse.getBody();
-                      System.out.println(responseBody);
+//                      OAuthRequest nextRequest =
+//                              new OAuthRequest(Verb.POST,
+//                                               "https://graph.facebook.com/10204226196654701/apprequests",
+//                                               service);
+//                      String message = "Let's make tower defense!";
+//                      nextRequest.addBodyParameter("access_token", accessToken.getAccessToken());
+//                      nextRequest.addBodyParameter("message", message);
+//                      nextRequest.addBodyParameter("to", "tommy.romanburg");
+//                      service.signRequest(accessToken, nextRequest);
+//    
+//                      Response nextResponse = nextRequest.send();
+//                      System.out.println("here");
+//                      System.out.println(nextRequest.getBodyContents());
+//                      System.out.println(nextResponse.getCode());
+//                      String responseBody = nextResponse.getBody();
+//                      System.out.println(responseBody);
 
-//                    // SEND A NOTIFICATION
-//                    OAuthRequest nextRequest =
-//                            new OAuthRequest(Verb.POST,
-//                                             "https://graph.facebook.com/10204226196654701/notifications",
-//                                             service);
-//                    String message = "Let's make tower defense!";
-//                    nextRequest.addBodyParameter("access_token", accessToken.getAccessToken());
-//                    nextRequest.addBodyParameter("template", message);
-//                    // service.signRequest(accessToken, nextRequest);
-//
-//                    Response nextResponse = nextRequest.send();
-//                    System.out.println("here");
-//                    System.out.println(nextRequest.getBodyContents());
-//                    System.out.println(nextResponse.getCode());
-//                    String responseBody = nextResponse.getBody();
-//                    System.out.println(responseBody);
+                    // SEND A NOTIFICATION
+                    OAuthRequest nextRequest =
+                            new OAuthRequest(Verb.POST,
+                                             "https://graph.facebook.com/10204226196654701/notifications",
+                                             service);
+                    String message = "Let's make tower defense!";
+                    nextRequest.addBodyParameter("access_token", accessToken.getAccessToken());
+                    nextRequest.addBodyParameter("template", message);
+                    // service.signRequest(accessToken, nextRequest);
+
+                    Response nextResponse = nextRequest.send();
+                    System.out.println("here");
+                    System.out.println(nextRequest.getBodyContents());
+                    System.out.println(nextResponse.getCode());
+                    String responseBody = nextResponse.getBody();
+                    System.out.println(responseBody);
 //                    
 //                    
 //                    // ADD A HIGH SCORE
@@ -153,8 +153,8 @@ public class BrowserView {
                 .apiKey(clientId)
                 .apiSecret(clientSecret)
                 .callback(CALLBACK_URL)
-                //.grantType("client_credentials")
-                .scope("publish_actions")
+                .grantType("client_credentials")
+                //.scope("publish_actions")
                 .build(FacebookApi.instance());
 
         System.out.println();
