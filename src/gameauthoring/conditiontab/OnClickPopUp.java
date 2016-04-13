@@ -1,7 +1,6 @@
 package gameauthoring.conditiontab;
 
 import engine.IGame;
-import engine.ISpriteGroup;
 import engine.SpriteGroup;
 import engine.conditions.ICondition;
 import engine.conditions.OnClickCondition;
@@ -11,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 
 /**
  * Need to refractor heavily, crunched for demo
@@ -24,13 +24,12 @@ public class OnClickPopUp extends ConditionPopUp {
     private ComboBox<SpriteGroup> myGroupB;
     private ComboBox<EventPackageDefinition> myEventsB;
     private ComboBox<EventPackageDefinition> myGlobalEvents;
-    
 
     public OnClickPopUp (IGame game) {
         super(game.getConditionManager().getConditionListProperty());
         myGame = game;
         initStage();
-        
+
     }
 
     @Override
@@ -39,7 +38,7 @@ public class OnClickPopUp extends ConditionPopUp {
         packageA.setMySpriteGroup(myGroupA.getSelectionModel().getSelectedItem());
         EventPackageDefinition packageB = myEventsB.getSelectionModel().getSelectedItem();
         packageB.setMySpriteGroup(myGroupB.getSelectionModel().getSelectedItem());
-        EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();        
+        EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();
         return new OnClickCondition(myGame, packageA.create(), packageB.create(), global.create());
     }
 
@@ -52,11 +51,14 @@ public class OnClickPopUp extends ConditionPopUp {
     private void initBoxes () {
         // TODO Auto-generated method stub
         myGroupA = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
-        myEventsA = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+        myEventsA =
+                new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
         myGroupB = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
-        myEventsB = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
-        myGlobalEvents = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
-        
+        myEventsB =
+                new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+        myGlobalEvents =
+                new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+
     }
 
     private Node getHBox () {

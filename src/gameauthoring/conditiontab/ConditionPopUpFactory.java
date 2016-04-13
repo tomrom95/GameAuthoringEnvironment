@@ -1,8 +1,6 @@
 package gameauthoring.conditiontab;
 
 import engine.IGame;
-import engine.conditions.ICondition;
-import javafx.collections.ObservableList;
 
 
 public class ConditionPopUpFactory {
@@ -14,10 +12,10 @@ public class ConditionPopUpFactory {
     }
 
     public ConditionPopUp get (String selection) {
-        
-        //TODO replace with reflection
-        switch(selection) {
-            case "OnClickCondition": 
+
+        // TODO replace with reflection
+        switch (selection) {
+            case "OnClickCondition":
                 return new OnClickPopUp(myGame);
             case "OnCollisionCondition":
                 return new OnCollisionPopUp(myGame);
@@ -26,7 +24,7 @@ public class ConditionPopUpFactory {
             case "OnSpriteAttribute":
                 return new OnSpritePopUp(myGame);
         }
-        
+
         return null;
     }
 }

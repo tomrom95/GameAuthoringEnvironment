@@ -7,7 +7,7 @@ import engine.Game;
 
 /**
  * This interface holds the methods required to convert a game into an xml
- * 
+ *
  *
  */
 public interface IGameWriter {

@@ -45,7 +45,7 @@ public class TestGame extends Application {
         ISprite sprite = createFollowSprite();
         // levelManager.add(sprite, new Coordinate(0,0));
 
-        levelManager.add(createUserSprite(), new Coordinate(10, 10));
+        levelManager.bufferedAdd(createUserSprite(), new Coordinate(10, 10));
         ConditionManager conditionManager = new ConditionManager();
         Game game = new Game(levelManager, new GameInformation("r", "r", "r"), conditionManager);
 

@@ -44,7 +44,7 @@ public class TimedFiringUseCase {
          */
         ISprite projectile = EasyMock.createMock(ISprite.class);
         IModule firingModule = new TimedFiringModuleUC(fireRate, projectile);
-        sprite.getModulesProperty().add(firingModule);
+        sprite.getModulesProperty().bufferedAdd(firingModule);
 
         /**
          * Now it will. The firing modules is created with the specified parameters and then applied
@@ -102,7 +102,7 @@ public class TimedFiringUseCase {
         private void fire () {
 
             ISpriteCloner cloner = EasyMock.createMock(ISpriteCloner.class);
-            myAdder.add(cloner.clone(myProjectile), new Coordinate(getX(), getY()));
+            myAdder.bufferedAdd(cloner.clone(myProjectile), new Coordinate(getX(), getY()));
 
         }
 

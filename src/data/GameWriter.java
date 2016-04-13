@@ -8,8 +8,9 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.Game;
 
+
 /**
- * This class takes in a Game and converts it into an XML file for the user to store 
+ * This class takes in a Game and converts it into an XML file for the user to store
  *
  */
 
@@ -17,7 +18,7 @@ public class GameWriter implements IGameWriter {
 
     @Override
     public void serialize (File file, Game game) throws IOException {
-       
+
         FileWriter fw = new FileWriter(file);
         fw.write(getXML(game));
         fw.close();
@@ -31,5 +32,4 @@ public class GameWriter implements IGameWriter {
         return xstream.toXML(game);
     }
 
-   
 }

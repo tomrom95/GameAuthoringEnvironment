@@ -26,14 +26,14 @@ public class LevelManager implements ILevelManager {
     // updateable items as
     // specified by our Updateable interface
 
-    public LevelManager (ILevel startingLevel) {
+    public LevelManager () {
         myLevelPropertyList = FXCollections.observableArrayList();
-        myCurrentLevel = startingLevel;
+        myCurrentLevel = new Level();
     }
 
     @Override
-    public void add (ISprite sprite, Coordinate coordinate) {
-        myCurrentLevel.add(sprite, coordinate);
+    public void bufferedAdd (ISprite sprite, Coordinate coordinate) {
+        myCurrentLevel.bufferedAdd(sprite, coordinate);
     }
 
     @Override
@@ -93,8 +93,8 @@ public class LevelManager implements ILevelManager {
     }
 
     @Override
-    public void add (ISprite sprite) {
-        myCurrentLevel.add(sprite);
+    public void bufferedAdd (ISprite sprite) {
+        myCurrentLevel.bufferedAdd(sprite);
     }
 
 }

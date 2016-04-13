@@ -1,9 +1,9 @@
 package engine;
 
-import java.util.List;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -48,6 +48,6 @@ public interface Affectable extends IOAffectable, GameEventHandler {
      *
      * @return observable list of attribute properties
      */
-    List<IAttribute> getAttributes ();
+    ObservableList<IAttribute> getAttributes ();
 
 }
