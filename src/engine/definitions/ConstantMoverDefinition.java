@@ -4,7 +4,7 @@ import engine.IPositionable;
 import engine.modules.ConstantMover;
 import engine.modules.IMovementModule;
 
-public class ConstantMoverDefintion extends MovementDefinition {
+public class ConstantMoverDefinition extends MovementDefinition {
 
     private double myXVel;
     private double myYVel;
