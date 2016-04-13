@@ -17,7 +17,7 @@ import graphics.ImageGraphic;
  * @author Jonathan Im
  *
  */
-public interface IGamePlayable extends Updateable {
+public interface IGamePlayable extends Updateable, IAdder {
 
     /**
      * @return the object containing information about this game
