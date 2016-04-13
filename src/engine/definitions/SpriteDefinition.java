@@ -35,7 +35,7 @@ public class SpriteDefinition implements IProfilable {
     }
 
     public ISprite create () {
-        ISprite sprite = new Sprite(new SpriteType(myProfile.getName()));
+        ISprite sprite = new Sprite(new SpriteType(myProfile.getName().get()));
 
         IMovementModule mover = myMovementDefinition.create(sprite);
         IGraphicModule graphicModule = createGraphicModule();
@@ -45,7 +45,7 @@ public class SpriteDefinition implements IProfilable {
     }
 
     protected IGraphicModule createGraphicModule () {
-        return new GraphicModule(myProfile.getImage());
+        return new GraphicModule(myProfile.getImage().get());
     }
 
     protected Coordinate createCoordinate () {

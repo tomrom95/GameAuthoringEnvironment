@@ -1,6 +1,8 @@
 package engine.profile;
 
 import graphics.IGraphic;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.StringProperty;
 
 
 /**
@@ -16,21 +18,21 @@ public interface IProfile {
      *
      * @return A SimpleStringProperty containing the name of the sprite
      */
-    String getName ();
+    StringProperty getName ();
 
     /**
      * Gets the description
      *
      * @return A SimpleStringProperty containing the name of the sprite
      */
-    String getDescription ();
+    StringProperty getDescription ();
 
     /**
      * Get's the sprite display graphic
      *
      * @return The IGraphic
      */
-    IGraphic getImage ();
+    SimpleObjectProperty<? extends IGraphic> getImage ();
 
     /**
      * Get the url of the ImageGraphic
@@ -38,4 +40,7 @@ public interface IProfile {
      * @return A ImageGraphic's url as a string
      */
     String getImageURL ();
+    
+    void setNew (String name, String desc, String url);
+    
 }
