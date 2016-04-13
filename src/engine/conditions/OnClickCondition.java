@@ -5,6 +5,7 @@ import engine.IEventPackage;
 import engine.IGame;
 import engine.interactionevents.MouseIOEvent;
 import engine.profile.IProfile;
+import engine.profile.Profile;
 import engine.sprite.ISprite;
 import util.Coordinate;
 
@@ -57,8 +58,7 @@ public class OnClickCondition extends Condition implements ICondition {
 
     @Override
     public IProfile getProfile () {
-        // TODO Auto-generated method stub
-        return null;
+        return new Profile("On Click Condition", "Mouse interactions", "images/c.png");
     }
 
     @Override

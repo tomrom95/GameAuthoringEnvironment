@@ -2,6 +2,7 @@ package gameauthoring.conditiontab;
 
 
 import engine.IGame;
+import engine.OnGlobalAttributeCondition;
 import engine.conditions.ICondition;
 import javafx.collections.ObservableList;
 
@@ -25,7 +26,7 @@ public class OnGlobalPopUp extends ConditionPopUp {
     @Override
     protected ICondition createCondition () {
         // TODO Auto-generated method stub
-        return null;
+        return new OnGlobalAttributeCondition(myGame, null, null, null, null);
     }
 
 }

@@ -1,6 +1,8 @@
 package gameauthoring.conditiontab;
 
 
+import engine.profile.IProfilable;
+import gameauthoring.ProfileCellView;
 import gameauthoring.util.Glyph;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -9,7 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 
-public class ListDisplay<T> implements Glyph {
+public class ListDisplay<T extends IProfilable> implements Glyph {
 
     private ListView<T> myListView;
     private BorderPane myPane;
@@ -18,6 +20,7 @@ public class ListDisplay<T> implements Glyph {
         
         myPane = new BorderPane();
         myListView = new ListView<>(list);
+        myListView.setCellFactory(c -> new ProfileCellView<T>());
         init();
        
     }

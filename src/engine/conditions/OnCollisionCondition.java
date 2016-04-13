@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import engine.IEventPackage;
 import engine.IGame;
 import engine.profile.IProfile;
+import engine.profile.Profile;
 import engine.sprite.ISprite;
 import util.TimeDuration;
 
@@ -69,8 +70,7 @@ public class OnCollisionCondition extends Condition implements ICondition {
 
     @Override
     public IProfile getProfile () {
-        // TODO Auto-generated method stub
-        return null;
+        return new Profile("On Collision Condition", "Collision between two sprites", "images/c.png");
     }
 
     @Override

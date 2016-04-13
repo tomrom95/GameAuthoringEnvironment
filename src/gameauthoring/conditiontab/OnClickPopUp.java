@@ -5,17 +5,16 @@ import engine.ISpriteGroup;
 import engine.conditions.ICondition;
 import engine.conditions.OnClickCondition;
 import engine.definitions.EventPackageDefinition;
-import engine.definitions.GroupDefinition;
-import engine.definitions.SpriteDefinition;
-import engine.profile.IProfilable;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-
+/**
+ * Need to refractor heavily, crunched for demo
+ *
+ */
 public class OnClickPopUp extends ConditionPopUp {
 
     private IGame myGame;
@@ -39,8 +38,7 @@ public class OnClickPopUp extends ConditionPopUp {
         packageA.setMySpriteGroup(myGroupA.getSelectionModel().getSelectedItem());
         EventPackageDefinition packageB = myEventsB.getSelectionModel().getSelectedItem();
         packageB.setMySpriteGroup(myGroupB.getSelectionModel().getSelectedItem());
-        EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();
-        
+        EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();        
         return new OnClickCondition(myGame, packageA.create(), packageB.create(), global.create());
     }
 

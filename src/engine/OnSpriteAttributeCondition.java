@@ -1,9 +1,11 @@
 package engine;
 
 import java.util.function.DoublePredicate;
-import engine.definitions.ProfileDefinition;
+import engine.conditions.ICondition;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.profile.IProfile;
+import engine.profile.Profile;
 import util.TimeDuration;
 
 
@@ -72,15 +74,12 @@ public class OnSpriteAttributeCondition implements ICondition {
     }
 
     @Override
-    public ProfileDefinition getProfileDefinition () {
-        //TODO
-        ProfileDefinition profile = new ProfileDefinition();
-        profile.setName("OnSpriteAtti");
-        return profile;
+    public IProfile getProfile () {
+        return new Profile("On Sprite Attribute Condition", "Acts on sprite attributes", "images/c.png");
     }
 
     @Override
-    public void setProfileDefinition (ProfileDefinition profileDef) {
+    public void setProfile (IProfile profile) {
         // TODO Auto-generated method stub
         
     }
