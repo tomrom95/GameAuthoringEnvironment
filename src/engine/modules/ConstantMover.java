@@ -1,6 +1,8 @@
 package engine.modules;
 
 import java.util.List;
+import engine.Attribute;
+import engine.AttributeType;
 import engine.IAttribute;
 import engine.IPositionable;
 import engine.interactionevents.KeyIOEvent;
@@ -15,10 +17,15 @@ import util.TimeDuration;
  */
 public class ConstantMover extends Mover {
 
+    private IAttribute mySpeed;
+    private IPositionable mySprite;
+
     public ConstantMover (double xVel, double yVel, IPositionable parent) {
         super(parent);
         getXVel().setValue(xVel);
         getYVel().setValue(yVel);
+        mySprite = parent;
+
     }
 
     @Override
