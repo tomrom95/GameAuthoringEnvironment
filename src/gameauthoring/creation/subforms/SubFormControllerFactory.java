@@ -54,6 +54,9 @@ public class SubFormControllerFactory {
         else if (type.equals("Attribute")) {
             System.out.println("attribute");
             return new MakeAttributeSubFormController();
+        } else if (type.equals("Events")) {
+            return new EventsSubFormController(getMyAuthorshipData().getMyCreatedAttributes(),
+                                               getMyAuthorshipData().getMyCreatedEventPackages());
         }
         System.out.println("null");
 
