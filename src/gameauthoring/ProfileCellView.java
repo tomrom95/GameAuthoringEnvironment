@@ -27,6 +27,7 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
     private static final double PIC_SIZE = 30;
 
     private E myProfile;
+    
 
     @Override
     protected void updateItem (E item, boolean empty) {
@@ -44,6 +45,7 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
     protected Node createSpriteCell (E profile) {
         HBox container = new HBox(10);
         container.setAlignment(Pos.CENTER_LEFT);
+        profile.getProfile().getImage().addListener(c->updateItem(profile,false));
 
         container.getChildren().add(createImageProfile(profile.getProfile()));
         container.getChildren().add(createTextProfile(profile.getProfile()));
