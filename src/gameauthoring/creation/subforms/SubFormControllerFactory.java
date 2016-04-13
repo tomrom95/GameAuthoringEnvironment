@@ -56,6 +56,9 @@ public class SubFormControllerFactory {
             System.out.println("attribute");
             return new MakeAttributeSubFormController();
         }
+        else if (type.equals("SelectSprite")){
+            return new SelectSpriteSFC(getMyAuthorshipData().getMyCreatedSprites());
+        }
         System.out.println("null");
 
         return null;

@@ -2,7 +2,6 @@ package engine;
 
 import java.util.List;
 import engine.definitions.AttributeDefinition;
-import engine.definitions.GroupDefinition;
 import engine.definitions.SpriteDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.FXCollections;
@@ -21,7 +20,7 @@ public class AuthorshipData {
 
     DefinitionCollection<AttributeDefinition> myCreatedAttributes;
 
-    DefinitionCollection<GroupDefinition> myCreatedGroups;
+    DefinitionCollection<SpriteGroup> myCreatedGroups;
 
     public AuthorshipData () {
 
@@ -40,7 +39,7 @@ public class AuthorshipData {
         return myCreatedAttributes;
     }
 
-    public DefinitionCollection<GroupDefinition> getMyCreatedGroups () {
+    public DefinitionCollection<SpriteGroup> getMyCreatedGroups () {
         return myCreatedGroups;
     }
 
@@ -56,7 +55,7 @@ public class AuthorshipData {
         this.myCreatedAttributes = createdAttributes;
     }
 
-    public void setMyCreatedGroups (DefinitionCollection<GroupDefinition> createdGroups) {
+    public void setMyCreatedGroups (DefinitionCollection<SpriteGroup> createdGroups) {
         this.myCreatedGroups = createdGroups;
     }
 
