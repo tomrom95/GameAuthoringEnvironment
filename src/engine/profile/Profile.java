@@ -16,7 +16,7 @@ import javafx.beans.property.StringProperty;
 public class Profile implements IProfile {
 
     private String DEFAULT_IMAGE_NAME = "images/Square.png";
-    private static final int DEFAULT_SIZE = 30;
+    private static final int DEFAULT_SIZE = 0;
 
     private StringProperty myName;
     private StringProperty myDescription;

@@ -8,13 +8,12 @@ import engine.modules.TrackingFirer;
 import engine.sprite.SpriteType;
 
 
-public class TrackingFirerDefinition extends ModuleDefinition {
+public class TrackingFirerDefinition extends FirerDefinition {
 
     private SpriteGroup myTargets;
     private List<SpriteType> myTargetsType;
     private double myWaitTime;
     private IGame myGame;
-    private SpriteDefinition myProjectile;
 
 
     @Override
@@ -22,14 +21,6 @@ public class TrackingFirerDefinition extends ModuleDefinition {
         myTargetsType = myTargets.getSpriteTypes();
         return new TrackingFirer(myTargetsType, myGame, myWaitTime, myProjectile, parent);
 
-    }
-
-    public void setProjectileDefinition(SpriteDefinition projectile){
-        myProjectile = projectile;
-    }
-    
-    public SpriteDefinition getProjectileDefinition(){
-        return myProjectile;
     }
     
     public SpriteGroup getTargets () {
