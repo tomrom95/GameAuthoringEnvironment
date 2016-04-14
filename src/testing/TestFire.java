@@ -112,8 +112,11 @@ public class TestFire {
     @Test
     public void testTrackingBullets () {
         
-        myTower.getModuleDefinitions().clear();
-        myTower.addModule(myTrackingFirer);
+           createTower();
+           createTrackingFirer();
+           myTower.addModule(myTrackingFirer);
+        //myTower.getModuleDefinitions().clear();
+//        myTower.addModule(myTrackingFirer);
         
         List<ISprite> towerList = new ArrayList<ISprite>();
         int bullets = 1;
