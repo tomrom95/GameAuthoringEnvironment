@@ -1,6 +1,7 @@
 package engine.modules;
 
 import java.util.List;
+import engine.IAttribute;
 import util.Coordinate;
 
 /**
@@ -22,5 +23,7 @@ public interface IMovementModule extends IModule {
     void setXVel(double newVel);
     
     void setYVel(double newVel);
+    
+    double getAngle();
 
 }
