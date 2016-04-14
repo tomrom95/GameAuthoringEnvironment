@@ -5,10 +5,8 @@
     -fx-background: aliceblue;
 }
 
-.myCreationView{
-}
 .myObjectListView {
-	-fx-min-width: 450
+	-fx-min-width: 450;
 	-fx-padding: 0 0 10 0;
 }
 

@@ -63,7 +63,7 @@ public class ObjectCreationView<E extends IProfilable> implements IObjectCreatio
         myCreationPane.add(myObjectListView.draw(), 0, 0);
         myCreationPane.add(myFormView.draw(), 1, 0);
         
-        myCreationPane.getStyleClass().add("myCreationView");
+        //myCreationPane.getStyleClass().add("myCreationView");
 
     }
 
