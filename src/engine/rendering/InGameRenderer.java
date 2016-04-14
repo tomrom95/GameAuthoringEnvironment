@@ -21,12 +21,14 @@ public class InGameRenderer extends LevelRenderer {
     private IGraphicFactory myFactory;
     private IGamePlayable myGame;
     private Map<Drawable, Node> myDrawNodeMap;
+    private boolean firstTime;
 
     public InGameRenderer (IGamePlayable game, Pane pane) {
         super(pane);
         myFactory = new UnscaledFactory();
         myGame = game;
         myDrawNodeMap = new HashMap<>();
+        firstTime = true;
     }
 
 
@@ -35,6 +37,15 @@ public class InGameRenderer extends LevelRenderer {
         List<Node> currentEngineConvertedNodeList = getAndUpdateEngineNodeList();
         removeScreenNodesNotInEngine(currentEngineConvertedNodeList);
         updateExistingNodeLocations();
+    }
+    
+    @Override
+    public void render () {
+        if (firstTime) {
+            drawBackground(getBackgroundURL());
+            firstTime = false;
+        }
+        drawSprites();
     }
 
     @Override

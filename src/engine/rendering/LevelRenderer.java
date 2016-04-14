@@ -43,7 +43,7 @@ public abstract class LevelRenderer implements IRenderer {
         myPane.getChildren().add(node);
     }
 
-    private void drawBackground (String url) {
+    protected void drawBackground (String url) {
         if (url == null)
             return;
         Image img = new Image(url, MAX_WIDTH, MAX_HEIGHT, true, true);

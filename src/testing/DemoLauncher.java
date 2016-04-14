@@ -53,13 +53,13 @@ public class DemoLauncher extends Application {
     @Override
     public void start (Stage primaryStage) throws Exception {
         makeGame();
-        new GameWriter().serialize(new File("/Users/davidmaydew/Desktop/test.xml"), myGame);
-        FileChooser chooser = new FileChooser();
-        File f = chooser.showOpenDialog(primaryStage);
+        new GameWriter().serialize(new File("/Users/davidmaydew/Desktop/PlantsZombies.xml"), myGame);
+        //FileChooser chooser = new FileChooser();
+        //File f = chooser.showOpenDialog(primaryStage);
         
         //IGame xmlGame = new GameReader().readFile(new File("/Users/davidmaydew/Desktop/test.xml"));
-        IGame xmlGame = new GameReader().readFile(f);
-        GamePlayer gp = new GamePlayer(xmlGame);
+       // IGame xmlGame = new GameReader().readFile(f);
+        //GamePlayer gp = new GamePlayer(myGame);
     }
 
     private void makeGame () {
@@ -245,7 +245,7 @@ public class DemoLauncher extends Application {
         ImageGraphic image = new ImageGraphic(446 / c, 774 / c, "/images/Buckethead_Zombie.png");
         sd1.setProfile(new Profile("BucketEnemy", "Buckets", image));
         PathMoverDefinition mover = new PathMoverDefinition();
-        mover.setSpeed(.05);
+        mover.setSpeed(.03);
         sd1.setMovementDefinition(mover);
         return sd1;
     }
@@ -256,7 +256,7 @@ public class DemoLauncher extends Application {
         ImageGraphic image = new ImageGraphic(332 / c, 600 / c, "/images/balloon_zomb.png");
         sd1.setProfile(new Profile("Balloon Enemy", "Buckets", image));
         PathMoverDefinition mover = new PathMoverDefinition();
-        mover.setSpeed(.05);
+        mover.setSpeed(.03);
         sd1.setMovementDefinition(mover);
         return sd1;
     }

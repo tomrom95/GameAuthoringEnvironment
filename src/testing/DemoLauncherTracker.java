@@ -3,19 +3,16 @@ package testing;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import data.GameReader;
 import data.GameWriter;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.Game;
 import engine.IAttribute;
 import engine.IGame;
-import engine.ILevel;
 import engine.ISpriteGroup;
 import engine.SpriteGroup;
 import engine.conditions.OnCollisionCondition;
 import engine.definitions.ConstantMoverDefinition;
-import engine.definitions.DirectionalFirerDefinition;
 import engine.definitions.KeyControlDefinition;
 import engine.definitions.MovementDefinition;
 import engine.definitions.PathMoverDefinition;
@@ -26,17 +23,12 @@ import engine.definitions.TrackingFirerDefinition;
 import engine.definitions.UserMoverDefinition;
 import engine.definitions.WaveDefinition;
 import engine.definitions.concrete.SpawnerDefinition;
-import engine.effects.DecreaseEffect;
 import engine.effects.IEffect;
 import engine.events.EventPackage;
 import engine.events.EventType;
 import engine.events.GameEvent;
-import engine.modules.PathMover;
-import engine.modules.SpawningModule;
 import engine.profile.Profile;
 import engine.sprite.ISprite;
-import engine.sprite.Sprite;
-import engine.sprite.SpriteType;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameplayer.GamePlayer;
 import graphics.ImageGraphic;
@@ -52,20 +44,20 @@ public class DemoLauncherTracker extends Application {
     @Override
     public void start (Stage primaryStage) throws Exception {
         makeGame();
-        
-        GamePlayer gp = new GamePlayer(myGame);
+        new GameWriter().serialize(new File("/Users/davidmaydew/Desktop/Bloons.xml"), myGame);
+        //GamePlayer gp = new GamePlayer(myGame);
     }
 
     private void makeGame () {
         IGame game = new Game();
         myGame = game;
-        createGlobalAtts(game);
+        //createGlobalAtts(game);
         createSpriteDefs(game);
         setBackground();
         addSpawner1(game);
         addSpawner2(game);
-        addSpawner3(game);
-        addSpawner4(game);
+        //addSpawner3(game);
+        //addSpawner4(game);
         createConditions(game);
 
     }
@@ -129,7 +121,7 @@ public class DemoLauncherTracker extends Application {
 
     private void setBackground () {
         myGame.getLevelManager().getCurrentLevel()
-                .setBackgroundImage(new ImageGraphic(0, 0, "/images/pvz.jpg"));
+                .setBackgroundImage(new ImageGraphic(0, 0, "/images/bloonsBackground.jpg"));
 
     }
 
@@ -144,8 +136,9 @@ public class DemoLauncherTracker extends Application {
         s.setMySpawningModule(sM);
         ISprite spawner = s.create();
         List<Coordinate> path = new ArrayList<>();
-        path.add(new Coordinate(0, 000));
-        spawner.setLocation(new Coordinate(800, 000));
+        path.add(new Coordinate(400, 150));
+        path.add(new Coordinate(420, 500));
+        spawner.setLocation(new Coordinate(000, 000));
         spawner.setPath(path);
         game.add(spawner);
     }
@@ -161,8 +154,9 @@ public class DemoLauncherTracker extends Application {
         s.setMySpawningModule(sM);
         ISprite spawner = s.create();
         List<Coordinate> path = new ArrayList<>();
-        path.add(new Coordinate(0, 100));
-        spawner.setLocation(new Coordinate(800, 100));
+        path.add(new Coordinate(400, 200));
+        path.add(new Coordinate(420, 500));
+        spawner.setLocation(new Coordinate(900, 000));
         spawner.setPath(path);
         game.add(spawner);
     }
@@ -203,22 +197,22 @@ public class DemoLauncherTracker extends Application {
 
     private SpriteDefinition createBucket () {
         SpriteDefinition sd1 = new SpriteDefinition();
-        double c = 8;
-        ImageGraphic image = new ImageGraphic(446 / c, 774 / c, "/images/Buckethead_Zombie.png");
+        double c = 20;
+        ImageGraphic image = new ImageGraphic(446 / c, 774 / c, "/images/Pink_Bloon.png");
         sd1.setProfile(new Profile("BucketEnemy", "Buckets", image));
         PathMoverDefinition mover = new PathMoverDefinition();
-        mover.setSpeed(.05);
+        mover.setSpeed(.02);
         sd1.setMovementDefinition(mover);
         return sd1;
     }
 
     private SpriteDefinition createBalloon () {
         SpriteDefinition sd1 = new SpriteDefinition();
-        double c = 6;
-        ImageGraphic image = new ImageGraphic(332 / c, 600 / c, "/images/balloon_zomb.png");
+        double c = 20;
+        ImageGraphic image = new ImageGraphic(332 / c, 600 / c, "/images/Rainbow_Bloon.png");
         sd1.setProfile(new Profile("Balloon Enemy", "Buckets", image));
         PathMoverDefinition mover = new PathMoverDefinition();
-        mover.setSpeed(.05);
+        mover.setSpeed(.02);
         sd1.setMovementDefinition(mover);
         return sd1;
     }
@@ -262,15 +256,15 @@ public class DemoLauncherTracker extends Application {
 
     private SpriteDefinition createShooterDef () {
         SpriteDefinition sd1 = new SpriteDefinition();
-        ImageGraphic plantImage = new ImageGraphic(50, 50, "/images/plant.png");
-        sd1.setProfile(new Profile("Tower 1", "Plant", plantImage));
+        ImageGraphic plantImage = new ImageGraphic(80, 80, "/images/tower.png");
+        sd1.setProfile(new Profile("Tower 1", "Clash of Clans", plantImage));
         sd1.setMovementDefinition(getStaticMover());
         
 //        DirectionalFirerDefinition fireDef = new DirectionalFirerDefinition();
         TrackingFirerDefinition fireDef = new TrackingFirerDefinition();
         fireDef.setGame(myGame);
 //        fireDef.setAngle(0);
-        fireDef.setWaitTime(3000);
+        fireDef.setWaitTime(2000);
         List<SpriteDefinition> myTargets = new ArrayList<SpriteDefinition>();
         myTargets.add(createBucket());
         myTargets.add(createBalloon());
@@ -285,7 +279,7 @@ public class DemoLauncherTracker extends Application {
         ImageGraphic plantImage = new ImageGraphic(20, 20, "/images/pea.png");
         sd1.setProfile(new Profile("Pea", "Pea Bullet", plantImage));
         ConstantMoverDefinition mover = new ConstantMoverDefinition();
-        double c = 4;
+        double c = 1;
         mover.setXVel(.2 / c);
         mover.setYVel(.2 / c);
         sd1.setMovementDefinition(mover);
