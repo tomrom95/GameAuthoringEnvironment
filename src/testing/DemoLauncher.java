@@ -58,8 +58,9 @@ public class DemoLauncher extends Application {
         SpawnerDefinition s = new SpawnerDefinition();
         List<SpriteDefinition> sprites = new ArrayList<SpriteDefinition>();
         sprites.add(createPathMover());
+        sprites.add(createPathMover());
         WaveDefinition wave = new WaveDefinition (sprites);
-        SpawnerModuleDefinition sM = new SpawnerModuleDefinition (myGame, wave);
+        SpawnerModuleDefinition sM = new SpawnerModuleDefinition (myGame, wave, 1000);
         s.setMySpawningModule(sM);
         ISprite spawner = s.create();
         List<Coordinate> path = new ArrayList<>();
