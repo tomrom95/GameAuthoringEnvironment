@@ -40,6 +40,7 @@ public class Game implements IGame {
     public void update (TimeDuration duration) {
         myLevelManager.update(duration);
         myConditionManager.update(duration);
+        myAttributeManager.update(duration);
     }
 
     @Override
