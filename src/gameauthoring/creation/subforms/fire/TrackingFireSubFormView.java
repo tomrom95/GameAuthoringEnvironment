@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import engine.SpriteGroup;
 import gameauthoring.creation.entryviews.IEntryView;
+import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.creation.subforms.SubFormView;
@@ -29,7 +30,7 @@ public class TrackingFireSubFormView extends SubFormView {
     private String myWaitTimeKey = "Wait Time: ";
     private String myTargetsKey = "Targets: ";
     private IEntryView myWaitTime =
-            new TextEntryView(myWaitTimeKey, this.getData(), 150, 30,
+            new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30,
                               AuthoringView.DEFAULT_ENTRYVIEW);
     private SingleChoiceEntryView<SpriteGroup> myTargets;
     private List<IEntryView> myEntryViews =
