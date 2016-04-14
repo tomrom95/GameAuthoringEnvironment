@@ -75,6 +75,7 @@ public abstract class CreationController<T extends IProfilable> {
         List<ISubFormView> subFormViews = getSubFormViews(getMySubFormControllers());
         myView.init(subFormViews);
         setupConnections();
+        newItem();
 
     }
 

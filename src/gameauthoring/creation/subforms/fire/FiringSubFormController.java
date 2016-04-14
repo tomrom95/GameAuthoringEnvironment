@@ -37,6 +37,8 @@ public class FiringSubFormController implements ISubFormControllerSprite {
         mySubFormControllers = new ArrayList<>();
         mySubFormControllers.addAll(Arrays
                 .asList(dfSFC, tfSFC));
+        myCurrentMovementController = mySubFormControllers.get(0);
+
     }
 
     private void setUpSubFormViews (List<ISubFormController<SpriteDefinition>> subFormControllers) {
