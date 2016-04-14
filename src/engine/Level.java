@@ -83,6 +83,7 @@ public class Level implements ILevel {
 
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
+       
         mySpriteManager.internalizeKeyEvents(list);
         myConditionManager.internalizeKeyEvents(list);
 

@@ -23,7 +23,7 @@ public class SpawnerDefinition extends SpriteDefinition {
     @Override
     public ISprite create () {
         ISprite sprite = new Sprite(new SpriteType(getProfile().getName().get()));
-
+        sprite.getModules().add(mySpawningModule.create(sprite));
         sprite.initialize(new StaticMover(sprite), createGraphicModule(), createModules(sprite),
                           createAttributes(),
                           createCoordinate());

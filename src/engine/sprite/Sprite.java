@@ -70,8 +70,11 @@ public class Sprite extends DefaultAffectable implements ISprite {
 
     @Override
     public void update (TimeDuration duration) {
+       
         myAttributeManager.update(duration);
         myStatus.update(duration);
+        myMover.update(duration);
+        myGraphic.update(duration);
         myOtherModules.forEach(m -> m.update(duration));
     }
 
@@ -81,8 +84,11 @@ public class Sprite extends DefaultAffectable implements ISprite {
     }
 
     private void applyToAffectable (Consumer<Affectable> function) {
+        
         function.accept(myAttributeManager);
         function.accept(myStatus);
+        function.accept(myMover);
+        function.accept(myGraphic);
         myOtherModules.forEach(m -> function.accept(m));
     }
 
@@ -97,17 +103,13 @@ public class Sprite extends DefaultAffectable implements ISprite {
     }
 
     @Override
-    public List<IModule> getModules () {
-        return myOtherModules;
-    }
-
-    @Override
     public List<IResource> getResources () {
         return myAttributeManager.getResourceList();
     }
 
     @Override
     public void registerKeyEvent (KeyIOEvent event) {
+        
         applyToAffectable(a -> a.registerKeyEvent(event));
     }
 
@@ -157,6 +159,16 @@ public class Sprite extends DefaultAffectable implements ISprite {
     @Override
     public boolean shouldBeRemoved () {
         return myStatus.shouldBeRemoved();
+    }
+
+    @Override
+    public List<IModule> getModules () {
+        return myOtherModules;
+    }
+
+    @Override
+    public void addModule (IModule module) {
+        myOtherModules.add(module);
     }
     
     

@@ -72,9 +72,6 @@ public class Attribute extends DefaultAffectable implements IAttribute {
         myEffects.forEach(e -> e.get().applyToAttribute(this));
         myEffects.forEach(e -> e.get().update(duration));
         removeCompletedEffects(duration);
-
-        System.out.print(myType.getType() + " ");
-        System.out.println(myValue.get());
     }
 
     /**
