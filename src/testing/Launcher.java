@@ -15,6 +15,7 @@ import engine.rendering.InGameRenderer;
 import engine.sprite.ISprite;
 import engine.sprite.SpriteType;
 import gameplayer.GameEngine;
+import gameplayer.GamePlayer;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -62,51 +63,46 @@ public class Launcher extends Application {
     private void initJavaFXElements () {
         myStage = new Stage();
         myPane = new Pane();
-        myPane.setStyle("-fx-background-color: white;");
+        myPane.setStyle("-fx-background-color: blue;");
         myScene = new Scene(myPane);
         myPane.setPrefSize(PANE_WIDTH, PANE_HEIGHT);
     }
 
     @Override
     public void start (Stage primaryStage) throws Exception {
-        initJavaFXElements();
-        myIO = new IOInterpeter(myScene, myPane);
+        //initJavaFXElements();
+       // myIO = new IOInterpeter(myScene, myPane);
 
         
         Level firstLevel = new Level();
         firstLevel.setBackgroundImage(new ImageGraphic(PANE_WIDTH, PANE_HEIGHT, BACKGROUND_URL));
-        for(int j = 0; j<30; j++){
-            for(int i = 0; i<30; i++){
-                firstLevel.add(createUserSpriteDefinition(i*10, j*10).create());
-            }
-        }
 
-//        firstLevel.add(createUserSpriteDefinition(10, 10).create());
-//        firstLevel.add(createUserSpriteDefinition(20, 10).create());
-//        firstLevel.add(createUserSpriteDefinition(30, 10).create());
-//        firstLevel.add(createUserSpriteDefinition(40, 10).create());
-//        firstLevel.add(createUserSpriteDefinition(50, 10).create());
-//        firstLevel.add(createUserSpriteDefinition(60, 10).create());
+
         
-        LevelManager lm = new LevelManager(firstLevel);
+        LevelManager lm = new LevelManager();
+        lm.createNewLevel(firstLevel);
         ConditionManager cm = new ConditionManager();
         GameInformation gi = new GameInformation("Oui", "Non", "Vrai");
         
-        myGame = new Game(lm, gi, cm);
+        myGame = new Game();
+        myGame.getLevelManager().getLevels().add(firstLevel);
         
-        GameEngine gameEngine = new GameEngine(myGame, myPane, myIO);
+        for(int j = 0; j<30; j++){
+            for(int i = 0; i<30; i++){
+                myGame.bufferedAdd(createUserSpriteDefinition(i*10, j*10).create());
+                //.add(createUserSpriteDefinition(i*10, j*10).create());
+            }
+        }
         
-        
-        myStage.setScene(myScene);
-        myStage.show();
-        gameEngine.play();
+        GamePlayer gp = new GamePlayer(myGame);
+        gp.play();
 
     }
 
     private SpriteDefinition createUserSpriteDefinition (int xloc, int yloc) {
         SpriteDefinition mySpriteDefinition = new SpriteDefinition();
-        mySpriteDefinition
-                .setGraphic(new ImageGraphic(SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_IMAGE_URL));
+        //mySpriteDefinition.set
+        //mySpriteDefinition.setGraphic(new ImageGraphic(SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_IMAGE_URL));
         mySpriteDefinition.setMovementDefinition(getUserControlledDefinition());
         mySpriteDefinition.setProfile(userSpriteProfile());
         mySpriteDefinition.setLocation(createUserLocationDefinition(xloc, yloc));
