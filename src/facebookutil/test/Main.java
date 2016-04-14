@@ -4,9 +4,8 @@ import javafx.stage.Stage;
 
 
 /**
- * A simple HTML browser.
- * 
- * @author Robert C. Duvall
+ * Creates and runs a simple browser based on the JavaFX library 
+ *
  */
 public class Main extends Application {
 

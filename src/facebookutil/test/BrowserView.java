@@ -21,6 +21,10 @@ import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
 
+/**
+ * Runs an example browser that can be incorporated into a game to integrate the Social utility 
+ *
+ */
 public class BrowserView {
 
     public static final Dimension DEFAULT_SIZE = new Dimension(800, 600);
