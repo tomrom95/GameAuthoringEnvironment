@@ -28,7 +28,10 @@ public class TrackingFireSubFormController implements ISubFormControllerSprite {
     private TrackingFireSubFormView myView;
     private IFormDataManager myFormData;
     private IGame myGame;
+    private FiringSubFormController myFiringSFC;
+
     
+    //TODO: why is this static?
     private static Predicate<ModuleDefinition> findTrackingFirer() {
         return p -> p.getClass().equals(new TrackingFirerDefinition().getClass());
     }
@@ -37,6 +40,13 @@ public class TrackingFireSubFormController implements ISubFormControllerSprite {
         myView = new TrackingFireSubFormView();
         myFormData = myView.getData();
         myGame = game;
+    }
+    public TrackingFireSubFormController (IGame game,
+                                             FiringSubFormController firingSubFormController) {
+        myView = new TrackingFireSubFormView();
+        myFormData = myView.getData();
+        myGame = game;
+        myFiringSFC = firingSubFormController;
     }
 
     @Override
@@ -52,7 +62,8 @@ public class TrackingFireSubFormController implements ISubFormControllerSprite {
             targets.add(new SpriteType(s));
         }
         trackingFireDef.setTargets(targets);
-        //trackingFireDef.setProjectileDefinition(new SpriteDefinition(projectile));
+        trackingFireDef.setProjectileDefinition(myFiringSFC.getMyMissile());
+
         item.addModule(trackingFireDef);
         
     }

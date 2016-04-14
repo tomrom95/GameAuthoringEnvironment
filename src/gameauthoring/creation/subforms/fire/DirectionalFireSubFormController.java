@@ -27,6 +27,7 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
     private DirectionalFireSubFormView myView;
     private IFormDataManager myFormData;
     private IGame myGame;
+    private FiringSubFormController myFiringSFC;
     
     private static Predicate<ModuleDefinition> findDirectionalFirer() {
         return p -> p.getClass().equals(new DirectionalFirerDefinition().getClass());
@@ -36,6 +37,14 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
         myView = new DirectionalFireSubFormView();
         myFormData = myView.getData();
         myGame = game;
+    }
+
+    public DirectionalFireSubFormController (IGame game,
+                                             FiringSubFormController firingSubFormController) {
+        myView = new DirectionalFireSubFormView();
+        myFormData = myView.getData();
+        myGame = game;
+        myFiringSFC = firingSubFormController;
     }
 
     @Override
@@ -56,10 +65,10 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
             * throw exception here?
             */
        }
-       
-       myFormData.set(myView.getMyAngleKey(), Double.toString(myDef.getAngle())); 
+       myFormData.set(myView.getMyAngleKey(), Double.toString(myDef.getAngle() * 180 / Math.PI)); 
        myFormData.set(myView.getMyWaitTimeKey(), Double.toString(myDef.getWaitTime()));
 //        myFormData.set(myView.getMyProjectileKey(), myDef.getProjectileDefinition());
+
 
     }
 
@@ -70,16 +79,17 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
 
     @Override
     public void updateItem (SpriteDefinition item) {
-        DirectionalFirerDefinition trackingFireDef = new DirectionalFirerDefinition();
-        trackingFireDef.setGame(myGame);
+        DirectionalFirerDefinition directionalFireDef = new DirectionalFirerDefinition();
+        directionalFireDef.setGame(myGame);
         Double angle = Double.valueOf(myFormData.getValueProperty(myView.getMyAngleKey()).get()) * Math.PI / 180; //tangent functions need radians
-        trackingFireDef.setAngle(angle);
+        directionalFireDef.setAngle(angle);
         Double waitTime =
                 Double.valueOf(myFormData.getValueProperty(myView.getMyWaitTimeKey()).get());
-        trackingFireDef.setWaitTime(waitTime);
+        directionalFireDef.setWaitTime(waitTime);
 //        String projectile = myFormData.getValueProperty(myView.getMyProjectileKey()).get();
         // trackingFireDef.setProjectileDefinition(new SpriteDefinition(projectile));
-        item.addModule(trackingFireDef);
+        directionalFireDef.setProjectileDefinition(myFiringSFC.getMyMissile());
+        item.addModule(directionalFireDef);
 
     }
 

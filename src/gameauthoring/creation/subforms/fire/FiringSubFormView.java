@@ -36,13 +36,16 @@ public class FiringSubFormView extends SubFormView {
     private List<IEntryView> myEntryViews;
     private Node mySubFiringView;
     private Node myMissileSelectionView;
-
+    SingleChoiceEntryView<SpriteDefinition> myMissileSelection;
+    ObservableList<SpriteDefinition> myMissiles;
+    
     public FiringSubFormView (ObservableList<ISubFormView> views,
                               Consumer<Integer> changeFiringTypeAction,
                               Consumer<SpriteDefinition> changeMissileAction,
                               ObservableList<SpriteDefinition> missiles) {
         this.myViews = views;
-        updateEntryViews(changeFiringTypeAction, changeMissileAction, missiles);
+        myMissiles = missiles;
+        updateEntryViews(changeFiringTypeAction, changeMissileAction, myMissiles);
         initView();
     }
 
@@ -63,13 +66,19 @@ public class FiringSubFormView extends SubFormView {
         myFire = entryView;
 
         // Missiles
-        SingleChoiceEntryView<SpriteDefinition> myMissileSelection = new SingleChoiceEntryView<>("Missile", missiles, 20);
+        myMissileSelection = new SingleChoiceEntryView<>("Missile", missiles, 20);
+        
         myMissileSelection.addComboItemListener(changeMissileAction);
         myMissileSelectionView = myMissileSelection.draw();
 
         myEntryViews = new ArrayList<IEntryView>(Arrays.asList(myFire, myMissileSelection));
     }
 
+    public void selectMissile(SpriteDefinition missile){
+       // SpriteDefinition missile =  (SpriteDefinition) myMissiles.stream().filter(p->p.getProfile().getName().get().equals(missileName)).toArray()[0];
+        myMissileSelection.setSelected(missile);
+    }
+    
     public void changeSubMovementView (int index) {
         myPane.getChildren().remove(mySubFiringView);
         mySubFiringView = myViews.get(index).draw();

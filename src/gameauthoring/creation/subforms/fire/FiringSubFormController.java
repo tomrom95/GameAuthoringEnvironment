@@ -3,9 +3,13 @@ package gameauthoring.creation.subforms.fire;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import engine.IGame;
+import engine.definitions.DirectionalFirerDefinition;
+import engine.definitions.FirerDefinition;
+import engine.definitions.ModuleDefinition;
 import engine.definitions.SpriteDefinition;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
@@ -25,6 +29,10 @@ public class FiringSubFormController implements ISubFormControllerSprite {
     private ISubFormController<SpriteDefinition> myCurrentFiringController;
     private IGame myGame;
     private SpriteDefinition myMissile;
+    
+    private static Predicate<ModuleDefinition> findFirer() {
+        return p -> p.getClass().getSuperclass().equals(new FirerDefinition().getClass());
+    }
 
     public FiringSubFormController (IGame game) {
         myGame = game;
@@ -35,9 +43,9 @@ public class FiringSubFormController implements ISubFormControllerSprite {
 
     private void setUpSubFormControllers () {
         // TOOD: add to factory
-        // TODO: add game to constructor
-        DirectionalFireSubFormController dfSFC = new DirectionalFireSubFormController(myGame);
-        TrackingFireSubFormController tfSFC = new TrackingFireSubFormController(myGame);
+            //gonna have to figure out better way to get access to getMyMissile
+        DirectionalFireSubFormController dfSFC = new DirectionalFireSubFormController(myGame, this);
+        TrackingFireSubFormController tfSFC = new TrackingFireSubFormController(myGame, this);
         mySubFormControllers = new ArrayList<>();
         mySubFormControllers.addAll(Arrays
                 .asList(dfSFC, tfSFC));
@@ -72,10 +80,29 @@ public class FiringSubFormController implements ISubFormControllerSprite {
     @Override
     public void updateItem (SpriteDefinition item) {
         myCurrentFiringController.updateItem(item);
+        
     }
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
+        //TODO: add default populate method for new object?
+        if(item.getModuleDefinitions().isEmpty()) return;
+        
+        Object firerDef = item.getModuleDefinitions().stream().filter(findFirer()).toArray()[0];
+        System.out.println("firerdef object" + firerDef);
+        FirerDefinition myDef = new FirerDefinition();
+        /*
+        if(firerDef.getClass().equals(myDef.getClass())){
+            myDef = (FirerDefinition) firerDef;
+        } else{
+            System.out.println("uhoh");
+            myDef = null;
+        }
+        */
+        myDef = (FirerDefinition) firerDef;
+        //myView.selectMissile(myDef.getProjectileDefinition().getProfile().getName().get());
+        myView.selectMissile(myDef.getProjectileDefinition());
+
         myCurrentFiringController.populateViewsWithData(item);
     }
 
@@ -84,7 +111,7 @@ public class FiringSubFormController implements ISubFormControllerSprite {
         return myView;
     }
     
-    protected SpriteDefinition getMyMissile() {
+    public SpriteDefinition getMyMissile() {
         return myMissile;
     }
 

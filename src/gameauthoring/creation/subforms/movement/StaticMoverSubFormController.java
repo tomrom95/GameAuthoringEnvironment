@@ -41,8 +41,8 @@ public class StaticMoverSubFormController implements ISubFormControllerSprite {
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
 
-        StaticMoverDefinition movementDefinition =
-                (StaticMoverDefinition) item.getMovementDefinition();
+        //StaticMoverDefinition movementDefinition =
+          //      (StaticMoverDefinition) item.getMovementDefinition();
         
         
     }
