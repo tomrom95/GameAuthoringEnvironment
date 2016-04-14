@@ -97,15 +97,24 @@ public class Game implements IGame {
     }
 
     @Override
-    public void bufferedAdd (ISprite sprite, Coordinate coordinate) {
-        // TODO Auto-generated method stub
-
+    public void add (ISprite sprite, Coordinate coordinate) {
+        sprite.setLocation(coordinate);
+        add(sprite);
+    }
+    
+    @Override
+    public void add (ISprite sprite) {
+        myLevelManager.add(sprite);
+    }
+    
+    @Override
+    public void bufferedAdd (ISprite sprite) {
+        myLevelManager.getCurrentLevel().bufferedAdd(sprite);
     }
 
     @Override
-    public void bufferedAdd (ISprite sprite) {
-        // TODO Auto-generated method stub
-        myLevelManager.getCurrentLevel().bufferedAdd(sprite);
+    public void bufferedAdd (ISprite sprite, Coordinate coordinate) {
+        myLevelManager.bufferedAdd(sprite, coordinate);
     }
 
 }

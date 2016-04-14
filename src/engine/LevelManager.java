@@ -69,6 +69,7 @@ public class LevelManager implements ILevelManager {
 
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
+        
         myCurrentLevel.internalizeKeyEvents(list);
     }
 
@@ -95,6 +96,10 @@ public class LevelManager implements ILevelManager {
     @Override
     public void bufferedAdd (ISprite sprite) {
         myCurrentLevel.bufferedAdd(sprite);
+    }
+
+    public void add (ISprite sprite) {
+        myCurrentLevel.add(sprite, sprite.getLocation());
     }
 
 }

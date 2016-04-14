@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 
@@ -22,18 +23,20 @@ import javafx.scene.layout.HBox;
  *
  */
 public class MultiChoiceEntryView<E extends IProfilable> extends EntryView {
-    private String myLabel;
-    private HBox myContainer;
+    private GridPane myContainer;
     private ListView<E> myChoices;
 
-    public MultiChoiceEntryView (String label, ObservableList<E> observableList, double spacing) {
+    public MultiChoiceEntryView (String label, ObservableList<E> observableList, int width, int height, String cssClass) {
         super(label);
-        this.myContainer = new HBox(spacing);
+        this.myContainer = new GridPane();
         this.myChoices = new ListView<E>(observableList);
         this.myChoices.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        this.myChoices.setMinSize(width, height);
+        this.myChoices.setMaxSize(width, height);
         myChoices.setCellFactory( c -> new ProfileCellView<E>());
-        myContainer.getChildren().add(new Label(myLabel));
-        myContainer.getChildren().add(myChoices);
+        myContainer.add(new Label(label), 0, 0);
+        myContainer.add(myChoices,0,1);
+        myContainer.getStyleClass().add(cssClass);
     }
 
     public void setSelected (List<E> items) {

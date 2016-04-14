@@ -3,6 +3,7 @@ package gameauthoring.creation.forms;
 import java.util.ArrayList;
 import java.util.List;
 import engine.AuthorshipData;
+import engine.Game;
 import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
@@ -42,14 +43,15 @@ public abstract class CreationController<T extends IProfilable> {
      */
     public CreationController (String title,
                                List<String> subFormStrings,
-                               AuthorshipData authorshipData) {
+                               Game game) {
 
         myTitle = title;
-        mySFCFactory = new SubFormControllerFactory(authorshipData);
+        mySFCFactory = new SubFormControllerFactory(game);
         myView = new ObjectCreationView<T>();
         myDefinitionCollection = new DefinitionCollection<>(getMyTitle(),
                                                             getMyObjectCreationView().getItems());
-        addToAuthorshipData(authorshipData);
+
+        addToAuthorshipData(game.getAuthorshipData());
 
     }
 
