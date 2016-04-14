@@ -10,21 +10,29 @@ import engine.definitions.ConstantMoverDefinition;
 import engine.definitions.DirectionalFirerDefinition;
 import engine.definitions.LocationDefinition;
 import engine.definitions.SpriteDefinition;
+import engine.definitions.TrackingFirerDefinition;
 import engine.sprite.ISprite;
+import engine.sprite.SpriteType;
 import util.TimeDuration;
 
+
+/**
+ * Test package to test firing modules
+ * 
+ * @author Dhrumil
+ *
+ */
 
 public class TestFire {
 
     private SpriteDefinition myProjectile;
     private ConstantMoverDefinition myMover;
     private SpriteDefinition myTower;
-    private DirectionalFirerDefinition myFirer;
+    private DirectionalFirerDefinition myDirectionalFirer;
+    private TrackingFirerDefinition myTrackingFirer;
     private Game myGame;
     private SpriteDefinition myEnemy;
 
-    
-    
     @Before
     public void setUp () {
         myGame = new Game();
@@ -32,11 +40,13 @@ public class TestFire {
         createMover();
         createProjectile();
         createTower();
-        createFirer();
+        createDirectionalFirer();
+        createTrackingFirer();
 
-        myTower.addModule(myFirer);
-
-        createEnemy();
+        //myTower.addModule(myDirectionalFirer);
+        myTower.addModule(myTrackingFirer);
+        
+        myEnemy = createEnemy();
     }
 
     private void createProjectile () {
@@ -44,20 +54,32 @@ public class TestFire {
         myProjectile.setMovementDefinition(myMover);
     }
 
-    private void createEnemy () {
+    private SpriteDefinition createEnemy () {
         myEnemy = new SpriteDefinition();
         LocationDefinition enemyLocation = new LocationDefinition();
         enemyLocation.setX(100);
         enemyLocation.setY(100);
         myEnemy.setLocation(enemyLocation);
+        return myEnemy;
     }
 
-    private void createFirer () {
-        myFirer = new DirectionalFirerDefinition();
-        myFirer.setProjectileDefinition(myProjectile);
-        myFirer.setWaitTime(1000);
-        myFirer.setGame(myGame);
-        myFirer.setAngle(120);
+    private void createDirectionalFirer () {
+        myDirectionalFirer = new DirectionalFirerDefinition();
+        myDirectionalFirer.setProjectileDefinition(myProjectile);
+        myDirectionalFirer.setWaitTime(1000);
+        myDirectionalFirer.setGame(myGame);
+        myDirectionalFirer.setAngle(120);
+    }
+
+    private void createTrackingFirer () {
+        myTrackingFirer = new TrackingFirerDefinition();
+        myTrackingFirer.setProjectileDefinition(myProjectile);
+        myTrackingFirer.setWaitTime(1000);
+        myTrackingFirer.setGame(myGame);
+        List<SpriteType> enemy = new ArrayList<SpriteType>();
+        enemy.add(createEnemy().create().getType());
+        
+        myTrackingFirer.setTargets(enemy);
     }
 
     private void createTower () {
@@ -76,19 +98,31 @@ public class TestFire {
     }
 
     @Test
-    public void testBulletCreation () {
+    public void testBulletsCreation () {
         List<ISprite> towerList = new ArrayList<ISprite>();
         int bullets = 100;
         for (int i = 0; i < bullets; i++) {
             towerList.add(myTower.create());
         }
-        
+
         towerList.stream().forEach(sprite -> sprite.update(new TimeDuration(10000)));
         assertEquals(bullets, myGame.getLevelManager().getCurrentLevel().getSprites().size());
     }
 
     @Test
-    public void testUserFirer () {
+    public void testTrackingBullets () {
+        
+        myTower.getModuleDefinitions().clear();
+        myTower.addModule(myTrackingFirer);
+        
+        List<ISprite> towerList = new ArrayList<ISprite>();
+        int bullets = 1;
+        for (int i = 0; i < bullets; i++) {
+            towerList.add(myTower.create());
+        }
+
+        towerList.stream().forEach(sprite -> sprite.update(new TimeDuration(10000)));
+        assertEquals(bullets, myGame.getLevelManager().getCurrentLevel().getSprites().size());
 
     }
 
