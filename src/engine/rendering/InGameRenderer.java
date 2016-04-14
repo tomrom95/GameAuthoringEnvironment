@@ -35,10 +35,6 @@ public class InGameRenderer extends LevelRenderer {
         List<Node> currentEngineConvertedNodeList = getAndUpdateEngineNodeList();
         removeScreenNodesNotInEngine(currentEngineConvertedNodeList);
         updateExistingNodeLocations();
-
-//        myGame.getDrawables().forEach(d -> {
-//       //     this.draw(d.getDrawer().getVisualRepresentation(myFactory), d);
-//        });
     }
 
     @Override
