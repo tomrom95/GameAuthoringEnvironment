@@ -2,10 +2,13 @@ package testing;
 
 import static org.junit.Assert.*;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
+import engine.sprite.SpriteType;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import engine.modules.IMovementModule;
@@ -25,7 +28,7 @@ import util.TimeDuration;
 
 public class TestSprite {
     
-    private ISprite sprite = new Sprite();
+    private ISprite sprite = new Sprite(new SpriteType("Test"));
     
 
     @Before
@@ -45,17 +48,27 @@ public class TestSprite {
         }     
         
         TimeDuration time = new TimeDuration(100.0);
-        sprite.getMovementStrategyProperty().set(mover.get());
+        List<Coordinate> newPath = getListOfCoordinates();
+        sprite.getMovementStrategy().setPath(newPath);
         mover.get().update(time);
         
+    }
+    
+    private static List<Coordinate> getListOfCoordinates () {
+        List<Coordinate> list = new ArrayList<>();
+        list.add(new Coordinate(100, 100));
+        list.add(new Coordinate(20, 20));
+        list.add(new Coordinate(200, 2));
+        list.add(new Coordinate(500, 30));
+        return list;
     }
 
     @Test
     public void test () {
         Coordinate myCoordinate = new Coordinate(1000.0, 0.0);
         
-        assertEquals("XPos of Sprite", myCoordinate.getX(), sprite.getLocation().get().getX(), 0);
-        assertEquals("YPos of Sprite", myCoordinate.getY(), sprite.getLocation().get().getY(), 0);
+        assertEquals("XPos of Sprite", myCoordinate.getX(), sprite.getLocation().getX(), 0);
+        assertEquals("YPos of Sprite", myCoordinate.getY(), sprite.getLocation().getY(), 0);
     }
 
 }

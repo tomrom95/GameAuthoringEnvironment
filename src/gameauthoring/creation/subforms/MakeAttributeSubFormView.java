@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import gameauthoring.creation.entryviews.IEntryView;
+import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
@@ -19,7 +20,7 @@ public class MakeAttributeSubFormView extends SubFormView {
 
     private GridPane myPane = new GridPane();
     private String myStartingValueKey = "Starting Value: ";
-    private TextEntryView myStartingValue = new TextEntryView(myStartingValueKey, this.getData(), 100,30 , AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView myStartingValue = new NumberEntryView(myStartingValueKey, this.getData(), 100,30 , AuthoringView.DEFAULT_ENTRYVIEW);
     private List<IEntryView> myEntryViews = new ArrayList<IEntryView>(Arrays.asList(myStartingValue));
 
     public MakeAttributeSubFormView () {
