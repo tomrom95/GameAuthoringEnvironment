@@ -1,5 +1,6 @@
 package engine.sprite;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import engine.Affectable;
@@ -16,6 +17,7 @@ import engine.modules.IGraphicModule;
 import engine.modules.IModule;
 import engine.modules.IMovementModule;
 import engine.modules.SpriteStatus;
+import engine.modules.StaticMover;
 import javafx.collections.ObservableList;
 import util.Bounds;
 import util.Coordinate;
@@ -48,6 +50,8 @@ public class Sprite extends DefaultAffectable implements ISprite {
         myType = type;
         myStatus = new SpriteStatus();
         myAttributeManager = new AttributeManager();
+        myOtherModules = new ArrayList<>();
+        myMover = new StaticMover(this);
 
     }
 
@@ -79,6 +83,8 @@ public class Sprite extends DefaultAffectable implements ISprite {
     }
 
     private void applyToAffectable (Consumer<Affectable> function) {
+        function.accept(myMover);
+        function.accept(myGraphic);
         function.accept(myAttributeManager);
         function.accept(myStatus);
         function.accept(myMover);
@@ -97,17 +103,13 @@ public class Sprite extends DefaultAffectable implements ISprite {
     }
 
     @Override
-    public List<IModule> getModules () {
-        return myOtherModules;
-    }
-
-    @Override
     public List<IResource> getResources () {
         return myAttributeManager.getResourceList();
     }
 
     @Override
     public void registerKeyEvent (KeyIOEvent event) {
+        
         applyToAffectable(a -> a.registerKeyEvent(event));
     }
 
@@ -157,6 +159,16 @@ public class Sprite extends DefaultAffectable implements ISprite {
     @Override
     public boolean shouldBeRemoved () {
         return myStatus.shouldBeRemoved();
+    }
+
+    @Override
+    public List<IModule> getModules () {
+        return myOtherModules;
+    }
+
+    @Override
+    public void addModule (IModule module) {
+        myOtherModules.add(module);
     }
     
     

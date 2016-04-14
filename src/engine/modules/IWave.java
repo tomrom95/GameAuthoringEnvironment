@@ -13,4 +13,6 @@ public interface IWave {
      * @return the next Sprite to be spawned
      */
     ISprite getNextSprite ();
+    
+    boolean hasNext ();
 }
