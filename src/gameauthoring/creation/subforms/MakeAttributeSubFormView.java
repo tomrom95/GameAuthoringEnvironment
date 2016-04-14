@@ -19,11 +19,8 @@ import javafx.scene.layout.GridPane;
 public class MakeAttributeSubFormView extends SubFormView {
 
     private GridPane myPane = new GridPane();
-
-    private String myIsGlobalKey = "Global Attribute: ";  
     private String myStartingValueKey = "Starting Value: ";
-    private TextEntryView myStartingValue = new TextEntryView(myStartingValueKey, this.getData(), 50,30 , AuthoringView.DEFAULT_ENTRYVIEW);
-   // private CheckEntryView myIsGlobal = new CheckEntryView(myIsGlobalKey, AuthoringView.DEFAULT_ENTRYVIEW);
+    private TextEntryView myStartingValue = new TextEntryView(myStartingValueKey, this.getData(), 100,30 , AuthoringView.DEFAULT_ENTRYVIEW);
     private List<IEntryView> myEntryViews = new ArrayList<IEntryView>(Arrays.asList(myStartingValue));
 
     public MakeAttributeSubFormView () {
@@ -37,8 +34,8 @@ public class MakeAttributeSubFormView extends SubFormView {
 
  
 
-    public String getMyIsGlobalKey () {
-        return myIsGlobalKey;
+    public String getMyStartingValueKey () {
+        return myStartingValueKey;
     }
 
     @Override

@@ -18,12 +18,15 @@ public class ObjectListView<E extends IProfilable> implements IObjectListView<E>
 
     private ObservableList<E> myItems;
     private ListView<E> myListView;
+    private static double HEIGHT = 580;
 
     public ObjectListView (ObservableList<E> items) {
         myItems = items;
         myListView = new ListView<E>();
         myListView.setItems(getMyItems());
-        myListView.setCellFactory( c -> new ProfileCellView<E> () );        
+        myListView.setCellFactory( c -> new ProfileCellView<E> () );
+        myListView.setMinHeight(HEIGHT);
+        myListView.setMaxHeight(HEIGHT);
         
         //TODO: resource file and maybe constructor arguement later
         myListView.getStyleClass().add("myObjectListView");

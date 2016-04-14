@@ -16,7 +16,7 @@ public class SelectAttributeSubFormView extends SubFormView {
     public SelectAttributeSubFormView (IDefinitionCollection<AttributeDefinition> attributes) {
         myAttributeSelector =
                 new MultiChoiceEntryView<AttributeDefinition>(myAttributesKey,
-                                                              attributes.getItems(), 300, 400,
+                                                              attributes.getItems(), 400, 200,
                                                               AuthoringView.DEFAULT_ENTRYVIEW);
     }
 
@@ -33,12 +33,6 @@ public class SelectAttributeSubFormView extends SubFormView {
     public void update () {
         // TODO Auto-generated method stub
 
-    }
-
-    @Override
-    public IFormDataManager getData () {
-        // TODO Auto-generated method stub
-        return null;
     }
 
 }

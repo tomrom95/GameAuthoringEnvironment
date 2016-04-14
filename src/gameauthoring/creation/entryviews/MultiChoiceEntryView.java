@@ -24,7 +24,6 @@ import javafx.scene.layout.HBox;
  *
  */
 public class MultiChoiceEntryView<E extends IProfilable> extends EntryView {
-    private String myLabel;
     private GridPane myContainer;
     private ListView<E> myChoices;
 
