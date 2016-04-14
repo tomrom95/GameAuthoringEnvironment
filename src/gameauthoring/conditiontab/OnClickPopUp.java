@@ -1,7 +1,6 @@
 package gameauthoring.conditiontab;
 
 import engine.IGame;
-import engine.ISpriteGroup;
 import engine.SpriteGroup;
 import engine.conditions.ICondition;
 import engine.conditions.OnClickCondition;

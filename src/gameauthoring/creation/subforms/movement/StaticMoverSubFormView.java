@@ -1,5 +1,8 @@
 package gameauthoring.creation.subforms.movement;
 
+import java.util.ArrayList;
+import java.util.List;
+import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
@@ -16,23 +19,19 @@ public class StaticMoverSubFormView extends SubFormView {
 
     private GridPane myPane = new GridPane();
 
-    
+    private List<IEntryView> myEntryViews = new ArrayList<IEntryView>();
+
     public StaticMoverSubFormView () {
         initView();
     }
+
     @Override
     public Node draw () {
         return myPane;
     }
 
-    //TODO: complete initialize view
-    public void initView () {
+    private void initView () {
+        super.setMyEntryViews(myEntryViews);
 
     }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-    }
-
 }

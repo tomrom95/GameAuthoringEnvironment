@@ -1,7 +1,6 @@
 package engine;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
@@ -15,7 +14,7 @@ import javafx.collections.ObservableList;
 /**
  * This class implements ISpriteGroup and holds the notion of a sprite group. A sprite groups is a
  * collection of sprites that are deemed to contain the same attributes and behaviors.
- * 
+ *
  * @author Joe Lilien, Jeremy Schreck
  *
  */
@@ -34,18 +33,18 @@ public class SpriteGroup implements ISpriteGroup, IProfilable {
         mySpriteDefinitions = spriteTypes;
         myProfile = new Profile();
     }
-    
-    public List<SpriteDefinition> getSpriteDefinitions(){
+
+    public List<SpriteDefinition> getSpriteDefinitions () {
         return mySpriteDefinitions;
     }
 
     public void setSpriteDefinitions (List<SpriteDefinition> sprites) {
-        this.mySpriteDefinitions = new ArrayList<>(sprites);
-        
+        mySpriteDefinitions = new ArrayList<>(sprites);
+
         // Patch solution for now, need to work out in more detail later
-        
+
         mySpriteTypes = new ArrayList<>();
-        for(SpriteDefinition s: mySpriteDefinitions){
+        for (SpriteDefinition s : mySpriteDefinitions) {
             mySpriteTypes.add(s.getSpriteType());
         }
     }
@@ -67,7 +66,7 @@ public class SpriteGroup implements ISpriteGroup, IProfilable {
 
     @Override
     public void setProfile (IProfile profile) {
-        this.myProfile = profile;
+        myProfile = profile;
     }
 
 }

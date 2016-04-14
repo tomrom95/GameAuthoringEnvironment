@@ -23,12 +23,16 @@ public class Game implements IGame {
     private IGameInformation myGameInformation;
     private IAttributeManager myAttributeManager;
 
-    public Game (LevelManager levelManager,
-                 GameInformation info,
-                 ConditionManager conditionManager) {
-        myLevelManager = levelManager;
-        myConditionManager = conditionManager;
+    public Game () {
+        //TODO remove hardcoded strings
+        this(new GameInformation("title", "author", "date"));
+    }
+    
+    public Game (IGameInformation gameInfo) {
+        myLevelManager = new LevelManager();
+        myConditionManager = new ConditionManager();
         myAuthorshipData = new AuthorshipData();
+        myGameInformation = gameInfo;
         myAttributeManager = new AttributeManager();
     }
 
@@ -94,14 +98,23 @@ public class Game implements IGame {
 
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
-        // TODO Auto-generated method stub
-        
+        sprite.setLocation(coordinate);
+        add(sprite);
+    }
+    
+    @Override
+    public void add (ISprite sprite) {
+        add(sprite);
+    }
+    
+    @Override
+    public void bufferedAdd (ISprite sprite) {
+        myLevelManager.getCurrentLevel().bufferedAdd(sprite);
     }
 
     @Override
-    public void add (ISprite sprite) {
-        // TODO Auto-generated method stub
-        myLevelManager.getCurrentLevel().add(sprite);
+    public void bufferedAdd (ISprite sprite, Coordinate coordinate) {
+        myLevelManager.bufferedAdd(sprite, coordinate);
     }
 
 }

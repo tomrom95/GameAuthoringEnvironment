@@ -1,30 +1,16 @@
 package gameauthoring.tabs;
 
 import gameauthoring.creation.forms.CreationController;
-import gameauthoring.creation.forms.CreationControllerAttribute;
 import gameauthoring.creation.forms.CreationControllerFactory;
-import gameauthoring.creation.forms.CreationControllerSprite;
 import gameauthoring.creation.forms.IObjectCreationView;
-import gameauthoring.creation.forms.ObjectCreationView;
-import gameauthoring.creation.subforms.MakeAttributeSubFormController;
-import gameauthoring.creation.subforms.ISubFormControllerAttribute;
-import gameauthoring.creation.subforms.ISubFormControllerSprite;
-import gameauthoring.creation.subforms.ProfileSubFormController;
-import gameauthoring.creation.subforms.SelectAttributeSubFormController;
-import gameauthoring.creation.subforms.SubFormControllerFactory;
-import gameauthoring.creation.subforms.movement.MovementSubFormController;
-import gameauthoring.shareddata.DefinitionCollection;
-import gameauthoring.shareddata.IDefinitionCollection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.Game;
-import engine.definitions.SpriteDefinition;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.BorderPane;
 
 
 /**
@@ -41,7 +27,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private TabPane myTabPane;
 
-    private AuthorshipData myAuthorshipData;
+    private Game myGame;
 
     private List<CreationController<?>> myCCs;
     private List<IObjectCreationView<?>> myCVs;
@@ -52,49 +38,44 @@ public class ObjectCreationTabViewer implements ITabViewer {
     }
 
     public ObjectCreationTabViewer (Game game) {
-        myAuthorshipData = game.getAuthorshipData();
+        myGame = game;
         initializeLists();
         init();
     }
 
     private void initializeLists () {
 
-        
         List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
         List<String> myMissileSFCs = new ArrayList<String>();
         List<String> myEnemySFCs =
-                new ArrayList<String>(Arrays.asList("SelectAttribute"));
+                new ArrayList<String>(Arrays.asList("SelectAttribute", "Movement"));
         List<String> myDefenderSFCs =
+                new ArrayList<String>(Arrays.asList("SelectAttribute", "Movement", "Firing"));
 
-                new ArrayList<String>(Arrays.asList("Profile", "SelectAttribute"));
         List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
 
-
-                new ArrayList<String>(Arrays.asList("SelectAttribute"));
-     
         List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("SelectSprite"));
 
         CreationControllerFactory ccFactory = new CreationControllerFactory();
         // TODO: take sfcs out of cc constructors
-        
+
         CreationController<?> ccAttributes =
                 ccFactory.createAttributeCreationController("Attribute", myAttributeSFCs,
-                                                            myAuthorshipData);
+                                                            myGame);
         CreationController<?> ccMissiles =
                 ccFactory.createSpriteCreationController("Missiles", myMissileSFCs,
-                                                         myAuthorshipData);
+                                                         myGame);
         CreationController<?> ccEnemies =
                 ccFactory.createSpriteCreationController("Enemies", myEnemySFCs,
-                                                         myAuthorshipData);
+                                                         myGame);
         CreationController<?> ccDefenders =
                 ccFactory.createSpriteCreationController("Defender", myDefenderSFCs,
-                                                         myAuthorshipData);
-        CreationController<?> ccEvents = 
-                ccFactory.createEventCreationController("Events", myEventSFCs, myAuthorshipData);
+                                                         myGame);
+        CreationController<?> ccEvents =
+                ccFactory.createEventCreationController("Events", myEventSFCs, myGame);
 
-        CreationController<?> ccGroups = ccFactory.createGroupCC("Groups", myGroupSFCs, myAuthorshipData);
-
-        
+        CreationController<?> ccGroups =
+                ccFactory.createGroupCC("Groups", myGroupSFCs, myGame);
 
         myCCs = new ArrayList<CreationController<?>>();
 
@@ -104,10 +85,8 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         myCCs.add(ccEvents);
 
-
         myCCs.add(ccMissiles);
         myCCs.add(ccGroups);
-
 
         ccAttributes.init(myAttributeSFCs);
         ccEnemies.init(myEnemySFCs);
@@ -117,7 +96,6 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         ccMissiles.init(myMissileSFCs);
         ccGroups.init(myGroupSFCs);
-
 
     }
 
@@ -148,14 +126,4 @@ public class ObjectCreationTabViewer implements ITabViewer {
     public Node draw () {
         return myTabPane;
     }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-    }
-
-    private AuthorshipData getMyAuthorshipData () {
-        return myAuthorshipData;
-    }
-
 }

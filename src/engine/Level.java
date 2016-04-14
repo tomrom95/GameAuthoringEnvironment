@@ -34,9 +34,8 @@ public class Level implements ILevel {
         myConditionManager = new ConditionManager();
         mySpriteManager = new SpriteManager();
         myNextLevelManager = new NextLevelManager();
-        // TODO add default
-        // myBackgroundImage = new SimpleObjectProperty<>(new ImageGraphic(400, 400,
-        // "/image/blank.jpg"));
+        // TODO store these defaults in properties file
+        myBackgroundImage = new ImageGraphic(400, 400,"/images/blank.jpg");
     }
 
     @Override
@@ -63,8 +62,8 @@ public class Level implements ILevel {
     }
 
     @Override
-    public void add (ISprite sprite, Coordinate coordinate) {
-        mySpriteManager.add(sprite, coordinate);
+    public void bufferedAdd (ISprite sprite, Coordinate coordinate) {
+        mySpriteManager.bufferedAdd(sprite, coordinate);
     }
 
     @Override
@@ -84,6 +83,7 @@ public class Level implements ILevel {
 
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
+       
         mySpriteManager.internalizeKeyEvents(list);
         myConditionManager.internalizeKeyEvents(list);
 
@@ -114,13 +114,18 @@ public class Level implements ILevel {
     }
 
     @Override
-    public void add (ISprite sprite) {
-        mySpriteManager.add(sprite);
+    public void bufferedAdd (ISprite sprite) {
+        mySpriteManager.bufferedAdd(sprite);
     }
 
     @Override
     public void setBackgroundImage (ImageGraphic graphic) {
         myBackgroundImage = graphic;
+    }
+
+    @Override
+    public void add (ISprite sprite, Coordinate coordinate) {
+        mySpriteManager.add(sprite, coordinate);
     }
 
 }

@@ -15,6 +15,8 @@ import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import engine.sprite.SpriteType;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.Key;
 import util.TimeDuration;
@@ -68,7 +70,7 @@ public class TrackingFirer extends Firer {
             bullet.getMovementStrategy().setXVel(initialXVel);
             double initialYVel = myTracker.calculateYVelToClosestEnemy(bullet.getLocation(), getTargets(), myProjectile.getMovementDefinition().getSpeed());
             bullet.getMovementStrategy().setYVel(initialYVel);            
-            myGame.add(bullet);
+            myGame.bufferedAdd(bullet);
             lastFire = new TimeDuration(duration.getMillis());
             
         } 
@@ -110,8 +112,8 @@ public class TrackingFirer extends Firer {
     }
 
     @Override
-    public List<IAttribute> getAttributes () {
-        List<IAttribute> attributeList = new ArrayList<>();
+    public ObservableList<IAttribute> getAttributes () {
+        ObservableList<IAttribute> attributeList = FXCollections.observableArrayList();
         attributeList.add(myAmmo);
         attributeList.add(myWaitTime);
         return attributeList;
