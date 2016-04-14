@@ -28,11 +28,13 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     private IAttribute myXVel;
     private IAttribute myYVel;
     private IPositionable myParent;
+    private List<Coordinate> myPath;
 
     public Mover (IPositionable positionable) {
         myXVel = new Attribute(AttributeType.X_VEL);
         myYVel = new Attribute(AttributeType.Y_VEL);
         myParent = positionable;
+        myPath = new ArrayList<>();
     }
 
     private Coordinate getLocation () {
@@ -111,5 +113,13 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     @Override
     public void setYVel(double newVel){
         myYVel.setValue(newVel);
+    }
+    
+    public void setPath (List<Coordinate> path) {
+        myPath = path;
+    }
+    
+    public List<Coordinate> getPath () {
+        return myPath;
     }
 }
