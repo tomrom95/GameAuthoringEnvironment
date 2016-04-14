@@ -30,7 +30,7 @@ public class BrowserView {
     public static final Dimension DEFAULT_SIZE = new Dimension(800, 600);
     private static final String PROTECTED_RESOURCE_URL = "https://graph.facebook.com/v2.5/10204226196654701";
     private static final String CALLBACK_URL =
-            "https://github.com/duke-compsci308-spring2016/voogasalad_GitDepends/";
+            "https://duke.edu";
 
     private OAuth20Service service;
     private Scene myScene;

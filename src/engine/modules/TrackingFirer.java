@@ -60,6 +60,10 @@ public class TrackingFirer extends Firer {
     }
 
     private void fire (TimeDuration duration) {
+        
+        if(getTargets().isEmpty()) {
+            return;
+        }
         /*
          * 
          */

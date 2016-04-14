@@ -9,6 +9,11 @@ import engine.rendering.LevelRenderer;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -42,6 +47,20 @@ public class GameEngine implements IGameEngine {
         gamePane.setCenter(myRenderer.getPane());
         gamePane.setRight(new SideBarDisplay(myGame, myRenderer).draw());
         gamePane.setLeft(new HeadsUpDisplay(myGame).draw());
+        gamePane.setTop(createTop());
+    }
+
+    private Node createTop () {
+        MenuBar bar = new MenuBar();
+        Menu controls = new Menu("Controls");
+        bar.getMenus().add(controls);
+        MenuItem pause = new MenuItem("Pause");
+        MenuItem play = new MenuItem("Play");
+        pause.setOnAction(e -> pause());
+        play.setOnAction(e -> play());
+        controls.getItems().add(play);
+        controls.getItems().add(pause);
+        return bar;
     }
 
     private void initializeTimeline () {
