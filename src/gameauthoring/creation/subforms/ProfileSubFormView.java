@@ -17,7 +17,6 @@ public class ProfileSubFormView extends SubFormView{
     private String myNameKey = "Name: ";
     private String myDescriptionKey = "Description: ";
     private String myImageKey = "Image: ";   
-    private String defaultTextEntry = "defaultTextEntry";
     private IEntryView myName = new TextEntryView(myNameKey,this.getData(), 250, 40, AuthoringView.DEFAULT_ENTRYVIEW); // maybe change these
                                                                                // constructor
                                                                                // Arguments to
@@ -33,7 +32,6 @@ public class ProfileSubFormView extends SubFormView{
 
     private void initView () {
         super.setMyEntryViews(myEntryViews);
-        myPane.setGridLinesVisible(true);
         myPane.add(myName.draw(), 0, 0);
         myPane.add(myDescription.draw(), 0, 1);
         myPane.add(myImage.draw(), 1, 0,1,2);            

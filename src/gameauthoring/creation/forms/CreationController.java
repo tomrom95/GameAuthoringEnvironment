@@ -50,6 +50,7 @@ public abstract class CreationController<T extends IProfilable> {
         myDefinitionCollection = new DefinitionCollection<>(getMyTitle(),
                                                             getMyObjectCreationView().getItems());
         addToAuthorshipData(authorshipData);
+       // newItem();
 
     }
 
