@@ -3,7 +3,7 @@ package gameauthoring.creation.subforms.events;
 import java.util.ArrayList;
 import java.util.Arrays;
 import engine.definitions.AttributeDefinition;
-import gameauthoring.ProfileCellView;
+import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.creation.subforms.SubFormView;
@@ -26,11 +26,6 @@ public class EffectSubFormView extends SubFormView{
         myLength = new TextEntryView("Length",this.getData(), 20, 150, 30);
         myValue = new TextEntryView("Amount", this.getData(), 20, 150, 30);
         super.setMyEntryViews( new ArrayList<IEntryView>(Arrays.asList(myLength, myValue)));
-    }
-
-    @Override
-    public void update () {
-        
     }
     
     public AttributeDefinition getAttribute () {

@@ -23,14 +23,6 @@ public class SelectAttributeSubFormView extends SubFormView{
     public MultiChoiceEntryView<AttributeDefinition> getEntryView(){
         return myAttributeSelector;
     }
-    
-
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-        
-    }
 
     @Override
     public IFormDataManager getData () {

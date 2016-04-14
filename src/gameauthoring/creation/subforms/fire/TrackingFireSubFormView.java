@@ -43,12 +43,6 @@ public class TrackingFireSubFormView extends SubFormView {
         return myPane;
     }
 
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
-    }
-
     private void initView () {
         super.setMyEntryViews(myEntryViews);
         myPane.setGridLinesVisible(true);
