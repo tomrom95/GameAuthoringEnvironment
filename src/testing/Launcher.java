@@ -1,6 +1,5 @@
 package testing;
 
-import java.nio.file.Paths;
 import engine.Game;
 import engine.IOInterpeter;
 import engine.Level;
@@ -21,10 +20,9 @@ import javafx.stage.Stage;
 import graphics.ImageGraphic;
 
 
-
 public class Launcher extends Application {
- 
-    //Health attribute properties
+
+    // Health attribute properties
     private static final double HEALTH_START_VAL = 100d;
     private static final String HEALTH_IMAGE_URL = "/GitDepends/Images/Health_pictogram.png";
     private static final String HEALTH_DESCRIPTION = "Health attribute";
@@ -41,12 +39,13 @@ public class Launcher extends Application {
     private static final String SPRITE_IMAGE_URL = "/images/photo.png";
     private static final String USER_SPRITE_TYPE = "UserSprite";
     private static final String SPRITE_DESCRIPTION = "A sprite";
-    
-    
-    //Enemy Parameters 
+
+    // Enemy Parameters
     private static final String ENEMY_IMAGE_URL = "/GitDepends/Images/rat.png";
     private static final String ENEMY_SPRITE_DESCR = "An enemy sprite";
     private static final String ENEMY_SPRITE_TYPE = "EnemySprite";
+    private static final int ENEMY_INITIAL_X = 100;
+    private static final int ENEMY_INITIAL_Y = 100;
 
     // Other Parameters
     private static final int SPRITE_INITIAL_X = 10;
@@ -54,20 +53,38 @@ public class Launcher extends Application {
 
     private static final String BACKGROUND_URL = "/images/pvz.jpg";
 
-    private IOInterpeter myIO;
-    private Pane myPane;
-    private Stage myStage;
+    
+    
     private Game myGame;
-    private Scene myScene;
+
 
     public static void main (String[] args) {
         launch(args);
     }
 
+    private void addConditionsToTest (Game game) {
+        
+    }
+    
+    private void createCollisionCondition(){
+        //OnCollisionCondition collision = new On
+    }
+    
+    private void createUserSpriteEventPackage(){
+        
+    }
+    
+    private void createEnemyEventPackage(){
+        
+    }
+    private void addSpritesToGame (Game game) {
+        game.bufferedAdd(createEnemySpriteDefinition(ENEMY_INITIAL_X, ENEMY_INITIAL_Y).create());
+        game.bufferedAdd(createUserSpriteDefinition(SPRITE_INITIAL_X, SPRITE_INITIAL_Y).create());
+    }
+
     @Override
     public void start (Stage primaryStage) throws Exception {
-        
-        
+
         Level firstLevel = new Level();
         firstLevel.setBackgroundImage(new ImageGraphic(PANE_WIDTH, PANE_HEIGHT, BACKGROUND_URL));
         LevelManager lm = new LevelManager();
@@ -75,9 +92,8 @@ public class Launcher extends Application {
 
         myGame = new Game();
         myGame.getLevelManager().getLevels().add(firstLevel);
-        myGame.bufferedAdd(createEnemySpriteDefinition(50, 50).create());
-        addUserControlledSprite(myGame, 1);
-        
+        addSpritesToGame(myGame);
+        addConditionsToTest(myGame);
         GamePlayer gp = new GamePlayer(myGame);
         gp.play();
 
@@ -94,7 +110,7 @@ public class Launcher extends Application {
     private SpriteDefinition createEnemySpriteDefinition (int xloc, int yloc) {
         SpriteDefinition enemyDefinition = new SpriteDefinition();
         enemyDefinition.setMovementDefinition(getStationaryDefintion());
-        enemyDefinition.setProfile(enemySpriteProfile ());
+        enemyDefinition.setProfile(enemySpriteProfile());
         enemyDefinition.setLocation(createLocationDefinition(xloc, yloc));
         enemyDefinition.addAttribute(createHealthAttributeDefinition());
         return enemyDefinition;
@@ -107,7 +123,8 @@ public class Launcher extends Application {
     }
 
     private Profile enemySpriteProfile () {
-        return new Profile(ENEMY_SPRITE_TYPE, ENEMY_SPRITE_DESCR, new ImageGraphic(SPRITE_HEIGHT, SPRITE_WIDTH, ENEMY_IMAGE_URL));
+        return new Profile(ENEMY_SPRITE_TYPE, ENEMY_SPRITE_DESCR,
+                           new ImageGraphic(SPRITE_HEIGHT, SPRITE_WIDTH, ENEMY_IMAGE_URL));
     }
 
     private SpriteDefinition createUserSpriteDefinition (int xloc, int yloc) {

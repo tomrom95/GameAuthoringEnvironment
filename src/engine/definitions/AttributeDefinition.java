@@ -20,6 +20,7 @@ public class AttributeDefinition implements IProfilable {
     private String myType;
     private double myStartingValue;
     private IProfile myProfile;
+    private boolean isGlobal;
 
     /**
      * Constructor initialized with defaults
@@ -38,13 +39,9 @@ public class AttributeDefinition implements IProfilable {
         myType = type;
     }
 
-
-
     public String getType () {
         return myType;
     }
-
-
 
     public double getStartingValue () {
         return myStartingValue;
@@ -62,6 +59,14 @@ public class AttributeDefinition implements IProfilable {
     @Override
     public void setProfile (IProfile profile) {
         myProfile = profile;
+    }
+
+    public boolean getIsGlobal () {
+        return isGlobal;
+    }
+
+    public void setIsGlobal (boolean global) {
+        isGlobal = global;
     }
 
 }
