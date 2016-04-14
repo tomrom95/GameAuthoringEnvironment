@@ -28,9 +28,7 @@ public class AuthoringRenderer extends LevelRenderer{
     }
 
     @Override
-    void drawSprites () {
-        //myLevel.getSprites().forEach(sprite -> createOnScreenSprite(sprite));
-        
+    void drawSprites () {        
         List<Node> currentEngineConvertedNodeList = getAndUpdateEngineNodeList();
         removeScreenNodesNotInEngine(currentEngineConvertedNodeList);
         updateExistingNodeLocations();
