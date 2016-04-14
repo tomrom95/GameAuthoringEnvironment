@@ -35,8 +35,8 @@ public class AuthoringView implements IAuthoringView {
     private ConditionView myConditionView;
     private GridPane myLayout;
     private Game myGame;
-    public static final int WIDTH = 1000;
-    public static final int HEIGHT = 650;
+    public static final int WIDTH = 1200;
+    public static final int HEIGHT = 800;
     public static final String STYLESHEET = "custom.css";
     public static final String DEFAULT_RESOURCE_PACKAGE = "resource/";
     public static final String DEFAULT_ENTRYVIEW = "defaultTextEntry";

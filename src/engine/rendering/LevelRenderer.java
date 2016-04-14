@@ -15,23 +15,17 @@ import util.Coordinate;
 public abstract class LevelRenderer implements IRenderer {
     private static final int MAX_HEIGHT = 400;
     private static final int MAX_WIDTH = 800;
-    private boolean firstTime;
 
     private Pane myPane;
 
     public LevelRenderer (Pane pane) {
         myPane = pane;
-        firstTime = true;
     }
 
     @Override
     public void render () {
-        if (firstTime) {
-            drawBackground(getBackgroundURL());
-            firstTime = false;
-        }
+        drawBackground(getBackgroundURL());
         drawSprites();
-
     }
 
     public Pane getPane () {
