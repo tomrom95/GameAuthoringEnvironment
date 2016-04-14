@@ -8,6 +8,9 @@ import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.shareddata.IDefinitionCollection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -54,8 +57,14 @@ public class ObjectCreationView<E extends IProfilable> implements IObjectCreatio
     public void init (List<ISubFormView> subFormViews) {
         this.myFormView = new FormView(subFormViews);
 
+        myCreationPane.setAlignment(Pos.TOP_LEFT);
+        GridPane.setValignment(myObjectListView.draw(), VPos.TOP);
+        
         myCreationPane.add(myObjectListView.draw(), 0, 0);
         myCreationPane.add(myFormView.draw(), 1, 0);
+        
+        myCreationPane.getStyleClass().add("myCreationView");
+
     }
 
     @Override

@@ -135,6 +135,7 @@ public abstract class CreationController<T extends IProfilable> {
      */
     private void deleteItem () {
         getMyItems().remove(getMyCurrentItem());
+        showAndEdit(getMyCurrentItem());
     }
 
     /**
