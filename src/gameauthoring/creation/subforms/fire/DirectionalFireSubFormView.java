@@ -6,6 +6,7 @@ import java.util.List;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.creation.subforms.SubFormView;
+import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
@@ -25,15 +26,17 @@ public class DirectionalFireSubFormView extends SubFormView {
     private String myWaitTimeKey = "Wait Time: ";
     private String myProjectileKey = "Projectile: ";
 
-    private IEntryView myAngle = new TextEntryView(myAngleKey, this.getData(), 20, 150, 30);
-    private IEntryView myWaitTime = new TextEntryView(myWaitTimeKey, this.getData(), 20, 150, 30);
-//    private IEntryView myProjectile =
-//            new TextEntryView(myProjectileKey, this.getData(), 20, 150, 30);
+    private IEntryView myAngle =
+            new TextEntryView(myAngleKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView myWaitTime =
+            new TextEntryView(myWaitTimeKey, this.getData(), 150, 30,
+                              AuthoringView.DEFAULT_ENTRYVIEW);
+    // private IEntryView myProjectile =
+    // new TextEntryView(myProjectileKey, this.getData(), 20, 150, 30);
 
     private List<IEntryView> myEntryViews =
-//            new ArrayList<IEntryView>(Arrays.asList(myAngle, myWaitTime, myProjectile));
-    new ArrayList<IEntryView>(Arrays.asList(myAngle, myWaitTime));
-
+            // new ArrayList<IEntryView>(Arrays.asList(myAngle, myWaitTime, myProjectile));
+            new ArrayList<IEntryView>(Arrays.asList(myAngle, myWaitTime));
 
     public DirectionalFireSubFormView () {
         initView();
@@ -49,7 +52,7 @@ public class DirectionalFireSubFormView extends SubFormView {
         myPane.setGridLinesVisible(true);
         myPane.add(myAngle.draw(), 0, 0);
         myPane.add(myWaitTime.draw(), 0, 1);
-//        myPane.add(myProjectile.draw(), 1, 0);
+        // myPane.add(myProjectile.draw(), 1, 0);
     }
 
     public String getMyProjectileKey () {
