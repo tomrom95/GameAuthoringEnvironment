@@ -177,7 +177,7 @@ public class DemoLauncher extends Application {
         DefinitionCollection<SpriteDefinition> dc = new DefinitionCollection<>("Towers");
         
         SpriteDefinition sd1 = new SpriteDefinition();
-        ImageGraphic plantImage = new ImageGraphic(50, 50, "/images/plant.jpg");
+        ImageGraphic plantImage = new ImageGraphic(50, 50, "/images/plant.png");
         sd1.setProfile(new Profile("Tower 1", "Plant", plantImage));
         sd1.setMovementDefinition(getStaticMover());
         
