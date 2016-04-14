@@ -176,6 +176,12 @@ public class Sprite extends DefaultAffectable implements ISprite {
         myMover.setPath(path);
         
     }
+
+    @Override
+    public List<Coordinate> getPath () {
+        
+        return myMover.getPath();
+    }
     
     
 

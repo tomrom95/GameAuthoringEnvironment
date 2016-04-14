@@ -64,13 +64,17 @@ public class DemoLauncher extends Application {
         ISprite spawner = s.create();
         List<Coordinate> path = new ArrayList<>();
         path.add(new Coordinate(200, 200));
+        path.add(new Coordinate(400, 400));
+        path.add(new Coordinate(200, 200));
         spawner.setPath(path);
         return spawner;
     }
 
     private SpriteDefinition createPathMover () {
         SpriteDefinition sd1 = new SpriteDefinition();
-        sd1.setMovementDefinition(new PathMoverDefinition());
+        PathMoverDefinition mover = new PathMoverDefinition();
+        mover.setSpeed(.1);
+        sd1.setMovementDefinition(mover);
         return sd1;
     }
 
@@ -103,7 +107,7 @@ public class DemoLauncher extends Application {
         
         dc.addItem(sd1);
         dc.addItem(sd2);
-        //game.add(sd3);
+        game.add(sd3, new Coordinate (50, 50));
         game.getAuthorshipData()
                 .addCreatedSprites(dc);
     }

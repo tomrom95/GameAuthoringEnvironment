@@ -27,6 +27,7 @@ public class SpawningModule extends DefaultAffectable implements IModule {
     public void update (TimeDuration duration) {
         if (myWave.hasNext()) {
             ISprite spawn = myWave.getNextSprite();
+            spawn.setPath(myParent.getPath());
             myAdder.bufferedAdd(spawn, myParent.getLocation());
         }
     }

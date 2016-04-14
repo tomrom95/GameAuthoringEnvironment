@@ -24,28 +24,26 @@ public class PathMover extends Mover {
     public static final int PIXEL_RANGE = 5;
 
     private IAttribute mySpeed;
-    private List<Coordinate> myPoints;
     private int myNextDestination;
-    private List<Coordinate> myPath;
 
     public PathMover (double speed,
                       List<Coordinate> points,
                       IPositionable positionable) {
         super(positionable);
         mySpeed = new Attribute(speed, AttributeType.SPEED);
-        myPoints = points;
+        setPath(points);
         myNextDestination = 0;
-        myPath = getPath();
+       
     }
 
     @Override
     public void update (TimeDuration duration) {
        
-        if (myPoints.size() == 0) {
+        if (getPath().size() == 0) {
             return;
         }
         if (overshootNext(duration)) {
-            move(myPoints.get(myNextDestination));
+            move(getPath().get(myNextDestination));
             incrementIndex();
         }
         else {
@@ -69,15 +67,15 @@ public class PathMover extends Mover {
     }
 
     private double xDifference () {
-        return getXDiff(myPoints.get(myNextDestination).getX());
+        return getXDiff(getPath().get(myNextDestination).getX());
     }
 
     private double yDifference () {
-        return getYDiff(myPoints.get(myNextDestination).getY());
+        return getYDiff(getPath().get(myNextDestination).getY());
     }
 
     private void incrementIndex () {
-        if (myNextDestination < myPoints.size() - 1) {
+        if (myNextDestination < getPath().size() - 1) {
             myNextDestination++;
         }
     }
@@ -120,14 +118,7 @@ public class PathMover extends Mover {
         return input * input;
     }
     
-    public void setPath(List<Coordinate> newPath) {
-        myPath = newPath;
-    }
     
-    public List<Coordinate> getPath() {
-        return myPath;
-    }
-
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
         // do nothing
