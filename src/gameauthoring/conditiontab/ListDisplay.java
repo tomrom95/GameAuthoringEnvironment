@@ -1,7 +1,7 @@
 package gameauthoring.conditiontab;
 
 import engine.profile.IProfilable;
-import gameauthoring.ProfileCellView;
+import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.util.Glyph;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;

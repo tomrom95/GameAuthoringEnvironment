@@ -3,7 +3,7 @@ package gameauthoring.creation.subforms.events;
 import java.util.ArrayList;
 import java.util.Arrays;
 import engine.definitions.AttributeDefinition;
-import gameauthoring.ProfileCellView;
+import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.creation.subforms.SubFormView;
