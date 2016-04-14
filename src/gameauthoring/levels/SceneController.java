@@ -36,7 +36,6 @@ public class SceneController {
 
     public void addSprite (double x, double y, SpriteDefinition spriteDefinition) {
         myLevel.add(spriteDefinition.create(), new Coordinate(x, y));
-        System.out.println("my level should have : " + myLevel.getSprites().size());
     }
     
 }
