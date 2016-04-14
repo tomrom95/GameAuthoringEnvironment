@@ -31,12 +31,12 @@ public class SceneController {
     
     public void setBackground(String imageURL) {
         ImageGraphic background = new ImageGraphic(0, 0, imageURL);
-        System.out.println("Here");
         myLevel.setBackgroundImage(background);
     }
 
     public void addSprite (double x, double y, SpriteDefinition spriteDefinition) {
         myLevel.add(spriteDefinition.create(), new Coordinate(x, y));
+        System.out.println("my level should have : " + myLevel.getSprites().size());
     }
     
 }

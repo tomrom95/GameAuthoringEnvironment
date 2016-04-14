@@ -25,10 +25,8 @@ public class SpawningModule extends DefaultAffectable implements IModule {
 
     @Override
     public void update (TimeDuration duration) {
-
         if (myWave.hasNext()) {
-            
-            myAdder.add(myWave.getNextSprite(), myParent.getLocation());
+            myAdder.bufferedAdd(myWave.getNextSprite(), myParent.getLocation());
         }
     }
 

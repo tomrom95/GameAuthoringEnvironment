@@ -44,11 +44,6 @@ public class OnScreenSprite implements Draggable, Glyph {
     }
 
     @Override
-    public void update () {
-
-    }
-
-    @Override
     public void setOnDragDetected (MouseEvent e, Node source) {
         Dragboard db = source.startDragAndDrop(TransferMode.COPY);
         db.setContent(this.createClipboard(MOVE_STRING));

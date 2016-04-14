@@ -32,8 +32,8 @@ public class LevelManager implements ILevelManager {
     }
 
     @Override
-    public void add (ISprite sprite, Coordinate coordinate) {
-        myCurrentLevel.add(sprite, coordinate);
+    public void bufferedAdd (ISprite sprite, Coordinate coordinate) {
+        myCurrentLevel.bufferedAdd(sprite, coordinate);
     }
 
     @Override
@@ -94,8 +94,8 @@ public class LevelManager implements ILevelManager {
     }
 
     @Override
-    public void add (ISprite sprite) {
-        myCurrentLevel.add(sprite);
+    public void bufferedAdd (ISprite sprite) {
+        myCurrentLevel.bufferedAdd(sprite);
     }
 
 }

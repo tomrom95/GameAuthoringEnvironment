@@ -61,9 +61,4 @@ public class SideBarDisplay implements Glyph {
         list.setCellFactory(c -> new DraggableSpriteCell(levelView, myController));
         return list;
     }
-
-    @Override
-    public void update () {
-    }
-
 }

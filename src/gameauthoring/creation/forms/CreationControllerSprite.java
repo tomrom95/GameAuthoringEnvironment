@@ -2,6 +2,7 @@ package gameauthoring.creation.forms;
 
 import java.util.List;
 import engine.AuthorshipData;
+import engine.Game;
 import engine.definitions.SpriteDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
 
@@ -16,8 +17,8 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
 
     public CreationControllerSprite (String title,
                                      List<String> subFormStrings,
-                                     AuthorshipData authorshipData) {
-        super(title, subFormStrings, authorshipData);
+                                     Game game) {
+        super(title, subFormStrings, game);
         // TODO: Change back to this to fix casting issue
         // setMySubFormControllers(getMySFCFactory().createSpriteSubFormControllers(subFormStrings));
 

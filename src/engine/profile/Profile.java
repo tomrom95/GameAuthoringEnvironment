@@ -15,13 +15,24 @@ import javafx.beans.property.StringProperty;
  */
 public class Profile implements IProfile {
 
+    private String DEFAULT_IMAGE_NAME = "images/Square.png";
+
     private StringProperty myName;
     private StringProperty myDescription;
     private SimpleObjectProperty<ImageGraphic> myImage;
 
     public Profile () {
-        init("", "", new ImageGraphic(0, 0, "images/Square.png"));
+        init("", "", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
     }
+
+    public Profile (String name) {
+        init(name, "", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+    }
+
+    public Profile (String name, String description) {
+        init(name, description, new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+    }
+
     public Profile (String name, String description, String url) {
         init(name, description, new ImageGraphic(0, 0, url));
     }
@@ -51,14 +62,15 @@ public class Profile implements IProfile {
     public SimpleObjectProperty<? extends IGraphic> getImage () {
         return myImage;
     }
-    
+
     @Override
     public String getImageURL () {
         return myImage.get().getUrlProperty().get();
     }
+
     @Override
     public void setNew (String name, String desc, String url) {
-        myImage.set(new ImageGraphic(0,0,url));
+        myImage.set(new ImageGraphic(0, 0, url));
         myDescription.set(desc);
         myName.set(name);
     }
