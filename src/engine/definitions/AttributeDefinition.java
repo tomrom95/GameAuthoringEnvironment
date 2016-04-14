@@ -18,7 +18,6 @@ import engine.profile.Profile;
 public class AttributeDefinition implements IProfilable {
 
     private String myType;
-    private boolean myIsGlobal;
     private double myStartingValue;
     private IProfile myProfile;
 
@@ -27,7 +26,6 @@ public class AttributeDefinition implements IProfilable {
      */
     public AttributeDefinition () {
         myType = "";
-        myIsGlobal = false;
         myStartingValue = 0;
         myProfile = new Profile();
     }
@@ -40,17 +38,13 @@ public class AttributeDefinition implements IProfilable {
         myType = type;
     }
 
-    public void setIsGlobal (boolean bool) {
-        myIsGlobal = bool;
-    }
+
 
     public String getType () {
         return myType;
     }
 
-    public boolean getIsGlobal () {
-        return myIsGlobal;
-    }
+
 
     public double getStartingValue () {
         return myStartingValue;

@@ -1,48 +1,52 @@
 package testing;
 
-import engine.ConditionManager;
+import java.nio.file.Paths;
 import engine.Game;
-import engine.GameInformation;
 import engine.IOInterpeter;
 import engine.Level;
 import engine.LevelManager;
+import engine.definitions.AttributeDefinition;
 import engine.definitions.KeyControlDefinition;
 import engine.definitions.LocationDefinition;
+import engine.definitions.MovementDefinition;
 import engine.definitions.SpriteDefinition;
+import engine.definitions.StaticMoverDefinition;
 import engine.definitions.UserMoverDefinition;
 import engine.profile.Profile;
-import engine.rendering.InGameRenderer;
-import engine.sprite.ISprite;
-import engine.sprite.SpriteType;
-import gameplayer.GameEngine;
 import gameplayer.GamePlayer;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import graphics.ImageGraphic;
-import util.TimeDuration;
+
 
 
 public class Launcher extends Application {
-
+ 
+    //Health attribute properties
+    private static final double HEALTH_START_VAL = 100d;
+    private static final String HEALTH_IMAGE_URL = "/GitDepends/Images/Health_pictogram.png";
+    private static final String HEALTH_DESCRIPTION = "Health attribute";
+    private static final String HEALTH_ATTY_TYPE = "Health";
     // Global Parameters
     private static final double FPS_TARGET = 30;
-    private static final Duration FRAME_DURATION = Duration.seconds(1d / FPS_TARGET);
     private static final double PANE_WIDTH = 1200;
     private static final double PANE_HEIGHT = 800;
 
     // Sprite Parameters
     private static final double SPRITE_MOVEMENT_SPEED = 0.3;
-    private static final double SPRITE_HEIGHT = 10;
-    private static final double SPRITE_WIDTH = 10;
+    private static final double SPRITE_HEIGHT = 50;
+    private static final double SPRITE_WIDTH = 50;
     private static final String SPRITE_IMAGE_URL = "/images/photo.png";
     private static final String USER_SPRITE_TYPE = "UserSprite";
     private static final String SPRITE_DESCRIPTION = "A sprite";
+    
+    
+    //Enemy Parameters 
+    private static final String ENEMY_IMAGE_URL = "/GitDepends/Images/rat.png";
+    private static final String ENEMY_SPRITE_DESCR = "An enemy sprite";
+    private static final String ENEMY_SPRITE_TYPE = "EnemySprite";
 
     // Other Parameters
     private static final int SPRITE_INITIAL_X = 10;
@@ -60,56 +64,75 @@ public class Launcher extends Application {
         launch(args);
     }
 
-    private void initJavaFXElements () {
-        myStage = new Stage();
-        myPane = new Pane();
-        myPane.setStyle("-fx-background-color: blue;");
-        myScene = new Scene(myPane);
-        myPane.setPrefSize(PANE_WIDTH, PANE_HEIGHT);
-    }
-
     @Override
     public void start (Stage primaryStage) throws Exception {
-        //initJavaFXElements();
-       // myIO = new IOInterpeter(myScene, myPane);
-
+        
         
         Level firstLevel = new Level();
         firstLevel.setBackgroundImage(new ImageGraphic(PANE_WIDTH, PANE_HEIGHT, BACKGROUND_URL));
-
-
-        
         LevelManager lm = new LevelManager();
         lm.createNewLevel(firstLevel);
-        ConditionManager cm = new ConditionManager();
-        GameInformation gi = new GameInformation("Oui", "Non", "Vrai");
-        
+
         myGame = new Game();
         myGame.getLevelManager().getLevels().add(firstLevel);
-        
-        for(int j = 0; j<30; j++){
-            for(int i = 0; i<30; i++){
-                myGame.bufferedAdd(createUserSpriteDefinition(i*10, j*10).create());
-                //.add(createUserSpriteDefinition(i*10, j*10).create());
-            }
-        }
+        myGame.bufferedAdd(createEnemySpriteDefinition(50, 50).create());
+        addUserControlledSprite(myGame, 1);
         
         GamePlayer gp = new GamePlayer(myGame);
         gp.play();
 
     }
 
+    private void addUserControlledSprite (Game game, int numToAdd) {
+        for (int i = 0; i < numToAdd; i++) {
+            myGame.bufferedAdd(createUserSpriteDefinition(i * 10, 10).create());
+
+        }
+
+    }
+
+    private SpriteDefinition createEnemySpriteDefinition (int xloc, int yloc) {
+        SpriteDefinition enemyDefinition = new SpriteDefinition();
+        enemyDefinition.setMovementDefinition(getStationaryDefintion());
+        enemyDefinition.setProfile(enemySpriteProfile ());
+        enemyDefinition.setLocation(createLocationDefinition(xloc, yloc));
+        enemyDefinition.addAttribute(createHealthAttributeDefinition());
+        return enemyDefinition;
+    }
+
+    private MovementDefinition getStationaryDefintion () {
+        MovementDefinition myStationary = new StaticMoverDefinition();
+        myStationary.setSpeed(0);
+        return myStationary;
+    }
+
+    private Profile enemySpriteProfile () {
+        return new Profile(ENEMY_SPRITE_TYPE, ENEMY_SPRITE_DESCR, new ImageGraphic(SPRITE_HEIGHT, SPRITE_WIDTH, ENEMY_IMAGE_URL));
+    }
+
     private SpriteDefinition createUserSpriteDefinition (int xloc, int yloc) {
         SpriteDefinition mySpriteDefinition = new SpriteDefinition();
-        //mySpriteDefinition.set
-        //mySpriteDefinition.setGraphic(new ImageGraphic(SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_IMAGE_URL));
         mySpriteDefinition.setMovementDefinition(getUserControlledDefinition());
         mySpriteDefinition.setProfile(userSpriteProfile());
-        mySpriteDefinition.setLocation(createUserLocationDefinition(xloc, yloc));
+        mySpriteDefinition.setLocation(createLocationDefinition(xloc, yloc));
+        mySpriteDefinition.addAttribute(createHealthAttributeDefinition());
         return mySpriteDefinition;
     }
 
-    private LocationDefinition createUserLocationDefinition (int xloc, int yloc) {
+    private AttributeDefinition createHealthAttributeDefinition () {
+        AttributeDefinition myDef = new AttributeDefinition();
+        myDef.setProfile(healthAttyProfile());
+        myDef.setType(healthAttyProfile().getName().get());
+        myDef.setStartingValue(HEALTH_START_VAL);
+        return myDef;
+    }
+
+    private Profile healthAttyProfile () {
+        return new Profile(HEALTH_ATTY_TYPE, HEALTH_DESCRIPTION,
+                           new ImageGraphic(15, 15, HEALTH_IMAGE_URL));
+    }
+
+    private LocationDefinition createLocationDefinition (int xloc, int yloc) {
         LocationDefinition myLocDef = new LocationDefinition();
         myLocDef.setX(xloc);
         myLocDef.setY(yloc);
@@ -135,10 +158,6 @@ public class Launcher extends Application {
         definition.setUp("Up");
         definition.setLeft("Left");
         definition.setRight("Right");
-    }
-
-    private SpriteType createSpriteType () {
-        return new SpriteType("Test");
     }
 
 }

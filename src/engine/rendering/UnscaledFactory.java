@@ -27,7 +27,9 @@ public class UnscaledFactory extends GraphicFactory {
     @Override
     public Node getVisual (ImageGraphic imageGraphic) {
         ImageView imageView = super.getImageView(imageGraphic);
-        imageView.resize(imageGraphic.getWidth().get(), imageGraphic.getHeight().get());
+        imageView.setFitWidth(imageGraphic.getWidth().get());
+        imageView.setFitHeight(imageGraphic.getHeight().get());
+        //imageView.resize(imageGraphic.getWidth().get(), imageGraphic.getHeight().get());
         return imageView;
     }
 }
