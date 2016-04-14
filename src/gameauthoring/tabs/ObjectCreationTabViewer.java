@@ -27,7 +27,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private TabPane myTabPane;
 
-    private AuthorshipData myAuthorshipData;
+    private Game myGame;
 
     private List<CreationController<?>> myCCs;
     private List<IObjectCreationView<?>> myCVs;
@@ -38,7 +38,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
     }
 
     public ObjectCreationTabViewer (Game game) {
-        myAuthorshipData = game.getAuthorshipData();
+        myGame = game;
         initializeLists();
         init();
     }
@@ -61,21 +61,21 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         CreationController<?> ccAttributes =
                 ccFactory.createAttributeCreationController("Attribute", myAttributeSFCs,
-                                                            myAuthorshipData);
+                                                            myGame);
         CreationController<?> ccMissiles =
                 ccFactory.createSpriteCreationController("Missiles", myMissileSFCs,
-                                                         myAuthorshipData);
+                                                         myGame);
         CreationController<?> ccEnemies =
                 ccFactory.createSpriteCreationController("Enemies", myEnemySFCs,
-                                                         myAuthorshipData);
+                                                         myGame);
         CreationController<?> ccDefenders =
                 ccFactory.createSpriteCreationController("Defender", myDefenderSFCs,
-                                                         myAuthorshipData);
+                                                         myGame);
         CreationController<?> ccEvents =
-                ccFactory.createEventCreationController("Events", myEventSFCs, myAuthorshipData);
+                ccFactory.createEventCreationController("Events", myEventSFCs, myGame);
 
         CreationController<?> ccGroups =
-                ccFactory.createGroupCC("Groups", myGroupSFCs, myAuthorshipData);
+                ccFactory.createGroupCC("Groups", myGroupSFCs, myGame);
 
         myCCs = new ArrayList<CreationController<?>>();
 

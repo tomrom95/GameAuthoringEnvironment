@@ -3,8 +3,12 @@ package gameauthoring.creation.subforms;
 import java.util.ArrayList;
 import java.util.List;
 import engine.AuthorshipData;
+import engine.Game;
+import engine.IGame;
 import engine.profile.IProfilable;
+import gameauthoring.creation.subforms.fire.DirectionalFireSubFormController;
 import gameauthoring.creation.subforms.fire.FiringSubFormController;
+import gameauthoring.creation.subforms.fire.TrackingFireSubFormController;
 import gameauthoring.creation.subforms.movement.MovementSubFormController;
 import gameauthoring.creation.subforms.movement.SmartAIMovementSubFormController;
 import gameauthoring.creation.subforms.movement.UserMoverSubFormController;
@@ -12,10 +16,11 @@ import gameauthoring.creation.subforms.movement.UserMoverSubFormController;
 
 public class SubFormControllerFactory {
 
-    private AuthorshipData myAuthorshipData;
+    private IGame myGame;
 
-    public SubFormControllerFactory (AuthorshipData authorshipData) {
-        myAuthorshipData = authorshipData;
+    public SubFormControllerFactory (Game game) {
+
+        myGame = game;
     }
 
     // general
@@ -64,7 +69,13 @@ public class SubFormControllerFactory {
             return new SelectSpriteSFC(getMyAuthorshipData().getMyCreatedSprites());
         }
         else if (type.equals("Firing")) {
-            return new FiringSubFormController();
+            return new FiringSubFormController(myGame);
+        }
+        else if (type.equals("DirectionalFire")) {
+            return new DirectionalFireSubFormController(getMyGame());
+        }
+        else if (type.equals("TrackingFire")) {
+            return new TrackingFireSubFormController(getMyGame());
         }
         System.out.println("null");
 
@@ -104,7 +115,13 @@ public class SubFormControllerFactory {
                     .getMyCreatedAttributes());
         }
         else if (type.equals("Firing")) {
-            return new FiringSubFormController();
+            return new FiringSubFormController(myGame);
+        }
+        else if (type.equals("DirectionalFire")) {
+            return new DirectionalFireSubFormController(getMyGame());
+        }
+        else if (type.equals("TrackingFire")) {
+            return new TrackingFireSubFormController(getMyGame());
         }
         System.out.println("null");
 
@@ -129,8 +146,12 @@ public class SubFormControllerFactory {
         // return new AttributeSubFormController();
     }
 
+    private IGame getMyGame () {
+        return myGame;
+    }
+
     public AuthorshipData getMyAuthorshipData () {
-        return myAuthorshipData;
+        return getMyGame().getAuthorshipData();
     }
 
     public ProfileSubFormController<IProfilable> createProfileSFC () {
