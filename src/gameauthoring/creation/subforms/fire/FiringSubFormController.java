@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import engine.IGame;
 import engine.definitions.SpriteDefinition;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
@@ -22,8 +23,10 @@ public class FiringSubFormController implements ISubFormControllerSprite {
     private ObservableList<ISubFormView> mySubFormViews;
     private List<ISubFormController<SpriteDefinition>> mySubFormControllers;
     private ISubFormController<SpriteDefinition> myCurrentMovementController;
+    private IGame myGame;
 
-    public FiringSubFormController () {
+    public FiringSubFormController (IGame game) {
+        myGame = game;
         setUpSubFormControllers();
         setUpSubFormViews(mySubFormControllers);
         this.myView = new FiringSubFormView(mySubFormViews, e -> changeMovement(e));
@@ -32,11 +35,12 @@ public class FiringSubFormController implements ISubFormControllerSprite {
     private void setUpSubFormControllers () {
         // TOOD: add to factory
         // TODO: add game to constructor
-        DirectionalFireSubFormController dfSFC = new DirectionalFireSubFormController(null);
-        TrackingFireSubFormController tfSFC = new TrackingFireSubFormController(null);
+        DirectionalFireSubFormController dfSFC = new DirectionalFireSubFormController(myGame);
+        TrackingFireSubFormController tfSFC = new TrackingFireSubFormController(myGame);
         mySubFormControllers = new ArrayList<>();
         mySubFormControllers.addAll(Arrays
                 .asList(dfSFC, tfSFC));
+        
         myCurrentMovementController = mySubFormControllers.get(0);
 
     }
