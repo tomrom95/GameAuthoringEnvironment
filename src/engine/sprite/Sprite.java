@@ -65,6 +65,7 @@ public class Sprite extends DefaultAffectable implements ISprite {
         myGraphic = graphicModule;
         myOtherModules = otherModules;
         myLocation = coord;
+        myAttributeManager.getAttributes().addAll(attributes);
     }
 
     @Override
