@@ -26,7 +26,7 @@ public class EnemyTracker {
      * @return the closest sprite
      */
     private ISprite getClosestEnemy (List<ISprite> enemies, Coordinate myLocation) {
-        final Comparator<ISprite> closer =
+        Comparator<ISprite> closer =
                 (e1, e2) -> Double.compare(calculateDistance(myLocation, e1.getLocation()),
                                            calculateDistance(myLocation, e2.getLocation()));
         return enemies.stream().min(closer).get();

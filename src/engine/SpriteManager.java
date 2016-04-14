@@ -87,6 +87,7 @@ public class SpriteManager implements ISpriteManager {
 
     @Override
     public void bufferedAdd (ISprite sprite) {
+       
         myBufferList.add(sprite);
     }
 

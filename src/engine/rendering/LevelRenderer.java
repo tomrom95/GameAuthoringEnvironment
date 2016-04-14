@@ -14,7 +14,7 @@ import util.Coordinate;
 
 public abstract class LevelRenderer implements IRenderer {
     private static final int MAX_HEIGHT = 400;
-    private static final int MAX_WIDTH = 800;
+    private static final int MAX_WIDTH = 1150;
 
     private Pane myPane;
 

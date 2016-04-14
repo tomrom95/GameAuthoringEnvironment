@@ -49,8 +49,7 @@ public class ConstantMover extends Mover {
 
     @Override
     public void update (TimeDuration duration) {
-        // TODO Auto-generated method stub
-        
+        super.move(duration);
     }
 
     @Override
@@ -71,7 +70,6 @@ public class ConstantMover extends Mover {
         return null;
     }
 
-    @Override
     public double getAngle () {
         // TODO Auto-generated method stub
         return Math.atan(getYVel().getValueProperty().get() / getXVel().getValueProperty().get()) * 180 / Math.PI;

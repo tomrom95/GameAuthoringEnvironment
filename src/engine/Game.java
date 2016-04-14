@@ -40,6 +40,7 @@ public class Game implements IGame {
     public void update (TimeDuration duration) {
         myLevelManager.update(duration);
         myConditionManager.update(duration);
+        myAttributeManager.update(duration);
     }
 
     @Override
@@ -108,6 +109,7 @@ public class Game implements IGame {
     
     @Override
     public void bufferedAdd (ISprite sprite) {
+       
         myLevelManager.getCurrentLevel().bufferedAdd(sprite);
     }
 
