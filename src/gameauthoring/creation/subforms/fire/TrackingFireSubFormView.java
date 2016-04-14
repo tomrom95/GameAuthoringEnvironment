@@ -6,6 +6,7 @@ import java.util.List;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.creation.subforms.SubFormView;
+import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
@@ -25,13 +26,17 @@ public class TrackingFireSubFormView extends SubFormView {
     private String myProjectileKey = "Projectile: ";
     private String myTargetsKey = "Targets: ";
 
-    private IEntryView myWaitTime = new TextEntryView(myWaitTimeKey, this.getData(), 20, 150, 30);
-//    private IEntryView myProjectile =
-//            new TextEntryView(myProjectileKey, this.getData(), 20, 150, 30);
-    private IEntryView myTargets = new TextEntryView(myTargetsKey, this.getData(), 20, 150, 30);
+    private IEntryView myWaitTime =
+            new TextEntryView(myWaitTimeKey, this.getData(), 150, 30,
+                              AuthoringView.DEFAULT_ENTRYVIEW);
+    // private IEntryView myProjectile =
+    // new TextEntryView(myProjectileKey, this.getData(), 20, 150, 30);
+    private IEntryView myTargets =
+            new TextEntryView(myTargetsKey, this.getData(), 150, 30,
+                              AuthoringView.DEFAULT_ENTRYVIEW);
     private List<IEntryView> myEntryViews =
-//            new ArrayList<IEntryView>(Arrays.asList(myWaitTime, myProjectile, myTargets));
-    new ArrayList<IEntryView>(Arrays.asList(myWaitTime, myTargets));
+            // new ArrayList<IEntryView>(Arrays.asList(myWaitTime, myProjectile, myTargets));
+            new ArrayList<IEntryView>(Arrays.asList(myWaitTime, myTargets));
 
     public TrackingFireSubFormView () {
         initView();
@@ -47,7 +52,7 @@ public class TrackingFireSubFormView extends SubFormView {
         super.setMyEntryViews(myEntryViews);
         myPane.setGridLinesVisible(true);
         myPane.add(myWaitTime.draw(), 0, 0);
-//        myPane.add(myProjectile.draw(), 0, 1);
+        // myPane.add(myProjectile.draw(), 0, 1);
         myPane.add(myTargets.draw(), 1, 0);
     }
 
