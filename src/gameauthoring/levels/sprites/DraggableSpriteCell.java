@@ -13,24 +13,26 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 
+
 /**
  * ListView ListCell that allows for dragging of sprites to the screen. Is used by both
  * the authoring environment and the engine for dragging new sprites onto the screen. Eventually
  * this will be extended for the engine to incorporate costs
+ * 
  * @author Tommy
  *
  */
-public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> implements Draggable{
+public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> implements Draggable {
     private static final String DRAG_STRING = "Sprite";
 
     private LevelRenderer myTarget;
     private SceneController myController;
-    
+
     public DraggableSpriteCell (LevelRenderer target, SceneController controller) {
         myTarget = target;
         myController = controller;
     }
-   
+
     @Override
     protected Node createSpriteCell (SpriteDefinition profile) {
         Node node = super.createSpriteCell(profile);
@@ -42,19 +44,22 @@ public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> imple
     public void setOnDragDetected (MouseEvent e, Node node) {
         Dragboard db = node.startDragAndDrop(TransferMode.COPY);
         db.setContent(this.createClipboard(DRAG_STRING));
-        
+
         db.setDragView(getSpriteImage());
-        
+
         myTarget.getPane().setOnDragOver(event -> setOnDragOver(event));
         myTarget.getPane().setOnDragDropped(event -> setOnDragDropped(event));
     }
-    
+
     /**
      * Helper to get a the correct image from the sprite
+     * 
      * @return
      */
-    private Image getSpriteImage(){
-        Node spriteNode = getProfilable().getProfile().getImage().get().getVisualRepresentation(new UnscaledFactory());
+    private Image getSpriteImage () {
+        Node spriteNode =
+                getProfilable().getProfile().getImage().get()
+                        .getVisualRepresentation(new UnscaledFactory());
         return new UIFactory().getImageFromNode(spriteNode);
     }
 

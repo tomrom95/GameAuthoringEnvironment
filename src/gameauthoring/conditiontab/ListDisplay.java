@@ -36,5 +36,5 @@ public class ListDisplay<T extends IProfilable> implements Glyph {
 
     protected BorderPane getPane () {
         return myPane;
-   }
+    }
 }
