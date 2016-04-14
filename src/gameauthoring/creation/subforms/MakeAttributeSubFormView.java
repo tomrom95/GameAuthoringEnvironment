@@ -55,11 +55,4 @@ public class MakeAttributeSubFormView extends SubFormView {
     public Node draw () {
         return myPane;
     }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
-    }
-
 }

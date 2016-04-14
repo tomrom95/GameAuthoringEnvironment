@@ -59,11 +59,4 @@ public class SelectSpriteSFV extends SubFormView{
     public Node draw () {
         return myContainer;
     }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-        
-    }
-
 }

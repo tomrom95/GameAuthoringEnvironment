@@ -127,10 +127,4 @@ public class ObjectCreationTabViewer implements ITabViewer {
     public Node draw () {
         return myTabPane;
     }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-    }
-
 }

@@ -32,12 +32,6 @@ public class ObjectListView<E extends IProfilable> implements IObjectListView<E>
     }
 
     @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public void setEditAction (Consumer<E> action) {
         getMyListView().setOnMouseClicked(e -> handleEditCell(action));
 

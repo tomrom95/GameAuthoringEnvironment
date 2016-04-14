@@ -34,10 +34,4 @@ public class StaticMoverSubFormView extends SubFormView {
         super.setMyEntryViews(myEntryViews);
 
     }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-    }
-
 }
