@@ -8,6 +8,7 @@ import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.shareddata.IDefinitionCollection;
+import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
@@ -23,8 +24,8 @@ public class EffectSubFormView extends SubFormView{
         myAttribute.setItems(myCreatedAttributes.getItems());
         myAttribute.setCellFactory(c -> new ProfileCellView<AttributeDefinition>());
         myAttribute.setMaxHeight(50);
-        myLength = new TextEntryView("Length",this.getData(), 20, 150, 30);
-        myValue = new TextEntryView("Amount", this.getData(), 20, 150, 30);
+        myLength = new TextEntryView("Length",this.getData(),  150, 30,AuthoringView.DEFAULT_ENTRYVIEW);
+        myValue = new TextEntryView("Amount", this.getData(), 150, 30,AuthoringView.DEFAULT_ENTRYVIEW);
         super.setMyEntryViews( new ArrayList<IEntryView>(Arrays.asList(myLength, myValue)));
     }
     

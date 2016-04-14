@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.DoublePredicate;
 import engine.AttributeType;
 import engine.IGame;
-import engine.OnGlobalAttributeCondition;
+import engine.conditions.OnGlobalAttributeCondition;
 import engine.SpriteGroup;
 import engine.conditions.ICondition;
 import engine.definitions.EventPackageDefinition;

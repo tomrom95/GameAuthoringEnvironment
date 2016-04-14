@@ -16,25 +16,26 @@ import javafx.beans.property.StringProperty;
 public class Profile implements IProfile {
 
     private String DEFAULT_IMAGE_NAME = "images/Square.png";
+    private static final int DEFAULT_SIZE = 30;
 
     private StringProperty myName;
     private StringProperty myDescription;
     private SimpleObjectProperty<ImageGraphic> myImage;
 
     public Profile () {
-        init("", "", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+        init("<NAME>", "<DESCRIPTION>", new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
     }
 
     public Profile (String name) {
-        init(name, "", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+        init(name, "", new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
     }
 
     public Profile (String name, String description) {
-        init(name, description, new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+        init(name, description, new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
     }
 
     public Profile (String name, String description, String url) {
-        init(name, description, new ImageGraphic(0, 0, url));
+        init(name, description, new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, url));
     }
 
     public Profile (String name, String description, ImageGraphic graphic) {
@@ -70,7 +71,7 @@ public class Profile implements IProfile {
 
     @Override
     public void setNew (String name, String desc, String url) {
-        myImage.set(new ImageGraphic(0, 0, url));
+        myImage.set(new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, url));
         myDescription.set(desc);
         myName.set(name);
     }
