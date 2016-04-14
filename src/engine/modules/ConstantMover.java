@@ -49,7 +49,6 @@ public class ConstantMover extends Mover {
 
     @Override
     public void update (TimeDuration duration) {
-        // TODO Auto-generated method stub
         
     }
 

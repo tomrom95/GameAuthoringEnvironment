@@ -36,6 +36,7 @@ public class TrackingFirer extends Firer {
     private TimeDuration lastFire;
     private IGame myGame;
     private IPositionable mySprite;
+    private double timeSinceFire;
    
 
   
@@ -48,6 +49,7 @@ public class TrackingFirer extends Firer {
         lastFire = new TimeDuration(0);
         mySprite = sprite;
         myProjectile = projectile;
+        timeSinceFire = 0;
   
         
     }
@@ -61,18 +63,22 @@ public class TrackingFirer extends Firer {
         /*
          * 
          */
-        if((duration.getMillis() - lastFire.getMillis()) >= myWaitTime.getValueProperty().get()){
+//        if((duration.getMillis() - lastFire.getMillis()) >= myWaitTime.getValueProperty().get()){
+        timeSinceFire += duration.getMillis();
+        if(duration.getMillis() >= timeSinceFire){
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(), mySprite.getLocation().getY()));
             
             //access to the velocity of the sprite
             double initialXVel = myTracker.calculateXVelToClosestEnemy(bullet.getLocation(), getTargets(), myProjectile.getMovementDefinition().getSpeed()); 
             bullet.getMovementStrategy().setXVel(initialXVel);
+            
             double initialYVel = myTracker.calculateYVelToClosestEnemy(bullet.getLocation(), getTargets(), myProjectile.getMovementDefinition().getSpeed());
-            bullet.getMovementStrategy().setYVel(initialYVel);            
+            bullet.getMovementStrategy().setYVel(initialYVel); 
+            System.out.println("X Velocity: "+initialXVel+" Y Velocity: "+initialYVel);
             myGame.bufferedAdd(bullet);
             lastFire = new TimeDuration(duration.getMillis());
-            
+            timeSinceFire = 0; 
         } 
     }
 
