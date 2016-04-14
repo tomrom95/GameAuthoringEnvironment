@@ -11,6 +11,9 @@ import engine.Game;
 import engine.IAttribute;
 import engine.IGame;
 import engine.ILevel;
+import engine.ISpriteGroup;
+import engine.SpriteGroup;
+import engine.conditions.OnCollisionCondition;
 import engine.definitions.ConstantMoverDefinition;
 import engine.definitions.DirectionalFirerDefinition;
 import engine.definitions.KeyControlDefinition;
@@ -23,6 +26,11 @@ import engine.definitions.TrackingFirerDefinition;
 import engine.definitions.UserMoverDefinition;
 import engine.definitions.WaveDefinition;
 import engine.definitions.concrete.SpawnerDefinition;
+import engine.effects.DecreaseEffect;
+import engine.effects.IEffect;
+import engine.events.EventPackage;
+import engine.events.EventType;
+import engine.events.GameEvent;
 import engine.modules.PathMover;
 import engine.modules.SpawningModule;
 import engine.profile.Profile;
@@ -44,8 +52,8 @@ public class DemoLauncher extends Application {
     @Override
     public void start (Stage primaryStage) throws Exception {
         makeGame();
-        new GameWriter().serialize(new File ("/Users/davidmaydew/Desktop/test.xml"), myGame);
-        IGame xmlGame = new GameReader().readFile(new File ("/Users/davidmaydew/Desktop/test.xml"));
+        new GameWriter().serialize(new File("/Users/davidmaydew/Desktop/test.xml"), myGame);
+        IGame xmlGame = new GameReader().readFile(new File("/Users/davidmaydew/Desktop/test.xml"));
         GamePlayer gp = new GamePlayer(xmlGame);
     }
 
@@ -59,17 +67,71 @@ public class DemoLauncher extends Application {
         addSpawner2(game);
         addSpawner3(game);
         addSpawner4(game);
-        
+        createConditions(game);
+
     }
 
-//    private void addSpawner (IGame game) {
-//        ILevel level = game.getLevelManager().getCurrentLevel();
-//        level.add(createSpawner(), new Coordinate(50, 50));
-//    }
+    private void createConditions (IGame game) {
+        game.getConditionManager().getConditionListProperty().add(createCollisionCondition(game));
+
+    }
+
+    private OnCollisionCondition createCollisionCondition (IGame game) {
+        List<SpriteDefinition> g1 = new ArrayList<>();
+        g1.add(createMissileDef());
+        List<SpriteDefinition> g2 = new ArrayList<>();
+        g2.add(createBucket());
+        g2.add(createBalloon());
+        
+        return new OnCollisionCondition(game, packageForSpriteDefinitions(g1),
+                                        packageForSpriteDefinitions(g2),
+                                        createEmptyEventPackage(),
+                                        createEmptyEventPackage());
+    }
+
+    private ISpriteGroup createSpriteGroupForDefinition (List<SpriteDefinition> definition) {
+        List<SpriteDefinition> mySpritesInGroup = new ArrayList<>();
+        mySpritesInGroup.addAll(definition);
+        return new SpriteGroup(mySpritesInGroup);
+    }
+
+    private EventPackage createEmptyEventPackage () {
+        return new EventPackage(createSpriteGroupForDefinition(), noEffect(), noEvent());
+    }
+
+    private ISpriteGroup createSpriteGroupForDefinition () {
+        return new SpriteGroup(new ArrayList<>());
+    }
+
+    private List<GameEvent> noEvent () {
+        return new ArrayList<>();
+    }
+
+    private EventPackage packageForSpriteDefinitions (List<SpriteDefinition> list) {
+        return new EventPackage(createSpriteGroupForDefinition(list),
+                                noEffect(), deathEvent());
+    }
+
+    private List<IEffect> noEffect () {
+        return new ArrayList<>();
+    }
+
+    private List<GameEvent> deathEvent () {
+        List<GameEvent> toReturn = new ArrayList<>();
+        GameEvent event = new GameEvent(EventType.DEATH);
+        toReturn.add(event);
+        return toReturn;
+    }
+
+    // private void addSpawner (IGame game) {
+    // ILevel level = game.getLevelManager().getCurrentLevel();
+    // level.add(createSpawner(), new Coordinate(50, 50));
+    // }
 
     private void setBackground () {
-        myGame.getLevelManager().getCurrentLevel().setBackgroundImage(new ImageGraphic(0, 0, "/images/pvz.jpg"));
-        
+        myGame.getLevelManager().getCurrentLevel()
+                .setBackgroundImage(new ImageGraphic(0, 0, "/images/pvz.jpg"));
+
     }
 
     private void addSpawner1 (IGame game) {
@@ -78,8 +140,8 @@ public class DemoLauncher extends Application {
         sprites.add(createBucket());
         sprites.add(createBalloon());
         sprites.add(createBucket());
-        WaveDefinition wave = new WaveDefinition (sprites);
-        SpawnerModuleDefinition sM = new SpawnerModuleDefinition (myGame, wave, 5000);
+        WaveDefinition wave = new WaveDefinition(sprites);
+        SpawnerModuleDefinition sM = new SpawnerModuleDefinition(myGame, wave, 5000);
         s.setMySpawningModule(sM);
         ISprite spawner = s.create();
         List<Coordinate> path = new ArrayList<>();
@@ -88,14 +150,15 @@ public class DemoLauncher extends Application {
         spawner.setPath(path);
         game.add(spawner);
     }
+
     private void addSpawner2 (IGame game) {
         SpawnerDefinition s = new SpawnerDefinition();
         List<SpriteDefinition> sprites = new ArrayList<SpriteDefinition>();
         sprites.add(createBucket());
         sprites.add(createBalloon());
         sprites.add(createBucket());
-        WaveDefinition wave = new WaveDefinition (sprites);
-        SpawnerModuleDefinition sM = new SpawnerModuleDefinition (myGame, wave, 3000);
+        WaveDefinition wave = new WaveDefinition(sprites);
+        SpawnerModuleDefinition sM = new SpawnerModuleDefinition(myGame, wave, 3000);
         s.setMySpawningModule(sM);
         ISprite spawner = s.create();
         List<Coordinate> path = new ArrayList<>();
@@ -104,14 +167,15 @@ public class DemoLauncher extends Application {
         spawner.setPath(path);
         game.add(spawner);
     }
+
     private void addSpawner3 (IGame game) {
         SpawnerDefinition s = new SpawnerDefinition();
         List<SpriteDefinition> sprites = new ArrayList<SpriteDefinition>();
         sprites.add(createBucket());
         sprites.add(createBalloon());
         sprites.add(createBucket());
-        WaveDefinition wave = new WaveDefinition (sprites);
-        SpawnerModuleDefinition sM = new SpawnerModuleDefinition (myGame, wave, 4000);
+        WaveDefinition wave = new WaveDefinition(sprites);
+        SpawnerModuleDefinition sM = new SpawnerModuleDefinition(myGame, wave, 4000);
         s.setMySpawningModule(sM);
         ISprite spawner = s.create();
         List<Coordinate> path = new ArrayList<>();
@@ -120,14 +184,15 @@ public class DemoLauncher extends Application {
         spawner.setPath(path);
         game.add(spawner);
     }
+
     private void addSpawner4 (IGame game) {
         SpawnerDefinition s = new SpawnerDefinition();
         List<SpriteDefinition> sprites = new ArrayList<SpriteDefinition>();
         sprites.add(createBucket());
         sprites.add(createBalloon());
         sprites.add(createBucket());
-        WaveDefinition wave = new WaveDefinition (sprites);
-        SpawnerModuleDefinition sM = new SpawnerModuleDefinition (myGame, wave, 7000);
+        WaveDefinition wave = new WaveDefinition(sprites);
+        SpawnerModuleDefinition sM = new SpawnerModuleDefinition(myGame, wave, 7000);
         s.setMySpawningModule(sM);
         ISprite spawner = s.create();
         List<Coordinate> path = new ArrayList<>();
@@ -140,19 +205,19 @@ public class DemoLauncher extends Application {
     private SpriteDefinition createBucket () {
         SpriteDefinition sd1 = new SpriteDefinition();
         double c = 8;
-        ImageGraphic image = new ImageGraphic(446/c, 774/c, "/images/Buckethead_Zombie.png");
+        ImageGraphic image = new ImageGraphic(446 / c, 774 / c, "/images/Buckethead_Zombie.png");
         sd1.setProfile(new Profile("BucketEnemy", "Buckets", image));
         PathMoverDefinition mover = new PathMoverDefinition();
         mover.setSpeed(.05);
         sd1.setMovementDefinition(mover);
         return sd1;
     }
-    
+
     private SpriteDefinition createBalloon () {
         SpriteDefinition sd1 = new SpriteDefinition();
         double c = 6;
-        ImageGraphic image = new ImageGraphic(332/c, 600/c, "/images/balloon_zomb.png");
-        sd1.setProfile(new Profile("BucketEnemy", "Buckets", image));
+        ImageGraphic image = new ImageGraphic(332 / c, 600 / c, "/images/balloon_zomb.png");
+        sd1.setProfile(new Profile("Balloon Enemy", "Buckets", image));
         PathMoverDefinition mover = new PathMoverDefinition();
         mover.setSpeed(.05);
         sd1.setMovementDefinition(mover);
@@ -172,8 +237,6 @@ public class DemoLauncher extends Application {
         sd1.setMovementDefinition(getUserMover());
         return sd1;
     }
-    
-    
 
     private void createGlobalAtts (IGame game) {
         IAttribute lives = new Attribute(new AttributeType("Lives"));
@@ -184,14 +247,14 @@ public class DemoLauncher extends Application {
 
     private void createSpriteDefs (IGame game) {
         DefinitionCollection<SpriteDefinition> dc = new DefinitionCollection<>("Towers");
-        
+
         SpriteDefinition sd1 = createShooterDef();
-        
+
         SpriteDefinition sd2 = new SpriteDefinition();
         ImageGraphic image = new ImageGraphic(100, 100, "/images/C.png");
         sd2.setProfile(new Profile("User Mover", "Controlled By User", image));
         sd2.setMovementDefinition(getUserMover());
-        
+
         dc.addItem(sd1);
         dc.addItem(sd2);
         game.getAuthorshipData()
@@ -211,17 +274,17 @@ public class DemoLauncher extends Application {
         sd1.addModule(fireDef);
         return sd1;
     }
-    
+
     private SpriteDefinition createMissileDef () {
         SpriteDefinition sd1 = new SpriteDefinition();
         ImageGraphic plantImage = new ImageGraphic(20, 20, "/images/pea.png");
         sd1.setProfile(new Profile("Pea", "Pea Bullet", plantImage));
         ConstantMoverDefinition mover = new ConstantMoverDefinition();
         double c = 4;
-        mover.setXVel(.2/c);
-        mover.setYVel(.2/c);
+        mover.setXVel(.2 / c);
+        mover.setYVel(.2 / c);
         sd1.setMovementDefinition(mover);
-        
+
         return sd1;
     }
 
