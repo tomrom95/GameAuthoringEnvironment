@@ -41,6 +41,7 @@ import gameauthoring.shareddata.DefinitionCollection;
 import gameplayer.GamePlayer;
 import graphics.ImageGraphic;
 import javafx.application.Application;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import util.Coordinate;
 
@@ -53,7 +54,11 @@ public class DemoLauncher extends Application {
     public void start (Stage primaryStage) throws Exception {
         makeGame();
         new GameWriter().serialize(new File("/Users/davidmaydew/Desktop/test.xml"), myGame);
-        IGame xmlGame = new GameReader().readFile(new File("/Users/davidmaydew/Desktop/test.xml"));
+        FileChooser chooser = new FileChooser();
+        File f = chooser.showOpenDialog(primaryStage);
+        
+        //IGame xmlGame = new GameReader().readFile(new File("/Users/davidmaydew/Desktop/test.xml"));
+        IGame xmlGame = new GameReader().readFile(f);
         GamePlayer gp = new GamePlayer(xmlGame);
     }
 
