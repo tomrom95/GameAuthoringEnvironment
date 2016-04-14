@@ -35,7 +35,12 @@ public class SpriteManager implements ISpriteManager {
         mySpriteList.addAll(myBufferList);
         myBufferList.clear();
         loopThroughSpritesAndDo(sprite -> sprite.update(duration));
-        loopSpritesAndDoIf(sprite -> sprite.shouldBeRemoved(), sprite -> remove(sprite));
+        removeDeadSprites();
+        //loopSpritesAndDoIf(sprite -> sprite.shouldBeRemoved(), sprite -> remove(sprite));
+    }
+    
+    private void removeDeadSprites(){
+        getSprites().removeIf(sprite -> sprite.shouldBeRemoved());
     }
 
     private void loopSpritesAndDoIf (Predicate<ISprite> spriteCondition,
@@ -82,6 +87,7 @@ public class SpriteManager implements ISpriteManager {
 
     @Override
     public void bufferedAdd (ISprite sprite) {
+       
         myBufferList.add(sprite);
     }
 

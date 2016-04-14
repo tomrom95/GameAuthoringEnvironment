@@ -49,7 +49,11 @@ public class ConstantMover extends Mover {
 
     @Override
     public void update (TimeDuration duration) {
+<<<<<<< HEAD
+        
+=======
         super.move(duration);
+>>>>>>> 7d293bf78e523c1e72ae0a76daa8f98247d27fd9
     }
 
     @Override

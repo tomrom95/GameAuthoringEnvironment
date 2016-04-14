@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import engine.IGame;
+import engine.SpriteGroup;
 import engine.definitions.DirectionalFirerDefinition;
 import engine.definitions.ModuleDefinition;
 import engine.definitions.SpriteDefinition;
@@ -13,6 +14,7 @@ import engine.sprite.SpriteType;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
+import gameauthoring.util.ErrorMessage;
 
 
 /**
@@ -28,69 +30,54 @@ public class TrackingFireSubFormController implements ISubFormControllerSprite {
     private TrackingFireSubFormView myView;
     private IFormDataManager myFormData;
     private IGame myGame;
-    
-    private static Predicate<ModuleDefinition> findTrackingFirer() {
+
+    private static Predicate<ModuleDefinition> findTrackingFirer () {
         return p -> p.getClass().equals(new TrackingFirerDefinition().getClass());
     }
 
     public TrackingFireSubFormController (IGame game) {
-        myView = new TrackingFireSubFormView();
+        myView = new TrackingFireSubFormView(game.getAuthorshipData().getMyCreatedGroups());
         myFormData = myView.getData();
         myGame = game;
     }
 
     @Override
     public void updateItem (SpriteDefinition item) {
-        TrackingFirerDefinition trackingFireDef = new TrackingFirerDefinition();
-        trackingFireDef.setGame(myGame);
-        Double waitTime = Double.valueOf(myFormData.getValueProperty(myView.getWaitTimeKey()).get());
-        trackingFireDef.setWaitTime(waitTime);
-        String[] targetStrings = myFormData.getValueProperty(myView.getTargetsKey()).get().split(", ");
-        String projectile = myFormData.getValueProperty(myView.getMyProjectileKey()).get();
-        List<SpriteType> targets = new ArrayList<SpriteType>();
-        for(String s : targetStrings){
-            targets.add(new SpriteType(s));
+        try {
+            TrackingFirerDefinition trackingFireDef = new TrackingFirerDefinition();
+            trackingFireDef.setGame(myGame);
+            Double waitTime =
+                    Double.valueOf(myFormData.getValueProperty(myView.getWaitTimeKey()).get());
+            trackingFireDef.setWaitTime(waitTime);
+            trackingFireDef.setTargets(myView.getTargetsCoice().getSelected());
+            item.addModule(trackingFireDef);
         }
-        trackingFireDef.setTargets(targets);
-        //trackingFireDef.setProjectileDefinition(new SpriteDefinition(projectile));
-        item.addModule(trackingFireDef);
-        
+        catch (NumberFormatException e) {
+            ErrorMessage err = new ErrorMessage("Wait Time Must Be a Double");
+            err.showError();
+        }
+
     }
+
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-        if(item.getModuleDefinitions().isEmpty()) return;
-
-        
-        Object trackingDefinitionObject =
-                 item.getModuleDefinitions().stream().filter(findTrackingFirer()).toArray()[0];
-        TrackingFirerDefinition myDef = new TrackingFirerDefinition();
-        if(trackingDefinitionObject.getClass().equals(myDef.getClass())){
+        try {
+            myView.getTargetsCoice().clearSelection();
+            Object trackingDefinitionObject =
+                    item.getModuleDefinitions().stream().filter(findTrackingFirer()).toArray()[0];
+            TrackingFirerDefinition myDef = new TrackingFirerDefinition();
             myDef = (TrackingFirerDefinition) trackingDefinitionObject;
-        } else{
-            myDef = null;
-            /*
-             * throw exception here?
-             */
+            myView.getTargetsCoice().setSelected(myDef.getTargets());
+            myFormData.set(myView.getWaitTimeKey(), Double.toString(myDef.getWaitTime()));
         }
-        
-        StringBuilder targetListString = new StringBuilder();
-        List<SpriteType> targetList = myDef.getTargets();
-        for(SpriteType s : targetList){
-            targetListString.append(s);
-            if(targetList.indexOf(s) != targetList.size() - 1){
-                targetListString.append(", ");
-            }
+        catch (ArrayIndexOutOfBoundsException e) {
+            myFormData.set(myView.getWaitTimeKey(), "");
+            myView.getTargetsCoice().clearSelection();
         }
-        String targetsString = targetListString.toString();
-        myFormData.set(myView.getTargetsKey(), targetsString);
-//        myFormData.set(myView.getMyProjectileKey(), myDef.getProjectileDefinition());
-        myFormData.set(myView.getWaitTimeKey(), Double.toString(myDef.getWaitTime()));
-        
     }
 
     @Override
     public ISubFormView getSubFormView () {
-        // TODO Auto-generated method stub
         return myView;
     }
 

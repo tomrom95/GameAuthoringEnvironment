@@ -108,6 +108,7 @@ public class Game implements IGame {
     
     @Override
     public void bufferedAdd (ISprite sprite) {
+       
         myLevelManager.getCurrentLevel().bufferedAdd(sprite);
     }
 

@@ -19,6 +19,7 @@ public class DirectionalFirer extends Firer {
     private SpriteDefinition myProjectile;
     //should this (below) be an attribute?
     private double myAngle;
+    double timeSinceFire;
 
 
 
@@ -30,6 +31,8 @@ public class DirectionalFirer extends Firer {
         mySprite = sprite;
         myProjectile = projectile;
         myAngle = theta;
+        timeSinceFire = 0;
+        
     }
     @Override
     public void update (TimeDuration duration) {
@@ -37,11 +40,16 @@ public class DirectionalFirer extends Firer {
     }
 
     private void fire (TimeDuration duration) {
- 
-        if((duration.getMillis() - lastFire.getMillis()) >= myWaitTime.getValueProperty().get()){
+        
+//        if((duration.getMillis() - lastFire.getMillis()) >= myWaitTime.getValueProperty().get()){
+        timeSinceFire += duration.getMillis();
+        
+        if(timeSinceFire >= myWaitTime.getValueProperty().get()){
+            timeSinceFire = 0;
+           
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(), mySprite.getLocation().getY()));
-            System.out.println("X Velocity: " + getXVel(myAngle) + " Y Velocity: "+ getYVel(myAngle));
+           
             bullet.getMovementStrategy().setXVel(getXVel(myAngle));
             bullet.getMovementStrategy().setYVel(getYVel(myAngle));            
             myGame.bufferedAdd(bullet);

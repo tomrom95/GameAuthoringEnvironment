@@ -3,6 +3,7 @@ package testing;
 import java.util.ArrayList;
 import java.util.List;
 import engine.Game;
+import engine.SpriteGroup;
 import engine.definitions.ConstantMoverDefinition;
 import engine.definitions.DirectionalFirerDefinition;
 import engine.definitions.LocationDefinition;
@@ -68,14 +69,16 @@ public class TestFiringModules extends TestCase {
         Profile testprofile = new Profile("Test");
         enemy.setProfile(testprofile);
         
-        List<SpriteType> myTargets = new ArrayList<SpriteType>();
-        myTargets.add(enemy.getSpriteType());
+        List<SpriteDefinition> myTargets = new ArrayList<SpriteDefinition>();
+        myTargets.add(enemy);
         
         trackingFire = new TrackingFirerDefinition();
         trackingFire.setGame(game);
         trackingFire.setProjectileDefinition(projectile);
         trackingFire.setWaitTime(100);
-        trackingFire.setTargets(myTargets);
+        SpriteGroup myGroup = new SpriteGroup(myTargets);
+        
+        trackingFire.setTargets(myGroup);
         
         shooter.addModule(trackingFire);
         

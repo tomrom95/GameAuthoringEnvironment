@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  */
 public class GamePlayer {
     
-    private static final double PREFWIDTH = 1000;
+    private static final double PREFWIDTH = 1250;
     private static final double PREFHEIGHT = 600;
 
     private Stage myStage = new Stage();

@@ -41,9 +41,10 @@ public class SideBarDisplay implements Glyph {
 
     protected Accordion createAccordion () {
         Accordion selector = new Accordion();
-        selector.setFocusTraversable(false);
         myGame.getAuthorshipData().getMyCreatedSprites().stream().forEach(c -> {
-            selector.getPanes().add(createAccordionPane(c));
+            TitledPane toAdd = createAccordionPane(c);
+            selector.getPanes().add(toAdd);
+            selector.expandedPaneProperty().set(toAdd);
         });
         return selector;
     }

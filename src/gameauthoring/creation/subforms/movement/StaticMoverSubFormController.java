@@ -3,7 +3,6 @@ package gameauthoring.creation.subforms.movement;
 import engine.definitions.ConstantMoverDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.StaticMovementDefintion;
-import engine.definitions.StaticMoverDefinition;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
@@ -39,11 +38,7 @@ public class StaticMoverSubFormController implements ISubFormControllerSprite {
     }
 
     @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-
-        StaticMoverDefinition movementDefinition =
-                (StaticMoverDefinition) item.getMovementDefinition();
-        
+    public void populateViewsWithData (SpriteDefinition item) {                      
         
     }
 

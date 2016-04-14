@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import gameauthoring.creation.entryviews.IEntryView;
+import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
@@ -27,12 +28,10 @@ public class DirectionalFireSubFormView extends SubFormView {
     private String myProjectileKey = "Projectile: ";
 
     private IEntryView myAngle =
-            new TextEntryView(myAngleKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+            new NumberEntryView(myAngleKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
     private IEntryView myWaitTime =
-            new TextEntryView(myWaitTimeKey, this.getData(), 150, 30,
-                              AuthoringView.DEFAULT_ENTRYVIEW);
-    // private IEntryView myProjectile =
-    // new TextEntryView(myProjectileKey, this.getData(), 20, 150, 30);
+            new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30,
+                              AuthoringView.DEFAULT_ENTRYVIEW);  
 
     private List<IEntryView> myEntryViews =
             // new ArrayList<IEntryView>(Arrays.asList(myAngle, myWaitTime, myProjectile));
