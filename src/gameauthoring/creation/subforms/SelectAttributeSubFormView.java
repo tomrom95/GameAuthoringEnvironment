@@ -29,10 +29,7 @@ public class SelectAttributeSubFormView extends SubFormView {
         return myAttributeSelector;
     }
 
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
 
-    }
+    
 
 }

@@ -40,11 +40,6 @@ public class SceneCreator implements Glyph {
         return container;
     }
 
-    @Override
-    public void update () {
-
-    }
-
     /**
      * Makes the sprite selection side bar. Uses a list view
      * of custom listcells to visualize the sprites based on their

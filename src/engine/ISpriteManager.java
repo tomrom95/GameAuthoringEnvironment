@@ -4,6 +4,7 @@ import java.util.List;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
+import util.Coordinate;
 
 
 /**
@@ -42,5 +43,7 @@ public interface ISpriteManager extends Updateable, IAdder {
      * @param sprite to be removed
      */
     void remove (ISprite sprite);
+
+    void add (ISprite sprite, Coordinate coordinate);
 
 }

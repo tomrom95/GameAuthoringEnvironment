@@ -64,10 +64,4 @@ public class SelectSpriteSFV extends SubFormView {
         return myContainer;
     }
 
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
-    }
-
 }

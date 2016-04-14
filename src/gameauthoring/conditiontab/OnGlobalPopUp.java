@@ -1,30 +1,14 @@
 package gameauthoring.conditiontab;
 
-import engine.ICondition;
+import java.util.stream.Collectors;
 import engine.IGame;
-import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
-public class OnGlobalPopUp extends ConditionPopUp {
 
-    private IGame myGame;
-    
-    public OnGlobalPopUp (ObservableList<ICondition> conditionList, IGame game) {
-        
-        super(conditionList);
-        myGame = game;
-        initStage();
+public class OnGlobalPopUp extends OnAttributePopUp {
+    public OnGlobalPopUp (IGame game) {
+        super(game, FXCollections
+                .observableArrayList(game.getAttributeManager().getAttributes().stream()
+                        .map(atty -> atty.getType()).collect(Collectors.toList())));
     }
-
-    @Override
-    protected void initializeDisplay () {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    protected ICondition createCondition () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }

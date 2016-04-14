@@ -56,7 +56,7 @@ public class TestFiring extends Application {
         ISprite sprite = createFollowSprite();
         // levelManager.add(sprite, new Coordinate(0,0));
 
-        levelManager.add(createUserSprite(), new Coordinate(10, 10));
+        levelManager.bufferedAdd(createUserSprite(), new Coordinate(10, 10));
         ConditionManager conditionManager = new ConditionManager();
         Game game = new Game(levelManager, new GameInformation("r", "r", "r"), conditionManager);
 
@@ -111,7 +111,7 @@ public class TestFiring extends Application {
                 new SimpleObjectProperty<>(new GraphicModule(new Block(20, 20, RGBColor.BLACK)));
         sprite.getMovementStrategyProperty().set(mover.get());
         sprite.getDrawer().set(g.get());
-        sprite.getModulesProperty().add(firer);
+        sprite.getModulesProperty().bufferedAdd(firer);
         return sprite;
     }
 

@@ -4,13 +4,14 @@ import engine.IPositionable;
 import engine.modules.ConstantMover;
 import engine.modules.IMovementModule;
 
-public class ConstantMoverDefintion extends MovementDefinition {
+public class ConstantMoverDefinition extends MovementDefinition {
 
     private double myXVel;
     private double myYVel;
     
     @Override
     public IMovementModule create (IPositionable parent) {
+        super.setSpeed(Math.sqrt(Math.pow(myXVel, 2) + Math.pow(myYVel, 2)));
         return new ConstantMover(myXVel, myYVel, parent);
     }
     

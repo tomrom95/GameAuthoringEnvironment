@@ -3,17 +3,24 @@ package gameauthoring.creation.subforms;
 import java.util.ArrayList;
 import java.util.List;
 import engine.AuthorshipData;
+import engine.Game;
+import engine.IGame;
 import engine.profile.IProfilable;
+import gameauthoring.creation.subforms.fire.DirectionalFireSubFormController;
+import gameauthoring.creation.subforms.fire.FiringSubFormController;
+import gameauthoring.creation.subforms.fire.TrackingFireSubFormController;
+import gameauthoring.creation.subforms.movement.MovementSubFormController;
 import gameauthoring.creation.subforms.movement.SmartAIMovementSubFormController;
 import gameauthoring.creation.subforms.movement.UserMoverSubFormController;
 
 
 public class SubFormControllerFactory {
 
-    private AuthorshipData myAuthorshipData;
+    private IGame myGame;
 
-    public SubFormControllerFactory (AuthorshipData authorshipData) {
-        myAuthorshipData = authorshipData;
+    public SubFormControllerFactory (Game game) {
+
+        myGame = game;
     }
 
     // general
@@ -30,14 +37,12 @@ public class SubFormControllerFactory {
     private ISubFormController<?> createSubFormController (String type) {
         if (type.equals("Profile")) {
             System.out.println("profile");
-            //return new ProfileSubFormController();
+            // return new ProfileSubFormController();
 
         }
-        /*
-         * else if (type.equals("Movement")){
-         * 
-         * }
-         */
+        else if (type.equals("Movement")) {
+            return new MovementSubFormController();
+        }
         else if (type.equals("SmartAI")) {
             System.out.println("smartAI");
 
@@ -56,8 +61,21 @@ public class SubFormControllerFactory {
             System.out.println("attribute");
             return new MakeAttributeSubFormController();
         }
-        else if (type.equals("SelectSprite")){
+        else if (type.equals("Events")) {
+            return new EventsSubFormController(getMyAuthorshipData().getMyCreatedAttributes(),
+                                               getMyAuthorshipData().getMyCreatedEventPackages());
+        }
+        else if (type.equals("SelectSprite")) {
             return new SelectSpriteSFC(getMyAuthorshipData().getMyCreatedSprites());
+        }
+        else if (type.equals("Firing")) {
+            return new FiringSubFormController(myGame);
+        }
+        else if (type.equals("DirectionalFire")) {
+            return new DirectionalFireSubFormController(getMyGame());
+        }
+        else if (type.equals("TrackingFire")) {
+            return new TrackingFireSubFormController(getMyGame());
         }
         System.out.println("null");
 
@@ -76,28 +94,34 @@ public class SubFormControllerFactory {
     public ISubFormControllerSprite createSpriteSubFormController (String type) {
 
         if (type.equals("Profile")) {
-            System.out.println("profile");
-            //return new ProfileSubFormController();
+            // return new ProfileSubFormController();
 
         }
-        /*
-         * else if (type.equals("Movement")){
-         * 
-         * }
-         */
+
+        else if (type.equals("Movement")) {
+            return new MovementSubFormController();
+        }
+
         else if (type.equals("SmartAI")) {
-            System.out.println("smartAI");
 
             return new SmartAIMovementSubFormController();
         }
         else if (type.equals("UserMover")) {
-            System.out.println("userMover");
 
             return new UserMoverSubFormController();
         }
         else if (type.equals("SelectAttribute")) {
             return new SelectAttributeSubFormController(getMyAuthorshipData()
                     .getMyCreatedAttributes());
+        }
+        else if (type.equals("Firing")) {
+            return new FiringSubFormController(myGame);
+        }
+        else if (type.equals("DirectionalFire")) {
+            return new DirectionalFireSubFormController(getMyGame());
+        }
+        else if (type.equals("TrackingFire")) {
+            return new TrackingFireSubFormController(getMyGame());
         }
         System.out.println("null");
 
@@ -114,7 +138,6 @@ public class SubFormControllerFactory {
 
     public ISubFormControllerAttribute createAttributeSubFormController (String type) {
         if (type.equals("Attribute")) {
-            System.out.println("attribute");
             return new MakeAttributeSubFormController();
         }
         System.out.println("null");
@@ -123,8 +146,12 @@ public class SubFormControllerFactory {
         // return new AttributeSubFormController();
     }
 
+    private IGame getMyGame () {
+        return myGame;
+    }
+
     public AuthorshipData getMyAuthorshipData () {
-        return myAuthorshipData;
+        return getMyGame().getAuthorshipData();
     }
 
     public ProfileSubFormController<IProfilable> createProfileSFC () {

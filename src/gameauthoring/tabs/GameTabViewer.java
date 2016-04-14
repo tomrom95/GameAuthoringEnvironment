@@ -73,10 +73,4 @@ public class GameTabViewer implements ITabViewer {
 
         return form;
     }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-    }
-
 }

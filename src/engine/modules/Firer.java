@@ -7,11 +7,12 @@ import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
 import util.TimeDuration;
 
 /**
  * This class creates a firer that handles and manages actions involving a creating an object to fire 
- *
+ * TODO Is this class necessary?
  */
 public class Firer extends DefaultAffectable implements IFireModule {
 
@@ -36,7 +37,7 @@ public class Firer extends DefaultAffectable implements IFireModule {
     }
 
     @Override
-    public List<IAttribute> getAttributes () {
+    public ObservableList<IAttribute> getAttributes () {
         // TODO Auto-generated method stub
         return null;
     }

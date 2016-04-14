@@ -1,30 +1,19 @@
 package gameauthoring.conditiontab;
 
-import engine.ICondition;
+import java.util.stream.Collectors;
+import engine.AttributeType;
 import engine.IGame;
-import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
-public class OnSpritePopUp extends ConditionPopUp {
 
-    private IGame myGame;
-    
-    public OnSpritePopUp (ObservableList<ICondition> conditionList, IGame game) {
-        
-        super(conditionList);
-        myGame = game;
-        initStage();
-    }
+public class OnSpritePopUp extends OnAttributePopUp {
 
-    @Override
-    protected void initializeDisplay () {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    protected ICondition createCondition () {
-        // TODO Auto-generated method stub
-        return null;
+    public OnSpritePopUp (IGame game) {
+        super(game, FXCollections
+                .observableArrayList(game.getAuthorshipData().getMyCreatedAttributes().getItems()
+                        .stream()
+                        .map(atty -> new AttributeType(atty.getType()))
+                        .collect(Collectors.toList())));
     }
 
 }

@@ -44,7 +44,7 @@ public interface IAttribute extends Affectable {
 
     /**
      * To support cloning of effects, attributes must be cloneable as well
-     * 
+     *
      * @return
      */
     IAttribute makeCopy ();

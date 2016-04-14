@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
  */
 public class HeadsUpDisplay implements Glyph{
     
-    public IGame myGame;
+    private IGame myGame;
     
     public HeadsUpDisplay (IGame game) {
         myGame = game;
@@ -36,7 +36,7 @@ public class HeadsUpDisplay implements Glyph{
     private void addUser (VBox container) {
         // TODO implement users
         Node user = new Text("User Name: TODO");
-        container.getChildren().add(user);
+        //container.getChildren().add(user);
     }
     
     /**
@@ -57,11 +57,4 @@ public class HeadsUpDisplay implements Glyph{
     private void addAttribute (VBox container, IAttribute attribute) {
         container.getChildren().add(new AttributeCell(attribute).draw());
     }
-
-    @Override
-    public void update () {
-    }
-    
-    
-
 }

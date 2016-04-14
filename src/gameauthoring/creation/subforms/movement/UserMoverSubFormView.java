@@ -37,11 +37,6 @@ public class UserMoverSubFormView extends SubFormView {
         return myPane;
     }
 
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-        
-    }
     /*
      * jeremy, this feels like it should be coming from the super class?
      */

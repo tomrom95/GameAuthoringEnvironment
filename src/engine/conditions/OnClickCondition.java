@@ -1,14 +1,11 @@
 package engine.conditions;
 
 import java.util.function.Predicate;
-<<<<<<< HEAD:src/engine/OnClickCondition.java
-import engine.definitions.ProfileDefinition;
-import engine.interactionevents.KeyIOEvent;
-=======
 import engine.IEventPackage;
 import engine.IGame;
->>>>>>> 5c956e7a2a513d379853c626b1bd2924f5d9bd91:src/engine/conditions/OnClickCondition.java
 import engine.interactionevents.MouseIOEvent;
+import engine.profile.IProfile;
+import engine.profile.Profile;
 import engine.sprite.ISprite;
 import util.Coordinate;
 
@@ -60,17 +57,16 @@ public class OnClickCondition extends Condition implements ICondition {
     }
 
     @Override
-    public ProfileDefinition getProfileDefinition () {
-        //TODO
-        ProfileDefinition profile = new ProfileDefinition();
-        profile.setName("OnClick");
-        return profile;
+    public IProfile getProfile () {
+        return new Profile("On Click Condition", "Mouse interactions", "images/c.png");
     }
 
     @Override
-    public void setProfileDefinition (ProfileDefinition profileDef) {
+    public void setProfile (IProfile profile) {
         // TODO Auto-generated method stub
         
     }
+
+   
 
 }

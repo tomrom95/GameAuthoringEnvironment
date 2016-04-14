@@ -81,7 +81,7 @@ public class TestConditions extends Application {
                                            emptyEffects(),
                                            new SpriteGroup(),
                                            emptyEffects());
-        conditionManager.getConditionListProperty().add(new SimpleObjectProperty<>(myCondition));
+        conditionManager.getConditionListProperty().bufferedAdd(new SimpleObjectProperty<>(myCondition));
     }
 
     public static void main (String[] args) {
@@ -96,7 +96,7 @@ public class TestConditions extends Application {
         LevelManager levelManager = new LevelManager(startingLevel);
         myGame = new Game(levelManager, new GameInformation("r", "r", "r"), conditionManager);
 
-        levelManager.add(createUserSprite(), new Coordinate(10, 10));
+        levelManager.bufferedAdd(createUserSprite(), new Coordinate(10, 10));
         addConditionsToTest(conditionManager);
 
         GamePlayer player = new GamePlayer(myGame);
@@ -115,7 +115,7 @@ public class TestConditions extends Application {
         sprite.getMovementStrategyProperty().set(mover.get());
         sprite.getDrawer().set(g.get());
         sprite.getAttributeManager().get().getAttributes()
-                .add(new SimpleObjectProperty<IAttribute>(createAttribute(myHealthAttyType, 100)));
+                .bufferedAdd(new SimpleObjectProperty<IAttribute>(createAttribute(myHealthAttyType, 100)));
         return sprite;
     }
 

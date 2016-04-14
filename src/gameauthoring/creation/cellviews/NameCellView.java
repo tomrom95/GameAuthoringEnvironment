@@ -1,9 +1,7 @@
-package gameauthoring;
+package gameauthoring.creation.cellviews;
 
 import engine.profile.IProfilable;
 import engine.profile.IProfile;
-import engine.rendering.GraphicFactory;
-import engine.rendering.ScaleFactory;
 import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -14,20 +12,18 @@ import javafx.scene.text.Text;
 
 
 /**
- * Class to help visualize a profilable definition in a list view.
+ * Class to help visualize a profilable definition in a list view with only name.
  * Anything that implements IProfilable can use this to create its
  * cells in a user friendly way.
  * 
- * @author Tommy
+ * @author Jeremy Schreck
+ * @author Jin An
  *
  * @param <E>
  */
-public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
-
-    private static final double PIC_SIZE = 30;
+public class NameCellView<E extends IProfilable> extends ListCell<E> {
 
     private E myProfile;
-    
 
     @Override
     protected void updateItem (E item, boolean empty) {
@@ -45,19 +41,14 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
     protected Node createSpriteCell (E profile) {
         HBox container = new HBox(10);
         container.setAlignment(Pos.CENTER_LEFT);
-        profile.getProfile().getImage().addListener(c->updateItem(profile,false));
-
-        container.getChildren().add(createImageProfile(profile.getProfile()));
         container.getChildren().add(createTextProfile(profile.getProfile()));
         return container;
     }
 
     private Node createTextProfile (IProfile profile) {
         VBox container = new VBox();
-
         Text name = bindText(profile.getName());
-        Text description = bindText(profile.getDescription());
-        container.getChildren().addAll(name, description);
+        container.getChildren().addAll(name);
         return container;
     }
 
@@ -65,13 +56,6 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
         Text text = new Text();
         text.textProperty().bind(name);
         return text;
-    }
-
-    private Node createImageProfile (IProfile profile) {
-        GraphicFactory graphics = new ScaleFactory(PIC_SIZE, PIC_SIZE);
-
-        Node node = profile.getImage().get().getVisualRepresentation(graphics);
-        return node;
     }
 
     protected E getProfilable () {

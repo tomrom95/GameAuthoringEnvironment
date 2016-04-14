@@ -2,9 +2,10 @@ package engine;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import engine.definitions.ProfileDefinition;
+import engine.conditions.ICondition;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.profile.IProfile;
 import engine.sprite.ISprite;
 import util.TimeDuration;
 
@@ -96,17 +97,15 @@ public class OnCollisionCondition implements ICondition {
     }
 
     @Override
-    public ProfileDefinition getProfileDefinition () {
-        //TODO
-        ProfileDefinition profile = new ProfileDefinition();
-        profile.setName("OnColl");
-        return profile;
+    public IProfile getProfile () {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
-    public void setProfileDefinition (ProfileDefinition profileDef) {
+    public void setProfile (IProfile profile) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

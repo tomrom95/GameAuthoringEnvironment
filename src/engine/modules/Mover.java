@@ -10,6 +10,8 @@ import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
 
@@ -83,8 +85,8 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     public abstract void registerMouseEvent (MouseIOEvent mouseEvent);
 
     @Override
-    public List<IAttribute> getAttributes () {
-        List<IAttribute> attributes = new ArrayList<>();
+    public ObservableList<IAttribute> getAttributes () {
+        ObservableList<IAttribute> attributes = FXCollections.observableArrayList();
         attributes.add(getXVel());
         attributes.add(getYVel());
         attributes.addAll(getSpecificAttributes());

@@ -3,7 +3,9 @@ package engine;
 import java.util.List;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
 import graphics.ImageGraphic;
+import util.Coordinate;
 
 
 /**
@@ -17,7 +19,7 @@ import graphics.ImageGraphic;
  * @author Jonathan Im
  *
  */
-public interface IGamePlayable extends Updateable {
+public interface IGamePlayable extends Updateable, IAdder {
 
     /**
      * @return the object containing information about this game
@@ -42,5 +44,9 @@ public interface IGamePlayable extends Updateable {
     void internalizeKeyEvents (List<KeyIOEvent> list);
 
     void internalizeMouseEvents (List<MouseIOEvent> list);
+    
+    void add (ISprite sprite, Coordinate coordinate);
+    
+    void add (ISprite sprite);
 
 }

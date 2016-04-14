@@ -2,7 +2,7 @@ package gameauthoring.creation.forms;
 
 import java.util.function.Consumer;
 import engine.profile.IProfilable;
-import gameauthoring.ProfileCellView;
+import gameauthoring.creation.cellviews.ProfileCellView;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
@@ -35,12 +35,6 @@ public class ObjectListView<E extends IProfilable> implements IObjectListView<E>
     @Override
     public Node draw () {
         return myListView;
-    }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
     }
 
     @Override

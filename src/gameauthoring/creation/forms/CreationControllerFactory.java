@@ -1,7 +1,8 @@
 package gameauthoring.creation.forms;
 
 import java.util.List;
-import engine.AuthorshipData;
+import engine.Game;
+
 
 /**
  * This is a factory class for the creation of Creation Controllers
@@ -11,22 +12,34 @@ import engine.AuthorshipData;
  */
 public class CreationControllerFactory {
 
-    public CreationControllerFactory(){
-     
+    public CreationControllerFactory () {
+
     }
-    
-    public CreationControllerSprite createSpriteCreationController(String title, List<String> sfcs,  AuthorshipData authorshipData ){
-        if (title.equals("Missiles")){
+
+    public CreationControllerSprite createSpriteCreationController (String title,
+                                                                    List<String> sfcs,
+                                                                    Game game) {
+        if (title.equals("Missiles")) {
             System.out.println("missile");
-            return new CreationControllerMissile(title, sfcs, authorshipData);
+            return new CreationControllerMissile(title, sfcs, game);
         }
-        return new CreationControllerSprite(title, sfcs, authorshipData);
+        return new CreationControllerSprite(title, sfcs, game);
     }
-    public CreationControllerAttribute createAttributeCreationController(String title, List<String> sfcs,  AuthorshipData authorshipData ){
-        return new CreationControllerAttribute(title, sfcs, authorshipData);
+
+    public CreationControllerAttribute createAttributeCreationController (String title,
+                                                                          List<String> sfcs,
+                                                                          Game game) {
+        return new CreationControllerAttribute(title, sfcs, game);
     }
-    
-    public CreationControllerGroup createGroupCC(String title, List<String> sfcs, AuthorshipData authorshipData){
-        return new CreationControllerGroup(title,sfcs,authorshipData);
+
+    public CreationControllerEvent createEventCreationController (String title,
+                                                                  List<String> sfcs,
+                                                                  Game game) {
+        return new CreationControllerEvent(title, sfcs, game);
+    }
+
+    public CreationControllerGroup createGroupCC (String title, List<String> sfcs, Game game) {
+        return new CreationControllerGroup(title, sfcs, game);
+
     }
 }

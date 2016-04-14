@@ -34,13 +34,6 @@ public class TextEntryView extends EntryView {
         myContainer.getStyleClass().add(cssClass);
     }
 
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
-    }
-
-
     /**
      * Ensures that entry is a double value if it is required
      * 

@@ -3,7 +3,9 @@ package engine;
 import java.util.List;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.sprite.ISprite;
 import graphics.ImageGraphic;
+import util.Coordinate;
 import util.TimeDuration;
 
 
@@ -21,12 +23,16 @@ public class Game implements IGame {
     private IGameInformation myGameInformation;
     private IAttributeManager myAttributeManager;
 
-    public Game (LevelManager levelManager,
-                 GameInformation info,
-                 ConditionManager conditionManager) {
-        myLevelManager = levelManager;
-        myConditionManager = conditionManager;
+    public Game () {
+        //TODO remove hardcoded strings
+        this(new GameInformation("title", "author", "date"));
+    }
+    
+    public Game (IGameInformation gameInfo) {
+        myLevelManager = new LevelManager();
+        myConditionManager = new ConditionManager();
         myAuthorshipData = new AuthorshipData();
+        myGameInformation = gameInfo;
         myAttributeManager = new AttributeManager();
     }
 
@@ -88,6 +94,27 @@ public class Game implements IGame {
     @Override
     public List<IAttribute> getGlobalAttributes () {
         return getAttributeManager().getAttributes();
+    }
+
+    @Override
+    public void add (ISprite sprite, Coordinate coordinate) {
+        sprite.setLocation(coordinate);
+        add(sprite);
+    }
+    
+    @Override
+    public void add (ISprite sprite) {
+        add(sprite);
+    }
+    
+    @Override
+    public void bufferedAdd (ISprite sprite) {
+        myLevelManager.getCurrentLevel().bufferedAdd(sprite);
+    }
+
+    @Override
+    public void bufferedAdd (ISprite sprite, Coordinate coordinate) {
+        myLevelManager.bufferedAdd(sprite, coordinate);
     }
 
 }

@@ -118,7 +118,7 @@ public class AddSpriteUseCase {
         }
 
         public void addSubFormController (ISubFormController subFormController) {
-            mySubFormControllers.add(subFormController);
+            mySubFormControllers.bufferedAdd(subFormController);
         }
     }
 }

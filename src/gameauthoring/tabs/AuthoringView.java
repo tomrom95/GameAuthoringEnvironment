@@ -1,6 +1,7 @@
 package gameauthoring.tabs;
 
 import engine.Game;
+import gameauthoring.conditiontab.ConditionView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -31,6 +32,7 @@ public class AuthoringView implements IAuthoringView {
     private GameTabViewer myGameTabViewer;
     private ObjectCreationTabViewer myCreationTabViewer;
     private SceneTabViewer mySceneTabViewer;
+    private ConditionView myConditionView;
     private GridPane myLayout;
     private Game myGame;
     public static final int WIDTH = 1000;
@@ -106,12 +108,16 @@ public class AuthoringView implements IAuthoringView {
         creationTab.setClosable(false);
         creationTab.setContent(myCreationTabViewer.draw());
 
+        Tab conditionTab = createTab("Conditions");
+        myConditionView = new ConditionView(getMyGame());
+        conditionTab.setContent(myConditionView.draw());
         Tab sceneTab = createTab("Build Scenes/Levels");
         mySceneTabViewer = new SceneTabViewer(getMyGame());
         sceneTab.setClosable(false);
         sceneTab.setContent(mySceneTabViewer.draw());
-
-        tabpane.getTabs().addAll(gameTab, creationTab, sceneTab);
+        
+        
+        tabpane.getTabs().addAll(gameTab, creationTab, conditionTab, sceneTab);
         return tabpane;
     }
 

@@ -7,6 +7,7 @@ import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
+import util.Coordinate;
 
 
 /**
@@ -35,7 +36,7 @@ public interface ILevel extends Updateable, IAdder {
      * @return the Image of the background of the level
      */
     ImageGraphic getBackgroundImage ();
-    
+
     void setBackgroundImage (ImageGraphic graphic);
 
     /**
@@ -81,5 +82,6 @@ public interface ILevel extends Updateable, IAdder {
 
     void remove (ISprite sprite);
     
+    void add (ISprite sprite, Coordinate coordinate);
 
 }
