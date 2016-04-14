@@ -5,29 +5,28 @@ import java.util.List;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.Game;
-import engine.IOInterpeter;
 import engine.ISpriteGroup;
 import engine.Level;
 import engine.LevelManager;
 import engine.SpriteGroup;
 import engine.conditions.OnCollisionCondition;
+import engine.conditions.OnSpriteAttributeCondition;
 import engine.definitions.AttributeDefinition;
 import engine.definitions.KeyControlDefinition;
 import engine.definitions.LocationDefinition;
 import engine.definitions.MovementDefinition;
 import engine.definitions.SpriteDefinition;
-import engine.definitions.StaticMoverDefinition;
+import engine.definitions.StaticMovementDefintion;
 import engine.definitions.UserMoverDefinition;
 import engine.events.EventPackage;
+import engine.events.EventType;
 import engine.events.GameEvent;
 import engine.profile.Profile;
-import engine.sprite.SpriteType;
+import engine.sprite.ISprite;
 import engine.effects.DecreaseEffect;
 import engine.effects.IEffect;
 import gameplayer.GamePlayer;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import graphics.ImageGraphic;
 
@@ -73,10 +72,24 @@ public class Launcher extends Application {
 
     private void addConditionsToTest (Game game) {
         game.getConditionManager().getConditionListProperty().add(createCollisionCondition(game));
+        game.getConditionManager().getConditionListProperty().add(createHealthAttributeZeroDeathCondition(game));
+    }
+
+    private OnSpriteAttributeCondition createHealthAttributeZeroDeathCondition (Game game) {
+        return new OnSpriteAttributeCondition(game, new AttributeType(HEALTH_ATTY_TYPE),
+                                              value -> value < 0, userSpriteDeathEvent(),
+                                              createEmptyEventPackage(),
+                                              createEmptyEventPackage());
+        
+        // return new OnSpriteAttributeCondition(game, createHealthAttributeDefinition().create(),
+        // value -> value < 0, userSpriteDeathEvent(),
+        // createEmptyEventPackage(),
+        // createEmptyEventPackage());
+
     }
 
     private OnCollisionCondition createCollisionCondition (Game game) {
-        return new OnCollisionCondition(game, createUserSpriteEventPackage(),
+        return new OnCollisionCondition(game, userSpriteGetsHurtPackage(),
                                         createEnemyEventPackage(), createEmptyEventPackage(),
                                         createEmptyEventPackage());
     }
@@ -96,6 +109,13 @@ public class Launcher extends Application {
         return new ArrayList<>();
     }
 
+    private List<GameEvent> deathEvent () {
+        List<GameEvent> toReturn = new ArrayList<>();
+        GameEvent event = new GameEvent(EventType.DEATH);
+        toReturn.add(event);
+        return toReturn;
+    }
+
     private ISpriteGroup createSpriteGroupForDefinition (SpriteDefinition definition) {
         List<SpriteDefinition> mySpritesInGroup = new ArrayList<>();
         mySpritesInGroup.add(definition);
@@ -106,9 +126,14 @@ public class Launcher extends Application {
         return new SpriteGroup(new ArrayList<>());
     }
 
-    private EventPackage createUserSpriteEventPackage () {
+    private EventPackage userSpriteGetsHurtPackage () {
         return new EventPackage(createSpriteGroupForDefinition(createUserSpriteDefinition(0, 0)),
                                 dmgHealth(), noEvent());
+    }
+
+    private EventPackage userSpriteDeathEvent () {
+        return new EventPackage(createSpriteGroupForDefinition(createUserSpriteDefinition(0, 0)),
+                                noEffect(), deathEvent());
     }
 
     private EventPackage createEnemyEventPackage () {
@@ -121,6 +146,7 @@ public class Launcher extends Application {
     }
 
     private void addSpritesToGame (Game game) {
+        ISprite test = createUserSpriteDefinition(SPRITE_INITIAL_X, SPRITE_INITIAL_Y).create();
         game.bufferedAdd(createEnemySpriteDefinition(ENEMY_INITIAL_X, ENEMY_INITIAL_Y).create());
         game.bufferedAdd(createUserSpriteDefinition(SPRITE_INITIAL_X, SPRITE_INITIAL_Y).create());
     }
@@ -160,7 +186,7 @@ public class Launcher extends Application {
     }
 
     private MovementDefinition getStationaryDefintion () {
-        MovementDefinition myStationary = new StaticMoverDefinition();
+        MovementDefinition myStationary = new StaticMovementDefintion();
         myStationary.setSpeed(0);
         return myStationary;
     }
