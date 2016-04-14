@@ -1,12 +1,12 @@
 package facebookutil.test;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 
 /**
- * A simple HTML browser.
- * 
- * @author Robert C. Duvall
+ * Creates and runs a simple browser based on the JavaFX library
+ *
  */
 public class Main extends Application {
 
@@ -20,10 +20,6 @@ public class Main extends Application {
         stage.show();
     }
 
-
-    /**
-     * Start of the program.
-     */
     public static void main (String[] args) {
         launch(args);
     }

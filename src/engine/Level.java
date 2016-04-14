@@ -128,4 +128,9 @@ public class Level implements ILevel {
         mySpriteManager.add(sprite, coordinate);
     }
 
+    @Override
+    public void add (ISprite sprite) {
+        mySpriteManager.add(sprite);
+    }
+
 }

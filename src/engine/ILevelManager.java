@@ -5,6 +5,7 @@ import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
+import util.Coordinate;
 
 
 /**
@@ -65,4 +66,6 @@ public interface ILevelManager extends IAdder {
     void createNewLevel (ILevel newLevel);
 
     void add (ISprite sprite);
+
+    void add (ISprite sprite, Coordinate coordinate);
 }

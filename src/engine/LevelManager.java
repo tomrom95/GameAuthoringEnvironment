@@ -99,7 +99,12 @@ public class LevelManager implements ILevelManager {
     }
 
     public void add (ISprite sprite) {
-        myCurrentLevel.add(sprite, sprite.getLocation());
+        myCurrentLevel.add(sprite);
+    }
+
+    @Override
+    public void add (ISprite sprite, Coordinate coordinate) {
+        myCurrentLevel.add(sprite, coordinate);
     }
 
 }

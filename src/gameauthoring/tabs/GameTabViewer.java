@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -24,16 +25,15 @@ import javafx.scene.layout.HBox;
  */
 public class GameTabViewer implements ITabViewer {
 
-    private BorderPane myLayout;
+    private GridPane myLayout;
     private IFormDataManager myData = new FormDataManager();
 
     private String myNameKey = "Name of the Game: ";
     private String myAuthorKey = "Author: ";
     private String mySplashScreenKey = "Splash Screen: ";
-
-    private IEntryView myName = new TextEntryView(myNameKey, myData, 20, 150, 30);
-    private IEntryView myAuthor = new TextEntryView(myAuthorKey, myData, 20, 150, 30);
-    private IEntryView mySplashScreen = new ImageEntryView(mySplashScreenKey, myData, 20, 150, 30);
+    private IEntryView myName = new TextEntryView(myNameKey, myData, 200, 60, "titleScreen");
+    private IEntryView myAuthor = new TextEntryView(myAuthorKey, myData, 200, 60, "titleScreen");
+    private IEntryView mySplashScreen = new ImageEntryView(mySplashScreenKey, myData, 600, 400, AuthoringView.DEFAULT_ENTRYVIEW);
 
     public GameTabViewer () {
         init();
@@ -45,9 +45,11 @@ public class GameTabViewer implements ITabViewer {
 
     @Override
     public void init () {
-        myLayout = new BorderPane();
-        myLayout.setPrefSize(1200, 800);
-        myLayout.setCenter(createForms());
+        myLayout = new GridPane();
+        myLayout.add(myName.draw(), 0, 0);
+        myLayout.add(myAuthor.draw(), 0, 1);
+        myLayout.add(mySplashScreen.draw(), 1, 0, 1, 2);
+        myLayout.setHgap(150);
     }
 
     @Override
@@ -55,12 +57,12 @@ public class GameTabViewer implements ITabViewer {
         return myLayout;
     }
 
-    private Node createForms () {
-        HBox box = new HBox(800);
-        box.setAlignment(Pos.BOTTOM_CENTER);
-        box.getChildren().add(createGameInfoForm());
-        return box;
-    }
+//    private Node createForms () {
+//        HBox box = new HBox(800);
+//        box.setAlignment(Pos.BOTTOM_CENTER);
+//        box.getChildren().add(createGameInfoForm());
+//        return box;
+//    }
 
     private Node createGameInfoForm () {
         GridPane form = new GridPane();
