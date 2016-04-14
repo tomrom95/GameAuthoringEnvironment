@@ -1,61 +1,63 @@
-package gameauthoring.creation.subforms.movement;
+package gameauthoring.creation.subforms.fire;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import engine.IGame;
 import engine.definitions.SpriteDefinition;
-import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 
+/**
+ * This is the sfc for selecting firing modules for a Sprite
+ * 
+ * @author Jeremy Schreck
+ *
+ */
+public class FiringSubFormController implements ISubFormControllerSprite {
 
-public class MovementSubFormController implements ISubFormControllerSprite {
-
-    private MovementSubFormView myView;
+    private FiringSubFormView myView;
     private ObservableList<ISubFormView> mySubFormViews;
-    private IFormDataManager myFormData;
     private List<ISubFormController<SpriteDefinition>> mySubFormControllers;
     private ISubFormController<SpriteDefinition> myCurrentMovementController;
-    private StaticMoverSubFormController myStaticSubForm;
-    private ConstantMoverSubFormController myConstantSubForm;
-    private UserMoverSubFormController myUserSubForm;
-    private TrackingMoverSubFormController myTrackingSubForm;
+    private IGame myGame;
 
-    public MovementSubFormController () {
+    public FiringSubFormController (IGame game) {
+        myGame = game;
         setUpSubFormControllers();
-        setUpSubFormViews();
-        this.myView = new MovementSubFormView(mySubFormViews, e -> changeMovement(e));
-        this.myFormData = myView.getData();
+        setUpSubFormViews(mySubFormControllers);
+        this.myView = new FiringSubFormView(mySubFormViews, e -> changeMovement(e));
     }
 
     private void setUpSubFormControllers () {
-        myStaticSubForm = new StaticMoverSubFormController();
-        myConstantSubForm = new ConstantMoverSubFormController();
-        myUserSubForm = new UserMoverSubFormController();
-        myTrackingSubForm = new TrackingMoverSubFormController(null); //TODO: add game to constructor
+        // TOOD: add to factory
+        // TODO: add game to constructor
+        DirectionalFireSubFormController dfSFC = new DirectionalFireSubFormController(myGame);
+        TrackingFireSubFormController tfSFC = new TrackingFireSubFormController(myGame);
         mySubFormControllers = new ArrayList<>();
         mySubFormControllers.addAll(Arrays
-                .asList(myStaticSubForm, myConstantSubForm, myUserSubForm, myTrackingSubForm));
+                .asList(dfSFC, tfSFC));
+        
         myCurrentMovementController = mySubFormControllers.get(0);
 
     }
 
-    private void setUpSubFormViews () {
+    private void setUpSubFormViews (List<ISubFormController<SpriteDefinition>> subFormControllers) {
         mySubFormViews = FXCollections.observableArrayList();
-        mySubFormViews.add(myStaticSubForm.getSubFormView());
-        mySubFormViews.add(myConstantSubForm.getSubFormView());
-        mySubFormViews.add(myUserSubForm.getSubFormView());
-        mySubFormViews.add(myTrackingSubForm.getSubFormView());
+        for (ISubFormController<SpriteDefinition> sfc : subFormControllers) {
+            mySubFormViews.add(sfc.getSubFormView());
+        }
+
     }
 
     // combo box handler
     private void changeMovement (int comboSelectionIndex) {
         myCurrentMovementController = mySubFormControllers.get(comboSelectionIndex);
         myView.changeSubMovementView(comboSelectionIndex);
-        
+
     }
 
     @Override

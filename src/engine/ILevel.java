@@ -7,6 +7,7 @@ import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
+import util.Coordinate;
 
 
 /**
@@ -80,5 +81,7 @@ public interface ILevel extends Updateable, IAdder {
      */
 
     void remove (ISprite sprite);
+    
+    void add (ISprite sprite, Coordinate coordinate);
 
 }

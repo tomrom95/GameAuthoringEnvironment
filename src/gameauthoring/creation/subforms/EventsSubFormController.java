@@ -36,8 +36,10 @@ public class EventsSubFormController implements ISubFormController<EventPackageD
 
     private void makeNewEffect (IFormDataManager eventData, EventPackageDefinition item) {
         AttributeDefinition attr = myView.getEffectView().getAttribute();
-        Attribute a = new Attribute(new AttributeType(""));
-        Effect effect = new DecreaseEffect(new AttributeType(attr.getType()), a, 0);
+        Attribute a = new Attribute(new AttributeType("length"));
+        a.setValue(Double.valueOf(eventData.getValueProperty("Length").get()));
+        double val = Double.valueOf(eventData.getValueProperty("Amount").get());
+        Effect effect = new DecreaseEffect(new AttributeType(attr.getType()), a, val);
         item.setMyEffectsList(new ArrayList<IEffect>(Arrays.asList(effect)));
     }
 

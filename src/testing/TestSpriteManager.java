@@ -26,7 +26,7 @@ public class TestSpriteManager {
     @Test
     public void updateAllSprites () {
         for (int i = 0; i < 10; i++) {
-            mySpriteManager.add(createMovementSprite(), new Coordinate(10, 10));
+            mySpriteManager.bufferedAdd(createMovementSprite(), new Coordinate(10, 10));
         }
         mySpriteManager.update(new TimeDuration(100));
         mySpriteManager.getSprites().forEach(sprite -> testSprite(sprite.get()));

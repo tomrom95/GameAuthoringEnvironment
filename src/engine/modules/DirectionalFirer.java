@@ -43,7 +43,7 @@ public class DirectionalFirer extends Firer {
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(), mySprite.getLocation().getY()));
             bullet.getMovementStrategy().setXVel(getXVel(myAngle));
             bullet.getMovementStrategy().setYVel(getYVel(myAngle));            
-            myGame.add(bullet);
+            myGame.bufferedAdd(bullet);
             lastFire = new TimeDuration(duration.getMillis());
             
         } 

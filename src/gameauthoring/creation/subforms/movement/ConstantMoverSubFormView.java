@@ -30,6 +30,10 @@ public class ConstantMoverSubFormView extends SubFormView {
     private List<IEntryView> myEntryViews =
             new ArrayList<IEntryView>(Arrays.asList(myXVel, myYVel));
 
+    public ConstantMoverSubFormView () {
+        initView();
+    }
+    
     @Override
     public Node draw () {
         return myPane;
@@ -40,11 +44,6 @@ public class ConstantMoverSubFormView extends SubFormView {
         myPane.setGridLinesVisible(true);
         myPane.add(myXVel.draw(), 0, 0);
         myPane.add(myYVel.draw(), 0, 1);
-    }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
     }
 
     public String getMyXVelKey () {
