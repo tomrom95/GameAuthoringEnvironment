@@ -12,6 +12,7 @@ public class ConstantMoverDefinition extends MovementDefinition {
     @Override
     public IMovementModule create (IPositionable parent) {
         super.setSpeed(Math.sqrt(Math.pow(myXVel, 2) + Math.pow(myYVel, 2)));
+        
         return new ConstantMover(myXVel, myYVel, parent);
     }
     

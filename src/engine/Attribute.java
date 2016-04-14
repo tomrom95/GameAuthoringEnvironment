@@ -1,5 +1,6 @@
 package engine;
 
+
 import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
 import javafx.beans.property.DoubleProperty;
