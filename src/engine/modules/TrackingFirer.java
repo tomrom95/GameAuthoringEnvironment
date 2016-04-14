@@ -78,7 +78,7 @@ public class TrackingFirer extends Firer {
 
     private List<ISprite> getTargets () {
         return myGame.getLevelManager().getCurrentLevel().getSprites().stream()
-                .filter(sprite -> myTargets.contains(sprite))
+                .filter(sprite -> myTargets.contains(sprite.getType()))
                 .collect(Collectors.toList());
     }
 

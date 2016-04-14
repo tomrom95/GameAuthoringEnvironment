@@ -27,8 +27,8 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
     private DirectionalFireSubFormView myView;
     private IFormDataManager myFormData;
     private IGame myGame;
-    
-    private static Predicate<ModuleDefinition> findDirectionalFirer() {
+
+    private static Predicate<ModuleDefinition> findDirectionalFirer () {
         return p -> p.getClass().equals(new DirectionalFirerDefinition().getClass());
     }
 
@@ -40,27 +40,21 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-        
-        //TODO: add default populate method for new object?
-       if(item.getModuleDefinitions().isEmpty()) return;
-       
-       
-       Object firingDefinitionObject =
-                item.getModuleDefinitions().stream().filter(findDirectionalFirer()).toArray()[0];
-       DirectionalFirerDefinition myDef = new DirectionalFirerDefinition();
-       if(firingDefinitionObject.getClass().equals(myDef.getClass())){
-           myDef = (DirectionalFirerDefinition) firingDefinitionObject;
-       } else{
-           myDef = null;
-           /*
-            * throw exception here?
-            */
-       }
-       
-       myFormData.set(myView.getMyAngleKey(), Double.toString(myDef.getAngle())); 
-       myFormData.set(myView.getMyWaitTimeKey(), Double.toString(myDef.getWaitTime()));
-//        myFormData.set(myView.getMyProjectileKey(), myDef.getProjectileDefinition());
+        try {
+            Object firingDefinitionObject =
+                    item.getModuleDefinitions().stream().filter(findDirectionalFirer())
+                            .toArray()[0];
+            DirectionalFirerDefinition myDef = new DirectionalFirerDefinition();
 
+
+            myDef = (DirectionalFirerDefinition) firingDefinitionObject;
+            myFormData.set(myView.getMyAngleKey(), Double.toString(myDef.getAngle()));
+            myFormData.set(myView.getMyWaitTimeKey(), Double.toString(myDef.getWaitTime()));
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            myFormData.set(myView.getMyAngleKey(), "");
+            myFormData.set(myView.getMyProjectileKey(), "");
+        }
     }
 
     @Override
@@ -72,13 +66,13 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
     public void updateItem (SpriteDefinition item) {
         DirectionalFirerDefinition trackingFireDef = new DirectionalFirerDefinition();
         trackingFireDef.setGame(myGame);
-        Double angle = Double.valueOf(myFormData.getValueProperty(myView.getMyAngleKey()).get()) * Math.PI / 180; //tangent functions need radians
+        Double angle =
+                Double.valueOf(myFormData.getValueProperty(myView.getMyAngleKey()).get()) *
+                       Math.PI / 180; // tangent functions need radians
         trackingFireDef.setAngle(angle);
         Double waitTime =
                 Double.valueOf(myFormData.getValueProperty(myView.getMyWaitTimeKey()).get());
-        trackingFireDef.setWaitTime(waitTime);
-//        String projectile = myFormData.getValueProperty(myView.getMyProjectileKey()).get();
-        // trackingFireDef.setProjectileDefinition(new SpriteDefinition(projectile));
+        trackingFireDef.setWaitTime(waitTime);      
         item.addModule(trackingFireDef);
 
     }
