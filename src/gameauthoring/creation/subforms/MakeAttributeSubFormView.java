@@ -3,52 +3,39 @@ package gameauthoring.creation.subforms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
+import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
 
 /**
  * View class for attribute subform. This serves to create text entry view for max/min/isglobal
- * @author Jin An
+ * @author Jin An Joe Lilien
  *
  */
 public class MakeAttributeSubFormView extends SubFormView {
 
     private GridPane myPane = new GridPane();
-    private String myMaxKey = "Max Value: ";
-    private String myMinKey = "Min Value: ";
-    private String myIsGlobalKey = "Global or Local Attribute: ";
-
-    //private IEntryView myMaxValue = new TextEntryView(myMaxKey, this.getData(), 20, 150, 30);
-   // private IEntryView myMinValue = new TextEntryView(myMinKey, this.getData(), 20, 100, 100);
-    private IEntryView myIsGlobal = new TextEntryView(myIsGlobalKey, this.getData(), 20, 150, 90);
-    private List<IEntryView> myEntryViews = new ArrayList<IEntryView>(Arrays.asList(
-                                                                                    myIsGlobal));
+    private String myStartingValueKey = "Starting Value: ";
+    private TextEntryView myStartingValue = new TextEntryView(myStartingValueKey, this.getData(), 100,30 , AuthoringView.DEFAULT_ENTRYVIEW);
+    private List<IEntryView> myEntryViews = new ArrayList<IEntryView>(Arrays.asList(myStartingValue));
 
     public MakeAttributeSubFormView () {
         initView();
     }
 
     private void initView () {
-        super.setMyEntryViews(myEntryViews);
-        myPane.setGridLinesVisible(true);
-        //myPane.add(myMaxValue.draw(), 0, 0);
-        //myPane.add(myMinValue.draw(), 0, 0);
-        myPane.add(myIsGlobal.draw(), 1, 0, 1, 1);
+        super.setMyEntryViews(myEntryViews);      
+        myPane.add(myStartingValue.draw(), 0,0);
     }
 
-    public String getMyMaxKey () {
-        return myMaxKey;
-    }
+ 
 
-    public String getMyMinKey () {
-        return myMinKey;
-    }
-
-    public String getMyIsGlobalKey () {
-        return myIsGlobalKey;
+    public String getMyStartingValueKey () {
+        return myStartingValueKey;
     }
 
     @Override
