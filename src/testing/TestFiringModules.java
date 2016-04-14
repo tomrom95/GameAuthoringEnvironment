@@ -31,9 +31,11 @@ public class TestFiringModules extends TestCase {
         projectile = new SpriteDefinition();
         mover = new ConstantMoverDefinition();
         mover.setSpeed(100);
+        System.out.println(mover.getSpeed());
         mover.setXVel(10);
         mover.setYVel(10);
         projectile.setMovementDefinition(mover);
+        System.out.println(projectile.getMovementDefinition().getSpeed());
         
         shooter = new SpriteDefinition();
         LocationDefinition myLocation = new LocationDefinition();
@@ -45,9 +47,12 @@ public class TestFiringModules extends TestCase {
         fire.setProjectileDefinition(projectile);
         fire.setWaitTime(1000);
         fire.setGame(game);
-        fire.setAngle(120);
+        fire.setAngle(-60);
        
         shooter.addModule(fire);
+        
+        
+        
         
         enemy = new SpriteDefinition();
         LocationDefinition enemyLocation = new LocationDefinition();
@@ -61,11 +66,16 @@ public class TestFiringModules extends TestCase {
     }
 
     public  void testFire(){
+      double speed =  projectile.getMovementDefinition().getSpeed();
+      System.out.println("testFire speed: "+ speed);
+              
       ISprite shooterGuy = shooter.create();
       
-      shooterGuy.update(new TimeDuration(100000));
+      shooterGuy.update(new TimeDuration(1000000));
+      shooterGuy.update(new TimeDuration(1));
 //      System.out.println(game.getLevelManager().getCurrentLevel().getSprites().size());
-      assertEquals(1, game.getLevelManager().getCurrentLevel().getSprites().size());
+//      assertEquals(1, game.getLevelManager().getCurrentLevel().getSprites().size());
+      assertEquals(-60 , game.getLevelManager().getCurrentLevel().getSprites().get(0).getMovementStrategy().getAngle());
     }
     
    

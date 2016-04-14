@@ -9,6 +9,7 @@ import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.SubFormView;
+import gameauthoring.tabs.AuthoringView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -47,7 +48,10 @@ public class MovementSubFormView extends SubFormView {
         ProfileDisplay trackingMove = new ProfileDisplay("Tracking");
         
         myListOfMovementTypes.addAll(staticMove, constantMove, userMove, trackingMove);
-        SingleChoiceEntryView<ProfileDisplay> entryView =  new SingleChoiceEntryView<ProfileDisplay>(myMoveTypeKey, myListOfMovementTypes, 20);
+
+        SingleChoiceEntryView<ProfileDisplay> entryView =
+                new SingleChoiceEntryView<ProfileDisplay>(myMoveTypeKey, myListOfMovementTypes,
+                                                          AuthoringView.DEFAULT_ENTRYVIEW);
         entryView.addComboIndexListener(action);
         mySubMovementView = myViews.get(0).draw();
         myPane.add(mySubMovementView, 1, 0);

@@ -3,24 +3,27 @@ package engine.definitions;
 import java.util.List;
 import engine.IGame;
 import engine.IPositionable;
+import engine.SpriteGroup;
 import engine.modules.TrackingFirer;
 import engine.sprite.SpriteType;
 
 
 public class TrackingFirerDefinition extends FirerDefinition {
 
-    private List<SpriteType> myTargets;
+    private SpriteGroup myTargets;
+    private List<SpriteType> myTargetsType;
     private double myWaitTime;
     private IGame myGame;
 
 
     @Override
     public TrackingFirer create (IPositionable parent) {
-        return new TrackingFirer(myTargets, myGame, myWaitTime, myProjectile, parent);
+        myTargetsType = myTargets.getSpriteTypes();
+        return new TrackingFirer(myTargetsType, myGame, myWaitTime, myProjectile, parent);
 
     }
     
-    public List<SpriteType> getTargets () {
+    public SpriteGroup getTargets () {
         return myTargets;
     }
 
@@ -36,7 +39,7 @@ public class TrackingFirerDefinition extends FirerDefinition {
         myGame = game;
     }
     
-    public void setTargets (List<SpriteType> targets) {
+    public void setTargets (SpriteGroup targets) {       
         myTargets = targets;
     }
 

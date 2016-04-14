@@ -2,6 +2,10 @@ package facebookutil;
 
 import facebookutil.login.Login;
 
+/**
+ * This interface manages the actions associated with a user 
+ *
+ */
 public interface IUser {
     
     public String getUserID ();

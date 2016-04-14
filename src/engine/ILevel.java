@@ -84,4 +84,6 @@ public interface ILevel extends Updateable, IAdder {
     
     void add (ISprite sprite, Coordinate coordinate);
 
+    void add (ISprite sprite);
+
 }

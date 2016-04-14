@@ -10,6 +10,7 @@ import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.SubFormView;
+import gameauthoring.tabs.AuthoringView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,7 +39,7 @@ public class FiringSubFormView extends SubFormView {
     private Node myMissileSelectionView;
     SingleChoiceEntryView<SpriteDefinition> myMissileSelection;
     ObservableList<SpriteDefinition> myMissiles;
-    
+
     public FiringSubFormView (ObservableList<ISubFormView> views,
                               Consumer<Integer> changeFiringTypeAction,
                               Consumer<SpriteDefinition> changeMissileAction,
@@ -49,7 +50,9 @@ public class FiringSubFormView extends SubFormView {
         initView();
     }
 
-    private void updateEntryViews (Consumer<Integer> changeFiringTypeAction,Consumer<SpriteDefinition> changeMissileAction,  ObservableList<SpriteDefinition> missiles) {
+    private void updateEntryViews (Consumer<Integer> changeFiringTypeAction,
+                                   Consumer<SpriteDefinition> changeMissileAction,
+                                   ObservableList<SpriteDefinition> missiles) {
         myListOfTypes = FXCollections.observableArrayList();
 
         // TODO add titles to SFCs and pass in titles here
@@ -58,7 +61,9 @@ public class FiringSubFormView extends SubFormView {
 
         myListOfTypes.addAll(directionalFire, trackingFire);
         SingleChoiceEntryView<ProfileDisplay> entryView =
-                new SingleChoiceEntryView<ProfileDisplay>(myFireTypeKey, myListOfTypes, 20);
+
+                new SingleChoiceEntryView<ProfileDisplay>(myFireTypeKey, myListOfTypes,
+                                                          AuthoringView.DEFAULT_ENTRYVIEW);
         entryView.addComboIndexListener(changeFiringTypeAction);
         mySubFiringView = myViews.get(0).draw();
         myPane.add(mySubFiringView, 0, 1);
@@ -66,19 +71,21 @@ public class FiringSubFormView extends SubFormView {
         myFire = entryView;
 
         // Missiles
-        myMissileSelection = new SingleChoiceEntryView<>("Missile", missiles, 20);
-        
+        myMissileSelection =
+                new SingleChoiceEntryView<>("Missile", missiles, AuthoringView.DEFAULT_ENTRYVIEW);
+
         myMissileSelection.addComboItemListener(changeMissileAction);
         myMissileSelectionView = myMissileSelection.draw();
 
         myEntryViews = new ArrayList<IEntryView>(Arrays.asList(myFire, myMissileSelection));
     }
 
-    public void selectMissile(SpriteDefinition missile){
-       // SpriteDefinition missile =  (SpriteDefinition) myMissiles.stream().filter(p->p.getProfile().getName().get().equals(missileName)).toArray()[0];
+    public void selectMissile (SpriteDefinition missile) {
+        // SpriteDefinition missile = (SpriteDefinition)
+        // myMissiles.stream().filter(p->p.getProfile().getName().get().equals(missileName)).toArray()[0];
         myMissileSelection.setSelected(missile);
     }
-    
+
     public void changeSubMovementView (int index) {
         myPane.getChildren().remove(mySubFiringView);
         mySubFiringView = myViews.get(index).draw();

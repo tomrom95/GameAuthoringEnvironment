@@ -22,19 +22,23 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
     private GridPane myContainer;
     private ComboBox<E> myChoices;
 
-    public SingleChoiceEntryView (String label, ObservableList<E> observableList, double spacing) {
+    public SingleChoiceEntryView (String label, ObservableList<E> observableList, String cssClass) {
         super(label);
         this.myContainer = new GridPane();
         this.myChoices = new ComboBox<E>(observableList);
         myChoices.setCellFactory(c -> new NameCellView<E>());
         myChoices.setButtonCell(new NameCellView<E>());
-
         myContainer.add(new Label(getLabel()), 0, 0);
         myContainer.add(myChoices, 0, 1);
+        myContainer.getStyleClass().add(cssClass);
     }
 
     public void setSelected (E item) {
         myChoices.getSelectionModel().select(item);
+    }
+    
+    public void clearSelection(){
+        myChoices.getSelectionModel().clearSelection();
     }
 
     public E getSelected () {
