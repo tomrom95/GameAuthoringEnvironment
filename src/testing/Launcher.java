@@ -21,6 +21,8 @@ import engine.definitions.UserMoverDefinition;
 import engine.events.EventPackage;
 import engine.events.GameEvent;
 import engine.profile.Profile;
+import engine.sprite.ISprite;
+import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
 import engine.effects.DecreaseEffect;
 import engine.effects.IEffect;
@@ -121,6 +123,7 @@ public class Launcher extends Application {
     }
 
     private void addSpritesToGame (Game game) {
+        ISprite test = createUserSpriteDefinition(SPRITE_INITIAL_X, SPRITE_INITIAL_Y).create();
         game.bufferedAdd(createEnemySpriteDefinition(ENEMY_INITIAL_X, ENEMY_INITIAL_Y).create());
         game.bufferedAdd(createUserSpriteDefinition(SPRITE_INITIAL_X, SPRITE_INITIAL_Y).create());
     }
