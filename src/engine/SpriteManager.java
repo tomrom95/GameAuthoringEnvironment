@@ -50,8 +50,8 @@ public class SpriteManager implements ISpriteManager {
 
     @Override
     public void bufferedAdd (ISprite sprite, Coordinate coordinate) {
+        sprite.setLocation(coordinate);
         bufferedAdd(sprite);
-        sprite.getLocation().setLocation(coordinate.getX(), coordinate.getY());
     }
 
     @Override
@@ -83,13 +83,17 @@ public class SpriteManager implements ISpriteManager {
     @Override
     public void bufferedAdd (ISprite sprite) {
         myBufferList.add(sprite);
-
     }
 
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
+        sprite.setLocation(coordinate);
+        add(sprite);
+    }
+
+    @Override
+    public void add (ISprite sprite) {
         mySpriteList.add(sprite);
-        sprite.getLocation().setLocation(coordinate.getX(), coordinate.getY());
     }
 
 }
