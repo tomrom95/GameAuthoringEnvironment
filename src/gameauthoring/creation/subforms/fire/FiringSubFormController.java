@@ -22,14 +22,15 @@ public class FiringSubFormController implements ISubFormControllerSprite {
     private FiringSubFormView myView;
     private ObservableList<ISubFormView> mySubFormViews;
     private List<ISubFormController<SpriteDefinition>> mySubFormControllers;
-    private ISubFormController<SpriteDefinition> myCurrentMovementController;
+    private ISubFormController<SpriteDefinition> myCurrentFiringController;
     private IGame myGame;
+    private SpriteDefinition myMissile;
 
     public FiringSubFormController (IGame game) {
         myGame = game;
         setUpSubFormControllers();
         setUpSubFormViews(mySubFormControllers);
-        this.myView = new FiringSubFormView(mySubFormViews, e -> changeMovement(e));
+        this.myView = new FiringSubFormView(mySubFormViews, e -> changeFiringType(e), e -> changeMissile(e), game.getAuthorshipData().getMyCreatedMissiles().getItems());
     }
 
     private void setUpSubFormControllers () {
@@ -41,7 +42,7 @@ public class FiringSubFormController implements ISubFormControllerSprite {
         mySubFormControllers.addAll(Arrays
                 .asList(dfSFC, tfSFC));
         
-        myCurrentMovementController = mySubFormControllers.get(0);
+        myCurrentFiringController = mySubFormControllers.get(0);
 
     }
 
@@ -53,26 +54,38 @@ public class FiringSubFormController implements ISubFormControllerSprite {
 
     }
 
-    // combo box handler
-    private void changeMovement (int comboSelectionIndex) {
-        myCurrentMovementController = mySubFormControllers.get(comboSelectionIndex);
+    
+    // firing type combo box handler
+    private void changeFiringType (int comboSelectionIndex) {
+        myCurrentFiringController = mySubFormControllers.get(comboSelectionIndex);
         myView.changeSubMovementView(comboSelectionIndex);
+
+    }
+    
+    // missile combo box handler
+    private void changeMissile (SpriteDefinition missile) {
+        System.out.println(missile.getProfile().getName().get());
+        myMissile = missile;
 
     }
 
     @Override
     public void updateItem (SpriteDefinition item) {
-        myCurrentMovementController.updateItem(item);
+        myCurrentFiringController.updateItem(item);
     }
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-        myCurrentMovementController.populateViewsWithData(item);
+        myCurrentFiringController.populateViewsWithData(item);
     }
 
     @Override
     public ISubFormView getSubFormView () {
         return myView;
+    }
+    
+    protected SpriteDefinition getMyMissile() {
+        return myMissile;
     }
 
 }
