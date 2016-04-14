@@ -18,6 +18,7 @@ public class SpawnerDefinition extends SpriteDefinition {
     
     public SpawnerDefinition () {
         this.getProfile().setNew(SPAWNER_NAME, SPAWNER_DESCRIPTION, SPAWNER_URL);
+        mySpawningModule = new SpawnerModuleDefinition(null, null, 0);
     }
 
     @Override
