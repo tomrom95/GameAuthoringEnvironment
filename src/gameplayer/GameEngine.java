@@ -46,7 +46,7 @@ public class GameEngine implements IGameEngine {
 
     private void initializeTimeline () {
         Timeline timeline = getTimeline();
-        Duration frameDuration = Duration.seconds(1.0d / FPS);
+        Duration frameDuration = Duration.seconds(1.0d / 5);
         KeyFrame repeatedFrame = new KeyFrame(frameDuration, e -> step(frameDuration));
         timeline.getKeyFrames().add(repeatedFrame);
         timeline.setCycleCount(Animation.INDEFINITE);

@@ -40,10 +40,11 @@ public class DemoLauncher extends Application {
 
     private void makeGame () {
         IGame game = new Game();
+        myGame = game;
         createGlobalAtts(game);
         createSpriteDefs(game);
         //addSpawner(game);
-        myGame = game;
+        
     }
 
 //    private void addSpawner (IGame game) {
@@ -63,9 +64,11 @@ public class DemoLauncher extends Application {
 
     private SpriteDefinition createProjectile () {
         SpriteDefinition sd1 = new SpriteDefinition();
-        sd1.setMovementDefinition(getStaticMover());
+        sd1.setMovementDefinition(getUserMover());
         return sd1;
     }
+    
+    
 
     private void createGlobalAtts (IGame game) {
         IAttribute lives = new Attribute(new AttributeType("Lives"));
@@ -80,15 +83,15 @@ public class DemoLauncher extends Application {
         sd1.setMovementDefinition(getStaticMover());
         
         SpriteDefinition sd2 = new SpriteDefinition();
-        ImageGraphic image = new ImageGraphic(20, 20, "/images/plus.png");
+        ImageGraphic image = new ImageGraphic(20, 20, "/images/C.png");
         sd2.setProfile(new Profile("User Mover", "Controlled By User", image));
         sd2.setMovementDefinition(getUserMover());
         
-        //SpriteDefinition sd3 = createSpawnerDef();
+        SpriteDefinition sd3 = createSpawnerDef();
         
         dc.addItem(sd1);
         dc.addItem(sd2);
-        //dc.addItem(sd3);
+        dc.addItem(sd3);
         game.getAuthorshipData()
                 .addCreatedSprites(dc);
     }

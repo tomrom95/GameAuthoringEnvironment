@@ -1,5 +1,6 @@
 package engine.sprite;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import engine.Affectable;
@@ -16,6 +17,7 @@ import engine.modules.IGraphicModule;
 import engine.modules.IModule;
 import engine.modules.IMovementModule;
 import engine.modules.SpriteStatus;
+import engine.modules.StaticMover;
 import javafx.collections.ObservableList;
 import util.Bounds;
 import util.Coordinate;
@@ -48,6 +50,8 @@ public class Sprite extends DefaultAffectable implements ISprite {
         myType = type;
         myStatus = new SpriteStatus();
         myAttributeManager = new AttributeManager();
+        myOtherModules = new ArrayList<>();
+        myMover = new StaticMover(this);
 
     }
 

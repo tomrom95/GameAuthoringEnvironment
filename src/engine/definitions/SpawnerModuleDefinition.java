@@ -27,7 +27,7 @@ public class SpawnerModuleDefinition extends ModuleDefinition {
 
     @Override
     public IModule create (IPositionable parent) {
-        return new SpawningModule(myAdder, myWave.create());
+        return new SpawningModule(myAdder, myWave.create(), parent);
     }
 
   

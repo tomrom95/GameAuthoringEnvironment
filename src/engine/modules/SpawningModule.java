@@ -1,7 +1,9 @@
 package engine.modules;
 
 import engine.IAdder;
+import engine.IPositionable;
 import engine.effects.DefaultAffectable;
+import engine.sprite.ISprite;
 import util.TimeDuration;
 
 
@@ -13,15 +15,21 @@ public class SpawningModule extends DefaultAffectable implements IModule {
 
     private IAdder myAdder;
     private IWave myWave;
+    private IPositionable myParent;
 
-    public SpawningModule (IAdder adder, IWave wave) {
+    public SpawningModule (IAdder adder, IWave wave, IPositionable parent) {
+        myParent = parent;
         myAdder = adder;
+        myWave = wave;
     }
 
     @Override
     public void update (TimeDuration duration) {
 
-        myAdder.add(myWave.getNextSprite());
+        if (myWave.hasNext()) {
+            
+            myAdder.add(myWave.getNextSprite(), myParent.getLocation());
+        }
     }
 
 }

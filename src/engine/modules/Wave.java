@@ -17,10 +17,16 @@ public class Wave implements IWave {
 
     @Override
     public ISprite getNextSprite () {
+        
         ISprite sprite = mySprites.get(myCurrent).create();
         myCurrent++;
         return sprite;
 
+    }
+    
+    @Override 
+    public boolean hasNext () {
+        return myCurrent < mySprites.size();
     }
 
 }
