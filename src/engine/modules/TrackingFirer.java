@@ -79,7 +79,6 @@ public class TrackingFirer extends Firer {
             
             double initialYVel = myTracker.calculateYVelToClosestEnemy(bullet.getLocation(), getTargets(), myProjectile.getMovementDefinition().getSpeed());
             bullet.getMovementStrategy().setYVel(initialYVel); 
-            System.out.println("X Velocity: "+initialXVel+" Y Velocity: "+initialYVel);
             myGame.bufferedAdd(bullet);
             lastFire = new TimeDuration(duration.getMillis());
             timeSinceFire = 0; 
