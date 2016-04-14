@@ -41,6 +41,7 @@ import gameauthoring.shareddata.DefinitionCollection;
 import gameplayer.GamePlayer;
 import graphics.ImageGraphic;
 import javafx.application.Application;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import util.Coordinate;
 
@@ -53,7 +54,11 @@ public class DemoLauncher extends Application {
     public void start (Stage primaryStage) throws Exception {
         makeGame();
         new GameWriter().serialize(new File("/Users/davidmaydew/Desktop/test.xml"), myGame);
-        IGame xmlGame = new GameReader().readFile(new File("/Users/davidmaydew/Desktop/test.xml"));
+        FileChooser chooser = new FileChooser();
+        File f = chooser.showOpenDialog(primaryStage);
+        
+        //IGame xmlGame = new GameReader().readFile(new File("/Users/davidmaydew/Desktop/test.xml"));
+        IGame xmlGame = new GameReader().readFile(f);
         GamePlayer gp = new GamePlayer(xmlGame);
     }
 
@@ -72,21 +77,35 @@ public class DemoLauncher extends Application {
     }
 
     private void createConditions (IGame game) {
-        game.getConditionManager().getConditionListProperty().add(createCollisionCondition(game));
+        game.getConditionManager().getConditionListProperty().add(missileZombieCollision(game));
+        game.getConditionManager().getConditionListProperty().add(plantZombieCollision(game));
 
     }
 
-    private OnCollisionCondition createCollisionCondition (IGame game) {
+    private OnCollisionCondition missileZombieCollision (IGame game) {
         List<SpriteDefinition> g1 = new ArrayList<>();
         g1.add(createMissileDef());
         List<SpriteDefinition> g2 = new ArrayList<>();
         g2.add(createBucket());
         g2.add(createBalloon());
-        
+
         return new OnCollisionCondition(game, packageForSpriteDefinitions(g1),
                                         packageForSpriteDefinitions(g2),
                                         createEmptyEventPackage(),
                                         createEmptyEventPackage());
+    }
+
+    private OnCollisionCondition plantZombieCollision (IGame game) {
+        List<SpriteDefinition> g1 = new ArrayList<>();
+        g1.add(createShooterDef());
+        List<SpriteDefinition> g2 = new ArrayList<>();
+        g2.add(createBucket());
+        g2.add(createBalloon());
+
+        return new OnCollisionCondition(game, noDeathSpritePackage(g1),//groupa
+                                        packageForSpriteDefinitions(g2), //groupb
+                                        createEmptyEventPackage(), //othergroup
+                                        createAttyChangeOnly()); //global
     }
 
     private ISpriteGroup createSpriteGroupForDefinition (List<SpriteDefinition> definition) {
@@ -94,7 +113,20 @@ public class DemoLauncher extends Application {
         mySpritesInGroup.addAll(definition);
         return new SpriteGroup(mySpritesInGroup);
     }
-
+    
+    private EventPackage createAttyChangeOnly(){
+        //cahngere asd f
+        return new EventPackage(createSpriteGroupForDefinition(),
+                                dmgAtty("Lives"), noEvent());
+    }
+    
+    private List<IEffect> dmgAtty (String attyType) {
+        List<IEffect> toReturn = new ArrayList<>();
+        toReturn.add(new DecreaseEffect(new AttributeType(attyType),
+                                        new Attribute(0d, new AttributeType("cd")), 1d));
+        return toReturn;
+    }
+    
     private EventPackage createEmptyEventPackage () {
         return new EventPackage(createSpriteGroupForDefinition(), noEffect(), noEvent());
     }
@@ -110,6 +142,11 @@ public class DemoLauncher extends Application {
     private EventPackage packageForSpriteDefinitions (List<SpriteDefinition> list) {
         return new EventPackage(createSpriteGroupForDefinition(list),
                                 noEffect(), deathEvent());
+    }
+    
+    private EventPackage noDeathSpritePackage (List<SpriteDefinition> list) {
+        return new EventPackage(createSpriteGroupForDefinition(list),
+                                noEffect(), noEvent());
     }
 
     private List<IEffect> noEffect () {
@@ -240,9 +277,8 @@ public class DemoLauncher extends Application {
 
     private void createGlobalAtts (IGame game) {
         IAttribute lives = new Attribute(new AttributeType("Lives"));
-        IAttribute coins = new Attribute(new AttributeType("Coins"));
+        lives.setValue(5);
         game.getAttributeManager().getAttributes().add(lives);
-        game.getAttributeManager().getAttributes().add(coins);
     }
 
     private void createSpriteDefs (IGame game) {

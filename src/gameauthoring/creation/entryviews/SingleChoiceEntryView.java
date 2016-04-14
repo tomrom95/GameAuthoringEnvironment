@@ -45,8 +45,12 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
         return myChoices.getSelectionModel().getSelectedItem();
     }
 
-    public void addComboListener(Consumer<Integer> action){
+    public void addComboIndexListener(Consumer<Integer> action){
         myChoices.setOnAction(e -> action.accept(myChoices.getSelectionModel().getSelectedIndex()));
+        
+    }
+    public void addComboItemListener(Consumer<E> action){
+        myChoices.setOnAction(e -> action.accept(myChoices.getSelectionModel().getSelectedItem()));
         
     }
 

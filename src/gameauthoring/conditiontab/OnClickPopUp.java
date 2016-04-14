@@ -5,6 +5,8 @@ import engine.SpriteGroup;
 import engine.conditions.ICondition;
 import engine.conditions.OnClickCondition;
 import engine.definitions.EventPackageDefinition;
+import engine.profile.IProfilable;
+import gameauthoring.creation.cellviews.NameCellView;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -51,14 +53,32 @@ public class OnClickPopUp extends ConditionPopUp {
     private void initBoxes () {
         // TODO Auto-generated method stub
         myGroupA = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
+        addCellFactory(myGroupA);
+        
         myEventsA =
                 new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+
+        addCellFactory(myEventsA);
+        
         myGroupB = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
+
+        addCellFactory(myGroupB);
+
         myEventsB =
                 new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+
+        addCellFactory(myEventsB);
+
         myGlobalEvents =
                 new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
 
+        addCellFactory(myGlobalEvents);
+
+    }
+
+    private void addCellFactory (ComboBox<? extends IProfilable> comboBox) {
+        comboBox.setCellFactory(c -> new NameCellView<>());
+        comboBox.setButtonCell(new NameCellView<>());
     }
 
     private Node getHBox () {

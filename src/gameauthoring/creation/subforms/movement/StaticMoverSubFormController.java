@@ -37,9 +37,8 @@ public class StaticMoverSubFormController implements ISubFormControllerSprite {
 
     }
 
-    @Override
-    public void populateViewsWithData (SpriteDefinition item) {                      
-        
+    public void populateViewsWithData (SpriteDefinition item) {
+
     }
 
     @Override

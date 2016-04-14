@@ -7,24 +7,15 @@ import engine.modules.DirectionalFirer;
 import engine.sprite.SpriteType;
 
 
-public class DirectionalFirerDefinition extends ModuleDefinition {
+public class DirectionalFirerDefinition extends FirerDefinition {
     private double myWaitTime;
     private IGame myGame;
-    private SpriteDefinition myProjectile;
     private double myAngle;
 
     @Override
     public DirectionalFirer create (IPositionable parent) {
         return new DirectionalFirer(myGame, myProjectile, parent, myWaitTime, myAngle);
 
-    }
-
-    public void setProjectileDefinition (SpriteDefinition projectile) {
-        myProjectile = projectile;
-    }
-
-    public SpriteDefinition getProjectileDefinition () {
-        return myProjectile;
     }
 
     public void setWaitTime (double time) {
