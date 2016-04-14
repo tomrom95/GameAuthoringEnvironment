@@ -71,7 +71,7 @@ public class Profile implements IProfile {
 
     @Override
     public void setNew (String name, String desc, String url) {
-        myImage.set(new ImageGraphic(0, 0, url));
+        myImage.set(new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, url));
         myDescription.set(desc);
         myName.set(name);
     }
