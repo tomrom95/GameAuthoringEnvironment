@@ -1,7 +1,10 @@
 package testing;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import data.GameReader;
+import data.GameWriter;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.Game;
@@ -41,7 +44,9 @@ public class DemoLauncher extends Application {
     @Override
     public void start (Stage primaryStage) throws Exception {
         makeGame();
-        GamePlayer gp = new GamePlayer(myGame);
+        new GameWriter().serialize(new File ("/Users/davidmaydew/Desktop/test.xml"), myGame);
+        IGame xmlGame = new GameReader().readFile(new File ("/Users/davidmaydew/Desktop/test.xml"));
+        GamePlayer gp = new GamePlayer(xmlGame);
     }
 
     private void makeGame () {

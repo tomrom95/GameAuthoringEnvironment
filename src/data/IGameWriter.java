@@ -3,6 +3,7 @@ package data;
 import java.io.File;
 import java.io.IOException;
 import engine.Game;
+import engine.IGame;
 
 
 /**
@@ -12,5 +13,5 @@ import engine.Game;
  */
 public interface IGameWriter {
 
-    void serialize (File file, Game game) throws IOException;
+    void serialize (File file, IGame game) throws IOException;
 }
