@@ -38,7 +38,9 @@ public interface ISprite extends Drawable, Updateable, Affectable, IPositionable
 
     IMovementModule getMovementStrategy ();
 
-    List<? extends IModule> getModules ();
+    List<IModule> getModules ();
+    
+    void addModule (IModule module);
 
     List<IResource> getResources ();
 
