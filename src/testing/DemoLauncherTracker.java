@@ -1,21 +1,16 @@
 package testing;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import data.GameReader;
-import data.GameWriter;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.Game;
 import engine.IAttribute;
 import engine.IGame;
-import engine.ILevel;
 import engine.ISpriteGroup;
 import engine.SpriteGroup;
 import engine.conditions.OnCollisionCondition;
 import engine.definitions.ConstantMoverDefinition;
-import engine.definitions.DirectionalFirerDefinition;
 import engine.definitions.KeyControlDefinition;
 import engine.definitions.MovementDefinition;
 import engine.definitions.PathMoverDefinition;
@@ -26,17 +21,12 @@ import engine.definitions.TrackingFirerDefinition;
 import engine.definitions.UserMoverDefinition;
 import engine.definitions.WaveDefinition;
 import engine.definitions.concrete.SpawnerDefinition;
-import engine.effects.DecreaseEffect;
 import engine.effects.IEffect;
 import engine.events.EventPackage;
 import engine.events.EventType;
 import engine.events.GameEvent;
-import engine.modules.PathMover;
-import engine.modules.SpawningModule;
 import engine.profile.Profile;
 import engine.sprite.ISprite;
-import engine.sprite.Sprite;
-import engine.sprite.SpriteType;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameplayer.GamePlayer;
 import graphics.ImageGraphic;
@@ -64,8 +54,8 @@ public class DemoLauncherTracker extends Application {
         setBackground();
         addSpawner1(game);
         addSpawner2(game);
-        addSpawner3(game);
-        addSpawner4(game);
+        //addSpawner3(game);
+        //addSpawner4(game);
         createConditions(game);
 
     }
@@ -262,8 +252,8 @@ public class DemoLauncherTracker extends Application {
 
     private SpriteDefinition createShooterDef () {
         SpriteDefinition sd1 = new SpriteDefinition();
-        ImageGraphic plantImage = new ImageGraphic(50, 50, "/images/plant.png");
-        sd1.setProfile(new Profile("Tower 1", "Plant", plantImage));
+        ImageGraphic plantImage = new ImageGraphic(120, 120, "/images/tower.png");
+        sd1.setProfile(new Profile("Tower 1", "Clash of Clans", plantImage));
         sd1.setMovementDefinition(getStaticMover());
         
 //        DirectionalFirerDefinition fireDef = new DirectionalFirerDefinition();
