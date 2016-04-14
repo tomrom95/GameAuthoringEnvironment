@@ -50,6 +50,7 @@ public abstract class CreationController<T extends IProfilable> {
         myView = new ObjectCreationView<T>();
         myDefinitionCollection = new DefinitionCollection<>(getMyTitle(),
                                                             getMyObjectCreationView().getItems());
+
         addToAuthorshipData(game.getAuthorshipData());
 
     }

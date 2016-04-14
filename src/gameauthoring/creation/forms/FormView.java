@@ -29,9 +29,9 @@ public class FormView implements IFormView {
 
     public FormView(List<ISubFormView> subFormViews){
         mySubFormViews = subFormViews;
-        mySubFormViewer.setPrefHeight(500); //TODO Magic Number
-        myFormView.add(mySubFormViewer, 0, 0); 
-        myFormView.add(createButtonHolder(), 0 , 1);
+        mySubFormViewer.getStyleClass().add("myFormView");
+        myFormView.add(mySubFormViewer, 0, 1); 
+        myFormView.add(createButtonHolder(), 0 , 0);
         generateView(mySubFormViews);            
     }
     

@@ -22,7 +22,8 @@ public class Profile implements IProfile {
     private SimpleObjectProperty<ImageGraphic> myImage;
 
     public Profile () {
-        init("", "", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+        init("<NAME>", "<DESCRIPTION>", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+
     }
 
     public Profile (String name) {
