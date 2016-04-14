@@ -31,9 +31,7 @@ public class DirectionalFireSubFormView extends SubFormView {
             new NumberEntryView(myAngleKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
     private IEntryView myWaitTime =
             new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30,
-                              AuthoringView.DEFAULT_ENTRYVIEW);
-    // private IEntryView myProjectile =
-    // new TextEntryView(myProjectileKey, this.getData(), 20, 150, 30);
+                              AuthoringView.DEFAULT_ENTRYVIEW);  
 
     private List<IEntryView> myEntryViews =
             // new ArrayList<IEntryView>(Arrays.asList(myAngle, myWaitTime, myProjectile));

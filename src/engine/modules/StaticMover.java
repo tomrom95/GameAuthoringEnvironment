@@ -44,15 +44,6 @@ public class StaticMover extends Mover {
         return new ArrayList<>();
     }
 
-    @Override
-    public void setPath (List<Coordinate> newPath) {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public List<Coordinate> getPath () {
-        // TODO Auto-generated method stub
-        return null;
-    }
+ 
 
 }

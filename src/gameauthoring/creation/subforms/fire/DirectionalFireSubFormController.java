@@ -46,6 +46,7 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
                             .toArray()[0];
             DirectionalFirerDefinition myDef = new DirectionalFirerDefinition();
 
+
             myDef = (DirectionalFirerDefinition) firingDefinitionObject;
             myFormData.set(myView.getMyAngleKey(), Double.toString(myDef.getAngle()));
             myFormData.set(myView.getMyWaitTimeKey(), Double.toString(myDef.getWaitTime()));

@@ -3,7 +3,6 @@ package gameauthoring.creation.subforms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
