@@ -98,8 +98,7 @@ public class Game implements IGame {
 
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
-        sprite.setLocation(coordinate);
-        add(sprite);
+        myLevelManager.add(sprite, coordinate);
     }
     
     @Override

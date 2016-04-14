@@ -10,6 +10,10 @@ public class TimeDuration {
 
     private double myDuration;
 
+    public TimeDuration () {
+        myDuration = 0;
+    }
+    
     public TimeDuration (double millis) {
         myDuration = millis;
     }

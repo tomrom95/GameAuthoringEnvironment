@@ -26,7 +26,7 @@ public abstract class LevelRenderer implements IRenderer {
 
     @Override
     public void render () {
-        // myPane.getChildren().clear();
+         myPane.getChildren().clear();
         if (firstTime) {
             drawBackground(getBackgroundURL());
             firstTime = false;
