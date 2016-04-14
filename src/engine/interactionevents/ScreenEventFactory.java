@@ -29,9 +29,11 @@ public class ScreenEventFactory implements IScreenEventFactory {
 
     @Override
     public KeyIOEvent interpretEvent (KeyEvent event) {
+        
         Key key = new Key(event.getCode().getName());
         InputType type;
         try {
+            
             type = convertType(event.getEventType().toString());
         }
         catch (ClassNotFoundException e) {

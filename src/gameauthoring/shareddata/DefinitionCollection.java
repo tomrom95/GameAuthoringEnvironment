@@ -1,6 +1,6 @@
 package gameauthoring.shareddata;
 
-import engine.definitions.EventPackageDefinition;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
@@ -14,9 +14,13 @@ import javafx.collections.ObservableList;
 
 public class DefinitionCollection<E> implements IDefinitionCollection<E> {
 
-    String myTitle;
-    ObservableList<E> myItems;
+    private String myTitle;
+    private ObservableList<E> myItems;
 
+    public DefinitionCollection (String title) {
+        this(title, FXCollections.observableArrayList());
+    }
+    
     public DefinitionCollection (String title, ObservableList<E> items) {
         myTitle = title;
         myItems = items;

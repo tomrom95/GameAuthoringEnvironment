@@ -29,7 +29,6 @@ public class UnscaledFactory extends GraphicFactory {
         ImageView imageView = super.getImageView(imageGraphic);
         imageView.setFitWidth(imageGraphic.getWidth().get());
         imageView.setFitHeight(imageGraphic.getHeight().get());
-        //imageView.resize(imageGraphic.getWidth().get(), imageGraphic.getHeight().get());
         return imageView;
     }
 }
