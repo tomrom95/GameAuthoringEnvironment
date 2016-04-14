@@ -167,7 +167,6 @@ public abstract class CreationController<T extends IProfilable> {
      * @param item The item contained in the cell that was clicked
      */
     private void showAndEdit (T item) {
-        System.out.println(getMyCurrentItem());
         getMyProfileSubFormController().populateViewsWithData(getMyCurrentItem());
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.populateViewsWithData(getMyCurrentItem());
