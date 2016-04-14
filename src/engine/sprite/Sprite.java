@@ -70,9 +70,7 @@ public class Sprite extends DefaultAffectable implements ISprite {
 
     @Override
     public void update (TimeDuration duration) {
-        myAttributeManager.update(duration);
-        myStatus.update(duration);
-        myOtherModules.forEach(m -> m.update(duration));
+        applyToAffectable(module -> module.update(duration));
     }
 
     @Override
@@ -83,6 +81,8 @@ public class Sprite extends DefaultAffectable implements ISprite {
     private void applyToAffectable (Consumer<Affectable> function) {
         function.accept(myAttributeManager);
         function.accept(myStatus);
+        function.accept(myMover);
+        function.accept(myGraphic);
         myOtherModules.forEach(m -> function.accept(m));
     }
 
