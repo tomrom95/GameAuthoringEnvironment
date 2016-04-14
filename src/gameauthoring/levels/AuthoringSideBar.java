@@ -12,9 +12,12 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 
 public class AuthoringSideBar extends SideBarDisplay {
+    
+    private IGame myGame;
 
     public AuthoringSideBar (IGame game, LevelRenderer renderer) {
         super(game, renderer);
+        myGame = game;
     }
     
     @Override
@@ -30,7 +33,7 @@ public class AuthoringSideBar extends SideBarDisplay {
 
     private Node createSpawnerList () {
         ObservableList<SpriteDefinition> list = FXCollections.observableArrayList();
-        list.add(new SpawnerDefinition());
+        list.add(new SpawnerDefinition(myGame));
         return createSpriteList(list);
     }
 

@@ -1,10 +1,12 @@
 package engine.definitions.concrete;
 
 import engine.definitions.SpriteDefinition;
+import engine.definitions.WaveDefinition;
 import engine.modules.StaticMover;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
+import engine.IGame;
 import engine.definitions.SpawnerModuleDefinition;
 
 
@@ -16,9 +18,9 @@ public class SpawnerDefinition extends SpriteDefinition {
 
     private SpawnerModuleDefinition mySpawningModule;
     
-    public SpawnerDefinition () {
+    public SpawnerDefinition (IGame game) {
         this.getProfile().setNew(SPAWNER_NAME, SPAWNER_DESCRIPTION, SPAWNER_URL);
-        mySpawningModule = new SpawnerModuleDefinition(null, null, 0);
+        mySpawningModule = new SpawnerModuleDefinition(game, new WaveDefinition(null), 1);
     }
 
     @Override
