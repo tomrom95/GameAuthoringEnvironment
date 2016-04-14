@@ -63,4 +63,6 @@ public interface ILevelManager extends IAdder {
      * @param newLevel the level to add to the game
      */
     void createNewLevel (ILevel newLevel);
+
+    void add (ISprite sprite);
 }
