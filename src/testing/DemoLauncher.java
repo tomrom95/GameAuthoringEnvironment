@@ -8,12 +8,15 @@ import engine.Game;
 import engine.IAttribute;
 import engine.IGame;
 import engine.ILevel;
+import engine.definitions.ConstantMoverDefinition;
+import engine.definitions.DirectionalFirerDefinition;
 import engine.definitions.KeyControlDefinition;
 import engine.definitions.MovementDefinition;
 import engine.definitions.PathMoverDefinition;
 import engine.definitions.SpawnerModuleDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.StaticMovementDefintion;
+import engine.definitions.TrackingFirerDefinition;
 import engine.definitions.UserMoverDefinition;
 import engine.definitions.WaveDefinition;
 import engine.definitions.concrete.SpawnerDefinition;
@@ -22,6 +25,7 @@ import engine.modules.SpawningModule;
 import engine.profile.Profile;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
+import engine.sprite.SpriteType;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameplayer.GamePlayer;
 import graphics.ImageGraphic;
@@ -70,7 +74,7 @@ public class DemoLauncher extends Application {
         sprites.add(createBalloon());
         sprites.add(createBucket());
         WaveDefinition wave = new WaveDefinition (sprites);
-        SpawnerModuleDefinition sM = new SpawnerModuleDefinition (myGame, wave, 1000);
+        SpawnerModuleDefinition sM = new SpawnerModuleDefinition (myGame, wave, 5000);
         s.setMySpawningModule(sM);
         ISprite spawner = s.create();
         List<Coordinate> path = new ArrayList<>();
@@ -118,7 +122,7 @@ public class DemoLauncher extends Application {
         sprites.add(createBalloon());
         sprites.add(createBucket());
         WaveDefinition wave = new WaveDefinition (sprites);
-        SpawnerModuleDefinition sM = new SpawnerModuleDefinition (myGame, wave, 2000);
+        SpawnerModuleDefinition sM = new SpawnerModuleDefinition (myGame, wave, 7000);
         s.setMySpawningModule(sM);
         ISprite spawner = s.create();
         List<Coordinate> path = new ArrayList<>();
@@ -176,10 +180,7 @@ public class DemoLauncher extends Application {
     private void createSpriteDefs (IGame game) {
         DefinitionCollection<SpriteDefinition> dc = new DefinitionCollection<>("Towers");
         
-        SpriteDefinition sd1 = new SpriteDefinition();
-        ImageGraphic plantImage = new ImageGraphic(50, 50, "/images/plant.png");
-        sd1.setProfile(new Profile("Tower 1", "Plant", plantImage));
-        sd1.setMovementDefinition(getStaticMover());
+        SpriteDefinition sd1 = createShooterDef();
         
         SpriteDefinition sd2 = new SpriteDefinition();
         ImageGraphic image = new ImageGraphic(100, 100, "/images/C.png");
@@ -190,6 +191,33 @@ public class DemoLauncher extends Application {
         dc.addItem(sd2);
         game.getAuthorshipData()
                 .addCreatedSprites(dc);
+    }
+
+    private SpriteDefinition createShooterDef () {
+        SpriteDefinition sd1 = new SpriteDefinition();
+        ImageGraphic plantImage = new ImageGraphic(50, 50, "/images/plant.png");
+        sd1.setProfile(new Profile("Tower 1", "Plant", plantImage));
+        sd1.setMovementDefinition(getStaticMover());
+        DirectionalFirerDefinition fireDef = new DirectionalFirerDefinition();
+        fireDef.setGame(myGame);
+        fireDef.setAngle(0);
+        fireDef.setWaitTime(3000);
+        fireDef.setProjectileDefinition(createMissileDef());
+        sd1.addModule(fireDef);
+        return sd1;
+    }
+    
+    private SpriteDefinition createMissileDef () {
+        SpriteDefinition sd1 = new SpriteDefinition();
+        ImageGraphic plantImage = new ImageGraphic(20, 20, "/images/pea.png");
+        sd1.setProfile(new Profile("Pea", "Pea Bullet", plantImage));
+        ConstantMoverDefinition mover = new ConstantMoverDefinition();
+        double c = 4;
+        mover.setXVel(.2/c);
+        mover.setYVel(.2/c);
+        sd1.setMovementDefinition(mover);
+        
+        return sd1;
     }
 
     private MovementDefinition getUserMover () {
