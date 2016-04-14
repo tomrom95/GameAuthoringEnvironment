@@ -53,13 +53,13 @@ public class DemoLauncher extends Application {
     @Override
     public void start (Stage primaryStage) throws Exception {
         makeGame();
-      //  new GameWriter().serialize(new File("/Users/davidmaydew/Desktop/test.xml"), myGame);
-       // FileChooser chooser = new FileChooser();
+        new GameWriter().serialize(new File("/Users/davidmaydew/Desktop/PlantsZombies.xml"), myGame);
+        //FileChooser chooser = new FileChooser();
         //File f = chooser.showOpenDialog(primaryStage);
         
         //IGame xmlGame = new GameReader().readFile(new File("/Users/davidmaydew/Desktop/test.xml"));
        // IGame xmlGame = new GameReader().readFile(f);
-        GamePlayer gp = new GamePlayer(myGame);
+        //GamePlayer gp = new GamePlayer(myGame);
     }
 
     private void makeGame () {
