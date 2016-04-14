@@ -9,6 +9,7 @@ import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.SubFormView;
+import gameauthoring.tabs.AuthoringView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -50,7 +51,7 @@ public class FiringSubFormView extends SubFormView {
 
         myListOfTypes.addAll(directionalFire, trackingFire);
         SingleChoiceEntryView<ProfileDisplay> entryView =
-                new SingleChoiceEntryView<ProfileDisplay>(myFireTypeKey, myListOfTypes, 20);
+                new SingleChoiceEntryView<ProfileDisplay>(myFireTypeKey, myListOfTypes, AuthoringView.DEFAULT_ENTRYVIEW);
         entryView.addComboListener(action);
         mySubFiringView = myViews.get(0).draw();
         myPane.add(mySubFiringView, 1, 0);
