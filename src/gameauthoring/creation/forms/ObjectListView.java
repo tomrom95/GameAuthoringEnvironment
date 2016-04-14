@@ -2,7 +2,7 @@ package gameauthoring.creation.forms;
 
 import java.util.function.Consumer;
 import engine.profile.IProfilable;
-import gameauthoring.ProfileCellView;
+import gameauthoring.creation.cellviews.ProfileCellView;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;

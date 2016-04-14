@@ -80,8 +80,4 @@ public class FiringSubFormView extends SubFormView {
         return myPane;
     }
 
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-    }
 }
