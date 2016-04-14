@@ -1,12 +1,12 @@
 package engine.effects;
 
-import java.util.ArrayList;
-import java.util.List;
 import engine.Affectable;
 import engine.IAttribute;
 import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import util.TimeDuration;
 
 /**
@@ -42,8 +42,8 @@ public abstract class DefaultAffectable implements Affectable {
     }
 
     @Override
-    public List<IAttribute> getAttributes () {
-        return new ArrayList<>();
+    public ObservableList<IAttribute> getAttributes () {
+        return FXCollections.observableArrayList();
     }
 
 }

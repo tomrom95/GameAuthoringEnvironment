@@ -38,10 +38,9 @@ public interface ISprite extends Drawable, Updateable, Affectable, IPositionable
 
     IMovementModule getMovementStrategy ();
 
-    List<? extends IModule> getModules ();
-
-    @Override
-    List<IAttribute> getAttributes ();
+    List<IModule> getModules ();
+    
+    void addModule (IModule module);
 
     List<IResource> getResources ();
 

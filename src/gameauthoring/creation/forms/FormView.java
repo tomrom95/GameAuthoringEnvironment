@@ -80,11 +80,4 @@ public class FormView implements IFormView {
     public Node draw () {
         return myFormView;
     }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
-    }
-
 }

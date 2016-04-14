@@ -52,12 +52,6 @@ public class EventsSubFormView implements ISubFormView{
     }
 
     @Override
-    public void update () {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
     public IFormDataManager getData () {
         return null;
     }

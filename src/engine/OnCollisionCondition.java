@@ -105,7 +105,7 @@ public class OnCollisionCondition implements ICondition {
     @Override
     public void setProfile (IProfile profile) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

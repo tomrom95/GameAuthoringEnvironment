@@ -1,7 +1,7 @@
 package gameauthoring.conditiontab;
 
 import engine.profile.IProfilable;
-import gameauthoring.ProfileCellView;
+import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.util.Glyph;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -37,11 +37,4 @@ public class ListDisplay<T extends IProfilable> implements Glyph {
     protected BorderPane getPane () {
         return myPane;
     }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
-    }
-
 }

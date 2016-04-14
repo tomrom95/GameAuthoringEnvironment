@@ -82,7 +82,7 @@ public class OnGlobalAttributeCondition implements ICondition {
     @Override
     public void setProfile (IProfile profile) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

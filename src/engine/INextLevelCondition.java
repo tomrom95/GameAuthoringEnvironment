@@ -16,7 +16,7 @@ public interface INextLevelCondition extends Updateable {
     /**
      * The conditions themselves will be responsible for holding which level object you would like
      * to transition to
-     * 
+     *
      * @return
      */
     ILevel getNextLevel ();
