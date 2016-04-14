@@ -10,62 +10,70 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="2" language="java" name="gameplayer.IRenderer" project="voogasalad_GitDepends" 
-    file="/voogasalad_GitDepends/src/gameplayer/IRenderer.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="184" y="308"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="3" language="java" name="gameplayer.IGameEngine" project="voogasalad_GitDepends" 
+  <interface id="2" language="java" name="gameplayer.IGameEngine" project="voogasalad_GitDepends" 
     file="/voogasalad_GitDepends/src/gameplayer/IGameEngine.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="245" y="197"/>    
+    <position height="-1" width="-1" x="237" y="177"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="4" language="java" name="engine.IGame" project="voogasalad_GitDepends" 
+  <interface id="3" language="java" name="engine.IGame" project="voogasalad_GitDepends" 
     file="/voogasalad_GitDepends/src/engine/IGame.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="469" y="228"/>    
+    <position height="-1" width="-1" x="539" y="189"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="5" language="java" name="gameplayer.IGraphicFactory" project="voogasalad_GitDepends" 
-    file="/voogasalad_GitDepends/src/gameplayer/IGraphicFactory.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="154" y="434"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="6" language="java" name="engine.IGamePlayable" project="voogasalad_GitDepends" 
+  <interface id="4" language="java" name="engine.IGamePlayable" project="voogasalad_GitDepends" 
     file="/voogasalad_GitDepends/src/engine/IGamePlayable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="499" y="385"/>    
+    <position height="-1" width="-1" x="561" y="387"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
+  <interface id="5" language="java" name="engine.rendering.IRenderer" project="voogasalad_GitDepends" 
+    file="/voogasalad_GitDepends/src/engine/rendering/IRenderer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="147" y="298"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="6" language="java" name="engine.rendering.InGameRenderer" project="voogasalad_GitDepends" 
+    file="/voogasalad_GitDepends/src/engine/rendering/InGameRenderer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="97" y="527"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
   <dependency id="7">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="8">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="TARGET" refId="3"/>  
   </dependency>  
-  <generalization id="9">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="6"/>  
+  <association id="9">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="10" name="myGame"/>      
+      <multiplicity id="11" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="12">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
