@@ -39,6 +39,8 @@ public class MovementSubFormController implements ISubFormControllerSprite {
         mySubFormControllers = new ArrayList<>();
         mySubFormControllers.addAll(Arrays
                 .asList(myStaticSubForm, myConstantSubForm, myUserSubForm, myTrackingSubForm));
+        myCurrentMovementController = mySubFormControllers.get(0);
+
     }
 
     private void setUpSubFormViews () {

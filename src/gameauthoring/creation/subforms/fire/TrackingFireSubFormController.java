@@ -58,6 +58,8 @@ public class TrackingFireSubFormController implements ISubFormControllerSprite {
     }
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
+        if(item.getModuleDefinitions().isEmpty()) return;
+
         
         Object trackingDefinitionObject =
                  item.getModuleDefinitions().stream().filter(findTrackingFirer()).toArray()[0];
