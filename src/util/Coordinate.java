@@ -13,39 +13,31 @@ import java.io.Serializable;
 public class Coordinate {
     private final static String FORMATTER = "(%.2f,%.2f)";
 
-    private double xCoordinate;
-    private double yCoordinate;
+    private double myXCoordinate;
+    private double myYCoordinate;
 
     public Coordinate (double xCor, double yCor) {
         setX(xCor);
         setY(yCor);
     }
     
-   
-
-    
     public double getX () {
-        return xCoordinate;
+        return myXCoordinate;
     }
 
     private void setX (double xCor) {
-        xCoordinate = xCor;
+        myXCoordinate = xCor;
     }
 
     public double getY () {
-        return yCoordinate;
+        return myYCoordinate;
     }
 
     private void setY (double yCor) {
-        yCoordinate = yCor;
-    }
-
-    public void setLocation (double x, double y) {
-        setX(x);
-        setY(y);
-
+        myYCoordinate = yCor;
     }
     
+    @Override
     public String toString () {
         return String.format(FORMATTER, getX(), getY());
     }
