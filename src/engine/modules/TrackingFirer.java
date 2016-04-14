@@ -65,7 +65,7 @@ public class TrackingFirer extends Firer {
          */
 //        if((duration.getMillis() - lastFire.getMillis()) >= myWaitTime.getValueProperty().get()){
         timeSinceFire += duration.getMillis();
-        if(duration.getMillis() >= timeSinceFire){
+        if(timeSinceFire >= myWaitTime.getValueProperty().get()){
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(), mySprite.getLocation().getY()));
             
