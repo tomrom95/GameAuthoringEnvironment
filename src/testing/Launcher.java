@@ -1,9 +1,16 @@
 package testing;
 
+import java.util.ArrayList;
+import java.util.List;
+import engine.Attribute;
+import engine.AttributeType;
 import engine.Game;
 import engine.IOInterpeter;
+import engine.ISpriteGroup;
 import engine.Level;
 import engine.LevelManager;
+import engine.SpriteGroup;
+import engine.conditions.OnCollisionCondition;
 import engine.definitions.AttributeDefinition;
 import engine.definitions.KeyControlDefinition;
 import engine.definitions.LocationDefinition;
@@ -11,7 +18,12 @@ import engine.definitions.MovementDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.StaticMoverDefinition;
 import engine.definitions.UserMoverDefinition;
+import engine.events.EventPackage;
+import engine.events.GameEvent;
 import engine.profile.Profile;
+import engine.sprite.SpriteType;
+import engine.effects.DecreaseEffect;
+import engine.effects.IEffect;
 import gameplayer.GamePlayer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -53,30 +65,61 @@ public class Launcher extends Application {
 
     private static final String BACKGROUND_URL = "/images/pvz.jpg";
 
-    
-    
     private Game myGame;
-
 
     public static void main (String[] args) {
         launch(args);
     }
 
     private void addConditionsToTest (Game game) {
-        
+        game.getConditionManager().getConditionListProperty().add(createCollisionCondition(game));
     }
-    
-    private void createCollisionCondition(){
-        //OnCollisionCondition collision = new On
+
+    private OnCollisionCondition createCollisionCondition (Game game) {
+        return new OnCollisionCondition(game, createUserSpriteEventPackage(),
+                                        createEnemyEventPackage(), createEmptyEventPackage(),
+                                        createEmptyEventPackage());
     }
-    
-    private void createUserSpriteEventPackage(){
-        
+
+    private List<IEffect> dmgHealth () {
+        List<IEffect> toReturn = new ArrayList<>();
+        toReturn.add(new DecreaseEffect(new AttributeType(HEALTH_ATTY_TYPE),
+                                        new Attribute(15d, new AttributeType("cd")), 50));
+        return toReturn;
     }
-    
-    private void createEnemyEventPackage(){
-        
+
+    private List<IEffect> noEffect () {
+        return new ArrayList<>();
     }
+
+    private List<GameEvent> noEvent () {
+        return new ArrayList<>();
+    }
+
+    private ISpriteGroup createSpriteGroupForDefinition (SpriteDefinition definition) {
+        List<SpriteDefinition> mySpritesInGroup = new ArrayList<>();
+        mySpritesInGroup.add(definition);
+        return new SpriteGroup(mySpritesInGroup);
+    }
+
+    private ISpriteGroup createSpriteGroupForDefinition () {
+        return new SpriteGroup(new ArrayList<>());
+    }
+
+    private EventPackage createUserSpriteEventPackage () {
+        return new EventPackage(createSpriteGroupForDefinition(createUserSpriteDefinition(0, 0)),
+                                dmgHealth(), noEvent());
+    }
+
+    private EventPackage createEnemyEventPackage () {
+        return new EventPackage(createSpriteGroupForDefinition(createEnemySpriteDefinition(0, 0)),
+                                noEffect(), noEvent());
+    }
+
+    private EventPackage createEmptyEventPackage () {
+        return new EventPackage(createSpriteGroupForDefinition(), noEffect(), noEvent());
+    }
+
     private void addSpritesToGame (Game game) {
         game.bufferedAdd(createEnemySpriteDefinition(ENEMY_INITIAL_X, ENEMY_INITIAL_Y).create());
         game.bufferedAdd(createUserSpriteDefinition(SPRITE_INITIAL_X, SPRITE_INITIAL_Y).create());
@@ -146,7 +189,7 @@ public class Launcher extends Application {
 
     private Profile healthAttyProfile () {
         return new Profile(HEALTH_ATTY_TYPE, HEALTH_DESCRIPTION,
-                           new ImageGraphic(15, 15, HEALTH_IMAGE_URL));
+                           new ImageGraphic(SPRITE_HEIGHT, SPRITE_WIDTH, HEALTH_IMAGE_URL));
     }
 
     private LocationDefinition createLocationDefinition (int xloc, int yloc) {
