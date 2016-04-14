@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import gameauthoring.creation.entryviews.IEntryView;
+import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
@@ -25,8 +26,8 @@ public class ConstantMoverSubFormView extends SubFormView {
     private String myXVelKey = "X Velocity: ";
     private String myYVelKey = "Y Velocity: ";
 
-    private IEntryView myXVel = new TextEntryView(myXVelKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myYVel = new TextEntryView(myYVelKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView myXVel = new NumberEntryView(myXVelKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView myYVel = new NumberEntryView(myYVelKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
 
     private List<IEntryView> myEntryViews =
             new ArrayList<IEntryView>(Arrays.asList(myXVel, myYVel));
