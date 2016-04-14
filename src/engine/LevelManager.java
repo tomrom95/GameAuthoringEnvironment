@@ -69,6 +69,7 @@ public class LevelManager implements ILevelManager {
 
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
+        
         myCurrentLevel.internalizeKeyEvents(list);
     }
 
