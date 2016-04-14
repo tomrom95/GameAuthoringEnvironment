@@ -41,22 +41,22 @@ public class DirectionalFirer extends Firer {
         if((duration.getMillis() - lastFire.getMillis()) >= myWaitTime.getValueProperty().get()){
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(), mySprite.getLocation().getY()));
+            System.out.println("X Velocity: " + getXVel(myAngle) + " Y Velocity: "+ getYVel(myAngle));
             bullet.getMovementStrategy().setXVel(getXVel(myAngle));
             bullet.getMovementStrategy().setYVel(getYVel(myAngle));            
-//            myGame.bufferedAdd(bullet);
-            System.out.println((bullet == null)+" "+ (myGame == null));
-            myGame.add(bullet);
+            myGame.bufferedAdd(bullet);
             lastFire = new TimeDuration(duration.getMillis());
             
         } 
     }
     
     private double getXVel(double theta){
-        return myProjectile.getMovementDefinition().getSpeed() * Math.cos(theta);
+        return myProjectile.getMovementDefinition().getSpeed() * Math.cos(theta * Math.PI / 180);
     }
     
     private double getYVel(double theta){
-        return myProjectile.getMovementDefinition().getSpeed() * Math.sin(theta);        
+     
+        return myProjectile.getMovementDefinition().getSpeed() * Math.sin(theta * Math.PI / 180);        
     }
 
 }
