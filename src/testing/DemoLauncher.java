@@ -46,7 +46,10 @@ public class DemoLauncher extends Application {
         createGlobalAtts(game);
         createSpriteDefs(game);
         setBackground();
-        //addSpawner(game);
+        addSpawner1(game);
+        addSpawner2(game);
+        addSpawner3(game);
+        addSpawner4(game);
         
     }
 
@@ -60,7 +63,39 @@ public class DemoLauncher extends Application {
         
     }
 
-    private ISprite createSpawnerDef () {
+    private void addSpawner1 (IGame game) {
+        SpawnerDefinition s = new SpawnerDefinition();
+        List<SpriteDefinition> sprites = new ArrayList<SpriteDefinition>();
+        sprites.add(createBucket());
+        sprites.add(createBalloon());
+        sprites.add(createBucket());
+        WaveDefinition wave = new WaveDefinition (sprites);
+        SpawnerModuleDefinition sM = new SpawnerModuleDefinition (myGame, wave, 1000);
+        s.setMySpawningModule(sM);
+        ISprite spawner = s.create();
+        List<Coordinate> path = new ArrayList<>();
+        path.add(new Coordinate(0, 000));
+        spawner.setLocation(new Coordinate(800, 000));
+        spawner.setPath(path);
+        game.add(spawner);
+    }
+    private void addSpawner2 (IGame game) {
+        SpawnerDefinition s = new SpawnerDefinition();
+        List<SpriteDefinition> sprites = new ArrayList<SpriteDefinition>();
+        sprites.add(createBucket());
+        sprites.add(createBalloon());
+        sprites.add(createBucket());
+        WaveDefinition wave = new WaveDefinition (sprites);
+        SpawnerModuleDefinition sM = new SpawnerModuleDefinition (myGame, wave, 3000);
+        s.setMySpawningModule(sM);
+        ISprite spawner = s.create();
+        List<Coordinate> path = new ArrayList<>();
+        path.add(new Coordinate(0, 100));
+        spawner.setLocation(new Coordinate(800, 100));
+        spawner.setPath(path);
+        game.add(spawner);
+    }
+    private void addSpawner3 (IGame game) {
         SpawnerDefinition s = new SpawnerDefinition();
         List<SpriteDefinition> sprites = new ArrayList<SpriteDefinition>();
         sprites.add(createBucket());
@@ -71,10 +106,26 @@ public class DemoLauncher extends Application {
         s.setMySpawningModule(sM);
         ISprite spawner = s.create();
         List<Coordinate> path = new ArrayList<>();
-        path.add(new Coordinate(800, 125));
-        spawner.setLocation(new Coordinate(0, 200));
+        path.add(new Coordinate(0, 200));
+        spawner.setLocation(new Coordinate(800, 200));
         spawner.setPath(path);
-        return spawner;
+        game.add(spawner);
+    }
+    private void addSpawner4 (IGame game) {
+        SpawnerDefinition s = new SpawnerDefinition();
+        List<SpriteDefinition> sprites = new ArrayList<SpriteDefinition>();
+        sprites.add(createBucket());
+        sprites.add(createBalloon());
+        sprites.add(createBucket());
+        WaveDefinition wave = new WaveDefinition (sprites);
+        SpawnerModuleDefinition sM = new SpawnerModuleDefinition (myGame, wave, 2000);
+        s.setMySpawningModule(sM);
+        ISprite spawner = s.create();
+        List<Coordinate> path = new ArrayList<>();
+        path.add(new Coordinate(0, 300));
+        spawner.setLocation(new Coordinate(800, 300));
+        spawner.setPath(path);
+        game.add(spawner);
     }
 
     private SpriteDefinition createBucket () {
@@ -124,7 +175,10 @@ public class DemoLauncher extends Application {
 
     private void createSpriteDefs (IGame game) {
         DefinitionCollection<SpriteDefinition> dc = new DefinitionCollection<>("Towers");
+        
         SpriteDefinition sd1 = new SpriteDefinition();
+        ImageGraphic plantImage = new ImageGraphic(50, 50, "/images/plant.jpg");
+        sd1.setProfile(new Profile("Tower 1", "Plant", plantImage));
         sd1.setMovementDefinition(getStaticMover());
         
         SpriteDefinition sd2 = new SpriteDefinition();
@@ -132,11 +186,8 @@ public class DemoLauncher extends Application {
         sd2.setProfile(new Profile("User Mover", "Controlled By User", image));
         sd2.setMovementDefinition(getUserMover());
         
-        ISprite sd3 = createSpawnerDef();
-        
         dc.addItem(sd1);
         dc.addItem(sd2);
-        game.add(sd3, new Coordinate (50, 50));
         game.getAuthorshipData()
                 .addCreatedSprites(dc);
     }
