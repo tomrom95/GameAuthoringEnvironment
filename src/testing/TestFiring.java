@@ -11,7 +11,6 @@ import engine.LevelManager;
 import engine.definitions.AttributeDefinition;
 import engine.definitions.KeyControlDefinition;
 import engine.definitions.LocationDefinition;
-import engine.definitions.ModuleDefiniton;
 import engine.definitions.MovementDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.UserMoverDefinition;
