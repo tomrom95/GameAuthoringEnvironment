@@ -1,10 +1,11 @@
 package facebookutil.test;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 
 /**
- * Creates and runs a simple browser based on the JavaFX library 
+ * Creates and runs a simple browser based on the JavaFX library
  *
  */
 public class Main extends Application {
@@ -19,10 +20,6 @@ public class Main extends Application {
         stage.show();
     }
 
-
-    /**
-     * Start of the program.
-     */
     public static void main (String[] args) {
         launch(args);
     }

@@ -64,8 +64,8 @@ public class BrowserView {
             if (newState == Worker.State.SUCCEEDED) {
                 String newURL = myPage.getEngine().getLocation();
                 System.out.println(newURL);
-                Pattern p = Pattern.compile("code=([^&]+)");
-                Matcher m = p.matcher(newURL);
+                Pattern pattern = Pattern.compile("code=([^&]+)");
+                Matcher m = pattern.matcher(newURL);
                 if (m.find()) {
 
                     System.out.println(m.group(1));
