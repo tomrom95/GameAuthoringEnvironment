@@ -1,6 +1,8 @@
 package engine.definitions;
-
+import java.util.List;
+import com.thoughtworks.xstream.io.path.Path;
 import engine.IAdder;
+import util.Coordinate;
 import engine.IPositionable;
 import engine.modules.IModule;
 import engine.modules.SpawningModule;
@@ -14,6 +16,7 @@ public class SpawnerModuleDefinition extends ModuleDefinition {
     public SpawnerModuleDefinition (IAdder adder, WaveDefinition wave) {
         setWave(wave);
         setAdder(adder);
+       
     }
 
     private void setAdder (IAdder adder) {

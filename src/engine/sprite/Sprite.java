@@ -170,6 +170,12 @@ public class Sprite extends DefaultAffectable implements ISprite {
     public void addModule (IModule module) {
         myOtherModules.add(module);
     }
+
+    @Override
+    public void setPath (List<Coordinate> path) {
+        myMover.setPath(path);
+        
+    }
     
     
 

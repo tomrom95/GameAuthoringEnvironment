@@ -22,11 +22,12 @@ public class SpawningModule extends DefaultAffectable implements IModule {
         myAdder = adder;
         myWave = wave;
     }
-
+    
     @Override
     public void update (TimeDuration duration) {
         if (myWave.hasNext()) {
-            myAdder.bufferedAdd(myWave.getNextSprite(), myParent.getLocation());
+            ISprite spawn = myWave.getNextSprite();
+            myAdder.bufferedAdd(spawn, myParent.getLocation());
         }
     }
 

@@ -40,6 +40,7 @@ public class PathMover extends Mover {
 
     @Override
     public void update (TimeDuration duration) {
+       
         if (myPoints.size() == 0) {
             return;
         }

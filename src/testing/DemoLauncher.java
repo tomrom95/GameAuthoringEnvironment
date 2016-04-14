@@ -10,12 +10,14 @@ import engine.IGame;
 import engine.ILevel;
 import engine.definitions.KeyControlDefinition;
 import engine.definitions.MovementDefinition;
+import engine.definitions.PathMoverDefinition;
 import engine.definitions.SpawnerModuleDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.StaticMovementDefintion;
 import engine.definitions.UserMoverDefinition;
 import engine.definitions.WaveDefinition;
 import engine.definitions.concrete.SpawnerDefinition;
+import engine.modules.PathMover;
 import engine.modules.SpawningModule;
 import engine.profile.Profile;
 import engine.sprite.ISprite;
@@ -52,14 +54,24 @@ public class DemoLauncher extends Application {
 //        level.add(createSpawner(), new Coordinate(50, 50));
 //    }
 
-    private SpriteDefinition createSpawnerDef () {
+    private ISprite createSpawnerDef () {
         SpawnerDefinition s = new SpawnerDefinition();
         List<SpriteDefinition> sprites = new ArrayList<SpriteDefinition>();
-        sprites.add(createProjectile());
+        sprites.add(createPathMover());
         WaveDefinition wave = new WaveDefinition (sprites);
         SpawnerModuleDefinition sM = new SpawnerModuleDefinition (myGame, wave);
         s.setMySpawningModule(sM);
-        return s;
+        ISprite spawner = s.create();
+        List<Coordinate> path = new ArrayList<>();
+        path.add(new Coordinate(200, 200));
+        spawner.setPath(path);
+        return spawner;
+    }
+
+    private SpriteDefinition createPathMover () {
+        SpriteDefinition sd1 = new SpriteDefinition();
+        sd1.setMovementDefinition(new PathMoverDefinition());
+        return sd1;
     }
 
     private SpriteDefinition createProjectile () {
@@ -87,21 +99,21 @@ public class DemoLauncher extends Application {
         sd2.setProfile(new Profile("User Mover", "Controlled By User", image));
         sd2.setMovementDefinition(getUserMover());
         
-        SpriteDefinition sd3 = createSpawnerDef();
+        ISprite sd3 = createSpawnerDef();
         
         dc.addItem(sd1);
         dc.addItem(sd2);
-        dc.addItem(sd3);
+        //game.add(sd3);
         game.getAuthorshipData()
                 .addCreatedSprites(dc);
     }
 
     private MovementDefinition getUserMover () {
         KeyControlDefinition keys = new KeyControlDefinition();
-        keys.setUp("W");
-        keys.setRight("D");
-        keys.setLeft("A");
-        keys.setDown("S");
+        keys.setUp("Up");
+        keys.setRight("Right");
+        keys.setLeft("Left");
+        keys.setDown("Down");
         UserMoverDefinition user = new UserMoverDefinition();
         user.setSpeed(.5);
         user.setKeyControlDefintion(keys);
