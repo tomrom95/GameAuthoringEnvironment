@@ -98,4 +98,8 @@ public class LevelManager implements ILevelManager {
         myCurrentLevel.bufferedAdd(sprite);
     }
 
+    public void add (ISprite sprite) {
+        myCurrentLevel.add(sprite, sprite.getLocation());
+    }
+
 }
