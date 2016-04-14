@@ -57,7 +57,7 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
             */
        }
        
-       myFormData.set(myView.getMyAngleKey(), Double.toString(myDef.getAngle())); 
+       myFormData.set(myView.getMyAngleKey(), Double.toString(myDef.getAngle() * 180 / Math.PI)); 
        myFormData.set(myView.getMyWaitTimeKey(), Double.toString(myDef.getWaitTime()));
 //        myFormData.set(myView.getMyProjectileKey(), myDef.getProjectileDefinition());
 
