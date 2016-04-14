@@ -104,7 +104,7 @@ public class Game implements IGame {
     
     @Override
     public void add (ISprite sprite) {
-        add(sprite);
+        myLevelManager.add(sprite);
     }
     
     @Override
