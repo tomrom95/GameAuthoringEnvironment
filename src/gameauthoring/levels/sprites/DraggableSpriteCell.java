@@ -3,7 +3,7 @@ package gameauthoring.levels.sprites;
 import engine.definitions.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import engine.rendering.UnscaledFactory;
-import gameauthoring.ProfileCellView;
+import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.levels.SceneController;
 import gameauthoring.util.UIFactory;
 import javafx.scene.Node;
