@@ -30,8 +30,11 @@ public class TrackingFireSubFormController implements ISubFormControllerSprite {
     private TrackingFireSubFormView myView;
     private IFormDataManager myFormData;
     private IGame myGame;
+    private FiringSubFormController myFiringSFC;
 
+    // TODO: why is this static?
     private static Predicate<ModuleDefinition> findTrackingFirer () {
+
         return p -> p.getClass().equals(new TrackingFirerDefinition().getClass());
     }
 
@@ -41,21 +44,25 @@ public class TrackingFireSubFormController implements ISubFormControllerSprite {
         myGame = game;
     }
 
+    public TrackingFireSubFormController (IGame game,
+                                          FiringSubFormController firingSubFormController) {
+        myView = new TrackingFireSubFormView(game.getAuthorshipData().getMyCreatedGroups());
+        myFormData = myView.getData();
+        myGame = game;
+        myFiringSFC = firingSubFormController;
+    }
+
     @Override
     public void updateItem (SpriteDefinition item) {
-        try {
-            TrackingFirerDefinition trackingFireDef = new TrackingFirerDefinition();
-            trackingFireDef.setGame(myGame);
-            Double waitTime =
-                    Double.valueOf(myFormData.getValueProperty(myView.getWaitTimeKey()).get());
-            trackingFireDef.setWaitTime(waitTime);
-            trackingFireDef.setTargets(myView.getTargetsCoice().getSelected());
-            item.addModule(trackingFireDef);
-        }
-        catch (NumberFormatException e) {
-            ErrorMessage err = new ErrorMessage("Wait Time Must Be a Double");
-            err.showError();
-        }
+        TrackingFirerDefinition trackingFireDef = new TrackingFirerDefinition();
+        trackingFireDef.setGame(myGame);
+        Double waitTime =
+                Double.valueOf(myFormData.getValueProperty(myView.getWaitTimeKey()).get());
+        trackingFireDef.setWaitTime(waitTime);
+        trackingFireDef.setTargets(myView.getTargetsCoice().getSelected());
+        trackingFireDef.setProjectileDefinition(myFiringSFC.getMyMissile());
+
+        item.addModule(trackingFireDef);
 
     }
 

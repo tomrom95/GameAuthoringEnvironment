@@ -48,10 +48,11 @@ public class MovementSubFormView extends SubFormView {
         ProfileDisplay trackingMove = new ProfileDisplay("Tracking");
         
         myListOfMovementTypes.addAll(staticMove, constantMove, userMove, trackingMove);
+
         SingleChoiceEntryView<ProfileDisplay> entryView =
                 new SingleChoiceEntryView<ProfileDisplay>(myMoveTypeKey, myListOfMovementTypes,
                                                           AuthoringView.DEFAULT_ENTRYVIEW);
-        entryView.addComboListener(action);
+        entryView.addComboIndexListener(action);
         mySubMovementView = myViews.get(0).draw();
         myPane.add(mySubMovementView, 1, 0);
         entryView.setSelected(staticMove);
