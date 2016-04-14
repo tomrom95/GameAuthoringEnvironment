@@ -79,13 +79,6 @@ public class ImageEntryView extends EntryView {
     }
 
     @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
-    }
-   
-
-    @Override
     public Node draw () {
         return myContainer;
     }

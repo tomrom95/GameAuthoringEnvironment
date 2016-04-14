@@ -52,11 +52,6 @@ public class DirectionalFireSubFormView extends SubFormView {
 //        myPane.add(myProjectile.draw(), 1, 0);
     }
 
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-    }
-
     public String getMyProjectileKey () {
         return myProjectileKey;
     }

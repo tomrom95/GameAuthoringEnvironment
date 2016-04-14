@@ -1,9 +1,8 @@
 package gameauthoring.creation.entryviews;
 
 import java.util.List;
-import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
-import gameauthoring.ProfileCellView;
+import gameauthoring.creation.cellviews.ProfileCellView;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -61,12 +60,6 @@ public class MultiChoiceEntryView<E extends IProfilable> extends EntryView {
     @Override
     public Node draw () {
         return myContainer;
-    }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
     }
 
     public void select (E spr) {

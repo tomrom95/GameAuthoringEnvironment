@@ -41,6 +41,10 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
         
+        //TODO: add default populate method for new object?
+       if(item.getModuleDefinitions().isEmpty()) return;
+       
+       
        Object firingDefinitionObject =
                 item.getModuleDefinitions().stream().filter(findDirectionalFirer()).toArray()[0];
        DirectionalFirerDefinition myDef = new DirectionalFirerDefinition();

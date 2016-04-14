@@ -48,12 +48,11 @@ public class ObjectCreationTabViewer implements ITabViewer {
         List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
         List<String> myMissileSFCs = new ArrayList<String>();
         List<String> myEnemySFCs =
-                new ArrayList<String>(Arrays.asList("SelectAttribute"));
-        List<String> myDefenderSFCs = new ArrayList<String>(Arrays.asList("SelectAttribute"));
+                new ArrayList<String>(Arrays.asList("SelectAttribute", "Movement"));
+        List<String> myDefenderSFCs =
+                new ArrayList<String>(Arrays.asList("SelectAttribute", "Movement", "Firing"));
 
         List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
-
-        new ArrayList<String>(Arrays.asList("SelectAttribute"));
 
         List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("SelectSprite"));
 
@@ -127,10 +126,4 @@ public class ObjectCreationTabViewer implements ITabViewer {
     public Node draw () {
         return myTabPane;
     }
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-    }
-
 }

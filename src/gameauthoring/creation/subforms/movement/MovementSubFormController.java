@@ -22,7 +22,6 @@ public class MovementSubFormController implements ISubFormControllerSprite {
     private StaticMoverSubFormController myStaticSubForm;
     private ConstantMoverSubFormController myConstantSubForm;
     private UserMoverSubFormController myUserSubForm;
-
     private TrackingMoverSubFormController myTrackingSubForm;
 
     public MovementSubFormController () {
@@ -40,6 +39,8 @@ public class MovementSubFormController implements ISubFormControllerSprite {
         mySubFormControllers = new ArrayList<>();
         mySubFormControllers.addAll(Arrays
                 .asList(myStaticSubForm, myConstantSubForm, myUserSubForm, myTrackingSubForm));
+        myCurrentMovementController = mySubFormControllers.get(0);
+
     }
 
     private void setUpSubFormViews () {
@@ -60,8 +61,6 @@ public class MovementSubFormController implements ISubFormControllerSprite {
     @Override
     public void updateItem (SpriteDefinition item) {
         myCurrentMovementController.updateItem(item);
-        // TODO: Use Reflection vs. hard-coded string to instantiate specific definition
-        // item.setMovementDefinition(new StaticMoverDefinition());
     }
 
     @Override

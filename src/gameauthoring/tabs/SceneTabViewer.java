@@ -79,10 +79,4 @@ public class SceneTabViewer implements ITabViewer {
         ObjectProperty<ILevel> newLevel = new SimpleObjectProperty<>(new Level());
         myLevelManager.createNewLevel(newLevel.get());
     }
-
-
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-    }
 }

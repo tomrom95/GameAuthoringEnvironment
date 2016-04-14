@@ -50,10 +50,4 @@ public class AttributeCell implements Glyph {
         value.textProperty().bind(Bindings.convert(myAttribute.getValueProperty()));
         container.getChildren().add(value);
     }
-
-    @Override
-    public void update () {   
-    }
-
-
 }

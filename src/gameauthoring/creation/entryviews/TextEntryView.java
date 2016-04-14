@@ -33,13 +33,6 @@ public class TextEntryView extends EntryView {
         myContainer.add(myTextInput, 1, 0);
     }
 
-    @Override
-    public void update () {
-        // TODO Auto-generated method stub
-
-    }
-
-
     /**
      * Ensures that entry is a double value if it is required
      * 
