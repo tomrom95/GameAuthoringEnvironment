@@ -59,7 +59,6 @@ public class OnCollisionCondition extends Condition implements ICondition {
                                                        IEventPackage myFilterPackage) {
         return mySprites.stream().filter(sprite -> myFilterPackage.getTargetedSpriteGroup()
                 .contains(sprite.getType())).collect(Collectors.toList());
-
     }
 
     private void handleCollision (ISprite outerSprite, ISprite innerSprite) {
@@ -70,15 +69,14 @@ public class OnCollisionCondition extends Condition implements ICondition {
 
     @Override
     public IProfile getProfile () {
-        return new Profile("On Collision Condition", "Collision between two sprites", "images/c.png");
+        // TODO add to resource file, and perhaps move up to abstract Condition
+        return new Profile("On Collision Condition", "Collision between two sprites",
+                           "images/c.png");
     }
 
     @Override
     public void setProfile (IProfile profile) {
-        // TODO Auto-generated method stub
-        
+        // TODO store this profile
     }
-
-   
 
 }

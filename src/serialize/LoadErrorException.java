@@ -1,4 +1,4 @@
-package data;
+package serialize;
 
 /**
  * This error class is responsible for managing errors responsible with invalid or corrupted game

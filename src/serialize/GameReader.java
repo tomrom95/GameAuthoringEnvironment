@@ -1,4 +1,4 @@
-package data;
+package serialize;
 
 import java.io.BufferedReader;
 import java.io.File;

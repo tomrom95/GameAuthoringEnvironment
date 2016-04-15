@@ -1,4 +1,4 @@
-package data;
+package serialize;
 
 import java.io.File;
 import engine.IGame;
