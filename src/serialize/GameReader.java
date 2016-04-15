@@ -8,29 +8,30 @@ import java.io.IOException;
 import com.dooapp.xstreamfx.FXConverters;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-import engine.Game;
+import engine.IGame;
 
 
 /**
- * This class takes in a file, checks if the file is a valid xml, and converts it to a game for the
- * user
+ * This class takes in a file, and deserializes it to an IGame if it is a valid XML file
  *
  */
 public class GameReader implements IGameReader {
 
+    /**
+     * Reads in an XML file describing a fully serialized game.
+     */
     @Override
-    public Game readFile (File file) throws LoadErrorException {
-
+    public IGame readFile (File xmlFile) throws LoadErrorException {
         XStream xstream = new XStream(new DomDriver());
         FXConverters.configure(xstream);
         xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
-
-        String xml;
         try {
-            xml = fileToXMLString(file);
-            return (Game) xstream.fromXML(xml);
+            String xml = fileToXMLString(xmlFile);
+            return (IGame) xstream.fromXML(xml);
         }
         catch (IOException e) {
+            // TODO throw a checked error here to make front-end deal with an error if the file is
+            // corrupted
             throw new LoadErrorException();
         }
     }
@@ -43,11 +44,9 @@ public class GameReader implements IGameReader {
             stringBuilder.append(line);
         }
         return stringBuilder.toString();
-
     }
 
     private BufferedReader getBufferedReader (File file) throws FileNotFoundException {
-
         FileReader reader = new FileReader(file);
         return new BufferedReader(reader);
     }

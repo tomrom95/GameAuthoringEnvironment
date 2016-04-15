@@ -2,13 +2,12 @@ package data;
 
 import java.io.File;
 import java.io.IOException;
-import engine.Game;
 import engine.IGame;
 
 
 /**
- * This interface holds the methods required to convert a game into an xml
- *
+ * This interface represents a serializer that takes in a Game and serializes it into an XML file
+ * for later use
  *
  */
 public interface IGameWriter {
