@@ -38,8 +38,8 @@ public interface IEffect extends Updateable {
     /**
      * To support proper tracking of internal state when applied across attributes
      * separate instances of the prototypical effect must be created
-     * 
-     * @return
+     *
+     * @return a copy of this effect
      */
     IEffect makeCopy ();
 }

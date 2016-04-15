@@ -9,12 +9,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
 
+
 /**
  * This null class will define default do-nothing behavior for any classes
  * that respond to anything in our events framework
- * 
+ *
  * Will extend this, and override methods if the submodule should have actual
- * behavior 
+ * behavior
+ * 
  * @author jonathanim
  *
  */

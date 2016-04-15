@@ -6,7 +6,7 @@ import engine.IAttribute;
 
 /**
  * Effect intended to multiply an incoming attribute by a proportion
- * 
+ *
  * @author RyanStPierre
  *
  */
@@ -30,8 +30,8 @@ public class ProportionEffect extends Effect {
 
     @Override
     public IEffect makeCopy () {
-        return new ProportionEffect(this.getAttributeType(),
-                                    this.getEffectLengthAttribute().makeCopy(),
-                                    this.getAlteringValue());
+        return new ProportionEffect(getAttributeType(),
+                                    getEffectLengthAttribute().makeCopy(),
+                                    getAlteringValue());
     }
 }
