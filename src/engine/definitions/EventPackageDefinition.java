@@ -11,15 +11,21 @@ import engine.profile.IProfile;
 import engine.profile.Profile;
 
 
+/**
+ * This class represents a definition of an event package, which is often applied as a result of a
+ * condition.
+ *
+ */
 public class EventPackageDefinition implements IProfilable {
 
     private ISpriteGroup mySpriteGroup;
     private List<IEffect> myEffectsList;
     private List<GameEvent> myEventsList;
-    private Profile myProfile;
-    
+    private IProfile myProfile;
+
     public EventPackageDefinition () {
-        myProfile = new Profile ("Event", "Basic Event", "images/Square.png");
+        // TODO add to resource file
+        myProfile = new Profile("Event", "Basic Event", "images/Square.png");
     }
 
     public IEventPackage create () {
@@ -31,7 +37,7 @@ public class EventPackageDefinition implements IProfilable {
     }
 
     public void setMySpriteGroup (ISpriteGroup spriteGroup) {
-        this.mySpriteGroup = spriteGroup;
+        mySpriteGroup = spriteGroup;
     }
 
     public List<IEffect> getMyEffectsList () {
@@ -39,7 +45,7 @@ public class EventPackageDefinition implements IProfilable {
     }
 
     public void setMyEffectsList (List<IEffect> effectList) {
-        this.myEffectsList = effectList;
+        myEffectsList = effectList;
     }
 
     public List<GameEvent> getMyEventsList () {
@@ -47,19 +53,17 @@ public class EventPackageDefinition implements IProfilable {
     }
 
     public void setMyEventsList (List<GameEvent> eventList) {
-        this.myEventsList = eventList;
+        myEventsList = eventList;
     }
 
     @Override
     public IProfile getProfile () {
-        // TODO Auto-generated method stub
         return myProfile;
     }
 
     @Override
     public void setProfile (IProfile profile) {
-        // TODO Auto-generated method stub
-        
+        myProfile = profile;
     }
 
 }

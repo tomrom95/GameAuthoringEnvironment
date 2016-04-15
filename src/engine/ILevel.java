@@ -81,7 +81,7 @@ public interface ILevel extends Updateable, IAdder {
      */
 
     void remove (ISprite sprite);
-    
+
     void add (ISprite sprite, Coordinate coordinate);
 
     void add (ISprite sprite);

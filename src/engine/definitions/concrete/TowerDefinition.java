@@ -1,12 +1,15 @@
 package engine.definitions.concrete;
 
-import java.util.List;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.TrackingFirerDefinition;
 import engine.modules.StaticMover;
 import engine.sprite.ISprite;
 
 
+/**
+ * This class represents the definition template for a tower
+ *
+ */
 public class TowerDefinition extends SpriteDefinition {
 
     private TrackingFirerDefinition myFirer;
@@ -21,10 +24,11 @@ public class TowerDefinition extends SpriteDefinition {
         return sprite;
     }
 
+    // TODO remove if truly unused (possibly should be public, need to see how authoring wants them)
     private void setFirer (TrackingFirerDefinition firer) {
         myFirer = firer;
     }
-    
+
     private TrackingFirerDefinition getFirer () {
         return myFirer;
     }

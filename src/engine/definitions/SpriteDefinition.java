@@ -16,7 +16,10 @@ import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
 import util.Coordinate;
 
-
+/**
+ * This class represents the definition of a sprite to be created at a later point 
+ *
+ */
 public class SpriteDefinition implements IProfilable {
 
     private MovementDefinition myMovementDefinition;
@@ -27,7 +30,7 @@ public class SpriteDefinition implements IProfilable {
     private SpriteType mySpriteType;
 
     public SpriteDefinition () {
-        // TODO Set a default. THis is just for view testing
+        // TODO Set a default from resource file. THis is just for view testing
         myMovementDefinition = new StaticMovementDefintion();
         myModuleDefinitions = new ArrayList<ModuleDefinition>();
         myAttributes = new ArrayList<AttributeDefinition>();
@@ -37,7 +40,6 @@ public class SpriteDefinition implements IProfilable {
 
     public ISprite create () {
         ISprite sprite = new Sprite(new SpriteType(myProfile.getName().get()));
-
         IMovementModule mover = myMovementDefinition.create(sprite);
         IGraphicModule graphicModule = createGraphicModule();
         sprite.initialize(mover, graphicModule, createModules(sprite), createAttributes(),
@@ -110,14 +112,14 @@ public class SpriteDefinition implements IProfilable {
     public void setProfile (IProfile profile) {
         myProfile = profile;
     }
-    
-    public List<ModuleDefinition> getModuleDefinitions(){
+
+    public List<ModuleDefinition> getModuleDefinitions () {
         return myModuleDefinitions;
     }
-    
-    public SpriteType getSpriteType() {
-        //TODO: check if this should be one reference or new one every time
-        
+
+    public SpriteType getSpriteType () {
+        // TODO: check if this should be one reference or new one every time
+
         return new SpriteType(getProfile().getName().get());
     }
 

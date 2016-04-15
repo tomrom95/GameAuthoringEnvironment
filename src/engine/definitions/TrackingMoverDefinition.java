@@ -7,7 +7,10 @@ import engine.modules.IMovementModule;
 import engine.modules.TrackingMover;
 import engine.sprite.SpriteType;
 
-
+/**
+ * This class represents the definition for a tracking movement module
+ *
+ */
 public class TrackingMoverDefinition extends MovementDefinition {
 
     private List<SpriteType> myTargets;
@@ -39,10 +42,12 @@ public class TrackingMoverDefinition extends MovementDefinition {
 
     }
 
+    @Override
     public double getSpeed () {
         return mySpeed;
     }
 
+    @Override
     public void setSpeed (double speed) {
         mySpeed = speed;
 

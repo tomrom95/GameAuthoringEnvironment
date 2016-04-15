@@ -7,7 +7,10 @@ import engine.modules.IMovementModule;
 import engine.modules.PathMover;
 import util.Coordinate;
 
-
+/**
+ * This class represents the definition for a path-following movement module
+ *
+ */
 public class PathMoverDefinition extends MovementDefinition {
 
     private List<Coordinate> myList;

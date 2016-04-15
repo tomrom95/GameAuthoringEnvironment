@@ -9,6 +9,6 @@ public interface IPositionable {
     Coordinate getLocation ();
 
     void setLocation (Coordinate location);
-    
+
     List<Coordinate> getPath ();
 }

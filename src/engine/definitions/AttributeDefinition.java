@@ -10,7 +10,7 @@ import engine.profile.Profile;
 
 /**
  * Definition for Attribute. Have getter/setter methods for each attribute.
- * 
+ *
  * @author Jin An, Jeremy Schreck, Joe Lilien
  *
  */
@@ -24,6 +24,7 @@ public class AttributeDefinition implements IProfilable {
 
     /**
      * Constructor initialized with defaults
+     * TODO put defaults in resource file
      */
     public AttributeDefinition () {
         myType = "";

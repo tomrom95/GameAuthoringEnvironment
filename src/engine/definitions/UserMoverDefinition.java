@@ -4,7 +4,10 @@ import engine.IPositionable;
 import engine.modules.IMovementModule;
 import engine.modules.UserMover;
 
-
+/**
+ * This class represents the definition for a user controlled movement module
+ *
+ */
 public class UserMoverDefinition extends MovementDefinition {
 
     private KeyControlDefinition myKeys;
@@ -21,7 +24,5 @@ public class UserMoverDefinition extends MovementDefinition {
     public void setKeyControlDefintion (KeyControlDefinition keyControl) {
         myKeys = keyControl;
     }
-
-
 
 }

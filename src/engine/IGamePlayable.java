@@ -44,9 +44,9 @@ public interface IGamePlayable extends Updateable, IAdder {
     void internalizeKeyEvents (List<KeyIOEvent> list);
 
     void internalizeMouseEvents (List<MouseIOEvent> list);
-    
+
     void add (ISprite sprite, Coordinate coordinate);
-    
+
     void add (ISprite sprite);
 
 }
