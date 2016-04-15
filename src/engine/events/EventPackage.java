@@ -6,7 +6,7 @@ import engine.ISpriteGroup;
 import engine.effects.IEffect;
 
 /**
- * Need to alter the definition classes to use this class instead
+ * TODO Need to alter the definition classes to use this class instead
  * @author jonathanim
  *
  */
