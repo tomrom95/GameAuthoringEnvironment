@@ -25,7 +25,8 @@ public class SpriteStatus extends DefaultAffectable implements IStatus {
     }
 
     /**
-     * Handles removing the sprite from the game after a death condition has been met
+     * @return whether this sprite should be removed in the next update cycle because it has
+     *         received a death event
      */
     @Override
     public boolean shouldBeRemoved () {

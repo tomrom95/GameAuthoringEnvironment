@@ -21,7 +21,6 @@ import util.TimeDuration;
  * function of rate and time or as a coordinate specifying the next position.
  *
  */
-
 public abstract class Mover extends DefaultAffectable implements IMovementModule {
 
     public static final double NO_MOTION = 0;
@@ -55,12 +54,10 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
         return new Coordinate(getLocation().getX() + xChange,
                               getLocation().getY() + yChange);
     }
-    
+
     private double distance (double rate, double time) {
         return rate * time;
     }
-    
-    
 
     protected double getXDiff (double input) {
         return input - getLocation().getX();
@@ -69,7 +66,6 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     protected double getYDiff (double input) {
         return input - getLocation().getY();
     }
-    
 
     @Override
     public abstract void update (TimeDuration duration);
@@ -77,7 +73,6 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     @Override
     public void applyEffect (IEffect effect) {
         getAttributes().forEach(a -> effect.applyToAttribute(a));
-
     }
 
     @Override
@@ -104,21 +99,23 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     protected IAttribute getYVel () {
         return myYVel;
     }
-    
+
     @Override
-    public void setXVel(double newVel){
+    public void setXVel (double newVel) {
         myXVel.setValue(newVel);
     }
-    
+
     @Override
-    public void setYVel(double newVel){
+    public void setYVel (double newVel) {
         myYVel.setValue(newVel);
     }
-    
+
+    @Override
     public void setPath (List<Coordinate> path) {
         myPath = path;
     }
-    
+
+    @Override
     public List<Coordinate> getPath () {
         return myPath;
     }

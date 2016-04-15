@@ -6,6 +6,7 @@ package engine.modules;
  * This interface extends IModule to incorporate sprite manipulation behavior.
  *
  * @author Dhrumil
+ *         TODO is this interface necessary?
  *
  */
 

@@ -1,8 +1,6 @@
 package engine.modules;
 
 import java.util.List;
-import engine.Attribute;
-import engine.AttributeType;
 import engine.IAttribute;
 import engine.IPositionable;
 import engine.interactionevents.KeyIOEvent;
@@ -14,7 +12,7 @@ import util.TimeDuration;
 
 /**
  * This class creates a module that moves in based on velocity in a linear direction
- *
+ * TODO this class has lots of unimplemented parts, and shouldn't be returning nulls
  */
 public class ConstantMover extends Mover {
 
@@ -32,7 +30,7 @@ public class ConstantMover extends Mover {
     @Override
     public void setPath (List<Coordinate> newPath) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -55,13 +53,13 @@ public class ConstantMover extends Mover {
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -72,9 +70,8 @@ public class ConstantMover extends Mover {
 
     public double getAngle () {
         // TODO Auto-generated method stub
-        return Math.atan(getYVel().getValueProperty().get() / getXVel().getValueProperty().get()) * 180 / Math.PI;
+        return Math.atan(getYVel().getValueProperty().get() / getXVel().getValueProperty().get()) *
+               180 / Math.PI;
     }
-    
-
 
 }

@@ -13,7 +13,6 @@ import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import util.ControlKeys;
-import util.Coordinate;
 import util.Direction;
 import util.Key;
 import util.TimeDuration;
@@ -81,7 +80,6 @@ public class UserMover extends Mover {
 
     @Override
     public void registerKeyEvent (KeyIOEvent event) {
-       
         if (event.getType() == InputType.KEY_PRESSED) {
             registerKeyPress(event.getKey());
         }
@@ -96,7 +94,6 @@ public class UserMover extends Mover {
     }
 
     private void registerKeyPress (Key key) {
-
         if (key.isEqual(myKeys.get(Direction.RIGHT))) {
             goRight();
         }
@@ -118,7 +115,7 @@ public class UserMover extends Mover {
      * @param key Key that is specified by the user
      */
     private void registerKeyRelease (Key key) {
-        
+        // TODO store these different responses as Runnable in a map
         if (key.isEqual(myKeys.get(Direction.RIGHT))) {
             if (myTraveling.get(Direction.LEFT)) {
                 goLeft();
@@ -196,5 +193,4 @@ public class UserMover extends Mover {
         return attributeList;
     }
 
-    
 }

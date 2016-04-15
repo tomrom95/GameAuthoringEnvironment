@@ -1,8 +1,6 @@
 package engine.modules;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import engine.Attribute;
 import engine.AttributeType;
@@ -13,15 +11,14 @@ import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import engine.sprite.SpriteType;
-import util.Coordinate;
 import util.TimeDuration;
 
 
 /**
  * This class builds a module that follows the closest enemy
- * 
- * @author Dhrumil Timko
  *
+ * @author Dhrumil Timko
+ *         TODO should this class extend DefaultAffectable?
  */
 public class TrackingMover extends Mover {
 
@@ -40,7 +37,6 @@ public class TrackingMover extends Mover {
         mySpeed = new Attribute(speed, AttributeType.SPEED);
         myEnemyList = attackGroup;
         myTracker = new EnemyTracker();
-
     }
 
     @Override
@@ -55,7 +51,6 @@ public class TrackingMover extends Mover {
                                                       mySpeed.getValueProperty().get());
         setYVel(newYVel);
         move(duration);
-
     }
 
     private List<ISprite> myPotentialTargets () {

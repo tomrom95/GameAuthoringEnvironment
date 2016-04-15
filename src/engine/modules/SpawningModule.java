@@ -26,12 +26,10 @@ public class SpawningModule extends DefaultAffectable implements IModule {
         myDelay = new TimeDuration();
         myThreshold = threshold;
     }
-    
+
     @Override
     public void update (TimeDuration duration) {
-        
         myDelay.increase(duration);
-        
         if (myWave.hasNext() && myDelay.getMillis() >= myThreshold.getMillis()) {
             ISprite spawn = myWave.getNextSprite();
             spawn.setPath(myParent.getPath());

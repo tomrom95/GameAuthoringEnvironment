@@ -6,15 +6,13 @@ import engine.IAttribute;
 import engine.IPositionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import util.Coordinate;
 import util.TimeDuration;
 
 
 /**
  * This class creates a module that is immovable. Used primarily for towers in TowerDefense games
- *
+ * TODO should this extend default affectable?
  */
-
 public class StaticMover extends Mover {
 
     public StaticMover (IPositionable positionable) {
@@ -24,26 +22,21 @@ public class StaticMover extends Mover {
     @Override
     public void update (TimeDuration duration) {
         // Do nothing
-
     }
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
         // Do nothing
-
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
         // Do nothing
-
     }
 
     @Override
     protected List<IAttribute> getSpecificAttributes () {
         return new ArrayList<>();
     }
-
- 
 
 }

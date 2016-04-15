@@ -1,11 +1,9 @@
 package engine.modules;
 
-
 import engine.effects.DefaultAffectable;
 import engine.rendering.IGraphicFactory;
 import graphics.IGraphic;
 import javafx.scene.Node;
-
 
 
 /**
@@ -31,7 +29,5 @@ public class GraphicModule extends DefaultAffectable implements IGraphicModule {
     public Node getVisualRepresentation (IGraphicFactory graphicFactory) {
         return myGraphic.getVisualRepresentation(graphicFactory);
     }
-
-  
 
 }
