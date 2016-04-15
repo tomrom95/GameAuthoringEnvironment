@@ -13,8 +13,8 @@ import util.TimeDuration;
 
 /**
  * This class serves to hold values that the user labels as attributes. This class works with the
- * Sprite class
- * to give user created sprites the notion of attributes that are affected by conditions and events.
+ * Sprite class to give user created sprites the notion of attributes that are affected by
+ * conditions and events.
  *
  */
 

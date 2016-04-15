@@ -5,7 +5,7 @@ import java.util.List;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
@@ -26,10 +26,10 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     public static final double NO_MOTION = 0;
     private IAttribute myXVel;
     private IAttribute myYVel;
-    private IPositionable myParent;
+    private Positionable myParent;
     private List<Coordinate> myPath;
 
-    public Mover (IPositionable positionable) {
+    public Mover (Positionable positionable) {
         myXVel = new Attribute(AttributeType.X_VEL);
         myYVel = new Attribute(AttributeType.Y_VEL);
         myParent = positionable;

@@ -4,7 +4,7 @@ import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
 import engine.IGame;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.definitions.SpriteDefinition;
 import engine.sprite.ISprite;
 import util.Coordinate;
@@ -18,7 +18,7 @@ public class DirectionalFirer extends Firer {
     private IGame myGame;
     private IAttribute myWaitTime;
     private TimeDuration myLastFire;
-    private IPositionable mySprite;
+    private Positionable mySprite;
     private SpriteDefinition myProjectile;
     // should this (below) be an attribute?
     private double myAngle;
@@ -26,7 +26,7 @@ public class DirectionalFirer extends Firer {
 
     public DirectionalFirer (IGame game,
                              SpriteDefinition projectile,
-                             IPositionable sprite,
+                             Positionable sprite,
                              double waitTime,
                              double theta) {
 

@@ -64,6 +64,9 @@ public interface ILevel extends Updateable, IAdder {
      */
     boolean shouldSwitchLevel ();
 
+    /**
+     * @return the list of Drawable items in this level
+     */
     List<? extends Drawable> getDrawables ();
 
     /**

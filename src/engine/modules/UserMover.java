@@ -7,7 +7,7 @@ import java.util.Map;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.effects.IEffect;
 import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
@@ -33,7 +33,7 @@ public class UserMover extends Mover {
 
     public UserMover (double speed,
                       ControlKeys controls,
-                      IPositionable sprite) {
+                      Positionable sprite) {
         super(sprite);
         mySpeed = new Attribute(speed, AttributeType.SPEED);
         makeKeyMap(controls);

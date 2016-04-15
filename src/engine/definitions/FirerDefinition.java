@@ -1,6 +1,6 @@
 package engine.definitions;
 
-import engine.IPositionable;
+import engine.Positionable;
 import engine.modules.IModule;
 
 
@@ -13,7 +13,7 @@ public class FirerDefinition extends ModuleDefinition {
     private SpriteDefinition myProjectile;
 
     @Override
-    public IModule create (IPositionable parent) {
+    public IModule create (Positionable parent) {
         // TODO why does this return null?? should this class be abstract?
         return null;
     }

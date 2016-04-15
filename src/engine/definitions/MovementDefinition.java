@@ -1,6 +1,6 @@
 package engine.definitions;
 
-import engine.IPositionable;
+import engine.Positionable;
 import engine.modules.IMovementModule;
 
 
@@ -14,7 +14,7 @@ public abstract class MovementDefinition implements IDefinition {
 
     private double mySpeed;
 
-    public abstract IMovementModule create (IPositionable parent);
+    public abstract IMovementModule create (Positionable parent);
 
     /*
      * TODO this should be moved to imovementmodule

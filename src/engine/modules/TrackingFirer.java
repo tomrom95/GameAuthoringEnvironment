@@ -6,7 +6,7 @@ import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
 import engine.IGame;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.definitions.SpriteDefinition;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
@@ -32,7 +32,7 @@ public class TrackingFirer extends Firer {
     private EnemyTracker myTracker;
     private IAttribute myAmmo;
     private IGame myGame;
-    private IPositionable mySprite;
+    private Positionable mySprite;
     // TODO convert this to use TimeDuration
     private double myTimeSinceFire;
 
@@ -40,7 +40,7 @@ public class TrackingFirer extends Firer {
                           IGame game,
                           double waitTime,
                           SpriteDefinition projectile,
-                          IPositionable sprite) {
+                          Positionable sprite) {
 
         myTargets = targets;
         myGame = game;

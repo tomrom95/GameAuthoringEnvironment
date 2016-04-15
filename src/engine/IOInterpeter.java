@@ -36,7 +36,6 @@ public class IOInterpeter {
     }
 
     private void setUpListener (Scene scene, Pane pane) {
-
         pane.requestFocus();
         pane.setOnMouseClicked(e -> queue(myEventFactory.interpretEvent(e)));
         scene.addEventFilter(KeyEvent.KEY_RELEASED, e -> queue(myEventFactory.interpretEvent(e)));
@@ -48,7 +47,6 @@ public class IOInterpeter {
     }
 
     private void queue (KeyIOEvent event) {
-
         myQueuedKeyEvents.add(event);
     }
 

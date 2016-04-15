@@ -55,7 +55,6 @@ public class Game implements IGame {
 
     @Override
     public ILevelManager getLevelManager () {
-
         return myLevelManager;
     }
 
@@ -73,7 +72,6 @@ public class Game implements IGame {
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
         myLevelManager.internalizeKeyEvents(list);
         myConditionManager.internalizeKeyEvents(list);
-
     }
 
     @Override
@@ -109,7 +107,6 @@ public class Game implements IGame {
 
     @Override
     public void bufferedAdd (ISprite sprite) {
-
         myLevelManager.getCurrentLevel().bufferedAdd(sprite);
     }
 

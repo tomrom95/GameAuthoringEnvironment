@@ -5,7 +5,7 @@ import java.util.List;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import util.Coordinate;
@@ -27,7 +27,7 @@ public class PathMover extends Mover {
 
     public PathMover (double speed,
                       List<Coordinate> points,
-                      IPositionable positionable) {
+                      Positionable positionable) {
         super(positionable);
         mySpeed = new Attribute(speed, AttributeType.SPEED);
         setPath(points);

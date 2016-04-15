@@ -41,7 +41,7 @@ public class SpriteGroup implements ISpriteGroup, IProfilable {
     public void setSpriteDefinitions (List<SpriteDefinition> sprites) {
         mySpriteDefinitions = new ArrayList<>(sprites);
 
-        // Patch solution for now, need to work out in more detail later
+        // TODO Patch solution for now, need to work out in more detail later
 
         mySpriteTypes = new ArrayList<>();
         for (SpriteDefinition s : mySpriteDefinitions) {

@@ -33,9 +33,7 @@ public interface ILevelManager extends IAdder {
     List<ILevel> getLevels ();
 
     /**
-     * returns the Drawables of the current level
-     *
-     * @return
+     * @return the list of Drawables of the current level
      */
     List<? extends Drawable> getDrawables ();
 
@@ -60,7 +58,6 @@ public interface ILevelManager extends IAdder {
     ImageGraphic getBackgroundImage ();
 
     /**
-     *
      * @param newLevel the level to add to the game
      */
     void createNewLevel (ILevel newLevel);

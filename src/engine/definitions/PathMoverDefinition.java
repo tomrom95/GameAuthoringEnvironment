@@ -2,7 +2,7 @@ package engine.definitions;
 
 import java.util.ArrayList;
 import java.util.List;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.modules.IMovementModule;
 import engine.modules.PathMover;
 import util.Coordinate;
@@ -20,7 +20,7 @@ public class PathMoverDefinition extends MovementDefinition {
     }
 
     @Override
-    public IMovementModule create (IPositionable parent) {
+    public IMovementModule create (Positionable parent) {
         return new PathMover(getSpeed(), new ArrayList<Coordinate>(myList), parent);
     }
 }

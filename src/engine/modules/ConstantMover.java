@@ -2,7 +2,7 @@ package engine.modules;
 
 import java.util.List;
 import engine.IAttribute;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import javafx.collections.ObservableList;
@@ -17,9 +17,9 @@ import util.TimeDuration;
 public class ConstantMover extends Mover {
 
     private IAttribute mySpeed;
-    private IPositionable mySprite;
+    private Positionable mySprite;
 
-    public ConstantMover (double xVel, double yVel, IPositionable parent) {
+    public ConstantMover (double xVel, double yVel, Positionable parent) {
         super(parent);
         getXVel().setValue(xVel);
         getYVel().setValue(yVel);

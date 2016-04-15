@@ -5,7 +5,7 @@ import engine.Affectable;
 import engine.AttributeManager;
 import engine.Drawable;
 import engine.IAttribute;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.IResource;
 import engine.Updateable;
 import engine.modules.IGraphicModule;
@@ -28,7 +28,7 @@ import util.Coordinate;
  *
  */
 
-public interface ISprite extends Drawable, Updateable, Affectable, IPositionable {
+public interface ISprite extends Drawable, Updateable, Affectable, Positionable {
 
     void initialize (IMovementModule movementModule,
                      IGraphicModule graphicModule,

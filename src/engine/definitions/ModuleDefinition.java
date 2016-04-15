@@ -1,6 +1,6 @@
 package engine.definitions;
 
-import engine.IPositionable;
+import engine.Positionable;
 import engine.modules.IModule;
 
 
@@ -11,6 +11,6 @@ import engine.modules.IModule;
  */
 public abstract class ModuleDefinition implements IDefinition {
 
-    public abstract IModule create (IPositionable parent);
+    public abstract IModule create (Positionable parent);
 
 }

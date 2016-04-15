@@ -1,6 +1,6 @@
 package engine.definitions;
 
-import engine.IPositionable;
+import engine.Positionable;
 import engine.modules.ConstantMover;
 import engine.modules.IMovementModule;
 
@@ -14,7 +14,7 @@ public class ConstantMoverDefinition extends MovementDefinition {
     private double myYVel;
 
     @Override
-    public IMovementModule create (IPositionable parent) {
+    public IMovementModule create (Positionable parent) {
         setSpeed(Math.sqrt(Math.pow(myXVel, 2) + Math.pow(myYVel, 2)));
         return new ConstantMover(myXVel, myYVel, parent);
     }

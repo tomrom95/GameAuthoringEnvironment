@@ -12,16 +12,17 @@ import javafx.collections.FXCollections;
  * Class for holding the structures the user creates during authorship that want to be saved
  *
  * @author RyanStPierre, Jeremy Schreck, Joe Lilien
- *
+ *         TODO if we want to have default collections, such as for missiles, we should specify that
+ *         in a resource file
  */
 public class AuthorshipData {
 
-    List<DefinitionCollection<SpriteDefinition>> myCreatedSprites;
-    DefinitionCollection<SpriteDefinition> myCreatedMissiles;
+    private List<DefinitionCollection<SpriteDefinition>> myCreatedSprites;
+    private DefinitionCollection<SpriteDefinition> myCreatedMissiles;
 
-    DefinitionCollection<AttributeDefinition> myCreatedAttributes;
-    DefinitionCollection<SpriteGroup> myCreatedGroups;
-    DefinitionCollection<EventPackageDefinition> myCreatedEventPackages;
+    private DefinitionCollection<AttributeDefinition> myCreatedAttributes;
+    private DefinitionCollection<SpriteGroup> myCreatedGroups;
+    private DefinitionCollection<EventPackageDefinition> myCreatedEventPackages;
 
     public AuthorshipData () {
 
@@ -54,7 +55,6 @@ public class AuthorshipData {
     }
 
     public DefinitionCollection<SpriteGroup> getMyCreatedGroups () {
-
         return myCreatedGroups;
     }
 
@@ -75,7 +75,6 @@ public class AuthorshipData {
     }
 
     public void setMyCreatedGroups (DefinitionCollection<SpriteGroup> createdGroups) {
-
         myCreatedGroups = createdGroups;
     }
 

@@ -1,7 +1,7 @@
 package engine.definitions;
 
 import engine.IAdder;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.modules.IModule;
 import engine.modules.SpawningModule;
 import util.TimeDuration;
@@ -41,7 +41,7 @@ public class SpawnerModuleDefinition extends ModuleDefinition {
     }
 
     @Override
-    public IModule create (IPositionable parent) {
+    public IModule create (Positionable parent) {
         return new SpawningModule(myAdder, myWave.create(), new TimeDuration(myDelay), parent);
     }
 

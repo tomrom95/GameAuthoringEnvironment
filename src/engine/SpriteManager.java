@@ -19,7 +19,6 @@ import util.TimeDuration;
  * sprites.
  *
  */
-
 public class SpriteManager implements ISpriteManager {
 
     private ObservableList<ISprite> mySpriteList;
@@ -67,7 +66,6 @@ public class SpriteManager implements ISpriteManager {
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
         list.forEach(event -> loopThroughSpritesAndDo(sprite -> sprite.registerKeyEvent(event)));
-
     }
 
     @Override
@@ -87,7 +85,6 @@ public class SpriteManager implements ISpriteManager {
 
     @Override
     public void bufferedAdd (ISprite sprite) {
-
         myBufferList.add(sprite);
     }
 

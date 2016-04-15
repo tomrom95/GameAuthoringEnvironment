@@ -8,16 +8,12 @@ import engine.events.GameEvent;
 public interface IEventPackage {
 
     /**
-     * The events to be applied
-     *
-     * @return
+     * @return The events to be applied
      */
     List<GameEvent> getMyEvents ();
 
     /**
-     * The effects to be applied
-     *
-     * @return
+     * @return The effects to be applied
      */
     List<IEffect> getMyEffects ();
 
@@ -25,7 +21,7 @@ public interface IEventPackage {
      * The condition will iterate over the members of the game and compare
      * with this group, selectivity will vary depending on condition
      *
-     * @return
+     * @return the sprite group associated with this package
      */
     ISpriteGroup getTargetedSpriteGroup ();
 }

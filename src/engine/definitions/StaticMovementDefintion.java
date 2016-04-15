@@ -1,6 +1,6 @@
 package engine.definitions;
 
-import engine.IPositionable;
+import engine.Positionable;
 import engine.modules.IMovementModule;
 import engine.modules.StaticMover;
 
@@ -16,7 +16,7 @@ public class StaticMovementDefintion extends ConstantMoverDefinition {
     private double myYVel = IMMOVABLE_SPEED;
 
     @Override
-    public IMovementModule create (IPositionable parent) {
+    public IMovementModule create (Positionable parent) {
         return new StaticMover(parent);
     }
 

@@ -3,7 +3,7 @@ package engine.modules;
 import java.util.ArrayList;
 import java.util.List;
 import engine.IAttribute;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import util.TimeDuration;
@@ -15,7 +15,7 @@ import util.TimeDuration;
  */
 public class StaticMover extends Mover {
 
-    public StaticMover (IPositionable positionable) {
+    public StaticMover (Positionable positionable) {
         super(positionable);
     }
 
