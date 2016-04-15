@@ -11,8 +11,9 @@ import gameauthoring.levels.sprites.OnScreenSprite;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
-public class AuthoringRenderer extends LevelRenderer{
-    
+
+public class AuthoringRenderer extends LevelRenderer {
+
     private ILevel myLevel;
     private Map<ISprite, Node> mySpriteNodeMap;
 
@@ -21,14 +22,14 @@ public class AuthoringRenderer extends LevelRenderer{
         myLevel = level;
         mySpriteNodeMap = new HashMap<>();
     }
-    
+
     private Node createOnScreenSprite (ISprite sprite) {
         return (new OnScreenSprite(this, myLevel, sprite)).draw();
-        //this.draw(spriteNode, sprite);
+        // this.draw(spriteNode, sprite);
     }
 
     @Override
-    void drawSprites () {        
+    void drawSprites () {
         List<Node> currentEngineConvertedNodeList = getAndUpdateEngineNodeList();
         removeScreenNodesNotInEngine(currentEngineConvertedNodeList);
         updateExistingNodeLocations();
@@ -39,16 +40,16 @@ public class AuthoringRenderer extends LevelRenderer{
         return myLevel.getBackgroundImage().getUrlProperty().get();
     }
 
-
-
     private void updateExistingNodeLocations () {
         mySpriteNodeMap.keySet().stream().forEach(drawable -> {
             mySpriteNodeMap.get(drawable)
-                           .relocate(drawable.getLocation().getX() - drawable.getDrawer().getGraphic().getWidth().get()/2,
-                                     drawable.getLocation().getY() - drawable.getDrawer().getGraphic().getHeight().get()/2);
+                    .relocate(drawable.getLocation().getX() -
+                              drawable.getDrawer().getGraphic().getWidth().get() / 2,
+                              drawable.getLocation().getY() - drawable.getDrawer().getGraphic()
+                                      .getHeight().get() / 2);
             mySpriteNodeMap.get(drawable).setVisible(true);
         });
-                
+
     }
 
     /**
@@ -77,9 +78,8 @@ public class AuthoringRenderer extends LevelRenderer{
     }
 
     private List<Node> getCurrentDrawnNodes () {
-        return this.getPane().getChildren();
+        return getPane().getChildren();
     }
-
 
     private List<Node> getAndUpdateEngineNodeList () {
         return myLevel.getSprites().stream().map(drawable -> getNodeForDrawableAddNew(drawable))
@@ -98,10 +98,8 @@ public class AuthoringRenderer extends LevelRenderer{
         }
     }
 
-
-
     private void add (Node node) {
-        this.getPane().getChildren().add(node);
+        getPane().getChildren().add(node);
     }
 
 }
