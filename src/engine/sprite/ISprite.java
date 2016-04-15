@@ -39,7 +39,7 @@ public interface ISprite extends Drawable, Updateable, Affectable, IPositionable
     IMovementModule getMovementStrategy ();
 
     List<IModule> getModules ();
-    
+
     void addModule (IModule module);
 
     List<IResource> getResources ();
@@ -51,7 +51,7 @@ public interface ISprite extends Drawable, Updateable, Affectable, IPositionable
     SpriteType getType ();
 
     boolean shouldBeRemoved ();
-    
-    void setPath(List<Coordinate> path);
+
+    void setPath (List<Coordinate> path);
 
 }
