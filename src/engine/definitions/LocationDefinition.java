@@ -2,8 +2,8 @@ package engine.definitions;
 
 import util.Coordinate;
 
-
-public class LocationDefinition  {
+//
+public class LocationDefinition {
 
     private double myX;
     private double myY;

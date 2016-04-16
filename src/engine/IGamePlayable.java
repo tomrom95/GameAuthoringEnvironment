@@ -41,12 +41,17 @@ public interface IGamePlayable extends Updateable, IAdder {
      */
     ImageGraphic getBackroundImage ();
 
+    /**
+     * TODO pull out these methods into an interface since they appear elsewhere
+     * 
+     * @param list of key events to respond to
+     */
     void internalizeKeyEvents (List<KeyIOEvent> list);
 
     void internalizeMouseEvents (List<MouseIOEvent> list);
-    
+
     void add (ISprite sprite, Coordinate coordinate);
-    
+
     void add (ISprite sprite);
 
 }

@@ -9,8 +9,8 @@ import javafx.collections.ObservableList;
  * completed and should proceed
  * to the next level.
  *
+ * TODO finish implementing this interface
  */
-
 interface INextLevelManager extends Updateable {
 
     /**
@@ -29,7 +29,6 @@ interface INextLevelManager extends Updateable {
     ILevel getNextLevel ();
 
     /**
-     *
      * @return the observable list of condition that this class manages
      */
     ObservableList<ObjectProperty<INextLevelCondition>> getConditionListProperty ();

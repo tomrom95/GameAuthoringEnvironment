@@ -14,11 +14,9 @@ import util.TimeDuration;
 
 /**
  * AttributeManager holds a collection of of attributes and resources. The values within the
- * collection
- * are manipulated by effects.
+ * collection are manipulated by effects.
  *
  */
-
 public class AttributeManager extends DefaultAffectable implements IAttributeManager {
 
     private ObservableList<IAttribute> myAttributes;

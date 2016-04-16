@@ -3,20 +3,18 @@ package engine.rendering;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import engine.Drawable;
 import engine.IGamePlayable;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
-import util.Coordinate;
 
 
 /**
  * Used to render the back-end components into JavaFX responsive objects for the screen
  *
  * @author RyanStPierre
- *
+ *         TODO fix scaling of window sizes
  */
 public class Renderer implements IRenderer {
 
@@ -37,7 +35,6 @@ public class Renderer implements IRenderer {
         List<Node> currentEngineConvertedNodeList = getAndUpdateEngineNodeList();
         removeScreenNodesNotInEngine(currentEngineConvertedNodeList);
         updateExistingNodeLocations();
-
 
     }
 
@@ -78,7 +75,7 @@ public class Renderer implements IRenderer {
     /**
      * This method will check the engine drawable lists, add new ones to the
      * internal list of maps and add them to the
-     * 
+     *
      * @return List<Node> of node objects that are currently represented in the engine
      */
     private List<Node> getAndUpdateEngineNodeList () {
@@ -97,8 +94,6 @@ public class Renderer implements IRenderer {
             return node;
         }
     }
-
-
 
     private void add (Node node) {
         myPane.getChildren().add(node);

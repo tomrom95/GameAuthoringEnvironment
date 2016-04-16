@@ -5,7 +5,7 @@ import engine.Affectable;
 import engine.AttributeManager;
 import engine.Drawable;
 import engine.IAttribute;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.IResource;
 import engine.Updateable;
 import engine.modules.IGraphicModule;
@@ -28,7 +28,7 @@ import util.Coordinate;
  *
  */
 
-public interface ISprite extends Drawable, Updateable, Affectable, IPositionable {
+public interface ISprite extends Drawable, Updateable, Affectable, Positionable {
 
     void initialize (IMovementModule movementModule,
                      IGraphicModule graphicModule,
@@ -39,7 +39,7 @@ public interface ISprite extends Drawable, Updateable, Affectable, IPositionable
     IMovementModule getMovementStrategy ();
 
     List<IModule> getModules ();
-    
+
     void addModule (IModule module);
 
     List<IResource> getResources ();
@@ -51,7 +51,7 @@ public interface ISprite extends Drawable, Updateable, Affectable, IPositionable
     SpriteType getType ();
 
     boolean shouldBeRemoved ();
-    
-    void setPath(List<Coordinate> path);
+
+    void setPath (List<Coordinate> path);
 
 }

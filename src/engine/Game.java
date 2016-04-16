@@ -24,10 +24,10 @@ public class Game implements IGame {
     private IAttributeManager myAttributeManager;
 
     public Game () {
-        //TODO remove hardcoded strings
+        // TODO remove hardcoded strings
         this(new GameInformation("title", "author", "date"));
     }
-    
+
     public Game (IGameInformation gameInfo) {
         myLevelManager = new LevelManager();
         myConditionManager = new ConditionManager();
@@ -55,7 +55,6 @@ public class Game implements IGame {
 
     @Override
     public ILevelManager getLevelManager () {
-
         return myLevelManager;
     }
 
@@ -73,7 +72,6 @@ public class Game implements IGame {
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
         myLevelManager.internalizeKeyEvents(list);
         myConditionManager.internalizeKeyEvents(list);
-
     }
 
     @Override
@@ -101,15 +99,14 @@ public class Game implements IGame {
     public void add (ISprite sprite, Coordinate coordinate) {
         myLevelManager.add(sprite, coordinate);
     }
-    
+
     @Override
     public void add (ISprite sprite) {
         myLevelManager.add(sprite);
     }
-    
+
     @Override
     public void bufferedAdd (ISprite sprite) {
-       
         myLevelManager.getCurrentLevel().bufferedAdd(sprite);
     }
 

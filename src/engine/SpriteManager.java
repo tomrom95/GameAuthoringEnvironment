@@ -19,7 +19,6 @@ import util.TimeDuration;
  * sprites.
  *
  */
-
 public class SpriteManager implements ISpriteManager {
 
     private ObservableList<ISprite> mySpriteList;
@@ -36,10 +35,10 @@ public class SpriteManager implements ISpriteManager {
         myBufferList.clear();
         loopThroughSpritesAndDo(sprite -> sprite.update(duration));
         removeDeadSprites();
-        //loopSpritesAndDoIf(sprite -> sprite.shouldBeRemoved(), sprite -> remove(sprite));
+        // loopSpritesAndDoIf(sprite -> sprite.shouldBeRemoved(), sprite -> remove(sprite));
     }
-    
-    private void removeDeadSprites(){
+
+    private void removeDeadSprites () {
         getSprites().removeIf(sprite -> sprite.shouldBeRemoved());
     }
 
@@ -67,7 +66,6 @@ public class SpriteManager implements ISpriteManager {
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
         list.forEach(event -> loopThroughSpritesAndDo(sprite -> sprite.registerKeyEvent(event)));
-
     }
 
     @Override
@@ -87,7 +85,6 @@ public class SpriteManager implements ISpriteManager {
 
     @Override
     public void bufferedAdd (ISprite sprite) {
-       
         myBufferList.add(sprite);
     }
 

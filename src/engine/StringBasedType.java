@@ -1,5 +1,10 @@
 package engine;
 
+/**
+ * This class represents an in-game type that is based on a string backing. It handles equality
+ * checks based off this string
+ *
+ */
 public abstract class StringBasedType {
 
     private String myType;

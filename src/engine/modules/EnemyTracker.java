@@ -11,16 +11,15 @@ import util.Coordinate;
  * sprites.
  * <p>
  * This class uses a comparator to query available sprites on the level and located the nearest one.
- * 
- * @author Timko
  *
+ * @author Timko
+ *         TODO clean up this class
  */
-
 public class EnemyTracker {
 
     /**
      * Locate the distance of the closest sprite using a comparator based on manhattan distance
-     * 
+     *
      * @param enemies sprites available on the level
      * @param myLocation Coordinate of the sprite
      * @return the closest sprite
@@ -61,7 +60,7 @@ public class EnemyTracker {
     /**
      * Computes the angle between the orientation of the caller and where the closest enemy is
      * positioned
-     * 
+     *
      * @param myLocation Coordinate of caller position
      * @param enemyLocation Coordinate of enemy position
      * @return value representing orientation differences

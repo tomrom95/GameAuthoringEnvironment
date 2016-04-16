@@ -3,7 +3,6 @@ package testing;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import data.GameWriter;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.Game;
@@ -34,6 +33,7 @@ import gameplayer.GamePlayer;
 import graphics.ImageGraphic;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import serialize.GameWriter;
 import util.Coordinate;
 
 

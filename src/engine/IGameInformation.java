@@ -15,9 +15,18 @@ import javafx.beans.property.StringProperty;
  */
 public interface IGameInformation {
 
+    /**
+     * @return the string property of the author of this game
+     */
     StringProperty getAuthorProperty ();
 
+    /**
+     * @return the string property of the date this game was created
+     */
     StringProperty getDateCreatedProperty ();
 
+    /**
+     * @return the string property of the name of this game
+     */
     StringProperty getNameProperty ();
 }

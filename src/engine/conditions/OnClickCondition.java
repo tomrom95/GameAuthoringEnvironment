@@ -38,7 +38,6 @@ public class OnClickCondition extends Condition implements ICondition {
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
-
         Coordinate coord = new Coordinate(mouseEvent.getX(), mouseEvent.getY());
         System.out.println(coord.getX() + " " + coord.getY());
         filterAndHandleSprites(myGame, sprite -> sprite.getBounds().contains(coord));
@@ -53,18 +52,17 @@ public class OnClickCondition extends Condition implements ICondition {
         getPackageFilteredSprites(game, mySelfPackage)
                 .filter(additionalFilter)
                 .forEach(sprite -> handleAction(sprite));
-
     }
 
     @Override
     public IProfile getProfile () {
+        //TODO add to resource file, and perhaps move up to abstract Condition
         return new Profile("On Click Condition", "Mouse interactions", "images/c.png");
     }
 
     @Override
     public void setProfile (IProfile profile) {
-        // TODO Auto-generated method stub
-        
+        //TODO store this profile
     }
 
    

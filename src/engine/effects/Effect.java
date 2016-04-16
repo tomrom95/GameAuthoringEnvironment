@@ -80,5 +80,4 @@ public abstract class Effect implements IEffect {
                 .set(myEffectLengthAttribute.getValueProperty().get() - duration.getMillis());
     }
 
-  
 }

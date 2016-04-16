@@ -17,12 +17,18 @@ import util.Coordinate;
 public interface IAdder extends Updateable {
 
     /**
-     * @param sprite to be added in the next game cycle
+     * Add a sprite in the next update cycle
+     * 
+     * @param sprite to be added
      * @param coordinate where the Sprite is added
      */
-
     void bufferedAdd (ISprite sprite, Coordinate coordinate);
 
+    /**
+     * Add a sprite in the next update cycle
+     * 
+     * @param sprite to be added
+     */
     void bufferedAdd (ISprite sprite);
 
 }
