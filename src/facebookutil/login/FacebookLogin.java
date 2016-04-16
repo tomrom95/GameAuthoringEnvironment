@@ -23,4 +23,10 @@ public class FacebookLogin implements Login{
         return null;
     }
 
+    @Override
+    public String getUserID () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

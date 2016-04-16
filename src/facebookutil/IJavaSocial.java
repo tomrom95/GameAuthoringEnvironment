@@ -1,6 +1,7 @@
 package facebookutil;
 
 import java.util.List;
+import facebookutil.user.IUser;
 
 public interface IJavaSocial {
     

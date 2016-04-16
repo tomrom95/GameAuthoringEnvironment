@@ -9,6 +9,8 @@ import com.github.scribejava.core.oauth.OAuth20Service;
  */
 public interface Login {
     
+    public String getUserID ();
+    
     public void createToken ();
     
     public OAuth2AccessToken getToken ();

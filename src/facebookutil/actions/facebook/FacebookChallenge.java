@@ -1,7 +1,7 @@
 package facebookutil.actions.facebook;
 
-import facebookutil.IUser;
 import facebookutil.actions.Challenge;
+import facebookutil.user.IUser;
 
 public class FacebookChallenge implements Challenge{
 

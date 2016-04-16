@@ -1,6 +1,6 @@
 package facebookutil.actions;
 
-import facebookutil.IUser;
+import facebookutil.user.IUser;
 
 
 /**
