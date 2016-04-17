@@ -18,7 +18,7 @@ import junit.framework.*;
 import util.Coordinate;
 import util.TimeDuration;
 
-
+//TODO : remove class
 public class TestFiringModules extends TestCase {
     
     private SpriteDefinition projectile;
@@ -56,11 +56,7 @@ public class TestFiringModules extends TestCase {
         fire.setGame(game);
         fire.setAngle(-60);
        
-//        shooter.addModule(fire);
-        
-        
-        
-        
+          
         enemy = new SpriteDefinition();
         LocationDefinition enemyLocation = new LocationDefinition();
         enemyLocation.setX(100);
@@ -81,11 +77,6 @@ public class TestFiringModules extends TestCase {
         trackingFire.setTargets(myGroup);
         
         shooter.addModule(trackingFire);
-        
-        
-        
-        
-      
         
     }
     
