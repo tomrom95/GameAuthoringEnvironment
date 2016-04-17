@@ -26,7 +26,7 @@ public class SocialMap {
     }
     
     public void createNewProfile (SocialType type, String userID) {
-        myProfiles.put(type, new SocialProfile(userID));
+        myProfiles.put(type, type.getProfile(userID));
     }
 
     public SocialProfile getActiveProfile () {

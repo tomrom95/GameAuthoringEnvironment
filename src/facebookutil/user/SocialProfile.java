@@ -3,7 +3,7 @@ package facebookutil.user;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import facebookutil.login.LoginObject;
 
-public class SocialProfile {
+public abstract class SocialProfile {
     
     private String myUserID;
     @XStreamOmitField
@@ -24,5 +24,11 @@ public class SocialProfile {
     public LoginObject getLogin () {
         return myLogin;
     }
+    
+    public abstract void challenge (IUser target, String message);
+    
+    public abstract void customPost (String message);
+    
+    public abstract void highScorePost (IUser user, int score);
 
 }

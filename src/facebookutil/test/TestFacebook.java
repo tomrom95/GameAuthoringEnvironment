@@ -2,7 +2,6 @@ package facebookutil.test;
 
 import facebookutil.JavaSocial;
 import facebookutil.SocialType;
-import facebookutil.actions.facebook.FacebookCustomPost;
 import facebookutil.user.IUser;
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -47,14 +46,12 @@ public class TestFacebook extends Application{
     }
 
     private void post (TextField field) {
-        FacebookCustomPost post = new FacebookCustomPost();
         myUser = mySocial.getActiveUser();
         if (myUser == null) {
             System.out.println("Login first");
             return;
         }
-        post.createPost(field.getText(), myUser);
-        myUser.doAction(post);
+        myUser.getProfiles().getActiveProfile().customPost(field.getText());
     }
 
     public static void main (String[] args) {
