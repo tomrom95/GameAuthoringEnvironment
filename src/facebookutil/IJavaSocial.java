@@ -1,7 +1,7 @@
 package facebookutil;
 
 import java.util.Set;
-import facebookutil.login.Login;
+import facebookutil.login.LoginObject;
 import facebookutil.user.IUser;
 
 public interface IJavaSocial {
@@ -12,7 +12,9 @@ public interface IJavaSocial {
     
     public HighScoreBoard getHighScoreBoard ();
     
-    public void loginUser (String email, SocialType type, Login login);
+    public void loginUser (SocialType type, LoginObject login);
+    
+    public void loginUser(SocialType type);
     
     public IUser createNewUser (String email);
 

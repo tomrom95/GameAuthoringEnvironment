@@ -1,19 +1,19 @@
 package facebookutil.user;
 
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
-import facebookutil.login.Login;
+import facebookutil.login.LoginObject;
 
 public class SocialProfile {
     
     private String myUserID;
     @XStreamOmitField
-    private Login myLogin;
+    private LoginObject myLogin;
     
     public SocialProfile (String userID) {
         myUserID = userID;
     }
     
-    public void login (Login newLogin) {
+    public void login (LoginObject newLogin) {
         myLogin = newLogin;
     }
     
@@ -21,7 +21,7 @@ public class SocialProfile {
         return myUserID;
     }
     
-    public Login getLogin () {
+    public LoginObject getLogin () {
         return myLogin;
     }
 

@@ -28,9 +28,8 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 public class BrowserView {
 
     public static final Dimension DEFAULT_SIZE = new Dimension(800, 600);
-    private static final String PROTECTED_RESOURCE_URL = "https://graph.facebook.com/v2.5/10204226196654701";
-    private static final String CALLBACK_URL =
-            "https://duke.edu";
+    private static final String PROTECTED_RESOURCE_URL = "https://graph.facebook.com/v2.5/me?fields=id,email";
+    private static final String CALLBACK_URL = "https://duke.edu/";
 
     private OAuth20Service service;
     private Scene myScene;
@@ -88,6 +87,10 @@ public class BrowserView {
                     System.out.println();
                     System.out.println(response.getCode());
                     System.out.println(response.getBody());
+                    m = Pattern.compile("\"email\":\"([^&]+)\"").matcher(response.getBody());
+                    if (m.find()) {
+                        System.out.println(m.group(1));
+                    }
                   //SEND A NOTIFICATION
 //                      OAuthRequest nextRequest =
 //                              new OAuthRequest(Verb.POST,
@@ -157,8 +160,8 @@ public class BrowserView {
                 .apiKey(clientId)
                 .apiSecret(clientSecret)
                 .callback(CALLBACK_URL)
-                .grantType("client_credentials")
-                //.scope("publish_actions")
+                //.grantType("client_credentials")
+                .scope("publish_actions,email,public_profile")
                 .build(FacebookApi.instance());
 
         System.out.println();

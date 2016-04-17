@@ -3,6 +3,7 @@ package facebookutil;
 import java.util.HashSet;
 import java.util.Set;
 import facebookutil.login.Login;
+import facebookutil.login.LoginObject;
 import facebookutil.user.IUser;
 import facebookutil.user.User;
 
@@ -10,6 +11,7 @@ public class JavaSocial implements IJavaSocial {
     
     private Set<IUser> myUsers;
     private HighScoreBoard myHighScores;
+    private IUser activeUser;
     
     public JavaSocial () {
         //TODO load users from file
@@ -38,19 +40,32 @@ public class JavaSocial implements IJavaSocial {
     }
 
     @Override
-    public void loginUser (String email, SocialType type, Login login) {
-        IUser user = getUserByEmail(email);
+    public void loginUser (SocialType type, LoginObject login) {
+        IUser user = getUserByEmail(login.getEmail());
         if (user == null) {
-            user = createNewUser(email);
+            user = createNewUser(login.getEmail());
         }
         user.login(type, login);
+        activeUser = user;
+    }
+    
+    @Override
+    public void loginUser (SocialType type) {
+        Login login = type.getLogin();
+        login.authenticate(this);
     }
 
     @Override
     public IUser createNewUser (String email) {
+        System.out.println("Creating new User");
         IUser newUser = new User(email);
         myUsers.add(newUser);
         return newUser;
     }
+
+    public IUser getActiveUser () {
+        return activeUser;
+    }
+
 
 }

@@ -1,32 +1,43 @@
 package facebookutil.login;
 
-import com.github.scribejava.core.model.OAuth2AccessToken;
+import java.util.ResourceBundle;
+import com.github.scribejava.apis.FacebookApi;
+import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import facebookutil.JavaSocial;
 
-public class FacebookLogin implements Login{
 
-    @Override
-    public void createToken () {
-        // TODO Auto-generated method stub
-        
+public class FacebookLogin implements Login {
+    private static final String CALLBACK_URL = "https://duke.edu/";
+    private static final String SCOPE = "publish_actions,email";
+
+    private ResourceBundle mySecrets;
+    private LoginObject myLoginObject;
+
+    public FacebookLogin () {
+        mySecrets = ResourceBundle.getBundle("facebookutil/secret");
+        myLoginObject = new LoginObject();
     }
 
     @Override
-    public OAuth2AccessToken getToken () {
-        // TODO Auto-generated method stub
-        return null;
+    public void authenticate (JavaSocial social) {
+        OAuth20Service service = createService(mySecrets.getString("clientId"),
+                                  mySecrets.getString("clientSecret"));
+        myLoginObject.setService(service);
+        createToken(social);
     }
 
-    @Override
-    public OAuth20Service getService () {
-        // TODO Auto-generated method stub
-        return null;
+    private OAuth20Service createService (String clientId, String clientSecret) {
+        return new ServiceBuilder().apiKey(clientId)
+                .apiSecret(clientSecret)
+                .callback(CALLBACK_URL)
+                .scope(SCOPE)
+                .build(FacebookApi.instance());
     }
-
-    @Override
-    public String getUserID () {
-        // TODO Auto-generated method stub
-        return null;
+    
+    private void createToken (JavaSocial social) {
+        LoginView view = new LoginView(myLoginObject.getService().getAuthorizationUrl());
+        view.attachListener(new FacebookListener(view.getEngine(), social, myLoginObject));
     }
 
 }

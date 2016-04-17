@@ -1,7 +1,8 @@
 package facebookutil.user;
 
 import facebookutil.SocialType;
-import facebookutil.login.Login;
+import facebookutil.actions.SocialAction;
+import facebookutil.login.LoginObject;
 
 /**
  * This interface manages the actions associated with a user 
@@ -17,6 +18,8 @@ public interface IUser {
     
     public SocialMap getProfiles ();
     
-    public void login (SocialType type, Login login);
+    public void login (SocialType type, LoginObject login);
+    
+    public void doAction (SocialAction action);
 
 }

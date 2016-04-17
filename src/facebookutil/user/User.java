@@ -1,7 +1,8 @@
 package facebookutil.user;
 
 import facebookutil.SocialType;
-import facebookutil.login.Login;
+import facebookutil.actions.SocialAction;
+import facebookutil.login.LoginObject;
 
 public class User implements IUser{
     
@@ -32,7 +33,7 @@ public class User implements IUser{
     }
     
     @Override
-    public void login (SocialType type, Login login) {
+    public void login (SocialType type, LoginObject login) {
         if (myProfiles.getProfileByType(type) == null){
             createNewProfile(type, login);
         } else {
@@ -40,12 +41,12 @@ public class User implements IUser{
         }
     }
     
-    private void loginExisting (SocialType type, Login login) {
+    private void loginExisting (SocialType type, LoginObject login) {
         myProfiles.getProfileByType(type).login(login);
         myProfiles.setActive(type);
     }
 
-    private void createNewProfile (SocialType type, Login login) {
+    private void createNewProfile (SocialType type, LoginObject login) {
         myProfiles.createNewProfile(type, login.getUserID());
         loginExisting(type, login);
     }
@@ -53,6 +54,12 @@ public class User implements IUser{
     @Override
     public SocialMap getProfiles () {
         return myProfiles;
+    }
+
+    @Override
+    public void doAction (SocialAction action) {
+        action.send(myProfiles.getActiveProfile().getLogin().getService(),
+                    myProfiles.getActiveProfile().getLogin().getToken());
     }
 
 }
