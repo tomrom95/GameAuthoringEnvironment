@@ -4,14 +4,22 @@ import engine.Game;
 import gameauthoring.conditiontab.ConditionView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -33,7 +41,7 @@ public class AuthoringView implements IAuthoringView {
     private ObjectCreationTabViewer myCreationTabViewer;
     private SceneTabViewer mySceneTabViewer;
     private ConditionView myConditionView;
-    private GridPane myLayout;
+    private BorderPane myLayout;
     private Game myGame;
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
@@ -65,25 +73,49 @@ public class AuthoringView implements IAuthoringView {
 
     @Override
     public void init (Stage s) {
-        MenuBar menuBar = createMenuBar();
-        TabPane tabPane = createAllTabs();
-        myLayout = new GridPane();
-        myLayout.add(menuBar, 0, 0);
-        myLayout.add(tabPane, 0, 2);
+        myLayout = new BorderPane();
+        myLayout.setCenter(createContents());
+        myLayout.setTop(createStatusBar());
         Scene scene = new Scene(myLayout, WIDTH, HEIGHT);
         scene.getStylesheets().add(DEFAULT_RESOURCE_PACKAGE+STYLESHEET);
         s.setScene(scene);
     }
 
+    private Node createStatusBar(){
+        Image home = new Image("images/home-button.png", 50, 50, true, true);
+        Image save = new Image("images/save-button.jpg", 50, 50, true, true);
+        ImageView homeView = new ImageView(home);
+        ImageView saveView = new ImageView(save);
+        Button homeButton = new Button ("Home", homeView);
+        Button saveButton = new Button ("Save", saveView);
+        homeButton.setOnAction(e -> goHome());
+        saveButton.setOnAction(e -> saveToXML());
+        
+        HBox statusBar = new HBox(10, homeButton, saveButton);
+        return statusBar;
+    }
+    
+    private Node createContents () {
+//        MenuBar menuBar = createMenuBar();
+        TabPane tabPane = createAllTabs();
+        GridPane contents = new GridPane();
+//        contents.add(menuBar, 0, 0);
+        contents.add(tabPane, 0, 2);
+        return contents;
+    }
     private MenuBar createMenuBar () {
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
-        MenuItem saveItem = createMenuItems("Save your game as XML Files", e -> saveToXML());
-        fileMenu.getItems().add(saveItem);
+//        MenuItem saveItem = createMenuItems("Save your game as XML Files", e -> saveToXML());
+//        fileMenu.getItems().add(saveItem);
         menuBar.getMenus().add(fileMenu);
         return menuBar;
     }
 
+    private void goHome () {
+        
+    }
+    
     // TODO: Create GameWriter Class and save it as XML
     private void saveToXML () {
 
