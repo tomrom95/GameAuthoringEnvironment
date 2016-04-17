@@ -1,32 +1,13 @@
 package facebookutil.login;
 
-import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.github.scribejava.core.oauth.OAuth20Service;
+import facebookutil.JavaSocial;
 
 public class LocalLogin implements Login {
 
     @Override
-    public void createToken () {
+    public void authenticate (JavaSocial social) {
         // TODO Auto-generated method stub
         
-    }
-
-    @Override
-    public OAuth2AccessToken getToken () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public OAuth20Service getService () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public String getUserID () {
-        // TODO Auto-generated method stub
-        return null;
     }
 
 }
