@@ -1,31 +1,37 @@
 package testing;
 
-import static org.junit.Assert.*;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import engine.Game;
+import engine.SpriteGroup;
 import engine.definitions.ConstantMoverDefinition;
 import engine.definitions.DirectionalFirerDefinition;
 import engine.definitions.LocationDefinition;
+import engine.definitions.ModuleDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.TrackingFirerDefinition;
+import engine.profile.Profile;
 import engine.sprite.ISprite;
-import engine.sprite.SpriteType;
 import util.TimeDuration;
 
 
 /**
  * Test package to test firing modules
  * 
- * @author Dhrumil
+ * @author Dhrumil Timko
  *
  */
 
 public class TestFire {
 
     private SpriteDefinition myProjectile;
+    private List<SpriteDefinition> myTargets;
+    private List<ISprite> myTowerList;
     private ConstantMoverDefinition myMover;
     private SpriteDefinition myTower;
     private DirectionalFirerDefinition myDirectionalFirer;
@@ -36,17 +42,30 @@ public class TestFire {
     @Before
     public void setUp () {
         myGame = new Game();
-
         createMover();
         createProjectile();
         createTower();
+        myEnemy = createEnemy();
         createDirectionalFirer();
         createTrackingFirer();
+        myTowerList = new ArrayList<ISprite>();
+    }
 
-        //myTower.addModule(myDirectionalFirer);
-        myTower.addModule(myTrackingFirer);
-        
-        myEnemy = createEnemy();
+    @After
+    public void tearDown () {
+        myGame = new Game();
+        myTowerList.clear();
+        Iterator<ModuleDefinition> modules = myTower.getModuleDefinitions().iterator();
+
+        while (modules.hasNext())
+            myTower.remove(modules.next());
+    }
+
+    private void createMover () {
+        myMover = new ConstantMoverDefinition();
+        myMover.setSpeed(100);
+        myMover.setXVel(10);
+        myMover.setYVel(10);
     }
 
     private void createProjectile () {
@@ -60,6 +79,11 @@ public class TestFire {
         enemyLocation.setX(100);
         enemyLocation.setY(100);
         myEnemy.setLocation(enemyLocation);
+        Profile testprofile = new Profile("Test");
+        myEnemy.setProfile(testprofile);
+
+        myTargets = new ArrayList<SpriteDefinition>();
+        myTargets.add(myEnemy);
         return myEnemy;
     }
 
@@ -71,17 +95,6 @@ public class TestFire {
         myDirectionalFirer.setAngle(120);
     }
 
-    private void createTrackingFirer () {
-        myTrackingFirer = new TrackingFirerDefinition();
-        myTrackingFirer.setProjectileDefinition(myProjectile);
-        myTrackingFirer.setWaitTime(1000);
-        myTrackingFirer.setGame(myGame);
-        List<SpriteType> enemy = new ArrayList<SpriteType>();
-        enemy.add(createEnemy().create().getType());
-        
-        myTrackingFirer.setTargets(enemy);
-    }
-
     private void createTower () {
         myTower = new SpriteDefinition();
         LocationDefinition myLocation = new LocationDefinition();
@@ -90,43 +103,56 @@ public class TestFire {
         myTower.setLocation(myLocation);
     }
 
-    private void createMover () {
-        myMover = new ConstantMoverDefinition();
-        myMover.setSpeed(100);
-        myMover.setXVel(10);
-        myMover.setYVel(10);
+    private void createTrackingFirer () {
+        myTrackingFirer = new TrackingFirerDefinition();
+        myTrackingFirer.setGame(myGame);
+        myTrackingFirer.setProjectileDefinition(myProjectile);
+        myTrackingFirer.setWaitTime(100);
+        SpriteGroup myGroup = new SpriteGroup(myTargets);
+
+        myTrackingFirer.setTargets(myGroup);
+        myTower.addModule(myTrackingFirer);
     }
 
     @Test
-    public void testBulletsCreation () {
-        List<ISprite> towerList = new ArrayList<ISprite>();
+    public void testFire () {
+        myTower.addModule(myTrackingFirer);
+        ISprite tower = myTower.create();
+        myTowerList.add(tower);
+        myGame.add(tower);
+
+        tower.update(new TimeDuration(1000));
+        assertEquals(1, myGame.getLevelManager().getCurrentLevel().getSprites().size());
+    }
+
+    @Test
+    public void testDirectionalFirer () {
+        myTower.addModule(myDirectionalFirer);
+        myTowerList = new ArrayList<ISprite>();
         int bullets = 100;
         for (int i = 0; i < bullets; i++) {
-            towerList.add(myTower.create());
+            ISprite tower = myTower.create();
+            myTowerList.add(tower);
+            myGame.add(tower);
         }
 
-        towerList.stream().forEach(sprite -> sprite.update(new TimeDuration(10000)));
+        myTowerList.stream().forEach(sprite -> sprite.update(new TimeDuration(100000)));
         assertEquals(bullets, myGame.getLevelManager().getCurrentLevel().getSprites().size());
     }
 
     @Test
-    public void testTrackingBullets () {
-        
-           createTower();
-           createTrackingFirer();
-           myTower.addModule(myTrackingFirer);
-        //myTower.getModuleDefinitions().clear();
-//        myTower.addModule(myTrackingFirer);
-        
-        List<ISprite> towerList = new ArrayList<ISprite>();
-        int bullets = 1;
+    public void testTrackingFirer () {
+        myTower.addModule(myTrackingFirer);
+        myTowerList = new ArrayList<ISprite>();
+        int bullets = 50;
         for (int i = 0; i < bullets; i++) {
-            towerList.add(myTower.create());
+            ISprite tower = myTower.create();
+            myTowerList.add(tower);
+            myGame.add(tower);
         }
 
-        towerList.stream().forEach(sprite -> sprite.update(new TimeDuration(10000)));
+        myTowerList.stream().forEach(sprite -> sprite.update(new TimeDuration(100000)));
         assertEquals(bullets, myGame.getLevelManager().getCurrentLevel().getSprites().size());
-
     }
 
 }

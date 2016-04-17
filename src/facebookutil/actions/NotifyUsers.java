@@ -1,7 +1,7 @@
 package facebookutil.actions;
 
 import java.util.List;
-import facebookutil.IUser;
+import facebookutil.user.IUser;
 
 
 /**
