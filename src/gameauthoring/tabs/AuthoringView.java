@@ -82,8 +82,8 @@ public class AuthoringView implements IAuthoringView {
     }
 
     private Node createStatusBar(){
-        Image home = new Image("images/home-button.png", 50, 50, true, true);
-        Image save = new Image("images/save-button.jpg", 50, 50, true, true);
+        Image home = new Image("images/home-button.png", 40, 40, true, true);
+        Image save = new Image("images/save-button.jpg", 40, 40, true, true);
         ImageView homeView = new ImageView(home);
         ImageView saveView = new ImageView(save);
         Button homeButton = new Button ("Home", homeView);
@@ -96,20 +96,10 @@ public class AuthoringView implements IAuthoringView {
     }
     
     private Node createContents () {
-//        MenuBar menuBar = createMenuBar();
         TabPane tabPane = createAllTabs();
         GridPane contents = new GridPane();
-//        contents.add(menuBar, 0, 0);
         contents.add(tabPane, 0, 2);
         return contents;
-    }
-    private MenuBar createMenuBar () {
-        MenuBar menuBar = new MenuBar();
-        Menu fileMenu = new Menu("File");
-//        MenuItem saveItem = createMenuItems("Save your game as XML Files", e -> saveToXML());
-//        fileMenu.getItems().add(saveItem);
-        menuBar.getMenus().add(fileMenu);
-        return menuBar;
     }
 
     private void goHome () {
@@ -119,12 +109,6 @@ public class AuthoringView implements IAuthoringView {
     // TODO: Create GameWriter Class and save it as XML
     private void saveToXML () {
 
-    }
-
-    private MenuItem createMenuItems (String itemName, EventHandler<ActionEvent> action) {
-        MenuItem newMenuItem = new MenuItem(itemName);
-        newMenuItem.setOnAction(action);
-        return newMenuItem;
     }
 
     private TabPane createAllTabs () {
