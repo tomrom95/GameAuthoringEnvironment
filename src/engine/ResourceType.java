@@ -5,7 +5,6 @@ package engine;
  * equality tests
  *
  */
-
 public class ResourceType extends StringBasedType {
 
     public ResourceType (String type) {

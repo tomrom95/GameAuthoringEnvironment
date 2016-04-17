@@ -36,28 +36,35 @@ public class OnSpriteAttributeCondition extends Condition implements ICondition 
     @Override
     public void update (TimeDuration duration) {
         getPackageFilteredSprites(myGame, mySpritePackage)
-            .forEach(sprite -> sprite.getAttributes().stream()
-                     .filter(atty -> atty.getType().equals(myAttributeType))
-                     .forEach(attribute -> checkAttribute(attribute, myValueCheck, new FunctionalDoer() {
-                         @Override
-                         public void doIt () {
-                             applyEventPackageToSprites(myGame, mySpritePackage);
-                             applyOtherAndGlobalEventPackages(myGame,myOtherPackage, myGlobalPackage);
-                            }
-                        })));
-                           
+                .forEach(sprite -> sprite.getAttributes().stream()
+                        .filter(atty -> atty.getType().equals(myAttributeType))
+                        .forEach(attribute -> checkAttribute(attribute, myValueCheck,
+                                                             createDoFunction())));
+
+    }
+
+    private FunctionalDoer createDoFunction () {
+        return new FunctionalDoer() {
+            @Override
+            public void doIt () {
+                applyEventPackageToSprites(myGame,
+                                           mySpritePackage);
+                applyOtherAndGlobalEventPackages(myGame,
+                                                 myOtherPackage,
+                                                 myGlobalPackage);
+            }
+        };
     }
 
     @Override
     public IProfile getProfile () {
+        // TODO add to resource file, and perhaps move up to abstract Condition
         return new Profile("On Sprite Attributes", "Effects and events", "images/c.png");
     }
 
     @Override
     public void setProfile (IProfile profile) {
-        // TODO Auto-generated method stub
-        
+        // TODO store this profile
     }
-
 
 }

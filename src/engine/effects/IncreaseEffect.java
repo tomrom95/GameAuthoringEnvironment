@@ -30,8 +30,8 @@ public class IncreaseEffect extends Effect {
 
     @Override
     public IEffect makeCopy () {
-        return new IncreaseEffect(this.getAttributeType(),
-                                  this.getEffectLengthAttribute().makeCopy(),
-                                  this.getAlteringValue());
+        return new IncreaseEffect(getAttributeType(),
+                                  getEffectLengthAttribute().makeCopy(),
+                                  getAlteringValue());
     }
 }

@@ -2,7 +2,7 @@ package engine.interactionevents;
 
 /**
  * Used to represent Mouse Events without JavaFX dependency
- * 
+ *
  * @author RyanStPierre
  *
  */

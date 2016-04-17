@@ -2,12 +2,15 @@ package engine.definitions;
 
 import java.util.List;
 import engine.IGame;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.modules.IMovementModule;
 import engine.modules.TrackingMover;
 import engine.sprite.SpriteType;
 
-
+/**
+ * This class represents the definition for a tracking movement module
+ *
+ */
 public class TrackingMoverDefinition extends MovementDefinition {
 
     private List<SpriteType> myTargets;
@@ -15,7 +18,7 @@ public class TrackingMoverDefinition extends MovementDefinition {
     private double mySpeed;
 
     @Override
-    public IMovementModule create (IPositionable parent) {
+    public IMovementModule create (Positionable parent) {
         return new TrackingMover(mySpeed,
                                  myGame,
                                  myTargets,
@@ -39,10 +42,12 @@ public class TrackingMoverDefinition extends MovementDefinition {
 
     }
 
+    @Override
     public double getSpeed () {
         return mySpeed;
     }
 
+    @Override
     public void setSpeed (double speed) {
         mySpeed = speed;
 

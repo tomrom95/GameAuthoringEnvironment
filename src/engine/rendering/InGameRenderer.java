@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
 
 /**
  * Used to render the back-end components into JavaFX responsive objects for the screen
- * 
+ *
  * @author RyanStPierre
  *
  */
@@ -21,16 +21,15 @@ public class InGameRenderer extends LevelRenderer {
     private IGraphicFactory myFactory;
     private IGamePlayable myGame;
     private Map<Drawable, Node> myDrawNodeMap;
-    private boolean firstTime;
+    private boolean myFirstTime;
 
     public InGameRenderer (IGamePlayable game, Pane pane) {
         super(pane);
         myFactory = new UnscaledFactory();
         myGame = game;
         myDrawNodeMap = new HashMap<>();
-        firstTime = true;
+        myFirstTime = true;
     }
-
 
     @Override
     void drawSprites () {
@@ -38,12 +37,14 @@ public class InGameRenderer extends LevelRenderer {
         removeScreenNodesNotInEngine(currentEngineConvertedNodeList);
         updateExistingNodeLocations();
     }
-    
+
     @Override
     public void render () {
-        if (firstTime) {
+        // TODO possibly use invalidation listener in case the background image changes, such as in
+        // the case of a level change
+        if (myFirstTime) {
             drawBackground(getBackgroundURL());
-            firstTime = false;
+            myFirstTime = false;
         }
         drawSprites();
     }
@@ -52,8 +53,6 @@ public class InGameRenderer extends LevelRenderer {
     String getBackgroundURL () {
         return myGame.getBackroundImage().getUrlProperty().get();
     }
-    
-
 
     private void updateExistingNodeLocations () {
         myDrawNodeMap.keySet().stream().forEach(drawable -> myDrawNodeMap.get(drawable)
@@ -86,13 +85,13 @@ public class InGameRenderer extends LevelRenderer {
     }
 
     private List<Node> getCurrentDrawnNodes () {
-        return this.getPane().getChildren();
+        return getPane().getChildren();
     }
 
     /**
      * This method will check the engine drawable lists, add new ones to the
      * internal list of maps and add them to the
-     * 
+     *
      * @return List<Node> of node objects that are currently represented in the engine
      */
     private List<Node> getAndUpdateEngineNodeList () {
@@ -112,10 +111,8 @@ public class InGameRenderer extends LevelRenderer {
         }
     }
 
-
-
     private void add (Node node) {
-        this.getPane().getChildren().add(node);
+        getPane().getChildren().add(node);
     }
 
 }

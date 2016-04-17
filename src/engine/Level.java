@@ -35,7 +35,7 @@ public class Level implements ILevel {
         mySpriteManager = new SpriteManager();
         myNextLevelManager = new NextLevelManager();
         // TODO store these defaults in properties file
-        myBackgroundImage = new ImageGraphic(400, 400,"/images/blank.jpg");
+        myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
     }
 
     @Override
@@ -83,7 +83,7 @@ public class Level implements ILevel {
 
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
-       
+
         mySpriteManager.internalizeKeyEvents(list);
         myConditionManager.internalizeKeyEvents(list);
 

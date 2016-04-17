@@ -2,12 +2,15 @@ package engine.definitions;
 
 import java.util.List;
 import engine.IGame;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.SpriteGroup;
 import engine.modules.TrackingFirer;
 import engine.sprite.SpriteType;
 
-
+/**
+ * This class represents the definition for a tracking firer module
+ *
+ */
 public class TrackingFirerDefinition extends FirerDefinition {
 
     private SpriteGroup myTargets;
@@ -15,14 +18,13 @@ public class TrackingFirerDefinition extends FirerDefinition {
     private double myWaitTime;
     private IGame myGame;
 
-
     @Override
-    public TrackingFirer create (IPositionable parent) {
+    public TrackingFirer create (Positionable parent) {
         myTargetsType = myTargets.getSpriteTypes();
-        return new TrackingFirer(myTargetsType, myGame, myWaitTime, myProjectile, parent);
-
+        return new TrackingFirer(myTargetsType, myGame, myWaitTime, getProjectileDefinition(),
+                                 parent);
     }
-    
+
     public SpriteGroup getTargets () {
         return myTargets;
     }
@@ -38,14 +40,13 @@ public class TrackingFirerDefinition extends FirerDefinition {
     public void setGame (IGame game) {
         myGame = game;
     }
-    
-    public void setTargets (SpriteGroup targets) {       
+
+    public void setTargets (SpriteGroup targets) {
         myTargets = targets;
     }
 
     public IGame getGame () {
         return myGame;
-
     }
 
 }

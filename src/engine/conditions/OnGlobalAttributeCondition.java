@@ -50,14 +50,13 @@ public class OnGlobalAttributeCondition extends Condition implements ICondition 
 
     @Override
     public IProfile getProfile () {
+        // TODO add to resource file, and perhaps move up to abstract Condition
         return new Profile("On Global Attribute Condition", "Acts on attributes", "images/c.png");
     }
 
     @Override
     public void setProfile (IProfile profile) {
-        // TODO Auto-generated method stub
-        
+        // TODO store this profile
     }
-
 
 }

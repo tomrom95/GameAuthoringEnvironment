@@ -64,6 +64,9 @@ public interface ILevel extends Updateable, IAdder {
      */
     boolean shouldSwitchLevel ();
 
+    /**
+     * @return the list of Drawable items in this level
+     */
     List<? extends Drawable> getDrawables ();
 
     /**
@@ -81,7 +84,7 @@ public interface ILevel extends Updateable, IAdder {
      */
 
     void remove (ISprite sprite);
-    
+
     void add (ISprite sprite, Coordinate coordinate);
 
     void add (ISprite sprite);

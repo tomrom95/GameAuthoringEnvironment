@@ -1,6 +1,5 @@
 package engine.modules;
 
-import java.util.List;
 import engine.IAttribute;
 import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
@@ -10,8 +9,10 @@ import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
 
+
 /**
- * This class creates a firer that handles and manages actions involving a creating an object to fire 
+ * This class creates a firer that handles and manages actions involving a creating an object to
+ * fire
  * TODO Is this class necessary?
  */
 public class Firer extends DefaultAffectable implements IFireModule {

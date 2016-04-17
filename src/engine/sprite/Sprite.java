@@ -46,13 +46,12 @@ public class Sprite extends DefaultAffectable implements ISprite {
     private AttributeManager myAttributeManager;
 
     public Sprite (SpriteType type) {
-        // TODO add default constructions for some modules so there aren't nulls
+        // TODO add default constructions from resource file
         myType = type;
         myStatus = new SpriteStatus();
         myAttributeManager = new AttributeManager();
         myOtherModules = new ArrayList<>();
         myMover = new StaticMover(this);
-
     }
 
     @Override
@@ -84,6 +83,7 @@ public class Sprite extends DefaultAffectable implements ISprite {
     }
 
     private void applyToAffectable (Consumer<Affectable> function) {
+        // TODO store in a better way
         function.accept(myMover);
         function.accept(myGraphic);
         function.accept(myAttributeManager);
@@ -110,7 +110,6 @@ public class Sprite extends DefaultAffectable implements ISprite {
 
     @Override
     public void registerKeyEvent (KeyIOEvent event) {
-        
         applyToAffectable(a -> a.registerKeyEvent(event));
     }
 
@@ -154,7 +153,7 @@ public class Sprite extends DefaultAffectable implements ISprite {
 
     @Override
     public void registerEvent (GameEvent event) {
-       applyToAffectable(a -> a.registerEvent(event));
+        applyToAffectable(a -> a.registerEvent(event));
     }
 
     @Override
@@ -175,15 +174,10 @@ public class Sprite extends DefaultAffectable implements ISprite {
     @Override
     public void setPath (List<Coordinate> path) {
         myMover.setPath(path);
-        
     }
 
     @Override
     public List<Coordinate> getPath () {
-        
         return myMover.getPath();
     }
-    
-    
-
 }

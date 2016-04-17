@@ -13,6 +13,8 @@ import engine.IAttribute;
 
 public class DecreaseEffect extends Effect {
 
+    // TODO should this also have constructors that allow specification of just primitive double
+    // effectLength?
     public DecreaseEffect (AttributeType type, IAttribute effectLength, double decreaseAmount) {
         super(type, effectLength, decreaseAmount);
     }
@@ -32,9 +34,9 @@ public class DecreaseEffect extends Effect {
 
     @Override
     public IEffect makeCopy () {
-        return new DecreaseEffect(this.getAttributeType(),
-                                  this.getEffectLengthAttribute().makeCopy(),
-                                  this.getAlteringValue());
+        return new DecreaseEffect(getAttributeType(),
+                                  getEffectLengthAttribute().makeCopy(),
+                                  getAlteringValue());
     }
 
 }

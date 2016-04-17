@@ -3,8 +3,6 @@ package testing;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import data.GameReader;
-import data.GameWriter;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.Game;
@@ -43,6 +41,8 @@ import graphics.ImageGraphic;
 import javafx.application.Application;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import serialize.GameReader;
+import serialize.GameWriter;
 import util.Coordinate;
 
 

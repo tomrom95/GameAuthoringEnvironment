@@ -4,7 +4,12 @@ import util.ControlKeys;
 import util.Key;
 
 
-public class KeyControlDefinition  {
+/**
+ * This class represents the definition for a user key input control. Handles the specification of
+ * which keys correspond to actions
+ *
+ */
+public class KeyControlDefinition {
 
     private String myUp;
     private String myLeft;

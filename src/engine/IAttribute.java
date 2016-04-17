@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
  *
  */
 public interface IAttribute extends Affectable {
+
     /**
      * @return the type of this attribute
      */
@@ -38,14 +39,16 @@ public interface IAttribute extends Affectable {
      * This will expose the property list of the current effects
      * waiting to be applied to the attribute
      *
-     * @return
+     * @return the property list of the current effects waiting to be applied to the attribute
+     *
+     *         TODO should this really have object properties?
      */
     ObservableList<ObjectProperty<IEffect>> getEffects ();
 
     /**
      * To support cloning of effects, attributes must be cloneable as well
      *
-     * @return
+     * @return a clone of this attribute
      */
     IAttribute makeCopy ();
 

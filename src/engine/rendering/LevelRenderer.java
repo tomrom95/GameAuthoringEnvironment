@@ -12,6 +12,10 @@ import javafx.scene.layout.Pane;
 import util.Coordinate;
 
 
+/**
+ *
+ * TODO fix scaling of window sizes
+ */
 public abstract class LevelRenderer implements IRenderer {
     private static final int MAX_HEIGHT = 400;
     private static final int MAX_WIDTH = 1150;
@@ -44,8 +48,9 @@ public abstract class LevelRenderer implements IRenderer {
     }
 
     protected void drawBackground (String url) {
-        if (url == null)
+        if (url == null) {
             return;
+        }
         Image img = new Image(url, MAX_WIDTH, MAX_HEIGHT, true, true);
         BackgroundImage background = new BackgroundImage(img,
                                                          BackgroundRepeat.NO_REPEAT,

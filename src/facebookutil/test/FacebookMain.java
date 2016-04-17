@@ -8,7 +8,7 @@ import javafx.stage.Stage;
  * Creates and runs a simple browser based on the JavaFX library
  *
  */
-public class Main extends Application {
+public class FacebookMain extends Application {
 
     @Override
     public void start (Stage stage) {

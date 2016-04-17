@@ -1,21 +1,23 @@
 package engine.definitions;
 
-import java.util.List;
 import engine.IGame;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.modules.DirectionalFirer;
-import engine.sprite.SpriteType;
 
 
+/**
+ * This class represents the definition of a directional firer, one that fired at a prespecified
+ * angle (where 0 is to the right)
+ *
+ */
 public class DirectionalFirerDefinition extends FirerDefinition {
     private double myWaitTime;
     private IGame myGame;
     private double myAngle;
 
     @Override
-    public DirectionalFirer create (IPositionable parent) {
-        return new DirectionalFirer(myGame, myProjectile, parent, myWaitTime, myAngle);
-
+    public DirectionalFirer create (Positionable parent) {
+        return new DirectionalFirer(myGame, getProjectileDefinition(), parent, myWaitTime, myAngle);
     }
 
     public void setWaitTime (double time) {
@@ -32,7 +34,6 @@ public class DirectionalFirerDefinition extends FirerDefinition {
 
     public IGame getGame () {
         return myGame;
-
     }
 
     public void setAngle (double theta) {

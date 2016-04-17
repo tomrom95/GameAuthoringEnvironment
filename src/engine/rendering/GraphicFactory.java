@@ -29,7 +29,7 @@ public abstract class GraphicFactory implements IGraphicFactory {
     private static final int ALPHA = 1;
     private static final String DEFAULT_PATH = "resource/DefaultGraphics";
 
-    ResourceBundle myResources;
+    private ResourceBundle myResources;
 
     public GraphicFactory () {
         myResources = ResourceBundle.getBundle(DEFAULT_PATH);
@@ -59,7 +59,6 @@ public abstract class GraphicFactory implements IGraphicFactory {
     private Color rgbToColor (RGBColor rgb) {
         Color color = new Color(rgb.getRed(), rgb.getGreen(), rgb.getBlue(), ALPHA);
         return color;
-
     }
 
     @Override

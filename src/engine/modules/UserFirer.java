@@ -1,6 +1,5 @@
 package engine.modules;
 
-import java.util.ArrayList;
 import java.util.List;
 import engine.Attribute;
 import engine.AttributeType;
@@ -10,7 +9,6 @@ import engine.definitions.SpriteDefinition;
 import engine.effects.IEffect;
 import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
-import engine.sprite.ISprite;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.Key;
@@ -21,7 +19,7 @@ import util.Key;
  * game.
  *
  * @author Dhrumil
- *
+ *         TODO this class needs to be tested and cleaned up
  */
 public class UserFirer extends Firer {
 
@@ -32,12 +30,10 @@ public class UserFirer extends Firer {
     private IGame myGame;
 
     public UserFirer (SpriteDefinition fireSprite, Key fireKey, IGame game, double ammo) {
-
         myFireKey = fireKey;
         myProjectile = fireSprite;
         myGame = game;
         myAmmo = new Attribute(ammo, AttributeType.AMMO);
-
     }
 
     @Override
@@ -47,27 +43,21 @@ public class UserFirer extends Firer {
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
-
         if (keyEvent.getType() == InputType.KEY_PRESSED &&
             keyEvent.getKey().isEqual(myFireKey)) {
             registerKeyPress(keyEvent.getKey());
         }
-
     }
 
     private void registerKeyPress (Key fire) {
 
-        ISprite bullet = myProjectile.create();
-       /*
-        * this is fucked
-        */
-
+        myProjectile.create();
     }
-    
-    
+
     /*
      * needs to be methods to create the X and Y velocity
      * (non-Javadoc)
+     *
      * @see engine.modules.Firer#getAttributes()
      */
     @Override

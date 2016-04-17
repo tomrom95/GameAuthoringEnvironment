@@ -16,29 +16,15 @@ public class ScreenEventFactory implements IScreenEventFactory {
 
     @Override
     public MouseIOEvent interpretEvent (MouseEvent event) {
-        InputType type;
-        try {
-            type = convertType(event.getEventType().toString());
-        }
-        catch (ClassNotFoundException error) {
-            type = InputType.MOUSE_CLICKED;
-        }
+        InputType type = convertType(event.getEventType().toString());
         MouseIOEvent mouse = new MouseIOEvent(type, event.getX(), event.getY());
         return mouse;
     }
 
     @Override
     public KeyIOEvent interpretEvent (KeyEvent event) {
-        
         Key key = new Key(event.getCode().getName());
-        InputType type;
-        try {
-            
-            type = convertType(event.getEventType().toString());
-        }
-        catch (ClassNotFoundException e) {
-            type = InputType.KEY_PRESSED;
-        }
+        InputType type = convertType(event.getEventType().toString());
         KeyIOEvent keyEvent = new KeyIOEvent(type, key);
         return keyEvent;
 
@@ -50,13 +36,8 @@ public class ScreenEventFactory implements IScreenEventFactory {
      *
      * @param str string representing the ActionEvent
      * @return InputType that corresponds to the IOEvent that the GameEngine interprets
-     * @throws ClassNotFoundException
      */
-    private InputType convertType (String str) throws ClassNotFoundException {
-
-        Class inputClass = Class.forName(InputType.class.getName());
-        InputType o = (InputType) Enum.valueOf(inputClass, str);
-        return o;
-
+    private InputType convertType (String str) {
+        return InputType.valueOf(str);
     }
 }

@@ -10,7 +10,7 @@ import javafx.scene.shape.Rectangle;
 /**
  * Scales based on specified user definition of the graphic (draws graphic as is - defined by its
  * bounds)
- * 
+ *
  * @author RyanStPierre
  *
  */

@@ -9,7 +9,7 @@ import javafx.scene.shape.Rectangle;
 
 /**
  * Class that makes graphics to desired size (given by width and height)
- * 
+ *
  * @author RyanStPierre
  *
  */

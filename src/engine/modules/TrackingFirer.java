@@ -1,16 +1,14 @@
 package engine.modules;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
 import engine.IGame;
-import engine.IPositionable;
+import engine.Positionable;
 import engine.definitions.SpriteDefinition;
 import engine.effects.IEffect;
-import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
@@ -24,7 +22,7 @@ import util.TimeDuration;
 
 /**
  * Locates the nearest enemy and fires an object
- *
+ * TODO should this class extend DefaultAffectable?
  */
 public class TrackingFirer extends Firer {
 
@@ -33,25 +31,25 @@ public class TrackingFirer extends Firer {
     private IAttribute myWaitTime;
     private EnemyTracker myTracker;
     private IAttribute myAmmo;
-    private TimeDuration lastFire;
     private IGame myGame;
-    private IPositionable mySprite;
-    private double timeSinceFire;
-   
+    private Positionable mySprite;
+    // TODO convert this to use TimeDuration
+    private double myTimeSinceFire;
 
-  
-    public TrackingFirer (List<SpriteType> targets, IGame game, double waitTime, SpriteDefinition projectile, IPositionable sprite) {
+    public TrackingFirer (List<SpriteType> targets,
+                          IGame game,
+                          double waitTime,
+                          SpriteDefinition projectile,
+                          Positionable sprite) {
 
         myTargets = targets;
         myGame = game;
         myWaitTime = new Attribute(waitTime, AttributeType.FIRE_RATE);
         myTracker = new EnemyTracker();
-        lastFire = new TimeDuration(0);
         mySprite = sprite;
         myProjectile = projectile;
-        timeSinceFire = 0;
-  
-        
+        myTimeSinceFire = 0;
+
     }
 
     @Override
@@ -60,29 +58,27 @@ public class TrackingFirer extends Firer {
     }
 
     private void fire (TimeDuration duration) {
-        
-        if(getTargets().isEmpty()) {
+        if (getTargets().isEmpty()) {
             return;
         }
-        /*
-         * 
-         */
-//        if((duration.getMillis() - lastFire.getMillis()) >= myWaitTime.getValueProperty().get()){
-        timeSinceFire += duration.getMillis();
-        if(timeSinceFire >= myWaitTime.getValueProperty().get()){
+        myTimeSinceFire += duration.getMillis();
+        if (myTimeSinceFire >= myWaitTime.getValueProperty().get()) {
             ISprite bullet = myProjectile.create();
-            bullet.setLocation(new Coordinate(mySprite.getLocation().getX(), mySprite.getLocation().getY()));
-            
-            //access to the velocity of the sprite
-            double initialXVel = myTracker.calculateXVelToClosestEnemy(bullet.getLocation(), getTargets(), myProjectile.getMovementDefinition().getSpeed()); 
+            bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
+                                              mySprite.getLocation().getY()));
+            double initialXVel =
+                    myTracker.calculateXVelToClosestEnemy(bullet.getLocation(), getTargets(),
+                                                          myProjectile.getMovementDefinition()
+                                                                  .getSpeed());
             bullet.getMovementStrategy().setXVel(initialXVel);
-            
-            double initialYVel = myTracker.calculateYVelToClosestEnemy(bullet.getLocation(), getTargets(), myProjectile.getMovementDefinition().getSpeed());
-            bullet.getMovementStrategy().setYVel(initialYVel); 
+            double initialYVel =
+                    myTracker.calculateYVelToClosestEnemy(bullet.getLocation(), getTargets(),
+                                                          myProjectile.getMovementDefinition()
+                                                                  .getSpeed());
+            bullet.getMovementStrategy().setYVel(initialYVel);
             myGame.bufferedAdd(bullet);
-            lastFire = new TimeDuration(duration.getMillis());
-            timeSinceFire = 0; 
-        } 
+            myTimeSinceFire = 0;
+        }
     }
 
     private List<ISprite> getTargets () {
@@ -93,31 +89,19 @@ public class TrackingFirer extends Firer {
 
     @Override
     public void applyEffect (IEffect effect) {
-        /*
-         * 
-         * what the fuck, why isn't this happening in fire
-         * also what where is this effect
-         * no notion of ammo in constructor or definition
-         * 
-         */
-//        myWaitTime.applyEffect(effect);
+        // TODO move to firer? and should probably apply to waitTime also
         getAmmo().get().applyEffect(effect);
     }
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
-       
-
     }
 
-    @SuppressWarnings("unused")
     private void registerKeyPress (Key fire) {
-      
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
-
     }
 
     @Override

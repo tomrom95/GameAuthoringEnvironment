@@ -10,16 +10,23 @@ import engine.IGame;
 import engine.definitions.SpawnerModuleDefinition;
 
 
+/**
+ * This class represents the definition template for a spawner
+ *
+ */
 public class SpawnerDefinition extends SpriteDefinition {
-    
+
+    // TODO put in resource file
     private static final String SPAWNER_NAME = "Spawner";
     private static final String SPAWNER_DESCRIPTION = "General Spawner";
     private static final String SPAWNER_URL = "images/plus.png";
 
     private SpawnerModuleDefinition mySpawningModule;
-    
+
     public SpawnerDefinition (IGame game) {
-        this.getProfile().setNew(SPAWNER_NAME, SPAWNER_DESCRIPTION, SPAWNER_URL);
+        getProfile().setNew(SPAWNER_NAME, SPAWNER_DESCRIPTION, SPAWNER_URL);
+        // TODO wave definition should specify an empty constructor so it can handle its own default
+        // rather than passing null
         mySpawningModule = new SpawnerModuleDefinition(game, new WaveDefinition(null), 1);
     }
 

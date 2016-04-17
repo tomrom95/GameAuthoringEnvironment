@@ -1,12 +1,12 @@
 package testing;
 
 import java.io.File;
-import data.GameReader;
 import engine.IGame;
 import gameplayer.GamePlayer;
 import javafx.application.Application;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import serialize.GameReader;
 
 public class DemoFileChooser extends Application {
 

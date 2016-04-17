@@ -5,7 +5,7 @@ import util.Key;
 
 /**
  * Used to represent key events without JavaFX dependencies
- * 
+ *
  * @author RyanStPierre
  *
  */
