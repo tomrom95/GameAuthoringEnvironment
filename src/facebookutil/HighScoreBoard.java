@@ -2,10 +2,14 @@ package facebookutil;
 
 import java.util.Map;
 
-public interface HighScoreBoard {
+public class HighScoreBoard {
     
-    public void update ();
+    public void update () {
+        
+    }
     
-    public Map<String, Integer> getScoreBoard (String gameName);
+    public Map<String, Integer> getScoreBoard (String gameName) {
+        return null;
+    }
 
 }

@@ -26,11 +26,12 @@ public class User implements IUser{
     }
 
     @Override
-    public void saveToFile () {
+    public void logout () {
         // TODO setup with XStream
         
     }
     
+    @Override
     public void login (SocialType type, Login login) {
         if (myProfiles.getProfileByType(type) == null){
             createNewProfile(type, login);
