@@ -67,6 +67,7 @@ public class JavaSocial implements IJavaSocial {
     public IUser createNewUser (String email) {
         System.out.println("Creating new User");
         IUser newUser = new User(email);
+        System.out.println(newUser.getUserEmail());
         myUsers.add(newUser);
         return newUser;
     }

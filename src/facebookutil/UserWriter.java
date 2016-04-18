@@ -4,12 +4,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-import com.dooapp.xstreamfx.FXConverters;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import facebookutil.user.IUser;
-import facebookutil.user.User;
-import facebookutil.user.UserScoreBoard;
 import facebookutil.user.profiles.SocialProfile;
 
 public class UserWriter {
@@ -43,8 +40,6 @@ public class UserWriter {
         
         XStream xstream = new XStream(new DomDriver());
         xstream.ignoreUnknownElements();
-        //Class[] types = {com.github.scribejava.core.oauth.OAuth20Service.class};
-        //xstream.denyTypes(types);
         xstream.processAnnotations(SocialProfile.class);
         return xstream.toXML(user);
     }

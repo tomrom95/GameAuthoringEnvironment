@@ -27,6 +27,7 @@ public class FacebookGetProfile implements GetProfile{
         final OAuthRequest request =
                 new OAuthRequest(Verb.GET, PROFILE_URL, service);
         myResponse = OAuthSender.sendRequest(service, token, request);
+        System.out.println(myResponse.getBody());
     }
 
     @Override
