@@ -47,12 +47,15 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private void initializeLists () {
 
+        List<String> myGlobalSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
+
         List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
+
         List<String> myMissileSFCs = new ArrayList<String>(Arrays.asList("Movement"));
         List<String> myEnemySFCs =
                 new ArrayList<String>(Arrays.asList("SelectAttribute", "Movement"));
         List<String> myDefenderSFCs =
-                new ArrayList<String>(Arrays.asList("SelectAttribute", "Movement", "Firing"));
+                new ArrayList<String>(Arrays.asList("SelectAttribute", "Upgrade", "Movement", "Firing"));
         List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("SelectSprite"));
 
         List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
@@ -60,8 +63,12 @@ public class ObjectCreationTabViewer implements ITabViewer {
         CreationControllerFactory ccFactory = new CreationControllerFactory();
         // TODO: take sfcs out of cc constructors
 
+        CreationController<?> ccGlobal =
+                ccFactory.createGlobalsCreationController("Global Resources", myGlobalSFCs,
+                                                            myGame);
+
         CreationController<?> ccAttributes =
-                ccFactory.createAttributeCreationController("Attribute", myAttributeSFCs,
+                ccFactory.createAttributeCreationController("Character Attributes", myAttributeSFCs,
                                                             myGame);
         CreationController<?> ccMissiles =
                 ccFactory.createSpriteCreationController("Missiles", myMissileSFCs,
@@ -80,6 +87,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         myCCs = new ArrayList<CreationController<?>>();
 
+        myCCs.add(ccGlobal);
         myCCs.add(ccAttributes);
         myCCs.add(ccMissiles);
 
@@ -90,12 +98,12 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         myCCs.add(ccEvents);
 
+        ccGlobal.init(myGlobalSFCs);
         ccAttributes.init(myAttributeSFCs);
         ccMissiles.init(myMissileSFCs);
 
         ccEnemies.init(myEnemySFCs);
         ccDefenders.init(myDefenderSFCs);
-
         ccGroups.init(myGroupSFCs);
 
         ccEvents.init(myEventSFCs);

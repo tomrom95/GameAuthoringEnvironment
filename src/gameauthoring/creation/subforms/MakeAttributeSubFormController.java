@@ -9,6 +9,7 @@ import gameauthoring.util.ErrorMessage;
  * This class serves to control the view and data in the attribute subform in authoring environment
  * 
  * @author Jin An
+ * @author Joe Lilien
  *
  */
 public class MakeAttributeSubFormController implements ISubFormControllerAttribute {
