@@ -62,7 +62,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
         // TODO: take sfcs out of cc constructors
 
         CreationController<?> ccGlobal =
-                ccFactory.createAttributeCreationController("Global Resources", myGlobalSFCs,
+                ccFactory.createGlobalsCreationController("Global Resources", myGlobalSFCs,
                                                             myGame);
 
         CreationController<?> ccAttributes =
@@ -102,7 +102,6 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         ccEnemies.init(myEnemySFCs);
         ccDefenders.init(myDefenderSFCs);
-
         ccGroups.init(myGroupSFCs);
 
         ccEvents.init(myEventSFCs);

@@ -9,7 +9,7 @@ public class UpgradeSFC implements ISubFormControllerSprite {
     private UpgradeSFV mySFV;
 
     public UpgradeSFC(AuthorshipData data){
-        mySFV = new UpgradeSFV(data); 
+        mySFV = new UpgradeSFV(data);        
     }
     
     @Override
@@ -22,13 +22,12 @@ public class UpgradeSFC implements ISubFormControllerSprite {
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-        
+        mySFV.setSelected(false);
     }
 
     @Override
     public ISubFormView getSubFormView () {
-        // TODO Auto-generated method stub
-        return null;
+        return mySFV;
     }
 
 }

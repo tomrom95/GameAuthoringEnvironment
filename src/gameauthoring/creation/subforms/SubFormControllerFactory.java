@@ -77,6 +77,7 @@ public class SubFormControllerFactory {
             return new TrackingFireSubFormController(getMyGame());
         }
         else if (type.equals("Upgrade")) {
+            UpgradeSFC sfc = new UpgradeSFC(getMyGame().getAuthorshipData());
             return new UpgradeSFC(getMyGame().getAuthorshipData());
         }
         System.out.println("null");
