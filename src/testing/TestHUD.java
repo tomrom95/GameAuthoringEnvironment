@@ -34,17 +34,17 @@ public class TestHUD extends Application {
     public void start (Stage primaryStage) throws Exception {
         
         ObjectProperty<ILevel> startingLevel = new SimpleObjectProperty<>(new Level());
-        LevelManager levelManager = new LevelManager(startingLevel.get());
+        LevelManager levelManager = new LevelManager();
 
 
         levelManager.bufferedAdd(createUserSprite(), new Coordinate(10, 10));
         ConditionManager conditionManager = new ConditionManager();
-        Game game = new Game(levelManager, new GameInformation("r", "r", "r"), conditionManager);
+        Game game = new Game();
 
         addSomeAttributes(game);
 
         GamePlayer player = new GamePlayer(game);
-        player.start();
+        player.play();
     }
 
     private void addSomeAttributes (Game game) {
