@@ -180,4 +180,11 @@ public class Sprite extends DefaultAffectable implements ISprite {
     public List<Coordinate> getPath () {
         return myMover.getPath();
     }
+
+    @Override
+    public void remove () {
+        myStatus.remove();
+    }
+    
+    
 }

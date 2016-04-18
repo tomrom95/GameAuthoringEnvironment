@@ -20,7 +20,7 @@ public class SpriteStatus extends DefaultAffectable implements IStatus {
     @Override
     public void registerEvent (GameEvent event) {
         if (event.getEventType().equals(EventType.DEATH)) {
-            myIsDead = true;
+            remove();
         }
     }
 
@@ -31,6 +31,10 @@ public class SpriteStatus extends DefaultAffectable implements IStatus {
     @Override
     public boolean shouldBeRemoved () {
         return myIsDead;
+    }
+    
+    public void remove () {
+        myIsDead = true;
     }
 
 }
