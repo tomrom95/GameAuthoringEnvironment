@@ -55,8 +55,8 @@ public class InGameRenderer extends LevelRenderer {
     }
 
     private void updateExistingNodeLocations () {
-        myDrawNodeMap.keySet().stream().forEach(drawable -> myDrawNodeMap.get(drawable)
-                .relocate(drawable.getLocation().getX(), drawable.getLocation().getY()));
+        myDrawNodeMap.keySet().stream().forEach(drawable -> this.draw( myDrawNodeMap.get(drawable), drawable));
+                //.relocate(drawable.getLocation().getX(), drawable.getLocation().getY()));
     }
 
     /**
