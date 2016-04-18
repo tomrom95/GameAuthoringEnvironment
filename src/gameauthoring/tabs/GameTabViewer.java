@@ -56,21 +56,4 @@ public class GameTabViewer implements ITabViewer {
     public Node draw () {
         return myLayout;
     }
-
-//    private Node createForms () {
-//        HBox box = new HBox(800);
-//        box.setAlignment(Pos.BOTTOM_CENTER);
-//        box.getChildren().add(createGameInfoForm());
-//        return box;
-//    }
-
-    private Node createGameInfoForm () {
-        GridPane form = new GridPane();
-        form.add(myName.draw(), 0, 0);
-        form.add(myAuthor.draw(), 0, 1);
-        form.add(mySplashScreen.draw(), 0, 2);
-        form.setMinSize(200, 200);
-
-        return form;
-    }
 }

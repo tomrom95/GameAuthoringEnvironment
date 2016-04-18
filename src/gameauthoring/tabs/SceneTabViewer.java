@@ -21,6 +21,7 @@ import javafx.scene.control.TabPane;
  * Level tab view class which allows the user to put together all the sprites in different levels
  * Handles selection for different level editor views.
  * 
+ * @TODO: Use UI Factory to refactor creating buttons and tabs
  * @author Jin An
  *
  */

@@ -25,12 +25,14 @@ import javafx.stage.Stage;
 
 /**
  * Highest hierarchy class for authoring environment. Used composition for each tab viewers and
- * gameFactory. It creates a Menubar which has "Save game as XML" menu item and a tab pane which
- * contains "game information", "create objects", and "build scene" tabs. These are divided in order
- * for the users to easily create their own game.
+ * gameFactory. It has Home and Save image buttons for users to easily navigate to home and save the
+ * game as XML. It contains "game information", "create objects", and "build scene" tabs. These are
+ * divided in order for the users to easily create their own game.
  * 
  * TODO: Resourcebundle for unprotected string values
  * TODO: Create gamewriter class and save it as XML
+ * TODO: Use UI Factory to replace private methods that create javafx objects
+ * 
  * @author Jin An
  *
  */
@@ -48,7 +50,6 @@ public class AuthoringView implements IAuthoringView {
     public static final String STYLESHEET = "custom.css";
     public static final String DEFAULT_RESOURCE_PACKAGE = "resource/";
     public static final String DEFAULT_ENTRYVIEW = "defaultTextEntry";
-
 
     public AuthoringView () {
         GameFactory gameFactory = new GameFactory();
@@ -77,24 +78,24 @@ public class AuthoringView implements IAuthoringView {
         myLayout.setCenter(createContents());
         myLayout.setTop(createStatusBar());
         Scene scene = new Scene(myLayout, WIDTH, HEIGHT);
-        scene.getStylesheets().add(DEFAULT_RESOURCE_PACKAGE+STYLESHEET);
+        scene.getStylesheets().add(DEFAULT_RESOURCE_PACKAGE + STYLESHEET);
         s.setScene(scene);
     }
 
-    private Node createStatusBar(){
+    private Node createStatusBar () {
         Image home = new Image("images/home-button.png", 40, 40, true, true);
         Image save = new Image("images/save-button.jpg", 40, 40, true, true);
         ImageView homeView = new ImageView(home);
         ImageView saveView = new ImageView(save);
-        Button homeButton = new Button ("Home", homeView);
-        Button saveButton = new Button ("Save", saveView);
+        Button homeButton = new Button("Home", homeView);
+        Button saveButton = new Button("Save", saveView);
         homeButton.setOnAction(e -> goHome());
         saveButton.setOnAction(e -> saveToXML());
-        
+
         HBox statusBar = new HBox(10, homeButton, saveButton);
         return statusBar;
     }
-    
+
     private Node createContents () {
         TabPane tabPane = createAllTabs();
         GridPane contents = new GridPane();
@@ -103,9 +104,9 @@ public class AuthoringView implements IAuthoringView {
     }
 
     private void goHome () {
-        
+
     }
-    
+
     // TODO: Create GameWriter Class and save it as XML
     private void saveToXML () {
 
@@ -131,8 +132,7 @@ public class AuthoringView implements IAuthoringView {
         mySceneTabViewer = new SceneTabViewer(getMyGame());
         sceneTab.setClosable(false);
         sceneTab.setContent(mySceneTabViewer.draw());
-        
-        
+
         tabpane.getTabs().addAll(gameTab, creationTab, conditionTab, sceneTab);
         return tabpane;
     }
