@@ -22,14 +22,12 @@ public class CreationControllerGlobals extends CreationController<AttributeDefin
 
     @Override
     protected void addToAuthorshipData (AuthorshipData authorshipData) {
-        // TODO Auto-generated method stub
-        
+        authorshipData.setMyCreatedGlobals(getMyDefinitionCollection());
     }
 
     @Override
     protected AttributeDefinition createBlankItem () {
-        // TODO Auto-generated method stub
-        return null;
+        return new AttributeDefinition();
     }
 
 }

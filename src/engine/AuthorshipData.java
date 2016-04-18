@@ -87,7 +87,7 @@ public class AuthorshipData {
         myCreatedGroups = createdGroups;
     }
     
-    public void setMyGlobalResources (DefinitionCollection<AttributeDefinition> createdGlobals) {
+    public void setMyCreatedGlobals (DefinitionCollection<AttributeDefinition> createdGlobals) {
         myCreatedGlobals = createdGlobals;
     }
 
