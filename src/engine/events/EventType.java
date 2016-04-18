@@ -12,6 +12,7 @@ import engine.StringBasedType;
 public class EventType extends StringBasedType {
 
     public static final EventType DEATH = new EventType("Death");
+    public static final EventType UPGRADE = new EventType("Upgrade");
 
     public EventType (String type) {
         super(type);
