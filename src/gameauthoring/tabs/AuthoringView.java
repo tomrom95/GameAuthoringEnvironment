@@ -2,6 +2,7 @@ package gameauthoring.tabs;
 
 import engine.Game;
 import gameauthoring.conditiontab.ConditionView;
+import gameauthoring.util.UIFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -31,7 +32,6 @@ import javafx.stage.Stage;
  * 
  * TODO: Resourcebundle for unprotected string values
  * TODO: Create gamewriter class and save it as XML
- * TODO: Use UI Factory to replace private methods that create javafx objects
  * 
  * @author Jin An
  *
@@ -50,11 +50,11 @@ public class AuthoringView implements IAuthoringView {
     public static final String STYLESHEET = "custom.css";
     public static final String DEFAULT_RESOURCE_PACKAGE = "resource/";
     public static final String DEFAULT_ENTRYVIEW = "defaultTextEntry";
-
+    private UIFactory myUIFactory = new UIFactory();
+    
     public AuthoringView () {
         GameFactory gameFactory = new GameFactory();
         myGame = gameFactory.createGame();
-
     }
 
     @Override
@@ -74,6 +74,7 @@ public class AuthoringView implements IAuthoringView {
 
     @Override
     public void init (Stage s) {
+        initializeTabViewers();
         myLayout = new BorderPane();
         myLayout.setCenter(createContents());
         myLayout.setTop(createStatusBar());
@@ -82,16 +83,21 @@ public class AuthoringView implements IAuthoringView {
         s.setScene(scene);
     }
 
+    private void initializeTabViewers () {
+        myGameTabViewer = new GameTabViewer(getMyGame());
+        myCreationTabViewer = new ObjectCreationTabViewer(getMyGame());
+        myConditionView = new ConditionView(getMyGame());
+        mySceneTabViewer = new SceneTabViewer(getMyGame());
+    }
+
     private Node createStatusBar () {
         Image home = new Image("images/home-button.png", 40, 40, true, true);
         Image save = new Image("images/save-button.jpg", 40, 40, true, true);
         ImageView homeView = new ImageView(home);
         ImageView saveView = new ImageView(save);
-        Button homeButton = new Button("Home", homeView);
-        Button saveButton = new Button("Save", saveView);
-        homeButton.setOnAction(e -> goHome());
-        saveButton.setOnAction(e -> saveToXML());
-
+        Button homeButton = myUIFactory.createImageButton("Home", homeView, e -> goHome());
+        Button saveButton = myUIFactory.createImageButton("Save", saveView, e -> saveToXML());
+        
         HBox statusBar = new HBox(10, homeButton, saveButton);
         return statusBar;
     }
@@ -103,6 +109,7 @@ public class AuthoringView implements IAuthoringView {
         return contents;
     }
 
+    // TODO: GoHome Button
     private void goHome () {
 
     }
@@ -114,33 +121,13 @@ public class AuthoringView implements IAuthoringView {
 
     private TabPane createAllTabs () {
         TabPane tabpane = new TabPane();
-
-        Tab gameTab = createTab("Game");
-        myGameTabViewer = new GameTabViewer(getMyGame());
-        gameTab.setClosable(false);
-        gameTab.setContent(myGameTabViewer.draw());
-
-        Tab creationTab = createTab("Create Objects");
-        myCreationTabViewer = new ObjectCreationTabViewer(getMyGame());
-        creationTab.setClosable(false);
-        creationTab.setContent(myCreationTabViewer.draw());
-
-        Tab conditionTab = createTab("Conditions");
-        myConditionView = new ConditionView(getMyGame());
-        conditionTab.setContent(myConditionView.draw());
-        Tab sceneTab = createTab("Build Scenes/Levels");
-        mySceneTabViewer = new SceneTabViewer(getMyGame());
-        sceneTab.setClosable(false);
-        sceneTab.setContent(mySceneTabViewer.draw());
-
+        Tab gameTab = myUIFactory.createTab("Game", false, myGameTabViewer.draw());
+        Tab creationTab =
+                myUIFactory.createTab("Create Objects", false, myCreationTabViewer.draw());
+        Tab conditionTab = myUIFactory.createTab("Conditions", false, myConditionView.draw());
+        Tab sceneTab = myUIFactory.createTab("Build Scenes/Levels", false, mySceneTabViewer.draw());
         tabpane.getTabs().addAll(gameTab, creationTab, conditionTab, sceneTab);
         return tabpane;
-    }
-
-    private Tab createTab (String tabName) {
-        Tab newTab = new Tab();
-        newTab.setText(tabName);
-        return newTab;
     }
 
     private Game getMyGame () {
