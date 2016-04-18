@@ -55,6 +55,7 @@ public class UpgradeSFV extends SubFormView {
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
         initBinding(data);
+       
     }
 
     private void initView () {
