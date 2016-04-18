@@ -1,9 +1,8 @@
 package engine.modules;
 
-import engine.AttributeManager;
-import engine.AttributeType;
-import engine.Check;
+import engine.IAdder;
 import engine.IAttribute;
+import engine.ICheck;
 import engine.definitions.SpriteDefinition;
 import engine.effects.IEffect;
 import engine.events.GameEvent;
@@ -14,8 +13,13 @@ import util.TimeDuration;
 
 public class UpgradeModule implements IModule {
 
-    public UpgradeModule (SpriteDefinition upgrade, Check check) {
-        
+    private SpriteDefinition myUpgrade;
+    private ICheck myCheck;
+    private IAdder myAdder;
+    
+    public UpgradeModule (IAdder adder, SpriteDefinition upgrade, ICheck check) {
+        myUpgrade = upgrade;
+        myCheck = check;
     }
     @Override
     public void update (TimeDuration duration) {
