@@ -38,7 +38,7 @@ public class XMLParser {
         // Parse xml file to figure out which tabs to create and how to create them
         
         // Example: xml says to create an enemies tab
-        setupCreationFormAndListViewStructure();
+        //setupCreationFormAndListViewStructure();
     }
     
     /**
@@ -112,7 +112,7 @@ public class XMLParser {
             String creationControllerName = "authoring.SpriteCreationController";
             Class<?> creationControllerClass = Class.forName(itemClassName);
             Constructor<?> creationControllersCtor = creationControllerClass.getDeclaredConstructor(IObjectCreationView.class, ISubFormController.class);
-            ICreationController<?> creationController = (ICreationController<?>) creationControllersCtor.newInstance(creationView, subFormControllers);
+            //ICreationController<?> creationController = (ICreationController<?>) creationControllersCtor.newInstance(creationView, subFormControllers);
             
         //endfor 
             
@@ -124,24 +124,24 @@ public class XMLParser {
         // itemType = ISprite
         // subformview = ProfileSubFormView
         // subformcontroller = ProfileSubFormController
-        String name = "Enemies"; 
-        List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
-        List<ISubFormController<ISprite>> subFormControllers = new ArrayList<ISubFormController<ISprite>>();
+        //String name = "Enemies"; 
+        //List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
+        //List<ISubFormController<ISprite>> subFormControllers = new ArrayList<ISubFormController<ISprite>>();
         
         ProfileSubFormView profileSubFormView = new ProfileSubFormView(); //TODO: how to make this general but enforce dependenc?
         subFormViews.add(profileSubFormView);
 
-        ISubFormController<ISprite> profileSubFormController = new ProfileSubFormController<ISprite>(profileSubFormView);
-        subFormControllers.add(profileSubFormController);
+        //ISubFormController<ISprite> profileSubFormController = new ProfileSubFormController<ISprite>(profileSubFormView);
+        //subFormControllers.add(profileSubFormController);
         
         
         // TODO: options here for whether setup occurs here (to be able to do reflectively and customize) vs setup
         // in IObjectCreationView (so we don't have to specify as much in the xml)
         IFormView enemiesFormView = new FormView(subFormViews);
         ObservableList<ISprite> enemiesList = FXCollections.observableArrayList();
-        IObjectListView<ISprite> enemiesListView = new ObjectListView<ISprite>(enemiesList);
-        IObjectCreationView<ISprite> enemiesCreationView = new ObjectCreationView<ISprite>(enemiesListView, enemiesFormView);
-        enemiesCreationView.setTitle(name);
+        //IObjectListView<ISprite> enemiesListView = new ObjectListView<ISprite>(enemiesList);
+        //IObjectCreationView<ISprite> enemiesCreationView = new ObjectCreationView<ISprite>(enemiesListView, enemiesFormView);
+        //enemiesCreationView.setTitle(name);
         
         /*
          *  Set up CreationController
@@ -149,12 +149,12 @@ public class XMLParser {
          *      - give it appropriate subcontrollers specified in xml
          *      - 
          */
-        ICreationController<ISprite> enemiesCreationController = new CreationController<ISprite>();
-        enemiesCreationController.setObjectCreationView(enemiesCreationView);
-        enemiesCreationController.setSubFormControllers(subFormControllers);
+        //ICreationController<ISprite> enemiesCreationController = new CreationController<ISprite>();
+        //enemiesCreationController.setObjectCreationView(enemiesCreationView);
+        //enemiesCreationController.setSubFormControllers(subFormControllers);
         
         Factory<Sprite> enemiesFactory = new ItemFactory<Sprite>(Sprite.class);
-        enemiesCreationController.setFactory(enemiesFactory);
+        //enemiesCreationController.setFactory(enemiesFactory);
 
         
     }

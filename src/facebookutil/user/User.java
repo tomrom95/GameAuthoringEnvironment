@@ -1,13 +1,14 @@
 package facebookutil.user;
 
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import facebookutil.SocialType;
-import facebookutil.actions.SocialAction;
 import facebookutil.login.LoginObject;
 
 public class User implements IUser{
     
     private String myEmail;
     private UserScoreBoard myScoreBoard;
+    @XStreamOmitField
     private SocialMap myProfiles;
     
     public User (String email) {
@@ -54,12 +55,6 @@ public class User implements IUser{
     @Override
     public SocialMap getProfiles () {
         return myProfiles;
-    }
-
-    @Override
-    public void doAction (SocialAction action) {
-        action.send(myProfiles.getActiveProfile().getLogin().getService(),
-                    myProfiles.getActiveProfile().getLogin().getToken());
     }
 
 }

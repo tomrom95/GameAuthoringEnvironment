@@ -41,7 +41,7 @@ public class BrowserView {
             "https://api.twitter.com/1.1/account/verify_credentials.json";
     
     private static final String CALLBACK_URL =
-            "https://duke.edu";
+            "https://duke.edu/";
 
     private OAuth20Service service;
     private OAuth10aService twitterService;
@@ -53,8 +53,8 @@ public class BrowserView {
         mySecrets = ResourceBundle.getBundle("facebookutil/secret");
         BorderPane root = new BorderPane();
         root.setCenter(makePageDisplay());
-        //facebookExample();
-        twitterExample();
+        facebookExample();
+        //twitterExample();
 
         myScene = new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 
@@ -66,7 +66,7 @@ public class BrowserView {
 
     private Node makePageDisplay () {
         myPage = new WebView();
-        myPage.getEngine().getLoadWorker().stateProperty().addListener(new TwitterLinkListener());
+        myPage.getEngine().getLoadWorker().stateProperty().addListener(new FacebookLinkListener());
         return myPage;
     }
 
@@ -126,12 +126,12 @@ public class BrowserView {
                     // SEND A NOTIFICATION
                     OAuthRequest nextRequest =
                             new OAuthRequest(Verb.POST,
-                                             "https://graph.facebook.com/10204226196654701/notifications",
+                                             "https://graph.facebook.com/10204226196654701/apprequests",
                                              service);
                     String message = "Let's make tower defense!";
-                    nextRequest.addBodyParameter("access_token", accessToken.getAccessToken());
-                    nextRequest.addBodyParameter("template", message);
-                    // service.signRequest(accessToken, nextRequest);
+                    nextRequest.addBodyParameter("message", message);
+                    nextRequest.addBodyParameter("ids", "10204226196654701");
+                    service.signRequest(accessToken, nextRequest);
 
                     Response nextResponse = nextRequest.send();
                     System.out.println("here");
@@ -225,8 +225,8 @@ public class BrowserView {
 
     public void facebookExample () {
         // Replace these with your client id and secret
-        final String clientId = mySecrets.getString("clientId");
-        final String clientSecret = mySecrets.getString("clientSecret");
+        final String clientId = mySecrets.getString("facebookId");
+        final String clientSecret = mySecrets.getString("facebookSecret");
         service = new ServiceBuilder()
                 .apiKey(clientId)
                 .apiSecret(clientSecret)

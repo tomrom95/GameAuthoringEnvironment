@@ -5,10 +5,8 @@ import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
-import facebookutil.SocialType;
 import facebookutil.actions.CustomPost;
-import facebookutil.user.IUser;
-import facebookutil.user.SocialProfile;
+import facebookutil.user.profiles.SocialProfile;
 
 public class FacebookCustomPost implements CustomPost{
     
@@ -17,16 +15,11 @@ public class FacebookCustomPost implements CustomPost{
     private OAuthRequest myRequest;
 
     @Override
-    public void createPost (String message, IUser user) {
-        System.out.println("USERID : " + getProfile(user).getUserID());
+    public void createPost (String message, SocialProfile profile) {
         myRequest = new OAuthRequest(Verb.POST,
-                                     String.format(POST_URL, getProfile(user).getUserID()),
-                                     getProfile(user).getLogin().getService());
+                                     String.format(POST_URL, profile.getID()),
+                                     profile.getLogin().getService());
         myRequest.addBodyParameter("message", message);
-    }
-    
-    private SocialProfile getProfile (IUser user) {
-        return user.getProfiles().getProfileByType(SocialType.Facebook);
     }
 
     @Override

@@ -1,33 +1,41 @@
 package facebookutil;
 
-import java.util.HashSet;
-import java.util.Set;
-import facebookutil.login.Login;
+import java.util.ArrayList;
+import java.util.List;
+import facebookutil.applications.AppMap;
+import facebookutil.login.LoginUser;
 import facebookutil.login.LoginObject;
 import facebookutil.user.IUser;
 import facebookutil.user.User;
 
 public class JavaSocial implements IJavaSocial {
     
-    private Set<IUser> myUsers;
+    private List<IUser> myUsers;
     private HighScoreBoard myHighScores;
     private IUser activeUser;
+    private AppMap myApps;
     
     public JavaSocial () {
-        //TODO load users from file
-        myUsers = new HashSet<>();
+        myUsers = loadUsers();
         myHighScores = new HighScoreBoard ();
+        myApps = new AppMap();
+        myApps.loginApps();
+    }
+
+    private List<IUser> loadUsers () {
+        UserReader reader = new UserReader ();
+        return reader.getUsers();
     }
 
     @Override
-    public Set<IUser> getUsers () {
-        return new HashSet<IUser>(myUsers);
+    public List<IUser> getUsers () {
+        return new ArrayList<>(myUsers);
     }
 
     @Override
     public IUser getUserByEmail (String email) {
         for (IUser user: myUsers) {
-            if (user.getUserEmail() == email) {
+            if (user.getUserEmail().equals(email)) {
                 return user;
             }
         }
@@ -44,6 +52,8 @@ public class JavaSocial implements IJavaSocial {
         IUser user = getUserByEmail(login.getEmail());
         if (user == null) {
             user = createNewUser(login.getEmail());
+        } else {
+            System.out.println("User exists");
         }
         user.login(type, login);
         activeUser = user;
@@ -51,7 +61,7 @@ public class JavaSocial implements IJavaSocial {
     
     @Override
     public void loginUser (SocialType type) {
-        Login login = type.getLogin();
+        LoginUser login = type.getLogin();
         login.authenticate(this);
     }
 
@@ -65,6 +75,16 @@ public class JavaSocial implements IJavaSocial {
 
     public IUser getActiveUser () {
         return activeUser;
+    }
+    
+    public AppMap getApplications () {
+        return myApps;
+    }
+
+    @Override
+    public void logoutAll () {
+        UserWriter writer = new UserWriter();
+        writer.write(getUsers());
     }
 
 
