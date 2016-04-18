@@ -2,7 +2,7 @@ package facebookutil.login;
 
 import facebookutil.JavaSocial;
 
-public class LocalLogin implements Login {
+public class LocalLogin implements LoginUser {
 
     @Override
     public void authenticate (JavaSocial social) {

@@ -2,11 +2,15 @@
 <classpath>
 	<classpathentry kind="src" path="fxstream"/>
 	<classpathentry kind="src" path="RESOURCES"/>
+	<classpathentry kind="src" path="savedusers"/>
 	<classpathentry excluding="usecases/" kind="src" path="src"/>
 	<classpathentry kind="lib" path="lib/xstream-1.4.9.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/scribejava-apis-2.4.0.jar"/>
 	<classpathentry kind="lib" path="lib/scribejava-core-2.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/async-http-client-1.9.38.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.21.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-simple-1.7.21.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
