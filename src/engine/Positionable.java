@@ -21,4 +21,6 @@ public interface Positionable {
     void setLocation (Coordinate coordinate);
 
     List<Coordinate> getPath ();
+
+    IAttributeManager getAttributeManager ();
 }
