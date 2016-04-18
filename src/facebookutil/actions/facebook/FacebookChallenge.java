@@ -3,12 +3,12 @@ package facebookutil.actions.facebook;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import facebookutil.actions.Challenge;
-import facebookutil.user.SocialProfile;
+import facebookutil.user.profiles.UserProfile;
 
 public class FacebookChallenge implements Challenge{
 
     @Override
-    public void createChallenge (SocialProfile source, SocialProfile target, String message) {
+    public void createChallenge (UserProfile source, UserProfile target, String message) {
         // TODO Auto-generated method stub
         
     }

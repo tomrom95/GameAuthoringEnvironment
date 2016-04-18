@@ -1,7 +1,6 @@
 package facebookutil.user;
 
 import facebookutil.SocialType;
-import facebookutil.actions.SocialAction;
 import facebookutil.login.LoginObject;
 
 public class User implements IUser{
@@ -54,12 +53,6 @@ public class User implements IUser{
     @Override
     public SocialMap getProfiles () {
         return myProfiles;
-    }
-
-    @Override
-    public void doAction (SocialAction action) {
-        action.send(myProfiles.getActiveProfile().getLogin().getService(),
-                    myProfiles.getActiveProfile().getLogin().getToken());
     }
 
 }

@@ -1,8 +1,9 @@
-package facebookutil.user;
+package facebookutil.user.profiles;
 
 import facebookutil.actions.facebook.FacebookCustomPost;
+import facebookutil.user.IUser;
 
-public class FacebookProfile extends SocialProfile{
+public class FacebookProfile extends UserProfile{
 
     public FacebookProfile (String userID) {
         super(userID);

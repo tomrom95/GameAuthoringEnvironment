@@ -1,34 +1,33 @@
-package facebookutil.user;
+package facebookutil.user.profiles;
 
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import facebookutil.login.LoginObject;
 
 public abstract class SocialProfile {
     
-    private String myUserID;
+    private String myID;
     @XStreamOmitField
     private LoginObject myLogin;
     
+    public SocialProfile () {
+        
+    }
+    
     public SocialProfile (String userID) {
-        myUserID = userID;
+        myID = userID;
     }
     
     public void login (LoginObject newLogin) {
         myLogin = newLogin;
+        myID = newLogin.getUserID();
     }
     
-    public String getUserID () {
-        return myUserID;
+    public String getID () {
+        return myID;
     }
     
     public LoginObject getLogin () {
         return myLogin;
     }
-    
-    public abstract void challenge (IUser target, String message);
-    
-    public abstract void customPost (String message);
-    
-    public abstract void highScorePost (IUser user, int score);
 
 }

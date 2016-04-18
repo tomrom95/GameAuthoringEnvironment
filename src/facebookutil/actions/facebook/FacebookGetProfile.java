@@ -1,12 +1,11 @@
 package facebookutil.actions.facebook;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import facebookutil.ParseHelper;
 import facebookutil.actions.GetProfile;
 import facebookutil.actions.OAuthSender;
 import facebookutil.login.LoginObject;
@@ -32,21 +31,12 @@ public class FacebookGetProfile implements GetProfile{
 
     @Override
     public String getEmail () {
-        return getFirstGroup(EMAIL_REGEX, myResponse.getBody());
+        return ParseHelper.getFirstGroup(EMAIL_REGEX, myResponse.getBody());
     }
 
     @Override
     public String getUserID () {
-        return getFirstGroup(ID_REGEX, myResponse.getBody());
-    }
-    
-    private String getFirstGroup (String pattern, String body) {
-        // TODO refactor into a JSON getter class
-        Matcher m = Pattern.compile(pattern).matcher(body);
-        if (m.find()) {
-            return m.group(1);
-        }
-        return null;
+        return ParseHelper.getFirstGroup(ID_REGEX, myResponse.getBody());
     }
 
 }

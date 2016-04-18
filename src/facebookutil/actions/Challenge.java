@@ -1,6 +1,6 @@
 package facebookutil.actions;
 
-import facebookutil.user.SocialProfile;
+import facebookutil.user.profiles.UserProfile;
 
 
 /**
@@ -9,6 +9,6 @@ import facebookutil.user.SocialProfile;
  */
 public interface Challenge extends SocialAction {
 
-    public void createChallenge (SocialProfile source, SocialProfile target, String message);
+    public void createChallenge (UserProfile source, UserProfile target, String message);
 
 }

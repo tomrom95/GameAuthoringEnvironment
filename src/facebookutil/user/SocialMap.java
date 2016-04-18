@@ -3,17 +3,18 @@ package facebookutil.user;
 import java.util.HashMap;
 import java.util.Map;
 import facebookutil.SocialType;
+import facebookutil.user.profiles.UserProfile;
 
 public class SocialMap {
     
-    private Map<SocialType, SocialProfile> myProfiles;
-    private SocialProfile myActiveProfile;
+    private Map<SocialType, UserProfile> myProfiles;
+    private UserProfile myActiveProfile;
     
     public SocialMap () {
-        myProfiles = new HashMap<SocialType, SocialProfile>();
+        myProfiles = new HashMap<SocialType, UserProfile>();
     }
     
-    public SocialProfile getProfileByType (SocialType type){
+    public UserProfile getProfileByType (SocialType type){
         return myProfiles.get(type);
     }
     
@@ -29,7 +30,7 @@ public class SocialMap {
         myProfiles.put(type, type.getProfile(userID));
     }
 
-    public SocialProfile getActiveProfile () {
+    public UserProfile getActiveProfile () {
         return myActiveProfile;
     }
 

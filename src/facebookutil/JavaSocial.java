@@ -1,7 +1,8 @@
 package facebookutil;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import facebookutil.applications.AppMap;
 import facebookutil.login.Login;
 import facebookutil.login.LoginObject;
 import facebookutil.user.IUser;
@@ -9,19 +10,21 @@ import facebookutil.user.User;
 
 public class JavaSocial implements IJavaSocial {
     
-    private Set<IUser> myUsers;
+    private List<IUser> myUsers;
     private HighScoreBoard myHighScores;
     private IUser activeUser;
+    private AppMap myApps;
     
     public JavaSocial () {
-        //TODO load users from file
-        myUsers = new HashSet<>();
+        myUsers = new ArrayList<>();
         myHighScores = new HighScoreBoard ();
+        myApps = new AppMap();
+        myApps.loginApps();
     }
 
     @Override
-    public Set<IUser> getUsers () {
-        return new HashSet<IUser>(myUsers);
+    public List<IUser> getUsers () {
+        return new ArrayList<>(myUsers);
     }
 
     @Override
@@ -65,6 +68,10 @@ public class JavaSocial implements IJavaSocial {
 
     public IUser getActiveUser () {
         return activeUser;
+    }
+    
+    public AppMap getApplications () {
+        return myApps;
     }
 
 

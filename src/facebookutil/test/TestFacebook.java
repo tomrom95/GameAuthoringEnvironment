@@ -2,6 +2,7 @@ package facebookutil.test;
 
 import facebookutil.JavaSocial;
 import facebookutil.SocialType;
+import facebookutil.applications.App;
 import facebookutil.user.IUser;
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -19,13 +20,14 @@ import javafx.stage.Stage;
 public class TestFacebook extends Application{
     
     private JavaSocial mySocial;
-    private IUser myUser;
+    //private IUser myUser;
+    
+    private App myApp;
 
     @Override
     public void start (Stage stage) {
         mySocial = new JavaSocial();
         mySocial.loginUser(SocialType.Facebook);
-        
         stage.setScene( testLogin());
         stage.show();
     }
@@ -45,13 +47,22 @@ public class TestFacebook extends Application{
         return button;
     }
 
-    private void post (TextField field) {
+    /*private void post (TextField field) {
         myUser = mySocial.getActiveUser();
         if (myUser == null) {
             System.out.println("Login first");
             return;
         }
         myUser.getProfiles().getActiveProfile().customPost(field.getText());
+    }*/
+    
+    private void post (TextField field) {
+        myApp = mySocial.getApplications().getAppByType(SocialType.Facebook);
+        if (myApp == null) {
+            System.out.println("Something's wrong");
+            return;
+        }
+        myApp.notifyUsers(mySocial.getUsers(), field.getText());
     }
 
     public static void main (String[] args) {

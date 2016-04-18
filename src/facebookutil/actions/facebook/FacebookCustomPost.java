@@ -6,7 +6,7 @@ import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import facebookutil.actions.CustomPost;
-import facebookutil.user.SocialProfile;
+import facebookutil.user.profiles.SocialProfile;
 
 public class FacebookCustomPost implements CustomPost{
     
@@ -17,7 +17,7 @@ public class FacebookCustomPost implements CustomPost{
     @Override
     public void createPost (String message, SocialProfile profile) {
         myRequest = new OAuthRequest(Verb.POST,
-                                     String.format(POST_URL, profile.getUserID()),
+                                     String.format(POST_URL, profile.getID()),
                                      profile.getLogin().getService());
         myRequest.addBodyParameter("message", message);
     }

@@ -1,6 +1,8 @@
-package facebookutil.user;
+package facebookutil.user.profiles;
 
-public class TwitterProfile extends SocialProfile{
+import facebookutil.user.IUser;
+
+public class TwitterProfile extends UserProfile{
 
     public TwitterProfile (String userID) {
         super(userID);

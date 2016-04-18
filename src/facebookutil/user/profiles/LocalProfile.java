@@ -1,6 +1,8 @@
-package facebookutil.user;
+package facebookutil.user.profiles;
 
-public class LocalProfile extends SocialProfile{
+import facebookutil.user.IUser;
+
+public class LocalProfile extends UserProfile{
 
     public LocalProfile (String userID) {
         super(userID);

@@ -1,6 +1,6 @@
 package facebookutil.actions;
 
-import facebookutil.user.SocialProfile;
+import facebookutil.user.profiles.SocialProfile;
 
 /**
  * This interface is responsible for handling user generated custom posts
