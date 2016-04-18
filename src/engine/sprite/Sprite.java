@@ -47,6 +47,7 @@ public class Sprite extends DefaultAffectable implements ISprite {
 
     public Sprite (SpriteType type) {
         // TODO add default constructions from resource file
+        // TODO add default graphics module to help reduce null pointer errors
         myType = type;
         myStatus = new SpriteStatus();
         myAttributeManager = new AttributeManager();

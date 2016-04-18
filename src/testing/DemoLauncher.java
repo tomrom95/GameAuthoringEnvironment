@@ -172,7 +172,7 @@ public class DemoLauncher extends Application {
     }
 
     private void addSpawner1 (IGame game) {
-        SpawnerDefinition s = new SpawnerDefinition();
+        SpawnerDefinition s = new SpawnerDefinition(game);
         List<SpriteDefinition> sprites = new ArrayList<SpriteDefinition>();
         sprites.add(createBucket());
         sprites.add(createBalloon());
@@ -189,7 +189,7 @@ public class DemoLauncher extends Application {
     }
 
     private void addSpawner2 (IGame game) {
-        SpawnerDefinition s = new SpawnerDefinition();
+        SpawnerDefinition s = new SpawnerDefinition(game);
         List<SpriteDefinition> sprites = new ArrayList<SpriteDefinition>();
         sprites.add(createBucket());
         sprites.add(createBalloon());
@@ -206,7 +206,7 @@ public class DemoLauncher extends Application {
     }
 
     private void addSpawner3 (IGame game) {
-        SpawnerDefinition s = new SpawnerDefinition();
+        SpawnerDefinition s = new SpawnerDefinition(game);
         List<SpriteDefinition> sprites = new ArrayList<SpriteDefinition>();
         sprites.add(createBucket());
         sprites.add(createBalloon());
@@ -223,7 +223,7 @@ public class DemoLauncher extends Application {
     }
 
     private void addSpawner4 (IGame game) {
-        SpawnerDefinition s = new SpawnerDefinition();
+        SpawnerDefinition s = new SpawnerDefinition(game);
         List<SpriteDefinition> sprites = new ArrayList<SpriteDefinition>();
         sprites.add(createBucket());
         sprites.add(createBalloon());
