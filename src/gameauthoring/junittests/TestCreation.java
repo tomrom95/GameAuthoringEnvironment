@@ -7,36 +7,37 @@ import org.junit.Before;
 import org.junit.Test;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
+import engine.sprite.SpriteType;
 import gameauthoring.creation.forms.CreationController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class TestCreation {
 
-    private CreationController<ISprite> myCreationController;
+    //private CreationController<ISprite> myCreationController;
     private ObservableList<ISprite> myCreationControllerItems;
     private ISprite myCreationControllerCurrentItem;
     
     @Before
     public void setup () {
-        myCreationController = new CreationController<ISprite>();
+        //myCreationController = new CreationController<ISprite>();
        
         try{
             Field itemsField = CreationController.class.getDeclaredField("myItems");
             itemsField.setAccessible(true);
-            myCreationControllerItems = (ObservableList<ISprite>) itemsField.get(myCreationController);
+            //myCreationControllerItems = (ObservableList<ISprite>) itemsField.get(myCreationController);
             
             
             Field currentItemField = CreationController.class.getDeclaredField("myCurrentItem");
             currentItemField.setAccessible(true);
-            myCreationControllerCurrentItem = (ISprite) itemsField.get(myCreationController);
+            //myCreationControllerCurrentItem = (ISprite) itemsField.get(myCreationController);
 
             
         }catch (Exception e) {
             assert(false);
         }
         
-        myCreationControllerCurrentItem = new Sprite();
+        myCreationControllerCurrentItem = new Sprite(new SpriteType("UserSprite"));
         myCreationControllerItems = FXCollections.observableArrayList();
         
         /*
@@ -58,7 +59,7 @@ public class TestCreation {
             deleteMethod.setAccessible(true);
         
             assertEquals(myCreationControllerItems.contains(myCreationControllerCurrentItem), true);
-            deleteMethod.invoke(myCreationController);
+            //deleteMethod.invoke(myCreationController);
             assertEquals(myCreationControllerItems.contains(myCreationControllerCurrentItem), false);
             
         } catch (Exception e) {
