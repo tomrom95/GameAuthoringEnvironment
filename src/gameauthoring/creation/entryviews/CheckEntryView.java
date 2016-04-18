@@ -1,5 +1,6 @@
 package gameauthoring.creation.entryviews;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -17,8 +18,12 @@ public class CheckEntryView extends EntryView{
         myCheckBox.setSelected(false);
     }
     
-    public boolean isChecked(){
-        return myCheckBox.isSelected();
+    public BooleanProperty isCheckedProperty(){
+        return myCheckBox.selectedProperty();
+    }
+        
+    public void setSelected(boolean isSelected){
+        this.myCheckBox.setSelected(isSelected);
     }
 
     @Override
