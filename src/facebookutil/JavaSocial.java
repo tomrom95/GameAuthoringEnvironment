@@ -16,7 +16,7 @@ public class JavaSocial implements IJavaSocial {
     private AppMap myApps;
     
     public JavaSocial () {
-        myUsers = new ArrayList<>();//loadUsers();
+        myUsers = loadUsers();
         myHighScores = new HighScoreBoard ();
         myApps = new AppMap();
         myApps.loginApps();
@@ -35,7 +35,7 @@ public class JavaSocial implements IJavaSocial {
     @Override
     public IUser getUserByEmail (String email) {
         for (IUser user: myUsers) {
-            if (user.getUserEmail() == email) {
+            if (user.getUserEmail().equals(email)) {
                 return user;
             }
         }
@@ -52,6 +52,8 @@ public class JavaSocial implements IJavaSocial {
         IUser user = getUserByEmail(login.getEmail());
         if (user == null) {
             user = createNewUser(login.getEmail());
+        } else {
+            System.out.println("User exists");
         }
         user.login(type, login);
         activeUser = user;
@@ -67,7 +69,6 @@ public class JavaSocial implements IJavaSocial {
     public IUser createNewUser (String email) {
         System.out.println("Creating new User");
         IUser newUser = new User(email);
-        System.out.println(newUser.getUserEmail());
         myUsers.add(newUser);
         return newUser;
     }

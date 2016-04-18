@@ -11,7 +11,9 @@ import facebookutil.user.profiles.SocialProfile;
 
 public class UserWriter {
     
-    private static final String PATH = "userdata/";
+    private static final String PATH = "savedusers/";
+    private static final String WRITE_ERROR = "ERROR WRITING USER";
+    private static final String FILE_TYPE = ".xml";
 
     public void write (List<IUser> users) {
         users.stream()
@@ -19,25 +21,21 @@ public class UserWriter {
     }
     
     private void writeToFile (IUser user) {
-        File dir = new File(getClass().getResource(PATH).getPath());
-        System.out.println(dir.exists());
-        File file = new File(dir, user.getUserEmail());
+        File dir = new File(PATH);
+        File file = new File(dir, user.getUserEmail() + FILE_TYPE);
         try {
             file.createNewFile();
             FileWriter fw = new FileWriter(file);
             fw.write(getXML(user));
             fw.close();
-            System.out.println(file.getAbsolutePath());
+            System.out.println("Wrote " + user.getUserEmail());
         }
         catch (IOException e) {
-            System.out.println("ERROR WRITING USER");
-            e.printStackTrace();
+            System.out.println(WRITE_ERROR);
         }
     }
 
     private String getXML (IUser user) {
-        // SEND HELP
-        
         XStream xstream = new XStream(new DomDriver());
         xstream.ignoreUnknownElements();
         xstream.processAnnotations(SocialProfile.class);

@@ -12,9 +12,10 @@ import facebookutil.login.LoginObject;
 
 public class FacebookGetProfile implements GetProfile{
     
-    private static final String PROFILE_URL = "https://graph.facebook.com/v2.5/me?fields=id,email";
-    private static final String EMAIL_REGEX = "\"email\":\"([^&]+?)\"";
-    private static final String ID_REGEX = "\"id\":\"([^&]+?)\"";
+    private static final String PROFILE_URL = "https://graph.facebook.com/v2.5/me?fields=id,email,name";
+    private static final String EMAIL = "email";
+    private static final String ID = "id";
+    private static final String NAME = "name";
     
     private Response myResponse;
     
@@ -32,12 +33,26 @@ public class FacebookGetProfile implements GetProfile{
 
     @Override
     public String getEmail () {
-        return ParseHelper.getFirstGroup(EMAIL_REGEX, myResponse.getBody());
+        String email = ParseHelper.JSONParse(EMAIL, myResponse.getBody());
+        if (email == null) {
+            return getName ();
+        }
+        return email;
+    }
+
+    private String getName () {
+        String name = ParseHelper.JSONParse(NAME, myResponse.getBody());
+        if (name == null) {
+            //TODO throw errors
+            System.out.println("NO INFORMATION FOR THIS USER");
+            return null;
+        }
+        return name.replace(" ", "");
     }
 
     @Override
     public String getUserID () {
-        return ParseHelper.getFirstGroup(ID_REGEX, myResponse.getBody());
+        return ParseHelper.JSONParse(ID, myResponse.getBody());
     }
 
 }
