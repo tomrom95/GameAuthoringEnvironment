@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import engine.Drawable;
 import engine.IGamePlayable;
+import gameplayer.SpriteDisplay;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
@@ -21,14 +22,16 @@ public class InGameRenderer extends LevelRenderer {
     private IGraphicFactory myFactory;
     private IGamePlayable myGame;
     private Map<Drawable, Node> myDrawNodeMap;
+    private SpriteDisplay mySpriteDisplay;
     private boolean myFirstTime;
 
-    public InGameRenderer (IGamePlayable game, Pane pane) {
+    public InGameRenderer (IGamePlayable game, Pane pane, SpriteDisplay spriteDisplay) {
         super(pane);
         myFactory = new UnscaledFactory();
         myGame = game;
         myDrawNodeMap = new HashMap<>();
         myFirstTime = true;
+        mySpriteDisplay = spriteDisplay;
     }
 
     @Override
@@ -105,6 +108,7 @@ public class InGameRenderer extends LevelRenderer {
         }
         else {
             Node node = drawn.getDrawer().getVisualRepresentation(myFactory);
+            node.setOnMouseClicked(e -> mySpriteDisplay.populate(drawn));
             myDrawNodeMap.put(drawn, node);
             add(node);
             return node;
