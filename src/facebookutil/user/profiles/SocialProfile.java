@@ -1,11 +1,11 @@
 package facebookutil.user.profiles;
-
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import facebookutil.login.LoginObject;
 
 public abstract class SocialProfile {
     
     private String myID;
+    
     @XStreamOmitField
     private LoginObject myLogin;
     

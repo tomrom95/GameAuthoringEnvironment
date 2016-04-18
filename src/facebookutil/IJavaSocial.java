@@ -17,5 +17,7 @@ public interface IJavaSocial {
     public void loginUser(SocialType type);
     
     public IUser createNewUser (String email);
+    
+    public void logoutAll ();
 
 }

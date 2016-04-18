@@ -7,7 +7,7 @@ import facebookutil.applications.LocalApp;
 import facebookutil.applications.TwitterApp;
 import facebookutil.login.FacebookLogin;
 import facebookutil.login.LocalLogin;
-import facebookutil.login.Login;
+import facebookutil.login.LoginUser;
 import facebookutil.login.TwitterLogin;
 import facebookutil.user.profiles.FacebookProfile;
 import facebookutil.user.profiles.LocalProfile;
@@ -19,18 +19,18 @@ public enum SocialType {
     Twitter (TwitterLogin.class, TwitterProfile.class, TwitterApp.class),
     Local (LocalLogin.class, LocalProfile.class, LocalApp.class);
     
-    private Class<? extends Login> myLogin;
+    private Class<? extends LoginUser> myLogin;
     private Class<? extends UserProfile> myProfile;
     private Class<? extends App> myApp;
     
-    SocialType (Class<? extends Login> loginClass, Class<? extends UserProfile> profileClass,
+    SocialType (Class<? extends LoginUser> loginClass, Class<? extends UserProfile> profileClass,
                 Class<? extends App> appClass) {
         myLogin = loginClass;
         myProfile = profileClass;
         myApp = appClass;
     }
     
-    public Login getLogin () {
+    public LoginUser getLogin () {
         try {
             return myLogin.newInstance();
         }

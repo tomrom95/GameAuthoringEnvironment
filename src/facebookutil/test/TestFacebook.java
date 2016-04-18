@@ -3,7 +3,6 @@ package facebookutil.test;
 import facebookutil.JavaSocial;
 import facebookutil.SocialType;
 import facebookutil.applications.App;
-import facebookutil.user.IUser;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -42,7 +41,8 @@ public class TestFacebook extends Application{
 
     private Node makeButton (TextField field) {
         Button button = new Button("Post");
-        button.setOnMouseClicked(e -> post(field));
+        //button.setOnMouseClicked(e -> post(field));
+        button.setOnMouseClicked(e -> mySocial.logoutAll());
         
         return button;
     }

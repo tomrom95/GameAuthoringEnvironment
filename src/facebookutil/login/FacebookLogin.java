@@ -7,7 +7,7 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 import facebookutil.JavaSocial;
 
 
-public class FacebookLogin implements Login {
+public class FacebookLogin implements LoginUser {
     private static final String SCOPE = "publish_actions,email";
 
     private ResourceBundle mySecrets;

@@ -3,7 +3,7 @@ package facebookutil;
 import java.util.ArrayList;
 import java.util.List;
 import facebookutil.applications.AppMap;
-import facebookutil.login.Login;
+import facebookutil.login.LoginUser;
 import facebookutil.login.LoginObject;
 import facebookutil.user.IUser;
 import facebookutil.user.User;
@@ -16,10 +16,15 @@ public class JavaSocial implements IJavaSocial {
     private AppMap myApps;
     
     public JavaSocial () {
-        myUsers = new ArrayList<>();
+        myUsers = new ArrayList<>();//loadUsers();
         myHighScores = new HighScoreBoard ();
         myApps = new AppMap();
         myApps.loginApps();
+    }
+
+    private List<IUser> loadUsers () {
+        UserReader reader = new UserReader ();
+        return reader.getUsers();
     }
 
     @Override
@@ -54,7 +59,7 @@ public class JavaSocial implements IJavaSocial {
     
     @Override
     public void loginUser (SocialType type) {
-        Login login = type.getLogin();
+        LoginUser login = type.getLogin();
         login.authenticate(this);
     }
 
@@ -72,6 +77,12 @@ public class JavaSocial implements IJavaSocial {
     
     public AppMap getApplications () {
         return myApps;
+    }
+
+    @Override
+    public void logoutAll () {
+        UserWriter writer = new UserWriter();
+        writer.write(getUsers());
     }
 
 

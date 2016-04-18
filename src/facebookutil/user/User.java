@@ -1,5 +1,6 @@
 package facebookutil.user;
 
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import facebookutil.SocialType;
 import facebookutil.login.LoginObject;
 
@@ -7,6 +8,7 @@ public class User implements IUser{
     
     private String myEmail;
     private UserScoreBoard myScoreBoard;
+    @XStreamOmitField
     private SocialMap myProfiles;
     
     public User (String email) {
