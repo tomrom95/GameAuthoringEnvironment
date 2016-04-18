@@ -3,6 +3,7 @@ package gameauthoring.tabs;
 import gameauthoring.creation.forms.CreationController;
 import gameauthoring.creation.forms.CreationControllerFactory;
 import gameauthoring.creation.forms.IObjectCreationView;
+import gameauthoring.util.UIFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +27,7 @@ import javafx.scene.control.TabPane;
 public class ObjectCreationTabViewer implements ITabViewer {
 
     private TabPane myTabPane;
+    private UIFactory myUIFactory = new UIFactory();
 
     private Game myGame;
 
@@ -116,9 +118,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private void generateAllSubTabs () {
         for (int i = 0; i < myCCs.size(); i++) {
-            Tab tab = new Tab(myCCs.get(i).getMyTitle());
-            tab.setClosable(false);
-            tab.setContent(myCVs.get(i).draw());
+            Tab tab = myUIFactory.createTab(myCCs.get(i).getMyTitle(), false, myCVs.get(i).draw());
             myTabPane.getTabs().add(tab);
         }
     }
