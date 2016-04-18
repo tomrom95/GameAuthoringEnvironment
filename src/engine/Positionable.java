@@ -23,4 +23,9 @@ public interface Positionable {
     List<Coordinate> getPath ();
 
     IAttributeManager getAttributeManager ();
+
+    /**
+     * Should remove the Sprite
+     */
+    void remove ();
 }
