@@ -1,6 +1,8 @@
 package engine.modules;
 
 import engine.effects.DefaultAffectable;
+import engine.events.EventType;
+import engine.events.GameEvent;
 import engine.rendering.IGraphicFactory;
 import graphics.IGraphic;
 import javafx.scene.Node;
@@ -15,9 +17,11 @@ import javafx.scene.Node;
 public class GraphicModule extends DefaultAffectable implements IGraphicModule {
 
     private IGraphic myGraphic;
+    private boolean myVisibility;
 
     public GraphicModule (IGraphic graphic) {
         myGraphic = graphic;
+        myVisibility = true;
     }
 
     @Override
@@ -28,6 +32,22 @@ public class GraphicModule extends DefaultAffectable implements IGraphicModule {
     @Override
     public Node getVisualRepresentation (IGraphicFactory graphicFactory) {
         return myGraphic.getVisualRepresentation(graphicFactory);
+    }
+
+    @Override
+    public void registerEvent (GameEvent event) {
+        if (event.equals(EventType.VISIBLE)) {
+            myVisibility = true;
+        }
+        if (event.equals(EventType.INVISIBLE)) {
+            myVisibility = false;
+        }
+
+    }
+
+    @Override
+    public Boolean isVisible () {
+        return myVisibility;
     }
 
 }
