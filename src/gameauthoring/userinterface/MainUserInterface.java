@@ -14,6 +14,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
+/**
+ * This is the main user inteface class which contains two buttons "Create game" and
+ * "Load existing game". 
+ * 
+ * @TODO: ResourceBundle for unprotected string
+ * @TODO: Load Game method
+ * @author Jin An
+ *
+ */
 public class MainUserInterface {
 
     private static final String TITLE = "Welcome to GitDepends Game Salad";
@@ -57,7 +66,7 @@ public class MainUserInterface {
         catch (NoSuchMethodException | SecurityException e) {
             System.out.println("error");
         }
-        
+
         return newButton;
 
     }
