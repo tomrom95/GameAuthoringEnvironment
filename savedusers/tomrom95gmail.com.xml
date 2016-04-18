@@ -1,12 +1,15 @@
 <facebookutil.user.User>
-  <myEmail>tomrom95\u0040gmail.com</myEmail>
+  <myEmail>
+    <myName>tomrom95</myName>
+    <myDomain>gmail.com</myDomain>
+  </myEmail>
   <myScoreBoard>
     <myBoard/>
   </myScoreBoard>
   <myProfiles>
     <myProfiles>
       <entry>
-        <facebookutil.SocialType>Facebook</facebookutil.SocialType>
+        <facebookutil.SocialType>FACEBOOK</facebookutil.SocialType>
         <facebookutil.user.profiles.FacebookProfile>
           <myID>10204226196654701</myID>
         </facebookutil.user.profiles.FacebookProfile>

@@ -4,6 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import facebookutil.SocialType;
 
+/**
+ * Creates and logs in all of the apps that are available
+ * for the social environment
+ * @author Tommy
+ *
+ */
 public class AppMap {
     
     private Map<SocialType, App> myMap;
@@ -12,6 +18,9 @@ public class AppMap {
         myMap = new HashMap<>();
     }
     
+    /**
+     * Logs in all apps in the social type enum
+     */
     public void loginApps () {
         for(SocialType type: SocialType.values()) {
             App app = type.getApp();
@@ -20,6 +29,11 @@ public class AppMap {
         }
     }
     
+    /**
+     * Gets an app by its social type
+     * @param type
+     * @return
+     */
     public App getAppByType (SocialType type) {
         return myMap.get(type);
     }

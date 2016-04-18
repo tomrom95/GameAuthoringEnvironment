@@ -28,7 +28,7 @@ public class TestFacebook extends Application{
     @Override
     public void start (Stage stage) {
         mySocial = new JavaSocial();
-        mySocial.loginUser(SocialType.Facebook);
+        mySocial.loginUser(SocialType.FACEBOOK);
         stage.setScene( testLogin());
         stage.show();
     }
@@ -47,7 +47,7 @@ public class TestFacebook extends Application{
 
     private Node makeLogout () {
         Button button = new Button("Logout");
-        button.setOnMouseClicked(e -> mySocial.logoutAll());
+        button.setOnMouseClicked(e -> mySocial.saveUsers());
         return button;
     }
 
@@ -72,7 +72,7 @@ public class TestFacebook extends Application{
     }
 
     private void notify (TextField field) {
-        myApp = mySocial.getApplications().getAppByType(SocialType.Facebook);
+        myApp = mySocial.getApplications().getAppByType(SocialType.FACEBOOK);
         if (myApp == null) {
             System.out.println("Something's wrong");
             return;

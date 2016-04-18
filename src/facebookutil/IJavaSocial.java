@@ -2,22 +2,65 @@ package facebookutil;
 
 import java.util.List;
 import facebookutil.login.LoginObject;
+import facebookutil.user.Email;
 import facebookutil.user.IUser;
 
+/**
+ * Main interface for the social environment. This interface describes
+ * how users can login through a social type, get various users by their email
+ * and get the current high score board
+ * @author Tommy
+ *
+ */
 public interface IJavaSocial {
     
+    /**
+     * Get the current list of users. List can be filtered
+     * by the user
+     * @return
+     */
     public List<IUser> getUsers ();
     
-    public IUser getUserByEmail (String email);
+    /**
+     * Get user by his/her email address. Returns
+     * null if no user
+     * @param email
+     * @return
+     */
+    public IUser getUserByEmail (Email email);
     
+    /**
+     * Getter for the social environment's high score
+     * board
+     * @return
+     */
     public HighScoreBoard getHighScoreBoard ();
     
+    /**
+     * Log in a user using a log in object for a given social type.
+     * This allows the app to associate a social app to a user
+     * @param type
+     * @param login
+     */
     public void loginUser (SocialType type, LoginObject login);
     
+    /**
+     * Log in a user with a given social type. This will call to 
+     * authorize the user.
+     * @param type
+     */
     public void loginUser(SocialType type);
     
-    public IUser createNewUser (String email);
+    /**
+     * Creates a new user by email
+     * @param email
+     * @return
+     */
+    public IUser createNewUser (Email email);
     
-    public void logoutAll ();
+    /**
+     * Saves all users to xml files.
+     */
+    public void saveUsers ();
 
 }
