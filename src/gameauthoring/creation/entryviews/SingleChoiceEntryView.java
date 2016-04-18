@@ -32,6 +32,10 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
         myContainer.add(myChoices, 0, 1);
         myContainer.getStyleClass().add(cssClass);
     }
+    
+    public void setItems(ObservableList<E> items){
+        myChoices.setItems(items);
+    }
 
     public void setSelected (E item) {
         myChoices.getSelectionModel().select(item);

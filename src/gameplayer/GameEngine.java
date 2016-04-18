@@ -16,6 +16,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import util.TimeDuration;
 
@@ -31,13 +32,14 @@ public class GameEngine implements IGameEngine {
     private static final int FPS = 60;
 
     private IGame myGame;
+    private SpriteDisplay mySpriteDisplay = new SpriteDisplay();
     private LevelRenderer myRenderer;
     private IOInterpeter myIOIntercepter;
     private Timeline myTimeline = new Timeline();
 
     public GameEngine (IGame game, BorderPane gamePane, Pane levelPane, IOInterpeter ioInterpreter) {
         myGame = game;
-        myRenderer = new InGameRenderer(game, levelPane);
+        myRenderer = new InGameRenderer(game, levelPane, mySpriteDisplay);
         myIOIntercepter = ioInterpreter;
         createLevelView(gamePane);
         initializeTimeline();
@@ -46,8 +48,15 @@ public class GameEngine implements IGameEngine {
     private void createLevelView (BorderPane gamePane) {
         gamePane.setCenter(myRenderer.getPane());
         gamePane.setRight(new SideBarDisplay(myGame, myRenderer).draw());
-        gamePane.setLeft(new HeadsUpDisplay(myGame).draw());
+        gamePane.setLeft(createLeft());
         gamePane.setTop(createTop());
+    }
+
+    private Node createLeft () {
+        VBox vbox = new VBox();
+        vbox.getChildren().add(new HeadsUpDisplay(myGame).draw());
+        vbox.getChildren().add(mySpriteDisplay.draw());
+        return vbox;
     }
 
     private Node createTop () {

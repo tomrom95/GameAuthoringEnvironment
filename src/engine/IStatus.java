@@ -16,4 +16,9 @@ public interface IStatus extends Affectable, GameEventHandler {
      * @return whether this sprite should be removed from the game
      */
     boolean shouldBeRemoved ();
+    
+    /**
+     * Should set to be removed
+     */
+    void remove ();
 }

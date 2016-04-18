@@ -20,6 +20,7 @@ public class AuthorshipData {
     private List<DefinitionCollection<SpriteDefinition>> myCreatedSprites;
     private DefinitionCollection<SpriteDefinition> myCreatedMissiles;
 
+    private DefinitionCollection<AttributeDefinition> myCreatedGlobals;
     private DefinitionCollection<AttributeDefinition> myCreatedAttributes;
     private DefinitionCollection<SpriteGroup> myCreatedGroups;
     private DefinitionCollection<EventPackageDefinition> myCreatedEventPackages;
@@ -27,6 +28,10 @@ public class AuthorshipData {
     public AuthorshipData () {
 
         myCreatedSprites = FXCollections.observableArrayList();
+        
+        myCreatedGlobals =
+                new DefinitionCollection<AttributeDefinition>("Global Resources",
+                                                              FXCollections.observableArrayList());
         myCreatedAttributes =
                 new DefinitionCollection<AttributeDefinition>("Created Attributes",
                                                               FXCollections.observableArrayList());
@@ -44,6 +49,10 @@ public class AuthorshipData {
 
     public DefinitionCollection<SpriteDefinition> getMyCreatedMissiles () {
         return myCreatedMissiles;
+    }
+    
+    public DefinitionCollection<AttributeDefinition> getMyCreatedGlobals () {
+        return myCreatedGlobals;
     }
 
     public DefinitionCollection<AttributeDefinition> getMyCreatedAttributes () {
@@ -76,6 +85,10 @@ public class AuthorshipData {
 
     public void setMyCreatedGroups (DefinitionCollection<SpriteGroup> createdGroups) {
         myCreatedGroups = createdGroups;
+    }
+    
+    public void setMyCreatedGlobals (DefinitionCollection<AttributeDefinition> createdGlobals) {
+        myCreatedGlobals = createdGlobals;
     }
 
 }

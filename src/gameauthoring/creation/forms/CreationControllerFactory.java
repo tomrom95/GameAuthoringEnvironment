@@ -32,6 +32,9 @@ public class CreationControllerFactory {
         return new CreationControllerAttribute(title, sfcs, game);
     }
 
+    public CreationControllerGlobals createGlobalsCreationController (String title, List<String> sfcs, Game game) {
+        return new CreationControllerGlobals(title, sfcs, game);
+    }
     public CreationControllerEvent createEventCreationController (String title,
                                                                   List<String> sfcs,
                                                                   Game game) {

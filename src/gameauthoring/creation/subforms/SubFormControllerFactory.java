@@ -58,7 +58,6 @@ public class SubFormControllerFactory {
                     .getMyCreatedAttributes());
         }
         else if (type.equals("Attribute")) {
-            System.out.println("attribute");
             return new MakeAttributeSubFormController();
         }
         else if (type.equals("Events")) {
@@ -76,6 +75,9 @@ public class SubFormControllerFactory {
         }
         else if (type.equals("TrackingFire")) {
             return new TrackingFireSubFormController(getMyGame());
+        }
+        else if (type.equals("Upgrade")) {
+            return new UpgradeSFC(getMyGame());
         }
         System.out.println("null");
 
