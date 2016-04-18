@@ -55,6 +55,7 @@ public class MainUserInterface {
             newButton.setOnAction(event -> callMethod(method));
         }
         catch (NoSuchMethodException | SecurityException e) {
+            System.out.println("error");
         }
         
         return newButton;
@@ -66,6 +67,7 @@ public class MainUserInterface {
             method.invoke(this);
         }
         catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+            System.out.println("error");
             return;
         }
     }

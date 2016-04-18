@@ -36,6 +36,9 @@ public class UpgradeSFV extends SubFormView {
 
         // TODO: change list of sprite DefinitionCollections in authorship data to map most likely,
         // or separate them, should decide on that to avoid magic number like this
+        
+        //TODO: maybe do the same for entry views of SFV (getters right now)
+        
         myUpgradeChoices =
                 new SingleChoiceEntryView<SpriteDefinition>(myUpgradeChoicesKey, data
                         .getMyCreatedSprites().get(1).getItems(),
@@ -90,6 +93,10 @@ public class UpgradeSFV extends SubFormView {
     public BooleanProperty isUpgradableProperty () {
         return this.isUpgradable.isCheckedProperty();
     }
+    
+    public BooleanProperty isGlobalProperty () {
+        return this.isGlobalResource.isCheckedProperty();
+    }
 
     public void setSelected (boolean isSelected) {
         this.isUpgradable.setSelected(isSelected);
@@ -97,6 +104,18 @@ public class UpgradeSFV extends SubFormView {
 
     public SingleChoiceEntryView<SpriteDefinition> getUpgradeChoices () {
         return this.myUpgradeChoices;
+    }
+    
+    public SpriteDefinition getNextUpgrade(){
+        return this.myUpgradeChoices.getSelected();
+    }
+    
+    public AttributeDefinition getDepeltedAttribute(){
+        return this.myAttributeChoices.getSelected();
+    }
+    
+    public String getMyCostKey(){
+        return this.myCostKey;
     }
 
     @Override
