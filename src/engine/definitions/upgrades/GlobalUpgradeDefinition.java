@@ -18,9 +18,9 @@ public class GlobalUpgradeDefinition extends UpgradeDefinition {
     }
 
     @Override
-    public IModule create (Positionable parent) {
-        ICheck check = new Check (getGame().getAttributeManager(), getType(), getCost());
-        return new UpgradeModule(getGame(), getUpgrade(), check, parent);
+    protected ICheck getCheck (Positionable parent) {
+       return new Check (getGame().getAttributeManager(), getType(), getCost());
+      
     }
 
 }

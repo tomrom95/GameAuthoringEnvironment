@@ -18,9 +18,10 @@ public class SpriteUpgradeDefinition extends UpgradeDefinition {
 
     }
 
+  
     @Override
-    public IModule create (Positionable parent) {
-        ICheck check = new Check(parent.getAttributeManager(), getType(), getCost());
-        return new UpgradeModule(getGame(), getUpgrade(), check, parent);
+    protected ICheck getCheck (Positionable parent) {
+        return new Check(parent.getAttributeManager(), getType(), getCost());
+        
     }
 }
