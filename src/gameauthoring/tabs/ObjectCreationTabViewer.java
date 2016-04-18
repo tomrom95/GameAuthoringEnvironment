@@ -45,7 +45,10 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private void initializeLists () {
 
+        List<String> myGlobalSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
+
         List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
+
         List<String> myMissileSFCs = new ArrayList<String>(Arrays.asList("Movement"));
         List<String> myEnemySFCs =
                 new ArrayList<String>(Arrays.asList("SelectAttribute", "Movement"));
@@ -58,8 +61,12 @@ public class ObjectCreationTabViewer implements ITabViewer {
         CreationControllerFactory ccFactory = new CreationControllerFactory();
         // TODO: take sfcs out of cc constructors
 
+        CreationController<?> ccGlobal =
+                ccFactory.createAttributeCreationController("Global Resources", myGlobalSFCs,
+                                                            myGame);
+
         CreationController<?> ccAttributes =
-                ccFactory.createAttributeCreationController("Attribute", myAttributeSFCs,
+                ccFactory.createAttributeCreationController("Character Attributes", myAttributeSFCs,
                                                             myGame);
         CreationController<?> ccMissiles =
                 ccFactory.createSpriteCreationController("Missiles", myMissileSFCs,
@@ -78,6 +85,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         myCCs = new ArrayList<CreationController<?>>();
 
+        myCCs.add(ccGlobal);
         myCCs.add(ccAttributes);
         myCCs.add(ccMissiles);
 
@@ -88,6 +96,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         myCCs.add(ccEvents);
 
+        ccGlobal.init(myGlobalSFCs);
         ccAttributes.init(myAttributeSFCs);
         ccMissiles.init(myMissileSFCs);
 
