@@ -1,12 +1,12 @@
 package facebookutil;
 
-import java.util.Set;
+import java.util.List;
 import facebookutil.login.LoginObject;
 import facebookutil.user.IUser;
 
 public interface IJavaSocial {
     
-    public Set<IUser> getUsers ();
+    public List<IUser> getUsers ();
     
     public IUser getUserByEmail (String email);
     
@@ -17,5 +17,7 @@ public interface IJavaSocial {
     public void loginUser(SocialType type);
     
     public IUser createNewUser (String email);
+    
+    public void logoutAll ();
 
 }

@@ -44,7 +44,7 @@ public abstract class LevelRenderer implements IRenderer {
         Coordinate location = sprite.getLocation();
         node.relocate(location.getX() - sprite.getDrawer().getGraphic().getWidth().get() / 2,
                       location.getY() - sprite.getDrawer().getGraphic().getHeight().get() / 2);
-        myPane.getChildren().add(node);
+        node.setVisible(sprite.getDrawer().isVisible());
     }
 
     protected void drawBackground (String url) {

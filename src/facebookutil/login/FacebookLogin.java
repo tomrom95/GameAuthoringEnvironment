@@ -7,8 +7,7 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 import facebookutil.JavaSocial;
 
 
-public class FacebookLogin implements Login {
-    private static final String CALLBACK_URL = "https://duke.edu/";
+public class FacebookLogin implements LoginUser {
     private static final String SCOPE = "publish_actions,email";
 
     private ResourceBundle mySecrets;
@@ -21,8 +20,8 @@ public class FacebookLogin implements Login {
 
     @Override
     public void authenticate (JavaSocial social) {
-        OAuth20Service service = createService(mySecrets.getString("clientId"),
-                                  mySecrets.getString("clientSecret"));
+        OAuth20Service service = createService(mySecrets.getString("facebookId"),
+                                  mySecrets.getString("facebookSecret"));
         myLoginObject.setService(service);
         createToken(social);
     }
@@ -30,7 +29,7 @@ public class FacebookLogin implements Login {
     private OAuth20Service createService (String clientId, String clientSecret) {
         return new ServiceBuilder().apiKey(clientId)
                 .apiSecret(clientSecret)
-                .callback(CALLBACK_URL)
+                .callback(mySecrets.getString("callback"))
                 .scope(SCOPE)
                 .build(FacebookApi.instance());
     }

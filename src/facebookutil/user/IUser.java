@@ -1,7 +1,6 @@
 package facebookutil.user;
 
 import facebookutil.SocialType;
-import facebookutil.actions.SocialAction;
 import facebookutil.login.LoginObject;
 
 /**
@@ -19,7 +18,5 @@ public interface IUser {
     public SocialMap getProfiles ();
     
     public void login (SocialType type, LoginObject login);
-    
-    public void doAction (SocialAction action);
 
 }
