@@ -20,19 +20,16 @@ import util.TimeDuration;
  */
 public class ConstantMover extends Mover {
 
-    private IAttribute mySpeed;
-    private Positionable mySprite;
     
     /*
      * as of now, I am keeping the Positionable in here, so  there are other potential
      * bits of functionality like angle that can be built it here
      */
 
-    public ConstantMover (double xVel, double yVel, Positionable parent) {
+    public ConstantMover (double speed, double angle, Positionable parent) {
         super(parent);
-        getXVel().setValue(xVel);
-        getYVel().setValue(yVel);
-        mySprite = parent;
+        setSpeed(speed);
+        setOrientation(angle);
 
     }
 
@@ -50,9 +47,9 @@ public class ConstantMover extends Mover {
 
     @Override
     public ObservableList<IAttribute> getAttributes () {
-        // TODO Auto-generated method stub
+        // TODO NOT SURE WHAT TO DO HERE
     	ObservableList<IAttribute> attributeList = FXCollections.observableArrayList();
-        attributeList.add(mySpeed);
+//        attributeList.add(mySpeed);
         return attributeList;
     }
 
@@ -78,18 +75,9 @@ public class ConstantMover extends Mover {
         // TODO What is this method supposed to do, how is it different from the other a
     	//attributes method 
     	 List<IAttribute> specialAttributes = new ArrayList<>();
-         specialAttributes.add(mySpeed);
+//         specialAttributes.add(mySpeed);
          return specialAttributes;
     }
-/**
- * This method returns the angle in degrees of a sprites motion based on its X and Y velocities
- * 
- * @return angle in degrees 
- */
-    public double getAngle () {
-        // TODO Auto-generated method stub
-        return Math.atan(getYVel().getValueProperty().get() / getXVel().getValueProperty().get()) *
-               180 / Math.PI;
-    }
+
 
 }

@@ -37,20 +37,13 @@ public class TrackingMover extends Mover {
         myGame = game;
         mySpeed = new Attribute(speed, AttributeType.SPEED);
         myEnemyList = attackGroup;
+        mySprite = sprite;
         myTracker = new EnemyTracker();
     }
 
     @Override
     public void update (TimeDuration duration) {
-        double newXVel =
-                myTracker.calculateXVelToClosestEnemy(mySprite.getLocation(), myPotentialTargets(),
-                                                      mySpeed.getValueProperty().get());
-        setXVel(newXVel);
-
-        double newYVel =
-                myTracker.calculateYVelToClosestEnemy(mySprite.getLocation(), myPotentialTargets(),
-                                                      mySpeed.getValueProperty().get());
-        setYVel(newYVel);
+        setOrientation(myTracker.calculateOrientationToClosestEnemy(mySprite.getLocation(), myPotentialTargets()));
         move(duration);
     }
 

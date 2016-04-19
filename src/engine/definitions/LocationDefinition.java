@@ -12,11 +12,11 @@ public class LocationDefinition {
         return new Coordinate(myX, myY);
     }
 
-    public void setX (int x) {
+    public void setX (double x) {
         myX = x;
     }
 
-    public void setY (int y) {
+    public void setY (double y) {
         myY = y;
     }
 

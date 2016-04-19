@@ -20,13 +20,12 @@ import util.TimeDuration;
  *
  */
 public class DirectionalFirer extends Firer {
+	
 
-    private static final int RADS_TO_DEGREES = 180;
     private IGame myGame;
     private IAttribute myWaitTime;
     private Positionable mySprite;
     private SpriteDefinition myProjectile;
-    // should this (below) be an attribute?
     private double myAngle;
     private TimeDuration myTimeSinceFire;
 
@@ -55,28 +54,20 @@ public class DirectionalFirer extends Firer {
         myTimeSinceFire.increase(duration);
 
         if (myTimeSinceFire.getSeconds() >= myWaitTime.getValueProperty().get()) {
-            myTimeSinceFire.setToZero();;
-
+            myTimeSinceFire.setToZero();         
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
                                               mySprite.getLocation().getY()));
+            /**
+             * this angle should have been intaken from the authoring and should still be in
+             * degrees
+             */
+            bullet.getMovementStrategy().setOrientation(myAngle);
 
-            bullet.getMovementStrategy().setXVel(getXVel(myAngle));
-            bullet.getMovementStrategy().setYVel(getYVel(myAngle));
             myGame.bufferedAdd(bullet);
-
         }
     }
 
-    private double getXVel (double theta) {
-        return myProjectile.getMovementDefinition().getSpeed() *
-               Math.cos(theta * Math.PI / RADS_TO_DEGREES);
-    }
-
-    private double getYVel (double theta) {
-
-        return myProjectile.getMovementDefinition().getSpeed() *
-               Math.sin(theta * Math.PI / RADS_TO_DEGREES);
-    }
+ 
 
 }

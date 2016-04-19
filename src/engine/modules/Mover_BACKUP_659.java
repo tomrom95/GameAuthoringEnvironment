@@ -28,15 +28,18 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     public static final double DEGREES_TO_RADS = Math.PI / 180;
     private IAttribute myXVel;
     private IAttribute myYVel;
+<<<<<<< HEAD
+    private IAttribute myAngle;
+=======
     private IAttribute myOrientation;
-    private IAttribute mySpeed;
+
+>>>>>>> e4537302e9cefc54da3d17e792621904e94e9c8a
     private Positionable myParent;
     private List<Coordinate> myPath;
 
     public Mover (Positionable positionable) {
         myXVel = new Attribute(AttributeType.X_VEL);
         myYVel = new Attribute(AttributeType.Y_VEL);
-        mySpeed = new Attribute(AttributeType.SPEED);
         myOrientation = new Attribute(AttributeType.ORIENTATION);
         myParent = positionable;
         myPath = new ArrayList<>();
@@ -47,7 +50,6 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     }
 
     protected void move (TimeDuration duration) {
-    	updateVelocities();
         double xChange = distance(getXVel().getValueProperty().get(), duration.getSeconds());
         double yChange = distance(getYVel().getValueProperty().get(), duration.getSeconds());
         move(getNextCoordinate(xChange, yChange));
@@ -114,35 +116,13 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     private void setYVel (double newVel) {
         myYVel.setValue(newVel);
     }
-    
-    private void updateVelocities(){
-    	setXVel(mySpeed.getValueProperty().get() * Math.cos(myOrientation.getValueProperty().get()));
-    	setYVel(mySpeed.getValueProperty().get() * Math.sin(myOrientation.getValueProperty().get()));
-    }
     /**
      * the angle is stored in radians, all conversion of angles will occur before it is 
      * presented to the user, and right after it is taken in by the user
-     *
-     * The X and Y velocities are only set according to this method and set speed now
-     * @return 
      */
-    @Override
-    public void setOrientation(double newAngle){
-    	myOrientation.setValue(newAngle * DEGREES_TO_RADS);
-    	setXVel(Math.cos(newAngle* DEGREES_TO_RADS) * mySpeed.getValueProperty().get());
-    	setYVel(Math.sin(newAngle * DEGREES_TO_RADS) * mySpeed.getValueProperty().get());
-    	
-    }
-    /**
-     * this sets the speed and the X and Y velocities according to the current speed and angle.
-     * 
-     * The X and Y velocities are only set according to this method and set orientation now
-     */
-    @Override
-    public void setSpeed(double newSpeed){
-    	mySpeed.setValue(newSpeed);
-    	setXVel(Math.cos(myOrientation.getValueProperty().get()) * newSpeed);
-    	setYVel(Math.sin(myOrientation.getValueProperty().get()) * newSpeed);
+    public void setAngle(double newAngle){
+    	myAngle.setValue(newAngle * DEGREES_TO_RADS);
+    	setYVel(Math.sin(newAngle * DEGREES_TO_RADS) * this.    );
     }
 
     @Override
@@ -158,12 +138,6 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     @Override
     public double getOrientation () {
         return myOrientation.getValueProperty().get();
-    }
-    
-    @Override
-    
-    public double getSpeed(){
-    	return mySpeed.getValueProperty().get();
     }
     
 

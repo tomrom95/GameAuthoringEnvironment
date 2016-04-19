@@ -20,7 +20,19 @@ public interface IMovementModule extends IModule {
 
     List<Coordinate> getPath ();
     
-    void setAngle(double newAngle);
+    void setOrientation(double newAngle);
+    
+    void setSpeed(double newSpeed);
+
+
+    /**
+     * @return angle by which the render should rotate the sprite before display
+     */
+    double getOrientation ();
+    
+    
+    double getSpeed();
+
 
 
 }

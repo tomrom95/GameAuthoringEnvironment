@@ -68,18 +68,9 @@ public class TrackingFirer extends Firer {
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
                                               mySprite.getLocation().getY()));
-            double initialXVel =
-                    myTracker.calculateXVelToClosestEnemy(bullet.getLocation(), getTargets(),
-                                                          myProjectile.getMovementDefinition()
-                                                                  .getSpeed());
-            bullet.getMovementStrategy().setXVel(initialXVel);
-            double initialYVel =
-                    myTracker.calculateYVelToClosestEnemy(bullet.getLocation(), getTargets(),
-                                                          myProjectile.getMovementDefinition()
-                                                                  .getSpeed());
-            bullet.getMovementStrategy().setYVel(initialYVel);
+            bullet.getMovementStrategy().setOrientation(myTracker.calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
             myGame.bufferedAdd(bullet);
-            myTimeSinceFire.setToZero();;
+            myTimeSinceFire.setToZero();
         }
     }
 
