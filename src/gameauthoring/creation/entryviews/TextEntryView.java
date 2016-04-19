@@ -1,16 +1,7 @@
 package gameauthoring.creation.entryviews;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 
 
 /**
@@ -27,7 +18,7 @@ public class TextEntryView extends InputEntryView {
         super(label,data,width,height,cssClass);
         myTextInput = new TextArea();
         super.setInputControl(myTextInput);
-        super.init(label,width,height,cssClass);
+        super.init(label, cssClass);
     }
 
 }

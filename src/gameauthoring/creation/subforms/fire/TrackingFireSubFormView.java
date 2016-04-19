@@ -7,10 +7,8 @@ import engine.SpriteGroup;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
-import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.shareddata.DefinitionCollection;
-import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
@@ -33,11 +31,9 @@ public class TrackingFireSubFormView extends SubFormView {
             new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30,
                               AuthoringView.DEFAULT_ENTRYVIEW);
     private SingleChoiceEntryView<SpriteGroup> myTargets;
-    private List<IEntryView> myEntryViews =
-            new ArrayList<IEntryView>(Arrays.asList(myWaitTime, myTargets));
 
     public TrackingFireSubFormView (DefinitionCollection<SpriteGroup> groupsList) {
-        myTargets = new SingleChoiceEntryView<SpriteGroup>(myTargetsKey, groupsList.getItems(), AuthoringView.DEFAULT_ENTRYVIEW);;
+        myTargets = new SingleChoiceEntryView<SpriteGroup>(myTargetsKey, groupsList.getItems(), AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
 
     }    
@@ -50,8 +46,8 @@ public class TrackingFireSubFormView extends SubFormView {
         return myPane;
     }
 
-    private void initView () {
-        super.setMyEntryViews(myEntryViews);
+    @Override
+    protected void initView () {
         myPane.setGridLinesVisible(true);
         myPane.add(myWaitTime.draw(), 0, 0);
         myPane.add(myTargets.draw(), 1, 0);

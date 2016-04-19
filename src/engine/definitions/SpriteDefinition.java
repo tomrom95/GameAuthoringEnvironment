@@ -24,7 +24,7 @@ public class SpriteDefinition implements IProfilable {
 
     private MovementDefinition myMovementDefinition;
     private List<ModuleDefinition> myModuleDefinitions;
-    private LocationDefinition myLocation;
+    private Coordinate myLocation;
     private List<AttributeDefinition> myAttributes;
     private IProfile myProfile;
     private SpriteType mySpriteType;
@@ -34,7 +34,7 @@ public class SpriteDefinition implements IProfilable {
         myMovementDefinition = new StaticMovementDefintion();
         myModuleDefinitions = new ArrayList<ModuleDefinition>();
         myAttributes = new ArrayList<AttributeDefinition>();
-        myLocation = new LocationDefinition();
+        myLocation = new Coordinate(0,0);
         myProfile = new Profile();
     }
 
@@ -53,7 +53,7 @@ public class SpriteDefinition implements IProfilable {
     }
 
     protected Coordinate createCoordinate () {
-        return myLocation.create();
+        return myLocation;
     }
 
     protected List<IModule> createModules (ISprite sprite) {
@@ -88,7 +88,7 @@ public class SpriteDefinition implements IProfilable {
         myAttributes.remove(attribute);
     }
 
-    public void setLocation (LocationDefinition location) {
+    public void setLocation (Coordinate location) {
         myLocation = location;
     }
 

@@ -12,9 +12,6 @@ public class Main extends Application {
         MainUserInterface mainUI = new MainUserInterface();
         mainUI.init(s);
         s.show();
-//        AuthoringView aView = new AuthoringView();
-//        aView.init(s);
-//        s.show();
     }
 
     public static void main (String[] args) {

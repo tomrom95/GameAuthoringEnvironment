@@ -46,4 +46,10 @@ public class StaticMoverSubFormController implements ISubFormControllerSprite {
         return myView;
     }
 
+    @Override
+    public void initializeFields () {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

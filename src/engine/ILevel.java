@@ -2,8 +2,6 @@ package engine;
 
 import java.util.List;
 import engine.conditions.ICondition;
-import engine.interactionevents.KeyIOEvent;
-import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
@@ -20,7 +18,13 @@ import util.Coordinate;
  * @author Jonathan Im
  *
  */
-public interface ILevel extends Updateable, IAdder {
+public interface ILevel extends Updateable, IAdder, IEventInternalizer {
+
+    /**
+     * @return The next level manager object for setting
+     *         winning and losing levels
+     */
+    INextLevelManager getNextLevelManager ();
 
     /**
      * @return the condition manager for this level
@@ -68,16 +72,6 @@ public interface ILevel extends Updateable, IAdder {
      * @return the list of Drawable items in this level
      */
     List<? extends Drawable> getDrawables ();
-
-    /**
-     * @param list of key events to be processed
-     */
-    void internalizeKeyEvents (List<KeyIOEvent> list);
-
-    /**
-     * @param list of key events to be processed
-     */
-    void internalizeMouseEvents (List<MouseIOEvent> list);
 
     /**
      * @param sprite to be removed
