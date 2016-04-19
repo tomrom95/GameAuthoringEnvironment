@@ -50,4 +50,10 @@ public class UpgradeSFC implements ISubFormControllerSprite {
         return mySFV;
     }
 
+    @Override
+    public void initializeFields () {
+        mySFV.setSelected(false);
+        
+    }
+
 }

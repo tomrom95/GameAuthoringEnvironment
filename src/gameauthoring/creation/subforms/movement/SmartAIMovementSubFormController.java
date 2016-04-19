@@ -34,4 +34,10 @@ public class SmartAIMovementSubFormController implements ISubFormControllerSprit
         return myView;
     }
 
+    @Override
+    public void initializeFields () {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

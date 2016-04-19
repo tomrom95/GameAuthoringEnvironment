@@ -28,6 +28,8 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
     private IFormDataManager myFormData;
     private IGame myGame;
     private FiringSubFormController myFiringSFC;
+    private double myDefaultAngle = 0;
+    private double myDefaultWaitTime = 0;
 
     private static Predicate<ModuleDefinition> findDirectionalFirer () {
 
@@ -46,6 +48,16 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
         myFormData = myView.getData();
         myGame = game;
         myFiringSFC = firingSubFormController;
+    }
+
+    @Override
+    public void initializeFields () {
+        populateViewsWithData(myDefaultAngle, myDefaultWaitTime);
+    }
+
+    private void populateViewsWithData (double angle, double wait) {
+        myFormData.set(myView.getMyAngleKey(), Double.toString(angle));
+        myFormData.set(myView.getMyWaitTimeKey(), Double.toString(wait));
     }
 
     @Override

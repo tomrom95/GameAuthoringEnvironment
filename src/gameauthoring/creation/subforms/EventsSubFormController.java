@@ -59,4 +59,10 @@ public class EventsSubFormController implements ISubFormController<EventPackageD
         return myView;
     }
 
+    @Override
+    public void initializeFields () {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

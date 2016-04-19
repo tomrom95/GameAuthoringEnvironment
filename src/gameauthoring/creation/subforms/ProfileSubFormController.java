@@ -24,7 +24,7 @@ public class ProfileSubFormController<T extends IProfilable> implements ISubForm
     private IFormDataManager myFormData;
     private String myDefaultName = "<Name>";
     private String myDefaultDescription = "<Description>";
-    private String myDefaultImage = "images/Square.png";
+    private String myDefaultImage = "images/duvall.jpg";
             
 
     public ProfileSubFormController () {

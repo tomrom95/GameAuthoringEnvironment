@@ -16,10 +16,20 @@ public class MakeAttributeSubFormController implements ISubFormControllerAttribu
 
     private MakeAttributeSubFormView myView;
     private IFormDataManager myFormData;
+    private double myInitialValue = 0;
 
     public MakeAttributeSubFormController () {
         this.myView = new MakeAttributeSubFormView();
         this.myFormData = myView.getData();
+    }
+
+    @Override
+    public void initializeFields () {
+        populateViewsWithData(myInitialValue);
+    }
+
+    private void populateViewsWithData (double value) {
+        myFormData.set(myView.getMyStartingValueKey(), String.valueOf(value));
     }
 
     /**
@@ -42,7 +52,7 @@ public class MakeAttributeSubFormController implements ISubFormControllerAttribu
 
     @Override
     public void populateViewsWithData (AttributeDefinition item) {
-        myFormData.set(myView.getMyStartingValueKey(), String.valueOf(item.getStartingValue()));
+        populateViewsWithData(item.getStartingValue());
     }
 
     @Override

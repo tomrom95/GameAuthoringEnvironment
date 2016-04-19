@@ -19,12 +19,24 @@ public class ConstantMoverSubFormController implements ISubFormControllerSprite 
 
     private ConstantMoverSubFormView myView;
     private IFormDataManager myFormData;
+    private double myDefaultXVel = 0;
+    private double myDefaultYVel = 0;
 
     public ConstantMoverSubFormController () {
         myView = new ConstantMoverSubFormView();
         myFormData = myView.getData();
     }
+    @Override
+    public void initializeFields () {
+        populateViewsWithData(myDefaultXVel, myDefaultYVel);
+    }
+    private void populateViewsWithData (double xVel, double yVel) {
+        myFormData.set(myView.getMyXVelKey(),
+                       Double.toString(xVel));
+        myFormData.set(myView.getMyYVelKey(),
+                       Double.toString(yVel));
 
+    }
     @Override
     public void updateItem (SpriteDefinition item) {
 
@@ -41,7 +53,7 @@ public class ConstantMoverSubFormController implements ISubFormControllerSprite 
         item.setMovementDefinition(myMovementDefinition);
 
     }
-
+   
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
 
@@ -59,5 +71,7 @@ public class ConstantMoverSubFormController implements ISubFormControllerSprite 
     public ISubFormView getSubFormView () {
         return myView;
     }
+
+    
 
 }

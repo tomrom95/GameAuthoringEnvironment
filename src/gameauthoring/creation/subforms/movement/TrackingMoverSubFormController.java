@@ -16,6 +16,7 @@ public class TrackingMoverSubFormController implements ISubFormControllerSprite 
     private TrackingMoverSubFormView myView;
     private IFormDataManager myFormData;
     private IGame myGame;
+    private double myDefaultSpeed = 0;
     
     public TrackingMoverSubFormController (IGame game) {
        this.myGame = game;
@@ -23,6 +24,10 @@ public class TrackingMoverSubFormController implements ISubFormControllerSprite 
        this.myFormData = myView.getData();
     }
 
+    @Override
+    public void initializeFields () {
+        myFormData.set(myView.getSpeedKey(), Double.toString(myDefaultSpeed));
+    }
     @Override
     public void updateItem (SpriteDefinition item) {
         TrackingMoverDefinition newTrackingMoverDef = new TrackingMoverDefinition();
@@ -59,8 +64,9 @@ public class TrackingMoverSubFormController implements ISubFormControllerSprite 
 
     @Override
     public ISubFormView getSubFormView () {
-        // TODO Auto-generated method stub
         return myView;
     }
+
+  
 
 }
