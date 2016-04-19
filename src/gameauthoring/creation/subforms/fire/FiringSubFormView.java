@@ -8,7 +8,6 @@ import gameauthoring.creation.subforms.DynamicSubFormView;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
 
 
 /**
@@ -22,10 +21,7 @@ import javafx.scene.Node;
 public class FiringSubFormView extends DynamicSubFormView {
 
     private String myFireTypeKey = "Fire Type: ";
-    private Node myMissileSelectionView;
-    private SingleChoiceEntryView<SpriteDefinition> myMissileSelection;
-    private ObservableList<SpriteDefinition> myMissiles;
-    private Consumer<SpriteDefinition> myChangeMissileAction;
+    private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
 
     public FiringSubFormView (List<ISubFormView> views,
                               Consumer<Integer> changeSelectionAction,
@@ -33,14 +29,8 @@ public class FiringSubFormView extends DynamicSubFormView {
                               Consumer<SpriteDefinition> changeMissileAction,
                               ObservableList<SpriteDefinition> missiles) {
         super(views, changeSelectionAction, options);
-        myChangeMissileAction = changeMissileAction;
-        myMissiles = missiles;
-    }
+        initMissileSelectionView(changeMissileAction, missiles);
 
-    @Override
-    protected void initEntryViews (Consumer<Integer> action, List<String> options) {
-        super.initEntryViews(action, options);
-        initMissileSelectionView(myChangeMissileAction, myMissiles);
     }
 
     private void initMissileSelectionView (
@@ -48,16 +38,16 @@ public class FiringSubFormView extends DynamicSubFormView {
                                            ObservableList<SpriteDefinition> missiles) {
 
         // Missiles
-        myMissileSelection =
+        myMissileSelectionView =
                 new SingleChoiceEntryView<>("Missile", missiles, AuthoringView.DEFAULT_ENTRYVIEW);
 
-        myMissileSelection.addComboItemListener(changeMissileAction);
-        myMissileSelectionView = myMissileSelection.draw();
+        myMissileSelectionView.addComboItemListener(changeMissileAction);
+        getMyGridPane().add(myMissileSelectionView.draw(), 1, 0);
 
     }
 
     public void selectMissile (SpriteDefinition missile) {
-        myMissileSelection.setSelected(missile);
+        myMissileSelectionView.setSelected(missile);
     }
 
     @Override
@@ -65,8 +55,6 @@ public class FiringSubFormView extends DynamicSubFormView {
         setMyCurrentSubViewX(0);
         setMyCurrentSubViewY(1);
         super.initView();
-        getMyGridPane().add(myMissileSelectionView, 1, 0);
-
     }
 
     @Override

@@ -3,14 +3,9 @@ package gameauthoring.creation.subforms.fire;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 import engine.IGame;
-import engine.definitions.FirerDefinition;
-import engine.definitions.ModuleDefinition;
 import engine.definitions.SpriteDefinition;
 import gameauthoring.creation.subforms.DynamicSubFormController;
-import gameauthoring.creation.subforms.ISubFormController;
-import gameauthoring.creation.subforms.SubFormControllerFactory;
 
 
 /**
@@ -23,8 +18,9 @@ public class FiringSubFormController extends DynamicSubFormController {
 
     private SpriteDefinition myMissile;
 
-    public FiringSubFormController (SubFormControllerFactory sfcFactory, IGame game) {
-        super(sfcFactory, game);
+    public FiringSubFormController (IGame game) {
+        super(game, new FiringSFCFactory(game, null),
+              new ArrayList<String>(Arrays.asList("DirectionalFire", "TrackingFire")));
         List<String> options = new ArrayList<>(Arrays.asList("Directional", "Tracking"));
         setMyView(
                   new FiringSubFormView(getMySubFormViews(), e -> changeSelection(e), options,
@@ -35,18 +31,8 @@ public class FiringSubFormController extends DynamicSubFormController {
 
     @Override
     protected void setUpSubFormControllers () {
-        // TOOD: add to factory
-        // gonna have to figure out better way to get access to getMyMissile
-        DirectionalFireSubFormController dfSFC =
-                (DirectionalFireSubFormController) this.getMySFCFactory()
-                        .createSpriteSubFormController("DirectionalFire");
-        TrackingFireSubFormController tfSFC =
-                (TrackingFireSubFormController) this.getMySFCFactory()
-                        .createSpriteSubFormController("TrackingFire");
-        List<ISubFormController<SpriteDefinition>> subFormControllers = new ArrayList<>();
-        subFormControllers.addAll(Arrays
-                .asList(dfSFC, tfSFC));
-        setMySubFormControllers(subFormControllers);
+        setMySFCFactory(new FiringSFCFactory(getMyGame(), this));
+        super.setUpSubFormControllers();
 
     }
 

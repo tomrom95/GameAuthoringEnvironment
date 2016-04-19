@@ -33,18 +33,6 @@ public class TrackingFireSubFormController implements ISubFormControllerSprite {
     private FiringSubFormController myFiringSFC;
     private double myDefaultWaitTime = 0;
 
-    // TODO: why is this static?
-    private static Predicate<ModuleDefinition> findTrackingFirer () {
-
-        return p -> p.getClass().equals(new TrackingFirerDefinition().getClass());
-    }
-
-    public TrackingFireSubFormController (IGame game) {
-        myView = new TrackingFireSubFormView(game.getAuthorshipData().getMyCreatedGroups());
-        myFormData = myView.getData();
-        myGame = game;
-    }
-
     public TrackingFireSubFormController (IGame game,
                                           FiringSubFormController firingSubFormController) {
         myView = new TrackingFireSubFormView(game.getAuthorshipData().getMyCreatedGroups());
