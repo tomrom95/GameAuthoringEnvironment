@@ -15,8 +15,8 @@ public class MovementTestMain extends Application{
     @Override
     public void start (Stage s) throws Exception {
         IGame game = new Game();
-        MovementSubFormController a = new MovementSubFormController(new SubFormControllerFactory(game), game);
-        FiringSubFormController fSFC = new FiringSubFormController(new SubFormControllerFactory(game), game);
+        MovementSubFormController a = new MovementSubFormController(game);
+        FiringSubFormController fSFC = new FiringSubFormController(game);
         GridPane root = new GridPane();
         root.add(a.getSubFormView().draw(), 0, 0);
         root.add(fSFC.getSubFormView().draw(), 0, 1);

@@ -42,18 +42,9 @@ public class SubFormControllerFactory {
 
         }
         else if (type.equals("Movement")) {
-            return new MovementSubFormController(this, getMyGame());
+            return new MovementSubFormController(getMyGame());
         }
-        else if (type.equals("SmartAI")) {
-            System.out.println("smartAI");
-
-            return new SmartAIMovementSubFormController();
-        }
-        else if (type.equals("UserMover")) {
-            System.out.println("userMover");
-
-            return new UserMoverSubFormController();
-        }
+     
         else if (type.equals("SelectAttribute")) {
             return new SelectAttributeSFC(getMyAuthorshipData()
                     .getMyCreatedAttributes());
@@ -69,13 +60,7 @@ public class SubFormControllerFactory {
             return new SelectSpriteSFC(getMyAuthorshipData().getMyCreatedSprites());
         }
         else if (type.equals("Firing")) {
-            return new FiringSubFormController(this, getMyGame());
-        }
-        else if (type.equals("DirectionalFire")) {
-            return new DirectionalFireSubFormController(getMyGame());
-        }
-        else if (type.equals("TrackingFire")) {
-            return new TrackingFireSubFormController(getMyGame());
+            return new FiringSubFormController(getMyGame());
         }
         else if (type.equals("Upgrade")) {
             return new UpgradeSFC(getMyGame());
@@ -102,29 +87,15 @@ public class SubFormControllerFactory {
         }
 
         else if (type.equals("Movement")) {
-            return new MovementSubFormController(this, getMyGame());
+            return new MovementSubFormController(getMyGame());
         }
 
-        else if (type.equals("SmartAI")) {
-
-            return new SmartAIMovementSubFormController();
-        }
-        else if (type.equals("UserMover")) {
-
-            return new UserMoverSubFormController();
-        }
         else if (type.equals("SelectAttribute")) {
             return new SelectAttributeSFC(getMyAuthorshipData()
                     .getMyCreatedAttributes());
         }
         else if (type.equals("Firing")) {
-            return new FiringSubFormController(this, getMyGame());
-        }
-        else if (type.equals("DirectionalFire")) {
-            return new DirectionalFireSubFormController(getMyGame());
-        }
-        else if (type.equals("TrackingFire")) {
-            return new TrackingFireSubFormController(getMyGame());
+            return new FiringSubFormController(getMyGame());
         }
         System.out.println("null");
 
