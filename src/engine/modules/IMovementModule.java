@@ -24,4 +24,11 @@ public interface IMovementModule extends IModule {
 
     void setYVel (double newVel);
 
+    /**
+     * @return angle by which the render should rotate the sprite before display
+     */
+    double getOrientation ();
+
+
+
 }
