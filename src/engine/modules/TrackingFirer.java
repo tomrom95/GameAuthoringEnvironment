@@ -33,8 +33,7 @@ public class TrackingFirer extends Firer {
     private IAttribute myAmmo;
     private IGame myGame;
     private Positionable mySprite;
-    // TODO convert this to use TimeDuration
-    private double myTimeSinceFire;
+    private TimeDuration myTimeSinceFire;
 
     public TrackingFirer (List<SpriteType> targets,
                           IGame game,
@@ -48,7 +47,8 @@ public class TrackingFirer extends Firer {
         myTracker = new EnemyTracker();
         mySprite = sprite;
         myProjectile = projectile;
-        myTimeSinceFire = 0;
+        myTimeSinceFire = new TimeDuration();
+        myTimeSinceFire.setToZero();
 
     }
 
@@ -61,8 +61,8 @@ public class TrackingFirer extends Firer {
         if (getTargets().isEmpty()) {
             return;
         }
-        myTimeSinceFire += duration.getMillis();
-        if (myTimeSinceFire >= myWaitTime.getValueProperty().get()) {
+        myTimeSinceFire.increase(duration);
+        if (myTimeSinceFire.getSeconds() >= myWaitTime.getValueProperty().get()) {
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
                                               mySprite.getLocation().getY()));
@@ -77,7 +77,7 @@ public class TrackingFirer extends Firer {
                                                                   .getSpeed());
             bullet.getMovementStrategy().setYVel(initialYVel);
             myGame.bufferedAdd(bullet);
-            myTimeSinceFire = 0;
+            myTimeSinceFire.setToZero();;
         }
     }
 
@@ -97,8 +97,6 @@ public class TrackingFirer extends Firer {
     public void registerKeyEvent (KeyIOEvent keyEvent) {
     }
 
-    private void registerKeyPress (Key fire) {
-    }
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
