@@ -13,10 +13,11 @@ import util.Coordinate;
  * This class uses a comparator to query available sprites on the level and located the nearest one.
  *
  * @author Timko
- *         TODO clean up this class
+ *         
  */
 public class EnemyTracker {
 
+	
     /**
      * Locate the distance of the closest sprite using a comparator based on manhattan distance
      *
@@ -24,13 +25,16 @@ public class EnemyTracker {
      * @param myLocation Coordinate of the sprite
      * @return the closest sprite
      */
+	
     private ISprite getClosestEnemy (List<ISprite> enemies, Coordinate myLocation) {
-        Comparator<ISprite> closer =
+        Comparator<ISprite> myDistanceComparator =
                 (e1, e2) -> Double.compare(calculateDistance(myLocation, e1.getLocation()),
                                            calculateDistance(myLocation, e2.getLocation()));
-        return enemies.stream().min(closer).get();
+        return enemies.stream().min(myDistanceComparator).get();
 
     }
+    
+     
 
     private double calculateDistance (Coordinate myLocation, Coordinate enemyLocation) {
 
@@ -67,6 +71,8 @@ public class EnemyTracker {
      */
     private double calculateAbsoluteOrientationToEnemy (Coordinate myLocation,
                                                         Coordinate enemyLocation) {
+    	
+    	//TODO: make this method a bit cleaner
         double xDelta = enemyLocation.getX() - myLocation.getX();
         double yDelta = enemyLocation.getY() - myLocation.getY();
         double arctangent = Math.atan(yDelta / xDelta) * 180 / Math.PI;
