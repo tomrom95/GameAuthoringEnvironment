@@ -23,14 +23,14 @@ public class ConstantMoverSubFormView extends SubFormView {
 
     private GridPane myPane = new GridPane();
 
-    private String myXVelKey = "X Velocity: ";
-    private String myYVelKey = "Y Velocity: ";
+    private String mySpeedKey = "Speed: ";
+    private String myOrientationKey = "Initial Orientation: ";
 
-    private IEntryView myXVel = new NumberEntryView(myXVelKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myYVel = new NumberEntryView(myYVelKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView mySpeed = new NumberEntryView(mySpeedKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView myOrientation = new NumberEntryView(myOrientationKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
 
     private List<IEntryView> myEntryViews =
-            new ArrayList<IEntryView>(Arrays.asList(myXVel, myYVel));
+            new ArrayList<IEntryView>(Arrays.asList(mySpeed, myOrientation));
 
     public ConstantMoverSubFormView () {
         initView();
@@ -44,16 +44,16 @@ public class ConstantMoverSubFormView extends SubFormView {
     @Override
     protected void initView () {
         myPane.setGridLinesVisible(true);
-        myPane.add(myXVel.draw(), 0, 0);
-        myPane.add(myYVel.draw(), 0, 1);
+        myPane.add(mySpeed.draw(), 0, 0);
+        myPane.add(myOrientation.draw(), 0, 1);
     }
 
-    public String getMyXVelKey () {
-        return myXVelKey;
+    public String getMySpeedKey () {
+        return mySpeedKey;
     }
 
-    public String getMyYVelKey () {
-        return myYVelKey;
+    public String getMyOrientationKey () {
+        return myOrientationKey;
     }
 
 }
