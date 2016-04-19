@@ -7,6 +7,13 @@ import facebookutil.actions.facebook.FacebookNotifyUsers;
 import facebookutil.user.IUser;
 import facebookutil.user.profiles.SocialProfile;
 
+/**
+ * Implementation of an app for Facebook.
+ * Can login, notify, and (not yet) post to facebook. Still
+ * working on that one...
+ * @author Tommy
+ *
+ */
 public class FacebookApp extends App{
 
     @Override
