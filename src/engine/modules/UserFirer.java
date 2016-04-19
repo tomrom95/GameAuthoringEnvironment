@@ -39,7 +39,7 @@ public class UserFirer extends Firer {
 
     @Override
     public void applyEffect (IEffect effect) {
-        getAmmo().get().applyEffect(effect);
+        getAmmo().applyEffect(effect);
     }
 
     @Override
@@ -67,5 +67,11 @@ public class UserFirer extends Firer {
         attributeList.add(myAmmo);
         return attributeList;
     }
+
+	@Override
+	protected List<IAttribute> getSpecificAttributes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

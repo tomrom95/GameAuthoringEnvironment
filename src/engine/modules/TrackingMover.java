@@ -19,7 +19,7 @@ import util.TimeDuration;
  * This class builds a module that follows the closest enemy
  *
  * @author Dhrumil Timko
- *         TODO should this class extend DefaultAffectable?
+
  */
 public class TrackingMover extends Mover {
 
@@ -67,9 +67,6 @@ public class TrackingMover extends Mover {
 
     @Override
     protected List<IAttribute> getSpecificAttributes () {
-        // TODO Auto-generated method stub
-        List<IAttribute> myList = new ArrayList<IAttribute>();
-        myList.add(mySpeed);
-        return myList;
+        return new ArrayList<>();
     }
 }

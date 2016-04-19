@@ -12,21 +12,13 @@ public class StaticMovementDefintion extends ConstantMoverDefinition {
 
     private static final double IMMOVABLE_SPEED = 0;
     
-    private double myXVel = IMMOVABLE_SPEED;
-    private double myYVel = IMMOVABLE_SPEED;
+    private double mySpeed = IMMOVABLE_SPEED;
 
     @Override
     public IMovementModule create (Positionable parent) {
+    	setSpeed(mySpeed);
         return new StaticMover(parent);
     }
 
-    @Override
-    public double getXVel () {
-        return myXVel;
-    }
-
-    @Override
-    public double getYVel () {
-        return myYVel;
-    }
+  
 }

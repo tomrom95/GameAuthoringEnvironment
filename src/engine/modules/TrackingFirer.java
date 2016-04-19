@@ -1,5 +1,6 @@
 package engine.modules;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import engine.Attribute;
@@ -32,7 +33,6 @@ public class TrackingFirer extends Firer {
     private SpriteDefinition myProjectile;
     private IAttribute myWaitTime;
     private EnemyTracker myTracker;
-    private IAttribute myAmmo;
     private IGame myGame;
     private Positionable mySprite;
     private TimeDuration myTimeSinceFire;
@@ -83,7 +83,7 @@ public class TrackingFirer extends Firer {
     @Override
     public void applyEffect (IEffect effect) {
         // TODO move to firer? and should probably apply to waitTime also
-        getAmmo().get().applyEffect(effect);
+        getAmmo().applyEffect(effect);
     }
 
     @Override
@@ -95,11 +95,12 @@ public class TrackingFirer extends Firer {
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
     }
 
-    @Override
-    public ObservableList<IAttribute> getAttributes () {
-        ObservableList<IAttribute> attributeList = FXCollections.observableArrayList();
-        attributeList.add(myAmmo);
-        attributeList.add(myWaitTime);
-        return attributeList;
-    }
+	@Override
+	protected List<IAttribute> getSpecificAttributes() {
+		List<IAttribute> toAdd = new ArrayList<>();
+		toAdd.add(myWaitTime);
+		return toAdd;
+	}
+
+   
 }

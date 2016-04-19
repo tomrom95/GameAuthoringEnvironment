@@ -13,27 +13,18 @@ import engine.modules.IMovementModule;
 public abstract class MovementDefinition implements IDefinition {
 
     private double mySpeed;
-    private double myAngle;
 
     public abstract IMovementModule create (Positionable parent);
 
-    /*
-     * TODO this should be moved to imovementmodule
-     */
+    
     public void setSpeed (double speed) {
         mySpeed = speed;
     }
-    
-    public void setAngle (double angle) {
-    	myAngle = angle;
-    }
-
+      
     public double getSpeed () {
         return mySpeed;
     }
     
-    public double getAngle () {
-    	return myAngle;
-    }
+   
 
 }

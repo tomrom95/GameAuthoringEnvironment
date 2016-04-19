@@ -91,8 +91,10 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     @Override
     public ObservableList<IAttribute> getAttributes () {
         ObservableList<IAttribute> attributes = FXCollections.observableArrayList();
-        attributes.add(getXVel());
-        attributes.add(getYVel());
+        attributes.add(mySpeed);
+        attributes.add(myOrientation);
+        attributes.add(myXVel);
+        attributes.add(myYVel);
         attributes.addAll(getSpecificAttributes());
         return attributes;
     }

@@ -1,5 +1,8 @@
 package engine.modules;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
@@ -67,6 +70,13 @@ public class DirectionalFirer extends Firer {
             myGame.bufferedAdd(bullet);
         }
     }
+
+	@Override
+	protected List<IAttribute> getSpecificAttributes() {
+		List<IAttribute> toAdd = new ArrayList<>();
+		toAdd.add(myWaitTime);
+		return toAdd;
+	}
 
  
 

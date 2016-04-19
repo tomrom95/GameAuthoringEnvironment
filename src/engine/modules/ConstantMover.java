@@ -6,8 +6,6 @@ import engine.IAttribute;
 import engine.Positionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
 
@@ -45,13 +43,7 @@ public class ConstantMover extends Mover {
         return null;
     }
 
-    @Override
-    public ObservableList<IAttribute> getAttributes () {
-        // TODO NOT SURE WHAT TO DO HERE
-    	ObservableList<IAttribute> attributeList = FXCollections.observableArrayList();
-//        attributeList.add(mySpeed);
-        return attributeList;
-    }
+  
 
     @Override
     public void update (TimeDuration duration) {
@@ -71,12 +63,8 @@ public class ConstantMover extends Mover {
     }
 
     @Override
-    protected List<IAttribute> getSpecificAttributes () {
-        // TODO What is this method supposed to do, how is it different from the other a
-    	//attributes method 
-    	 List<IAttribute> specialAttributes = new ArrayList<>();
-//         specialAttributes.add(mySpeed);
-         return specialAttributes;
+    protected List<IAttribute> getSpecificAttributes () {    	 
+         return new ArrayList<>();
     }
 
 
