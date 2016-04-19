@@ -22,6 +22,7 @@ public class CreationControllerGlobals extends CreationController<AttributeDefin
 
     @Override
     protected void addToAuthorshipData (AuthorshipData authorshipData) {
+        System.out.println(getMyDefinitionCollection());
         authorshipData.setMyCreatedGlobals(getMyDefinitionCollection());
     }
 

@@ -7,6 +7,8 @@ import engine.IEventPackage;
 import engine.IGame;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.profile.IProfile;
+import engine.profile.Profile;
 import engine.sprite.ISprite;
 import util.TimeDuration;
 
@@ -21,6 +23,8 @@ import util.TimeDuration;
  */
 public abstract class Condition implements ICondition {
 
+    IProfile myProfile = new Profile();
+    
     /**
      * By default, do nothing in response
      */
@@ -120,6 +124,16 @@ public abstract class Condition implements ICondition {
         if (valueCheck.test(attribute.getValueProperty().get())) {
             doExecute.doIt();
         }
+    }
+    
+    @Override
+    public IProfile getProfile () {
+        return myProfile;
+    }
+
+    @Override
+    public void setProfile (IProfile profile) {
+        myProfile = profile;
     }
 
 }

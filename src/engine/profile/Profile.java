@@ -1,5 +1,6 @@
 package engine.profile;
 
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import graphics.IGraphic;
 import graphics.ImageGraphic;
 import javafx.beans.property.DoubleProperty;
@@ -20,9 +21,10 @@ public class Profile implements IProfile {
     
     private StringProperty myName;
     private StringProperty myDescription;
+    private ImageGraphic myImage;
     private DoubleProperty myImageWidth;
     private DoubleProperty myImageHeight;
-    private SimpleObjectProperty<ImageGraphic> myImage;
+
 
     public Profile () {
         init("<NAME>", "<DESCRIPTION>", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
@@ -52,7 +54,7 @@ public class Profile implements IProfile {
     private void init (String name, String description, ImageGraphic graphic) {
         myName = new SimpleStringProperty(name);
         myDescription = new SimpleStringProperty(description);
-        myImage = new SimpleObjectProperty<>(graphic);
+        myImage = graphic;
         myImageWidth = graphic.getWidth();
         myImageHeight = graphic.getHeight();
     }
@@ -68,20 +70,13 @@ public class Profile implements IProfile {
     }
 
     @Override
-    public SimpleObjectProperty<? extends IGraphic> getImage () {
+    public IGraphic getImage () {
         return myImage;
     }
 
     @Override
     public String getImageURL () {
-        return myImage.get().getUrlProperty().get();
-    }
-
-    @Override
-    public void setNew (String name, String desc, String url) {
-        myImage.set(new ImageGraphic(0, 0, url));
-        myDescription.set(desc);
-        myName.set(name);
+        return myImage.getUrlProperty().get();
     }
 
     @Override
@@ -96,10 +91,11 @@ public class Profile implements IProfile {
 
     @Override
     public void setNew (String name, String desc, String url, double width, double height) {
-        myImage.set(new ImageGraphic(width, height, url));
+        myImage = new ImageGraphic(width, height, url);
         myDescription.set(desc);
         myName.set(name);
         myImageWidth.set(width);
         myImageHeight.set(height);
     }
+
 }

@@ -33,7 +33,7 @@ public interface IProfile {
      *
      * @return The IGraphic
      */
-    SimpleObjectProperty<? extends IGraphic> getImage ();
+    IGraphic getImage ();
 
     /**
      * Get the url of the ImageGraphic
@@ -55,8 +55,6 @@ public interface IProfile {
      * @return
      */
     DoubleProperty getImageHeight ();
-
-    void setNew (String name, String desc, String url);
     
     void setNew (String name, String desc, String url, double width, double height);
 

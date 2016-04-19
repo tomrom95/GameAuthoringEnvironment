@@ -24,11 +24,11 @@ public class ObjectListView<E extends IProfilable> implements IObjectListView<E>
         myItems = items;
         myListView = new ListView<E>();
         myListView.setItems(getMyItems());
-        myListView.setCellFactory( c -> new ProfileCellView<E> () );
+        myListView.setCellFactory(c -> new ProfileCellView<E>());
         myListView.setMinHeight(HEIGHT);
         myListView.setMaxHeight(HEIGHT);
-        
-        //TODO: resource file and maybe constructor arguement later
+
+        // TODO: resource file and maybe constructor arguement later
         myListView.getStyleClass().add("myObjectListView");
     }
 
@@ -79,6 +79,14 @@ public class ObjectListView<E extends IProfilable> implements IObjectListView<E>
     @Override
     public void setMyItems (ObservableList<E> items) {
         this.myItems = items;
+    }
+
+    @Override
+    public void refreshItems () {
+        ObservableList<E> items = this.myListView.getItems();
+        this.myListView.setItems(null);
+        this.myListView.setItems(items);
+
     }
 
 }
