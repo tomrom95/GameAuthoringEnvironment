@@ -8,7 +8,7 @@ import engine.definitions.SpriteDefinition;
 
 /**
  * This in an abstract class for an SFC that needs to dynamically change its
- * subview based on user input
+ * sub-subSFC and sub-subview based on user input
  * 
  * @author Jeremy Schreck
  *

@@ -45,6 +45,9 @@ public class SubFormControllerFactory {
             return new MovementSubFormController(getMyGame());
         }
      
+        else if (type.equals("LevelSpecific")){
+            return new LevelSpecificSFC();
+        }
         else if (type.equals("SelectAttribute")) {
             return new SelectAttributeSFC(getMyAuthorshipData()
                     .getMyCreatedAttributes());

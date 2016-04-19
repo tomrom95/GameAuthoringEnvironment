@@ -1,11 +1,12 @@
 package gameauthoring.creation.subforms.movement;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
+import engine.SpriteGroup;
 import gameauthoring.creation.entryviews.IEntryView;
+import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.creation.subforms.SubFormView;
+import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
@@ -17,18 +18,23 @@ public class TrackingMoverSubFormView extends SubFormView {
     private String mySpeedKey = "Speed: ";
     private String myTargetsKey = "Targets: ";
     
-    private IEntryView mySpeed = new TextEntryView(mySpeedKey, this.getData(), 150, 30,AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myTargets = new TextEntryView(myTargetsKey, this.getData(),150, 30,AuthoringView.DEFAULT_ENTRYVIEW);
-    private List<IEntryView> myEntryViews = new ArrayList<IEntryView>(Arrays.asList(mySpeed, myTargets));
-    
-    public TrackingMoverSubFormView(){
+    private IEntryView mySpeed; 
+    private SingleChoiceEntryView<SpriteGroup> myTargets;
+
+    public TrackingMoverSubFormView(DefinitionCollection<SpriteGroup> groupsList) {
+        myTargets = new SingleChoiceEntryView<SpriteGroup>(myTargetsKey, groupsList.getItems(), AuthoringView.DEFAULT_ENTRYVIEW);
+        mySpeed = new TextEntryView(mySpeedKey, this.getData(), 150, 30,AuthoringView.DEFAULT_ENTRYVIEW);    
         initView();
+
+    }    
+    
+    public SingleChoiceEntryView<SpriteGroup> getTargetsCoice(){
+        return myTargets;
     }
 
     
     @Override
     public Node draw () {
-        // TODO Auto-generated method stub
         return myPane;
     }
 

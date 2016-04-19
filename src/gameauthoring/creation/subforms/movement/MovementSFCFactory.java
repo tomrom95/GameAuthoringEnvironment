@@ -5,6 +5,13 @@ import gameauthoring.creation.subforms.DynamicSFCFactory;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 
 
+/**
+ * This is a factory class that creates different types of movement sub-subforms,
+ * which the MovementSFC will dynamically switch between based on user input
+ * 
+ * @author Jeremy Schreck
+ *
+ */
 public class MovementSFCFactory extends DynamicSFCFactory {
 
     public MovementSFCFactory (IGame game) {
@@ -12,6 +19,7 @@ public class MovementSFCFactory extends DynamicSFCFactory {
 
     }
 
+    @Override
     public ISubFormControllerSprite createSpriteSubFormController (String type) {
         if (type.equals("SmartAI")) {
 
