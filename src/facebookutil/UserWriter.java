@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.ResourceBundle;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import facebookutil.user.Email;
@@ -17,11 +18,15 @@ import facebookutil.user.profiles.SocialProfile;
  *
  */
 public class UserWriter {
-    
-    private static final String PATH = "savedusers/";
     private static final String WRITE_ERROR = "ERROR WRITING USER";
     private static final String FILE_FORMAT = "%s%s.xml";
 
+    private ResourceBundle mySecrets;
+    
+    public UserWriter () {
+        mySecrets = ResourceBundle.getBundle("facebookutil/secret");
+    }
+    
     /**
      * Writes each user to a file
      * @param users
@@ -36,7 +41,7 @@ public class UserWriter {
      * @param user
      */
     private void writeToFile (IUser user) {
-        File dir = new File(PATH);
+        File dir = new File(mySecrets.getString("userfolder"));
         File file = new File(dir, createFileName(user));
         try {
             file.createNewFile();

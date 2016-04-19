@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import facebookutil.user.IUser;
@@ -19,7 +20,11 @@ import facebookutil.user.IUser;
  */
 public class UserReader {
     
-    private static final String PATH = "savedusers/";
+    private ResourceBundle mySecrets;
+    
+    public UserReader () {
+        mySecrets = ResourceBundle.getBundle("facebookutil/secret");
+    }
 
     /**
      * Gets the list of users from files
@@ -27,7 +32,7 @@ public class UserReader {
      */
     public List<IUser> getUsers () {
         List<IUser> users = new ArrayList<IUser>();
-        File dir = new File(PATH);
+        File dir = new File(mySecrets.getString("userfolder"));
         File[] list = dir.listFiles();
         for (File f: list) {
             addUser(f, users);
