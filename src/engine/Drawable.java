@@ -1,6 +1,7 @@
 package engine;
 
 import engine.modules.IGraphicModule;
+import javafx.collections.ObservableList;
 import util.Coordinate;
 
 
@@ -32,4 +33,9 @@ public interface Drawable {
      * @return the angle by which the renderer should rotate the displayed node
      */
     double getOrientation();
+    
+    /**
+     * @return attributes of the sprite being drawn
+     */
+    public ObservableList<IAttribute> getAttributes ();
 }

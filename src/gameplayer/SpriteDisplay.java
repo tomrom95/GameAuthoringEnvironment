@@ -1,32 +1,51 @@
 package gameplayer;
 
 import engine.Drawable;
-import engine.rendering.UnscaledFactory;
-import engine.sprite.ISprite;
+import engine.IAttribute;
+import engine.rendering.GraphicFactory;
+import engine.rendering.ScaleFactory;
 import gameauthoring.util.Glyph;
 import javafx.scene.Node;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
-public class SpriteDisplay implements Glyph{
 
-    
-    private Pane myPane = new Pane();
-    private ISprite mySprite;
-   
+public class SpriteDisplay implements Glyph {
+
+    private VBox myPane = new VBox();
+    private GraphicFactory myFactory = new ScaleFactory(80, 80);
+    private Drawable mySprite;
+
     public Node draw () {
-       return myPane;
+        return myPane;
     }
-    
+
     public void populate (Drawable drawn) {
-        //setSprite(sprite);
+        setSprite(drawn);
+        render();
+    }
+
+    private void render () {
         myPane.getChildren().clear();
-        myPane.getChildren().add(drawn.getDrawer().getVisualRepresentation(new UnscaledFactory()));
+        add(mySprite.getDrawer().getVisualRepresentation(myFactory));
+        System.out.println(mySprite.getAttributes());
+        mySprite.getAttributes().forEach(a -> add(generateLabel(a)));
     }
-    
-    private void setSprite (ISprite sprite) {
-        mySprite = sprite;
+
+    private void add (Node node) {
+
+        myPane.getChildren().add(node);
+
     }
-    
-    
+
+    private Node generateLabel (IAttribute attribute) {
+
+        return new Label(attribute.getType().getType() + " " + attribute.getValueProperty().get());
+
+    }
+
+    private void setSprite (Drawable drawable) {
+        mySprite = drawable;
+    }
 
 }

@@ -27,13 +27,14 @@ public class AttributeDefinition implements IProfilable {
      * TODO put defaults in resource file
      */
     public AttributeDefinition () {
-        myType = "";
+        
         myStartingValue = 0;
         myProfile = new Profile();
     }
 
     public IAttribute create () {
-        return new Attribute(myStartingValue, new AttributeType(myType));
+        
+        return new Attribute(myStartingValue, new AttributeType(getProfile().getName().get()));
     }
 
     public void setType (String type) {

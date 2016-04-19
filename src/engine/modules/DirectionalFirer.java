@@ -41,7 +41,7 @@ public class DirectionalFirer extends Firer {
         mySprite = sprite;
         myProjectile = projectile;
         myAngle = theta;
-        myTimeSinceFire.setToZero();;
+        myTimeSinceFire.setToZero();
 
     }
 

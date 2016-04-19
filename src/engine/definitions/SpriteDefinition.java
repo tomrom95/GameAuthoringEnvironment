@@ -39,6 +39,7 @@ public class SpriteDefinition implements IProfilable {
     }
 
     public ISprite create () {
+        System.out.println(myAttributes);
         ISprite sprite = new Sprite(new SpriteType(myProfile.getName().get()));
         IMovementModule mover = myMovementDefinition.create(sprite);
         IGraphicModule graphicModule = createGraphicModule();

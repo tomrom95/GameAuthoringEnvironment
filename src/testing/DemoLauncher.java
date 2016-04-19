@@ -1,6 +1,5 @@
 package testing;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import engine.Attribute;
@@ -8,7 +7,6 @@ import engine.AttributeType;
 import engine.Game;
 import engine.IAttribute;
 import engine.IGame;
-import engine.ILevel;
 import engine.ISpriteGroup;
 import engine.SpriteGroup;
 import engine.conditions.OnCollisionCondition;
@@ -20,7 +18,6 @@ import engine.definitions.PathMoverDefinition;
 import engine.definitions.SpawnerModuleDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.StaticMovementDefintion;
-import engine.definitions.TrackingFirerDefinition;
 import engine.definitions.UserMoverDefinition;
 import engine.definitions.WaveDefinition;
 import engine.definitions.concrete.SpawnerDefinition;
@@ -33,18 +30,12 @@ import engine.modules.PathMover;
 import engine.modules.SpawningModule;
 import engine.profile.Profile;
 import engine.rendering.GameGridConfigNonScaling;
-import engine.rendering.IGameGridConfig;
 import engine.sprite.ISprite;
-import engine.sprite.Sprite;
-import engine.sprite.SpriteType;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameplayer.GamePlayer;
 import graphics.ImageGraphic;
 import javafx.application.Application;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import serialize.GameReader;
-import serialize.GameWriter;
 import util.Coordinate;
 
 
@@ -55,15 +46,15 @@ public class DemoLauncher extends Application {
     @Override
     public void start (Stage primaryStage) throws Exception {
         makeGame();
-        new GameWriter().serialize(new File("/Users/davidmaydew/Desktop/PlantsZombies.xml"),
-                                   myGame);
+       // new GameWriter().serialize(new File("/Users/davidmaydew/Desktop/PlantsZombies.xml"),
+        //                           myGame);
                                    // FileChooser chooser = new FileChooser();
                                    // File f = chooser.showOpenDialog(primaryStage);
 
         // IGame xmlGame = new GameReader().readFile(new
         // File("/Users/davidmaydew/Desktop/test.xml"));
         // IGame xmlGame = new GameReader().readFile(f);
-        // GamePlayer gp = new GamePlayer(myGame);
+         GamePlayer gp = new GamePlayer(myGame);
     }
 
     private void makeGame () {
