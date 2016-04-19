@@ -20,6 +20,7 @@ public class MovementSubFormView extends DynamicSubFormView {
                                 Consumer<Integer> action,
                                 List<String> options) {
         super(views, action, options);
+    }
 
     @Override
     protected String getSelectionKey () {

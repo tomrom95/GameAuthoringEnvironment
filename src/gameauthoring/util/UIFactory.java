@@ -1,6 +1,5 @@
 package gameauthoring.util;
 
-import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -32,11 +31,6 @@ public class UIFactory {
         Button newButton = new Button(text, imgview);
         newButton.setOnAction(action);
         return newButton;
-    }
-
-    public Node createComboBox (List<String> text) {
-        // TODO
-        return null;
     }
 
     public Tab createTab (String text, boolean closable, Node content) {
