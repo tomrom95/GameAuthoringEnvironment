@@ -37,6 +37,7 @@ public class FiringSubFormView extends DynamicSubFormView {
         myMissiles = missiles;
     }
 
+    @Override
     protected void initEntryViews (Consumer<Integer> action, List<String> options) {
         super.initEntryViews(action, options);
         initMissileSelectionView(myChangeMissileAction, myMissiles);
@@ -59,6 +60,7 @@ public class FiringSubFormView extends DynamicSubFormView {
         myMissileSelection.setSelected(missile);
     }
 
+    @Override
     protected void initView () {
         setMyCurrentSubViewX(0);
         setMyCurrentSubViewY(1);

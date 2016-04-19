@@ -35,12 +35,13 @@ public class MovementSubFormController extends DynamicSubFormController {
      * }
      */
 
+    @Override
     protected void setUpSubFormControllers () {
         myStaticSubForm = new StaticMoverSubFormController();
         myConstantSubForm = new ConstantMoverSubFormController();
         myUserSubForm = new UserMoverSubFormController();
-        myTrackingSubForm = new TrackingMoverSubFormController(null); // TODO: add game to
-                                                                      // constructor
+        myTrackingSubForm = new TrackingMoverSubFormController(getMyGame()); 
+        
         List<ISubFormController<SpriteDefinition>> subFormControllers = new ArrayList<>();
         subFormControllers.addAll(Arrays
                 .asList(myStaticSubForm, myConstantSubForm, myUserSubForm, myTrackingSubForm));

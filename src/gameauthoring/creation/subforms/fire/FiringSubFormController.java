@@ -33,6 +33,7 @@ public class FiringSubFormController extends DynamicSubFormController {
                                                 .getItems()));
     }
 
+    @Override
     protected void setUpSubFormControllers () {
         // TOOD: add to factory
         // gonna have to figure out better way to get access to getMyMissile
