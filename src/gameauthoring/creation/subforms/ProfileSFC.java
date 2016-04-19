@@ -33,8 +33,8 @@ public class ProfileSFC<T extends IProfilable> implements ISubFormController<T> 
     private String myDefaultName = "<Name>"; // TODO: move strings to resource file
     private String myDefaultDescription = "<Description>";
     private String myDefaultImage = "images/square.png";
-    private double myDefaultWidth = 30;
-    private double myDefaultHeight = 30;
+    private double myDefaultImageWidth = 50;
+    private double myDefaultImageHeight = 50;
 
     public ProfileSFC () {
         this.myView = new ProfileSFV();
@@ -43,16 +43,16 @@ public class ProfileSFC<T extends IProfilable> implements ISubFormController<T> 
 
     @Override
     public void initializeFields () {
-        populateViewsWithData(myDefaultName, myDefaultDescription, myDefaultImage);
+        populateViewsWithData(myDefaultName, myDefaultDescription, myDefaultImage, myDefaultImageWidth, myDefaultImageHeight);
 
     }
 
-    private void populateViewsWithData (String name, String desc, String url) {
+    private void populateViewsWithData (String name, String desc, String url, double width, double height) {
         myFormData.set(myView.getMyNameKey(), name);
         myFormData.set(myView.getMyDescriptionKey(), desc);
         myFormData.set(myView.getMyImageKey(), url);
-        myFormData.set(myView.getMyImageWidthKey(), String.valueOf(myDefaultWidth));
-        myFormData.set(myView.getMyImageHeightKey(), String.valueOf(myDefaultHeight));
+        myFormData.set(myView.getMyImageWidthKey(), Double.toString(width));
+        myFormData.set(myView.getMyImageHeightKey(), Double.toString(height));
     }
 
     @Override

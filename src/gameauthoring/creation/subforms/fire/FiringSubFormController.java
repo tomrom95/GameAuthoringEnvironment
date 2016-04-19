@@ -9,7 +9,7 @@ import gameauthoring.creation.subforms.DynamicSubFormController;
 
 
 /**
- * This is the sfc for selecting firing modules for a Sprite
+ * This is the sfc for selecting firing modules for a SpriteDefinition
  * 
  * @author Jeremy Schreck
  *
@@ -18,6 +18,11 @@ public class FiringSubFormController extends DynamicSubFormController {
 
     private SpriteDefinition myMissile;
 
+    /**
+     * Constructor 
+     * 
+     * @param game The current game object
+     */
     public FiringSubFormController (IGame game) {
         super(game, new FiringSFCFactory(game, null),
               new ArrayList<String>(Arrays.asList("DirectionalFire", "TrackingFire")));
@@ -36,14 +41,16 @@ public class FiringSubFormController extends DynamicSubFormController {
 
     }
 
-    // missile combo box handler
+   /**
+    * The method handler called when the user changes which missile is selected
+    * @param missile
+    */
     private void changeMissile (SpriteDefinition missile) {
         myMissile = missile;
 
     }
 
     public SpriteDefinition getMyMissile () {
-
         return myMissile;
     }
 

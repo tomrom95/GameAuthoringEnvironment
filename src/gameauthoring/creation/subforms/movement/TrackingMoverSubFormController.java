@@ -20,7 +20,7 @@ public class TrackingMoverSubFormController implements ISubFormControllerSprite 
 
     public TrackingMoverSubFormController (IGame game) {
         this.myGame = game;
-        this.myView = new TrackingMoverSubFormView();
+        this.myView = new TrackingMoverSubFormView(game.getAuthorshipData().getMyCreatedGroups());
         this.myFormData = myView.getData();
     }
 

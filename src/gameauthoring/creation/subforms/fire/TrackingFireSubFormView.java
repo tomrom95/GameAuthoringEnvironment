@@ -31,11 +31,9 @@ public class TrackingFireSubFormView extends SubFormView {
             new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30,
                               AuthoringView.DEFAULT_ENTRYVIEW);
     private SingleChoiceEntryView<SpriteGroup> myTargets;
-    private List<IEntryView> myEntryViews =
-            new ArrayList<IEntryView>(Arrays.asList(myWaitTime, myTargets));
 
     public TrackingFireSubFormView (DefinitionCollection<SpriteGroup> groupsList) {
-        myTargets = new SingleChoiceEntryView<SpriteGroup>(myTargetsKey, groupsList.getItems(), AuthoringView.DEFAULT_ENTRYVIEW);;
+        myTargets = new SingleChoiceEntryView<SpriteGroup>(myTargetsKey, groupsList.getItems(), AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
 
     }    
