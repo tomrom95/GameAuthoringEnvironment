@@ -18,7 +18,7 @@ public abstract class DynamicSubFormView extends SubFormView {
 
     private List<ISubFormView> mySubViews;
     private ObservableList<ProfileDisplay> myListOfSelectionOptions;
-    private GridPane myPane = new GridPane();
+    private GridPane myPane;
     private IEntryView mySelectionView;
     private Node myCurrentSubView;
     private int myCurrentSubViewX = 1;
@@ -30,6 +30,7 @@ public abstract class DynamicSubFormView extends SubFormView {
                                Consumer<Integer> action,
                                List<String> options) {
         this.mySubViews = views;
+        myPane = new GridPane();
         myCurrentSubView = mySubViews.get(0).draw();
         initEntryViews(action, options);
         initView();
@@ -64,7 +65,7 @@ public abstract class DynamicSubFormView extends SubFormView {
     }
 
     protected void initView () {
-        System.out.println(this.myCurrentSubViewX + "y" + this.myCurrentSubViewY);
+        Node test = mySelectionView.draw();
         myPane.add(mySelectionView.draw(), this.mySelectionViewX, this.mySelectionViewY);
         myPane.add(myCurrentSubView, this.myCurrentSubViewX, this.myCurrentSubViewY);
     }

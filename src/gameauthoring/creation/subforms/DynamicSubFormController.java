@@ -5,7 +5,13 @@ import java.util.List;
 import engine.IGame;
 import engine.definitions.SpriteDefinition;
 
-
+/**
+ * This in an abstract class for an SFC that needs to dynamically change its
+ * view based on user input
+ * 
+ * @author Jeremy Schreck
+ *
+ */
 public abstract class DynamicSubFormController implements ISubFormControllerSprite {
     private DynamicSubFormView myView;
     private List<ISubFormView> mySubFormViews;
