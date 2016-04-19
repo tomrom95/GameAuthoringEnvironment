@@ -42,9 +42,10 @@ public class ImageEntryView extends EntryView {
                            String cssClass) {
         super(label, data);
         this.myImageChoice.bindBidirectional(getData().getValueProperty());
-        init(label, cssClass);
         initFileChooser(new FileChooser());
         initImageView(width, height);
+        init(label, cssClass);
+
 
     }
 
