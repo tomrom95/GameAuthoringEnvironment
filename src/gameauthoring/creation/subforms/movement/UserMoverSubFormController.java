@@ -24,17 +24,23 @@ public class UserMoverSubFormController implements ISubFormControllerSprite {
     private String myDefaultDownKey = "s";
     private String myDefaultRightKey = "f";
     private String myDefaultLeftKey = "a";
-    
 
     public UserMoverSubFormController () {
         this.myView = new UserMoverSubFormView();
         this.myFormData = myView.getData();
     }
+
     @Override
     public void initializeFields () {
-        populateViewsWithData(myDefaultSpeed, myDefaultUpKey, myDefaultDownKey, myDefaultRightKey, myDefaultLeftKey);
+        populateViewsWithData(myDefaultSpeed, myDefaultUpKey, myDefaultDownKey, myDefaultRightKey,
+                              myDefaultLeftKey);
     }
-    private void populateViewsWithData (double speed, String up, String down, String left, String right) {
+
+    private void populateViewsWithData (double speed,
+                                        String up,
+                                        String down,
+                                        String left,
+                                        String right) {
         myFormData.set(myView.getSpeedKey(),
                        Double.toString(speed));
         myFormData.set(myView.getUpKey(), up);
@@ -43,6 +49,7 @@ public class UserMoverSubFormController implements ISubFormControllerSprite {
         myFormData.set(myView.getRightKey(), right);
 
     }
+
     @Override
     public void updateItem (SpriteDefinition item) {
 
@@ -64,22 +71,9 @@ public class UserMoverSubFormController implements ISubFormControllerSprite {
     }
 
     @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-        UserMoverDefinition thisUMD = (UserMoverDefinition) item.getMovementDefinition();
-        myFormData.set(myView.getSpeedKey(),
-                       Double.toString(item.getMovementDefinition().getSpeed()));
-        myFormData.set(myView.getUpKey(), thisUMD.getKeyControlDefintion().getUp());
-        myFormData.set(myView.getDownKey(), thisUMD.getKeyControlDefintion().getDown());
-        myFormData.set(myView.getLeftKey(), thisUMD.getKeyControlDefintion().getLeft());
-        myFormData.set(myView.getRightKey(), thisUMD.getKeyControlDefintion().getRight());
-
-    }
-
-    @Override
     public ISubFormView getSubFormView () {
         // TODO Auto-generated method stub
         return myView;
     }
-   
 
 }
