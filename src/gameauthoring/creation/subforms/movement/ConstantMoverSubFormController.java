@@ -19,8 +19,8 @@ public class ConstantMoverSubFormController implements ISubFormControllerSprite 
 
     private ConstantMoverSubFormView myView;
     private IFormDataManager myFormData;
-    private double myDefaultXVel = 0;
-    private double myDefaultYVel = 0;
+    private double myDefaultSpeed = 0;
+    private double myDefaultOrientation = 0;
 
     public ConstantMoverSubFormController () {
         myView = new ConstantMoverSubFormView();
@@ -29,14 +29,14 @@ public class ConstantMoverSubFormController implements ISubFormControllerSprite 
 
     @Override
     public void initializeFields () {
-        populateViewsWithData(myDefaultXVel, myDefaultYVel);
+        populateViewsWithData(myDefaultSpeed, myDefaultOrientation);
     }
 
-    private void populateViewsWithData (double xVel, double yVel) {
-        myFormData.set(myView.getMyXVelKey(),
-                       Double.toString(xVel));
-        myFormData.set(myView.getMyYVelKey(),
-                       Double.toString(yVel));
+    private void populateViewsWithData (double speed, double orientation) {
+        myFormData.set(myView.getMySpeedKey(),
+                       Double.toString(speed));
+        myFormData.set(myView.getMyOrientationKey(),
+                       Double.toString(orientation));
 
     }
 
@@ -45,13 +45,14 @@ public class ConstantMoverSubFormController implements ISubFormControllerSprite 
 
         ConstantMoverDefinition myMovementDefinition = new ConstantMoverDefinition();
 
-        Double xVelocity =
-                Double.valueOf(myFormData.getValueProperty(myView.getMyXVelKey()).get());
+        Double speed =
+                Double.valueOf(myFormData.getValueProperty(myView.getMySpeedKey()).get());
 
-        Double yVelocity =
-                Double.valueOf(myFormData.getValueProperty(myView.getMyYVelKey()).get());
-        myMovementDefinition.setXVel(xVelocity);
-        myMovementDefinition.setYVel(yVelocity);
+        Double orientation =
+                Double.valueOf(myFormData.getValueProperty(myView.getMyOrientationKey()).get());
+        
+        myMovementDefinition.setSpeed(speed);
+        myMovementDefinition.setOrientaiton(orientation);
 
         item.setMovementDefinition(myMovementDefinition);
 

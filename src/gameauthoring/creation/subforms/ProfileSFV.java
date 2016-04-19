@@ -9,7 +9,12 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-
+/**
+ * Implementation of IProfileSFV with GridPane arrangement of entryviews
+ * 
+ * @author Joe Lilien, Jeremy Schreck
+ *
+ */
 public class ProfileSFV extends SubFormView implements IProfileSFV {
 
     private GridPane myPane = new GridPane();
@@ -47,8 +52,8 @@ public class ProfileSFV extends SubFormView implements IProfileSFV {
     protected void initView () {
         myPane.add(myName.draw(), 0, 0);
         myPane.add(myDescription.draw(), 0, 1);
-        myPane.add(myImage.draw(), 1, 0, 1, 2);
-        myPane.add(new HBox(myImageWidth.draw(), myImageHeight.draw()), 1, 2);
+        myPane.add(myImage.draw(), 1, 0, 1, 3);
+        myPane.add(new HBox(myImageWidth.draw(), myImageHeight.draw()), 0, 2);
 
     }
 
@@ -72,10 +77,12 @@ public class ProfileSFV extends SubFormView implements IProfileSFV {
         return this.myImageKey;
     }
 
+    @Override
     public String getMyImageWidthKey () {
         return myImageWidthKey;
     }
 
+    @Override
     public String getMyImageHeightKey () {
         return myImageHeightKey;
     }

@@ -30,6 +30,7 @@ public class LevelManager implements ILevelManager {
     public LevelManager () {
         myLevelPropertyList = FXCollections.observableArrayList();
         myCurrentLevel = new Level();
+        myGlobalGameConditions = new ConditionManager();
     }
 
     @Override

@@ -21,7 +21,7 @@ public class AttributeDefinition implements IProfilable {
     private String myType;
     private double myStartingValue;
     private IProfile myProfile;
-    private boolean isGlobal;
+    private boolean isLevelSpecific;
 
     /**
      * Constructor initialized with defaults
@@ -64,12 +64,12 @@ public class AttributeDefinition implements IProfilable {
         myProfile = profile;
     }
 
-    public boolean getIsGlobal () {
-        return isGlobal;
+    public boolean isLevelSpecific () {
+        return isLevelSpecific;
     }
 
-    public void setIsGlobal (boolean global) {
-        isGlobal = global;
+    public void setIsLevelSpecific (boolean level) {
+        isLevelSpecific = level;
     }
 
 }
