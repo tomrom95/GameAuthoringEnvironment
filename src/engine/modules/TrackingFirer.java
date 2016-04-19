@@ -22,7 +22,7 @@ import util.TimeDuration;
 
 /**
  * Locates the nearest enemy and fires an object
- * TODO should this class extend DefaultAffectable?
+ * 
  */
 public class TrackingFirer extends Firer {
 

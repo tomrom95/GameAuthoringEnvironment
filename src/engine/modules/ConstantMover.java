@@ -5,6 +5,7 @@ import engine.IAttribute;
 import engine.Positionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
@@ -12,7 +13,9 @@ import util.TimeDuration;
 
 /**
  * This class creates a module that moves in based on velocity in a linear direction
- * TODO this class has lots of unimplemented parts, and shouldn't be returning nulls
+ * 
+ * @author Timko
+ * 
  */
 public class ConstantMover extends Mover {
 
@@ -35,14 +38,16 @@ public class ConstantMover extends Mover {
 
     @Override
     public List<Coordinate> getPath () {
-        // TODO Auto-generated method stub
+        // TODO deal with this when paths are done?
         return null;
     }
 
     @Override
     public ObservableList<IAttribute> getAttributes () {
         // TODO Auto-generated method stub
-        return null;
+    	ObservableList<IAttribute> attributeList = FXCollections.observableArrayList();
+        attributeList.add(mySpeed);
+        return attributeList;
     }
 
     @Override
@@ -64,7 +69,8 @@ public class ConstantMover extends Mover {
 
     @Override
     protected List<IAttribute> getSpecificAttributes () {
-        // TODO Auto-generated method stub
+        // TODO What is this method supposed to do, how is it different from the other a
+    	//attributes method 
         return null;
     }
 
