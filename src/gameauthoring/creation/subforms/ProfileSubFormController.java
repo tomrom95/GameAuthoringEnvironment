@@ -35,8 +35,9 @@ public class ProfileSubFormController<T extends IProfilable> implements ISubForm
         String name = myFormData.getValueProperty(myView.getMyNameKey()).get();
         String desc = myFormData.getValueProperty(myView.getMyDescriptionKey()).get();
         String url = myFormData.getValueProperty(myView.getMyImageKey()).get();
-
-        item.getProfile().setNew(name, desc, url);
+        double width = Double.parseDouble(myFormData.getValueProperty(myView.getMyImageWidthKey()).get());
+        double height = Double.parseDouble(myFormData.getValueProperty(myView.getMyImageHeightKey()).get());
+        item.getProfile().setNew(name, desc, url, width, height);
 
     }
 
@@ -44,10 +45,9 @@ public class ProfileSubFormController<T extends IProfilable> implements ISubForm
     public void populateViewsWithData (T item) {
         myFormData.set(myView.getMyNameKey(), item.getProfile().getName().get());
         myFormData.set(myView.getMyDescriptionKey(), item.getProfile().getDescription().get());
-
-        System.out.println(item.getProfile().getImageURL());
         myFormData.set(myView.getMyImageKey(), item.getProfile().getImageURL());
-
+        myFormData.set(myView.getMyImageWidthKey(), Double.toString(item.getProfile().getImageWidth().doubleValue()));
+        myFormData.set(myView.getMyImageHeightKey(), Double.toString(item.getProfile().getImageHeight().doubleValue()));
     }
 
     @Override
