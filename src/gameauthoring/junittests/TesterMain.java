@@ -1,7 +1,7 @@
 package gameauthoring.junittests;
 
 import gameauthoring.creation.subforms.ISubFormView;
-import gameauthoring.creation.subforms.ProfileSubFormView;
+import gameauthoring.creation.subforms.ProfileSFV;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -11,7 +11,7 @@ public class TesterMain extends Application {
 
     @Override
     public void start (Stage stage) throws Exception {
-        ISubFormView prof = new ProfileSubFormView();
+        ISubFormView prof = new ProfileSFV();
         Group root = new Group(prof.draw());
         Scene scene = new Scene(root, 400, 400);
         stage.setScene(scene);

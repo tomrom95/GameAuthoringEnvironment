@@ -32,8 +32,8 @@ public class TrackingMoverSubFormView extends SubFormView {
         return myPane;
     }
 
-    private void initView(){
-        super.setMyEntryViews(myEntryViews);
+    @Override
+    protected void initView(){
         myPane.setGridLinesVisible(true);
         myPane.add(mySpeed.draw(), 0, 0);
         myPane.add(myTargets.draw(), 0, 1);

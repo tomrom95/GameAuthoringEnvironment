@@ -36,8 +36,12 @@ public class FiringSubFormController extends DynamicSubFormController {
     protected void setUpSubFormControllers () {
         // TOOD: add to factory
         // gonna have to figure out better way to get access to getMyMissile
-        DirectionalFireSubFormController dfSFC = (DirectionalFireSubFormController) this.getMySFCFactory().createSpriteSubFormController("DirectionalFire");
-        TrackingFireSubFormController tfSFC = (TrackingFireSubFormController) this.getMySFCFactory().createSpriteSubFormController("TrackingFire");
+        DirectionalFireSubFormController dfSFC =
+                (DirectionalFireSubFormController) this.getMySFCFactory()
+                        .createSpriteSubFormController("DirectionalFire");
+        TrackingFireSubFormController tfSFC =
+                (TrackingFireSubFormController) this.getMySFCFactory()
+                        .createSpriteSubFormController("TrackingFire");
         List<ISubFormController<SpriteDefinition>> subFormControllers = new ArrayList<>();
         subFormControllers.addAll(Arrays
                 .asList(dfSFC, tfSFC));
@@ -52,6 +56,7 @@ public class FiringSubFormController extends DynamicSubFormController {
     }
 
     public SpriteDefinition getMyMissile () {
+
         return myMissile;
     }
 

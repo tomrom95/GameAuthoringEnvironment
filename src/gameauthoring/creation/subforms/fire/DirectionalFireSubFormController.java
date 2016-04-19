@@ -31,7 +31,6 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
     private double myDefaultAngle = 0;
     private double myDefaultWaitTime = 0;
 
-  
     public DirectionalFireSubFormController (IGame game) {
         myView = new DirectionalFireSubFormView();
         myFormData = myView.getData();
@@ -56,7 +55,6 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
         myFormData.set(myView.getMyWaitTimeKey(), Double.toString(wait));
     }
 
-    
     @Override
     public ISubFormView getSubFormView () {
         return myView;

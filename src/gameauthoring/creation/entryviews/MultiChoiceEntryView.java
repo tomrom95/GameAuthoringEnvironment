@@ -44,7 +44,6 @@ public class MultiChoiceEntryView<E extends IProfilable> extends EntryView {
         if(items!=null){
             for (E item : items) {                
                 myChoices.getSelectionModel().select(item);
-                System.out.println(item);
             }
         }
         

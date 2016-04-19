@@ -45,7 +45,6 @@ public class TrackingMoverSubFormController implements ISubFormControllerSprite 
         newTrackingMoverDef.setTargets(targets);
 
         item.setMovementDefinition(newTrackingMoverDef);
-
     }
 
     @Override

@@ -64,6 +64,7 @@ public class FiringSubFormView extends DynamicSubFormView {
         setMyCurrentSubViewY(1);
         super.initView();
         getMyGridPane().add(myMissileSelectionView, 1, 0);
+
     }
 
     @Override

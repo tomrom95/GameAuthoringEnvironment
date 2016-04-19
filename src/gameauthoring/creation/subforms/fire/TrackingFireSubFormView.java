@@ -50,8 +50,8 @@ public class TrackingFireSubFormView extends SubFormView {
         return myPane;
     }
 
-    private void initView () {
-        super.setMyEntryViews(myEntryViews);
+    @Override
+    protected void initView () {
         myPane.setGridLinesVisible(true);
         myPane.add(myWaitTime.draw(), 0, 0);
         myPane.add(myTargets.draw(), 1, 0);

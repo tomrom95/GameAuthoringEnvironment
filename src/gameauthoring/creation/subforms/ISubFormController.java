@@ -29,6 +29,7 @@ public interface ISubFormController<T extends IProfilable> {
     void initializeFields ();
 
     /**
+     * 
      * Get the sfc's associated subformview
      * 
      * @return The subformview

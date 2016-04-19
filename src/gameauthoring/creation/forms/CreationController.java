@@ -9,7 +9,7 @@ import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
-import gameauthoring.creation.subforms.ProfileSubFormController;
+import gameauthoring.creation.subforms.ProfileSFC;
 import gameauthoring.creation.subforms.SubFormControllerFactory;
 import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.ObservableList;
@@ -26,7 +26,7 @@ import javafx.collections.ObservableList;
 public abstract class CreationController<T extends IProfilable> {
     private IObjectCreationView<T> myView;
     private List<? extends ISubFormController<T>> mySubFormControllers;
-//    private ProfileSubFormController<IProfilable> myProfileSubFormController;
+    // private ProfileSubFormController<IProfilable> myProfileSubFormController;
 
     private String myTitle;
     private SubFormControllerFactory mySFCFactory;
@@ -56,7 +56,7 @@ public abstract class CreationController<T extends IProfilable> {
         myDefinitionCollection = new DefinitionCollection<>(getMyTitle(),
                                                             getMyObjectCreationView().getItems());
         mySubFormTemplate = subFormStrings;
-        myMap  = new HashMap<T, List<? extends ISubFormController<T>>>();
+        myMap = new HashMap<T, List<? extends ISubFormController<T>>>();
         addToAuthorshipData(game.getAuthorshipData());
 
     }
@@ -79,7 +79,7 @@ public abstract class CreationController<T extends IProfilable> {
         mySubFormControllers =
                 (List<? extends ISubFormController<T>>) getMySFCFactory()
                         .createSubFormControllers(subFormStrings);
-//        setMyProfileSubFormController(getMySFCFactory().createProfileSFC());
+        // setMyProfileSubFormController(getMySFCFactory().createProfileSFC());
         List<ISubFormView> subFormViews = getSubFormViews(getMySubFormControllers());
         myView.init(subFormViews);
         setupConnections();
@@ -116,7 +116,7 @@ public abstract class CreationController<T extends IProfilable> {
     private List<ISubFormView> getSubFormViews (List<? extends ISubFormController<T>> subFormControllers) {
         List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
 
-//        subFormViews.add(getMyProfileSubFormController().getSubFormView());
+        // subFormViews.add(getMyProfileSubFormController().getSubFormView());
         for (ISubFormController<T> subFormController : subFormControllers) {
             subFormViews.add(subFormController.getSubFormView());
         }
@@ -128,7 +128,7 @@ public abstract class CreationController<T extends IProfilable> {
      * 
      */
     private void saveItem () {
-//        getMyProfileSubFormController().updateItem(getMyCurrentItem());
+        // getMyProfileSubFormController().updateItem(getMyCurrentItem());
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.updateItem(getMyCurrentItem()); // make more generic later
         }
@@ -153,12 +153,12 @@ public abstract class CreationController<T extends IProfilable> {
         addItem(item);
         getMyObjectCreationView().getObjectListView().setSelectedItem(item);
 
-        //New Design
-        List<? extends ISubFormController<T>> SFCs = 
+        // New Design
+        List<? extends ISubFormController<T>> SFCs =
                 (List<? extends ISubFormController<T>>) getMySFCFactory()
-                .createSubFormControllers(this.mySubFormTemplate);
+                        .createSubFormControllers(this.mySubFormTemplate);
         myMap.put(item, SFCs);
-        
+
         showAndEdit(item);
 
         initializeSubFormViews();
@@ -167,11 +167,12 @@ public abstract class CreationController<T extends IProfilable> {
     /**
      * Initializes the subformviews with default data
      */
-    private void initializeSubFormViews(){
+    private void initializeSubFormViews () {
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.initializeFields();
         }
     }
+
     /**
      * Method to be overwritten by subclasses that creates a blank object of type T
      * 
@@ -231,14 +232,15 @@ public abstract class CreationController<T extends IProfilable> {
     protected void setMySubFormControllers (List<? extends ISubFormController<T>> mySubFormControllers) {
         this.mySubFormControllers = mySubFormControllers;
     }
-//
-//    private ProfileSubFormController<IProfilable> getMyProfileSubFormController () {
-//        return myProfileSubFormController;
-//    }
-//
-//    private void setMyProfileSubFormController (ProfileSubFormController<IProfilable> myProfileSubFormController) {
-//        this.myProfileSubFormController = myProfileSubFormController;
-//    }
+    //
+    // private ProfileSubFormController<IProfilable> getMyProfileSubFormController () {
+    // return myProfileSubFormController;
+    // }
+    //
+    // private void setMyProfileSubFormController (ProfileSubFormController<IProfilable>
+    // myProfileSubFormController) {
+    // this.myProfileSubFormController = myProfileSubFormController;
+    // }
 
     protected DefinitionCollection<T> getMyDefinitionCollection () {
         return myDefinitionCollection;

@@ -20,7 +20,8 @@ public class MovementSubFormController extends DynamicSubFormController {
     public MovementSubFormController (SubFormControllerFactory sfcFactory, IGame game) {
         super(sfcFactory, game);
         List<String> options =
-                new ArrayList<String>(Arrays.asList("Static", "Constant", "User-Defined", "Tracking"));
+                new ArrayList<String>(Arrays.asList("Static", "Constant", "User-Defined",
+                                                    "Tracking"));
         setMyView(new MovementSubFormView(getMySubFormViews(), e -> changeSelection(e), options));
     }
 
@@ -46,7 +47,6 @@ public class MovementSubFormController extends DynamicSubFormController {
         setMySubFormControllers(subFormControllers);
 
     }
-
 
     @Override
     protected void setMyCurrentSFC () {
