@@ -20,7 +20,7 @@ import util.Coordinate;
  * @author Jonathan Im
  *
  */
-public interface ILevelManager extends IAdder {
+public interface ILevelManager extends IAdder, IEventInternalizer {
 
     /**
      * @return the current level
@@ -36,16 +36,6 @@ public interface ILevelManager extends IAdder {
      * @return the list of Drawables of the current level
      */
     List<? extends Drawable> getDrawables ();
-
-    /**
-     * @param list of key events to internalize
-     */
-    void internalizeKeyEvents (List<KeyIOEvent> list);
-
-    /**
-     * @param list of mouse events to internalize
-     */
-    void internalizeMouseEvents (List<MouseIOEvent> list);
 
     /**
      * @param sprite to be removed from the current level

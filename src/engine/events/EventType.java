@@ -15,6 +15,8 @@ public class EventType extends StringBasedType {
     public static final EventType UPGRADE = new EventType("Upgrade");
     public static final EventType INVISIBLE = new EventType("Invisible");
     public static final EventType VISIBLE  = new EventType("Visible");
+    public static final EventType WIN  = new EventType("Win");
+    public static final EventType LOSE  = new EventType("Lose");
 
     public EventType (String type) {
         super(type);

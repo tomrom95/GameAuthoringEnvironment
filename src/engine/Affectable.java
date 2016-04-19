@@ -1,6 +1,7 @@
 package engine;
 
 import engine.effects.IEffect;
+import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import javafx.collections.ObservableList;
@@ -26,21 +27,7 @@ public interface Affectable extends IOAffectable, GameEventHandler {
      */
     void applyEffect (IEffect effect);
 
-    /**
-     * Respond appropriately to a global key interaction event
-     *
-     * @param keyEvent to respond to
-     */
-    @Override
-    void registerKeyEvent (KeyIOEvent keyEvent);
 
-    /**
-     * Respond appropriately to a global mouse interaction event
-     *
-     * @param mouseEvent to respond to
-     */
-    @Override
-    void registerMouseEvent (MouseIOEvent mouseEvent);
 
     /**
      * Any object that is affectable must have attributes that can be affected.

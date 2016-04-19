@@ -3,6 +3,7 @@ package engine;
 import java.util.ArrayList;
 import java.util.List;
 import engine.conditions.ICondition;
+import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import javafx.collections.FXCollections;
@@ -56,6 +57,11 @@ public class ConditionManager implements IConditionManager {
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
         myKeyQueue.addAll(list);
+    }
+
+    @Override
+    public void internalizeGameEvents (List<GameEvent> list) {
+        //Do Nothing
     }
 
 }

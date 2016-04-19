@@ -1,7 +1,5 @@
 package engine;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.collections.ObservableList;
 
 
 /**
@@ -11,7 +9,7 @@ import javafx.collections.ObservableList;
  *
  * TODO finish implementing this interface
  */
-interface INextLevelManager extends Updateable {
+interface INextLevelManager extends Updateable, IEventInternalizer {
 
     /**
      * This will return the value as calculated during the update call to help control
@@ -27,10 +25,11 @@ interface INextLevelManager extends Updateable {
      * @return
      */
     ILevel getNextLevel ();
+    
+    void setWinLevel(ILevel winLevel);
+    
+    void setLoseLevel(ILevel loseLevel);
 
-    /**
-     * @return the observable list of condition that this class manages
-     */
-    ObservableList<ObjectProperty<INextLevelCondition>> getConditionListProperty ();
+
 
 }
