@@ -11,30 +11,39 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 import facebookutil.ParseHelper;
 import facebookutil.login.LoginObject;
 
+
+/**
+ * 
+ * @author Tommy
+ *
+ */
 public class FacebookAppLogin {
     private static final String APP_URL = "https://graph.facebook.com/oauth/access_token?" +
-            "&grant_type=client_credentials&client_secret=%s&client_id=%s";
+                                          "&grant_type=client_credentials&client_secret=%s&client_id=%s";
     private static final String TOKEN_REGEX = "access_token=([^&]+)";
-    
+
     private LoginObject myLoginObject;
     private ResourceBundle secrets;
 
     public FacebookAppLogin () {
         secrets = ResourceBundle.getBundle("facebookutil/secret");
-        getLogin ();
+        getLogin();
     }
 
     private void getLogin () {
-        final OAuth20Service service = createService(secrets); 
+        final OAuth20Service service = createService(secrets);
         final OAuthRequest request = createRequest(service, secrets);
         Response response = request.send();
         processResponse(response, secrets, service);
     }
 
-    private void processResponse (Response response, ResourceBundle secrets, OAuth20Service service) {
+    private void processResponse (Response response,
+                                  ResourceBundle secrets,
+                                  OAuth20Service service) {
         LoginObject login = new LoginObject();
         login.setUserID(secrets.getString("facebookId"));
-        login.setToken(new OAuth2AccessToken(ParseHelper.getFirstGroup(TOKEN_REGEX, response.getBody())));
+        login.setToken(new OAuth2AccessToken(ParseHelper.getFirstGroup(TOKEN_REGEX,
+                                                                       response.getBody())));
         login.setService(service);
         myLoginObject = login;
     }
@@ -53,7 +62,7 @@ public class FacebookAppLogin {
                 .grantType("client_credentials")
                 .build(FacebookApi.instance());
     }
-    
+
     public LoginObject getLoginObject () {
         return myLoginObject;
     }
