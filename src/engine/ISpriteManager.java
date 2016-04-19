@@ -1,8 +1,6 @@
 package engine;
 
 import java.util.List;
-import engine.interactionevents.KeyIOEvent;
-import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import util.Coordinate;
 
@@ -20,7 +18,7 @@ import util.Coordinate;
  * @author Jonathan Im
  *
  */
-public interface ISpriteManager extends Updateable, IAdder {
+public interface ISpriteManager extends Updateable, IAdder, IEventInternalizer {
 
     /**
      * @return the observable list of sprites
@@ -29,15 +27,6 @@ public interface ISpriteManager extends Updateable, IAdder {
 
     List<? extends Drawable> getDrawables ();
 
-    /**
-     * @param list of key events to be processed
-     */
-    void internalizeKeyEvents (List<KeyIOEvent> list);
-
-    /**
-     * @param list of mouse events to be processed
-     */
-    void internalizeMouseEvents (List<MouseIOEvent> list);
 
     /**
      * @param sprite to be removed

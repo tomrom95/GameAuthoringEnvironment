@@ -330,7 +330,10 @@ public class UpgradeTest extends Application {
         sd2.setProfile(new Profile("User Mover", "Controlled By User", image));
         sd2.setMovementDefinition(getUserMover());
 
-       UpgradeDefinition upgrade = new GlobalUpgradeDefinition(myGame, sd2, new AttributeType("Lives"), 5);
+        //TODO: had to comment this out to prevent errors. joe/ryan what is it supposed to be?
+       //UpgradeDefinition upgrade = new GlobalUpgradeDefinition(myGame, sd2, new AttributeType("Lives"), 5);
+       UpgradeDefinition upgrade = new GlobalUpgradeDefinition();
+
        return upgrade;
     }
 

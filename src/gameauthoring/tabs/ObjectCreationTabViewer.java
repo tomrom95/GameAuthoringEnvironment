@@ -21,7 +21,7 @@ import javafx.scene.control.TabPane;
  * 
  * @TODO: Resourcebundle for unprotectedString
  * @TODO: Interaction, Obstacle subtabs.
- * @author Jin An
+ * @author Jin An, Joe Lilien, Jeremy Schreck
  *
  */
 public class ObjectCreationTabViewer implements ITabViewer {
@@ -47,7 +47,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private void initializeLists () {
 
-        List<String> myGlobalSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
+        List<String> myGlobalSFCs = new ArrayList<String>(Arrays.asList("LevelSpecific", "Attribute"));
 
         List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
 

@@ -12,9 +12,13 @@ public class CheckEntryView extends EntryView{
 
     public CheckEntryView (String label, String cssClass) {
         super(label);
-        myCheckBox = new CheckBox();
-        
-        myContainer = new GridPane();
+        myCheckBox = new CheckBox();        
+        myContainer = new GridPane();        
+        init(label,cssClass);
+    }
+    
+    @Override
+    protected void init(String label, String cssClass){
         myContainer.getStyleClass().add(cssClass);
         myContainer.add(new Label(label), 0, 0);
         myContainer.add(myCheckBox, 1, 0);
@@ -32,8 +36,6 @@ public class CheckEntryView extends EntryView{
     @Override
     public Node draw () {
         return myContainer;
-    }
-
-   
+    }   
 
 }

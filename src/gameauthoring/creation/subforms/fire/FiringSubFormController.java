@@ -3,116 +3,57 @@ package gameauthoring.creation.subforms.fire;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import engine.IGame;
-import engine.definitions.DirectionalFirerDefinition;
-import engine.definitions.FirerDefinition;
-import engine.definitions.ModuleDefinition;
 import engine.definitions.SpriteDefinition;
-import gameauthoring.creation.subforms.ISubFormController;
-import gameauthoring.creation.subforms.ISubFormControllerSprite;
-import gameauthoring.creation.subforms.ISubFormView;
+import gameauthoring.creation.subforms.DynamicSubFormController;
+
 
 /**
- * This is the sfc for selecting firing modules for a Sprite
+ * This is the sfc for selecting firing modules for a SpriteDefinition
  * 
  * @author Jeremy Schreck
  *
  */
-public class FiringSubFormController implements ISubFormControllerSprite {
+public class FiringSubFormController extends DynamicSubFormController {
 
-    private FiringSubFormView myView;
-    private ObservableList<ISubFormView> mySubFormViews;
-    private List<ISubFormController<SpriteDefinition>> mySubFormControllers;
-    private ISubFormController<SpriteDefinition> myCurrentFiringController;
-    private IGame myGame;
     private SpriteDefinition myMissile;
-    
-    private static Predicate<ModuleDefinition> findFirer() {
-        return p -> p.getClass().getSuperclass().equals(new FirerDefinition().getClass());
-    }
 
+    /**
+     * Constructor 
+     * 
+     * @param game The current game object
+     */
     public FiringSubFormController (IGame game) {
-        myGame = game;
-        setUpSubFormControllers();
-        setUpSubFormViews(mySubFormControllers);
-        this.myView = new FiringSubFormView(mySubFormViews, e -> changeFiringType(e), e -> changeMissile(e), game.getAuthorshipData().getMyCreatedMissiles().getItems());
+        super(game, new FiringSFCFactory(game, null),
+              new ArrayList<String>(Arrays.asList("DirectionalFire", "TrackingFire")));
+        List<String> options = new ArrayList<>(Arrays.asList("Directional", "Tracking"));
+        setMyView(
+                  new FiringSubFormView(getMySubFormViews(), e -> changeSelection(e), options,
+                                        e -> changeMissile(e),
+                                        game.getAuthorshipData().getMyCreatedMissiles()
+                                                .getItems()));
     }
 
-    private void setUpSubFormControllers () {
-        // TOOD: add to factory
-            //gonna have to figure out better way to get access to getMyMissile
-        DirectionalFireSubFormController dfSFC = new DirectionalFireSubFormController(myGame, this);
-        TrackingFireSubFormController tfSFC = new TrackingFireSubFormController(myGame, this);
-        mySubFormControllers = new ArrayList<>();
-        mySubFormControllers.addAll(Arrays
-                .asList(dfSFC, tfSFC));
-        
-        myCurrentFiringController = mySubFormControllers.get(0);
-
-    }
-
-    private void setUpSubFormViews (List<ISubFormController<SpriteDefinition>> subFormControllers) {
-        mySubFormViews = FXCollections.observableArrayList();
-        for (ISubFormController<SpriteDefinition> sfc : subFormControllers) {
-            mySubFormViews.add(sfc.getSubFormView());
-        }
+    @Override
+    protected void setUpSubFormControllers (List<String> subFormIDs) {
+        setMySFCFactory(new FiringSFCFactory(getMyGame(), this));
+        super.setUpSubFormControllers(subFormIDs);
 
     }
 
-    
-    // firing type combo box handler
-    private void changeFiringType (int comboSelectionIndex) {
-        myCurrentFiringController = mySubFormControllers.get(comboSelectionIndex);
-        myView.changeSubMovementView(comboSelectionIndex);
-
-    }
-    
-    // missile combo box handler
+   /**
+    * The method handler called when the user changes which missile is selected
+    * @param missile
+    */
     private void changeMissile (SpriteDefinition missile) {
-        System.out.println(missile.getProfile().getName().get());
         myMissile = missile;
 
     }
 
-    @Override
-    public void updateItem (SpriteDefinition item) {
-        myCurrentFiringController.updateItem(item);
-        
-    }
-
-    @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-        //TODO: add default populate method for new object?
-        if(item.getModuleDefinitions().isEmpty()) return;
-        
-        Object firerDef = item.getModuleDefinitions().stream().filter(findFirer()).toArray()[0];
-        System.out.println("firerdef object" + firerDef);
-        FirerDefinition myDef = new FirerDefinition();
-        /*
-        if(firerDef.getClass().equals(myDef.getClass())){
-            myDef = (FirerDefinition) firerDef;
-        } else{
-            System.out.println("uhoh");
-            myDef = null;
-        }
-        */
-        myDef = (FirerDefinition) firerDef;
-        //myView.selectMissile(myDef.getProjectileDefinition().getProfile().getName().get());
-        myView.selectMissile(myDef.getProjectileDefinition());
-
-        myCurrentFiringController.populateViewsWithData(item);
-    }
-
-    @Override
-    public ISubFormView getSubFormView () {
-        return myView;
-    }
-    
-    public SpriteDefinition getMyMissile() {
+    public SpriteDefinition getMyMissile () {
         return myMissile;
     }
+
+
 
 }

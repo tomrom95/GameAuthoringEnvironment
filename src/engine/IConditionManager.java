@@ -18,14 +18,11 @@ import javafx.collections.ObservableList;
  * @author Jonathan Im
  *
  */
-public interface IConditionManager extends Updateable {
+public interface IConditionManager extends Updateable,IEventInternalizer {
 
     /**
      * @return the observable list of condition that this class manages
      */
     ObservableList<ICondition> getConditionListProperty ();
 
-    void internalizeMouseEvents (List<MouseIOEvent> list);
-
-    void internalizeKeyEvents (List<KeyIOEvent> list);
 }

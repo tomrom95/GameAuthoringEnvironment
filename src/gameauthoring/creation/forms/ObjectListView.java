@@ -84,8 +84,10 @@ public class ObjectListView<E extends IProfilable> implements IObjectListView<E>
     @Override
     public void refreshItems () {
         ObservableList<E> items = this.myListView.getItems();
+        E selectedItem = this.getSelectedItem();
         this.myListView.setItems(null);
         this.myListView.setItems(items);
+        this.setSelectedItem(selectedItem);
 
     }
 

@@ -13,12 +13,7 @@ import engine.modules.UpgradeModule;
 
 public class SpriteUpgradeDefinition extends UpgradeDefinition {
 
-    public SpriteUpgradeDefinition (IGame game, SpriteDefinition upgrade, AttributeType type, double cost) {
-        super(game, upgrade, type, cost);
 
-    }
-
-  
     @Override
     protected ICheck getCheck (Positionable parent) {
         return new Check(parent.getAttributeManager(), getType(), getCost());
