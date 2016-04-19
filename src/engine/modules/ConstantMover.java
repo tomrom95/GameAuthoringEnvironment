@@ -6,8 +6,6 @@ import engine.IAttribute;
 import engine.Positionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
 
@@ -20,19 +18,16 @@ import util.TimeDuration;
  */
 public class ConstantMover extends Mover {
 
-    private IAttribute mySpeed;
-    private Positionable mySprite;
     
     /*
      * as of now, I am keeping the Positionable in here, so  there are other potential
      * bits of functionality like angle that can be built it here
      */
 
-    public ConstantMover (double xVel, double yVel, Positionable parent) {
+    public ConstantMover (double speed, double angle, Positionable parent) {
         super(parent);
-        getXVel().setValue(xVel);
-        getYVel().setValue(yVel);
-        mySprite = parent;
+        setSpeed(speed);
+        setOrientation(angle);
 
     }
 
@@ -48,13 +43,7 @@ public class ConstantMover extends Mover {
         return null;
     }
 
-    @Override
-    public ObservableList<IAttribute> getAttributes () {
-        // TODO Auto-generated method stub
-    	ObservableList<IAttribute> attributeList = FXCollections.observableArrayList();
-        attributeList.add(mySpeed);
-        return attributeList;
-    }
+  
 
     @Override
     public void update (TimeDuration duration) {
@@ -74,22 +63,9 @@ public class ConstantMover extends Mover {
     }
 
     @Override
-    protected List<IAttribute> getSpecificAttributes () {
-        // TODO What is this method supposed to do, how is it different from the other a
-    	//attributes method 
-    	 List<IAttribute> specialAttributes = new ArrayList<>();
-         specialAttributes.add(mySpeed);
-         return specialAttributes;
+    protected List<IAttribute> getSpecificAttributes () {    	 
+         return new ArrayList<>();
     }
-/**
- * This method returns the angle in degrees of a sprites motion based on its X and Y velocities
- * 
- * @return angle in degrees 
- */
-    public double getAngle () {
-        // TODO Auto-generated method stub
-        return Math.atan(getYVel().getValueProperty().get() / getXVel().getValueProperty().get()) *
-               180 / Math.PI;
-    }
+
 
 }
