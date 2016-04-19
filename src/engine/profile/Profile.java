@@ -1,5 +1,6 @@
 package engine.profile;
 
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import graphics.IGraphic;
 import graphics.ImageGraphic;
 import javafx.beans.property.SimpleObjectProperty;
@@ -20,7 +21,9 @@ public class Profile implements IProfile {
 
     private StringProperty myName;
     private StringProperty myDescription;
-    private SimpleObjectProperty<ImageGraphic> myImage;
+    
+   
+    private ImageGraphic myImage;
 
     public Profile () {
         init("<NAME>", "<DESCRIPTION>", new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
@@ -46,7 +49,7 @@ public class Profile implements IProfile {
     private void init (String name, String description, ImageGraphic graphic) {
         myName = new SimpleStringProperty(name);
         myDescription = new SimpleStringProperty(description);
-        myImage = new SimpleObjectProperty<>(graphic);
+        myImage = graphic;
     }
 
     @Override
@@ -60,18 +63,18 @@ public class Profile implements IProfile {
     }
 
     @Override
-    public SimpleObjectProperty<? extends IGraphic> getImage () {
+    public IGraphic getImage () {
         return myImage;
     }
 
     @Override
     public String getImageURL () {
-        return myImage.get().getUrlProperty().get();
+        return myImage.getUrlProperty().get();
     }
 
     @Override
     public void setNew (String name, String desc, String url) {
-        myImage.set(new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, url));
+        myImage = new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, url);
         myDescription.set(desc);
         myName.set(name);
     }
