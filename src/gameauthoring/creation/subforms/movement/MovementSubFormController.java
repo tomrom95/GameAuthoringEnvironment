@@ -7,8 +7,21 @@ import engine.IGame;
 import gameauthoring.creation.subforms.DynamicSubFormController;
 
 
+/**
+ * This subformcontroller is in charge of assigning a movement module to a SpriteDefinition
+ * 
+ * @author Jeremy Schreck
+ *
+ */
 public class MovementSubFormController extends DynamicSubFormController {
 
+    /**
+     * Constructor
+     * 
+     * TODO: get strings from xml and use reflection in factory classes
+     * 
+     * @param game The current game object
+     */
     public MovementSubFormController (IGame game) {
         super(game, new MovementSFCFactory(game),
               new ArrayList<String>(Arrays.asList("Static", "Constant", "UserMover", "Tracking")));

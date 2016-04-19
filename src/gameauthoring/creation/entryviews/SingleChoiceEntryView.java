@@ -46,6 +46,10 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
     public void setSelected (E item) {
         myChoices.getSelectionModel().select(item);
     }
+    
+    public void setSelected (int index) {
+        myChoices.getSelectionModel().select(0);
+    }
 
     public void clearSelection () {
         myChoices.getSelectionModel().clearSelection();
