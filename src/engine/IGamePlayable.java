@@ -1,8 +1,6 @@
 package engine;
 
 import java.util.List;
-import engine.interactionevents.KeyIOEvent;
-import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import util.Coordinate;
@@ -19,7 +17,7 @@ import util.Coordinate;
  * @author Jonathan Im
  *
  */
-public interface IGamePlayable extends Updateable, IAdder {
+public interface IGamePlayable extends Updateable, IAdder, IEventInternalizer {
 
     /**
      * @return the object containing information about this game
@@ -40,15 +38,6 @@ public interface IGamePlayable extends Updateable, IAdder {
      * @return the background image of the running level of the game
      */
     ImageGraphic getBackroundImage ();
-
-    /**
-     * TODO pull out these methods into an interface since they appear elsewhere
-     * 
-     * @param list of key events to respond to
-     */
-    void internalizeKeyEvents (List<KeyIOEvent> list);
-
-    void internalizeMouseEvents (List<MouseIOEvent> list);
 
     void add (ISprite sprite, Coordinate coordinate);
 

@@ -1,7 +1,9 @@
 package engine;
 
 import java.util.List;
+import java.util.function.Consumer;
 import engine.conditions.ICondition;
+import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
@@ -81,18 +83,26 @@ public class Level implements ILevel {
         return mySpriteManager.getDrawables();
     }
 
+    private void applyToEventInternalizers (Consumer<IEventInternalizer> internalizer) {
+        internalizer.accept(mySpriteManager);
+        internalizer.accept(myConditionManager);
+        internalizer.accept(myNextLevelManager);
+    }
+
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
-
-        mySpriteManager.internalizeKeyEvents(list);
-        myConditionManager.internalizeKeyEvents(list);
-
+        applyToEventInternalizers(internalizer -> internalizer.internalizeKeyEvents(list));
     }
 
     @Override
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
-        mySpriteManager.internalizeMouseEvents(list);
-        myConditionManager.internalizeMouseEvents(list);
+        applyToEventInternalizers(internalizer -> internalizer.internalizeMouseEvents(list));
+    }
+
+    @Override
+    public void internalizeGameEvents (List<GameEvent> list) {
+        applyToEventInternalizers(internalizer -> internalizer.internalizeGameEvents(list));
+
     }
 
     /**
@@ -131,6 +141,11 @@ public class Level implements ILevel {
     @Override
     public void add (ISprite sprite) {
         mySpriteManager.add(sprite);
+    }
+
+    @Override
+    public INextLevelManager getNextLevelManager () {
+        return myNextLevelManager;
     }
 
 }
