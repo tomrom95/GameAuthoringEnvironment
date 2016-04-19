@@ -6,7 +6,6 @@ import engine.Game;
 import engine.SpriteGroup;
 import engine.definitions.ConstantMoverDefinition;
 import engine.definitions.DirectionalFirerDefinition;
-import engine.definitions.LocationDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.TrackingFirerDefinition;
 import engine.modules.Firer;
@@ -47,10 +46,7 @@ public class TestFiringModules extends TestCase {
         System.out.println(projectile.getMovementDefinition().getSpeed());
         
         shooter = new SpriteDefinition();
-        LocationDefinition myLocation = new LocationDefinition();
-        myLocation.setX(0);
-        myLocation.setY(0);
-        shooter.setLocation(myLocation);
+        shooter.setLocation(new Coordinate(0,0));
         
         fire = new DirectionalFirerDefinition();
         fire.setProjectileDefinition(projectile);
@@ -60,10 +56,7 @@ public class TestFiringModules extends TestCase {
        
           
         enemy = new SpriteDefinition();
-        LocationDefinition enemyLocation = new LocationDefinition();
-        enemyLocation.setX(100);
-        enemyLocation.setY(100);
-        enemy.setLocation(enemyLocation);
+        enemy.setLocation(new Coordinate(100,100));
         Profile testprofile = new Profile("Test");
         enemy.setProfile(testprofile);
         
