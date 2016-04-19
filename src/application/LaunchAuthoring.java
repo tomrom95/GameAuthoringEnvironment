@@ -1,16 +1,16 @@
 package application;
 
-import gameauthoring.userinterface.MainUserInterface;
+import gameauthoring.tabs.AuthoringView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 
-public class Main extends Application {
+public class LaunchAuthoring extends Application {
 
     @Override
     public void start (Stage s) throws Exception {
-        MainUserInterface mainUI = new MainUserInterface();
-        mainUI.init(s);
+        AuthoringView aView = new AuthoringView();
+        aView.init(s);
         s.show();
     }
 
