@@ -41,8 +41,8 @@ public class ConstantMoverSubFormView extends SubFormView {
         return myPane;
     }
 
-    public void initView () {
-        super.setMyEntryViews(myEntryViews);
+    @Override
+    protected void initView () {
         myPane.setGridLinesVisible(true);
         myPane.add(myXVel.draw(), 0, 0);
         myPane.add(myYVel.draw(), 0, 1);

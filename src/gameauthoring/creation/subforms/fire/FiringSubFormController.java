@@ -83,28 +83,28 @@ public class FiringSubFormController implements ISubFormControllerSprite {
         
     }
 
-    @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-        //TODO: add default populate method for new object?
-        if(item.getModuleDefinitions().isEmpty()) return;
-        
-        Object firerDef = item.getModuleDefinitions().stream().filter(findFirer()).toArray()[0];
-        System.out.println("firerdef object" + firerDef);
-        FirerDefinition myDef = new FirerDefinition();
-        /*
-        if(firerDef.getClass().equals(myDef.getClass())){
-            myDef = (FirerDefinition) firerDef;
-        } else{
-            System.out.println("uhoh");
-            myDef = null;
-        }
-        */
-        myDef = (FirerDefinition) firerDef;
-        //myView.selectMissile(myDef.getProjectileDefinition().getProfile().getName().get());
-        myView.selectMissile(myDef.getProjectileDefinition());
-
-        myCurrentFiringController.populateViewsWithData(item);
-    }
+//    @Override
+//    public void populateViewsWithData (SpriteDefinition item) {
+//        //TODO: add default populate method for new object?
+//        if(item.getModuleDefinitions().isEmpty()) return;
+//        
+//        Object firerDef = item.getModuleDefinitions().stream().filter(findFirer()).toArray()[0];
+//        System.out.println("firerdef object" + firerDef);
+//        FirerDefinition myDef = new FirerDefinition();
+//        /*
+//        if(firerDef.getClass().equals(myDef.getClass())){
+//            myDef = (FirerDefinition) firerDef;
+//        } else{
+//            System.out.println("uhoh");
+//            myDef = null;
+//        }
+//        */
+//        myDef = (FirerDefinition) firerDef;
+//        //myView.selectMissile(myDef.getProjectileDefinition().getProfile().getName().get());
+//        myView.selectMissile(myDef.getProjectileDefinition());
+//
+//        myCurrentFiringController.populateViewsWithData(item);
+//    }
 
     @Override
     public ISubFormView getSubFormView () {

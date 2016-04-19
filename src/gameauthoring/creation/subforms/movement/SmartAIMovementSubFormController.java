@@ -22,11 +22,6 @@ public class SmartAIMovementSubFormController implements ISubFormControllerSprit
 
     }
 
-    @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-        // TODO Auto-generated method stub
-
-    }
 
     @Override
     public ISubFormView getSubFormView () {

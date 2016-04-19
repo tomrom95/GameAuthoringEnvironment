@@ -54,18 +54,18 @@ public class ConstantMoverSubFormController implements ISubFormControllerSprite 
 
     }
    
-    @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-
-        ConstantMoverDefinition movementDefinition =
-                (ConstantMoverDefinition) item.getMovementDefinition();
-
-        myFormData.set(myView.getMyXVelKey(),
-                       Double.toString(movementDefinition.getXVel()));
-        myFormData.set(myView.getMyYVelKey(),
-                       Double.toString(movementDefinition.getYVel()));
-
-    }
+//    @Override
+//    public void populateViewsWithData (SpriteDefinition item) {
+//
+//        ConstantMoverDefinition movementDefinition =
+//                (ConstantMoverDefinition) item.getMovementDefinition();
+//
+//        myFormData.set(myView.getMyXVelKey(),
+//                       Double.toString(movementDefinition.getXVel()));
+//        myFormData.set(myView.getMyYVelKey(),
+//                       Double.toString(movementDefinition.getYVel()));
+//
+//    }
 
     @Override
     public ISubFormView getSubFormView () {

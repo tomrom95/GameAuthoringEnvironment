@@ -66,8 +66,8 @@ public class MovementSubFormView extends SubFormView {
         myPane.add(mySubMovementView, 1, 0);
     }
 
-    private void initView () {
-        super.setMyEntryViews(myEntryViews);
+    @Override
+    protected void initView () {
         myPane.add(myMovement.draw(), 0, 0);
     }
 

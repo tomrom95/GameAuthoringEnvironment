@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 /**
  * This is the main user inteface class which contains two buttons "Create game" and
- * "Load existing game". 
+ * "Load existing game".
  * 
  * @TODO: ResourceBundle for unprotected string
  * @TODO: Load Game method
@@ -59,12 +59,14 @@ public class MainUserInterface {
     private Button createButton (String btnName) {
         Button newButton = new Button(myResources.getString(btnName));
 
+        Method method;
         try {
-            Method method = this.getClass().getMethod(btnName);
+            method = this.getClass().getMethod(btnName);
             newButton.setOnAction(event -> callMethod(method));
+
         }
         catch (NoSuchMethodException | SecurityException e) {
-            System.out.println("error");
+            e.printStackTrace();
         }
 
         return newButton;
@@ -75,10 +77,11 @@ public class MainUserInterface {
         try {
             method.invoke(this);
         }
-        catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-            System.out.println("error");
-            return;
+        catch (IllegalAccessException | IllegalArgumentException
+                | InvocationTargetException e) {
+            e.printStackTrace();
         }
+
     }
 
     public void createGame () {

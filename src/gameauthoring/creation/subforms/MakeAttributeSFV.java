@@ -1,11 +1,7 @@
 package gameauthoring.creation.subforms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
-import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
@@ -26,7 +22,7 @@ public class MakeAttributeSFV extends SubFormView implements IMakeAttributeSFV {
 
     public MakeAttributeSFV () {
         myStartingValue = new NumberEntryView(myStartingValueKey, this.getData(), 100, 30,
-                                    AuthoringView.DEFAULT_ENTRYVIEW);
+                                              AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
     }
 

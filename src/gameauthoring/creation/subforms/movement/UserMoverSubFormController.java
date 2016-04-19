@@ -63,17 +63,17 @@ public class UserMoverSubFormController implements ISubFormControllerSprite {
 
     }
 
-    @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-        UserMoverDefinition thisUMD = (UserMoverDefinition) item.getMovementDefinition();
-        myFormData.set(myView.getSpeedKey(),
-                       Double.toString(item.getMovementDefinition().getSpeed()));
-        myFormData.set(myView.getUpKey(), thisUMD.getKeyControlDefintion().getUp());
-        myFormData.set(myView.getDownKey(), thisUMD.getKeyControlDefintion().getDown());
-        myFormData.set(myView.getLeftKey(), thisUMD.getKeyControlDefintion().getLeft());
-        myFormData.set(myView.getRightKey(), thisUMD.getKeyControlDefintion().getRight());
-
-    }
+//    @Override
+//    public void populateViewsWithData (SpriteDefinition item) {
+//        UserMoverDefinition thisUMD = (UserMoverDefinition) item.getMovementDefinition();
+//        myFormData.set(myView.getSpeedKey(),
+//                       Double.toString(item.getMovementDefinition().getSpeed()));
+//        myFormData.set(myView.getUpKey(), thisUMD.getKeyControlDefintion().getUp());
+//        myFormData.set(myView.getDownKey(), thisUMD.getKeyControlDefintion().getDown());
+//        myFormData.set(myView.getLeftKey(), thisUMD.getKeyControlDefintion().getLeft());
+//        myFormData.set(myView.getRightKey(), thisUMD.getKeyControlDefintion().getRight());
+//
+//    }
 
     @Override
     public ISubFormView getSubFormView () {

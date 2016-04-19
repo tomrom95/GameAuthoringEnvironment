@@ -63,10 +63,10 @@ public class MovementSubFormController implements ISubFormControllerSprite {
         myCurrentMovementController.updateItem(item);
     }
 
-    @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-        myCurrentMovementController.populateViewsWithData(item);
-    }
+//    @Override
+//    public void populateViewsWithData (SpriteDefinition item) {
+//        myCurrentMovementController.populateViewsWithData(item);
+//    }
 
     @Override
     public ISubFormView getSubFormView () {

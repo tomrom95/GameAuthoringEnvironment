@@ -44,23 +44,23 @@ public class TrackingMoverSubFormController implements ISubFormControllerSprite 
         item.setMovementDefinition(newTrackingMoverDef);
         
     }
-    @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-        TrackingMoverDefinition thisTMD = (TrackingMoverDefinition) item.getMovementDefinition();
-        myFormData.set(myView.getSpeedKey(), Double.toString(item.getMovementDefinition().getSpeed()));
-        
-        StringBuilder targetListString = new StringBuilder();
-        List<SpriteType> targetList = thisTMD.getTargets();
-        for(SpriteType s : targetList){
-            targetListString.append(s);
-            if(targetList.indexOf(s) != targetList.size() - 1){
-                targetListString.append(", ");
-            }
-        }
-        String targetsString = targetListString.toString();
-        myFormData.set(myView.getTargetsKey(), targetsString);
-        
-    }
+//    @Override
+//    public void populateViewsWithData (SpriteDefinition item) {
+//        TrackingMoverDefinition thisTMD = (TrackingMoverDefinition) item.getMovementDefinition();
+//        myFormData.set(myView.getSpeedKey(), Double.toString(item.getMovementDefinition().getSpeed()));
+//        
+//        StringBuilder targetListString = new StringBuilder();
+//        List<SpriteType> targetList = thisTMD.getTargets();
+//        for(SpriteType s : targetList){
+//            targetListString.append(s);
+//            if(targetList.indexOf(s) != targetList.size() - 1){
+//                targetListString.append(", ");
+//            }
+//        }
+//        String targetsString = targetListString.toString();
+//        myFormData.set(myView.getTargetsKey(), targetsString);
+//        
+//    }
 
     @Override
     public ISubFormView getSubFormView () {

@@ -110,12 +110,12 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
 
     @Override
     public BooleanProperty isUpgradableProperty () {
-        return this.isUpgradableProperty();
+        return this.isUpgradable.isCheckedProperty();
     }
 
     @Override
     public BooleanProperty isGlobalProperty () {
-        return this.isGlobalProperty();
+        return this.isGlobalResource.isCheckedProperty();
     }
 
     @Override

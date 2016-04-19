@@ -38,11 +38,8 @@ public class UserMoverSubFormView extends SubFormView {
         return myPane;
     }
 
-    /*
-     * jeremy, this feels like it should be coming from the super class?
-     */
-    private void initView(){
-        super.setMyEntryViews(myEntryViews);
+    @Override
+    protected void initView(){
         myPane.setGridLinesVisible(true);
         myPane.add(mySpeed.draw(), 0, 0);
         myPane.add(myUp.draw(), 0, 1);

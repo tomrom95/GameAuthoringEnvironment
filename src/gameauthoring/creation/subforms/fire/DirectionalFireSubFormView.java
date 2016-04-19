@@ -33,9 +33,6 @@ public class DirectionalFireSubFormView extends SubFormView {
             new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30,
                               AuthoringView.DEFAULT_ENTRYVIEW);  
 
-    private List<IEntryView> myEntryViews =
-            // new ArrayList<IEntryView>(Arrays.asList(myAngle, myWaitTime, myProjectile));
-            new ArrayList<IEntryView>(Arrays.asList(myAngle, myWaitTime));
 
     public DirectionalFireSubFormView () {
         initView();
@@ -47,7 +44,6 @@ public class DirectionalFireSubFormView extends SubFormView {
     }
 
     public void initView () {
-        super.setMyEntryViews(myEntryViews);
         myPane.setGridLinesVisible(true);
         myPane.add(myAngle.draw(), 0, 0);
         myPane.add(myWaitTime.draw(), 0, 1);

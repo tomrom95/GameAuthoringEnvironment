@@ -92,9 +92,8 @@ public class FiringSubFormView extends SubFormView {
         myPane.add(mySubFiringView, 0, 1);
     }
 
-    private void initView () {
-        // TODO: Whats the point of setting entry views?
-        super.setMyEntryViews(myEntryViews);
+    @Override
+    protected void initView () {
         myPane.add(myFire.draw(), 0, 0);
         myPane.add(myMissileSelectionView, 1, 0);
     }
