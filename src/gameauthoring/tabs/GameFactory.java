@@ -1,6 +1,8 @@
 package gameauthoring.tabs;
 
 import engine.Game;
+import engine.rendering.GameGridConfigNonScaling;
+import gameplayer.GamePlayer;
 
 
 /**
@@ -13,7 +15,7 @@ import engine.Game;
 public class GameFactory {
 
     public Game createGame () {
-        Game game = new Game();
+        Game game = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
         return game;
     }
 

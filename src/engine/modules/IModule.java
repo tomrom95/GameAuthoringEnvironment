@@ -1,6 +1,7 @@
 package engine.modules;
 
 import engine.Affectable;
+import engine.GameEventHandler;
 import engine.Updateable;
 
 
@@ -15,6 +16,6 @@ import engine.Updateable;
  * @author Jonathan Im
  *
  */
-public interface IModule extends Updateable, Affectable {
+public interface IModule extends Updateable, Affectable, GameEventHandler{
 
 }

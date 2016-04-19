@@ -2,7 +2,9 @@ package gameauthoring.creation.subforms.movement;
 
 import engine.Game;
 import engine.IGame;
+import engine.rendering.GameGridConfigNonScaling;
 import gameauthoring.creation.subforms.fire.FiringSubFormController;
+import gameplayer.GamePlayer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -13,7 +15,7 @@ public class MovementTestMain extends Application{
 
     @Override
     public void start (Stage s) throws Exception {
-        IGame game = new Game();
+        IGame game = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
         MovementSubFormController a = new MovementSubFormController();
         FiringSubFormController fSFC = new FiringSubFormController(game);
         GridPane root = new GridPane();
