@@ -1,6 +1,7 @@
 package engine.profile;
 
 import graphics.IGraphic;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
 
@@ -28,7 +29,7 @@ public interface IProfile {
     StringProperty getDescription ();
 
     /**
-     * Get's the sprite display graphic
+     * Gets the sprite display graphic
      *
      * @return The IGraphic
      */
@@ -40,7 +41,23 @@ public interface IProfile {
      * @return A ImageGraphic's url as a string
      */
     String getImageURL ();
-    
+
+    /**
+     * Gets the width of image
+     * 
+     * @return
+     */
+    DoubleProperty getImageWidth ();
+
+    /**
+     * Gets the height of image
+     * 
+     * @return
+     */
+    DoubleProperty getImageHeight ();
+
     void setNew (String name, String desc, String url);
     
+    void setNew (String name, String desc, String url, double width, double height);
+
 }

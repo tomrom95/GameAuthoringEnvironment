@@ -86,6 +86,7 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
         return myView;
     }
 
+    //TODO: Check whether input is empty string or not, it gives error for now
     @Override
     public void updateItem (SpriteDefinition item) {
         DirectionalFirerDefinition directionalFireDef = new DirectionalFirerDefinition();
