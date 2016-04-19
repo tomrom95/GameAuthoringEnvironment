@@ -1,5 +1,7 @@
 package engine;
 
+import engine.rendering.IGameGridConfig;
+
 /**
  * This interface defines the functionality for a Game, specifically adding editing functionality to
  * an IGamePlayable
@@ -32,4 +34,17 @@ public interface IGame extends IGamePlayable {
      * @return the attribute manager for game-wide global attributes
      */
     IAttributeManager getAttributeManager ();
+    
+    /**
+     * @return the object that handles aggregation of obstruction flags into 
+     * bitmaps across the game state
+     */
+    IObstructionManager getObstructionManager ();
+    
+    /**
+     * @return The object that stores information regarding
+     * the size of virtual pixel grid and potentially in the future
+     * an externally updated scaling factor to support resizing
+     */
+    IGameGridConfig getGameGridConfig();
 }

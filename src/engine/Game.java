@@ -3,6 +3,7 @@ package engine;
 import java.util.List;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.rendering.IGameGridConfig;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import util.Coordinate;
@@ -17,15 +18,18 @@ import util.TimeDuration;
  */
 public class Game implements IGame {
 
+    private IGameGridConfig myGameGridConfig;
     private ILevelManager myLevelManager;
     private IConditionManager myConditionManager;
     private AuthorshipData myAuthorshipData;
     private IGameInformation myGameInformation;
     private IAttributeManager myAttributeManager;
+    private IObstructionManager myObstructionManager;
 
-    public Game () {
+    public Game (IGameGridConfig gridConfiguration) {
         // TODO remove hardcoded strings
         this(new GameInformation("title", "author", "date"));
+        myGameGridConfig = gridConfiguration;
     }
 
     public Game (IGameInformation gameInfo) {
@@ -34,6 +38,7 @@ public class Game implements IGame {
         myAuthorshipData = new AuthorshipData();
         myGameInformation = gameInfo;
         myAttributeManager = new AttributeManager();
+        myObstructionManager = new ObstructionManager(this);
     }
 
     @Override
@@ -41,6 +46,7 @@ public class Game implements IGame {
         myLevelManager.update(duration);
         myConditionManager.update(duration);
         myAttributeManager.update(duration);
+        myObstructionManager.update(duration);
     }
 
     @Override
@@ -113,6 +119,16 @@ public class Game implements IGame {
     @Override
     public void bufferedAdd (ISprite sprite, Coordinate coordinate) {
         myLevelManager.bufferedAdd(sprite, coordinate);
+    }
+
+    @Override
+    public IObstructionManager getObstructionManager () {
+        return myObstructionManager;
+    }
+
+    @Override
+    public IGameGridConfig getGameGridConfig () {
+        return myGameGridConfig;
     }
 
 }

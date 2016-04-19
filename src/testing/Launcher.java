@@ -22,6 +22,7 @@ import engine.events.EventPackage;
 import engine.events.EventType;
 import engine.events.GameEvent;
 import engine.profile.Profile;
+import engine.rendering.GameGridConfigNonScaling;
 import engine.sprite.ISprite;
 import engine.effects.DecreaseEffect;
 import engine.effects.IEffect;
@@ -72,7 +73,8 @@ public class Launcher extends Application {
 
     private void addConditionsToTest (Game game) {
         game.getConditionManager().getConditionListProperty().add(createCollisionCondition(game));
-        game.getConditionManager().getConditionListProperty().add(createHealthAttributeZeroDeathCondition(game));
+        game.getConditionManager().getConditionListProperty()
+                .add(createHealthAttributeZeroDeathCondition(game));
     }
 
     private OnSpriteAttributeCondition createHealthAttributeZeroDeathCondition (Game game) {
@@ -80,7 +82,7 @@ public class Launcher extends Application {
                                               value -> value < 0, userSpriteDeathEvent(),
                                               createEmptyEventPackage(),
                                               createEmptyEventPackage());
-        
+
         // return new OnSpriteAttributeCondition(game, createHealthAttributeDefinition().create(),
         // value -> value < 0, userSpriteDeathEvent(),
         // createEmptyEventPackage(),
@@ -159,7 +161,8 @@ public class Launcher extends Application {
         LevelManager lm = new LevelManager();
         lm.createNewLevel(firstLevel);
 
-        myGame = new Game();
+        myGame =
+                new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
         myGame.getLevelManager().getLevels().add(firstLevel);
         addSpritesToGame(myGame);
         addConditionsToTest(myGame);

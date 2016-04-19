@@ -27,6 +27,7 @@ import engine.events.EventPackage;
 import engine.events.EventType;
 import engine.events.GameEvent;
 import engine.profile.Profile;
+import engine.rendering.GameGridConfigNonScaling;
 import engine.sprite.ISprite;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameplayer.GamePlayer;
@@ -49,7 +50,7 @@ public class DemoLauncherTracker extends Application {
     }
 
     private void makeGame () {
-        IGame game = new Game();
+        IGame game = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
         myGame = game;
         //createGlobalAtts(game);
         createSpriteDefs(game);
