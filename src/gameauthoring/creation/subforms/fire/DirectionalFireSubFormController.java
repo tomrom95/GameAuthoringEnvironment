@@ -31,11 +31,7 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
     private double myDefaultAngle = 0;
     private double myDefaultWaitTime = 0;
 
-    private static Predicate<ModuleDefinition> findDirectionalFirer () {
-
-        return p -> p.getClass().equals(new DirectionalFirerDefinition().getClass());
-    }
-
+  
     public DirectionalFireSubFormController (IGame game) {
         myView = new DirectionalFireSubFormView();
         myFormData = myView.getData();
@@ -60,39 +56,7 @@ public class DirectionalFireSubFormController implements ISubFormControllerSprit
         myFormData.set(myView.getMyWaitTimeKey(), Double.toString(wait));
     }
 
-    @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-
-        // TODO: add default populate method for new object?
-        if (item.getModuleDefinitions().isEmpty())
-            return;
-
-        try {
-            Object firingDefinitionObject =
-                    item.getModuleDefinitions().stream().filter(findDirectionalFirer())
-                            .toArray()[0];
-            DirectionalFirerDefinition myDef = new DirectionalFirerDefinition();
-            if (firingDefinitionObject.getClass().equals(myDef.getClass())) {
-                myDef = (DirectionalFirerDefinition) firingDefinitionObject;
-            }
-            else {
-                myDef = null;
-                /*
-                 * throw exception here?
-                 */
-            }
-            myFormData.set(myView.getMyAngleKey(),
-                           Double.toString(myDef.getAngle() * 180 / Math.PI));
-            myFormData.set(myView.getMyWaitTimeKey(), Double.toString(myDef.getWaitTime()));
-            // myFormData.set(myView.getMyProjectileKey(), myDef.getProjectileDefinition());
-        }
-        catch (Exception e) {
-            myFormData.set(myView.getMyAngleKey(), "");
-            myFormData.set(myView.getMyProjectileKey(), "");
-        }
-
-    }
-
+    
     @Override
     public ISubFormView getSubFormView () {
         return myView;

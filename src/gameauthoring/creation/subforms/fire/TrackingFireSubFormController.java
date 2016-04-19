@@ -77,23 +77,6 @@ public class TrackingFireSubFormController implements ISubFormControllerSprite {
     }
 
     @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-        try {
-            myView.getTargetsCoice().clearSelection();
-            Object trackingDefinitionObject =
-                    item.getModuleDefinitions().stream().filter(findTrackingFirer()).toArray()[0];
-            TrackingFirerDefinition myDef = new TrackingFirerDefinition();
-            myDef = (TrackingFirerDefinition) trackingDefinitionObject;
-            myView.getTargetsCoice().setSelected(myDef.getTargets());
-            myFormData.set(myView.getWaitTimeKey(), Double.toString(myDef.getWaitTime()));
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
-            myFormData.set(myView.getWaitTimeKey(), "");
-            myView.getTargetsCoice().clearSelection();
-        }
-    }
-
-    @Override
     public ISubFormView getSubFormView () {
         return myView;
     }
