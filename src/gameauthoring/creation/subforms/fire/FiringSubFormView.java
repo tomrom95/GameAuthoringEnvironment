@@ -11,9 +11,7 @@ import javafx.collections.ObservableList;
 
 
 /**
- * This serves to display firing subform view. It creates a combo box which allows the author to
- * select
- * different types of firing modules
+ * This serves to display firing subform view.
  * 
  * @author Jeremy Schreck
  *
@@ -23,6 +21,15 @@ public class FiringSubFormView extends DynamicSubFormView {
     private String myFireTypeKey = "Fire Type: ";
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
 
+    /**
+     * Constructor
+     * 
+     * @param views The sub-subformviews representing different types of firing
+     * @param changeSelectionAction The method to call when user selects a different firing type
+     * @param options The titles of the different firing options
+     * @param changeMissileAction The method to call when a user selects a different missile 
+     * @param missiles The list of possible missiles to select
+     */
     public FiringSubFormView (List<ISubFormView> views,
                               Consumer<Integer> changeSelectionAction,
                               List<String> options,
@@ -33,11 +40,16 @@ public class FiringSubFormView extends DynamicSubFormView {
 
     }
 
+    /**
+     * Initializes the view that allows a user to select a missile for the firing module
+     * 
+     * @param changeMissileAction The method to call when the user selects a different missile
+     * @param missiles The list of possible missiles to select
+     */
     private void initMissileSelectionView (
                                            Consumer<SpriteDefinition> changeMissileAction,
                                            ObservableList<SpriteDefinition> missiles) {
 
-        // Missiles
         myMissileSelectionView =
                 new SingleChoiceEntryView<>("Missile", missiles, AuthoringView.DEFAULT_ENTRYVIEW);
 
@@ -46,6 +58,11 @@ public class FiringSubFormView extends DynamicSubFormView {
 
     }
 
+    /**
+     * This method changes which missile is currently selected
+     * 
+     * @param missile The missile to select
+     */
     public void selectMissile (SpriteDefinition missile) {
         myMissileSelectionView.setSelected(missile);
     }
