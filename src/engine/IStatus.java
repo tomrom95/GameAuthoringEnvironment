@@ -16,9 +16,24 @@ public interface IStatus extends Affectable, GameEventHandler {
      * @return whether this sprite should be removed from the game
      */
     boolean shouldBeRemoved ();
-    
+
     /**
      * Should set to be removed
      */
     void remove ();
+
+    /**
+     * Returns whether or not the game engine should consider this sprite as
+     * obstructing for the purposes of generating the obstruction bitmaps
+     * 
+     * @return
+     */
+    boolean doesObstruct ();
+
+    /**
+     * This
+     * 
+     * @param value {@code true} if this sprite obstructs, {@code false} if it does not
+     */
+    void setObstruction (boolean value);
 }

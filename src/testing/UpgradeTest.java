@@ -36,6 +36,7 @@ import engine.events.GameEvent;
 import engine.modules.PathMover;
 import engine.modules.SpawningModule;
 import engine.profile.Profile;
+import engine.rendering.GameGridConfigNonScaling;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
@@ -67,7 +68,7 @@ public class UpgradeTest extends Application {
     }
 
     private void makeGame () {
-        IGame game = new Game();
+        IGame game = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
         myGame = game;
         createGlobalAtts(game);
         createSpriteDefs(game);
