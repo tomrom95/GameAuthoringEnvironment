@@ -18,6 +18,10 @@ public abstract class UpgradeDefinition extends ModuleDefinition {
     private AttributeType myType;
     private double myCost;
     private IGame myGame;
+    
+    public UpgradeDefinition(){
+        
+    }
 
     public UpgradeDefinition (IGame adder,
                               SpriteDefinition upgrade,

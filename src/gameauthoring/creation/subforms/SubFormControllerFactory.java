@@ -157,8 +157,8 @@ public class SubFormControllerFactory {
         return getMyGame().getAuthorshipData();
     }
 
-    public ProfileSubFormController<IProfilable> createProfileSFC () {
-        return new ProfileSubFormController<IProfilable>();
+    public ProfileSFC<IProfilable> createProfileSFC () {
+        return new ProfileSFC<IProfilable>();
     }
 
 }

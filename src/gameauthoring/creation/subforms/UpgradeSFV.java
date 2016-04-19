@@ -6,7 +6,6 @@ import engine.definitions.SpriteDefinition;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
-import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
 import javafx.beans.property.BooleanProperty;
 import javafx.scene.Node;
@@ -19,7 +18,7 @@ import javafx.scene.layout.GridPane;
  * @author Joe Lilien
  *
  */
-public class UpgradeSFV extends SubFormView {
+public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     private String myUpgradeChoicesKey = "Next Level Defender: ";
     private String myUpgradableKey = "Upgradable: ";
     private String myGlobalKey = "Deplete Global Resource: ";
@@ -36,9 +35,7 @@ public class UpgradeSFV extends SubFormView {
 
         // TODO: change list of sprite DefinitionCollections in authorship data to map most likely,
         // or separate them, should decide on that to avoid magic number like this
-        
-        //TODO: maybe do the same for entry views of SFV (getters right now)
-        
+
         myUpgradeChoices =
                 new SingleChoiceEntryView<SpriteDefinition>(myUpgradeChoicesKey, data
                         .getMyCreatedSprites().get(1).getItems(),
@@ -50,7 +47,7 @@ public class UpgradeSFV extends SubFormView {
                                                                AuthoringView.DEFAULT_ENTRYVIEW);
 
         isUpgradable =
-                new CheckEntryView(myUpgradableKey, AuthoringView.DEFAULT_ENTRYVIEW);       
+                new CheckEntryView(myUpgradableKey, AuthoringView.DEFAULT_ENTRYVIEW);
 
         isGlobalResource = new CheckEntryView(myGlobalKey, AuthoringView.DEFAULT_ENTRYVIEW);
         myCost =
@@ -58,10 +55,11 @@ public class UpgradeSFV extends SubFormView {
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
         initBinding(data);
-       
+
     }
 
-    private void initView () {
+    @Override
+    protected void initView () {
         myContainer = new GridPane();
         myContainer.add(isUpgradable.draw(), 0, 0);
         myContainer.add(isGlobalResource.draw(), 0, 1);
@@ -76,7 +74,6 @@ public class UpgradeSFV extends SubFormView {
         myAttributeChoices.draw().visibleProperty().bind(isUpgradableProperty());
         isGlobalResource.draw().visibleProperty().bind(isUpgradableProperty());
         myCost.draw().visibleProperty().bind(isUpgradableProperty());
-
         isGlobalResource.isCheckedProperty()
                 .addListener(c -> updateAttributeChoices(data,
                                                          isGlobalResource.isCheckedProperty()));
@@ -91,37 +88,57 @@ public class UpgradeSFV extends SubFormView {
         }
     }
 
-    public BooleanProperty isUpgradableProperty () {
-        return this.isUpgradable.isCheckedProperty();
-    }
-    
-    public BooleanProperty isGlobalProperty () {
-        return this.isGlobalResource.isCheckedProperty();
-    }
-
-    public void setSelected (boolean isSelected) {
-        this.isUpgradable.setSelected(isSelected);
-    }
-
-    public SingleChoiceEntryView<SpriteDefinition> getUpgradeChoices () {
-        return this.myUpgradeChoices;
-    }
-    
-    public SpriteDefinition getNextUpgrade(){
+    @Override
+    public SpriteDefinition getNextUpgrade () {
         return this.myUpgradeChoices.getSelected();
     }
-    
-    public AttributeDefinition getDepeltedAttribute(){
+
+    @Override
+    public AttributeDefinition getDepeltedAttribute () {
         return this.myAttributeChoices.getSelected();
     }
-    
-    public String getMyCostKey(){
+
+    @Override
+    public String getMyCostKey () {
         return this.myCostKey;
     }
 
     @Override
     public Node draw () {
         return myContainer;
+    }
+
+    @Override
+    public BooleanProperty isUpgradableProperty () {
+        return this.isUpgradableProperty();
+    }
+
+    @Override
+    public BooleanProperty isGlobalProperty () {
+        return this.isGlobalProperty();
+    }
+
+    @Override
+    public void setIsUpgradable (boolean isSelected) {
+        this.isUpgradableProperty().set(isSelected);
+    }
+
+    @Override
+    public String getMyNameKey () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String getMyDescriptionKey () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String getMyImageKey () {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

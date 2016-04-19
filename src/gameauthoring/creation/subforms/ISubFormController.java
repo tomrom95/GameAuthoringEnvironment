@@ -29,13 +29,6 @@ public interface ISubFormController<T extends IProfilable> {
     void initializeFields();
 
     /**
-     * Fill in the UI based on the given item
-     * 
-     * @param item The item to display
-     */
-    void populateViewsWithData (T item);
-
-    /**
      * Get the sfc's associated subformview
      * 
      * @return The subformview

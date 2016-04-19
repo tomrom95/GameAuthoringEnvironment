@@ -14,10 +14,14 @@ public class UpgradeSFC implements ISubFormControllerSprite {
 
     private UpgradeSFV mySFV;
     private IGame myGame;
+    private UpgradeDefinition myGlobalUpgrade;
+    private UpgradeDefinition mySpriteUpgrade;
 
     public UpgradeSFC (IGame game) {
         mySFV = new UpgradeSFV(game.getAuthorshipData());
         this.myGame = game;
+        this.myGlobalUpgrade = new GlobalUpgradeDefinition();
+        this.mySpriteUpgrade = new SpriteUpgradeDefinition();
     }
 
     @Override
@@ -40,10 +44,6 @@ public class UpgradeSFC implements ISubFormControllerSprite {
         }
     }
 
-    @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-        mySFV.setSelected(false);
-    }
 
     @Override
     public ISubFormView getSubFormView () {
@@ -52,8 +52,7 @@ public class UpgradeSFC implements ISubFormControllerSprite {
 
     @Override
     public void initializeFields () {
-        mySFV.setSelected(false);
-        
+        mySFV.getData().set(mySFV.getMyCostKey(), "0.0"); //TODO: resource file
     }
 
 }
