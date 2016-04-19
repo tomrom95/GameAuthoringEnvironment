@@ -37,23 +37,30 @@ public class OnCollisionPopUp extends ConditionPopUp {
     @Override
     protected void initializeDisplay () {
         initBoxes();
-        add(getHBox(), 0, 0);
+        add(getHBox(), 0, 1);
 
     }
 
     private void initBoxes () {
         // TODO Auto-generated method stub
         myGroupA = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
+        addCellFactory(myGroupA);
         myEventsA =
                 new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+        addCellFactory(myEventsA);
         myGroupB = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
+        addCellFactory(myGroupB);
         myEventsB =
                 new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+        addCellFactory(myEventsB);
         myThirdParty = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
+        addCellFactory(myThirdParty);
         myThirdEvents =
                 new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+        addCellFactory(myThirdEvents);
         myGlobalEvents =
                 new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+        addCellFactory(myGlobalEvents);
 
     }
 

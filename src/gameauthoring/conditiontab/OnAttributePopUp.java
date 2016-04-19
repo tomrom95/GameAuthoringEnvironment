@@ -42,20 +42,25 @@ public abstract class OnAttributePopUp extends ConditionPopUp {
     @Override
     protected void initializeDisplay () {
         initBoxes();
-        add(getHBox(), 0, 0);
+        add(getHBox(), 0, 1);
     }
 
     private void initBoxes () {
         myAttributeType =
                 new ComboBox<>(myAttributeStorage);
+        
         myChecks =
                 new ComboBox<>(FXCollections.observableArrayList(getCheckTypes()));
+        
         myValueToCompare = new TextField();
         myThirdParty = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
+        addCellFactory(myThirdParty);
         myThirdEvents =
                 new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+        addCellFactory(myThirdEvents);
         myGlobalEvents =
                 new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
+        addCellFactory(myGlobalEvents);
 
     }
 

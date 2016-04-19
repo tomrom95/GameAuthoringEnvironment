@@ -42,24 +42,25 @@ public class OnClickPopUp extends ConditionPopUp {
         packageB.setMySpriteGroup(myGroupB.getSelectionModel().getSelectedItem());
         EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();
         return new OnClickCondition(myGame, packageA.create(), packageB.create(), global.create());
+
     }
 
     @Override
     protected void initializeDisplay () {
         initBoxes();
-        add(getHBox(), 0, 0);
+        add(getHBox(), 0, 1);
     }
 
     private void initBoxes () {
         // TODO Auto-generated method stub
         myGroupA = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
         addCellFactory(myGroupA);
-        
+
         myEventsA =
                 new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
 
         addCellFactory(myEventsA);
-        
+
         myGroupB = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
 
         addCellFactory(myGroupB);
@@ -74,11 +75,6 @@ public class OnClickPopUp extends ConditionPopUp {
 
         addCellFactory(myGlobalEvents);
 
-    }
-
-    private void addCellFactory (ComboBox<? extends IProfilable> comboBox) {
-        comboBox.setCellFactory(c -> new NameCellView<>());
-        comboBox.setButtonCell(new NameCellView<>());
     }
 
     private Node getHBox () {
