@@ -4,17 +4,26 @@ import engine.Drawable;
 import engine.IAttribute;
 import engine.rendering.GraphicFactory;
 import engine.rendering.ScaleFactory;
-import gameauthoring.util.Glyph;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 
-public class SpriteDisplay implements Glyph {
+public class SpriteDisplay extends SizeableGlyph {
 
     private VBox myPane = new VBox();
     private GraphicFactory myFactory = new ScaleFactory(80, 80);
     private Drawable mySprite;
+
+    public SpriteDisplay () {
+        setSize();
+    }
+    
+    private void setSize () {
+       myPane.setPrefWidth(parseString(getString("SpriteDisplayWidth")));
+       myPane.setPrefHeight(parseString(getString("SpriteDisplayHeight")));
+    }
+   
 
     public Node draw () {
         return myPane;
