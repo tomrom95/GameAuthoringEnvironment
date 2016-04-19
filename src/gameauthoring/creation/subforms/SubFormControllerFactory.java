@@ -55,7 +55,7 @@ public class SubFormControllerFactory {
             return new UserMoverSubFormController();
         }
         else if (type.equals("SelectAttribute")) {
-            return new SelectAttributeSubFormController(getMyAuthorshipData()
+            return new SelectAttributeSFC(getMyAuthorshipData()
                     .getMyCreatedAttributes());
         }
         else if (type.equals("Attribute")) {
@@ -114,7 +114,7 @@ public class SubFormControllerFactory {
             return new UserMoverSubFormController();
         }
         else if (type.equals("SelectAttribute")) {
-            return new SelectAttributeSubFormController(getMyAuthorshipData()
+            return new SelectAttributeSFC(getMyAuthorshipData()
                     .getMyCreatedAttributes());
         }
         else if (type.equals("Firing")) {
