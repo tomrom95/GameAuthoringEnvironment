@@ -1,14 +1,8 @@
 package gameauthoring.creation.subforms.fire;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
 import engine.IGame;
 import engine.definitions.DirectionalFirerDefinition;
-import engine.definitions.ModuleDefinition;
 import engine.definitions.SpriteDefinition;
-import engine.definitions.TrackingFirerDefinition;
-import engine.sprite.SpriteType;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
@@ -18,7 +12,7 @@ import gameauthoring.creation.subforms.ISubFormView;
  * This class creates the controller to handle, manage, and interact with user data involving
  * linear, directional movement modules
  * 
- * @author Dhrumil Timko
+ * @author Dhrumil Timko Schreck
  *
  */
 

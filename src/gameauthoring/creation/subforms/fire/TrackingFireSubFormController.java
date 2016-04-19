@@ -1,27 +1,19 @@
 package gameauthoring.creation.subforms.fire;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
+
 import engine.IGame;
-import engine.SpriteGroup;
-import engine.definitions.DirectionalFirerDefinition;
-import engine.definitions.ModuleDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.TrackingFirerDefinition;
-import engine.definitions.TrackingMoverDefinition;
-import engine.sprite.SpriteType;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
-import gameauthoring.util.ErrorMessage;
 
 
 /**
  * This class creates the controller to handle, manage, and interact with user data involving
  * tracking movement modules and projectiles
  * 
- * @author Dhrumil Timko
+ * @author Dhrumil Timko Schreck
  *
  */
 
