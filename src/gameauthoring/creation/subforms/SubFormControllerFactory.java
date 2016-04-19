@@ -59,7 +59,7 @@ public class SubFormControllerFactory {
                     .getMyCreatedAttributes());
         }
         else if (type.equals("Attribute")) {
-            return new MakeAttributeSubFormController();
+            return new MakeAttributeSFC();
         }
         else if (type.equals("Events")) {
             return new EventsSubFormController(getMyAuthorshipData().getMyCreatedAttributes(),
@@ -141,7 +141,7 @@ public class SubFormControllerFactory {
 
     public ISubFormControllerAttribute createAttributeSubFormController (String type) {
         if (type.equals("Attribute")) {
-            return new MakeAttributeSubFormController();
+            return new MakeAttributeSFC();
         }
         System.out.println("null");
 

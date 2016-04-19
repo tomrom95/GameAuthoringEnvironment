@@ -16,6 +16,7 @@ public class UpgradeSFC implements ISubFormControllerSprite {
     private IGame myGame;
     private UpgradeDefinition myGlobalUpgrade;
     private UpgradeDefinition mySpriteUpgrade;
+    private double myInitialValue = 0;
 
     public UpgradeSFC (IGame game) {
         mySFV = new UpgradeSFV(game.getAuthorshipData());
@@ -61,7 +62,7 @@ public class UpgradeSFC implements ISubFormControllerSprite {
 
     @Override
     public void initializeFields () {
-        mySFV.getData().set(mySFV.getMyCostKey(), "0.0"); //TODO: resource file
+        mySFV.getData().set(mySFV.getMyCostKey(), String.valueOf(this.myInitialValue)); 
     }
 
 }

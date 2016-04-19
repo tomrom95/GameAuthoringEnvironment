@@ -123,22 +123,5 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
         this.isUpgradableProperty().set(isSelected);
     }
 
-    @Override
-    public String getMyNameKey () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public String getMyDescriptionKey () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public String getMyImageKey () {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
 }

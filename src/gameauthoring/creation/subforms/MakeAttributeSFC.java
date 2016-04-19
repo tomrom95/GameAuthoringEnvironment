@@ -12,30 +12,22 @@ import gameauthoring.util.ErrorMessage;
  * @author Joe Lilien
  *
  */
-public class MakeAttributeSubFormController implements ISubFormControllerAttribute {
+public class MakeAttributeSFC implements ISubFormControllerAttribute {
 
-    private MakeAttributeSubFormView myView;
+    private MakeAttributeSFV myView;
     private IFormDataManager myFormData;
     private double myInitialValue = 0;
 
-    public MakeAttributeSubFormController () {
-        this.myView = new MakeAttributeSubFormView();
+    public MakeAttributeSFC () {
+        this.myView = new MakeAttributeSFV();
         this.myFormData = myView.getData();
     }
 
     @Override
     public void initializeFields () {
-        populateViewsWithData(myInitialValue);
+        myFormData.set(myView.getMyStartingValueKey(), String.valueOf(myInitialValue));
     }
 
-    private void populateViewsWithData (double value) {
-        myFormData.set(myView.getMyStartingValueKey(), String.valueOf(value));
-    }
-
-    /**
-     * TODO: most likely move error checking to definition class, or at least standardize it
-     * 
-     */
     @Override
     public void updateItem (AttributeDefinition item) {
         try {
@@ -45,14 +37,9 @@ public class MakeAttributeSubFormController implements ISubFormControllerAttribu
             item.setStartingValue(startingValue);
         }
         catch (NumberFormatException e) {
-            ErrorMessage err = new ErrorMessage("Max and Min Values must be Numbers");
+            ErrorMessage err = new ErrorMessage("Max and Min Values must be Numbers");//TODO: resource file
             err.showError();
         }
-    }
-
-    @Override
-    public void populateViewsWithData (AttributeDefinition item) {
-        populateViewsWithData(item.getStartingValue());
     }
 
     @Override
