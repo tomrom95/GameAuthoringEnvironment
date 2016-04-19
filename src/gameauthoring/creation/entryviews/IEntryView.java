@@ -14,8 +14,6 @@ public interface IEntryView extends Glyph {
 
     FormData getData ();
 
-    void populateWithData (FormData data);
-    
-    //maybe make this properties to be able to get and set?
+    String getLabel ();
 
 }

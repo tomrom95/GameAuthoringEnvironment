@@ -1,6 +1,5 @@
 package gameauthoring.creation.entryviews;
 
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputControl;
 
 /**
@@ -17,7 +16,8 @@ public class NumberEntryView extends InputEntryView {
         super(label,data,width,height,cssClass);
         myTextInput = new NumberTextField();
         super.setInputControl(myTextInput);
-        super.init(label,width,height,cssClass);
+        super.init(label, cssClass);
     }
+
 
 }
