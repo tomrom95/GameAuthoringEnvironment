@@ -27,6 +27,7 @@ public class SubFormControllerFactory {
 
     public List<ISubFormController<?>> createSubFormControllers (List<String> subFormStrings) {
         List<ISubFormController<?>> list = new ArrayList<ISubFormController<?>>();
+        list.add(this.createProfileSFC());
         for (String subFormString : subFormStrings) {
             list.add(createSubFormController(subFormString));
         }
@@ -86,7 +87,7 @@ public class SubFormControllerFactory {
 
     // Non general
     public List<ISubFormControllerSprite> createSpriteSubFormControllers (List<String> subFormStrings) {
-        List<ISubFormControllerSprite> list = new ArrayList<ISubFormControllerSprite>();
+        List<ISubFormControllerSprite> list = new ArrayList<ISubFormControllerSprite>();        
         for (String subFormString : subFormStrings) {
             list.add(createSpriteSubFormController(subFormString));
         }
