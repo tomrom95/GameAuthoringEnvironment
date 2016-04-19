@@ -11,19 +11,31 @@ public abstract class DynamicSubFormController implements ISubFormControllerSpri
     private List<ISubFormView> mySubFormViews;
     private List<ISubFormController<SpriteDefinition>> mySubFormControllers;
     private ISubFormController<SpriteDefinition> myCurrentSubFormController;
-    private SubFormControllerFactory mySFCFactory;
     private IGame myGame;
+    private DynamicSFCFactory mySFCFactory;
+    private List<String> mySubFormIDs;
 
-
-    public DynamicSubFormController (SubFormControllerFactory sfcFactory, IGame game) {
+    public DynamicSubFormController (IGame game,
+                                     DynamicSFCFactory sfcFactory,
+                                     List<String> subFormIDs) {
         setMyGame(game);
         setMySFCFactory(sfcFactory);
+        setMySubFormIDs(subFormIDs);
         setUpSubFormControllers();
         setMyCurrentSFC();
         setUpSubFormViews(mySubFormControllers);
     }
 
-    protected abstract void setUpSubFormControllers ();
+    protected void setUpSubFormControllers () {
+        List<ISubFormController<SpriteDefinition>> subFormControllers = new ArrayList<>();
+        for (String subFormID : mySubFormIDs) {
+            ISubFormController<SpriteDefinition> sfc =
+                    getMySFCFactory().createSpriteSubFormController(subFormID);
+            subFormControllers.add(sfc);
+        }
+
+        setMySubFormControllers(subFormControllers);
+    }
 
     protected abstract void setMyCurrentSFC ();
 
@@ -58,30 +70,26 @@ public abstract class DynamicSubFormController implements ISubFormControllerSpri
     public ISubFormView getSubFormView () {
         return myView;
     }
-    
-    protected List<ISubFormView> getMySubFormViews(){
+
+    protected List<ISubFormView> getMySubFormViews () {
         return mySubFormViews;
     }
+
     protected void setMySubFormControllers (List<ISubFormController<SpriteDefinition>> subFormControllers) {
         this.mySubFormControllers = subFormControllers;
     }
-    protected List<ISubFormController<SpriteDefinition>> getMySubFormControllers(){
+
+    protected List<ISubFormController<SpriteDefinition>> getMySubFormControllers () {
         return this.mySubFormControllers;
     }
+
     protected void setMyCurrentSubFormController (ISubFormController<SpriteDefinition> subFormController) {
         this.myCurrentSubFormController = subFormController;
-        
+
     }
-    protected void setMyView(DynamicSubFormView view){
+
+    protected void setMyView (DynamicSubFormView view) {
         this.myView = view;
-    }
-
-    protected SubFormControllerFactory getMySFCFactory () {
-        return mySFCFactory;
-    }
-
-    private void setMySFCFactory (SubFormControllerFactory mySFCFactory) {
-        this.mySFCFactory = mySFCFactory;
     }
 
     protected IGame getMyGame () {
@@ -92,5 +100,18 @@ public abstract class DynamicSubFormController implements ISubFormControllerSpri
         this.myGame = myGame;
     }
 
+    private void setMySubFormIDs (List<String> subFormIDs) {
+        this.mySubFormIDs = subFormIDs;
+
+    }
+
+    public void setMySFCFactory (DynamicSFCFactory sfcFactory) {
+        this.mySFCFactory = sfcFactory;
+
+    }
+
+    private DynamicSFCFactory getMySFCFactory () {
+        return mySFCFactory;
+    }
 
 }

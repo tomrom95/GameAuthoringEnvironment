@@ -12,7 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
-import util.Coordinate;
 
 
 public abstract class DynamicSubFormView extends SubFormView {
@@ -33,8 +32,8 @@ public abstract class DynamicSubFormView extends SubFormView {
         this.mySubViews = views;
         myCurrentSubView = mySubViews.get(0).draw();
         initEntryViews(action, options);
-        System.out.println(this.myCurrentSubViewX + "y" + this.myCurrentSubViewY);
         initView();
+
     }
 
     protected void initEntryViews (Consumer<Integer> action, List<String> options) {
@@ -53,7 +52,7 @@ public abstract class DynamicSubFormView extends SubFormView {
         entryView.setSelected(myListOfSelectionOptions.get(0));
 
         mySelectionView = entryView;
-        
+
     }
 
     protected abstract String getSelectionKey ();
