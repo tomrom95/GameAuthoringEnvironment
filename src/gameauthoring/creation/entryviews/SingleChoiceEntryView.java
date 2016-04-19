@@ -24,24 +24,30 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
 
     public SingleChoiceEntryView (String label, ObservableList<E> observableList, String cssClass) {
         super(label);
-        this.myContainer = new GridPane();
         this.myChoices = new ComboBox<E>(observableList);
         myChoices.setCellFactory(c -> new NameCellView<E>());
         myChoices.setButtonCell(new NameCellView<E>());
+        init(label, cssClass);
+
+    }
+
+    @Override
+    protected void init (String label, String cssClass) {
+        this.myContainer = new GridPane();
         myContainer.add(new Label(getLabel()), 0, 0);
         myContainer.add(myChoices, 0, 1);
         myContainer.getStyleClass().add(cssClass);
     }
-    
-    public void setItems(ObservableList<E> items){
+
+    public void setItems (ObservableList<E> items) {
         myChoices.setItems(items);
     }
 
     public void setSelected (E item) {
         myChoices.getSelectionModel().select(item);
     }
-    
-    public void clearSelection(){
+
+    public void clearSelection () {
         myChoices.getSelectionModel().clearSelection();
     }
 
@@ -49,13 +55,14 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
         return myChoices.getSelectionModel().getSelectedItem();
     }
 
-    public void addComboIndexListener(Consumer<Integer> action){
+    public void addComboIndexListener (Consumer<Integer> action) {
         myChoices.setOnAction(e -> action.accept(myChoices.getSelectionModel().getSelectedIndex()));
-        
+
     }
-    public void addComboItemListener(Consumer<E> action){
+
+    public void addComboItemListener (Consumer<E> action) {
         myChoices.setOnAction(e -> action.accept(myChoices.getSelectionModel().getSelectedItem()));
-        
+
     }
 
     @Override

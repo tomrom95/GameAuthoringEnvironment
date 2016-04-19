@@ -17,6 +17,7 @@ import engine.profile.Profile;
 
 public class AttributeDefinition implements IProfilable {
 
+    //TODO: implement min/max value functionality
     private String myType;
     private double myStartingValue;
     private IProfile myProfile;

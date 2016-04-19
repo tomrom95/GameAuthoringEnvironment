@@ -66,7 +66,7 @@ public class ObjectCreationView<E extends IProfilable> implements IObjectCreatio
         //myCreationPane.getStyleClass().add("myCreationView");
 
     }
-
+    
     @Override
     public Node draw () {
         return myCreationPane;

@@ -3,6 +3,7 @@ package gameauthoring.creation.entryviews;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 /**
  * Abstract class for an simple implementation of IEntryView
  * 
@@ -22,30 +23,27 @@ public abstract class EntryView implements IEntryView {
 
     protected FormData myFormData;
     protected String myLabel;
- 
-    public EntryView(String label){
+
+    public EntryView (String label) {
         this.myLabel = label;
     }
-    
-    public EntryView(String label, IFormDataManager data){
+
+    public EntryView (String label, IFormDataManager data) {
         this.myLabel = label;
         this.myFormData = new FormData(label, new ArrayList<String>(Arrays.asList("")));
         data.add(myFormData);
     }
-    
-    public String getLabel(){
+
+    @Override
+    public String getLabel () {
         return myLabel;
     }
-    
+
     @Override
     public FormData getData () {
         return myFormData;
     }
-
-    @Override
-    public void populateWithData (FormData data) {
-        this.myFormData = data;
-
-    }
+    
+    protected abstract void init(String label, String cssClass);
 
 }
