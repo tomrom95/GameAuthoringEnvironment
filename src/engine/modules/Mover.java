@@ -24,8 +24,11 @@ import util.TimeDuration;
 public abstract class Mover extends DefaultAffectable implements IMovementModule {
 
     public static final double NO_MOTION = 0;
+    public static final double RADS_TO_DEGREES = 180 / Math.PI;
+    public static final double DEGREES_TO_RADS = Math.PI / 180;
     private IAttribute myXVel;
     private IAttribute myYVel;
+    private IAttribute myAngle;
     private Positionable myParent;
     private List<Coordinate> myPath;
 
@@ -100,14 +103,20 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
         return myYVel;
     }
 
-    @Override
-    public void setXVel (double newVel) {
+    private void setXVel (double newVel) {
         myXVel.setValue(newVel);
     }
 
-    @Override
-    public void setYVel (double newVel) {
+    private void setYVel (double newVel) {
         myYVel.setValue(newVel);
+    }
+    /**
+     * the angle is stored in radians, all conversion of angles will occur before it is 
+     * presented to the user, and right after it is taken in by the user
+     */
+    public void setAngle(double newAngle){
+    	myAngle.setValue(newAngle * DEGREES_TO_RADS);
+    	setYVel(Math.sin(newAngle * DEGREES_TO_RADS) * this.    );
     }
 
     @Override

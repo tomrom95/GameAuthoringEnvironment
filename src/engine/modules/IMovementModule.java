@@ -19,9 +19,8 @@ public interface IMovementModule extends IModule {
     void setPath (List<Coordinate> newPath);
 
     List<Coordinate> getPath ();
+    
+    void setAngle(double newAngle);
 
-    void setXVel (double newVel);
-
-    void setYVel (double newVel);
 
 }
