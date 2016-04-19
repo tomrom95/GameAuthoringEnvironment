@@ -41,8 +41,8 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     }
 
     protected void move (TimeDuration duration) {
-        double xChange = distance(getXVel().getValueProperty().get(), duration.getMillis());
-        double yChange = distance(getYVel().getValueProperty().get(), duration.getMillis());
+        double xChange = distance(getXVel().getValueProperty().get(), duration.getSeconds());
+        double yChange = distance(getYVel().getValueProperty().get(), duration.getSeconds());
         move(getNextCoordinate(xChange, yChange));
     }
 

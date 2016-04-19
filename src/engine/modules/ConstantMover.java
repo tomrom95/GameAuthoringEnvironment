@@ -1,5 +1,6 @@
 package engine.modules;
 
+import java.util.ArrayList;
 import java.util.List;
 import engine.IAttribute;
 import engine.Positionable;
@@ -21,6 +22,11 @@ public class ConstantMover extends Mover {
 
     private IAttribute mySpeed;
     private Positionable mySprite;
+    
+    /*
+     * as of now, I am keeping the Positionable in here, so  there are other potential
+     * bits of functionality like angle that can be built it here
+     */
 
     public ConstantMover (double xVel, double yVel, Positionable parent) {
         super(parent);
@@ -71,9 +77,15 @@ public class ConstantMover extends Mover {
     protected List<IAttribute> getSpecificAttributes () {
         // TODO What is this method supposed to do, how is it different from the other a
     	//attributes method 
-        return null;
+    	 List<IAttribute> specialAttributes = new ArrayList<>();
+         specialAttributes.add(mySpeed);
+         return specialAttributes;
     }
-
+/**
+ * This method returns the angle in degrees of a sprites motion based on its X and Y velocities
+ * 
+ * @return angle in degrees 
+ */
     public double getAngle () {
         // TODO Auto-generated method stub
         return Math.atan(getYVel().getValueProperty().get() / getXVel().getValueProperty().get()) *

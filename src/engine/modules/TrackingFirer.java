@@ -16,12 +16,14 @@ import engine.sprite.SpriteType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.Coordinate;
-import util.Key;
 import util.TimeDuration;
 
 
 /**
- * Locates the nearest enemy and fires an object
+ * Locates the nearest enemy and fires a missile sprite defined in the authoring environment at
+ * that enemy, setting its initial X and Y velocity based upon the near enemy
+ * 
+ * @author Timko
  * 
  */
 public class TrackingFirer extends Firer {
