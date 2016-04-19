@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
@@ -72,6 +73,12 @@ public class SpriteManager implements ISpriteManager {
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
         list.forEach(event -> loopThroughSpritesAndDo(sprite -> sprite.registerMouseEvent(event)));
     }
+    
+    @Override
+    public void internalizeGameEvents (List<GameEvent> list) {
+        list.forEach(event -> loopThroughSpritesAndDo(sprite -> sprite.registerEvent(event)));
+        
+    }
 
     @Override
     public void remove (ISprite sprite) {
@@ -98,5 +105,7 @@ public class SpriteManager implements ISpriteManager {
     public void add (ISprite sprite) {
         mySpriteList.add(sprite);
     }
+
+
 
 }
