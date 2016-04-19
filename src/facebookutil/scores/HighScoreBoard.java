@@ -102,12 +102,12 @@ public class HighScoreBoard {
      * @param reverse - true if you want reverse score, reverse alphabetical, reverse date
      * @return
      */
-    public List<Score> getScoreBoardSorted (String gameName, ScoreOrder order, boolean reverse) {
+    public List<Score> getScoreBoardSorted (String gameName, ScoreOrder order) {
         List<Score> game = getScoreBoard(gameName);
         if (game == null){
             return null;
         }
-        game.sort(order.getComparator(reverse));
+        game.sort(order.getComparator());
         return game;
     }
 

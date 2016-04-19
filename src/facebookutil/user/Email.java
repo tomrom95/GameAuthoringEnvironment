@@ -7,6 +7,11 @@ public class Email {
     
     private String myDomain;
     
+    public Email (String name, String domain) {
+        myName = name;
+        myDomain = domain;
+    }
+    
     public Email (String address) {
         if (address != null) {
             parseAddress(address);

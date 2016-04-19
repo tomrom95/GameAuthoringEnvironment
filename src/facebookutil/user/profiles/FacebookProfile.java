@@ -1,6 +1,9 @@
 package facebookutil.user.profiles;
 
 import facebookutil.actions.facebook.FacebookCustomPost;
+import facebookutil.actions.facebook.FacebookScoreBoardPost;
+import facebookutil.scores.HighScoreBoard;
+import facebookutil.scores.ScoreOrder;
 import facebookutil.user.IUser;
 
 public class FacebookProfile extends UserProfile{
@@ -26,6 +29,15 @@ public class FacebookProfile extends UserProfile{
     public void highScorePost (IUser user, int score) {
         // TODO Auto-generated method stub
         
+    }
+
+    @Override
+    public void highScoreBoardPost (HighScoreBoard board,
+                                    String gameName,
+                                    ScoreOrder order) {
+        FacebookScoreBoardPost post = new FacebookScoreBoardPost();
+        post.createBoardPost(board, gameName, order, this);
+        post.send(getLogin().getService(), getLogin().getToken());
     }
 
 }

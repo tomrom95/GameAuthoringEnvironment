@@ -1,5 +1,7 @@
 package facebookutil.user.profiles;
 
+import facebookutil.scores.HighScoreBoard;
+import facebookutil.scores.ScoreOrder;
 import facebookutil.user.IUser;
 
 public class LocalProfile extends UserProfile{
@@ -22,6 +24,12 @@ public class LocalProfile extends UserProfile{
 
     @Override
     public void highScorePost (IUser user, int score) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void highScoreBoardPost (HighScoreBoard board, String gameName, ScoreOrder order) {
         // TODO Auto-generated method stub
         
     }
