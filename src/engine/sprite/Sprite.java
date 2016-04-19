@@ -196,6 +196,11 @@ public class Sprite extends DefaultAffectable implements ISprite {
     public void setObstruction (boolean value) {
         myStatus.setObstruction(value);
     }
+
+    @Override
+    public double getOrientation () {
+        return myMover.getOrientation();
+    }
     
     
 }

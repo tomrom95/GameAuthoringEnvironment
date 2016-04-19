@@ -27,4 +27,9 @@ public interface Drawable {
      * @return the location of the drawable
      */
     Coordinate getLocation ();
+    
+    /**
+     * @return the angle by which the renderer should rotate the displayed node
+     */
+    double getOrientation();
 }

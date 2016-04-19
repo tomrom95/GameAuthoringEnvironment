@@ -67,16 +67,5 @@ public class OnCollisionCondition extends Condition implements ICondition {
         applyOtherAndGlobalEventPackages(myGame, myOtherPackage, myGlobalPackage);
     }
 
-    @Override
-    public IProfile getProfile () {
-        // TODO add to resource file, and perhaps move up to abstract Condition
-        return new Profile("On Collision Condition", "Collision between two sprites",
-                           "images/c.png");
-    }
-
-    @Override
-    public void setProfile (IProfile profile) {
-        // TODO store this profile
-    }
 
 }

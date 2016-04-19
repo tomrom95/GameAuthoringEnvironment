@@ -1,5 +1,6 @@
 package engine.definitions;
 
+import java.util.ArrayList;
 import java.util.List;
 import engine.IEventPackage;
 import engine.ISpriteGroup;
@@ -26,6 +27,8 @@ public class EventPackageDefinition implements IProfilable {
     public EventPackageDefinition () {
         // TODO add to resource file
         myProfile = new Profile("Event", "Basic Event", "images/Square.png");
+        myEffectsList = new ArrayList<>();
+        myEventsList = new ArrayList<>();
     }
 
     public IEventPackage create () {
