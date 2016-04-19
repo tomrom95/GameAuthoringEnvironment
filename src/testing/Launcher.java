@@ -13,7 +13,6 @@ import engine.conditions.OnCollisionCondition;
 import engine.conditions.OnSpriteAttributeCondition;
 import engine.definitions.AttributeDefinition;
 import engine.definitions.KeyControlDefinition;
-import engine.definitions.LocationDefinition;
 import engine.definitions.MovementDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.StaticMovementDefintion;
@@ -29,6 +28,7 @@ import engine.effects.IEffect;
 import gameplayer.GamePlayer;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import util.Coordinate;
 import graphics.ImageGraphic;
 
 
@@ -183,7 +183,7 @@ public class Launcher extends Application {
         SpriteDefinition enemyDefinition = new SpriteDefinition();
         enemyDefinition.setMovementDefinition(getStationaryDefintion());
         enemyDefinition.setProfile(enemySpriteProfile());
-        enemyDefinition.setLocation(createLocationDefinition(xloc, yloc));
+        enemyDefinition.setLocation(new Coordinate(xloc, yloc));
         enemyDefinition.addAttribute(createHealthAttributeDefinition());
         return enemyDefinition;
     }
@@ -203,7 +203,7 @@ public class Launcher extends Application {
         SpriteDefinition mySpriteDefinition = new SpriteDefinition();
         mySpriteDefinition.setMovementDefinition(getUserControlledDefinition());
         mySpriteDefinition.setProfile(userSpriteProfile());
-        mySpriteDefinition.setLocation(createLocationDefinition(xloc, yloc));
+        mySpriteDefinition.setLocation(new Coordinate(xloc, yloc));
         mySpriteDefinition.addAttribute(createHealthAttributeDefinition());
         return mySpriteDefinition;
     }
@@ -221,12 +221,6 @@ public class Launcher extends Application {
                            new ImageGraphic(SPRITE_HEIGHT, SPRITE_WIDTH, HEALTH_IMAGE_URL));
     }
 
-    private LocationDefinition createLocationDefinition (int xloc, int yloc) {
-        LocationDefinition myLocDef = new LocationDefinition();
-        myLocDef.setX(xloc);
-        myLocDef.setY(yloc);
-        return myLocDef;
-    }
 
     private Profile userSpriteProfile () {
         return new Profile(USER_SPRITE_TYPE, SPRITE_DESCRIPTION,
