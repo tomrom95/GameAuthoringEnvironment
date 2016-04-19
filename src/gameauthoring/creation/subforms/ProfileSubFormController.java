@@ -1,8 +1,6 @@
 package gameauthoring.creation.subforms;
 
-import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
-import engine.profile.Profile;
 
 import gameauthoring.creation.entryviews.IFormDataManager;
 
@@ -24,12 +22,26 @@ public class ProfileSubFormController<T extends IProfilable> implements ISubForm
      */
     private ProfileSubFormView myView;
     private IFormDataManager myFormData;
+    private String myDefaultName = "<Name>";
+    private String myDefaultDescription = "<Description>";
+    private String myDefaultImage = "images/Square.png";
+            
 
     public ProfileSubFormController () {
         this.myView = new ProfileSubFormView();
         this.myFormData = myView.getData();
     }
 
+    @Override
+    public void initializeFields () {
+        populateViewsWithData(myDefaultName, myDefaultDescription, myDefaultImage);
+        
+    }
+    private void populateViewsWithData(String name, String desc, String url){
+        myFormData.set(myView.getMyNameKey(), name);
+        myFormData.set(myView.getMyDescriptionKey(), desc);
+        myFormData.set(myView.getMyImageKey(), url);
+    }
     @Override
     public void updateItem (T item) {
         String name = myFormData.getValueProperty(myView.getMyNameKey()).get();
@@ -42,17 +54,18 @@ public class ProfileSubFormController<T extends IProfilable> implements ISubForm
 
     @Override
     public void populateViewsWithData (T item) {
-        myFormData.set(myView.getMyNameKey(), item.getProfile().getName().get());
-        myFormData.set(myView.getMyDescriptionKey(), item.getProfile().getDescription().get());
-
-        System.out.println(item.getProfile().getImageURL());
-        myFormData.set(myView.getMyImageKey(), item.getProfile().getImageURL());
-
+        String name =  item.getProfile().getName().get();
+        String desc = item.getProfile().getDescription().get();
+        String url = item.getProfile().getImageURL();
+        populateViewsWithData(name, desc, url);
     }
+    
 
     @Override
     public ISubFormView getSubFormView () {
         return myView;
     }
+
+  
 
 }

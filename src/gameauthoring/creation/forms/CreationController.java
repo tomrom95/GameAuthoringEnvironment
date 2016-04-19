@@ -141,18 +141,23 @@ public abstract class CreationController<T extends IProfilable> {
     /**
      * Method handler when user clicks "new" object
      * 
-     * Note: need blank definitions to have empty strings instead of null so that
-     * no front end errors occur
-     * 
      */
     private void newItem () {
         T item = createBlankItem();
         addItem(item);
         getMyObjectCreationView().getObjectListView().setSelectedItem(item);
-        showAndEdit(item);
-
+        initializeSubFormViews();
     }
 
+    /**
+     * Initializes the subformviews with default data
+     */
+    private void initializeSubFormViews(){
+        getMyProfileSubFormController().initializeFields();
+        for (ISubFormController<T> subFormController : getMySubFormControllers()) {
+            subFormController.initializeFields();
+        }
+    }
     /**
      * Method to be overwritten by subclasses that creates a blank object of type T
      * 
