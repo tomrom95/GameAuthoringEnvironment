@@ -28,6 +28,8 @@ public class ProfileSubFormView extends SubFormView{
 
     public ProfileSubFormView () {
         initView();
+        
+        
     }
 
     private void initView () {
