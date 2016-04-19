@@ -56,15 +56,6 @@ public class OnSpriteAttributeCondition extends Condition implements ICondition 
         };
     }
 
-    @Override
-    public IProfile getProfile () {
-        // TODO add to resource file, and perhaps move up to abstract Condition
-        return new Profile("On Sprite Attributes", "Effects and events", "images/c.png");
-    }
-
-    @Override
-    public void setProfile (IProfile profile) {
-        // TODO store this profile
-    }
+  
 
 }

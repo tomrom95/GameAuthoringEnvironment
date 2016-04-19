@@ -7,16 +7,17 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 
 public class ListDisplay<T extends IProfilable> implements Glyph {
 
     private ListView<T> myListView;
-    private BorderPane myPane;
+    private GridPane myPane;
 
     public ListDisplay (ObservableList<T> list) {
 
-        myPane = new BorderPane();
+        myPane = new GridPane();
         myListView = new ListView<>(list);
         myListView.setCellFactory(c -> new ProfileCellView<T>());
         init();
@@ -24,9 +25,15 @@ public class ListDisplay<T extends IProfilable> implements Glyph {
     }
 
     private void init () {
+        
+        myListView.setPrefWidth(1100);
+        myListView.setPrefHeight(200);
+        add(myListView, 0, 3, 2, 1);
 
-        getPane().bottomProperty().set(myListView);
-
+    }
+    
+    protected void add (Node node, int colStart, int rowStart, int colSpan, int rowSpan) {
+        getPane().add(node, colStart, rowStart, colSpan, rowSpan);
     }
 
     @Override
@@ -34,7 +41,7 @@ public class ListDisplay<T extends IProfilable> implements Glyph {
         return getPane();
     }
 
-    protected BorderPane getPane () {
+    protected GridPane getPane () {
         return myPane;
     }
 }
