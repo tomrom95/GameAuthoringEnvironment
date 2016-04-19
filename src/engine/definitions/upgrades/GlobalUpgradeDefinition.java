@@ -12,10 +12,6 @@ import engine.modules.UpgradeModule;
 
 public class GlobalUpgradeDefinition extends UpgradeDefinition {
 
-    public GlobalUpgradeDefinition (IGame game, SpriteDefinition upgrade, AttributeType type, double cost) {
-        super(game, upgrade, type, cost);
-       
-    }
 
     @Override
     protected ICheck getCheck (Positionable parent) {

@@ -1,13 +1,13 @@
 package gameauthoring.creation.subforms;
 
 import engine.AttributeType;
-import engine.AuthorshipData;
 import engine.IGame;
+import engine.definitions.ModuleDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.upgrades.GlobalUpgradeDefinition;
 import engine.definitions.upgrades.SpriteUpgradeDefinition;
 import engine.definitions.upgrades.UpgradeDefinition;
-import gameauthoring.shareddata.IDefinitionCollection;
+import gameauthoring.util.ErrorMessage;
 
 
 public class UpgradeSFC implements ISubFormControllerSprite {
@@ -26,24 +26,33 @@ public class UpgradeSFC implements ISubFormControllerSprite {
 
     @Override
     public void updateItem (SpriteDefinition item) {
-        if (mySFV.isUpgradableProperty().get()) {
-            UpgradeDefinition upgrade;
-            double cost =
-                    Double.parseDouble(mySFV.getData().getValueProperty(mySFV.getMyCostKey())
-                            .get());
-            AttributeType type = new AttributeType(mySFV.getDepeltedAttribute().getType());
-            SpriteDefinition nextUpgrade = mySFV.getNextUpgrade();
-            if (mySFV.isGlobalProperty().get()) {
-                upgrade = new GlobalUpgradeDefinition(myGame, nextUpgrade, type, cost);
+        try {
+            if (mySFV.isUpgradableProperty().get()) {
+                double cost = Double.parseDouble(mySFV.getData().getValueProperty(mySFV.getMyCostKey()).get());
+                AttributeType type = new AttributeType(mySFV.getDepeltedAttribute().getType());
+                SpriteDefinition nextUpgrade = mySFV.getNextUpgrade();
+                if (mySFV.isGlobalProperty().get()) {
+                    myGlobalUpgrade.setParameters(myGame, nextUpgrade, type, cost);
+                    updateModule(item,this.mySpriteUpgrade,this.myGlobalUpgrade);
+                }
+                else {
+                    mySpriteUpgrade.setParameters(myGame, nextUpgrade, type, cost);
+                    updateModule(item, this.myGlobalUpgrade, this.mySpriteUpgrade);
+                }
             }
-            else {
-                upgrade = new SpriteUpgradeDefinition(myGame, nextUpgrade, type, cost);
-
-            }
-            item.addModule(upgrade);
+        }
+        catch (Exception e) {
+            ErrorMessage err = new ErrorMessage("Please fill in all fields associated with Upgrade");//TODO resource file
+            err.showError();
         }
     }
 
+    private void updateModule(SpriteDefinition item, ModuleDefinition moduleToReplace, ModuleDefinition moduleToAdd){
+        if(item.getModuleDefinitions().contains(moduleToReplace)){
+            item.getModuleDefinitions().remove(moduleToReplace);
+        }
+        item.getModuleDefinitions().add(moduleToAdd);
+    }
 
     @Override
     public ISubFormView getSubFormView () {

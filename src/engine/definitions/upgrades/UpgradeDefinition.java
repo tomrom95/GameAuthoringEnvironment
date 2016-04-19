@@ -19,16 +19,12 @@ public abstract class UpgradeDefinition extends ModuleDefinition {
     private double myCost;
     private IGame myGame;
     
-    public UpgradeDefinition(){
-        
-    }
-
-    public UpgradeDefinition (IGame adder,
-                              SpriteDefinition upgrade,
-                              AttributeType type,
-                              double cost) {
-        setGame(adder);
-        setUpgrade(upgrade);
+    public void setParameters (IGame myGame,
+                               SpriteDefinition nextUpgrade,
+                               AttributeType type,
+                               double cost) {
+        setGame(myGame);
+        setUpgrade(nextUpgrade);
         setType(type);
         setCost(cost);
     }
@@ -72,5 +68,6 @@ public abstract class UpgradeDefinition extends ModuleDefinition {
     }
 
     protected abstract ICheck getCheck (Positionable parent);
+
 
 }
