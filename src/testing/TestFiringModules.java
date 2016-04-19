@@ -11,9 +11,11 @@ import engine.definitions.SpriteDefinition;
 import engine.definitions.TrackingFirerDefinition;
 import engine.modules.Firer;
 import engine.profile.Profile;
+import engine.rendering.GameGridConfigNonScaling;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
+import gameplayer.GamePlayer;
 import junit.framework.*;
 import util.Coordinate;
 import util.TimeDuration;
@@ -33,7 +35,7 @@ public class TestFiringModules extends TestCase {
     // assigning the values
     @Override
     protected void setUp(){
-        game = new Game();
+        game = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
         
         projectile = new SpriteDefinition();
         mover = new ConstantMoverDefinition();

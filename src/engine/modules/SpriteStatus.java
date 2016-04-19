@@ -16,6 +16,9 @@ import engine.events.GameEvent;
 public class SpriteStatus extends DefaultAffectable implements IStatus {
 
     private boolean myIsDead;
+    private boolean myDoesObstruct;
+    
+
 
     @Override
     public void registerEvent (GameEvent event) {
@@ -35,6 +38,17 @@ public class SpriteStatus extends DefaultAffectable implements IStatus {
     
     public void remove () {
         myIsDead = true;
+    }
+
+    @Override
+    public boolean doesObstruct () {
+        return myDoesObstruct;
+    }
+
+    @Override
+    public void setObstruction (boolean value) {
+        myDoesObstruct = value;
+        
     }
 
 }
