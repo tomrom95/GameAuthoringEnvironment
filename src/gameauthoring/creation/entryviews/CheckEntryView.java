@@ -14,6 +14,7 @@ public class CheckEntryView extends EntryView{
         super(label);
         myCheckBox = new CheckBox();        
         myContainer = new GridPane();        
+        init(label,cssClass);
     }
     
     @Override
@@ -35,8 +36,6 @@ public class CheckEntryView extends EntryView{
     @Override
     public Node draw () {
         return myContainer;
-    }
-
-   
+    }   
 
 }
