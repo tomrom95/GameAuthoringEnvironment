@@ -47,5 +47,10 @@ public interface IObjectListView<E> extends Glyph {
      * @param item The item to be selected
      */
     void setSelectedItem (E item);
+    
+    /**
+     * Re-render the items in the listview
+     */
+    void refreshItems();
 
 }

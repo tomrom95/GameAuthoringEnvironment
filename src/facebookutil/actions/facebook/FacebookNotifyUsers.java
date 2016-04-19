@@ -38,7 +38,7 @@ public class FacebookNotifyUsers implements NotifyUsers {
     }
 
     private void notify (IUser user, String message) {
-        SocialProfile profile = user.getProfiles().getProfileByType(SocialType.Facebook);
+        SocialProfile profile = user.getProfiles().getProfileByType(SocialType.FACEBOOK);
         if (profile == null ) return;
         createRequest(profile.getID(), message);
         

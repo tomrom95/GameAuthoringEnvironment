@@ -56,7 +56,12 @@ public class ProfileSFC<T extends IProfilable> implements ISubFormController<T> 
         String name = myFormData.getValueProperty(myView.getMyNameKey()).get();
         String desc = myFormData.getValueProperty(myView.getMyDescriptionKey()).get();
         String url = myFormData.getValueProperty(myView.getMyImageKey()).get();
-        item.getProfile().setNew(name, desc, url);
+        double width =
+                Double.parseDouble(myFormData.getValueProperty(myView.getMyImageWidthKey()).get());
+        double height =
+                Double.parseDouble(myFormData.getValueProperty(myView.getMyImageHeightKey()).get());
+        item.getProfile().setNew(name, desc, url, width, height);
+
     }
 
     @Override

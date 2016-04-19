@@ -14,10 +14,17 @@ import facebookutil.user.profiles.LocalProfile;
 import facebookutil.user.profiles.UserProfile;
 import facebookutil.user.profiles.TwitterProfile;
 
+/**
+ * Enum to deal with the various social types that may be supported by our
+ * utility. For now, this is just kept as an enum but will probably be
+ * refactored into property files given enough time.
+ * @author Tommy
+ *
+ */
 public enum SocialType {
-    Facebook (FacebookLogin.class, FacebookProfile.class, FacebookApp.class),
-    Twitter (TwitterLogin.class, TwitterProfile.class, TwitterApp.class),
-    Local (LocalLogin.class, LocalProfile.class, LocalApp.class);
+    FACEBOOK (FacebookLogin.class, FacebookProfile.class, FacebookApp.class),
+    TWITTER (TwitterLogin.class, TwitterProfile.class, TwitterApp.class),
+    LOCAL (LocalLogin.class, LocalProfile.class, LocalApp.class);
     
     private Class<? extends LoginUser> myLogin;
     private Class<? extends UserProfile> myProfile;
@@ -30,6 +37,10 @@ public enum SocialType {
         myApp = appClass;
     }
     
+    /**
+     * Returns login class
+     * @return
+     */
     public LoginUser getLogin () {
         try {
             return myLogin.newInstance();
@@ -39,6 +50,11 @@ public enum SocialType {
         }
     }
     
+    /**
+     * Returns profile class
+     * @param userID
+     * @return
+     */
     public UserProfile getProfile (String userID) {
         try {
             return myProfile.getDeclaredConstructor(String.class).newInstance(userID);
@@ -49,6 +65,10 @@ public enum SocialType {
         }
     }
     
+    /**
+     * Returns app class
+     * @return
+     */
     public App getApp () {
         try {
             return myApp.newInstance();

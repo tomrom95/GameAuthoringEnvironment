@@ -5,9 +5,17 @@ import java.util.List;
 import facebookutil.applications.AppMap;
 import facebookutil.login.LoginUser;
 import facebookutil.login.LoginObject;
+import facebookutil.user.Email;
 import facebookutil.user.IUser;
 import facebookutil.user.User;
 
+/**
+ * Class that implements the main java social interface.
+ * Loads previous users into a list of current users and allows people
+ * to log in, record scores, and post.
+ * @author Tommy
+ *
+ */
 public class JavaSocial implements IJavaSocial {
     
     private List<IUser> myUsers;
@@ -22,6 +30,10 @@ public class JavaSocial implements IJavaSocial {
         myApps.loginApps();
     }
 
+    /**
+     * Loads users to list from the XML reader
+     * @return
+     */
     private List<IUser> loadUsers () {
         UserReader reader = new UserReader ();
         return reader.getUsers();
@@ -33,7 +45,7 @@ public class JavaSocial implements IJavaSocial {
     }
 
     @Override
-    public IUser getUserByEmail (String email) {
+    public IUser getUserByEmail (Email email) {
         for (IUser user: myUsers) {
             if (user.getUserEmail().equals(email)) {
                 return user;
@@ -66,23 +78,31 @@ public class JavaSocial implements IJavaSocial {
     }
 
     @Override
-    public IUser createNewUser (String email) {
+    public IUser createNewUser (Email email) {
         System.out.println("Creating new User");
         IUser newUser = new User(email);
         myUsers.add(newUser);
         return newUser;
     }
 
+    /**
+     * Gets the current user of the social environment
+     * @return
+     */
     public IUser getActiveUser () {
         return activeUser;
     }
     
+    /**
+     * Gets the applications associated with the social app
+     * @return
+     */
     public AppMap getApplications () {
         return myApps;
     }
 
     @Override
-    public void logoutAll () {
+    public void saveUsers () {
         UserWriter writer = new UserWriter();
         writer.write(getUsers());
     }

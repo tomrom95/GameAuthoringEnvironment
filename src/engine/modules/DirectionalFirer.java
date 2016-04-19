@@ -11,18 +11,24 @@ import util.Coordinate;
 import util.TimeDuration;
 
 
-// TODO clean up this class
+/**
+ * This class creating a Firing module that will spawn the missiles specified in the authoring 
+ * environment and set their initial, and potentially constant, X and Y velocity to direct the 
+ * missile in a constant direction
+ * 
+ * @author Timko
+ *
+ */
 public class DirectionalFirer extends Firer {
 
     private static final int RADS_TO_DEGREES = 180;
     private IGame myGame;
     private IAttribute myWaitTime;
-    private TimeDuration myLastFire;
     private Positionable mySprite;
     private SpriteDefinition myProjectile;
     // should this (below) be an attribute?
     private double myAngle;
-    private double myTimeSinceFire;
+    private TimeDuration myTimeSinceFire;
 
     public DirectionalFirer (IGame game,
                              SpriteDefinition projectile,
@@ -32,11 +38,10 @@ public class DirectionalFirer extends Firer {
 
         myGame = game;
         myWaitTime = new Attribute(waitTime, AttributeType.FIRE_RATE);
-        myLastFire = new TimeDuration(0);
         mySprite = sprite;
         myProjectile = projectile;
         myAngle = theta;
-        myTimeSinceFire = 0;
+        myTimeSinceFire.setToZero();;
 
     }
 
@@ -47,11 +52,10 @@ public class DirectionalFirer extends Firer {
 
     private void fire (TimeDuration duration) {
 
-        // if((duration.getMillis() - lastFire.getMillis()) >= myWaitTime.getValueProperty().get()){
-        myTimeSinceFire += duration.getMillis();
+        myTimeSinceFire.increase(duration);
 
-        if (myTimeSinceFire >= myWaitTime.getValueProperty().get()) {
-            myTimeSinceFire = 0;
+        if (myTimeSinceFire.getSeconds() >= myWaitTime.getValueProperty().get()) {
+            myTimeSinceFire.setToZero();;
 
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
@@ -60,7 +64,6 @@ public class DirectionalFirer extends Firer {
             bullet.getMovementStrategy().setXVel(getXVel(myAngle));
             bullet.getMovementStrategy().setYVel(getYVel(myAngle));
             myGame.bufferedAdd(bullet);
-            myLastFire = new TimeDuration(duration.getMillis());
 
         }
     }

@@ -32,6 +32,8 @@ import engine.events.GameEvent;
 import engine.modules.PathMover;
 import engine.modules.SpawningModule;
 import engine.profile.Profile;
+import engine.rendering.GameGridConfigNonScaling;
+import engine.rendering.IGameGridConfig;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
@@ -53,17 +55,57 @@ public class DemoLauncher extends Application {
     @Override
     public void start (Stage primaryStage) throws Exception {
         makeGame();
-        new GameWriter().serialize(new File("/Users/davidmaydew/Desktop/PlantsZombies.xml"), myGame);
-        //FileChooser chooser = new FileChooser();
-        //File f = chooser.showOpenDialog(primaryStage);
-        
-        //IGame xmlGame = new GameReader().readFile(new File("/Users/davidmaydew/Desktop/test.xml"));
-       // IGame xmlGame = new GameReader().readFile(f);
-        //GamePlayer gp = new GamePlayer(myGame);
+        new GameWriter().serialize(new File("/Users/davidmaydew/Desktop/PlantsZombies.xml"),
+                                   myGame);
+                                   // FileChooser chooser = new FileChooser();
+                                   // File f = chooser.showOpenDialog(primaryStage);
+
+        // IGame xmlGame = new GameReader().readFile(new
+        // File("/Users/davidmaydew/Desktop/test.xml"));
+        // IGame xmlGame = new GameReader().readFile(f);
+        // GamePlayer gp = new GamePlayer(myGame);
     }
 
     private void makeGame () {
-        IGame game = new Game();
+        IGame game =
+                new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT) {
+
+                    @Override
+                    public void setYScalingFactor (double scaleY) {
+                        // TODO Auto-generated method stub
+
+                    }
+
+                    @Override
+                    public void setXScalingFactor (double scaleX) {
+                        // TODO Auto-generated method stub
+
+                    }
+
+                    @Override
+                    public double getYScalingFactor () {
+                        // TODO Auto-generated method stub
+                        return 0;
+                    }
+
+                    @Override
+                    public double getXScalingFactor () {
+                        // TODO Auto-generated method stub
+                        return 0;
+                    }
+
+                    @Override
+                    public double getGridWidth () {
+                        // TODO Auto-generated method stub
+                        return 0;
+                    }
+
+                    @Override
+                    public double getGridHeight () {
+                        // TODO Auto-generated method stub
+                        return 0;
+                    }
+                });
         myGame = game;
         createGlobalAtts(game);
         createSpriteDefs(game);
@@ -102,10 +144,10 @@ public class DemoLauncher extends Application {
         g2.add(createBucket());
         g2.add(createBalloon());
 
-        return new OnCollisionCondition(game, noDeathSpritePackage(g1),//groupa
-                                        packageForSpriteDefinitions(g2), //groupb
-                                        createEmptyEventPackage(), //othergroup
-                                        createAttyChangeOnly()); //global
+        return new OnCollisionCondition(game, noDeathSpritePackage(g1),// groupa
+                                        packageForSpriteDefinitions(g2), // groupb
+                                        createEmptyEventPackage(), // othergroup
+                                        createAttyChangeOnly()); // global
     }
 
     private ISpriteGroup createSpriteGroupForDefinition (List<SpriteDefinition> definition) {
@@ -113,20 +155,20 @@ public class DemoLauncher extends Application {
         mySpritesInGroup.addAll(definition);
         return new SpriteGroup(mySpritesInGroup);
     }
-    
-    private EventPackage createAttyChangeOnly(){
-        //cahngere asd f
+
+    private EventPackage createAttyChangeOnly () {
+        // cahngere asd f
         return new EventPackage(createSpriteGroupForDefinition(),
                                 dmgAtty("Lives"), noEvent());
     }
-    
+
     private List<IEffect> dmgAtty (String attyType) {
         List<IEffect> toReturn = new ArrayList<>();
         toReturn.add(new DecreaseEffect(new AttributeType(attyType),
                                         new Attribute(0d, new AttributeType("cd")), 1d));
         return toReturn;
     }
-    
+
     private EventPackage createEmptyEventPackage () {
         return new EventPackage(createSpriteGroupForDefinition(), noEffect(), noEvent());
     }
@@ -143,7 +185,7 @@ public class DemoLauncher extends Application {
         return new EventPackage(createSpriteGroupForDefinition(list),
                                 noEffect(), deathEvent());
     }
-    
+
     private EventPackage noDeathSpritePackage (List<SpriteDefinition> list) {
         return new EventPackage(createSpriteGroupForDefinition(list),
                                 noEffect(), noEvent());

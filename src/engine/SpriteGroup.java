@@ -25,6 +25,7 @@ public class SpriteGroup implements ISpriteGroup, IProfilable {
     private IProfile myProfile;
 
     public SpriteGroup () {
+        mySpriteTypes = new ArrayList<>();
         mySpriteDefinitions = new ArrayList<>();
         myProfile = new Profile();
     }

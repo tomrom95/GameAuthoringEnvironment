@@ -132,6 +132,7 @@ public abstract class CreationController<T extends IProfilable> {
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.updateItem(getMyCurrentItem()); // make more generic later
         }
+        this.getMyObjectCreationView().getObjectListView().refreshItems();
     }
 
     /**

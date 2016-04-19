@@ -11,12 +11,14 @@ import engine.Game;
 import engine.SpriteGroup;
 import engine.definitions.ConstantMoverDefinition;
 import engine.definitions.DirectionalFirerDefinition;
-import engine.definitions.LocationDefinition;
 import engine.definitions.ModuleDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.TrackingFirerDefinition;
 import engine.profile.Profile;
+import engine.rendering.GameGridConfigNonScaling;
 import engine.sprite.ISprite;
+import gameplayer.GamePlayer;
+import util.Coordinate;
 import util.TimeDuration;
 
 
@@ -41,7 +43,7 @@ public class TestFire {
 
     @Before
     public void setUp () {
-        myGame = new Game();
+        myGame = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
         createMover();
         createProjectile();
         createTower();
@@ -53,7 +55,7 @@ public class TestFire {
 
     @After
     public void tearDown () {
-        myGame = new Game();
+        myGame = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
         myTowerList.clear();
         Iterator<ModuleDefinition> modules = myTower.getModuleDefinitions().iterator();
 
@@ -75,10 +77,7 @@ public class TestFire {
 
     private SpriteDefinition createEnemy () {
         myEnemy = new SpriteDefinition();
-        LocationDefinition enemyLocation = new LocationDefinition();
-        enemyLocation.setX(100);
-        enemyLocation.setY(100);
-        myEnemy.setLocation(enemyLocation);
+        myEnemy.setLocation(new Coordinate(100,100));
         Profile testprofile = new Profile("Test");
         myEnemy.setProfile(testprofile);
 
@@ -97,10 +96,7 @@ public class TestFire {
 
     private void createTower () {
         myTower = new SpriteDefinition();
-        LocationDefinition myLocation = new LocationDefinition();
-        myLocation.setX(0);
-        myLocation.setY(0);
-        myTower.setLocation(myLocation);
+        myTower.setLocation(new Coordinate(0,0));
     }
 
     private void createTrackingFirer () {

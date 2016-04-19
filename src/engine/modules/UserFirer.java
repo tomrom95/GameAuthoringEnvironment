@@ -19,7 +19,8 @@ import util.Key;
  * game.
  *
  * @author Dhrumil
- *         TODO this class needs to be tested and cleaned up
+ *          This class looks complete, but it is extremely far from complete, do not even bother
+ *         evaluating the code, it is very far from functional
  */
 public class UserFirer extends Firer {
 
