@@ -15,7 +15,7 @@ import javafx.scene.image.ImageView;
  * Helpful factory to create common UI elements like
  * a button, combo box, header text or otherwise
  * 
- * @author Tommy, Jin An
+ * @author Tommy, Jin An, Joe Lilien
  *
  */
 public class UIFactory {

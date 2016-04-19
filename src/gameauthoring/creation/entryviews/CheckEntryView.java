@@ -12,8 +12,7 @@ public class CheckEntryView extends EntryView{
 
     public CheckEntryView (String label, String cssClass) {
         super(label);
-        myCheckBox = new CheckBox();
-        
+        myCheckBox = new CheckBox();        
         myContainer = new GridPane();
         myContainer.getStyleClass().add(cssClass);
         myContainer.add(new Label(label), 0, 0);
