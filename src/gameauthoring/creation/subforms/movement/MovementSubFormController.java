@@ -29,10 +29,4 @@ public class MovementSubFormController extends DynamicSubFormController {
      * }
      */
 
-    @Override
-    protected void setMyCurrentSFC () {
-        setMyCurrentSubFormController(getMySubFormControllers().get(0));
-
-    }
-
 }

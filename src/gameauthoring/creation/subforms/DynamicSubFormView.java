@@ -50,6 +50,8 @@ public abstract class DynamicSubFormView extends SubFormView {
 
         entryView.addComboIndexListener(action);
 
+        entryView.setSelected(myListOfSelectionOptions.get(1));
+
         entryView.setSelected(myListOfSelectionOptions.get(0));
 
         mySelectionView = entryView;
@@ -65,7 +67,6 @@ public abstract class DynamicSubFormView extends SubFormView {
     }
 
     protected void initView () {
-        Node test = mySelectionView.draw();
         myPane.add(mySelectionView.draw(), this.mySelectionViewX, this.mySelectionViewY);
         myPane.add(myCurrentSubView, this.myCurrentSubViewX, this.myCurrentSubViewY);
     }

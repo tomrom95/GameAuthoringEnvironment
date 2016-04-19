@@ -30,9 +30,9 @@ public class FiringSubFormController extends DynamicSubFormController {
     }
 
     @Override
-    protected void setUpSubFormControllers () {
+    protected void setUpSubFormControllers (List<String> subFormIDs) {
         setMySFCFactory(new FiringSFCFactory(getMyGame(), this));
-        super.setUpSubFormControllers();
+        super.setUpSubFormControllers(subFormIDs);
 
     }
 
@@ -47,9 +47,6 @@ public class FiringSubFormController extends DynamicSubFormController {
         return myMissile;
     }
 
-    @Override
-    protected void setMyCurrentSFC () {
-        setMyCurrentSubFormController(getMySubFormControllers().get(0));
-    }
+
 
 }
