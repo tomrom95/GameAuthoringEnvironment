@@ -94,7 +94,7 @@ public abstract class OnAttributePopUp extends ConditionPopUp {
     }
 
     @Override
-    protected ICondition createCondition () {
+    protected ICondition subCreation () {
         EventPackageDefinition other = myThirdEvents.getSelectionModel().getSelectedItem();
         other.setMySpriteGroup(myThirdParty.getSelectionModel().getSelectedItem());
         EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();

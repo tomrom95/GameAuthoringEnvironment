@@ -2,6 +2,7 @@ package gameauthoring.conditiontab;
 
 import engine.conditions.ICondition;
 import engine.profile.IProfilable;
+import engine.profile.Profile;
 import gameauthoring.creation.cellviews.NameCellView;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -18,6 +19,8 @@ import javafx.scene.layout.VBox;
 public abstract class ConditionPopUp {
 
     protected static final double CUSHION = 10;
+    private static final String DEFAULT_IMAGE = "/images/C.png";
+    
     private GridPane myGroup;
     private ObservableList<ICondition> myList;
     private TextField myName = new TextField ();
@@ -82,7 +85,13 @@ public abstract class ConditionPopUp {
         myGroup.add(node, column, row);
     }
 
-    protected abstract ICondition createCondition ();
+    private ICondition createCondition () {
+        ICondition condition = subCreation();
+        condition.setProfile(new Profile(myName.getText(), myDescription.getText(), DEFAULT_IMAGE));
+        return condition;
+    }
+    
+    protected abstract ICondition subCreation ();
 
     public Pane show () {
         return myGroup;

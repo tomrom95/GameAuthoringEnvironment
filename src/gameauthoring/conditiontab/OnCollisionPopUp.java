@@ -85,7 +85,7 @@ public class OnCollisionPopUp extends ConditionPopUp {
     }
 
     @Override
-    protected ICondition createCondition () {
+    protected ICondition subCreation () {
         EventPackageDefinition packageA = myEventsA.getSelectionModel().getSelectedItem();
         packageA.setMySpriteGroup(myGroupA.getSelectionModel().getSelectedItem());
         EventPackageDefinition packageB = myEventsB.getSelectionModel().getSelectedItem();
