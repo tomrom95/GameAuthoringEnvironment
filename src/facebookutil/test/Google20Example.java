@@ -19,21 +19,19 @@ public abstract class Google20Example {
     private static final String NETWORK_NAME = "G+";
     private static final String PROTECTED_RESOURCE_URL =
             "https://www.googleapis.com/plus/v1/people/me";
-    
+
     private static ResourceBundle mySecrets;
-       
-    
+
     public static void main (String ... args) {
         // Replace these with your client id and secret
         mySecrets = ResourceBundle.getBundle("facebookutil/secret");
         final String clientId = mySecrets.getString("googleId");
         final String clientSecret = mySecrets.getString("googleSecret");
-        //final String secretState = "secret" + new Random().nextInt(999_999);
+        // final String secretState = "secret" + new Random().nextInt(999_999);
         final OAuth20Service service = new ServiceBuilder()
                 .apiKey(clientId)
                 .apiSecret(clientSecret)
-                .scope("https://www.googleapis.com/auth/plus.login") // replace with desired scope     
-                //.state(secretState)
+                .scope("https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.circles.write https://www.googleapis.com/auth/plus.circles.read https://www.googleapis.com/auth/plus.stream.write https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/plus.stream.read")
                 .callback("https://github.com/duke-compsci308-spring2016/voogasalad_GitDepends")
                 .build(GoogleApi20.instance());
         final Scanner in = new Scanner(System.in, "UTF-8");
@@ -47,7 +45,7 @@ public abstract class Google20Example {
         // https://developers.google.com/identity/protocols/OAuth2WebServer#preparing-to-start-the-oauth-20-flow
         final Map<String, String> additionalParams = new HashMap<>();
         additionalParams.put("access_type", "offline");
-        // force to reget refresh token (if usera are asked not the first time)
+        // force to retrieve refresh token (if users are asked not the first time)
         additionalParams.put("prompt", "consent");
         final String authorizationUrl = service.getAuthorizationUrl(additionalParams);
         System.out.println("Got the Authorization URL!");
