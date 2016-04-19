@@ -20,10 +20,6 @@ public class SelectSpriteSFC implements ISubFormControllerGroup{
         item.setSpriteDefinitions(myView.getChosen());
     }
 
-    @Override
-    public void populateViewsWithData (SpriteGroup item) {
-        myView.setChosen(item.getSpriteDefinitions());
-    }
 
     @Override
     public ISubFormView getSubFormView () {

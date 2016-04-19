@@ -41,11 +41,6 @@ public class UpgradeSFC implements ISubFormControllerSprite {
     }
 
     @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-        mySFV.setSelected(false);
-    }
-
-    @Override
     public ISubFormView getSubFormView () {
         return mySFV;
     }

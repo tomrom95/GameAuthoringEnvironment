@@ -19,12 +19,6 @@ public class SelectAttributeSubFormController implements ISubFormControllerSprit
     }
 
     @Override
-    public void populateViewsWithData (SpriteDefinition item) {
-        myView.getEntryView().setSelected(item.getAttributes());
-
-    }
-
-    @Override
     public ISubFormView getSubFormView () {
         return myView;
     }

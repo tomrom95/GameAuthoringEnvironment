@@ -52,14 +52,6 @@ public class ProfileSubFormController<T extends IProfilable> implements ISubForm
 
     }
 
-    @Override
-    public void populateViewsWithData (T item) {
-        String name =  item.getProfile().getName().get();
-        String desc = item.getProfile().getDescription().get();
-        String url = item.getProfile().getImageURL();
-        populateViewsWithData(name, desc, url);
-    }
-    
 
     @Override
     public ISubFormView getSubFormView () {

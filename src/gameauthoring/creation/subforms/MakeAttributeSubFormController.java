@@ -51,11 +51,6 @@ public class MakeAttributeSubFormController implements ISubFormControllerAttribu
     }
 
     @Override
-    public void populateViewsWithData (AttributeDefinition item) {
-        populateViewsWithData(item.getStartingValue());
-    }
-
-    @Override
     public ISubFormView getSubFormView () {
         return myView;
     }

@@ -18,7 +18,7 @@ public class SubFormControllerFactory {
 
     private IGame myGame;
 
-    public SubFormControllerFactory (Game game) {
+    public SubFormControllerFactory (IGame game) {
 
         myGame = game;
     }
@@ -42,7 +42,7 @@ public class SubFormControllerFactory {
 
         }
         else if (type.equals("Movement")) {
-            return new MovementSubFormController();
+            return new MovementSubFormController(this, getMyGame());
         }
         else if (type.equals("SmartAI")) {
             System.out.println("smartAI");
@@ -69,7 +69,7 @@ public class SubFormControllerFactory {
             return new SelectSpriteSFC(getMyAuthorshipData().getMyCreatedSprites());
         }
         else if (type.equals("Firing")) {
-            return new FiringSubFormController(myGame);
+            return new FiringSubFormController(this, getMyGame());
         }
         else if (type.equals("DirectionalFire")) {
             return new DirectionalFireSubFormController(getMyGame());
@@ -102,7 +102,7 @@ public class SubFormControllerFactory {
         }
 
         else if (type.equals("Movement")) {
-            return new MovementSubFormController();
+            return new MovementSubFormController(this, getMyGame());
         }
 
         else if (type.equals("SmartAI")) {
@@ -118,7 +118,7 @@ public class SubFormControllerFactory {
                     .getMyCreatedAttributes());
         }
         else if (type.equals("Firing")) {
-            return new FiringSubFormController(myGame);
+            return new FiringSubFormController(this, getMyGame());
         }
         else if (type.equals("DirectionalFire")) {
             return new DirectionalFireSubFormController(getMyGame());
