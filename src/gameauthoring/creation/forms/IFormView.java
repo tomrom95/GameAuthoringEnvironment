@@ -56,4 +56,12 @@ public interface IFormView extends Glyph {
      * @return The list of subformviews
      */
     List<ISubFormView> getSubFormViews ();
+    
+    /**
+     * Sets currently visible views to those associated with currently selected item
+     * 
+     * @param subFormViews
+     */
+    void setViews(List<ISubFormView> subFormViews);
+    
 }

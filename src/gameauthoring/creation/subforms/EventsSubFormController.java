@@ -49,14 +49,14 @@ public class EventsSubFormController implements ISubFormController<EventPackageD
     }
 
     @Override
-    public void populateViewsWithData (EventPackageDefinition item) {
-        // TODO Auto-generated method stub
-        
+    public ISubFormView getSubFormView () {
+        return myView;
     }
 
     @Override
-    public ISubFormView getSubFormView () {
-        return myView;
+    public void initializeFields () {
+        // TODO Auto-generated method stub
+        
     }
 
 }

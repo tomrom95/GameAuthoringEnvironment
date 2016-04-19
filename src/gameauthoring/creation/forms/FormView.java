@@ -32,7 +32,7 @@ public class FormView implements IFormView {
         mySubFormViewer.getStyleClass().add("myFormView");
         myFormView.add(mySubFormViewer, 0, 1); 
         myFormView.add(createButtonHolder(), 0 , 0);
-        generateView(mySubFormViews);            
+        setViews(mySubFormViews);            
     }
     
     private Node createButtonHolder () {
@@ -40,11 +40,20 @@ public class FormView implements IFormView {
         buttonHolder.getChildren().addAll(myButtons);
         return buttonHolder;
     }
-
-    private void generateView (List<ISubFormView> subFormViews) {
+    
+    /**
+     * New Design, change active subform views
+     */
+    public void setViews(List<ISubFormView> subFormViews){
+        mySubFormContainer.getChildren().setAll(getSFVNodes(subFormViews));
+    }
+    
+    private List<Node> getSFVNodes(List<ISubFormView> subFormViews){
+        List<Node> nodes = new ArrayList<>();
         for(ISubFormView s:subFormViews){
-            mySubFormContainer.getChildren().add(s.draw());
+            nodes.add(s.draw());
         }
+        return nodes;
     }
     
     /**

@@ -1,19 +1,25 @@
 package gameauthoring.creation.subforms;
 
+import java.util.List;
 import engine.definitions.AttributeDefinition;
-import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.entryviews.MultiChoiceEntryView;
 import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 
 
-public class SelectAttributeSubFormView extends SubFormView {
+/**
+ * Implementation of ISelectAttributeSFV with MultiChoiceEntryView display
+ * 
+ * @author Joe Lilien
+ *
+ */
+public class SelectAttributeSFV extends SubFormView implements ISelectAttributeSFV {
 
     private String myAttributesKey = "Attributes :";
     private MultiChoiceEntryView<AttributeDefinition> myAttributeSelector;
 
-    public SelectAttributeSubFormView (IDefinitionCollection<AttributeDefinition> attributes) {
+    public SelectAttributeSFV (IDefinitionCollection<AttributeDefinition> attributes) {
         myAttributeSelector =
                 new MultiChoiceEntryView<AttributeDefinition>(myAttributesKey,
                                                               attributes.getItems(), 400, 200,
@@ -25,11 +31,14 @@ public class SelectAttributeSubFormView extends SubFormView {
         return myAttributeSelector.draw();
     }
 
-    public MultiChoiceEntryView<AttributeDefinition> getEntryView () {
-        return myAttributeSelector;
+    @Override
+    public List<AttributeDefinition> getSelectedAttributes () {
+        return myAttributeSelector.getSelected();
     }
 
+    @Override
+    protected void initView () {
 
-    
+    }
 
 }
