@@ -5,6 +5,7 @@ import engine.modules.IGraphicModule;
 import engine.modules.IModule;
 import engine.modules.IMovementModule;
 import engine.modules.UserMover;
+import engine.rendering.GameGridConfigNonScaling;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
@@ -39,7 +40,7 @@ public class TestHUD extends Application {
 
         levelManager.bufferedAdd(createUserSprite(), new Coordinate(10, 10));
         ConditionManager conditionManager = new ConditionManager();
-        Game game = new Game();
+        Game game = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
 
         addSomeAttributes(game);
 

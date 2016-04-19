@@ -1,5 +1,6 @@
 package engine.modules;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import engine.Attribute;
@@ -74,6 +75,8 @@ public class TrackingMover extends Mover {
     @Override
     protected List<IAttribute> getSpecificAttributes () {
         // TODO Auto-generated method stub
-        return null;
+        List<IAttribute> myList = new ArrayList<IAttribute>();
+        myList.add(mySpeed);
+        return myList;
     }
 }

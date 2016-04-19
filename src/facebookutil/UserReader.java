@@ -11,10 +11,20 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import facebookutil.user.IUser;
 
+/**
+ * XStream reader for users. Likely will be refactored so that
+ * we can save the high score board as well
+ * @author Tommy
+ *
+ */
 public class UserReader {
     
     private static final String PATH = "savedusers/";
 
+    /**
+     * Gets the list of users from files
+     * @return
+     */
     public List<IUser> getUsers () {
         List<IUser> users = new ArrayList<IUser>();
         File dir = new File(PATH);
@@ -42,6 +52,12 @@ public class UserReader {
         }
     }
 
+    /**
+     * Transforms the file from a file to a string
+     * @param file
+     * @return
+     * @throws IOException
+     */
     private String fileToXMLString (File file) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         BufferedReader buffReader = getBufferedReader(file);
@@ -52,6 +68,12 @@ public class UserReader {
         return stringBuilder.toString();
     }
 
+    /**
+     * helper to create a buffered reader of the file
+     * @param file
+     * @return
+     * @throws FileNotFoundException
+     */
     private BufferedReader getBufferedReader (File file) throws FileNotFoundException {
         FileReader reader = new FileReader(file);
         return new BufferedReader(reader);

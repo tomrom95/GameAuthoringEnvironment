@@ -6,19 +6,19 @@ import facebookutil.login.LoginObject;
 
 public class User implements IUser{
     
-    private String myEmail;
+    private Email myEmail;
     private UserScoreBoard myScoreBoard;
     @XStreamOmitField
     private SocialMap myProfiles;
     
-    public User (String email) {
+    public User (Email email) {
         myEmail = email;
         myScoreBoard = new UserScoreBoard();
         myProfiles = new SocialMap ();
     }
 
     @Override
-    public String getUserEmail () {
+    public Email getUserEmail () {
         return myEmail;
     }
 

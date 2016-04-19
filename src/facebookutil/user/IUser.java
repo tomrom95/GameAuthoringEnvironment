@@ -9,7 +9,7 @@ import facebookutil.login.LoginObject;
  */
 public interface IUser {
     
-    public String getUserEmail ();
+    public Email getUserEmail ();
     
     public UserScoreBoard getScoreBoard ();
     

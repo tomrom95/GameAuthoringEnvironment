@@ -45,6 +45,7 @@ public abstract class LevelRenderer implements IRenderer {
         node.relocate(location.getX() - sprite.getDrawer().getGraphic().getWidth().get() / 2,
                       location.getY() - sprite.getDrawer().getGraphic().getHeight().get() / 2);
         node.setVisible(sprite.getDrawer().isVisible());
+        node.setRotate(sprite.getOrientation());
     }
 
     protected void drawBackground (String url) {

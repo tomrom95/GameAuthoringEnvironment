@@ -3,6 +3,7 @@ package engine.profile;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import graphics.IGraphic;
 import graphics.ImageGraphic;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -17,30 +18,34 @@ import javafx.beans.property.StringProperty;
 public class Profile implements IProfile {
 
     private String DEFAULT_IMAGE_NAME = "images/Square.png";
-    private static final int DEFAULT_SIZE = 45;
-
+    
     private StringProperty myName;
     private StringProperty myDescription;
-    
-   
     private ImageGraphic myImage;
+    private DoubleProperty myImageWidth;
+    private DoubleProperty myImageHeight;
+
 
     public Profile () {
-        init("<NAME>", "<DESCRIPTION>", new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
+        init("<NAME>", "<DESCRIPTION>", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
     }
 
     public Profile (String name) {
-        init(name, "", new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
+        init(name, "", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
     }
 
     public Profile (String name, String description) {
-        init(name, description, new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
+        init(name, description, new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
     }
 
     public Profile (String name, String description, String url) {
-        init(name, description, new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, url));
+        init(name, description, new ImageGraphic(0, 0, url));
     }
 
+    public Profile (String name, String description, String url, double width, double height){
+        init(name, description, new ImageGraphic(width, height, url));
+    }
+    
     public Profile (String name, String description, ImageGraphic graphic) {
         init(name, description, graphic);
 
@@ -50,6 +55,8 @@ public class Profile implements IProfile {
         myName = new SimpleStringProperty(name);
         myDescription = new SimpleStringProperty(description);
         myImage = graphic;
+        myImageWidth = graphic.getWidth();
+        myImageHeight = graphic.getHeight();
     }
 
     @Override
@@ -73,10 +80,22 @@ public class Profile implements IProfile {
     }
 
     @Override
-    public void setNew (String name, String desc, String url) {
-        myImage = new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, url);
+    public DoubleProperty getImageWidth () {
+        return myImageWidth;
+    }
+
+    @Override
+    public DoubleProperty getImageHeight () {
+        return myImageHeight;
+    }
+
+    @Override
+    public void setNew (String name, String desc, String url, double width, double height) {
+        myImage = new ImageGraphic(width, height, url);
         myDescription.set(desc);
         myName.set(name);
+        myImageWidth.set(width);
+        myImageHeight.set(height);
     }
 
 }

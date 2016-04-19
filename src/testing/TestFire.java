@@ -16,7 +16,9 @@ import engine.definitions.ModuleDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.TrackingFirerDefinition;
 import engine.profile.Profile;
+import engine.rendering.GameGridConfigNonScaling;
 import engine.sprite.ISprite;
+import gameplayer.GamePlayer;
 import util.TimeDuration;
 
 
@@ -41,7 +43,7 @@ public class TestFire {
 
     @Before
     public void setUp () {
-        myGame = new Game();
+        myGame = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
         createMover();
         createProjectile();
         createTower();
@@ -53,7 +55,7 @@ public class TestFire {
 
     @After
     public void tearDown () {
-        myGame = new Game();
+        myGame = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
         myTowerList.clear();
         Iterator<ModuleDefinition> modules = myTower.getModuleDefinitions().iterator();
 

@@ -2,12 +2,19 @@ package facebookutil.login;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import facebookutil.user.Email;
 
+/**
+ * Structure to hold the various items retrieved during a login
+ * like the token, service, email, and userID of the user
+ * @author Tommy
+ *
+ */
 public class LoginObject {
     
     private OAuth2AccessToken myToken;
     private OAuth20Service myService;
-    private String myEmail;
+    private Email myEmail;
     private String myUserID;
     
     public OAuth2AccessToken getToken (){
@@ -18,7 +25,7 @@ public class LoginObject {
         return myService;
     }
     
-    public String getEmail () {
+    public Email getEmail () {
         return myEmail;
     }
     
@@ -34,7 +41,7 @@ public class LoginObject {
         myService = service;
     }
     
-    public void setEmail (String email) {
+    public void setEmail (Email email) {
         myEmail = email;
     }
     
