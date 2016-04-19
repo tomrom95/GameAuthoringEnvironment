@@ -73,4 +73,11 @@ public class MovementSubFormController implements ISubFormControllerSprite {
         return myView;
     }
 
+    @Override
+    public void initializeFields () {
+        for (ISubFormController<SpriteDefinition> subFormController: mySubFormControllers){
+            subFormController.initializeFields();
+        }
+    }
+
 }

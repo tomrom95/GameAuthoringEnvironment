@@ -115,4 +115,11 @@ public class FiringSubFormController implements ISubFormControllerSprite {
         return myMissile;
     }
 
+    @Override
+    public void initializeFields () {
+        for (ISubFormController<SpriteDefinition> subFormController: mySubFormControllers){
+            subFormController.initializeFields();
+        }
+    }
+
 }

@@ -30,4 +30,9 @@ public class SelectSpriteSFC implements ISubFormControllerGroup{
         return myView;
     }
 
+    @Override
+    public void initializeFields () {
+        
+    }
+
 }

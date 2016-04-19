@@ -29,4 +29,9 @@ public class SelectAttributeSubFormController implements ISubFormControllerSprit
         return myView;
     }
 
+    @Override
+    public void initializeFields () {
+        
+    }
+
 }

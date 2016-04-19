@@ -31,6 +31,7 @@ public class TrackingFireSubFormController implements ISubFormControllerSprite {
     private IFormDataManager myFormData;
     private IGame myGame;
     private FiringSubFormController myFiringSFC;
+    private double myDefaultWaitTime = 0;
 
     // TODO: why is this static?
     private static Predicate<ModuleDefinition> findTrackingFirer () {
@@ -50,6 +51,15 @@ public class TrackingFireSubFormController implements ISubFormControllerSprite {
         myFormData = myView.getData();
         myGame = game;
         myFiringSFC = firingSubFormController;
+    }
+
+    @Override
+    public void initializeFields () {
+        populateViewsWithData(myDefaultWaitTime);
+    }
+
+    private void populateViewsWithData (double wait) {
+        myFormData.set(myView.getWaitTimeKey(), Double.toString(wait));
     }
 
     @Override
