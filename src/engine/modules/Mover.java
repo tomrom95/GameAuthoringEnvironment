@@ -26,12 +26,15 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     public static final double NO_MOTION = 0;
     private IAttribute myXVel;
     private IAttribute myYVel;
+    private IAttribute myOrientation;
+
     private Positionable myParent;
     private List<Coordinate> myPath;
 
     public Mover (Positionable positionable) {
         myXVel = new Attribute(AttributeType.X_VEL);
         myYVel = new Attribute(AttributeType.Y_VEL);
+        myOrientation = new Attribute(AttributeType.ORIENTATION);
         myParent = positionable;
         myPath = new ArrayList<>();
     }
@@ -119,4 +122,11 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     public List<Coordinate> getPath () {
         return myPath;
     }
+
+    @Override
+    public double getOrientation () {
+        return myOrientation.getValueProperty().get();
+    }
+    
+
 }
