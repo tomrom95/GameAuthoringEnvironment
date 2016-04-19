@@ -42,6 +42,7 @@ public abstract class DefaultAffectable implements Affectable {
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
     }
+    
 
     @Override
     public ObservableList<IAttribute> getAttributes () {

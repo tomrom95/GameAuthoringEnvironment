@@ -1,11 +1,7 @@
 package gameauthoring.creation.subforms;
 
-import java.util.ArrayList;
-import java.util.List;
 import gameauthoring.creation.entryviews.FormDataManager;
-import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.IFormDataManager;
-import gameauthoring.util.Glyph;
 
 
 /**
@@ -14,12 +10,9 @@ import gameauthoring.util.Glyph;
  * @author JoeLilien
  *
  */
-public abstract class SubFormView implements ISubFormView{
+public abstract class SubFormView implements ISubFormView {
 
-    private List<IEntryView> myEntryViews;
     private IFormDataManager myData = new FormDataManager();
-    
-   
 
     /**
      * Implementation of getData() with Manager, think I like this one better. The same instance of
@@ -32,14 +25,10 @@ public abstract class SubFormView implements ISubFormView{
     public IFormDataManager getData () {
         return myData;
     }
-   
-    public List<IEntryView> getMyEntryViews () {
-        return myEntryViews;
-    }
 
-    public void setMyEntryViews (List<IEntryView> myEntryViews) {
-        this.myEntryViews = myEntryViews;
-    }
+    /**
+     * Initializes arrangement and actual appearence of SFV
+     */
+    protected abstract void initView ();
 
-    
 }

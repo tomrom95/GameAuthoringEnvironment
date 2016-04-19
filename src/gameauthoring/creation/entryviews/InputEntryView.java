@@ -5,18 +5,35 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.GridPane;
 
+
+/**
+ * Abstract class that defines an EntryView which can take in some form of text input, current
+ * subclasses include a text input EntryView and a number input EntryView that only allows users to
+ * type in numbers
+ * 
+ * @author Joe Lilien
+ *
+ */
 public abstract class InputEntryView extends EntryView {
-    
-    private GridPane myContainer; // TODO Magic Number and Factory
+
+    private GridPane myContainer;
     private TextInputControl myTextInput;
+    private double width;
+    private double height;
 
-    public InputEntryView (String label, IFormDataManager data, double width, double height, String cssClass) {
+    public InputEntryView (String label,
+                           IFormDataManager data,
+                           double width,
+                           double height,
+                           String cssClass) {
         super(label, data);
-       
-    }
-    
+        this.width = width;
+        this.height = height;
 
-    protected void init (String label, double width, double height, String cssClass) {
+    }
+
+    @Override
+    protected void init (String label, String cssClass) {
         this.myTextInput.setMinSize(width, height);
         this.myTextInput.setMaxSize(width, height);
         this.myTextInput.textProperty().bindBidirectional(getData().getValueProperty());
@@ -24,10 +41,10 @@ public abstract class InputEntryView extends EntryView {
         myContainer.add(new Label(myLabel), 0, 0);
         myContainer.add(myTextInput, 0, 1);
         myContainer.getStyleClass().add(cssClass);
-        
+
     }
-    
-    protected void setInputControl(TextInputControl text){
+
+    protected void setInputControl (TextInputControl text) {
         this.myTextInput = text;
     }
 
@@ -35,7 +52,5 @@ public abstract class InputEntryView extends EntryView {
     public Node draw () {
         return myContainer;
     }
-
-
 
 }
