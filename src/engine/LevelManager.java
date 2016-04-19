@@ -70,12 +70,12 @@ public class LevelManager implements ILevelManager {
 
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
-        applyToInternalizers(internalize -> internalize.internalizeKeyEvents(list));
+        //applyToInternalizers(internalize -> internalize.internalizeKeyEvents(list));
     }
 
     @Override
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
-        applyToInternalizers(internalize -> internalize.internalizeMouseEvents(list));
+        //applyToInternalizers(internalize -> internalize.internalizeMouseEvents(list));
     }
 
     @Override
