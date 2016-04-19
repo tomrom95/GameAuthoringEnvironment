@@ -24,11 +24,11 @@ public class NextLevelManager implements INextLevelManager {
     private ILevel myNextLevel;
 
     public NextLevelManager () {
-        this(new Level(), new Level());
+        this(null, null);
     }
 
     public NextLevelManager (ILevel winLevel, ILevel loseLevel) {
-        myNextLevel = new Level();
+        myNextLevel = null;
         myWinLevel = winLevel;
         myLoseLevel = loseLevel;
         myShouldProceedToNext = false;
@@ -65,6 +65,9 @@ public class NextLevelManager implements INextLevelManager {
 
     @Override
     public ILevel getNextLevel () {
+        if (myNextLevel == null) {
+            return new Level();
+        }
         return myNextLevel;
     }
 
