@@ -51,6 +51,10 @@ public interface ISprite extends Drawable, Updateable, Affectable, Positionable 
     SpriteType getType ();
 
     boolean shouldBeRemoved ();
+    
+    boolean doesObstruct ();
+    
+    void setObstruction (boolean value);
 
     void setPath (List<Coordinate> path);
 

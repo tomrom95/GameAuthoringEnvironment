@@ -76,7 +76,7 @@ public class MainUserInterface {
             method.invoke(this);
         }
         catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-            System.out.println("error");
+           e.printStackTrace();
             return;
         }
     }

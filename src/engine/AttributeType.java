@@ -1,5 +1,8 @@
 package engine;
 
+
+
+
 /**
  * This class defines the type of an attribute, and defines the functionality that allows checking
  * to see if attributes are of the same type
@@ -20,6 +23,7 @@ public class AttributeType extends StringBasedType {
     public static final AttributeType SPEED = new AttributeType("Speed");
     public static final AttributeType AMMO = new AttributeType("Ammo");
     public static final AttributeType FIRE_RATE = new AttributeType("Firerate");
+    public static final AttributeType ORIENTATION = new AttributeType("Orientation");
 
     public AttributeType (String type) {
         super(type);
@@ -29,5 +33,6 @@ public class AttributeType extends StringBasedType {
     protected boolean isSameClass (Object obj) {
         return obj instanceof AttributeType;
     }
+
 
 }

@@ -38,7 +38,7 @@ public class BrowserView {
 
     private static final String TWITTER_PROTECTED_RESOURCE_URL =
             "https://api.twitter.com/1.1/account/verify_credentials.json";
-    
+
     private static final String CALLBACK_URL =
             "https://duke.edu/";
 
@@ -54,7 +54,7 @@ public class BrowserView {
         BorderPane root = new BorderPane();
         root.setCenter(makePageDisplay());
         facebookExample();
-        //twitterExample();
+        // twitterExample();
 
         myScene = new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 
@@ -105,23 +105,23 @@ public class BrowserView {
                     if (m.find()) {
                         System.out.println(m.group(1));
                     }
-                  //SEND A NOTIFICATION
-//                      OAuthRequest nextRequest =
-//                              new OAuthRequest(Verb.POST,
-//                                               "https://graph.facebook.com/10204226196654701/apprequests",
-//                                               service);
-//                      String message = "Let's make tower defense!";
-//                      nextRequest.addBodyParameter("access_token", accessToken.getAccessToken());
-//                      nextRequest.addBodyParameter("message", message);
-//                      nextRequest.addBodyParameter("to", "tommy.romanburg");
-//                      service.signRequest(accessToken, nextRequest);
-//    
-//                      Response nextResponse = nextRequest.send();
-//                      System.out.println("here");
-//                      System.out.println(nextRequest.getBodyContents());
-//                      System.out.println(nextResponse.getCode());
-//                      String responseBody = nextResponse.getBody();
-//                      System.out.println(responseBody);
+                    // SEND A NOTIFICATION
+                    // OAuthRequest nextRequest =
+                    // new OAuthRequest(Verb.POST,
+                    // "https://graph.facebook.com/10204226196654701/apprequests",
+                    // service);
+                    // String message = "Let's make tower defense!";
+                    // nextRequest.addBodyParameter("access_token", accessToken.getAccessToken());
+                    // nextRequest.addBodyParameter("message", message);
+                    // nextRequest.addBodyParameter("to", "tommy.romanburg");
+                    // service.signRequest(accessToken, nextRequest);
+                    //
+                    // Response nextResponse = nextRequest.send();
+                    // System.out.println("here");
+                    // System.out.println(nextRequest.getBodyContents());
+                    // System.out.println(nextResponse.getCode());
+                    // String responseBody = nextResponse.getBody();
+                    // System.out.println(responseBody);
 
                     // SEND A NOTIFICATION
                     OAuthRequest nextRequest =
@@ -165,18 +165,17 @@ public class BrowserView {
             }
         }
     }
-    
-    
+
     private class TwitterLinkListener implements ChangeListener<State> {
 
         @Override
         public void changed (ObservableValue<? extends State> ov, State oldState, State newState) {
-            if (newState == Worker.State.SUCCEEDED && myPage.getEngine().getLocation().equals("https://api.twitter.com/oauth/authorize")) {
+            if (newState == Worker.State.SUCCEEDED && myPage.getEngine().getLocation()
+                    .equals("https://api.twitter.com/oauth/authorize")) {
                 String newURL = myPage.getEngine().getLocation();
                 System.out.println("here");
                 System.out.println(newURL);
-                
-                
+
                 Scanner in = new Scanner(System.in);
 
                 System.out.println("And paste the verifier here");
@@ -186,7 +185,8 @@ public class BrowserView {
 
                 // Trade the Request Token and Verfier for the Access Token
                 System.out.println("Trading the Request Token for an Access Token...");
-                final OAuth1AccessToken accessToken = twitterService.getAccessToken(twitterToken, oauthVerifier);
+                final OAuth1AccessToken accessToken =
+                        twitterService.getAccessToken(twitterToken, oauthVerifier);
                 System.out.println("Got the Access Token!");
                 System.out.println("(if your curious it looks like this: " + accessToken +
                                    ", 'rawResponse'='" + accessToken.getRawResponse() + "')");
@@ -194,7 +194,8 @@ public class BrowserView {
 
                 // Now let's go and ask for a protected resource!
                 System.out.println("Now we're going to access a protected resource...");
-                final OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL, service);
+                final OAuthRequest request =
+                        new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL, service);
                 twitterService.signRequest(accessToken, request);
                 final Response response = request.send();
                 System.out.println("Got it! Lets see what we found...");
@@ -202,19 +203,15 @@ public class BrowserView {
                 System.out.println(response.getBody());
 
                 System.out.println();
-                System.out.println("That's it man! Go and build something awesome with ScribeJava! :)");
+                System.out
+                        .println("That's it man! Go and build something awesome with ScribeJava! :)");
 
-                }
-                else {
+            }
+            else {
 
-                }
             }
         }
-    
-    
-    
-    
-    
+    }
 
     public void facebookExample () {
         // Replace these with your client id and secret
@@ -224,7 +221,7 @@ public class BrowserView {
                 .apiKey(clientId)
                 .apiSecret(clientSecret)
                 .callback(CALLBACK_URL)
-                //.grantType("client_credentials")
+                // .grantType("client_credentials")
                 .scope("publish_actions,email,public_profile")
                 // .scope("publish_actions")
                 .build(FacebookApi.instance());

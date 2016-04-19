@@ -11,7 +11,7 @@ import util.TimeDuration;
 
 /**
  * This class creates a module that is immovable. Used primarily for towers in TowerDefense games
- * TODO should this extend default affectable?
+ * 
  */
 public class StaticMover extends Mover {
 

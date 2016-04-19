@@ -58,7 +58,7 @@ public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> imple
      */
     private Image getSpriteImage () {
         Node spriteNode =
-                getProfilable().getProfile().getImage().get()
+                getProfilable().getProfile().getImage()
                         .getVisualRepresentation(new UnscaledFactory());
         return new UIFactory().getImageFromNode(spriteNode);
     }

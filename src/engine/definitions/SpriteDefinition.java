@@ -48,7 +48,7 @@ public class SpriteDefinition implements IProfilable {
     }
 
     protected IGraphicModule createGraphicModule () {
-        return new GraphicModule(myProfile.getImage().get());
+        return new GraphicModule(myProfile.getImage());
     }
 
     protected Coordinate createCoordinate () {
