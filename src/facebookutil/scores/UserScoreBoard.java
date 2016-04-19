@@ -1,4 +1,4 @@
-package facebookutil.user;
+package facebookutil.scores;
 
 import java.util.HashMap;
 import java.util.Map;

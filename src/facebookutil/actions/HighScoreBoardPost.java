@@ -1,6 +1,6 @@
 package facebookutil.actions;
 
-import facebookutil.HighScoreBoard;
+import facebookutil.scores.HighScoreBoard;
 
 
 /**

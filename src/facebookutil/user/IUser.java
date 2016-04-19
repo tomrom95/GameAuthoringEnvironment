@@ -2,6 +2,7 @@ package facebookutil.user;
 
 import facebookutil.SocialType;
 import facebookutil.login.LoginObject;
+import facebookutil.scores.UserScoreBoard;
 
 /**
  * This interface manages the actions associated with a user 

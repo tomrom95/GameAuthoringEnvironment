@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import facebookutil.applications.AppMap;
 import facebookutil.login.LoginUser;
+import facebookutil.scores.HighScoreBoard;
 import facebookutil.login.LoginObject;
 import facebookutil.user.Email;
 import facebookutil.user.IUser;

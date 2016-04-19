@@ -2,6 +2,7 @@ package facebookutil;
 
 import java.util.List;
 import facebookutil.login.LoginObject;
+import facebookutil.scores.HighScoreBoard;
 import facebookutil.user.Email;
 import facebookutil.user.IUser;
 

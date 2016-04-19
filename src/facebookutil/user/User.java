@@ -3,6 +3,7 @@ package facebookutil.user;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import facebookutil.SocialType;
 import facebookutil.login.LoginObject;
+import facebookutil.scores.UserScoreBoard;
 
 public class User implements IUser{
     

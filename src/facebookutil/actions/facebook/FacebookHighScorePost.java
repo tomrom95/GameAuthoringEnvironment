@@ -2,8 +2,8 @@ package facebookutil.actions.facebook;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
-import facebookutil.HighScoreBoard;
 import facebookutil.actions.HighScoreBoardPost;
+import facebookutil.scores.HighScoreBoard;
 
 public class FacebookHighScorePost implements HighScoreBoardPost {
 
