@@ -29,19 +29,15 @@ public class ConstantMover extends Mover {
 
     @Override
     public void setPath (List<Coordinate> newPath) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public List<Coordinate> getPath () {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public ObservableList<IAttribute> getAttributes () {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -52,24 +48,18 @@ public class ConstantMover extends Mover {
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     protected List<IAttribute> getSpecificAttributes () {
-        // TODO Auto-generated method stub
         return null;
     }
 
     public double getAngle () {
-        // TODO Auto-generated method stub
         return Math.atan(getYVel().getValueProperty().get() / getXVel().getValueProperty().get()) *
                180 / Math.PI;
     }

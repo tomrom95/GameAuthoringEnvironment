@@ -13,7 +13,7 @@ public class FacebookMain extends Application {
     @Override
     public void start (Stage stage) {
         // create program specific components
-        BrowserView display = new BrowserView();
+        TwitterBrowser display = new TwitterBrowser();
         // give the window a title
         // add our user interface components to Frame and show it
         stage.setScene(display.getScene());

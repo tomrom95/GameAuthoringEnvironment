@@ -1,19 +1,10 @@
 package facebookutil.test;
 
 import java.awt.Dimension;
-import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Worker;
-import javafx.concurrent.Worker.State;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.web.WebView;
 import com.github.scribejava.apis.FacebookApi;
 import com.github.scribejava.apis.TwitterApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
@@ -25,6 +16,14 @@ import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth10aService;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
+import javafx.concurrent.Worker.State;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.web.WebView;
 
 
 /**
@@ -45,6 +44,7 @@ public class BrowserView {
 
     private OAuth20Service service;
     private OAuth10aService twitterService;
+    private OAuth1RequestToken twitterToken;
     private Scene myScene;
     private WebView myPage;
     private ResourceBundle mySecrets;
@@ -177,23 +177,16 @@ public class BrowserView {
                 System.out.println(newURL);
                 
                 
-                TextInputDialog dialog = new TextInputDialog();
-                dialog.setTitle("Twitter Access");
-                dialog.setHeaderText("Tower Defense Social");
-                dialog.setContentText("Permission Number:");
+                Scanner in = new Scanner(System.in);
 
-                // Traditional way to get the response value.
-                Optional<String> result = dialog.showAndWait();
-                result.ifPresent(code -> System.out.println("Permission Code: " + code));
-                
-                final String oauthVerifier = result.toString();
-                System.out.println(oauthVerifier.toString());
-                
-                // Trade the Request Token and Verifier for the Access Token
+                System.out.println("And paste the verifier here");
+                System.out.print(">>");
+                final String oauthVerifier = in.nextLine();
+                System.out.println();
+
+                // Trade the Request Token and Verfier for the Access Token
                 System.out.println("Trading the Request Token for an Access Token...");
-                final OAuth1RequestToken requestToken = twitterService.getRequestToken();
-                System.out.println("request: " + requestToken.toString());
-                final OAuth1AccessToken accessToken = twitterService.getAccessToken(requestToken, oauthVerifier);
+                final OAuth1AccessToken accessToken = twitterService.getAccessToken(twitterToken, oauthVerifier);
                 System.out.println("Got the Access Token!");
                 System.out.println("(if your curious it looks like this: " + accessToken +
                                    ", 'rawResponse'='" + accessToken.getRawResponse() + "')");
@@ -257,11 +250,11 @@ public class BrowserView {
         System.out.println("=== Twitter's OAuth Workflow ===");
         System.out.println();
 
-        final OAuth1RequestToken requestToken = service.getRequestToken();
+        twitterToken = service.getRequestToken();
         // Obtain the Authorization URL
         System.out.println("Fetching the Authorization URL...");
-        System.out.println("request: " + requestToken.toString());
-        final String authorizationUrl = service.getAuthorizationUrl(requestToken);
+        System.out.println("request: " + twitterToken.toString());
+        final String authorizationUrl = service.getAuthorizationUrl(twitterToken);
         myPage.getEngine().load(authorizationUrl);
     }
 }
