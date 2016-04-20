@@ -72,7 +72,8 @@ public class FacebookListener implements ChangeListener<State> {
      * Finds the profile with another request
      */
     private void findProfile () {
-        GetProfile getter = new FacebookGetProfile (myLoginObject);
+        GetProfile getter = new FacebookGetProfile ();
+        getter.createGet(myLoginObject);
         myLoginObject.setEmail(new Email(getter.getEmail()));
         myLoginObject.setUserID(getter.getUserID());
     }

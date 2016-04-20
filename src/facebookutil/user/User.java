@@ -3,6 +3,7 @@ package facebookutil.user;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import facebookutil.SocialType;
 import facebookutil.login.LoginObject;
+import facebookutil.scores.UserScoreBoard;
 
 public class User implements IUser{
     
@@ -55,6 +56,15 @@ public class User implements IUser{
     @Override
     public SocialMap getProfiles () {
         return myProfiles;
+    }
+    
+    @Override
+    public boolean equals (Object obj) {
+        if (! (obj instanceof User)) {
+            return false;
+        }
+        User other = (User) obj;
+        return getUserEmail().equals(other.getUserEmail());
     }
 
 }
