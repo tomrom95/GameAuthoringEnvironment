@@ -1,6 +1,7 @@
 package engine.definitions;
 
 import engine.Positionable;
+import engine.modules.Firer;
 import engine.modules.IModule;
 
 
@@ -8,19 +9,24 @@ import engine.modules.IModule;
  * This class represents the definition of a firer module
  *
  */
-public class FirerDefinition extends ModuleDefinition {
+public abstract class FirerDefinition extends ModuleDefinition {
 
     private SpriteDefinition myProjectile;
     private double myAmmo;
+    private double myRange;
+    private boolean ranged;
 
     @Override
-    public IModule create (Positionable parent) {
-        // TODO why does this return null?? should this class be abstract?
-        return null;
-    }
+    public abstract IModule create (Positionable parent);
 
     public SpriteDefinition getProjectileDefinition () {
         return myProjectile;
+    }
+    
+    public void setSuperVariables(Firer myFirer){
+    	myFirer.setAmmo(myAmmo);
+    	myFirer.setRange(myRange);
+    	myFirer.setRanged(ranged);
     }
     
     public void setAmmo(double ammo){
@@ -33,6 +39,22 @@ public class FirerDefinition extends ModuleDefinition {
 
     public void setProjectileDefinition (SpriteDefinition projectile) {
         myProjectile = projectile;
+    }
+    
+    public void setRanged(boolean isRanged){
+    	ranged = isRanged;
+    }
+    
+    public boolean getRanged(){
+    	return ranged;
+    }
+    
+    public double getFireRange(){
+    	return myRange;
+    }
+    
+    public void setFireRange(double range){
+    	myRange = range;
     }
 
 }

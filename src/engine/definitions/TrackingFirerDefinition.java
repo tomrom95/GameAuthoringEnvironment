@@ -21,8 +21,10 @@ public class TrackingFirerDefinition extends FirerDefinition {
     @Override
     public TrackingFirer create (Positionable parent) {
         myTargetsType = myTargets.getSpriteTypes();
-        return new TrackingFirer(myTargetsType, myGame, myWaitTime, getProjectileDefinition(),
+        TrackingFirer myNewFirer =  new TrackingFirer(myTargetsType, myGame, myWaitTime, getProjectileDefinition(),
                                  parent);
+        setSuperVariables(myNewFirer);
+        return myNewFirer;
     }
 
     public SpriteGroup getTargets () {

@@ -37,13 +37,13 @@ public class DirectionalFirer extends Firer {
                              Positionable sprite,
                              double waitTime,
                              double theta) {
-
+    	super(sprite);
         myGame = game;
         myWaitTime = new Attribute(waitTime, AttributeType.FIRE_RATE);
         mySprite = sprite;
         myProjectile = projectile;
         myAngle = theta;
-        myTimeSinceFire.setToZero();;
+        myTimeSinceFire.setToZero();
 
     }
 

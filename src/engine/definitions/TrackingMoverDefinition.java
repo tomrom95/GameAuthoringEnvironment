@@ -23,6 +23,7 @@ public class TrackingMoverDefinition extends MovementDefinition {
                                  myGame,
                                  myTargets,
                                  parent);
+        
     }
 
     public void setTargets (List<SpriteType> targets) {

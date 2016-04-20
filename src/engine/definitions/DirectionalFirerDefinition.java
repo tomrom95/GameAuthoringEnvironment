@@ -17,7 +17,9 @@ public class DirectionalFirerDefinition extends FirerDefinition {
 
     @Override
     public DirectionalFirer create (Positionable parent) {
-        return new DirectionalFirer(myGame, getProjectileDefinition(), parent, myWaitTime, myAngle);
+        DirectionalFirer myNewFirer =  new DirectionalFirer(myGame, getProjectileDefinition(), parent, myWaitTime, myAngle);
+        setSuperVariables(myNewFirer);
+        return myNewFirer;
     }
 
     public void setWaitTime (double time) {

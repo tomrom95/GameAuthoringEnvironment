@@ -42,7 +42,7 @@ public class TrackingFirer extends Firer {
                           double waitTime,
                           SpriteDefinition projectile,
                           Positionable sprite) {
-
+    	super(sprite);
         myTargets = targets;
         myGame = game;
         myWaitTime = new Attribute(waitTime, AttributeType.FIRE_RATE);
@@ -71,6 +71,7 @@ public class TrackingFirer extends Firer {
             bullet.getMovementStrategy().setOrientation(myTracker.calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
             myGame.bufferedAdd(bullet);
             myTimeSinceFire.setToZero();
+            
         }
     }
 
