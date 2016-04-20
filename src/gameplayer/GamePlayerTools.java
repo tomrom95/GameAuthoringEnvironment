@@ -18,25 +18,18 @@ public class GamePlayerTools {
 
     private static final String TOOL_PATH = "defaults/ToolBar";
     ResourceBundle myToolButtons = ResourceBundle.getBundle(TOOL_PATH);
-    MenuBar myBar = new MenuBar();
     ToolBar myTools = new ToolBar();
     IGameEngine myEngine;
 
     public GamePlayerTools (IGameEngine engine) {
+        myEngine = engine;
         init();
     }
-
+    
     private void init () {
-        initMenuBar();
-        initToolBar();
-
-    }
-
-    private void initToolBar () {
         Enumeration<String> keys = myToolButtons.getKeys();
         while (keys.hasMoreElements()) {
             String next = keys.nextElement();
-            System.out.println(next);
             myTools.getItems().add(createButton(next,
                                                 myToolButtons.getString(next)));
         }
@@ -65,9 +58,9 @@ public class GamePlayerTools {
             method.invoke(this);
         }
 
-        catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+        catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException  e) {
            e.printStackTrace();
-            return;
+           
         }
 
     }
@@ -79,18 +72,6 @@ public class GamePlayerTools {
         return image;
     }
 
-    private void initMenuBar () {
-        Menu controls = new Menu("Controls");
-        myBar.getMenus().add(controls);
-        MenuItem pause = new MenuItem("Pause");
-        MenuItem play = new MenuItem("Play");
-
-        pause.setOnAction(e -> pause());
-        play.setOnAction(e -> play());
-        controls.getItems().add(play);
-        controls.getItems().add(pause);
-    }
-
     public void play () {
         myEngine.play();
     }
@@ -100,9 +81,7 @@ public class GamePlayerTools {
     }
 
     public Node draw () {
-        VBox vbox = new VBox();
-        vbox.getChildren().addAll(myBar, myTools);
-        return vbox;
+        return myTools;
     }
 
 }
