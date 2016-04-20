@@ -54,6 +54,11 @@ public class FiringSubFormController extends DynamicSubFormController {
         return myMissile;
     }
 
+    public void removeCurrentFirer () {
+        // TODO Auto-generated method stub
+        
+    }
+
 
 
 }

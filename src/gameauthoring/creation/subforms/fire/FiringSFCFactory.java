@@ -31,7 +31,7 @@ public class FiringSFCFactory extends DynamicSFCFactory {
     @Override
     public ISubFormControllerSprite createSpriteSubFormController (String type) {
         if (type.equals("DirectionalFire")) {
-            return new DirectionalFireSubFormController(getMyGame(), getMyFiringSFC());
+            return new DirectionalFireSFC(getMyGame(), getMyFiringSFC());
         }
         else if (type.equals("TrackingFire")) {
             return new TrackingFireSubFormController(getMyGame(), getMyFiringSFC());

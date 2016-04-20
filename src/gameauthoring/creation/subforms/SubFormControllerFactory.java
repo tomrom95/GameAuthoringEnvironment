@@ -6,7 +6,7 @@ import engine.AuthorshipData;
 import engine.Game;
 import engine.IGame;
 import engine.profile.IProfilable;
-import gameauthoring.creation.subforms.fire.DirectionalFireSubFormController;
+import gameauthoring.creation.subforms.fire.DirectionalFireSFC;
 import gameauthoring.creation.subforms.fire.FiringSubFormController;
 import gameauthoring.creation.subforms.fire.TrackingFireSubFormController;
 import gameauthoring.creation.subforms.movement.MovementSubFormController;
