@@ -57,5 +57,14 @@ public class User implements IUser{
     public SocialMap getProfiles () {
         return myProfiles;
     }
+    
+    @Override
+    public boolean equals (Object obj) {
+        if (! (obj instanceof User)) {
+            return false;
+        }
+        User other = (User) obj;
+        return getUserEmail().equals(other.getUserEmail());
+    }
 
 }

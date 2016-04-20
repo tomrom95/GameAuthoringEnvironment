@@ -1,5 +1,7 @@
 package facebookutil.actions;
 
+import facebookutil.scores.HighScoreBoard;
+import facebookutil.scores.ScoreOrder;
 import facebookutil.user.IUser;
 
 
@@ -15,6 +17,6 @@ public interface HighScorePost extends CustomPost {
      * @param user game player with the resulting high score
      * @param score the new high score for the user
      */
-    public void createPost (IUser user, int score);
+    public void createPost (HighScoreBoard board, IUser user, String gameName, ScoreOrder order);
 
 }

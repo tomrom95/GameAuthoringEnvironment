@@ -1,59 +1,29 @@
-package facebookutil;
+package facebookutil.xstream;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-import facebookutil.user.IUser;
 
-/**
- * XStream reader for users. Likely will be refactored so that
- * we can save the high score board as well
- * @author Tommy
- *
- */
-public class UserReader {
-    
-    private ResourceBundle mySecrets;
-    
-    public UserReader () {
-        mySecrets = ResourceBundle.getBundle("facebookutil/secret");
-    }
-
-    /**
-     * Gets the list of users from files
-     * @return
-     */
-    public List<IUser> getUsers () {
-        List<IUser> users = new ArrayList<IUser>();
-        File dir = new File(mySecrets.getString("userfolder"));
-        File[] list = dir.listFiles();
-        for (File f: list) {
-            addUser(f, users);
-        }
-        return users;
-    }
+public class XStreamReader {
     
     /**
-     * Reads in an XML file describing a fully serialized game.
+     * Reads in an XML file object
      */
-    public void addUser (File xmlFile, List<IUser> users) {
+    public Object getObject (File xmlFile) {
         XStream xstream = new XStream(new DomDriver());
         try {
             String xml = fileToXMLString(xmlFile);
-            IUser user = (IUser) xstream.fromXML(xml);
-            users.add(user);
-            System.out.println("Added " + user.getUserEmail());
+            Object newUser = xstream.fromXML(xml);
+            System.out.println("Read " + xmlFile.getName());
+            return newUser;
         }
         catch (IOException e) {
-            System.out.println("ERROR LOADING FILE");
-            return;
+            System.out.println("No File Exists");
+            return null;
         }
     }
 

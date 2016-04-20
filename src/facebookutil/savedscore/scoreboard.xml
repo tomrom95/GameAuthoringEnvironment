@@ -1,0 +1,72 @@
+<facebookutil.scores.HighScoreBoard>
+  <myScores>
+    <entry>
+      <string>game1</string>
+      <list>
+        <facebookutil.scores.Score>
+          <myUser class="facebookutil.user.User">
+            <myEmail>
+              <myName>fake</myName>
+              <myDomain>fake.com</myDomain>
+            </myEmail>
+            <myScoreBoard>
+              <myBoard>
+                <entry>
+                  <string>game1</string>
+                  <int>120000</int>
+                </entry>
+              </myBoard>
+            </myScoreBoard>
+            <myProfiles>
+              <myProfiles/>
+            </myProfiles>
+          </myUser>
+          <myPoints>120000</myPoints>
+          <myDate>2016-04-20 02:48:30.297 UTC</myDate>
+        </facebookutil.scores.Score>
+        <facebookutil.scores.Score>
+          <myUser class="facebookutil.user.User">
+            <myEmail>
+              <myName>other</myName>
+              <myDomain>other.com</myDomain>
+            </myEmail>
+            <myScoreBoard>
+              <myBoard>
+                <entry>
+                  <string>game1</string>
+                  <int>560</int>
+                </entry>
+              </myBoard>
+            </myScoreBoard>
+            <myProfiles>
+              <myProfiles/>
+            </myProfiles>
+          </myUser>
+          <myPoints>560</myPoints>
+          <myDate>2016-04-20 02:48:30.297 UTC</myDate>
+        </facebookutil.scores.Score>
+        <facebookutil.scores.Score>
+          <myUser class="facebookutil.user.User">
+            <myEmail>
+              <myName>last</myName>
+              <myDomain>last.com</myDomain>
+            </myEmail>
+            <myScoreBoard>
+              <myBoard>
+                <entry>
+                  <string>game1</string>
+                  <int>2000</int>
+                </entry>
+              </myBoard>
+            </myScoreBoard>
+            <myProfiles>
+              <myProfiles/>
+            </myProfiles>
+          </myUser>
+          <myPoints>2000</myPoints>
+          <myDate>2016-04-20 02:48:30.297 UTC</myDate>
+        </facebookutil.scores.Score>
+      </list>
+    </entry>
+  </myScores>
+</facebookutil.scores.HighScoreBoard>

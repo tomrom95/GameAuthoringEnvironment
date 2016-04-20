@@ -1,7 +1,6 @@
 package facebookutil.applications;
 
 import java.util.List;
-import facebookutil.actions.facebook.FacebookCustomPost;
 import facebookutil.actions.facebook.FacebookNotifyUsers;
 import facebookutil.scores.HighScoreBoard;
 import facebookutil.user.IUser;
@@ -26,14 +25,12 @@ public class FacebookApp extends App{
     public void notifyUsers (List<IUser> users, String message) {
         FacebookNotifyUsers notify = new FacebookNotifyUsers();
         notify.createNotification(users, message);
-        notify.send(getLogin().getService(), getLogin().getToken());
+        notify.send(getLogin());
     }
 
     @Override
     public void customPost (String message, SocialProfile profile) {
-        FacebookCustomPost post = new FacebookCustomPost();
-        post.createPost(message, profile);
-        post.send(getLogin().getService(), getLogin().getToken());
+        
     }
 
     @Override

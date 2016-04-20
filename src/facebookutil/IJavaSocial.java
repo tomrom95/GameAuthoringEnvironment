@@ -60,8 +60,8 @@ public interface IJavaSocial {
     public IUser createNewUser (Email email);
     
     /**
-     * Saves all users to xml files.
+     * Saves all users and high scores to xml files.
      */
-    public void saveUsers ();
+    public void saveState ();
 
 }
