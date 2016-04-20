@@ -126,9 +126,8 @@ public class PathMover extends Mover {
 
     @Override
     protected List<IAttribute> getSpecificAttributes () {
-        List<IAttribute> specialAttributes = new ArrayList<>();
-        specialAttributes.add(mySpeed);
-        return specialAttributes;
+        return new ArrayList<>();
+        
     }
 
 }
