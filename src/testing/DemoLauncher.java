@@ -10,6 +10,7 @@ import engine.IGame;
 import engine.ISpriteGroup;
 import engine.SpriteGroup;
 import engine.conditions.OnCollisionCondition;
+import engine.definitions.AttributeDefinition;
 import engine.definitions.ConstantMoverDefinition;
 import engine.definitions.DirectionalFirerDefinition;
 import engine.definitions.KeyControlDefinition;
@@ -274,6 +275,11 @@ public class DemoLauncher extends Application {
 
     private SpriteDefinition createBucket () {
         SpriteDefinition sd1 = new SpriteDefinition();
+        AttributeDefinition health = new AttributeDefinition();
+        health.setType("Health");
+        health.setStartingValue(10);
+        
+        sd1.getAttributes().add(health);
         double c = 8;
         ImageGraphic image = new ImageGraphic(446 / c, 774 / c, "/images/Buckethead_Zombie.png");
         sd1.setProfile(new Profile("BucketEnemy", "Buckets", image));
@@ -285,6 +291,7 @@ public class DemoLauncher extends Application {
 
     private SpriteDefinition createBalloon () {
         SpriteDefinition sd1 = new SpriteDefinition();
+        
         double c = 6;
         ImageGraphic image = new ImageGraphic(332 / c, 600 / c, "/images/balloon_zomb.png");
         sd1.setProfile(new Profile("Balloon Enemy", "Buckets", image));
@@ -332,6 +339,7 @@ public class DemoLauncher extends Application {
 
     private SpriteDefinition createShooterDef () {
         SpriteDefinition sd1 = new SpriteDefinition();
+        
         ImageGraphic plantImage = new ImageGraphic(50, 50, "/images/plant.png");
         sd1.setProfile(new Profile("Tower 1", "Plant", plantImage));
         sd1.setMovementDefinition(getStaticMover());
@@ -350,8 +358,8 @@ public class DemoLauncher extends Application {
         sd1.setProfile(new Profile("Pea", "Pea Bullet", plantImage));
         ConstantMoverDefinition mover = new ConstantMoverDefinition();
         double c = 4;
-        mover.setXVel(.2 / c);
-        mover.setYVel(.2 / c);
+       // mover.setXVel(.2 / c);
+        //mover.setYVel(.2 / c);
         sd1.setMovementDefinition(mover);
 
         return sd1;
