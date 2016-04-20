@@ -1,5 +1,6 @@
 package engine.definitions;
 
+import engine.IGame;
 import engine.Positionable;
 import engine.modules.Firer;
 import engine.modules.IModule;
@@ -13,6 +14,7 @@ public abstract class FirerDefinition extends ModuleDefinition {
 
     private SpriteDefinition myProjectile;
     private double myAmmo;
+    private IGame myGame;
     private double myRange;
     private boolean ranged;
 
@@ -27,6 +29,7 @@ public abstract class FirerDefinition extends ModuleDefinition {
     	myFirer.setAmmo(myAmmo);
     	myFirer.setRange(myRange);
     	myFirer.setRanged(ranged);
+    	myFirer.setGame(myGame);
     }
     
     public void setAmmo(double ammo){
@@ -36,6 +39,14 @@ public abstract class FirerDefinition extends ModuleDefinition {
     public double getAmmo(){
     	return myAmmo;
     }
+    
+    public void setGame(IGame game){
+    	myGame = game;
+    }
+    
+   public IGame getGame(){
+	   return myGame;
+   }
 
     public void setProjectileDefinition (SpriteDefinition projectile) {
         myProjectile = projectile;

@@ -33,18 +33,15 @@ public class TrackingFirer extends Firer {
     private SpriteDefinition myProjectile;
     private IAttribute myWaitTime;
     private EnemyTracker myTracker;
-    private IGame myGame;
     private Positionable mySprite;
     private TimeDuration myTimeSinceFire;
 
     public TrackingFirer (List<SpriteType> targets,
-                          IGame game,
                           double waitTime,
                           SpriteDefinition projectile,
                           Positionable sprite) {
     	super(sprite);
         myTargets = targets;
-        myGame = game;
         myWaitTime = new Attribute(waitTime, AttributeType.FIRE_RATE);
         myTracker = new EnemyTracker();
         mySprite = sprite;
@@ -69,14 +66,14 @@ public class TrackingFirer extends Firer {
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
                                               mySprite.getLocation().getY()));
             bullet.getMovementStrategy().setOrientation(myTracker.calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
-            myGame.bufferedAdd(bullet);
+            getGame().bufferedAdd(bullet);
             myTimeSinceFire.setToZero();
             
         }
     }
 
     private List<ISprite> getTargets () {
-        return myGame.getLevelManager().getCurrentLevel().getSprites().stream()
+        return getGame().getLevelManager().getCurrentLevel().getSprites().stream()
                 .filter(sprite -> myTargets.contains(sprite.getType()))
                 .collect(Collectors.toList());
     }
