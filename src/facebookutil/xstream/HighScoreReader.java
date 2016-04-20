@@ -4,6 +4,11 @@ import java.io.File;
 import java.util.ResourceBundle;
 import facebookutil.scores.HighScoreBoard;
 
+/**
+ * Reads the high scores from a file
+ * @author Tommy
+ *
+ */
 public class HighScoreReader {
     
     private ResourceBundle mySecrets;

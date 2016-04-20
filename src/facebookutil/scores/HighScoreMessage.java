@@ -4,6 +4,12 @@ import java.util.List;
 import java.util.ResourceBundle;
 import facebookutil.user.IUser;
 
+/**
+ * Helper class to create String messages out of the high score board
+ * for posting
+ * @author Tommy
+ *
+ */
 public class HighScoreMessage {
 
     private static final String LANGUAGE_FILE = "facebookutil/englishposts";

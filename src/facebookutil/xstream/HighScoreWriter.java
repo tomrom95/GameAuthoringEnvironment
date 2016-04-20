@@ -3,6 +3,12 @@ package facebookutil.xstream;
 import java.util.ResourceBundle;
 import facebookutil.scores.HighScoreBoard;
 
+/**
+ * Writes the high scoreboard to a file to get
+ * later.
+ * @author Tommy
+ *
+ */
 public class HighScoreWriter {
     
     private ResourceBundle mySecrets;

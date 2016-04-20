@@ -10,6 +10,11 @@ import facebookutil.scores.ScoreOrder;
 import facebookutil.user.IUser;
 
 
+/**
+ * Profile for Facebook users
+ * @author Tommy
+ *
+ */
 public class FacebookProfile extends UserProfile {
 
     public FacebookProfile (String userID) {

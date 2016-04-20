@@ -4,7 +4,12 @@ import facebookutil.scores.HighScoreBoard;
 import facebookutil.scores.ScoreOrder;
 import facebookutil.user.IUser;
 
-
+/**
+ * Interface that describes the actions a user can do, like
+ * challenge and post
+ * @author Tommy
+ *
+ */
 public abstract class UserProfile extends SocialProfile {
 
     public UserProfile (String userID) {

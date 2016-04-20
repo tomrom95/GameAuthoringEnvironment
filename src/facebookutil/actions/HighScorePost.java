@@ -6,7 +6,8 @@ import facebookutil.user.IUser;
 
 
 /**
- * This interface extends CustomPost and manages methods specifically handle high scores
+ * This class is for posting about a user's own high score. An example is :
+ * "I now have the #3 highest score for the game Plants Vs. Zombies
  *
  */
 public interface HighScorePost extends CustomPost {

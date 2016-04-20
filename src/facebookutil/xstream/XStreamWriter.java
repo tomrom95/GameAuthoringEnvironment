@@ -7,6 +7,13 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import facebookutil.user.profiles.SocialProfile;
 
+/**
+ * Helper class to write types to xstream files. This was pulled from our
+ * own project.
+ * @author Tommy
+ *
+ * @param <Type>
+ */
 public class XStreamWriter<Type> {
     
     private static final String WRITE_ERROR = "ERROR WRITING TO XSTREAM";

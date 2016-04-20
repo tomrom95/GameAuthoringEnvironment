@@ -8,6 +8,12 @@ import java.io.IOException;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+/**
+ * Helper class to read objects from xstream xml files. This
+ * came from our project.
+ * @author Tommy
+ *
+ */
 public class XStreamReader {
     
     /**

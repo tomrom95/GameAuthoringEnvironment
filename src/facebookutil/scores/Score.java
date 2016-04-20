@@ -3,6 +3,13 @@ package facebookutil.scores;
 import java.util.Date;
 import facebookutil.user.IUser;
 
+/**
+ * Simple wrapper for a score that stores its
+ * user, points, and date so that we can sort the scores
+ * in varying orders.
+ * @author Tommy
+ *
+ */
 public class Score {
     
     public IUser myUser;
