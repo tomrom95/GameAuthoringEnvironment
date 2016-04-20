@@ -4,6 +4,8 @@ import engine.IAdder;
 import engine.ICheck;
 import engine.Positionable;
 import engine.definitions.SpriteDefinition;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 public class NullUpgradeModule extends UpgradeModule {
 
@@ -15,8 +17,8 @@ public class NullUpgradeModule extends UpgradeModule {
     }
     
     @Override
-    public boolean isUpdateable () {
-        return false;
+    public BooleanProperty isUgradeable () {
+        return new SimpleBooleanProperty(false);
     }
 
 }

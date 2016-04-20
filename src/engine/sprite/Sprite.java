@@ -19,6 +19,7 @@ import engine.modules.IMovementModule;
 import engine.modules.SpriteStatus;
 import engine.modules.StaticMover;
 import engine.modules.UpgradeModule;
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import util.Bounds;
 import util.Coordinate;
@@ -208,7 +209,7 @@ public class Sprite extends DefaultAffectable implements ISprite {
     }
 
     @Override
-    public boolean isUgradeable () {
+    public BooleanProperty isUgradeable () {
         return myUpgrade.isUgradeable();
     }
     

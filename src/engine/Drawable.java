@@ -2,6 +2,7 @@ package engine;
 
 import engine.events.GameEvent;
 import engine.modules.IGraphicModule;
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import util.Coordinate;
 
@@ -46,7 +47,7 @@ public interface Drawable {
     void registerEvent (GameEvent event);
     
     /**
-     * Needed to know if drawable is updateable 
+     * Whether or not hte drawable is ready to be updated
      */
-    boolean isUgradeable ();
+    BooleanProperty isUgradeable ();
 }
