@@ -25,10 +25,10 @@ public class ConditionView extends ListDisplay<ICondition> {
     private Pane myEditor;
     private ListView<String> myOptions;
 
-    public ConditionView (Game myGame) {
-        super(myGame.getConditionManager().getConditionListProperty());
+    public ConditionView (IGame iGame) {
+        super(iGame.getConditionManager().getConditionListProperty());
         init();
-        new CondController(this, myGame);
+        new CondController(this, iGame);
     }
 
     private void init () {

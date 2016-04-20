@@ -49,7 +49,7 @@ public class AuthoringView implements IAuthoringView {
     private SceneTabViewer mySceneTabViewer;
     private ConditionView myConditionView;
     private BorderPane myLayout;
-    private Game myGame;
+    private IGame myGame;
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
     public static final String STYLESHEET = "custom.css";
@@ -60,6 +60,10 @@ public class AuthoringView implements IAuthoringView {
     public AuthoringView () {
         GameFactory gameFactory = new GameFactory();
         myGame = gameFactory.createGame();
+    }
+    
+    public AuthoringView (IGame game) {
+        myGame = game;
     }
 
     @Override
@@ -142,7 +146,7 @@ public class AuthoringView implements IAuthoringView {
         return tabpane;
     }
 
-    private Game getMyGame () {
+    private IGame getMyGame () {
         return myGame;
     }
 }
