@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
+import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
@@ -12,12 +13,16 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import util.DoubleStringParser;
 
 
 public class GamePlayerTools {
 
     private static final String TOOL_PATH = "defaults/ToolBar";
+    private static final String TOOL_PATH_SIZES = "defaults/ToolBarSizes";
     ResourceBundle myToolButtons = ResourceBundle.getBundle(TOOL_PATH);
+    ResourceBundle mySizes = ResourceBundle.getBundle(TOOL_PATH_SIZES);
     ToolBar myTools = new ToolBar();
     IGameEngine myEngine;
 
@@ -66,18 +71,31 @@ public class GamePlayerTools {
     }
 
     private ImageView getImage (String url) {
+        DoubleStringParser parser = new DoubleStringParser();
         ImageView image = new ImageView(url);
-        image.setFitHeight(20);
-        image.setFitWidth(20);
+        image.setFitWidth(parser.parse(mySizes.getString("Width")));
+        image.setFitHeight(parser.parse(mySizes.getString("Height")));
+       
         return image;
     }
 
+    /**
+     * Following methods public for reflection
+     */
     public void play () {
         myEngine.play();
     }
 
     public void pause () {
         myEngine.pause();
+    }
+    
+    public void edit () {
+        pause();
+        AuthoringView aView = new AuthoringView(myEngine.getGame());
+        Stage authoringStage = new Stage();
+        aView.init(authoringStage);
+        authoringStage.show();
     }
 
     public Node draw () {

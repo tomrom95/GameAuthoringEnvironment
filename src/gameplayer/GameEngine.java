@@ -84,7 +84,7 @@ public class GameEngine implements IGameEngine {
         getTimeline().pause();
     }
 
-    private IGamePlayable getGame () {
+    public IGame getGame () {
         return myGame;
     }
 
