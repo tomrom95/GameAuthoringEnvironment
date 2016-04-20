@@ -145,12 +145,12 @@ public class Game implements IGame {
 
     @Override
     public void createAndSortGlobals () {
-        for(AttributeDefinition a:this.myAuthorshipData.getMyCreatedGlobals().getItems()){
+        for(AttributeDefinition a: myAuthorshipData.getMyCreatedGlobals().getItems()){
             if(a.isLevelSpecific()){
-                this.myLevelManager.getLevels().forEach(c->getAttributeManager().getAttributes().add(a.create()));
+                myLevelManager.getLevels().forEach(c->getAttributeManager().getAttributes().add(a.create()));
             }
             else{
-                this.getAttributeManager().getAttributes().add(a.create());
+                getAttributeManager().getAttributes().add(a.create());
             }
         }
     }
