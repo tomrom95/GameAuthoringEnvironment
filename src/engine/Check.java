@@ -16,6 +16,7 @@ public class Check implements ICheck{
         myManager = attributeManager;
         myType = type;
         myCost = cost;
+        
     }
     
     public boolean check () {

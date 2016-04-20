@@ -43,5 +43,10 @@ public interface Drawable {
     /**
      * Need to upgrade drawables
      */
-    public void registerEvent (GameEvent event);
+    void registerEvent (GameEvent event);
+    
+    /**
+     * Needed to know if drawable is updateable 
+     */
+    boolean isUgradeable ();
 }

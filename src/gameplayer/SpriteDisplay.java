@@ -46,6 +46,7 @@ public class SpriteDisplay extends SizeableGlyph {
 
     private void addUpgrade () {
         Button upgradeButton = new Button("Upgrade");
+        upgradeButton.setDisable(!mySprite.isUgradeable());
         upgradeButton
                 .setOnMouseClicked(e -> mySprite.registerEvent(new GameEvent(EventType.UPGRADE)));
         add(upgradeButton);

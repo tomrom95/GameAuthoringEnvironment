@@ -18,6 +18,7 @@ import engine.modules.IModule;
 import engine.modules.IMovementModule;
 import engine.modules.SpriteStatus;
 import engine.modules.StaticMover;
+import engine.modules.UpgradeModule;
 import javafx.collections.ObservableList;
 import util.Bounds;
 import util.Coordinate;
@@ -40,6 +41,7 @@ public class Sprite extends DefaultAffectable implements ISprite {
     private SpriteType myType;
     private IMovementModule myMover;
     private IGraphicModule myGraphic;
+    private UpgradeModule myUpgrade;
     private List<IModule> myOtherModules;
     private Coordinate myLocation;
     private IStatus myStatus;
@@ -58,11 +60,13 @@ public class Sprite extends DefaultAffectable implements ISprite {
     @Override
     public void initialize (IMovementModule movementModule,
                             IGraphicModule graphicModule,
+                            UpgradeModule upgradeModule,
                             List<IModule> otherModules,
                             List<IAttribute> attributes,
                             Coordinate coord) {
         myMover = movementModule;
         myGraphic = graphicModule;
+        myUpgrade = upgradeModule;
         myOtherModules = otherModules;
         myLocation = coord;
         myAttributeManager.getAttributes().addAll(attributes);
@@ -87,6 +91,7 @@ public class Sprite extends DefaultAffectable implements ISprite {
         // TODO store in a better way
         function.accept(myMover);
         function.accept(myGraphic);
+        function.accept(myUpgrade);
         function.accept(myAttributeManager);
         function.accept(myStatus);
         function.accept(myMover);
@@ -200,6 +205,11 @@ public class Sprite extends DefaultAffectable implements ISprite {
     @Override
     public double getOrientation () {
         return myMover.getOrientation();
+    }
+
+    @Override
+    public boolean isUgradeable () {
+        return myUpgrade.isUgradeable();
     }
     
     

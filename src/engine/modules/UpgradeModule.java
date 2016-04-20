@@ -68,5 +68,9 @@ public class UpgradeModule implements IModule {
             myAdder.bufferedAdd(upgrade, myParent.getLocation());
         }
     }
+    
+    public boolean isUgradeable () {
+        return myCheck.check();
+    }
 
 }

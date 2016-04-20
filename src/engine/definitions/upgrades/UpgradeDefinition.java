@@ -11,7 +11,11 @@ import engine.definitions.SpriteDefinition;
 import engine.modules.IModule;
 import engine.modules.UpgradeModule;
 
-
+/**
+ * Used to generate the upgrade module of the Sprite
+ * @author RyanStPierre
+ *
+ */
 public abstract class UpgradeDefinition extends ModuleDefinition {
 
     private SpriteDefinition myUpgrade;
@@ -63,7 +67,7 @@ public abstract class UpgradeDefinition extends ModuleDefinition {
     }
 
     @Override
-    public IModule create (Positionable parent) {
+    public UpgradeModule create (Positionable parent) {
         return new UpgradeModule(getGame(), getUpgrade(), getCheck(parent), parent);
     }
 
