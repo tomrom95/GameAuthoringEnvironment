@@ -2,7 +2,6 @@ package gameauthoring.creation.entryviews;
 
 import java.util.*;
 import gameauthoring.util.ErrorMessage;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
@@ -20,29 +19,28 @@ import javafx.collections.ObservableList;
  */
 public class FormDataManager implements IFormDataManager {
 
-    private Map<String, ObservableList<StringProperty>> myStorage = new HashMap<String, ObservableList<StringProperty>>();
+    private Map<String, ObservableList<StringProperty>> myStorage =
+            new HashMap<String, ObservableList<StringProperty>>();
 
     @Override
     public void add (FormData data) {
-        myStorage.put(data.getMyKey(), data.getMyValueProperties());        
+        myStorage.put(data.getMyKey(), data.getMyValueProperties());
 
     }
-    
+
     @Override
     public void add (String key, String value) {
-        FormData data = new FormData(key,value);
-        myStorage.put(data.getMyKey(),data.getMyValueProperties());
+        FormData data = new FormData(key, value);
+        myStorage.put(data.getMyKey(), data.getMyValueProperties());
 
-        
     }
-    
+
     @Override
     public void add (String key, List<String> values) {
         // TODO implementation
-        //myStorage.put(key, values);
-        
-    }
+        // myStorage.put(key, values);
 
+    }
 
     @Override
     public ObservableList<StringProperty> getValues (String key) {
@@ -55,8 +53,7 @@ public class FormDataManager implements IFormDataManager {
             return null;
         }
     }
-    
-    
+
     @Override
     public StringProperty getValueProperty (String key) {
         try {
@@ -83,26 +80,23 @@ public class FormDataManager implements IFormDataManager {
 
     @Override
     public void set (String key, String value) {
-        if(myStorage.containsKey(key)){
+        if (myStorage.containsKey(key)) {
             myStorage.get(key).get(0).setValue(value);
         }
-        else{
-            this.add(key,value);
+        else {
+            this.add(key, value);
         }
     }
 
     @Override
     public void set (String key, List<String> values) {
-        FormData data = new FormData(key,values);
-        if(myStorage.containsKey(key)){
+        FormData data = new FormData(key, values);
+        if (myStorage.containsKey(key)) {
             myStorage.get(key).setAll(data.getMyValueProperties());
         }
-        else{
-            this.add(key,values);
+        else {
+            this.add(key, values);
         }
     }
-
-
-  
 
 }

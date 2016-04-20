@@ -17,10 +17,18 @@ public class Bounds {
     private double myY;
     private double myWidth;
     private double myHeight;
+    
+    /**
+     * 
+     * @param x - center x
+     * @param y - center y
+     * @param width
+     * @param height
+     */
 
     public Bounds (double x, double y, double width, double height) {
-        myX = x;
-        myY = y;
+        myX = x - width/2;
+        myY = y - height/2;
         myWidth = width;
         myHeight = height;
     }

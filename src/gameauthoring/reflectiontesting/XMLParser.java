@@ -15,8 +15,8 @@ import gameauthoring.creation.forms.ObjectCreationView;
 import gameauthoring.creation.forms.ObjectListView;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
-import gameauthoring.creation.subforms.ProfileSubFormController;
-import gameauthoring.creation.subforms.ProfileSubFormView;
+import gameauthoring.creation.subforms.ProfileSFC;
+import gameauthoring.creation.subforms.ProfileSFV;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -128,7 +128,7 @@ public class XMLParser {
         //List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
         //List<ISubFormController<ISprite>> subFormControllers = new ArrayList<ISubFormController<ISprite>>();
         
-        ProfileSubFormView profileSubFormView = new ProfileSubFormView(); //TODO: how to make this general but enforce dependenc?
+        ProfileSFV profileSubFormView = new ProfileSFV(); //TODO: how to make this general but enforce dependenc?
         subFormViews.add(profileSubFormView);
 
         //ISubFormController<ISprite> profileSubFormController = new ProfileSubFormController<ISprite>(profileSubFormView);

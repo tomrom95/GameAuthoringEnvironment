@@ -1,8 +1,13 @@
 package gameauthoring.tabs;
 
+import com.dooapp.xstreamfx.FXConverters;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.Game;
+import engine.IGame;
 import gameauthoring.conditiontab.ConditionView;
 import gameauthoring.util.UIFactory;
+import gameplayer.GamePlayer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -48,7 +53,7 @@ public class AuthoringView implements IAuthoringView {
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
     public static final String STYLESHEET = "custom.css";
-    public static final String DEFAULT_RESOURCE_PACKAGE = "resource/";
+    public static final String DEFAULT_RESOURCE_PACKAGE = "defaults/";
     public static final String DEFAULT_ENTRYVIEW = "defaultTextEntry";
     private UIFactory myUIFactory = new UIFactory();
     
@@ -117,6 +122,13 @@ public class AuthoringView implements IAuthoringView {
     // TODO: Create GameWriter Class and save it as XML
     private void saveToXML () {
 
+        XStream xstream = new XStream(new DomDriver());
+        FXConverters.configure(xstream);
+        xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
+        
+        String xml = xstream.toXML(myGame);
+        IGame game = (IGame) xstream.fromXML(xml);
+        GamePlayer player = new GamePlayer(game);
     }
 
     private TabPane createAllTabs () {

@@ -1,6 +1,8 @@
 package engine;
 
 import java.util.List;
+import java.util.function.Consumer;
+import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.rendering.IGameGridConfig;
@@ -76,14 +78,23 @@ public class Game implements IGame {
 
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
-        myLevelManager.internalizeKeyEvents(list);
-        myConditionManager.internalizeKeyEvents(list);
+        applyToInternalizers(internalizer -> internalizer.internalizeKeyEvents(list));
     }
 
     @Override
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
-        myLevelManager.internalizeMouseEvents(list);
-        myConditionManager.internalizeMouseEvents(list);
+        applyToInternalizers(internalizer -> internalizer.internalizeMouseEvents(list));
+    }
+
+    @Override
+    public void internalizeGameEvents (List<GameEvent> list) {
+        applyToInternalizers(internalizer -> internalizer.internalizeGameEvents(list));
+
+    }
+
+    private void applyToInternalizers (Consumer<IEventInternalizer> internalizer) {
+        internalizer.accept(myLevelManager);
+        internalizer.accept(myConditionManager);
     }
 
     @Override

@@ -1,9 +1,10 @@
 package engine;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.util.List;
+import engine.events.EventType;
+import engine.events.GameEvent;
+import engine.interactionevents.KeyIOEvent;
+import engine.interactionevents.MouseIOEvent;
 import util.TimeDuration;
 
 
@@ -15,39 +16,83 @@ import util.TimeDuration;
  */
 
 public class NextLevelManager implements INextLevelManager {
-    private ObservableList<ObjectProperty<INextLevelCondition>> myNextLevelConditions;
-    private SimpleBooleanProperty myShouldProceedToNext;
+
+    private boolean myShouldProceedToNext;
+    private ILevel myWinLevel;
+    private ILevel myLoseLevel;
+
     private ILevel myNextLevel;
 
     public NextLevelManager () {
-        myNextLevelConditions = FXCollections.observableArrayList();
-        myShouldProceedToNext = new SimpleBooleanProperty(false);
+        this(null, null);
     }
 
-    @Override
-    public ObservableList<ObjectProperty<INextLevelCondition>> getConditionListProperty () {
-        return myNextLevelConditions;
+    public NextLevelManager (ILevel winLevel, ILevel loseLevel) {
+        myNextLevel = null;
+        myWinLevel = winLevel;
+        myLoseLevel = loseLevel;
+        myShouldProceedToNext = false;
     }
 
     @Override
     public void update (TimeDuration duration) {
-        for (ObjectProperty<INextLevelCondition> condition : myNextLevelConditions) {
-            condition.get().update(duration);
-            if (condition.get().shouldProceed()) {
-                myShouldProceedToNext.set(true);
-                myNextLevel = condition.get().getNextLevel();
-            }
-        }
+        // Do nothing
     }
 
     @Override
     public boolean shouldGoToNextLevel () {
-        return myShouldProceedToNext.get();
+        return myShouldProceedToNext;
+    }
+
+    @Override
+    public void internalizeGameEvents (List<GameEvent> list) {
+        list.forEach(event -> checkAndRespondGameEvent(event));
+    }
+
+    private void checkAndRespondGameEvent (GameEvent event) {
+        if (event.equals(EventType.WIN)) {
+            setNextLevel(myWinLevel);
+        }
+        if (event.equals(EventType.LOSE)) {
+            setNextLevel(myLoseLevel);
+        }
+    }
+
+    private void setNextLevel (ILevel setLevel) {
+        myNextLevel = setLevel;
+        myShouldProceedToNext = true;
     }
 
     @Override
     public ILevel getNextLevel () {
+        if (myNextLevel == null) {
+            return new Level();
+        }
         return myNextLevel;
+    }
+
+    @Override
+    public void internalizeKeyEvents (List<KeyIOEvent> list) {
+        // Do Nothing
+
+    }
+
+    @Override
+    public void internalizeMouseEvents (List<MouseIOEvent> list) {
+        // Do Nothing
+
+    }
+
+    @Override
+    public void setWinLevel (ILevel winLevel) {
+        myWinLevel = winLevel;
+
+    }
+
+    @Override
+    public void setLoseLevel (ILevel loseLevel) {
+        myLoseLevel = loseLevel;
+
     }
 
 }

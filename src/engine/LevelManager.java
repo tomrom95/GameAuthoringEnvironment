@@ -1,6 +1,8 @@
 package engine;
 
 import java.util.List;
+import java.util.function.Consumer;
+import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
@@ -20,7 +22,6 @@ public class LevelManager implements ILevelManager {
     private List<ILevel> myLevelPropertyList;
     private ILevel myCurrentLevel;
     private IConditionManager myGlobalGameConditions;
-    private IAttributeManager myGlobalAttributeManager;
 
     // since all wrapped in properties, will eventually create lambda loop to call update on all
     // updateable items as
@@ -29,6 +30,7 @@ public class LevelManager implements ILevelManager {
     public LevelManager () {
         myLevelPropertyList = FXCollections.observableArrayList();
         myCurrentLevel = new Level();
+        myGlobalGameConditions = new ConditionManager();
     }
 
     @Override
@@ -69,13 +71,23 @@ public class LevelManager implements ILevelManager {
 
     @Override
     public void internalizeKeyEvents (List<KeyIOEvent> list) {
-
-        myCurrentLevel.internalizeKeyEvents(list);
+        applyToInternalizers(internalize -> internalize.internalizeKeyEvents(list));
     }
 
     @Override
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
-        myCurrentLevel.internalizeMouseEvents(list);
+        applyToInternalizers(internalize -> internalize.internalizeMouseEvents(list));
+    }
+
+    @Override
+    public void internalizeGameEvents (List<GameEvent> list) {
+        applyToInternalizers(internalize -> internalize.internalizeGameEvents(list));
+
+    }
+
+    private void applyToInternalizers (Consumer<IEventInternalizer> apply) {
+        apply.accept(myCurrentLevel);
+        apply.accept(myGlobalGameConditions);
     }
 
     @Override
