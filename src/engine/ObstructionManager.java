@@ -1,15 +1,16 @@
 package engine;
 
-import engine.effects.DefaultAffectable;
 import util.BitMap;
 import util.TimeDuration;
 
 
 public class ObstructionManager  implements IObstructionManager {
-    IGame myGame;
+    private IGame myGame;
+    private BitMap myCurrentObstructionMap;
 
     ObstructionManager (IGame game) {
         myGame = game;
+        myCurrentObstructionMap = new BitMap();
     }
 
     @Override
