@@ -1,5 +1,6 @@
 package engine;
 
+import engine.events.GameEvent;
 import engine.modules.IGraphicModule;
 import javafx.collections.ObservableList;
 import util.Coordinate;
@@ -37,5 +38,10 @@ public interface Drawable {
     /**
      * @return attributes of the sprite being drawn
      */
-    public ObservableList<IAttribute> getAttributes ();
+    ObservableList<IAttribute> getAttributes ();
+    
+    /**
+     * Need to upgrade drawables
+     */
+    public void registerEvent (GameEvent event);
 }
