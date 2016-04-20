@@ -1,22 +1,22 @@
 package engine.rendering;
 
 public class GameGridConfigNonScaling implements IGameGridConfig {
-    private double myGridWidth;
-    private double myGridHeight;
+    private int myGridWidth;
+    private int myGridHeight;
     
-    public GameGridConfigNonScaling (double virtualWidth, double virtualHeight) {
+    public GameGridConfigNonScaling (int virtualWidth, int virtualHeight) {
         myGridWidth = virtualWidth;
         myGridHeight = virtualHeight;
     }
     
 
     @Override
-    public double getGridWidth () {
+    public int getGridWidth () {
         return myGridWidth;
     }
 
     @Override
-    public double getGridHeight () {
+    public int getGridHeight () {
         return myGridHeight;
     }
 
