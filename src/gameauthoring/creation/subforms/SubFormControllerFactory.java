@@ -8,7 +8,7 @@ import engine.IGame;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.fire.DirectionalFireSFC;
 import gameauthoring.creation.subforms.fire.FiringSubFormController;
-import gameauthoring.creation.subforms.fire.TrackingFireSubFormController;
+import gameauthoring.creation.subforms.fire.TrackingFireSFC;
 import gameauthoring.creation.subforms.movement.MovementSubFormController;
 import gameauthoring.creation.subforms.movement.SmartAIMovementSubFormController;
 import gameauthoring.creation.subforms.movement.UserMoverSubFormController;

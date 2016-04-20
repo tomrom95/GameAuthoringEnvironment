@@ -53,7 +53,7 @@ public class DirectionalFireSFC implements ISubFormControllerSprite {
     // TODO: Check whether input is empty string or not, it gives error for now
     @Override
     public void updateItem (SpriteDefinition item) {
-        myFiringSFC.removeCurrentFirer();
+        //myFiringSFC.removeCurrentFirer(item); TODO: fix this issue
         try {
             Double angle =
                     Double.valueOf(myFormData.getValueProperty(myView.getMyAngleKey()).get()) *
@@ -63,8 +63,10 @@ public class DirectionalFireSFC implements ISubFormControllerSprite {
             myFireDef.setGame(myGame);
             myFireDef.setAngle(angle);
             myFireDef.setWaitTime(waitTime);
-            myFireDef.setProjectileDefinition(myFiringSFC.getMyMissile());            
-            item.addModule(myFireDef);
+            myFireDef.setProjectileDefinition(myFiringSFC.getMyMissile());    
+            if(!item.getModuleDefinitions().contains(myFireDef)){
+                item.addModule(myFireDef);
+            }
         }
         catch (Exception e) {
             ErrorMessage err =
@@ -72,5 +74,7 @@ public class DirectionalFireSFC implements ISubFormControllerSprite {
             err.showError();
         }
     }
+    
+    
 
 }
