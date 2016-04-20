@@ -11,6 +11,7 @@ import engine.modules.IModule;
 public class FirerDefinition extends ModuleDefinition {
 
     private SpriteDefinition myProjectile;
+    private double myAmmo;
 
     @Override
     public IModule create (Positionable parent) {
@@ -20,6 +21,14 @@ public class FirerDefinition extends ModuleDefinition {
 
     public SpriteDefinition getProjectileDefinition () {
         return myProjectile;
+    }
+    
+    public void setAmmo(double ammo){
+    	myAmmo = ammo;
+    }
+    
+    public double getAmmo(){
+    	return myAmmo;
     }
 
     public void setProjectileDefinition (SpriteDefinition projectile) {

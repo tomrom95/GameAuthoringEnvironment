@@ -16,15 +16,15 @@ public abstract class MovementDefinition implements IDefinition {
 
     public abstract IMovementModule create (Positionable parent);
 
-    /*
-     * TODO this should be moved to imovementmodule
-     */
+    
     public void setSpeed (double speed) {
         mySpeed = speed;
     }
-
+      
     public double getSpeed () {
         return mySpeed;
     }
+    
+   
 
 }
