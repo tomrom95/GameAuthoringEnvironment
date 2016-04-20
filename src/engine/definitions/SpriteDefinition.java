@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import engine.IAttribute;
+import engine.definitions.upgrades.NullUpgradeDefinition;
 import engine.definitions.upgrades.UpgradeDefinition;
 import engine.modules.GraphicModule;
 import engine.modules.IGraphicModule;
@@ -36,6 +37,7 @@ public class SpriteDefinition implements IProfilable {
     public SpriteDefinition () {
         // TODO Set a default from resource file. THis is just for view testing
         myMovementDefinition = new StaticMovementDefintion();
+        myUpgrade = new NullUpgradeDefinition();
         myModuleDefinitions = new ArrayList<ModuleDefinition>();
         myAttributes = new ArrayList<AttributeDefinition>();
         myLocation = new Coordinate(0, 0);

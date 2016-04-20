@@ -4,6 +4,7 @@ import engine.IAdder;
 import engine.ICheck;
 import engine.Positionable;
 import engine.definitions.SpriteDefinition;
+import engine.events.GameEvent;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -14,6 +15,11 @@ public class NullUpgradeModule extends UpgradeModule {
                               ICheck check,
                               Positionable parent) {
         super(adder, upgrade, check, parent);
+    }
+    
+    @Override
+    public void registerEvent (GameEvent event) {
+        //do nothing
     }
     
     @Override

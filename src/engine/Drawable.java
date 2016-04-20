@@ -50,4 +50,5 @@ public interface Drawable {
      * Whether or not hte drawable is ready to be updated
      */
     BooleanProperty isUgradeable ();
+    
 }

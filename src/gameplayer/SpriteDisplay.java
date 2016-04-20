@@ -45,7 +45,7 @@ public class SpriteDisplay extends SizeableGlyph {
     }
 
     private void render () {
-        myPane.getChildren().clear();
+        clear();
         add(mySprite.getDrawer().getVisualRepresentation(myFactory));
         mySprite.getAttributes().forEach(a -> add(generateLabel(a)));
         addUpgrade();
@@ -56,9 +56,19 @@ public class SpriteDisplay extends SizeableGlyph {
         upgradeButton.setDisable(!mySprite.isUgradeable().get());
         mySprite.isUgradeable().addListener((a,b,newVal) -> upgradeButton.setDisable(!newVal));
         upgradeButton
-                .setOnMouseClicked(e -> mySprite.registerEvent(new GameEvent(EventType.UPGRADE)));
+                .setOnMouseClicked(e -> upgrade());
         add(upgradeButton);
 
+    }
+
+    private void upgrade () {
+        mySprite.registerEvent(new GameEvent(EventType.UPGRADE));
+        clear();
+        
+    }
+
+    private void clear () {
+        myPane.getChildren().clear(); 
     }
 
     private void add (Node node) {

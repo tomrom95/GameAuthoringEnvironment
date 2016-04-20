@@ -41,9 +41,11 @@ public class Check implements ICheck {
     @Override
     public void update (TimeDuration duration) {
         // TODO Auto-generated method stub
+       
         for (IAttribute attribute : myManager.getAttributes()) {
             if (attribute.getType().equals(myType) &&
                 attribute.getValueProperty().get() >= myCost) {
+               // System.out.println("here");
                 myStatus.set(true);
                 return;
             }
@@ -54,6 +56,7 @@ public class Check implements ICheck {
 
     @Override
     public BooleanProperty getStatus () {
+        System.out.println(myStatus);
         return myStatus;
     }
 

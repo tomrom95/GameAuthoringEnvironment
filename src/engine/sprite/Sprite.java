@@ -210,6 +210,7 @@ public class Sprite extends DefaultAffectable implements ISprite {
 
     @Override
     public BooleanProperty isUgradeable () {
+        
         return myUpgrade.isUgradeable();
     }
     

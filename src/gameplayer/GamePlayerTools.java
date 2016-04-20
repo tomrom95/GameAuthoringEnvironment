@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
+import java.util.Set;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -100,7 +101,7 @@ public class GamePlayerTools {
         myEngine.pause();
     }
     
-    public void edit () {
+    public void launchAuthoring () {
         pause();
         AuthoringView aView = new AuthoringView(myEngine.getGame());
         Stage authoringStage = new Stage();
