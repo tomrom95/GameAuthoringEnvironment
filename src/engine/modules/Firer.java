@@ -45,6 +45,11 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
         // TODO Auto-generated method stub
 
     }
+    
+    protected List<ISprite> getSpritesBeyondRange(EnemyTracker tracker){
+    	//TODO: complete this method
+    	return null;
+    }
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {

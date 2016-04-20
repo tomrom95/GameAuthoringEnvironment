@@ -35,7 +35,7 @@ public class EnemyTracker {
 
 	}
 
-	private double calculateDistance(Coordinate myLocation, Coordinate enemyLocation) {
+	protected double calculateDistance(Coordinate myLocation, Coordinate enemyLocation) {
 
 		return Math.sqrt(Math.pow((myLocation.getX() - enemyLocation.getX()), 2)
 				+ Math.pow((myLocation.getY() - enemyLocation.getY()), 2));
