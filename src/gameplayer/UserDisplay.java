@@ -4,6 +4,11 @@ import engine.IGame;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
+/**
+ * A combination of the SpriteDisplay and HUD
+ * @author RyanStPierre
+ *
+ */
 
 public class UserDisplay {
 

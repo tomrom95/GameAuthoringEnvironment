@@ -11,6 +11,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
+/**
+ * Class that displays the selected Sprite on the screen
+ * Gives information, such as the Sprite's graphic and attributes.
+ * In addition, the upgrade option is given
+ * @author RyanStPierre
+ *
+ */
 
 public class SpriteDisplay extends SizeableGlyph {
 

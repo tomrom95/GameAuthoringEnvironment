@@ -16,6 +16,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import util.DoubleStringParser;
 
+/**
+ * Displays the tools for the user during game play
+ * @author RyanStPierre
+ *
+ */
 
 public class GamePlayerTools {
 
@@ -30,6 +35,11 @@ public class GamePlayerTools {
         myEngine = engine;
         init();
     }
+    
+    /**
+     * Reflectively generates the tool bar given information in the resource bundle that 
+     * map method call names to image URL's
+     */
     
     private void init () {
         Enumeration<String> keys = myToolButtons.getKeys();
