@@ -1,32 +1,90 @@
 package gameplayer;
 
 import engine.Drawable;
-import engine.rendering.UnscaledFactory;
-import engine.sprite.ISprite;
-import gameauthoring.util.Glyph;
+import engine.IAttribute;
+import engine.events.EventType;
+import engine.events.GameEvent;
+import engine.rendering.GraphicFactory;
+import engine.rendering.ScaleFactory;
 import javafx.scene.Node;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
-public class SpriteDisplay implements Glyph{
+/**
+ * Class that displays the selected Sprite on the screen
+ * Gives information, such as the Sprite's graphic and attributes.
+ * In addition, the upgrade option is given
+ * @author RyanStPierre
+ *
+ */
 
-    
-    private Pane myPane = new Pane();
-    private ISprite mySprite;
-   
+public class SpriteDisplay extends SizeableGlyph {
+
+    private VBox myPane = new VBox();
+    private GraphicFactory myFactory = new ScaleFactory(80, 80);
+    private Drawable mySprite;
+
+    public SpriteDisplay () {
+        setSize();
+    }
+
+    private void setSize () {
+        myPane.setPrefWidth(parseString(getString("SpriteDisplayWidth")));
+        myPane.setPrefHeight(parseString(getString("SpriteDisplayHeight")));
+
+    }
+
     public Node draw () {
-       return myPane;
+        return myPane;
     }
-    
+
     public void populate (Drawable drawn) {
-        //setSprite(sprite);
-        myPane.getChildren().clear();
-        myPane.getChildren().add(drawn.getDrawer().getVisualRepresentation(new UnscaledFactory()));
+        setSprite(drawn);
+        render();
     }
-    
-    private void setSprite (ISprite sprite) {
-        mySprite = sprite;
+
+    private void render () {
+        clear();
+        add(mySprite.getDrawer().getVisualRepresentation(myFactory));
+        mySprite.getAttributes().forEach(a -> add(generateLabel(a)));
+        addUpgrade();
     }
-    
-    
+
+    private void addUpgrade () {
+        Button upgradeButton = new Button("Upgrade");
+        upgradeButton.setDisable(!mySprite.isUgradeable().get());
+        mySprite.isUgradeable().addListener((a,b,newVal) -> upgradeButton.setDisable(!newVal));
+        upgradeButton
+                .setOnMouseClicked(e -> upgrade());
+        add(upgradeButton);
+
+    }
+
+    private void upgrade () {
+        mySprite.registerEvent(new GameEvent(EventType.UPGRADE));
+        clear();
+        
+    }
+
+    private void clear () {
+        myPane.getChildren().clear(); 
+    }
+
+    private void add (Node node) {
+
+        myPane.getChildren().add(node);
+
+    }
+
+    private Node generateLabel (IAttribute attribute) {
+
+        return new Label(attribute.getType().getType() + " " + attribute.getValueProperty().get());
+
+    }
+
+    private void setSprite (Drawable drawable) {
+        mySprite = drawable;
+    }
 
 }

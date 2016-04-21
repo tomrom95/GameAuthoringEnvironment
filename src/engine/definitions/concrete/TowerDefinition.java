@@ -18,7 +18,9 @@ public class TowerDefinition extends SpriteDefinition {
     public ISprite create () {
         ISprite sprite = super.create();
         addModule(myFirer);
-        sprite.initialize(new StaticMover(sprite), createGraphicModule(), createModules(sprite),
+        sprite.initialize(new StaticMover(sprite), createGraphicModule(), 
+                          createUpgrade(sprite),
+                          createModules(sprite),
                           createAttributes(),
                           createCoordinate());
         return sprite;
