@@ -5,7 +5,7 @@ package util;
  * and artificial intelligence Pathing.
  * 
  * @author Jin An
- * @author Jon Imm
+ * @author Jon Im
  *
  */
 public class BitMap {
@@ -14,7 +14,29 @@ public class BitMap {
     private int myWidth;
     private int myHeight;
 
+    public BitMap (int width, int height) {
+        initialize(width, height);
+    }
+
+    public BitMap () {
+        this(1, 1);
+    }
+
+    /**
+     * Should use constructors and overloaded constructors instead of having
+     * methods for post initialization
+     * Please replace usage with {@link #BitMap()} or {@link #BitMap(int, int) BitMap(int width, int
+     * height)}
+     * 
+     * @param width
+     * @param height
+     */
+    @Deprecated
     public void createBitMap (int width, int height) {
+        initialize(width, height);
+    }
+
+    private void initialize (int width, int height) {
         myBitMap = new boolean[width][height];
         myWidth = width;
         myHeight = height;

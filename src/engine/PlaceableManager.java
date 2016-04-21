@@ -6,22 +6,37 @@ import util.TimeDuration;
 
 public class PlaceableManager implements IPlaceableManager {
 
-    IGame myGame;
-
+    private IGame myGame;
+    private BitMap myCurrentPlaceableMap;
+    
     public PlaceableManager (IGame game) {
         myGame = game;
+        myCurrentPlaceableMap = createBitMapForCurrentGame(getGame());
+    }
+    
+    private BitMap createBitMapForCurrentGame(IGame game){
+        int gameWidth = game.getGameGridConfig().getGridWidth();
+        int gameHeight = game.getGameGridConfig().getGridHeight();
+        return new BitMap(gameWidth, gameHeight);
+    }
+    
+    private IGame getGame() {
+        return myGame;
     }
 
     @Override
     public void update (TimeDuration duration) {
-        // TODO Auto-generated method stub
-
+        myCurrentPlaceableMap = parseCurrentGameForPlaceable(getGame());
+    }
+    
+    private BitMap parseCurrentGameForPlaceable(IGame game){
+        
+        return myCurrentPlaceableMap;
     }
 
     @Override
     public BitMap getPlaceableArea () {
-        // TODO Auto-generated method stub
-        return null;
+        return myCurrentPlaceableMap;
     }
 
 }
