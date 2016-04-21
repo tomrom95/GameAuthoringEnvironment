@@ -11,6 +11,7 @@ import engine.Updateable;
 import engine.modules.IGraphicModule;
 import engine.modules.IModule;
 import engine.modules.IMovementModule;
+import engine.modules.UpgradeModule;
 import util.Bounds;
 import util.Coordinate;
 
@@ -32,6 +33,7 @@ public interface ISprite extends Drawable, Updateable, Affectable, Positionable 
 
     void initialize (IMovementModule movementModule,
                      IGraphicModule graphicModule,
+                     UpgradeModule upgradeModule,
                      List<IModule> otherModules,
                      List<IAttribute> attributes,
                      Coordinate coord);

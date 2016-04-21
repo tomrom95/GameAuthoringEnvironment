@@ -35,7 +35,9 @@ public class SpawnerDefinition extends SpriteDefinition {
     public ISprite create () {
         ISprite sprite = new Sprite(new SpriteType(getProfile().getName().get()));
         addModule(mySpawningModule);
-        sprite.initialize(new StaticMover(sprite), createGraphicModule(), createModules(sprite),
+        sprite.initialize(new StaticMover(sprite), createGraphicModule(), 
+                          createUpgrade(sprite),
+                          createModules(sprite),
                           createAttributes(),
                           createCoordinate());
         return sprite;

@@ -1,5 +1,6 @@
 package gameplayer;
 
+import java.util.ResourceBundle;
 import engine.IGame;
 import engine.IGamePlayable;
 import engine.IOInterpeter;
@@ -29,47 +30,32 @@ import util.TimeDuration;
  */
 public class GameEngine implements IGameEngine {
 
+    private static final String PATH = "defaults/gameplayer";
+    ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
+    
     private static final int FPS = 60;
-
     private IGame myGame;
-    private SpriteDisplay mySpriteDisplay = new SpriteDisplay();
+    private UserDisplay myDisplay;
     private LevelRenderer myRenderer;
     private IOInterpeter myIOIntercepter;
+    private SideBarDisplay mySideBar;
     private Timeline myTimeline = new Timeline();
 
     public GameEngine (IGame game, BorderPane gamePane, Pane levelPane, IOInterpeter ioInterpreter) {
         myGame = game;
-        myRenderer = new InGameRenderer(game, levelPane, mySpriteDisplay);
+        myDisplay = new UserDisplay(myGame);
+        myRenderer = new InGameRenderer(game, levelPane, myDisplay.getSpriteDisplay());
         myIOIntercepter = ioInterpreter;
+        mySideBar = new SideBarDisplay(myGame, myRenderer);
         createLevelView(gamePane);
         initializeTimeline();
     }
 
     private void createLevelView (BorderPane gamePane) {
         gamePane.setCenter(myRenderer.getPane());
-        gamePane.setRight(new SideBarDisplay(myGame, myRenderer).draw());
-        gamePane.setLeft(createLeft());
-        gamePane.setTop(createTop());
-    }
-
-    private Node createLeft () {
-        VBox vbox = new VBox();
-        vbox.getChildren().add(new HeadsUpDisplay(myGame).draw());
-        vbox.getChildren().add(mySpriteDisplay.draw());
-        return vbox;
-    }
-
-    private Node createTop () {
-        MenuBar bar = new MenuBar();
-        Menu controls = new Menu("Controls");
-        bar.getMenus().add(controls);
-        MenuItem pause = new MenuItem("Pause");
-        MenuItem play = new MenuItem("Play");
-        pause.setOnAction(e -> pause());
-        play.setOnAction(e -> play());
-        controls.getItems().add(play);
-        controls.getItems().add(pause);
-        return bar;
+        gamePane.setRight(mySideBar.draw());
+        gamePane.setLeft(myDisplay.draw());
+        gamePane.setTop(new GamePlayerTools(this).draw());
     }
 
     private void initializeTimeline () {
@@ -98,7 +84,7 @@ public class GameEngine implements IGameEngine {
         getTimeline().pause();
     }
 
-    private IGamePlayable getGame () {
+    public IGame getGame () {
         return myGame;
     }
 

@@ -2,6 +2,7 @@ package facebookutil;
 
 import java.util.List;
 import facebookutil.login.LoginObject;
+import facebookutil.scores.HighScoreBoard;
 import facebookutil.user.Email;
 import facebookutil.user.IUser;
 
@@ -59,8 +60,8 @@ public interface IJavaSocial {
     public IUser createNewUser (Email email);
     
     /**
-     * Saves all users to xml files.
+     * Saves all users and high scores to xml files.
      */
-    public void saveUsers ();
+    public void saveState ();
 
 }

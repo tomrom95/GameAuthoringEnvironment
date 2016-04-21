@@ -11,6 +11,7 @@ import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
@@ -31,7 +32,7 @@ public class UpgradeModule implements IModule {
     
     @Override
     public void update (TimeDuration duration) {
-        //do nothing
+        myCheck.update(duration);
 
     }
 
@@ -62,11 +63,19 @@ public class UpgradeModule implements IModule {
     @Override
     public void registerEvent (GameEvent event) {
        
-        if(event.getEventType().equals(EventType.UPGRADE) && myCheck.check()) {
+        if(event.getEventType().equals(EventType.UPGRADE) && myCheck.getStatus().get()) {
             ISprite upgrade = myUpgrade.create();
+            myCheck.alterAttribute();
             myParent.remove();
             myAdder.bufferedAdd(upgrade, myParent.getLocation());
         }
     }
+    
+    public BooleanProperty isUgradeable () {
+        
+        return myCheck.getStatus();
+    }
+
+   
 
 }

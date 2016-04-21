@@ -55,18 +55,18 @@ public class TrackingMover extends Mover {
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     protected List<IAttribute> getSpecificAttributes () {
-        return new ArrayList<>();
+        List<IAttribute> myList = new ArrayList<IAttribute>();
+        myList.add(mySpeed);
+        return myList;
+
     }
 }
