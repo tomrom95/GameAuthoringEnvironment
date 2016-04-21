@@ -10,29 +10,20 @@ import engine.modules.IMovementModule;
  */
 public class ConstantMoverDefinition extends MovementDefinition {
 
-    private double myXVel;
-    private double myYVel;
+
+    private double myOrientation;
 
     @Override
     public IMovementModule create (Positionable parent) {
-        setSpeed(Math.sqrt(Math.pow(myXVel, 2) + Math.pow(myYVel, 2)));
-        return new ConstantMover(myXVel, myYVel, parent);
+        return new ConstantMover(getSpeed(), myOrientation, parent);
     }
 
-    public void setXVel (double x) {
-        myXVel = x;
+    public double getOrientation(){
+    	return myOrientation;
     }
-
-    public void setYVel (double y) {
-        myYVel = y;
-    }
-
-    public double getXVel () {
-        return myXVel;
-    }
-
-    public double getYVel () {
-        return myYVel;
+    
+    public void setOrientaiton(double newOrientation){
+    	myOrientation = newOrientation;
     }
 
 }

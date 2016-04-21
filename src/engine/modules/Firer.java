@@ -1,11 +1,14 @@
 package engine.modules;
 
+import java.util.List;
+
 import engine.IAttribute;
 import engine.effects.DefaultAffectable;
 import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import javafx.beans.property.ObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
 
@@ -15,9 +18,10 @@ import util.TimeDuration;
  * fire
  * TODO Is this class necessary?
  */
-public class Firer extends DefaultAffectable implements IFireModule {
+public abstract class Firer extends DefaultAffectable implements IFireModule {
 
-    private ObjectProperty<IAttribute> myAmmo;
+    private IAttribute myAmmo;
+    
 
     @Override
     public void applyEffect (IEffect effect) {
@@ -36,16 +40,26 @@ public class Firer extends DefaultAffectable implements IFireModule {
 
     @Override
     public ObservableList<IAttribute> getAttributes () {
-        return null;
+        ObservableList<IAttribute> attributes = FXCollections.observableArrayList();
+        attributes.add(myAmmo);
+        attributes.addAll(getSpecificAttributes());
+        return attributes;
+
     }
 
+    protected abstract List<IAttribute> getSpecificAttributes();
+   
     @Override
     public void update (TimeDuration duration) {
 
     }
 
-    protected ObjectProperty<IAttribute> getAmmo () {
-        return myAmmo;
+    public void setAmmo(double ammo){
+    	myAmmo.setValue(ammo);
+    }
+    
+    public IAttribute getAmmo (){
+    	return myAmmo;
     }
 
 }

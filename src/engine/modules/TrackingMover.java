@@ -7,6 +7,7 @@ import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
 import engine.IGame;
+import engine.Positionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
@@ -18,7 +19,7 @@ import util.TimeDuration;
  * This class builds a module that follows the closest enemy
  *
  * @author Dhrumil Timko
- *         TODO should this class extend DefaultAffectable?
+
  */
 public class TrackingMover extends Mover {
 
@@ -36,20 +37,13 @@ public class TrackingMover extends Mover {
         myGame = game;
         mySpeed = new Attribute(speed, AttributeType.SPEED);
         myEnemyList = attackGroup;
+        mySprite = sprite;
         myTracker = new EnemyTracker();
     }
 
     @Override
     public void update (TimeDuration duration) {
-        double newXVel =
-                myTracker.calculateXVelToClosestEnemy(mySprite.getLocation(), myPotentialTargets(),
-                                                      mySpeed.getValueProperty().get());
-        setXVel(newXVel);
-
-        double newYVel =
-                myTracker.calculateYVelToClosestEnemy(mySprite.getLocation(), myPotentialTargets(),
-                                                      mySpeed.getValueProperty().get());
-        setYVel(newYVel);
+        setOrientation(myTracker.calculateOrientationToClosestEnemy(mySprite.getLocation(), myPotentialTargets()));
         move(duration);
     }
 
@@ -73,5 +67,6 @@ public class TrackingMover extends Mover {
         List<IAttribute> myList = new ArrayList<IAttribute>();
         myList.add(mySpeed);
         return myList;
+
     }
 }

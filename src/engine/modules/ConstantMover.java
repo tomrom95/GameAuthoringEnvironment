@@ -12,32 +12,25 @@ import util.Coordinate;
 import util.TimeDuration;
 
 
-/**
- * This class creates a module that moves in based on velocity in a linear direction
- * 
- * @author Timko
- * 
- */
 public class ConstantMover extends Mover {
 
-    private IAttribute mySpeed;
-    private Positionable mySprite;
-
+    
     /*
-     * as of now, I am keeping the Positionable in here, so there are other potential
+     * as of now, I am keeping the Positionable in here, so  there are other potential
      * bits of functionality like angle that can be built it here
      */
 
-    public ConstantMover (double xVel, double yVel, Positionable parent) {
+    public ConstantMover (double speed, double angle, Positionable parent) {
         super(parent);
-        getXVel().setValue(xVel);
-        getYVel().setValue(yVel);
-        mySprite = parent;
+        setSpeed(speed);
+        setOrientation(angle);
 
     }
 
     @Override
     public void setPath (List<Coordinate> newPath) {
+        // TODO Auto-generated method stub
+
     }
 
     @Override
@@ -46,12 +39,7 @@ public class ConstantMover extends Mover {
         return null;
     }
 
-    @Override
-    public ObservableList<IAttribute> getAttributes () {
-        ObservableList<IAttribute> attributeList = FXCollections.observableArrayList();
-        attributeList.add(mySpeed);
-        return attributeList;
-    }
+  
 
     @Override
     public void update (TimeDuration duration) {
@@ -60,29 +48,20 @@ public class ConstantMover extends Mover {
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
+        // TODO Auto-generated method stub
+
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
+        // TODO Auto-generated method stub
+
     }
 
     @Override
-    protected List<IAttribute> getSpecificAttributes () {
-        // TODO What is this method supposed to do, how is it different from the other a
-        // attributes method
-        List<IAttribute> specialAttributes = new ArrayList<>();
-        specialAttributes.add(mySpeed);
-        return specialAttributes;
+    protected List<IAttribute> getSpecificAttributes () {        
+         return new ArrayList<>();
     }
 
-    /**
-     * This method returns the angle in degrees of a sprites motion based on its X and Y velocities
-     * 
-     * @return angle in degrees
-     */
-    public double getAngle () {
-        return Math.atan(getYVel().getValueProperty().get() / getXVel().getValueProperty().get()) *
-               180 / Math.PI;
-    }
 
 }
