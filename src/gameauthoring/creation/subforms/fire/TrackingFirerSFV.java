@@ -24,7 +24,7 @@ import javafx.scene.layout.GridPane;
  */
 public class TrackingFirerSFV extends SubFormView implements ITrackingFireSFV {
 
-    private GridPane myPane = new GridPane();
+    private GridPane myPane;
     private String myWaitTimeKey = "Wait Time: ";
     private String myTargetsKey = "Targets: ";
     private IEntryView myWaitTime;
@@ -40,6 +40,14 @@ public class TrackingFirerSFV extends SubFormView implements ITrackingFireSFV {
         initView();
 
     }
+    
+    @Override
+    protected void initView () {
+        myPane = new GridPane();
+        myPane.setGridLinesVisible(true);
+        myPane.add(myWaitTime.draw(), 0, 0);
+        myPane.add(myTargets.draw(), 1, 0);
+    }
 
     public SingleChoiceEntryView<SpriteGroup> getTargetsCoice () {
         return myTargets;
@@ -50,12 +58,6 @@ public class TrackingFirerSFV extends SubFormView implements ITrackingFireSFV {
         return myPane;
     }
 
-    @Override
-    protected void initView () {
-        myPane.setGridLinesVisible(true);
-        myPane.add(myWaitTime.draw(), 0, 0);
-        myPane.add(myTargets.draw(), 1, 0);
-    }
 
     @Override
     public String getWaitTimeKey () {
