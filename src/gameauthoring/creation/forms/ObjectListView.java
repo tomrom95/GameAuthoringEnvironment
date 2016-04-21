@@ -18,7 +18,7 @@ public class ObjectListView<E extends IProfilable> implements IObjectListView<E>
 
     private ObservableList<E> myItems;
     private ListView<E> myListView;
-    private static double HEIGHT = 580;
+    private static final double HEIGHT = 580; //TODO: move to common resource file
 
     public ObjectListView (ObservableList<E> items) {
         myItems = items;
