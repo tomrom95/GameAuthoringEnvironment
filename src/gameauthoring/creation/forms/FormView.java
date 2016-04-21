@@ -25,11 +25,13 @@ public class FormView implements IFormView {
     private Button myNewButton = new Button("New");
     private List<Node> myButtons = new ArrayList<Node>(Arrays.asList(mySaveButton,myDeleteButton, myNewButton));
     private List<ISubFormView> mySubFormViews;
+    private static final double HEIGHT = 525; //TODO: move to common resource file    
     
 
     public FormView(List<ISubFormView> subFormViews){
         mySubFormViews = subFormViews;
         mySubFormViewer.getStyleClass().add("myFormView");
+        mySubFormViewer.setMaxHeight(HEIGHT);
         myFormView.add(mySubFormViewer, 0, 1); 
         myFormView.add(createButtonHolder(), 0 , 0);
         setViews(mySubFormViews);            
@@ -50,9 +52,7 @@ public class FormView implements IFormView {
     
     private List<Node> getSFVNodes(List<ISubFormView> subFormViews){
         List<Node> nodes = new ArrayList<>();
-        for(ISubFormView s:subFormViews){
-            nodes.add(s.draw());
-        }
+        subFormViews.forEach(e->nodes.add(e.draw()));       
         return nodes;
     }
     
