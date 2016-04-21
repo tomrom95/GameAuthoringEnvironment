@@ -43,7 +43,6 @@ public abstract class SubConditionView {
         myGroup.setVgap(CUSHION);
         add(addProfileInfo(), 0, 0);
         initializeDisplay();
-        myGroup.add(createButton(), 0, 2);
 
     }
 
@@ -72,6 +71,7 @@ public abstract class SubConditionView {
     protected void initializeDisplay () {
         initBoxes();
         add(getHBox(), 0, 1);
+        myGroup.add(createButton(), 0, 2);
     }
 
     protected abstract void initBoxes ();

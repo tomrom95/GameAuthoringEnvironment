@@ -31,7 +31,9 @@ public class ConditionViewFactory {
             case "OnSpriteAttribute":
                 return new OnSpriteView(myGame);
             case "Win":
-                return new WinGlobalView(myGame, myLevel);
+                return new WinView(myGame, myLevel);
+            case "Lose":
+                return new LoseView(myGame, myLevel);
         }
 
         return null;
