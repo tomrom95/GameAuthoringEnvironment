@@ -18,10 +18,14 @@ import javafx.stage.Stage;
  *
  */
 public class GamePlayer {
+    
+    
 
     public static final double PREFWIDTH = 1250;
     public static final double PREFHEIGHT = 600;
-
+    public static final int INT_PREF_WIDTH = (int) PREFWIDTH;
+    public static final int INT_PREF_HEIGHT = (int) PREFHEIGHT;
+    
     private static final String PATH = "defaults/gameplayer";
     ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
 
