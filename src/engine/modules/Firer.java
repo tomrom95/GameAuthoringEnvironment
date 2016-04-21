@@ -1,7 +1,6 @@
 package engine.modules;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +17,6 @@ import engine.effects.IEffect;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
-import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.TimeDuration;
@@ -61,7 +59,6 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
 
     @Override
     public void applyEffect (IEffect effect) {
-        // TODO Auto-generated method stub
 
     }
     protected void addToTimeMap(ISprite s){
@@ -88,13 +85,11 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
-        // TODO Auto-generated method stub
 
     }
 
@@ -105,12 +100,14 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
         attributes.add(myRange);
         attributes.addAll(getSpecificAttributes());
         return attributes;
+
     }
 
     protected abstract List<IAttribute> getSpecificAttributes();
    
     @Override
     public void update (TimeDuration duration) {
+
     	if(ranged){
     		removeSpritesBeyondRange();
     	}

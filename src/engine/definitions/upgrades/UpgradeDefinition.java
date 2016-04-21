@@ -12,6 +12,12 @@ import engine.modules.IModule;
 import engine.modules.UpgradeModule;
 
 
+/**
+ * Used to generate the upgrade module of the Sprite
+ * 
+ * @author RyanStPierre
+ *
+ */
 public abstract class UpgradeDefinition extends ModuleDefinition {
 
     private SpriteDefinition myUpgrade;
@@ -19,6 +25,17 @@ public abstract class UpgradeDefinition extends ModuleDefinition {
     private double myCost;
     private IGame myGame;
     
+    public UpgradeDefinition () {
+        //Empty shell if desired
+    }
+
+    public UpgradeDefinition (IGame myGame,
+                              SpriteDefinition nextUpgrade,
+                              AttributeType type,
+                              double cost) {
+        setParameters(myGame, nextUpgrade, type, cost);
+    }
+
     public void setParameters (IGame myGame,
                                SpriteDefinition nextUpgrade,
                                AttributeType type,
@@ -63,11 +80,10 @@ public abstract class UpgradeDefinition extends ModuleDefinition {
     }
 
     @Override
-    public IModule create (Positionable parent) {
+    public UpgradeModule create (Positionable parent) {
         return new UpgradeModule(getGame(), getUpgrade(), getCheck(parent), parent);
     }
 
     protected abstract ICheck getCheck (Positionable parent);
-
 
 }

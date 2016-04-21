@@ -2,6 +2,12 @@ package facebookutil.user.profiles;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import facebookutil.login.LoginObject;
 
+/**
+ * Describes a profile for any social account. This
+ * could also just be the app itself.
+ * @author Tommy
+ *
+ */
 public abstract class SocialProfile {
     
     private String myID;
