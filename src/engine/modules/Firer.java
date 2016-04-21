@@ -1,6 +1,7 @@
 package engine.modules;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,9 +38,14 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
     private Positionable myParent;
     private List<ISprite> myFiredSprites;
     private Map<ISprite, TimeDuration> myFiredTimeMap;
+    private EnemyTracker myTracker;
     
-    private static Predicate<ISprite> isOutOfRange(Map<ISprite, TimeDuration> timeMap, IAttribute range){
-    	return p -> (p.getMovementStrategy().getSpeed() * timeMap.get(p).getSeconds()) >= range.getValueProperty().get(); 
+//    private static Predicate<ISprite> isOutOfRange(Map<ISprite, TimeDuration> timeMap, IAttribute range){
+//    	return p -> (p.getMovementStrategy().getSpeed() * timeMap.get(p).getSeconds()) >= range.getValueProperty().get(); 
+//    }
+    
+    private  Predicate<ISprite> isOutOfRange(){
+    	return p -> myTracker.calculateDistance(myParent.getLocation(), p.getLocation()) >= myRange.getValueProperty().get();
     }
     
     
@@ -50,6 +56,7 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
     	ranged = false;
     	myFiredSprites = new ArrayList<ISprite>();
     	myFiredTimeMap = new HashMap<ISprite, TimeDuration>();
+    	myTracker = new EnemyTracker();
     }
 
     @Override
@@ -69,14 +76,14 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
     	}
     }
     
-    protected void removeSpritesBeyondRange(){
+    private void removeSpritesBeyondRange(){
     	getSpritesBeyondRange().stream().forEach(p -> myGame.getLevelManager().getCurrentLevel().remove(p));
     }
     
     private List<ISprite> getSpritesBeyondRange(){
   
-    	return myFiredSprites.stream().filter(isOutOfRange(myFiredTimeMap, myRange)).collect(Collectors.<ISprite>toList());
-    	
+//    	return myFiredSprites.stream().filter(isOutOfRange(myFiredTimeMap, myRange)).collect(Collectors.<ISprite>toList());
+    	return myFiredSprites.stream().filter(isOutOfRange()).collect(Collectors.<ISprite>toList());
     }
 
     @Override
@@ -104,8 +111,9 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
    
     @Override
     public void update (TimeDuration duration) {
-        // TODO Auto-generated method stub
-
+    	if(ranged){
+    		removeSpritesBeyondRange();
+    	}
     }
 
     public void setAmmo(double ammo){
@@ -138,6 +146,10 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
     
     protected Map<ISprite, TimeDuration> getFiredMap(){
     	return myFiredTimeMap;
+    }
+    
+    protected EnemyTracker getTracker(){
+    	return myTracker;
     }
 
 

@@ -37,6 +37,7 @@ public class DirectionalFirer extends Firer {
                              double theta) {
     	super(sprite);
         myWaitTime = new Attribute(waitTime, AttributeType.FIRE_RATE);
+        myTimeSinceFire = new TimeDuration(0);
         mySprite = sprite;
         myProjectile = projectile;
         myAngle = theta;
@@ -68,7 +69,7 @@ public class DirectionalFirer extends Firer {
 
             getGame().bufferedAdd(bullet);
             getFiredSprites().add(bullet);
-            addToTimeMap(bullet);
+//            addToTimeMap(bullet);
         
         }
     }
