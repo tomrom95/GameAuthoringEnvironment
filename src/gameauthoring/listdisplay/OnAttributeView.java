@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import java.util.function.DoublePredicate;
 import java.util.stream.Collectors;
 import engine.AttributeType;
+import engine.IEventPackage;
 import engine.IGame;
 import engine.conditions.OnGlobalAttributeCondition;
 import engine.SpriteGroup;
@@ -18,9 +19,8 @@ import javafx.scene.control.TextField;
 import util.PredicateGenerator;
 
 
-public abstract class OnAttributeView extends ConditionPopUp {
+public abstract class OnAttributeView extends SubConditionView {
 
-    ResourceBundle myBundle = ResourceBundle.getBundle("defaults/on_att_tab");
     ResourceBundle myMathBundle = ResourceBundle.getBundle("defaults/math_operations");
     private IGame myGame;
     private ComboBox<AttributeType> myAttributeType;
@@ -39,13 +39,7 @@ public abstract class OnAttributeView extends ConditionPopUp {
         initStage();
     }
 
-    @Override
-    protected void initializeDisplay () {
-        initBoxes();
-        add(getHBox(), 0, 1);
-    }
-
-    private void initBoxes () {
+    protected void initBoxes () {
         myAttributeType = createComboBox(myAttributeStorage);
         myChecks = createStringComboBox(FXCollections.observableArrayList(getCheckTypes()));
         myValueToCompare = createTextField();
@@ -54,7 +48,10 @@ public abstract class OnAttributeView extends ConditionPopUp {
                 createComboBox(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
         myGlobalEvents =
                 createComboBox(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
-
+    }
+    
+    protected IGame getGame () {
+       return myGame;
     }
 
     private List<String> getCheckTypes () {
@@ -62,27 +59,26 @@ public abstract class OnAttributeView extends ConditionPopUp {
                 .map(key -> myMathBundle.getString(key))
                 .collect(Collectors.toList());
     }
-
-    @Override
-    protected ICondition subCreation () {
+    
+    protected IEventPackage getThirdPartyPackage () {
         EventPackageDefinition other = myThirdEvents.getSelectionModel().getSelectedItem();
         other.setMySpriteGroup(myThirdParty.getSelectionModel().getSelectedItem());
+        return other.create();
+    }
+    
+    protected IEventPackage getGlobalPackage () {
         EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();
-        return new OnGlobalAttributeCondition(myGame,
-                                              myAttributeType.getSelectionModel().getSelectedItem(),
-                                              createPredicate(),
-                                              other.create(), global.create());
+        return global.create();
+    }
+    
+    protected AttributeType getAttributeType () {
+        return myAttributeType.getSelectionModel().getSelectedItem();
     }
 
-    private DoublePredicate createPredicate () {
+    protected DoublePredicate createPredicate () {
         return new PredicateGenerator().generateDouble(myValueToCompare.getText(),
                                                        myChecks.getSelectionModel()
                                                                .getSelectedItem());
-    }
-    
-    @Override
-    protected String getLabelKey (String key) {
-        return myBundle.getString(key);
     }
 
 }

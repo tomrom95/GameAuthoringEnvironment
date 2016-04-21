@@ -10,13 +10,13 @@ import javafx.scene.layout.Pane;
  * @author RyanStPierre
  *
  */
-public class ConditionController {
+public class GameConditionController {
 
-    private ConditionView myView;
+    private GameConditionView myView;
 
     private ConditionViewFactory myFactory;
 
-    public ConditionController (ConditionView conditionView, IGame game) {
+    public GameConditionController (GameConditionView conditionView, IGame game) {
         myView = conditionView;
         myFactory = new ConditionViewFactory(game);
 

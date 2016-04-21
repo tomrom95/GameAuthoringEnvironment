@@ -20,26 +20,25 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 
-public abstract class ConditionPopUp {
+public abstract class SubConditionView {
 
     protected static final double CUSHION = 10;
     private static final String DEFAULT_IMAGE = "/images/C.png";
     ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
 
-    private GridPane myGroup;
+    private GridPane myGroup = new GridPane();
     private ObservableList<ICondition> myList;
     private TextField myName = new TextField();
     private TextField myDescription = new TextField();
     private List<Node> myNodes;
 
-    public ConditionPopUp (ObservableList<ICondition> conditionList) {
+    public SubConditionView (ObservableList<ICondition> conditionList) {
         myList = conditionList;
         myNodes = new ArrayList<>();
     }
 
     protected void initStage () {
         setSizes();
-        myGroup = new GridPane();
         myGroup.setHgap(CUSHION);
         myGroup.setVgap(CUSHION);
         add(addProfileInfo(), 0, 0);
@@ -70,7 +69,12 @@ public abstract class ConditionPopUp {
         comboBox.setButtonCell(new NameCellView<>());
     }
 
-    protected abstract void initializeDisplay ();
+    protected void initializeDisplay () {
+        initBoxes();
+        add(getHBox(), 0, 1);
+    }
+
+    protected abstract void initBoxes ();
 
     private Node createButton () {
         Button button = new Button("Create");
@@ -96,7 +100,7 @@ public abstract class ConditionPopUp {
 
     protected abstract ICondition subCreation ();
 
-    public Pane show () {
+    public Pane show () {        
         return myGroup;
     }
 
@@ -106,13 +110,12 @@ public abstract class ConditionPopUp {
         myNodes.add(box);
         return box;
     }
-    
+
     protected ComboBox<String> createStringComboBox (ObservableList<String> list) {
         ComboBox<String> box = new ComboBox<>(list);
         myNodes.add(box);
         return box;
     }
-
 
     protected Node getHBox () {
         HBox hbox = new HBox(CUSHION);
@@ -128,12 +131,12 @@ public abstract class ConditionPopUp {
         vbox.getChildren().addAll(new Label(label), node);
         return vbox;
     }
-    
+
     protected TextField createTextField () {
         TextField text = new TextField();
         myNodes.add(text);
         return text;
     }
-    
-    protected abstract String getLabelKey(String key);
+
+    protected abstract String getLabelKey (String key);
 }

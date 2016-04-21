@@ -1,17 +1,24 @@
 package gameauthoring.listdisplay;
 
 import engine.IGame;
+import engine.ILevel;
 
 
 public class ConditionViewFactory {
 
     private IGame myGame;
+    private ILevel myLevel;
 
     public ConditionViewFactory (IGame game) {
         myGame = game;
     }
+    
+    public ConditionViewFactory (IGame game, ILevel level) {
+        this(game);
+        myLevel = level;
+    }
 
-    public ConditionPopUp get (String selection) {
+    public SubConditionView get (String selection) {
 
         // TODO replace with reflection
         switch (selection) {
@@ -23,6 +30,8 @@ public class ConditionViewFactory {
                 return new OnGlobalView(myGame);
             case "OnSpriteAttribute":
                 return new OnSpriteView(myGame);
+            case "Win":
+                return new WinGlobalView(myGame, myLevel);
         }
 
         return null;

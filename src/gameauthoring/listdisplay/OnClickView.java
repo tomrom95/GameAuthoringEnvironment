@@ -8,7 +8,7 @@ import engine.conditions.OnClickCondition;
 import engine.definitions.EventPackageDefinition;
 import javafx.scene.control.ComboBox;
 
-public class OnClickView extends ConditionPopUp {
+public class OnClickView extends SubConditionView {
 
     private static final String PATH = "defaults/on_click_tab";
     ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
@@ -36,13 +36,7 @@ public class OnClickView extends ConditionPopUp {
         return new OnClickCondition(myGame, packageA.create(), packageB.create(), global.create());
     }
 
-    @Override
-    protected void initializeDisplay () {
-        initBoxes();
-        add(getHBox(), 0, 1);
-    }
-
-    private void initBoxes () {  
+    protected void initBoxes () {  
         myGroupA = createComboBox(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
         myEventsA =
                 createComboBox(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());

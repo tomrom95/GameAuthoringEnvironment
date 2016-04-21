@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
  *
  */
 
-public class OnCollisionView extends ConditionPopUp {
+public class OnCollisionView extends SubConditionView {
 
     private static final String PATH = "defaults/on_collision_tab";
     ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
@@ -39,14 +39,7 @@ public class OnCollisionView extends ConditionPopUp {
 
     }
 
-    @Override
-    protected void initializeDisplay () {
-        initBoxes();
-        add(getHBox(), 0, 1);
-
-    }
-
-    private void initBoxes () {
+    protected void initBoxes () {
         myGroupA = createComboBox(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
         myGroupB = createComboBox(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
         myThirdParty = createComboBox(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
