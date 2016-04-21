@@ -5,12 +5,15 @@ import engine.ILevel;
 import engine.rendering.AuthoringRenderer;
 import engine.rendering.GridRenderer;
 import gameauthoring.util.Glyph;
+import gameauthoring.util.UIFactory;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 
 /**
@@ -27,14 +30,15 @@ public class SceneCreator implements Glyph {
 
     private IGame gameModel;
     private AuthoringRenderer myLevelView;
-    private GridRenderer myTileView;
     private ILevel myLevel;
     private SceneController myController;
+    private boolean myPlaceableEnable;
 
     public SceneCreator (IGame model, ILevel level) {
         gameModel = model;
         myLevel = level;
         myController = new SceneController(myLevel);
+        myPlaceableEnable = false;
     }
 
     @Override
@@ -43,6 +47,24 @@ public class SceneCreator implements Glyph {
         container.getChildren().add(createLevelView());
         container.getChildren().add(createSpriteSelection());
         return container;
+    }
+
+    private void handlePlaceableButton (Pane pane, Pane levelPane, Pane gridPane) {
+        myPlaceableEnable = !myPlaceableEnable;
+        pane.getChildren().clear();
+        if (myPlaceableEnable)
+            pane.getChildren().addAll(levelPane, gridPane,
+                                      placeableButton(pane, levelPane, gridPane));
+        else
+            pane.getChildren().addAll(gridPane, levelPane,
+                                      placeableButton(pane, levelPane, gridPane));
+
+    }
+
+    private Button placeableButton (Pane pane, Pane levelPane, Pane gridPane) {
+        return (new UIFactory())
+                .createButton((myPlaceableEnable ? "Disable" : "Enable") + " Placeable View",
+                              e -> handlePlaceableButton(pane, levelPane, gridPane));
     }
 
     /**
@@ -63,18 +85,19 @@ public class SceneCreator implements Glyph {
      * @return
      */
     private Node createLevelView () {
-//        Pane levelPane = new Pane();
-        // myLevelView = new AuthoringRenderer(myLevel, levelPane);
-        // myLevelView.render();
-        // levelPane.setOnMouseClicked(e -> handleMouseClick(e));
-        // return levelPane;
-        
-        myController.setBackground(DEFAULT_BACKGROUND);
+
+        Pane root = new StackPane();
+        Pane levelPane = new Pane();
         GridPane gridPane = new GridPane();
+        Button enablePlaceableButton = placeableButton(root, levelPane, gridPane);
+
         gridPane.setGridLinesVisible(true);
-        myTileView = new GridRenderer(gridPane);
-        myTileView.render();
-        return gridPane;
+        root.getChildren().addAll(gridPane, levelPane, enablePlaceableButton);
+        myController.setBackground(DEFAULT_BACKGROUND);
+        myLevelView = new AuthoringRenderer(myLevel, levelPane, gridPane);
+        myLevelView.render();
+        levelPane.setOnMouseClicked(e -> handleMouseClick(e));
+        return root;
     }
 
     /**
@@ -87,9 +110,5 @@ public class SceneCreator implements Glyph {
             myController.uploadNewBackground();
             myLevelView.render();
         }
-        if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 1) {
-
-        }
     }
-
 }
