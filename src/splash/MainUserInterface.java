@@ -20,6 +20,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import library.GameLibrary;
 
 
 /**
@@ -33,6 +34,7 @@ import javafx.stage.Stage;
  */
 public class MainUserInterface {
 
+    private static final String SPACING_KEY = "spacing";
     private static final String SPLASHTITLEKEY = "splashtitle";
     private static final String LABELS_PATH = "languages/labels";
     private final ResourceBundle mySpecs = ResourceBundle.getBundle("defaults/splashscreen");
@@ -94,7 +96,7 @@ public class MainUserInterface {
     }
 
     public Node createCenter () {
-        VBox root = new VBox(Integer.parseInt(mySpecs.getString("spacing")));
+        VBox root = new VBox(Integer.parseInt(mySpecs.getString(SPACING_KEY)));
         root.setAlignment(Pos.CENTER);
         root.getChildren().add(new Label(myLabels.getString(SPLASHTITLEKEY)));
         root.getChildren()
@@ -107,7 +109,8 @@ public class MainUserInterface {
     }
 
     private Node createLogin () {
-        HBox box = new HBox(Integer.parseInt(mySpecs.getString("spacing")));
+        HBox box = new HBox(Integer.parseInt(mySpecs.getString(SPACING_KEY)));
+        box.setAlignment(Pos.CENTER);
         box.getChildren()
                 .add(createButton(myLabels.getString("splashloginfb"), e -> loginWithFacebook()));
         box.getChildren()
@@ -127,7 +130,7 @@ public class MainUserInterface {
     }
 
     private void launchLibrary () {
-
+        new GameLibrary().init(myStage);
     }
 
     private void loginWithFacebook () {
