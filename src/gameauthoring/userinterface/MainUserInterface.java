@@ -61,7 +61,9 @@ public class MainUserInterface {
 
         Method method;
         try {
+            
             method = this.getClass().getMethod(btnName);
+            System.out.println(method);
             newButton.setOnAction(event -> callMethod(method));
 
         }

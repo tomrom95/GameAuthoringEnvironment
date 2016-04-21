@@ -1,6 +1,7 @@
 package gameauthoring.tabs;
 
 import engine.Game;
+import engine.IGame;
 import gameauthoring.creation.entryviews.FormDataManager;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.IFormDataManager;
@@ -39,7 +40,7 @@ public class GameTabViewer implements ITabViewer {
         init();
     }
 
-    public GameTabViewer (Game game) {
+    public GameTabViewer (IGame iGame) {
         init();
     }
 

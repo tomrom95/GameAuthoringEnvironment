@@ -22,7 +22,7 @@ import javafx.scene.control.TitledPane;
  * @author Tommy
  *
  */
-public class SideBarDisplay implements Glyph {
+public class SideBarDisplay extends SizeableGlyph {
 
     private IGame myGame;
     private LevelRenderer levelView;
@@ -46,6 +46,8 @@ public class SideBarDisplay implements Glyph {
             selector.getPanes().add(toAdd);
             selector.expandedPaneProperty().set(toAdd);
         });
+        selector.setMaxSize(parseString(getString("SideBarWidth")), 
+                             parseString(getString("SideBarHeight")));
         return selector;
     }
 

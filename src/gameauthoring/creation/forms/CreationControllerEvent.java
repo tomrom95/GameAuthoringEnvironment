@@ -3,14 +3,15 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.Game;
+import engine.IGame;
 import engine.definitions.EventPackageDefinition;
 
 public class CreationControllerEvent extends CreationController<EventPackageDefinition>{
 
     public CreationControllerEvent (String title,
                                     List<String> sfcs,
-                                    Game game) {
-        super(title, sfcs, game);
+                                    IGame myGame) {
+        super(title, sfcs, myGame);
     }
 
     @Override
