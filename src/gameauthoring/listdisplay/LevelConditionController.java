@@ -5,27 +5,19 @@ import engine.ILevel;
 import javafx.scene.layout.Pane;
 
 
-public class LevelConditionController {
+public class LevelConditionController extends ConditionController {
 
-    private LevelConditionView myView;
-    private ConditionViewFactory myFactory;
+   private ConditionViewFactory myFactory;
 
     public LevelConditionController (LevelConditionView conditionView, IGame game, ILevel level) {
-        myView = conditionView;
+        super(conditionView);
         myFactory = new ConditionViewFactory(game, level);
-        setActions();
+
     }
-    
-    private void setActions () {
 
-        myView.applyToOptions(e -> myView.populate(createPopUp(myView.getSelection())));
-
-     }
-    
-
-    private Pane createPopUp (String selection) {
-        return myFactory.get(selection)
-                .show();
+    @Override
+    protected ConditionViewFactory getFactory () {
+        return myFactory;
     }
 
 }

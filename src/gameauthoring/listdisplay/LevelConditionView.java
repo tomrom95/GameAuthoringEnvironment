@@ -16,11 +16,7 @@ import javafx.scene.layout.Pane;
 import util.BundleOperations;
 
 
-public class LevelConditionView extends ListDisplay<ICondition> {
-
-    private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/end_condition_options");
-    private Pane myEditor = new Pane();
-    private ListView<String> myOptions;
+public class LevelConditionView extends ConditionView {
 
     public LevelConditionView (IGame game, ILevel level) {
         super(level.getConditionsListProperty());
@@ -36,39 +32,28 @@ public class LevelConditionView extends ListDisplay<ICondition> {
     }
 
     private Node createMiddle () {
-        myEditor = new Pane();
-        myEditor.setPrefWidth(700);
-        myEditor.setPrefHeight(200);
-        myEditor.setStyle("-fx-background-color: #d0d0e1;");
-        return myEditor;
+        getEditor().setPrefWidth(700);
+        getEditor().setPrefHeight(200);
+        getEditor().setStyle("-fx-background-color: #d0d0e1;");
+        return getEditor();
     }
 
     private Node createLeft () {
-        myOptions = new ListView<>(getOptions());
-        return myOptions;
+        return getOptions();
     }
 
-    private ObservableList<String> getOptions () {
-        return BundleOperations.getKeysAsObservable(myBundle);
+    protected ObservableList<String> getList () {
+        return BundleOperations.getKeysAsObservable(getMyBundle());
+    }
+
+    private ResourceBundle getMyBundle () {
+        return ResourceBundle.getBundle("defaults/end_condition_options");
     }
 
     private void initListView () {
         getListView().setPrefWidth(200);
         getListView().setPrefHeight(200);
         add(getListView(), 3, 0, 1, 1);
-    }
-
-    public void applyToOptions (EventHandler<MouseEvent> onClick) {
-        myOptions.setOnMouseClicked(onClick);
-    }
-
-    public String getSelection () {
-        return myOptions.getSelectionModel().getSelectedItem();
-    }
-
-    public void populate (Node node) {
-        myEditor.getChildren().clear();
-        myEditor.getChildren().add(node);
     }
 
 }

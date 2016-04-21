@@ -19,14 +19,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import util.BundleOperations;
 
 
-public class GameConditionView extends ListDisplay<ICondition> {
+public class GameConditionView extends ConditionView {
 
-    private static final String PATH = "defaults/ConditionView";
-    ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
-    private Pane myEditor;
-    private ListView<String> myOptions;
+    private static final String PATH = "defaults/game_condition_view";
 
     public GameConditionView (IGame game) {
         super(game.getConditionManager().getConditionListProperty());
@@ -48,17 +46,16 @@ public class GameConditionView extends ListDisplay<ICondition> {
     }
 
     private Node createLeft () {
-        myOptions = new ListView<>(getOptions());
-        return myOptions;
+        return getOptions();
     }
 
     private Node createTop () {
-        myEditor = new Pane();
-        myEditor.setPrefWidth(700);
-        myEditor.setPrefHeight(400);
-        myEditor.setStyle("-fx-background-color: #d0d0e1;");
-        myEditor.getChildren().add(getPlus());
-        return myEditor;
+        
+        getEditor().setPrefWidth(700);
+        getEditor().setPrefHeight(400);
+        getEditor().setStyle("-fx-background-color: #d0d0e1;");
+        getEditor().getChildren().add(getPlus());
+        return getEditor();
     }
 
     private Node getPlus () {
@@ -66,27 +63,12 @@ public class GameConditionView extends ListDisplay<ICondition> {
         return new ImageView(image);
     }
 
-    public void populate (Node node) {
-        myEditor.getChildren().clear();
-        myEditor.getChildren().add(node);
+    protected ObservableList<String> getList () {
+        return BundleOperations.getKeysAsObservable(getBundle());
     }
 
-    public void applyToOptions (EventHandler<MouseEvent> onClick) {
-        myOptions.setOnMouseClicked(onClick);
-    }
-
-    public String getSelection () {
-        return myOptions.getSelectionModel().getSelectedItem();
-    }
-
-    private ObservableList<String> getOptions () {
-        // TODO resource file
-        ObservableList<String> list = FXCollections.observableArrayList();
-        list.add("OnClickCondition");
-        list.add("OnCollisionCondition");
-        list.add("OnGlobalAttribute");
-        list.add("OnSpriteAttribute");
-        return list;
+    private ResourceBundle getBundle () {
+        return ResourceBundle.getBundle(PATH);
     }
 
     public void setCenter (Node specific) {

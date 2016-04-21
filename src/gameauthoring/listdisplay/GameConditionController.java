@@ -10,29 +10,18 @@ import javafx.scene.layout.Pane;
  * @author RyanStPierre
  *
  */
-public class GameConditionController {
-
-    private GameConditionView myView;
-
+public class GameConditionController extends ConditionController {
+    
     private ConditionViewFactory myFactory;
 
-    public GameConditionController (GameConditionView conditionView, IGame game) {
-        myView = conditionView;
+    public GameConditionController (ConditionView conditionView, IGame game) {
+        super(conditionView);
         myFactory = new ConditionViewFactory(game);
-
-        setActions();
-
     }
 
-    private void setActions () {
-
-       myView.applyToOptions(e -> myView.populate(createPopUp(myView.getSelection())));
-
-    }
-
-    private Pane createPopUp (String selection) {
-        return myFactory.get(selection)
-                .show();
+    @Override
+    protected ConditionViewFactory getFactory () {
+        return myFactory;
     }
 
 }
