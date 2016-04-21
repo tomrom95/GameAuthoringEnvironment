@@ -207,12 +207,20 @@ public class Sprite extends DefaultAffectable implements ISprite {
     public double getOrientation () {
         return myMover.getOrientation();
     }
-
+    
+    @Override
+    public void setOrientation (double angle) {
+        myMover.setOrientation(angle);
+        return;
+    }
+    
     @Override
     public BooleanProperty isUgradeable () {
         
         return myUpgrade.isUgradeable();
     }
+
+
     
     
 }

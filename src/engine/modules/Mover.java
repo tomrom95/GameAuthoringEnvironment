@@ -42,14 +42,14 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
         myPath = new ArrayList<>();
     }
 
-    private Coordinate getLocation () {
+    protected Coordinate getLocation () {
         return getParent().getLocation();
     }
 
     protected void move (TimeDuration duration) {
         updateVelocities();
-        double xChange = distance(getXVel().getValueProperty().get(), duration.getSeconds());
-        double yChange = distance(getYVel().getValueProperty().get(), duration.getSeconds());
+        double xChange = distance(getXVel().getValueProperty().get(), durationToDouble(duration));
+        double yChange = distance(getYVel().getValueProperty().get(), durationToDouble(duration));
         move(getNextCoordinate(xChange, yChange));
     }
 
@@ -62,7 +62,7 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
                               getLocation().getY() + yChange);
     }
 
-    private double distance (double rate, double time) {
+    protected double distance (double rate, double time) {
         return rate * time;
     }
 
@@ -118,9 +118,9 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     }
 
     private void updateVelocities () {
-        setXVel(mySpeed.getValueProperty().get() *
+        setXVel(getSpeed() *
                 Math.cos(myOrientation.getValueProperty().get()));
-        setYVel(mySpeed.getValueProperty().get() *
+        setYVel(getSpeed() *
                 Math.sin(myOrientation.getValueProperty().get()));
     }
 
@@ -174,6 +174,10 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
 
     protected Positionable getParent () {
         return myParent;
+    }
+
+    protected double durationToDouble (TimeDuration duration) {
+        return duration.getSeconds();
     }
 
 }
