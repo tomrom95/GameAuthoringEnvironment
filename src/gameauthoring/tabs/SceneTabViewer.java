@@ -56,9 +56,8 @@ public class SceneTabViewer implements ITabViewer {
 
         myLevelTabs = new TabPane();
         Tab createLevelTab = createButtonTab();
-        Tab firstLevelTab = myUIFactory.createTab("Level 1", false, view.draw());
-        myLevelTabs.getSelectionModel().select(firstLevelTab);
-        myLevelTabs.getTabs().addAll(createLevelTab, firstLevelTab);
+        myLevelTabs.getTabs().addAll(createLevelTab);
+        addNewLevel();
     }
 
     @Override
@@ -83,8 +82,8 @@ public class SceneTabViewer implements ITabViewer {
     }
 
     private void addNewLevel () {
-        ObjectProperty<ILevel> newLevel = new SimpleObjectProperty<>(new Level());
-        myLevelManager.createNewLevel(newLevel.get());
+        ILevel newLevel = new Level();
+        myLevelManager.createNewLevel(newLevel);
         LevelEditorView view =
                 new LevelEditorView(myGame, myGame.getLevelManager().getCurrentLevel());
         Tab newLevelTab =

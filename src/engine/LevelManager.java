@@ -103,6 +103,7 @@ public class LevelManager implements ILevelManager {
 
     @Override
     public void createNewLevel (ILevel newLevel) {
+        myLevelPropertyList.add(newLevel);
         myCurrentLevel = newLevel;
     }
 
