@@ -11,6 +11,7 @@ import engine.rendering.IGameGridConfig;
  * @author David Maydew
  * @author Ryan St.Pierre
  * @author Jonathan Im
+ * @author Jin An
  *
  */
 public interface IGame extends IGamePlayable {
@@ -35,6 +36,10 @@ public interface IGame extends IGamePlayable {
      */
     IAttributeManager getAttributeManager ();
     
+    /**
+     * @return the placeableManager object that keeps track of placeable terrains
+     */
+    IPlaceableManager getPlaceableManager ();
     /**
      * @return the object that handles aggregation of obstruction flags into 
      * bitmaps across the game state

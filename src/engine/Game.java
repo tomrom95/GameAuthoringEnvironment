@@ -27,6 +27,7 @@ public class Game implements IGame {
     private IGameInformation myGameInformation;
     private IAttributeManager myAttributeManager;
     private IObstructionManager myObstructionManager;
+    private IPlaceableManager myPlaceableManager;
 
     public Game (IGameGridConfig gridConfiguration) {
         // TODO remove hardcoded strings
@@ -41,6 +42,7 @@ public class Game implements IGame {
         myGameInformation = gameInfo;
         myAttributeManager = new AttributeManager();
         myObstructionManager = new ObstructionManager(this);
+        myPlaceableManager = new PlaceableManager(this);
     }
 
     @Override
@@ -49,6 +51,7 @@ public class Game implements IGame {
         myConditionManager.update(duration);
         myAttributeManager.update(duration);
         myObstructionManager.update(duration);
+        myPlaceableManager.update(duration);
     }
 
     @Override
@@ -140,6 +143,11 @@ public class Game implements IGame {
     @Override
     public IGameGridConfig getGameGridConfig () {
         return myGameGridConfig;
+    }
+
+    @Override
+    public IPlaceableManager getPlaceableManager () {
+        return myPlaceableManager;
     }
 
 }
