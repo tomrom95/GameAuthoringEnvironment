@@ -1,7 +1,10 @@
 package engine;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
+import engine.definitions.AttributeDefinition;
 import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
@@ -41,6 +44,7 @@ public class Game implements IGame {
         myGameInformation = gameInfo;
         myAttributeManager = new AttributeManager();
         myObstructionManager = new ObstructionManager(this);
+        
     }
 
     @Override
@@ -136,10 +140,24 @@ public class Game implements IGame {
     public IObstructionManager getObstructionManager () {
         return myObstructionManager;
     }
+    
+    
 
     @Override
     public IGameGridConfig getGameGridConfig () {
         return myGameGridConfig;
+    }
+
+    @Override
+    public void createAndSortGlobals () {
+        for(AttributeDefinition a: myAuthorshipData.getMyCreatedGlobals().getItems()){
+            if(a.isLevelSpecific()){
+                myLevelManager.getLevels().forEach(c->getAttributeManager().getAttributes().add(a.create()));
+            }
+            else{
+                getAttributeManager().getAttributes().add(a.create());
+            }
+        }
     }
 
 }

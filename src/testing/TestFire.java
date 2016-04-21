@@ -66,8 +66,6 @@ public class TestFire {
     private void createMover () {
         myMover = new ConstantMoverDefinition();
         myMover.setSpeed(100);
-        myMover.setXVel(10);
-        myMover.setYVel(10);
     }
 
     private void createProjectile () {
