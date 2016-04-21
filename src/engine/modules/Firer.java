@@ -74,7 +74,9 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
     }
     
     private void removeSpritesBeyondRange(){
+    	
     	getSpritesBeyondRange().stream().forEach(p -> myGame.getLevelManager().getCurrentLevel().remove(p));
+    	getSpritesBeyondRange().stream().forEach(p -> myFiredSprites.remove(p));
     }
     
     private List<ISprite> getSpritesBeyondRange(){
