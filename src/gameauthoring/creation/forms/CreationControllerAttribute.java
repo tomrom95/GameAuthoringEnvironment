@@ -3,6 +3,7 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.Game;
+import engine.IGame;
 import engine.definitions.AttributeDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
 
@@ -24,8 +25,8 @@ public class CreationControllerAttribute extends CreationController<AttributeDef
      */
     public CreationControllerAttribute (String title,
                                         List<String> subFormStrings,
-                                        Game game) {
-        super(title, subFormStrings, game);
+                                        IGame myGame) {
+        super(title, subFormStrings, myGame);
         // TODO: add this back
         // setMySubFormControllers(getMySFCFactory().createAttributeSubFormControllers(subFormStrings));
 

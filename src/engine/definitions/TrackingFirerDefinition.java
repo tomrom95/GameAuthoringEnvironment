@@ -1,7 +1,6 @@
 package engine.definitions;
 
 import java.util.List;
-import engine.IGame;
 import engine.Positionable;
 import engine.SpriteGroup;
 import engine.modules.TrackingFirer;
@@ -16,13 +15,14 @@ public class TrackingFirerDefinition extends FirerDefinition {
     private SpriteGroup myTargets;
     private List<SpriteType> myTargetsType;
     private double myWaitTime;
-    private IGame myGame;
 
     @Override
     public TrackingFirer create (Positionable parent) {
         myTargetsType = myTargets.getSpriteTypes();
-        return new TrackingFirer(myTargetsType, myGame, myWaitTime, getProjectileDefinition(),
+        TrackingFirer myNewFirer =  new TrackingFirer(myTargetsType, myWaitTime, getProjectileDefinition(),
                                  parent);
+        setSuperVariables(myNewFirer);
+        return myNewFirer;
     }
 
     public SpriteGroup getTargets () {
@@ -37,16 +37,12 @@ public class TrackingFirerDefinition extends FirerDefinition {
         return myWaitTime;
     }
 
-    public void setGame (IGame game) {
-        myGame = game;
-    }
+    
 
     public void setTargets (SpriteGroup targets) {
         myTargets = targets;
     }
 
-    public IGame getGame () {
-        return myGame;
-    }
+  
 
 }

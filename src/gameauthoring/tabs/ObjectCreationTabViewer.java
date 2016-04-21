@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.Game;
+import engine.IGame;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -29,7 +30,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
     private TabPane myTabPane;
     private UIFactory myUIFactory = new UIFactory();
 
-    private Game myGame;
+    private IGame myGame;
 
     private List<CreationController<?>> myCCs;
     private List<IObjectCreationView<?>> myCVs;
@@ -39,8 +40,8 @@ public class ObjectCreationTabViewer implements ITabViewer {
         init();
     }
 
-    public ObjectCreationTabViewer (Game game) {
-        myGame = game;
+    public ObjectCreationTabViewer (IGame iGame) {
+        myGame = iGame;
         initializeLists();
         init();
     }

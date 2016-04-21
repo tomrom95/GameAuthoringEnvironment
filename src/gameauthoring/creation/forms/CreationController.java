@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.*;
 import engine.AuthorshipData;
 import engine.Game;
+import engine.IGame;
 import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
@@ -48,16 +49,16 @@ public abstract class CreationController<T extends IProfilable> {
      */
     public CreationController (String title,
                                List<String> subFormStrings,
-                               Game game) {
+                               IGame myGame) {
 
         myTitle = title;
-        mySFCFactory = new SubFormControllerFactory(game);
+        mySFCFactory = new SubFormControllerFactory(myGame);
         myView = new ObjectCreationView<T>();
         myDefinitionCollection = new DefinitionCollection<>(getMyTitle(),
                                                             getMyObjectCreationView().getItems());
         mySubFormTemplate = subFormStrings;
         myMap = new HashMap<T, List<? extends ISubFormController<T>>>();
-        addToAuthorshipData(game.getAuthorshipData());
+        addToAuthorshipData(myGame.getAuthorshipData());
 
     }
 

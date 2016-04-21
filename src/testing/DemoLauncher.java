@@ -1,6 +1,5 @@
 package testing;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import engine.Attribute;
@@ -8,10 +7,10 @@ import engine.AttributeType;
 import engine.Game;
 import engine.IAttribute;
 import engine.IGame;
-import engine.ILevel;
 import engine.ISpriteGroup;
 import engine.SpriteGroup;
 import engine.conditions.OnCollisionCondition;
+import engine.definitions.AttributeDefinition;
 import engine.definitions.ConstantMoverDefinition;
 import engine.definitions.DirectionalFirerDefinition;
 import engine.definitions.KeyControlDefinition;
@@ -20,7 +19,6 @@ import engine.definitions.PathMoverDefinition;
 import engine.definitions.SpawnerModuleDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.StaticMovementDefintion;
-import engine.definitions.TrackingFirerDefinition;
 import engine.definitions.UserMoverDefinition;
 import engine.definitions.WaveDefinition;
 import engine.definitions.concrete.SpawnerDefinition;
@@ -33,18 +31,12 @@ import engine.modules.PathMover;
 import engine.modules.SpawningModule;
 import engine.profile.Profile;
 import engine.rendering.GameGridConfigNonScaling;
-import engine.rendering.IGameGridConfig;
 import engine.sprite.ISprite;
-import engine.sprite.Sprite;
-import engine.sprite.SpriteType;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameplayer.GamePlayer;
 import graphics.ImageGraphic;
 import javafx.application.Application;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import serialize.GameReader;
-import serialize.GameWriter;
 import util.Coordinate;
 
 
@@ -55,15 +47,15 @@ public class DemoLauncher extends Application {
     @Override
     public void start (Stage primaryStage) throws Exception {
         makeGame();
-        new GameWriter().serialize(new File("/Users/davidmaydew/Desktop/PlantsZombies.xml"),
-                                   myGame);
+       // new GameWriter().serialize(new File("/Users/davidmaydew/Desktop/PlantsZombies.xml"),
+        //                           myGame);
                                    // FileChooser chooser = new FileChooser();
                                    // File f = chooser.showOpenDialog(primaryStage);
 
         // IGame xmlGame = new GameReader().readFile(new
         // File("/Users/davidmaydew/Desktop/test.xml"));
         // IGame xmlGame = new GameReader().readFile(f);
-        // GamePlayer gp = new GamePlayer(myGame);
+         GamePlayer gp = new GamePlayer(myGame);
     }
 
     private void makeGame () {
@@ -283,6 +275,11 @@ public class DemoLauncher extends Application {
 
     private SpriteDefinition createBucket () {
         SpriteDefinition sd1 = new SpriteDefinition();
+        AttributeDefinition health = new AttributeDefinition();
+        health.setType("Health");
+        health.setStartingValue(10);
+        
+        sd1.getAttributes().add(health);
         double c = 8;
         ImageGraphic image = new ImageGraphic(446 / c, 774 / c, "/images/Buckethead_Zombie.png");
         sd1.setProfile(new Profile("BucketEnemy", "Buckets", image));
@@ -294,6 +291,7 @@ public class DemoLauncher extends Application {
 
     private SpriteDefinition createBalloon () {
         SpriteDefinition sd1 = new SpriteDefinition();
+        
         double c = 6;
         ImageGraphic image = new ImageGraphic(332 / c, 600 / c, "/images/balloon_zomb.png");
         sd1.setProfile(new Profile("Balloon Enemy", "Buckets", image));
@@ -341,6 +339,7 @@ public class DemoLauncher extends Application {
 
     private SpriteDefinition createShooterDef () {
         SpriteDefinition sd1 = new SpriteDefinition();
+        
         ImageGraphic plantImage = new ImageGraphic(50, 50, "/images/plant.png");
         sd1.setProfile(new Profile("Tower 1", "Plant", plantImage));
         sd1.setMovementDefinition(getStaticMover());
@@ -359,6 +358,11 @@ public class DemoLauncher extends Application {
         sd1.setProfile(new Profile("Pea", "Pea Bullet", plantImage));
         ConstantMoverDefinition mover = new ConstantMoverDefinition();
         double c = 4;
+<<<<<<< HEAD
+=======
+       // mover.setXVel(.2 / c);
+        //mover.setYVel(.2 / c);
+>>>>>>> 5105d2d87cde9068b80827c39ee02a331ea85e9c
         sd1.setMovementDefinition(mover);
 
         return sd1;

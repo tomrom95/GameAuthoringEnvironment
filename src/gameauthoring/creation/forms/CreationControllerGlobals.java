@@ -3,6 +3,7 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.Game;
+import engine.IGame;
 import engine.definitions.AttributeDefinition;
 
 
@@ -15,8 +16,8 @@ import engine.definitions.AttributeDefinition;
  */
 public class CreationControllerGlobals extends CreationController<AttributeDefinition> {
 
-    public CreationControllerGlobals (String title, List<String> subFormStrings, Game game) {
-        super(title, subFormStrings, game);
+    public CreationControllerGlobals (String title, List<String> subFormStrings, IGame myGame) {
+        super(title, subFormStrings, myGame);
         // TODO Auto-generated constructor stub
     }
 
