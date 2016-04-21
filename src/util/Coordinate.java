@@ -1,7 +1,5 @@
 package util;
 
-import java.io.Serializable;
-
 
 /**
  * Utility class that stores two double values as a coordinate and manipulates them.
@@ -11,7 +9,7 @@ import java.io.Serializable;
  */
 
 public class Coordinate {
-    private final static String FORMATTER = "(%.2f,%.2f)";
+    private static final  String FORMATTER = "(%.2f,%.2f)";
 
     private double myXCoordinate;
     private double myYCoordinate;
@@ -20,7 +18,7 @@ public class Coordinate {
         setX(xCor);
         setY(yCor);
     }
-    
+
     public double getX () {
         return myXCoordinate;
     }
@@ -36,10 +34,15 @@ public class Coordinate {
     private void setY (double yCor) {
         myYCoordinate = yCor;
     }
-    
+
     @Override
     public String toString () {
         return String.format(FORMATTER, getX(), getY());
     }
-   
+
+    public static double distance (Coordinate first, Coordinate second) {
+        return Math.sqrt(Math.pow(first.getX() - second.getX(), 2) -
+                         Math.pow(first.getY() - second.getY(), 2));
+    }
+
 }

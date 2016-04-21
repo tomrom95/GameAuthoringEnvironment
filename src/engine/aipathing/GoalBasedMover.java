@@ -2,6 +2,7 @@ package engine.aipathing;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import engine.IAttribute;
 import engine.IGame;
 import engine.ISpriteGroup;
@@ -9,6 +10,7 @@ import engine.Positionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.modules.Mover;
+import engine.sprite.ISprite;
 import util.BitMap;
 import util.Coordinate;
 import util.TimeDuration;
@@ -48,21 +50,82 @@ public class GoalBasedMover extends Mover {
         Coordinate goal = findNearestGoal();
         List<Coordinate> goalPath = myPather.findPathFor(obstructionMap(), getLocation(), goal);
         Coordinate targetCoordinate =
-                furthestReachablePoint(goalPath, distance(getSpeed(), durationToDouble(duration)));
+                furthestReachablePoint(getLocation(), goalPath,
+                                       distance(getSpeed(), durationToDouble(duration)));
         getParent().setLocation(targetCoordinate);
         getParent().setOrientation(myRotationStrategy.angleFromCoordinates(getLocation(),
                                                                            targetCoordinate));
     }
 
-    private Coordinate furthestReachablePoint (List<Coordinate> waypoints,
+    private Coordinate furthestReachablePoint (Coordinate start,
+                                               List<Coordinate> waypoints,
                                                double distanceTravelable) {
-        // TODO finish this method
-        return null;
+        Coordinate curLoc = start;
+        double distanceTravelled = 0;
+        for (Coordinate next : waypoints) {
+            if (distanceTravelled + Coordinate.distance(curLoc, next) <= distanceTravelable) {
+                distanceTravelled += Coordinate.distance(curLoc, next);
+                curLoc = next;
+            }
+            else {
+                return linearInterp(curLoc, next, distanceTravelable - distanceTravelled);
+            }
+
+        }
+        return curLoc;
     }
 
+    /**
+     * Will generate a coordinate starting from the first coordinate
+     * in the direction of the second coordinate as far as distance
+     * will allow
+     * 
+     * @param start coordinate
+     * @param end coordinate
+     * @param distance how far to move along vector from start to end coordinate
+     * @return
+     */
+    private Coordinate linearInterp (Coordinate start, Coordinate end, double distance) {
+        double deltaX = start.getX() - end.getX();
+        double deltaY = end.getY() - start.getY();
+        if (deltaX == 0 && deltaY == 0) {
+            return start;
+        }
+        double normalizeDistanceConstant =
+                Math.sqrt(Math.pow(distance, 2) / (Math.pow(deltaX, 2) + Math.pow(deltaY, 2)));
+        return new Coordinate(start.getX() + deltaX * normalizeDistanceConstant,
+                              start.getY() + deltaY * normalizeDistanceConstant);
+
+    }
+
+    /**
+     * This method will pick the closest straight line distance
+     * goal to try to path to, we could later if this framework
+     * is not too slow chose instead to run the pather on each
+     * possible goal and pick the one that is closest in actual distance
+     * 
+     * @return the coordinate
+     */
     private Coordinate findNearestGoal () {
-        // TODO finish this method
-        return null;
+        List<ISprite> sprites = getGame().getLevelManager().getCurrentLevel().getSprites();
+        Coordinate myLocation = getLocation();
+        Coordinate closest = getLocation();
+        double leastDistance = Double.MAX_VALUE;
+        for (ISprite sprite : goalSprites(sprites)) {
+            double consideredDistance = Coordinate.distance(sprite.getLocation(), myLocation);
+            if (consideredDistance < leastDistance) {
+                leastDistance = consideredDistance;
+                closest = sprite.getLocation();
+            }
+        }
+        return closest;
+    }
+
+    private List<ISprite> goalSprites (List<ISprite> spriteList) {
+        return spriteList
+                .stream()
+                .filter(sprite -> myGoalGroup.contains(sprite.getType()))
+                .collect(Collectors.toList());
     }
 
     @Override
