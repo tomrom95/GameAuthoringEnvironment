@@ -56,6 +56,4 @@ public class OnSpriteAttributeCondition extends Condition implements ICondition 
         };
     }
 
-  
-
 }

@@ -32,30 +32,26 @@ public class TrackingFirer extends Firer {
     private List<SpriteType> myTargets;
     private SpriteDefinition myProjectile;
     private IAttribute myWaitTime;
-    private EnemyTracker myTracker;
-    private IGame myGame;
     private Positionable mySprite;
     private TimeDuration myTimeSinceFire;
 
     public TrackingFirer (List<SpriteType> targets,
-                          IGame game,
                           double waitTime,
                           SpriteDefinition projectile,
                           Positionable sprite) {
-
+    	super(sprite);
         myTargets = targets;
-        myGame = game;
         myWaitTime = new Attribute(waitTime, AttributeType.FIRE_RATE);
-        myTracker = new EnemyTracker();
         mySprite = sprite;
         myProjectile = projectile;
-        myTimeSinceFire = new TimeDuration();
+        myTimeSinceFire = new TimeDuration(0);
         myTimeSinceFire.setToZero();
 
     }
 
     @Override
     public void update (TimeDuration duration) {
+    	super.update(duration);
         fire(duration);
     }
 
@@ -68,14 +64,16 @@ public class TrackingFirer extends Firer {
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
                                               mySprite.getLocation().getY()));
-            bullet.getMovementStrategy().setOrientation(myTracker.calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
-            myGame.bufferedAdd(bullet);
+            bullet.getMovementStrategy().setOrientation(getTracker().calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
+            getGame().bufferedAdd(bullet);
+            getFiredSprites().add(bullet);
             myTimeSinceFire.setToZero();
+            
         }
     }
 
     private List<ISprite> getTargets () {
-        return myGame.getLevelManager().getCurrentLevel().getSprites().stream()
+        return getGame().getLevelManager().getCurrentLevel().getSprites().stream()
                 .filter(sprite -> myTargets.contains(sprite.getType()))
                 .collect(Collectors.toList());
     }

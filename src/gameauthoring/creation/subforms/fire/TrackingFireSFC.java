@@ -1,6 +1,5 @@
 package gameauthoring.creation.subforms.fire;
 
-
 import engine.IGame;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.TrackingFirerDefinition;
@@ -17,17 +16,17 @@ import gameauthoring.creation.subforms.ISubFormView;
  *
  */
 
-public class TrackingFireSubFormController implements ISubFormControllerSprite {
+public class TrackingFireSFC implements ISubFormControllerSprite {
 
-    private TrackingFireSubFormView myView;
+    private TrackingFirerSFV myView;
     private IFormDataManager myFormData;
     private IGame myGame;
     private FiringSubFormController myFiringSFC;
     private double myDefaultWaitTime = 0;
+    private TrackingFirerDefinition myFireDef = new TrackingFirerDefinition();
 
-    public TrackingFireSubFormController (IGame game,
-                                          FiringSubFormController firingSubFormController) {
-        myView = new TrackingFireSubFormView(game.getAuthorshipData().getMyCreatedGroups());
+    public TrackingFireSFC (IGame game, FiringSubFormController firingSubFormController) {
+        myView = new TrackingFirerSFV(game.getAuthorshipData().getMyCreatedGroups());
         myFormData = myView.getData();
         myGame = game;
         myFiringSFC = firingSubFormController;
@@ -44,16 +43,16 @@ public class TrackingFireSubFormController implements ISubFormControllerSprite {
 
     @Override
     public void updateItem (SpriteDefinition item) {
-        TrackingFirerDefinition trackingFireDef = new TrackingFirerDefinition();
-        trackingFireDef.setGame(myGame);
+        // myFiringSFC.removeCurrentFirer(item); TODO: fix this issue
+        myFireDef.setGame(myGame);
         Double waitTime =
                 Double.valueOf(myFormData.getValueProperty(myView.getWaitTimeKey()).get());
-        trackingFireDef.setWaitTime(waitTime);
-        trackingFireDef.setTargets(myView.getTargetsCoice().getSelected());
-        trackingFireDef.setProjectileDefinition(myFiringSFC.getMyMissile());
-
-        item.addModule(trackingFireDef);
-
+        myFireDef.setWaitTime(waitTime);
+        myFireDef.setTargets(myView.getTargetsCoice().getSelected());
+        myFireDef.setProjectileDefinition(myFiringSFC.getMyMissile());
+        if (!item.getModuleDefinitions().contains(myFireDef)) {
+            item.addModule(myFireDef);
+        }
     }
 
     @Override
