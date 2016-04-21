@@ -8,18 +8,14 @@ import engine.SpriteGroup;
 import engine.conditions.ICondition;
 import engine.conditions.OnClickCondition;
 import engine.definitions.EventPackageDefinition;
-import engine.events.EventType;
-import engine.events.GameEvent;
-import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 
 
 public class ClickEndView extends SubConditionView {
 
-    ResourceBundle myEndOptions = ResourceBundle.getBundle("defaults/end_condition_options");
+    private EndOptions myEndOptions = new EndOptions();
     private ComboBox<SpriteGroup> mySpriteGroup;
     private IGame myGame;
-    private ComboBox<String> myEventChoices;
 
     public ClickEndView (IGame game, ILevel level) {
         super(level.getConditionsListProperty());
@@ -30,15 +26,14 @@ public class ClickEndView extends SubConditionView {
     @Override
     protected void initBoxes () {
         mySpriteGroup = createComboBox(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
-        myEventChoices =
-                createStringComboBox(FXCollections.observableArrayList(getKeys(myEndOptions)));
+        addStringComboBox(myEndOptions.getBox());
     }
 
     @Override
     protected ICondition subCreation () {
         return new OnClickCondition(myGame, getTargettedSprite(),
                                     new EventPackageDefinition().create(),
-                                    getGlobal());
+                                    myEndOptions.getGlobal());
     }
 
     private IEventPackage getTargettedSprite () {
@@ -47,21 +42,8 @@ public class ClickEndView extends SubConditionView {
         return spriteTarget.create();
     }
 
-    protected IEventPackage getGlobal () {
-        EventPackageDefinition global = new EventPackageDefinition();
-        global.getMyEventsList().add(new GameEvent(getEventType()));
-        return global.create();
-    }
-
-    protected EventType getEventType () {
-        return new EventTypeFactory()
-                .interpret(myEventChoices.getSelectionModel().getSelectedItem());
-    }
-
     @Override
     protected String getLabelKey (String key) {
-
-        return "GroupA";
+        return ResourceBundle.getBundle("defaults/end_click").getString(key);
     }
-
 }

@@ -1,5 +1,6 @@
 package gameauthoring.listdisplay;
 
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import engine.AttributeType;
 import engine.IEventPackage;
@@ -13,7 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 
 
-public class SpriteEndView extends EndView {
+public class SpriteEndView extends AttributeEndView {
 
     private ComboBox<SpriteGroup> mySpriteGroup;
     private ComboBox<EventPackageDefinition> mySpriteEvent;
@@ -47,6 +48,11 @@ public class SpriteEndView extends EndView {
         EventPackageDefinition self = mySpriteEvent.getSelectionModel().getSelectedItem();
         self.setMySpriteGroup(mySpriteGroup.getSelectionModel().getSelectedItem());
         return self.create();
+    }
+    
+    @Override
+    protected String getLabelKey (String key) {
+        return ResourceBundle.getBundle("defaults/end_sprite").getString(key);
     }
     
 }

@@ -1,5 +1,6 @@
 package gameauthoring.listdisplay;
 
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import engine.AttributeType;
 import engine.IGame;
@@ -11,7 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
-public class GlobalEndView extends EndView {
+public class GlobalEndView extends AttributeEndView {
 
     public GlobalEndView (IGame game, ILevel level) {
         super(game, level, FXCollections
@@ -19,16 +20,17 @@ public class GlobalEndView extends EndView {
                         .stream()
                         .map(atty -> atty.getType()).collect(Collectors.toList())));
     }
-    
-    @Override
-    protected EventType getEventType () {
-        return EventType.LOSE;
-    }
-    
+   
     @Override
     protected ICondition subCreation () {
         return new OnGlobalAttributeCondition(getGame(), getAttributeType(), createPredicate(),
                                               createEmpty(), getGlobal());
     }
+    
+    @Override
+    protected String getLabelKey (String key) {
+        return ResourceBundle.getBundle("defaults/end_global").getString(key);
+    }
+
 
 }

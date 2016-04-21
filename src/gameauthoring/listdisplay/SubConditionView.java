@@ -64,6 +64,10 @@ public abstract class SubConditionView {
         vbox.getChildren().addAll(node1, node2);
         return vbox;
     }
+    
+    protected void addStringComboBox (ComboBox<String> combo) {
+        myNodes.add(combo);      
+    }
 
     protected void addCellFactory (ComboBox<? extends IProfilable> comboBox) {
         comboBox.setCellFactory(c -> new NameCellView<>());
@@ -139,19 +143,6 @@ public abstract class SubConditionView {
         myNodes.add(text);
         return text;
     }
-    
-    /**
-     * ResourceBundle is passed here so it can be used by subclasses to avoid duplicated code
-     * @param bundle
-     * @return
-     */
-
-    protected List<String> getKeys (ResourceBundle bundle) {
-        return Collections.list(bundle.getKeys()).stream()
-                .map(key -> bundle.getString(key))
-                .collect(Collectors.toList());
-    }
-
-
+   
     protected abstract String getLabelKey (String key);
 }

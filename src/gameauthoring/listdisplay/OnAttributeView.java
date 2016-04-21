@@ -16,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import util.BundleOperations;
 import util.PredicateGenerator;
 
 
@@ -38,7 +39,7 @@ public abstract class OnAttributeView extends SubConditionView {
 
     protected void initBoxes () {
         myAttributeType = createComboBox(myAttributeStorage);
-        myChecks = createStringComboBox(FXCollections.observableArrayList(getKeys(myMathBundle)));
+        myChecks = createStringComboBox(BundleOperations.getKeysAsObservable(myMathBundle));
         myValueToCompare = createTextField();
     }
 
