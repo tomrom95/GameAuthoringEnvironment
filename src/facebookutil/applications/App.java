@@ -1,7 +1,7 @@
 package facebookutil.applications;
 
 import java.util.List;
-import facebookutil.HighScoreBoard;
+import facebookutil.scores.HighScoreBoard;
 import facebookutil.user.IUser;
 import facebookutil.user.profiles.SocialProfile;
 

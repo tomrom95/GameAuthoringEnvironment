@@ -4,7 +4,8 @@ import facebookutil.user.profiles.UserProfile;
 
 
 /**
- * This interface extends SocialAction and manages methods specifically for a Challenge action
+ * This helps users challenge users. In the case of facebook, this is a facebook game request.
+ * In something else like twitter, it might be tweeting at someone
  *
  */
 public interface Challenge extends SocialAction {
