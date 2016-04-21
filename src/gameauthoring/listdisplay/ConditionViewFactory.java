@@ -8,9 +8,12 @@ import engine.ILevel;
 
 public class ConditionViewFactory {
 
-    private static final String path = "defaults/condition_view_fact";
-    private ResourceBundle myBundle = ResourceBundle.getBundle(path);
+    private static final String PATH = "defaults/condition_view_fact";
+    private static final String DIVIDER = ",";
+    private static final int FIRST_INDEX = 0;
+    private static final int ONE_ITEM = 1;
     
+    private ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
     private IGame myGame;
     private ILevel myLevel;
 
@@ -36,14 +39,18 @@ public class ConditionViewFactory {
                                                      IllegalArgumentException,
                                                      InvocationTargetException, SecurityException {     
         String name = (myBundle.getString(key));
-        if (name.split(",").length == 1) {
+        if (name.split(DIVIDER).length == ONE_ITEM) {
             Class<?> c = Class.forName(name);
             return (SubConditionView) c.getConstructors()[0].newInstance(myGame);
         }
         else {
-            Class<?> c = Class.forName(name.split(",")[0]);
+            Class<?> c = Class.forName(getFirst(name));
             return (SubConditionView) c.getConstructors()[0].newInstance(myGame, myLevel);
         }
 
+    }
+
+    private String getFirst (String name) {
+        return name.split(DIVIDER)[FIRST_INDEX];
     }
 }
