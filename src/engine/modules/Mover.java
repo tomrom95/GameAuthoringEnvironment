@@ -161,9 +161,9 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     public double getOrientation () {
         return myOrientation.getValueProperty().get();
     }
+
     
-    @Override
-    
+    @Override 
     public double getSpeed(){
     	return mySpeed.getValueProperty().get();
     }

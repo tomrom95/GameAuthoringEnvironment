@@ -1,11 +1,21 @@
 package facebookutil.user;
 
-
+/**
+ * Class to help with managing emails. Easier to deal with emails
+ * in terms of a name and domain
+ * @author Tommy
+ *
+ */
 public class Email {
     private static final String AT_UNICODE = "\\\\u0040";
     private String myName;
     
     private String myDomain;
+    
+    public Email (String name, String domain) {
+        myName = name;
+        myDomain = domain;
+    }
     
     public Email (String address) {
         if (address != null) {

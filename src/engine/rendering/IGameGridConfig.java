@@ -17,7 +17,7 @@ public interface IGameGridConfig {
      * @return The width of the virtual pixel grid to be considered the
      *         entirety of actual game space
      */
-    double getGridWidth ();
+    int getGridWidth ();
 
     /**
      * The height of the virtual pixel grid to be considered the entirety
@@ -25,7 +25,7 @@ public interface IGameGridConfig {
      * 
      * @return
      */
-    double getGridHeight ();
+    int getGridHeight ();
 
     /**
      * Will need to use this method in for example the event handlers in order to

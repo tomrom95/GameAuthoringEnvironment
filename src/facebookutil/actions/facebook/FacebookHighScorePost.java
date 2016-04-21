@@ -1,22 +1,19 @@
 package facebookutil.actions.facebook;
 
-import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.github.scribejava.core.oauth.OAuth20Service;
-import facebookutil.HighScoreBoard;
-import facebookutil.actions.HighScoreBoardPost;
+import facebookutil.SocialType;
+import facebookutil.actions.HighScorePost;
+import facebookutil.scores.HighScoreBoard;
+import facebookutil.scores.HighScoreMessage;
+import facebookutil.scores.ScoreOrder;
+import facebookutil.user.IUser;
 
-public class FacebookHighScorePost implements HighScoreBoardPost {
-
-    @Override
-    public void send (OAuth20Service service, OAuth2AccessToken token) {
-        // TODO Auto-generated method stub
-        
-    }
+public class FacebookHighScorePost extends FacebookCustomPost implements HighScorePost {
 
     @Override
-    public void createBoardPost (HighScoreBoard board) {
-        // TODO Auto-generated method stub
-        
+    public void createPost (HighScoreBoard board, IUser user, String gameName, ScoreOrder order) {
+        HighScoreMessage message = new HighScoreMessage(board);
+        String boardString = message.getUserScoreString(user, gameName, order);
+        createPost(boardString, user.getProfiles().getProfileByType(SocialType.FACEBOOK));
     }
 
 }

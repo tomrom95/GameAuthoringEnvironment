@@ -25,19 +25,16 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
 
     @Override
     public void applyEffect (IEffect effect) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
-        // TODO Auto-generated method stub
 
     }
 
@@ -47,13 +44,13 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
         attributes.add(myAmmo);
         attributes.addAll(getSpecificAttributes());
         return attributes;
+
     }
 
     protected abstract List<IAttribute> getSpecificAttributes();
    
     @Override
     public void update (TimeDuration duration) {
-        // TODO Auto-generated method stub
 
     }
 
