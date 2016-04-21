@@ -9,6 +9,10 @@ import facebookutil.login.LoginObject;
 import facebookutil.user.Email;
 import facebookutil.user.IUser;
 import facebookutil.user.User;
+import facebookutil.xstream.HighScoreReader;
+import facebookutil.xstream.HighScoreWriter;
+import facebookutil.xstream.UserReader;
+import facebookutil.xstream.UserWriter;
 
 /**
  * Class that implements the main java social interface.
@@ -26,7 +30,7 @@ public class JavaSocial implements IJavaSocial {
     
     public JavaSocial () {
         myUsers = loadUsers();
-        myHighScores = new HighScoreBoard ();
+        myHighScores = new HighScoreReader().getBoard();
         myApps = new AppMap();
         myApps.loginApps();
     }
@@ -80,10 +84,14 @@ public class JavaSocial implements IJavaSocial {
 
     @Override
     public IUser createNewUser (Email email) {
-        System.out.println("Creating new User");
-        IUser newUser = new User(email);
-        myUsers.add(newUser);
-        return newUser;
+        if (getUserByEmail(email) == null) {
+            System.out.println("Creating new User");
+            IUser newUser = new User(email);
+            myUsers.add(newUser);
+            return newUser;
+        }
+        System.out.println("User already exists");
+        return getUserByEmail(email);
     }
 
     /**
@@ -103,9 +111,11 @@ public class JavaSocial implements IJavaSocial {
     }
 
     @Override
-    public void saveUsers () {
+    public void saveState () {
         UserWriter writer = new UserWriter();
         writer.write(getUsers());
+        HighScoreWriter scoreWriter = new HighScoreWriter();
+        scoreWriter.write(myHighScores);
     }
 
 

@@ -10,9 +10,12 @@ import java.util.Comparator;
  */
 public enum ScoreOrder {
 
-                        SCORE(compareScore()),
+                        HIGHEST(compareScore().reversed()),
+                        LOWEST(compareScore()),
                         ALPHABETICAL(compareAlphabetical()),
-                        DATE(compareDate());
+                        REVERSE_ALPHABETICAL(compareAlphabetical().reversed()),
+                        NEWEST(compareDate().reversed()),
+                        OLDEST(compareDate());
 
     private Comparator<Score> myComparator;
 
@@ -25,12 +28,8 @@ public enum ScoreOrder {
      * @param reverse - true if you want to reverse the order
      * @return
      */
-    public Comparator<Score> getComparator (boolean reverse) {
-        if (!reverse){
-            return myComparator;
-        } else {
-            return myComparator.reversed();
-        }
+    public Comparator<Score> getComparator () {
+        return myComparator;
     }
 
     /**

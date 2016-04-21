@@ -3,6 +3,8 @@ package facebookutil.test;
 import facebookutil.JavaSocial;
 import facebookutil.SocialType;
 import facebookutil.applications.App;
+import facebookutil.scores.ScoreOrder;
+import facebookutil.user.Email;
 import facebookutil.user.IUser;
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -29,8 +31,18 @@ public class TestFacebook extends Application{
     public void start (Stage stage) {
         mySocial = new JavaSocial();
         mySocial.loginUser(SocialType.FACEBOOK);
-        stage.setScene( testLogin());
+        addScores(mySocial);
+        stage.setScene(testLogin());
         stage.show();
+    }
+
+    private void addScores (JavaSocial social) {
+        IUser user1 = social.createNewUser(new Email("fake", "fake.com"));
+        IUser user2 = social.createNewUser(new Email("other", "other.com"));
+        IUser user3 = social.createNewUser(new Email("last", "last.com"));
+        social.getHighScoreBoard().addNewScore("game1", user1, 50);
+        social.getHighScoreBoard().addNewScore("game1", user2, 1000);
+        social.getHighScoreBoard().addNewScore("game1", user3, 3000);
     }
 
     private Scene testLogin () {
@@ -47,7 +59,7 @@ public class TestFacebook extends Application{
 
     private Node makeLogout () {
         Button button = new Button("Logout");
-        button.setOnMouseClicked(e -> mySocial.saveUsers());
+        button.setOnMouseClicked(e -> mySocial.saveState());
         return button;
     }
 
@@ -82,13 +94,17 @@ public class TestFacebook extends Application{
 
     private void post (TextField field) {
         myUser = mySocial.getActiveUser();
-        //myApp = mySocial.getApplications().getAppByType(SocialType.Facebook);
+        mySocial.getHighScoreBoard().addNewScore("game1", myUser, 299);
         if (myUser == null) {
             System.out.println("Login first");
             return;
         }
         myUser.getProfiles().getActiveProfile().customPost(field.getText());
-        //myApp.customPost(field.getText(), myApp);
+        myUser.getProfiles().getActiveProfile().highScoreBoardPost(mySocial.getHighScoreBoard(),
+                                                                   "game1", ScoreOrder.HIGHEST);
+        myUser.getProfiles().getActiveProfile().highScorePost(mySocial.getHighScoreBoard(), "game1",
+                                                              myUser, ScoreOrder.HIGHEST);
+        myUser.getProfiles().getActiveProfile().challenge(myUser, myUser, "Hey come play tower defense");
     }
 
     public static void main (String[] args) {
