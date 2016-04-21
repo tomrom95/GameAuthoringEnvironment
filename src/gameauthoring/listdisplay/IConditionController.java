@@ -1,4 +1,4 @@
-package gameauthoring.conditiontab;
+package gameauthoring.listdisplay;
 
 /**
  * Controls the user input for winning/losing conditions
@@ -6,6 +6,6 @@ package gameauthoring.conditiontab;
  * @author Jin An
  *
  */
-public interface ConditionController {
+public interface IConditionController {
 
 }

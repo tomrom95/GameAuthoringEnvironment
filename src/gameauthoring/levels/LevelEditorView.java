@@ -8,6 +8,7 @@ import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.entryviews.IListCellView;
 import gameauthoring.creation.entryviews.TextEntryView;
+import gameauthoring.listdisplay.LevelConditionView;
 import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.Glyph;
 
@@ -51,14 +52,17 @@ public class LevelEditorView implements Glyph {
     private String myWinConditionKey = "Win Condition: ";
     private String myLoseConditionKey = "Lose Condition: ";
     // TODO
-    private IEntryView myNumberEnemy = new TextEntryView(myNumberEnemyKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myRate = new TextEntryView(myRateKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myWinCondition = new TextEntryView(myWinConditionKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myLoseCondition = new TextEntryView(myLoseConditionKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+//    private IEntryView myNumberEnemy = new TextEntryView(myNumberEnemyKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+//    private IEntryView myRate = new TextEntryView(myRateKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+//    private IEntryView myWinCondition = new TextEntryView(myWinConditionKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+//    private IEntryView myLoseCondition = new TextEntryView(myLoseConditionKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
 
+    LevelConditionView myConditions; 
+    
     public LevelEditorView (IGame gameModel, ILevel level) {
         myGame = gameModel;
         myLevel = level;
+        myConditions = new LevelConditionView(myGame, myLevel);
     }
 
     @Override
@@ -72,21 +76,14 @@ public class LevelEditorView implements Glyph {
     private Node createBottomForms () {
         HBox box = new HBox(10);
         box.setAlignment(Pos.BOTTOM_CENTER);
-        box.getChildren().add(createWavesForm());
         box.getChildren().add(createWinLoseForm());
-
+        
         return box;
     }
 
     private Node createWinLoseForm () {
-        // TODO
-        GridPane form = new GridPane();
-        form.setAlignment(Pos.CENTER_RIGHT);
-        form.setMinHeight(300);
-        form.setMinWidth(200);
-        form.add(myNumberEnemy.draw(), 0, 1);
-        form.add(myRate.draw(), 0, 2);
-        return form;
+        // TODO 
+        return myConditions.draw();
     }
 
     private Node createWavesForm () {
@@ -95,8 +92,8 @@ public class LevelEditorView implements Glyph {
         form.setAlignment(Pos.CENTER_LEFT);
         form.setMinHeight(300);
         form.setMinWidth(200);
-        form.add(myWinCondition.draw(), 0, 1);
-        form.add(myLoseCondition.draw(), 0, 2);
+        //form.add(myWinCondition.draw(), 0, 1);
+        //form.add(myLoseCondition.draw(), 0, 2);
         return form;
     }
 }

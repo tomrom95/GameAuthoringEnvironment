@@ -1,16 +1,23 @@
 package engine;
 
+import engine.profile.IProfilable;
+import engine.profile.IProfile;
+import engine.profile.Profile;
+
+
 /**
  * This class represents an in-game type that is based on a string backing. It handles equality
  * checks based off this string
  *
  */
-public abstract class StringBasedType {
+public abstract class StringBasedType implements IProfilable {
 
     private String myType;
+    private IProfile myProfile;
 
     public StringBasedType (String type) {
         myType = type;
+        myProfile = new Profile(myType);
     }
 
     @Override
@@ -46,5 +53,15 @@ public abstract class StringBasedType {
 
     public String getType () {
         return myType;
+    }
+
+    @Override
+    public IProfile getProfile () {
+        return myProfile;
+    }
+
+    @Override
+    public void setProfile (IProfile profile) {
+        myProfile = profile;
     }
 }

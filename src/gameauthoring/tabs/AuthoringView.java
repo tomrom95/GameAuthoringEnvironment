@@ -5,7 +5,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.Game;
 import engine.IGame;
-import gameauthoring.conditiontab.ConditionView;
+import gameauthoring.listdisplay.GameConditionView;
 import gameauthoring.util.UIFactory;
 import gameplayer.GamePlayer;
 import javafx.event.ActionEvent;
@@ -47,7 +47,7 @@ public class AuthoringView implements IAuthoringView {
     private GameTabViewer myGameTabViewer;
     private ObjectCreationTabViewer myCreationTabViewer;
     private SceneTabViewer mySceneTabViewer;
-    private ConditionView myConditionView;
+    private GameConditionView myConditionView;
     private BorderPane myLayout;
     private IGame myGame;
     public static final int WIDTH = 1200;
@@ -95,7 +95,7 @@ public class AuthoringView implements IAuthoringView {
     private void initializeTabViewers () {
         myGameTabViewer = new GameTabViewer(getMyGame());
         myCreationTabViewer = new ObjectCreationTabViewer(getMyGame());
-        myConditionView = new ConditionView(getMyGame());
+        myConditionView = new GameConditionView(getMyGame());
         mySceneTabViewer = new SceneTabViewer(getMyGame());
     }
 
