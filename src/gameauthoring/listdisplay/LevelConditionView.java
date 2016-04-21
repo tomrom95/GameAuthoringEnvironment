@@ -43,7 +43,7 @@ public class LevelConditionView extends ConditionView {
     }
 
     protected ObservableList<String> getList () {
-        return BundleOperations.getKeysAsObservable(getMyBundle());
+        return BundleOperations.getValuesAsObservable(getMyBundle());
     }
 
     private ResourceBundle getMyBundle () {

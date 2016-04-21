@@ -8,6 +8,9 @@ import engine.ILevel;
 
 public class ConditionViewFactory {
 
+    private static final String path = "defaults/condition_view_fact";
+    private ResourceBundle myBundle = ResourceBundle.getBundle(path);
+    
     private IGame myGame;
     private ILevel myLevel;
 
@@ -20,44 +23,27 @@ public class ConditionViewFactory {
         myLevel = level;
     }
 
-    public SubConditionView get (String selection) {
+    public SubConditionView get (String selection) throws ClassNotFoundException,
+                                                   InstantiationException, IllegalAccessException,
+                                                   IllegalArgumentException,
+                                                   InvocationTargetException, SecurityException {
         selection.trim();
-        // TODO replace with reflection
-        switch (selection) {
-            case "OnClickCondition":
-                return test(myGame, "OnClickCondition");
-            case "OnCollisionCondition":
-                return new OnCollisionView(myGame);
-            case "OnGlobalAttribute":
-                return new OnGlobalView(myGame);
-            case "OnSpriteAttribute":
-                return new OnSpriteView(myGame);
-            case "Global Attribute End Condition":
-                return new GlobalEndView(myGame, myLevel);
-            case "Sprite Attribute End Condition":
-                return new SpriteEndView(myGame, myLevel);
-            case "On Click End Condition":
-                return new ClickEndView(myGame, myLevel);
+        return getSubView(selection);
+    }
+
+    private SubConditionView getSubView (String key) throws ClassNotFoundException,
+                                                     InstantiationException, IllegalAccessException,
+                                                     IllegalArgumentException,
+                                                     InvocationTargetException, SecurityException {     
+        String name = (myBundle.getString(key));
+        if (name.split(",").length == 1) {
+            Class<?> c = Class.forName(name);
+            return (SubConditionView) c.getConstructors()[0].newInstance(myGame);
+        }
+        else {
+            Class<?> c = Class.forName(name.split(",")[0]);
+            return (SubConditionView) c.getConstructors()[0].newInstance(myGame, myLevel);
         }
 
-        return null;
-    }
-
-    private SubConditionView test (IGame game, String key) {
-       String path = "defaults/condition_view_fact";
-       ResourceBundle bundle = ResourceBundle.getBundle(path);
-       String name = (bundle.getString(key));
-       try {
-        Class<?> c = Class.forName(name);
-        return (SubConditionView) c.getConstructors()[0].newInstance(game);
-    }
-        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | SecurityException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-    }
-       
-       
-       
-       return new OnCollisionView(game);
     }
 }

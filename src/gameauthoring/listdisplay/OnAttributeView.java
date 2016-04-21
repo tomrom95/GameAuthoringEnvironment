@@ -39,7 +39,7 @@ public abstract class OnAttributeView extends SubConditionView {
 
     protected void initBoxes () {
         myAttributeType = createComboBox(myAttributeStorage);
-        myChecks = createStringComboBox(BundleOperations.getKeysAsObservable(myMathBundle));
+        myChecks = createStringComboBox(BundleOperations.getValuesAsObservable(myMathBundle));
         myValueToCompare = createTextField();
     }
 

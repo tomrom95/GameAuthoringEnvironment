@@ -64,7 +64,7 @@ public class GameConditionView extends ConditionView {
     }
 
     protected ObservableList<String> getList () {
-        return BundleOperations.getKeysAsObservable(getBundle());
+        return BundleOperations.getValuesAsObservable(getBundle());
     }
 
     private ResourceBundle getBundle () {

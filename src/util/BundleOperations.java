@@ -19,11 +19,16 @@ public class BundleOperations {
      * @return
      */
 
-    public final static ObservableList<String> getKeysAsObservable (ResourceBundle bundle) {
+    public static final ObservableList<String> getValuesAsObservable (ResourceBundle bundle) {
         List<String> list = Collections.list(bundle.getKeys()).stream()
                 .map(key -> bundle.getString(key))
                 .collect(Collectors.toList());
         return FXCollections.observableArrayList(list);
     }
+    
+    public static final ObservableList<String> getKeysAsObservable (ResourceBundle bundle) {
+        return FXCollections.observableArrayList(bundle.keySet());
+    }
+
 
 }
