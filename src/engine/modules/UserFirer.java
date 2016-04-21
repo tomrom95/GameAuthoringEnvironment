@@ -5,6 +5,7 @@ import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
 import engine.IGame;
+import engine.Positionable;
 import engine.definitions.SpriteDefinition;
 import engine.effects.IEffect;
 import engine.interactionevents.InputType;
@@ -24,13 +25,16 @@ import util.Key;
  */
 public class UserFirer extends Firer {
 
-    private Key myFireKey;
+ 
+
+	private Key myFireKey;
     private List<SpriteDefinition> myProjectileList;
     private SpriteDefinition myProjectile;
     private IAttribute myAmmo;
     private IGame myGame;
 
-    public UserFirer (SpriteDefinition fireSprite, Key fireKey, IGame game, double ammo) {
+    public UserFirer (Positionable parent, SpriteDefinition fireSprite, Key fireKey, IGame game, double ammo) {
+    	super(parent);
         myFireKey = fireKey;
         myProjectile = fireSprite;
         myGame = game;

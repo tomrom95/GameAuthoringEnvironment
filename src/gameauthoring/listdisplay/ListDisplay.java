@@ -1,4 +1,4 @@
-package gameauthoring.conditiontab;
+package gameauthoring.listdisplay;
 
 import engine.profile.IProfilable;
 import gameauthoring.creation.cellviews.ProfileCellView;
@@ -20,21 +20,17 @@ public class ListDisplay<T extends IProfilable> implements Glyph {
         myPane = new GridPane();
         myListView = new ListView<>(list);
         myListView.setCellFactory(c -> new ProfileCellView<T>());
-        init();
-
-    }
-
-    private void init () {
-        
-        myListView.setPrefWidth(1100);
-        myListView.setPrefHeight(200);
-        add(myListView, 0, 3, 2, 1);
 
     }
     
     protected void add (Node node, int colStart, int rowStart, int colSpan, int rowSpan) {
         getPane().add(node, colStart, rowStart, colSpan, rowSpan);
     }
+    
+    protected ListView<T> getListView () {
+        return myListView;
+    }
+    
 
     @Override
     public Node draw () {

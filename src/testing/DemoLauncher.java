@@ -358,8 +358,11 @@ public class DemoLauncher extends Application {
         sd1.setProfile(new Profile("Pea", "Pea Bullet", plantImage));
         ConstantMoverDefinition mover = new ConstantMoverDefinition();
         double c = 4;
+<<<<<<< HEAD
+=======
        // mover.setXVel(.2 / c);
         //mover.setYVel(.2 / c);
+>>>>>>> 5105d2d87cde9068b80827c39ee02a331ea85e9c
         sd1.setMovementDefinition(mover);
 
         return sd1;
