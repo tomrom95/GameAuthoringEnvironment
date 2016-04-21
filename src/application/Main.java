@@ -1,8 +1,8 @@
 package application;
 
-import gameauthoring.userinterface.MainUserInterface;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import splash.MainUserInterface;
 
 
 public class Main extends Application {
