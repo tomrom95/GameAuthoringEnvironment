@@ -35,11 +35,7 @@ public interface IGame extends IGamePlayable {
      * @return the attribute manager for game-wide global attributes
      */
     IAttributeManager getAttributeManager ();
-    
-    /**
-     * @return the placeableManager object that keeps track of placeable terrains
-     */
-    IPlaceableManager getPlaceableManager ();
+
     /**
      * @return the object that handles aggregation of obstruction flags into 
      * bitmaps across the game state

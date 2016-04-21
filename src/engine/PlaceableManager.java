@@ -11,6 +11,10 @@ public class PlaceableManager implements IPlaceableManager {
     private ILevel myLevel;
     private BitMap myCurrentPlaceableMap;
 
+    public PlaceableManager (int width, int height) {
+        myCurrentPlaceableMap = new BitMap(width,height);
+    }
+    
     public PlaceableManager (ILevel level) {
         myLevel = level;
         myCurrentPlaceableMap = getBitMapForCurrentLevel(getLevel());
@@ -19,7 +23,7 @@ public class PlaceableManager implements IPlaceableManager {
     private BitMap getBitMapForCurrentLevel (ILevel level) {
         // TODO: Return the bitmap saved from authoring environment
         // TODO: DEFAULT width and height
-        return new BitMap(800, 1000);
+        return new BitMap(1000, 800);
     }
 
     private ILevel getLevel () {
