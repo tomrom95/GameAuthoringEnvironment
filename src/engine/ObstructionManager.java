@@ -63,9 +63,9 @@ public class ObstructionManager implements IObstructionManager {
     }
 
     private BitMap getBitMapSizedForCurrentGame (IGame game) {
-        int gameWidth = game.getGameGridConfig().getGridWidth();
-        int gameHeight = game.getGameGridConfig().getGridHeight();
-        return new BitMap(gameWidth, gameHeight);
+//        int gameWidth = game.getGameGridConfig().getGridWidth();
+//        int gameHeight = game.getGameGridConfig().getGridHeight();
+        return new BitMap(800, 1000);
     }
 
 }

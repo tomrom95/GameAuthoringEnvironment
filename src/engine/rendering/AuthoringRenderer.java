@@ -29,6 +29,12 @@ public class AuthoringRenderer extends LevelRenderer {
     }
 
     @Override
+    public void render () {
+        drawBackground(getBackgroundURL());
+        drawSprites();
+    }
+
+    @Override
     void drawSprites () {
         List<Node> currentEngineConvertedNodeList = getAndUpdateEngineNodeList();
         removeScreenNodesNotInEngine(currentEngineConvertedNodeList);

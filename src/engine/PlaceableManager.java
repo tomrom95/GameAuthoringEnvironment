@@ -8,37 +8,39 @@ import util.TimeDuration;
 
 public class PlaceableManager implements IPlaceableManager {
 
-    private IGame myGame;
+    private ILevel myLevel;
     private BitMap myCurrentPlaceableMap;
 
-    public PlaceableManager (IGame game) {
-        myGame = game;
-        myCurrentPlaceableMap = getBitMapForCurrentGame(getGame());
+    public PlaceableManager (ILevel level) {
+        myLevel = level;
+        myCurrentPlaceableMap = getBitMapForCurrentLevel(getLevel());
     }
 
-    private BitMap getBitMapForCurrentGame (IGame game) {
-        int gameWidth = game.getGameGridConfig().getGridWidth();
-        int gameHeight = game.getGameGridConfig().getGridHeight();
-        return new BitMap(gameWidth, gameHeight);
+    private BitMap getBitMapForCurrentLevel (ILevel level) {
+        // TODO: Return the bitmap saved from authoring environment
+        // TODO: DEFAULT width and height
+        return new BitMap(800, 1000);
     }
 
-    private IGame getGame () {
-        return myGame;
+    private ILevel getLevel () {
+        return myLevel;
     }
 
     @Override
     public void update (TimeDuration duration) {
-        myCurrentPlaceableMap = parseCurrentGameForPlaceable(getGame());
+        myCurrentPlaceableMap = parseCurrentLevelForPlaceable(getLevel());
     }
 
-    private BitMap parseCurrentGameForPlaceable(IGame game){
-        BitMap placeableMap = getBitMapForCurrentGame(game);
-        
-        //Check all the sprites and update the bitmap
-        List<ISprite> listOfSprites = game.getLevelManager().getCurrentLevel().getSprites();
-        for(ISprite sprite: listOfSprites){
-            for(int row = (int)sprite.getBounds().getTop(); row < (int)sprite.getBounds().getBottom(); row++) {
-                for(int col = (int)sprite.getBounds().getLeft(); col < (int)sprite.getBounds().getRight(); col++){
+    private BitMap parseCurrentLevelForPlaceable (ILevel level) {
+        BitMap placeableMap = getBitMapForCurrentLevel(level);
+
+        // Check all the sprites and update the bitmap
+        List<ISprite> listOfSprites = level.getSprites();
+        for (ISprite sprite : listOfSprites) {
+            for (int row = (int) sprite.getBounds().getTop(); row <= (int) sprite.getBounds()
+                    .getBottom(); row++) {
+                for (int col = (int) sprite.getBounds().getLeft(); col <= (int) sprite.getBounds()
+                        .getRight(); col++) {
                     placeableMap.set(row, col, true);
                 }
             }

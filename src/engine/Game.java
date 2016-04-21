@@ -51,7 +51,7 @@ public class Game implements IGame {
         myConditionManager.update(duration);
         myAttributeManager.update(duration);
         myObstructionManager.update(duration);
-        myPlaceableManager.update(duration);
+//        myPlaceableManager.update(duration); not updated for every time frame
     }
 
     @Override

@@ -5,7 +5,7 @@ import util.BitMap;
 
 /**
  * This serves to interrogate the sprite lists and their status module to determine which terrains
- * are placeable (defenders) in the game state.
+ * are placeable (defenders) in the authoring environment and game state.
  * 
  * @author Jin An
  *
