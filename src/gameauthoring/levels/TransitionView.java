@@ -7,6 +7,8 @@ import engine.IGame;
 import engine.ILevel;
 import gameauthoring.util.Glyph;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -25,11 +27,12 @@ public class TransitionView implements Glyph {
 
     public TransitionView (IGame game, ILevel level) {
         init(game.getLevelManager().getLevels());
+        new TransitionController(this, level.getNextLevelManager());
     }
 
     private void init (ObservableList<ILevel> levels) {
         initCombos(levels);
-        for (int i= 0; i< myCombos.size(); i++) {
+        for (int i = 0; i < myCombos.size(); i++) {
             add(createPacket(myBundle.getString(Integer.toString(i)), myCombos.get(i)));
         }
     }
@@ -37,7 +40,7 @@ public class TransitionView implements Glyph {
     private void initCombos (ObservableList<ILevel> levels) {
         myCombos = new ArrayList<>();
         myWinningLevel = createCombo(levels);
-        myWinningLevel = createCombo(levels);
+        myLosingLevel = createCombo(levels);
     }
 
     private ComboBox<ILevel> createCombo (ObservableList<ILevel> levels) {
@@ -60,6 +63,23 @@ public class TransitionView implements Glyph {
     @Override
     public Node draw () {
         return myPane;
+    }
+
+    public void setWinAction (EventHandler<ActionEvent> event) {
+        myWinningLevel.setOnAction(event);
+        
+    }
+
+    public void setLoseAction (EventHandler<ActionEvent> event) {
+        myLosingLevel.setOnAction(event);   
+    }
+
+    public ILevel getWinSelection () {
+        return myWinningLevel.getSelectionModel().getSelectedItem();
+    }
+    
+    public ILevel getLoseSelection () {
+        return myLosingLevel.getSelectionModel().getSelectedItem();
     }
 
 }

@@ -9,7 +9,7 @@ package engine;
  *
  * TODO finish implementing this interface
  */
-interface INextLevelManager extends Updateable, IEventInternalizer {
+public interface INextLevelManager extends Updateable, IEventInternalizer {
 
     /**
      * This will return the value as calculated during the update call to help control
