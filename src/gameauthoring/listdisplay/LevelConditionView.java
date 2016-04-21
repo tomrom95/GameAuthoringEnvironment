@@ -1,5 +1,6 @@
 package gameauthoring.listdisplay;
 
+import java.util.ResourceBundle;
 import engine.IGame;
 import engine.ILevel;
 import engine.conditions.ICondition;
@@ -12,10 +13,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import util.BundleOperations;
 
 
 public class LevelConditionView extends ListDisplay<ICondition> {
 
+    private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/end_condition_options");
     private Pane myEditor = new Pane();
     private ListView<String> myOptions;
 
@@ -46,11 +49,7 @@ public class LevelConditionView extends ListDisplay<ICondition> {
     }
 
     private ObservableList<String> getOptions () {
-        ObservableList<String> list = FXCollections.observableArrayList();
-        list.add("Global Attribute End Condition");        
-        list.add("Sprite Attribute End Condition");
-        list.add("On Click End Condition");
-        return list;
+        return BundleOperations.getKeysAsObservable(myBundle);
     }
 
     private void initListView () {
@@ -58,19 +57,18 @@ public class LevelConditionView extends ListDisplay<ICondition> {
         getListView().setPrefHeight(200);
         add(getListView(), 3, 0, 1, 1);
     }
-    
+
     public void applyToOptions (EventHandler<MouseEvent> onClick) {
         myOptions.setOnMouseClicked(onClick);
     }
-    
+
     public String getSelection () {
         return myOptions.getSelectionModel().getSelectedItem();
     }
-    
+
     public void populate (Node node) {
         myEditor.getChildren().clear();
         myEditor.getChildren().add(node);
     }
-
 
 }

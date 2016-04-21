@@ -17,7 +17,6 @@ import javafx.scene.control.ComboBox;
 public class SpriteEndView extends AttributeEndView {
 
     private ComboBox<SpriteGroup> mySpriteGroup;
-    private ComboBox<EventPackageDefinition> mySpriteEvent;
 
     public SpriteEndView (IGame game, ILevel level) {
         super(game, level, FXCollections
@@ -31,9 +30,6 @@ public class SpriteEndView extends AttributeEndView {
     protected void initBoxes () {
         mySpriteGroup =
                 createComboBox(getGame().getAuthorshipData().getMyCreatedGroups().getItems());
-        mySpriteEvent =
-                createComboBox(getGame().getAuthorshipData().getMyCreatedEventPackages()
-                        .getItems());
         super.initBoxes();
 
     }
@@ -45,7 +41,7 @@ public class SpriteEndView extends AttributeEndView {
     }
 
     private IEventPackage createSpritePackage () {
-        EventPackageDefinition self = mySpriteEvent.getSelectionModel().getSelectedItem();
+        EventPackageDefinition self = new EventPackageDefinition();
         self.setMySpriteGroup(mySpriteGroup.getSelectionModel().getSelectedItem());
         return self.create();
     }

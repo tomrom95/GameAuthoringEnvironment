@@ -19,7 +19,7 @@ public class ConditionViewFactory {
     }
 
     public SubConditionView get (String selection) {
-
+        selection.trim();
         // TODO replace with reflection
         switch (selection) {
             case "OnClickCondition":
