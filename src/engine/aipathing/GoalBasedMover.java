@@ -93,9 +93,9 @@ public class GoalBasedMover extends Mover {
         }
         double normalizeDistanceConstant =
                 Math.sqrt(Math.pow(distance, 2) / (Math.pow(deltaX, 2) + Math.pow(deltaY, 2)));
+        
         return new Coordinate(start.getX() + deltaX * normalizeDistanceConstant,
                               start.getY() + deltaY * normalizeDistanceConstant);
-
     }
 
     /**
