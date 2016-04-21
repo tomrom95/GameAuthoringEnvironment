@@ -26,7 +26,6 @@ public class AuthorshipData {
     private DefinitionCollection<EventPackageDefinition> myCreatedEventPackages;
 
     public AuthorshipData () {
-
         myCreatedSprites = FXCollections.observableArrayList();
         
         myCreatedGlobals =

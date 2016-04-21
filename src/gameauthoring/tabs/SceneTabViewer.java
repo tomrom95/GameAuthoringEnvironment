@@ -4,6 +4,7 @@ import engine.definitions.SpriteDefinition;
 import java.util.List;
 import engine.Game;
 import engine.IConditionManager;
+import engine.IGame;
 import engine.ILevel;
 import engine.ILevelManager;
 import engine.Level;
@@ -32,19 +33,19 @@ public class SceneTabViewer implements ITabViewer {
     private ILevelManager myLevelManager;
     private IConditionManager myConditionManager;
     private List<DefinitionCollection<SpriteDefinition>> mySprites;
-    private Game myGame;
+    private IGame myGame;
     private UIFactory myUIFactory = new UIFactory();
 
     public SceneTabViewer () {
         init();
     }
 
-    public SceneTabViewer (Game game) {
-        myLevelManager = game.getLevelManager();
-        myConditionManager = game.getConditionManager();
+    public SceneTabViewer (IGame iGame) {
+        myLevelManager = iGame.getLevelManager();
+        myConditionManager = iGame.getConditionManager();
 
-        mySprites = game.getAuthorshipData().getMyCreatedSprites();
-        myGame = game;
+        mySprites = iGame.getAuthorshipData().getMyCreatedSprites();
+        myGame = iGame;
         init();
     }
 

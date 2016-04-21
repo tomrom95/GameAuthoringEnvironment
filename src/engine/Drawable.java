@@ -1,6 +1,9 @@
 package engine;
 
+import engine.events.GameEvent;
 import engine.modules.IGraphicModule;
+import javafx.beans.property.BooleanProperty;
+import javafx.collections.ObservableList;
 import util.Coordinate;
 
 
@@ -32,4 +35,20 @@ public interface Drawable {
      * @return the angle by which the renderer should rotate the displayed node
      */
     double getOrientation();
+    
+    /**
+     * @return attributes of the sprite being drawn
+     */
+    ObservableList<IAttribute> getAttributes ();
+    
+    /**
+     * Need to upgrade drawables
+     */
+    void registerEvent (GameEvent event);
+    
+    /**
+     * Whether or not hte drawable is ready to be updated
+     */
+    BooleanProperty isUgradeable ();
+    
 }

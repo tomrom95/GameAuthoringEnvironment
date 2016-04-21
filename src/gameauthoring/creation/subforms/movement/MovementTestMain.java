@@ -10,12 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class MovementTestMain extends Application{
+
+public class MovementTestMain extends Application {
 
     @Override
     public void start (Stage s) throws Exception {
 
-        IGame game = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
+        IGame game = new Game(new GameGridConfigNonScaling(GamePlayer.INT_PREF_WIDTH,
+                                                           GamePlayer.INT_PREF_HEIGHT));
         MovementSubFormController a = new MovementSubFormController(game);
         FiringSubFormController fSFC = new FiringSubFormController(game);
         GridPane root = new GridPane();
@@ -24,8 +26,8 @@ public class MovementTestMain extends Application{
         s.setScene(new Scene(root, 500, 500));
         s.show();
     }
-    
-    public static void main (String[] args){
+
+    public static void main (String[] args) {
         launch(args);
     }
 

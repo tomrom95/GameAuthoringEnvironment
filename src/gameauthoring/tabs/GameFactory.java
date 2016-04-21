@@ -15,7 +15,9 @@ import gameplayer.GamePlayer;
 public class GameFactory {
 
     public Game createGame () {
-        Game game = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
+        Game game =
+                new Game(new GameGridConfigNonScaling(GamePlayer.INT_PREF_WIDTH,
+                                                      GamePlayer.INT_PREF_HEIGHT));
         return game;
     }
 

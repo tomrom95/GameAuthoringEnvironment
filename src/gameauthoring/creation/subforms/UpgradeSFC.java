@@ -36,11 +36,13 @@ public class UpgradeSFC implements ISubFormControllerSprite {
                 SpriteDefinition nextUpgrade = mySFV.getNextUpgrade();
                 if (mySFV.isGlobalProperty().get()) {
                     myGlobalUpgrade.setParameters(myGame, nextUpgrade, type, cost);
-                    updateModule(item, this.mySpriteUpgrade, this.myGlobalUpgrade);
+                    item.setUpgrade(myGlobalUpgrade);
+                    
                 }
                 else {
                     mySpriteUpgrade.setParameters(myGame, nextUpgrade, type, cost);
-                    updateModule(item, this.myGlobalUpgrade, this.mySpriteUpgrade);
+                    item.setUpgrade(mySpriteUpgrade);
+                   
                 }
             }
         }
@@ -51,15 +53,6 @@ public class UpgradeSFC implements ISubFormControllerSprite {
                                                                                           // file
             err.showError();
         }
-    }
-
-    private void updateModule (SpriteDefinition item,
-                               ModuleDefinition moduleToReplace,
-                               ModuleDefinition moduleToAdd) {
-        if (item.getModuleDefinitions().contains(moduleToReplace)) {
-            item.getModuleDefinitions().remove(moduleToReplace);
-        }
-        item.getModuleDefinitions().add(moduleToAdd);
     }
 
     @Override

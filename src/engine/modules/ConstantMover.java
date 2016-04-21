@@ -6,16 +6,12 @@ import engine.IAttribute;
 import engine.Positionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
 
 
-/**
- * This class creates a module that moves in based on velocity in a linear direction
- * 
- * @author Timko
- * 
- */
 public class ConstantMover extends Mover {
 
     
@@ -63,7 +59,7 @@ public class ConstantMover extends Mover {
     }
 
     @Override
-    protected List<IAttribute> getSpecificAttributes () {    	 
+    protected List<IAttribute> getSpecificAttributes () {        
          return new ArrayList<>();
     }
 

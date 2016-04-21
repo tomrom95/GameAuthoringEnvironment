@@ -1,5 +1,7 @@
 package gameplayer;
 
+import engine.IGame;
+
 /**
  * This interface represents a game engine that can be used to run a game. It defines the necessary
  * external ways to affect the game loop.
@@ -22,5 +24,11 @@ public interface IGameEngine {
      * pause the game loop
      */
     void pause ();
+    
+    /**
+     * 
+     * @return the game the engine is running
+     */
+    IGame getGame ();
 
 }

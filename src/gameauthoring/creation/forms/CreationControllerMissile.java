@@ -3,14 +3,15 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.Game;
+import engine.IGame;
 
 
 public class CreationControllerMissile extends CreationControllerSprite {
 
     public CreationControllerMissile (String title,
                                       List<String> subFormStrings,
-                                      Game game) {
-        super(title, subFormStrings, game);
+                                      IGame myGame) {
+        super(title, subFormStrings, myGame);
 
     }
 

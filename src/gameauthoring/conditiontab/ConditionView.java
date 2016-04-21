@@ -1,5 +1,6 @@
 package gameauthoring.conditiontab;
 
+import java.util.ResourceBundle;
 import engine.Game;
 import engine.IGame;
 import engine.conditions.ICondition;
@@ -22,13 +23,15 @@ import javafx.scene.layout.VBox;
 
 public class ConditionView extends ListDisplay<ICondition> {
 
+    private static final String PATH = "defaults/ConditionView";
+    ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
     private Pane myEditor;
     private ListView<String> myOptions;
 
-    public ConditionView (Game myGame) {
-        super(myGame.getConditionManager().getConditionListProperty());
+    public ConditionView (IGame iGame) {
+        super(iGame.getConditionManager().getConditionListProperty());
         init();
-        new CondController(this, myGame);
+        new CondController(this, iGame);
     }
 
     private void init () {
