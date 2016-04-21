@@ -8,6 +8,7 @@ import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
 
@@ -19,7 +20,7 @@ import util.TimeDuration;
  */
 public class LevelManager implements ILevelManager {
 
-    private List<ILevel> myLevelPropertyList;
+    private ObservableList<ILevel> myLevelPropertyList;
     private ILevel myCurrentLevel;
     private IConditionManager myGlobalGameConditions;
 
@@ -51,7 +52,7 @@ public class LevelManager implements ILevelManager {
     }
 
     @Override
-    public List<ILevel> getLevels () {
+    public ObservableList<ILevel> getLevels () {
         return myLevelPropertyList;
     }
 
@@ -102,6 +103,7 @@ public class LevelManager implements ILevelManager {
 
     @Override
     public void createNewLevel (ILevel newLevel) {
+        myLevelPropertyList.add(newLevel);
         myCurrentLevel = newLevel;
     }
 
