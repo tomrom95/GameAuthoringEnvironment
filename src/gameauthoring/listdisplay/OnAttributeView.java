@@ -26,51 +26,38 @@ public abstract class OnAttributeView extends SubConditionView {
     private ComboBox<AttributeType> myAttributeType;
     private ComboBox<String> myChecks;
     private TextField myValueToCompare;
-    private ComboBox<SpriteGroup> myThirdParty;
-    private ComboBox<EventPackageDefinition> myThirdEvents;
-    private ComboBox<EventPackageDefinition> myGlobalEvents;
 
     private ObservableList<AttributeType> myAttributeStorage;
 
-    public OnAttributeView (IGame game, ObservableList<AttributeType> attributeStorage) {
-        super(game.getConditionManager().getConditionListProperty());
+    public OnAttributeView (IGame game, ObservableList<ICondition> conditionList,
+                            ObservableList<AttributeType> attributeStorage) {
+        super(conditionList);
         myGame = game;
         myAttributeStorage = attributeStorage;
-        initStage();
     }
 
     protected void initBoxes () {
         myAttributeType = createComboBox(myAttributeStorage);
-        myChecks = createStringComboBox(FXCollections.observableArrayList(getCheckTypes()));
+        myChecks = createStringComboBox(FXCollections.observableArrayList(getKeys(myMathBundle)));
         myValueToCompare = createTextField();
-        myThirdParty = createComboBox(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
-        myThirdEvents =
-                createComboBox(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
-        myGlobalEvents =
-                createComboBox(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
-    }
-    
-    protected IGame getGame () {
-       return myGame;
     }
 
-    private List<String> getCheckTypes () {
-        return Collections.list(myMathBundle.getKeys()).stream()
-                .map(key -> myMathBundle.getString(key))
+    protected IGame getGame () {
+        return myGame;
+    }
+    
+    /**
+     * ResourceBundle is passed here so it can be used by subclasses to avoid duplicated code
+     * @param bundle
+     * @return
+     */
+
+    protected List<String> getKeys (ResourceBundle bundle) {
+        return Collections.list(bundle.getKeys()).stream()
+                .map(key -> bundle.getString(key))
                 .collect(Collectors.toList());
     }
-    
-    protected IEventPackage getThirdPartyPackage () {
-        EventPackageDefinition other = myThirdEvents.getSelectionModel().getSelectedItem();
-        other.setMySpriteGroup(myThirdParty.getSelectionModel().getSelectedItem());
-        return other.create();
-    }
-    
-    protected IEventPackage getGlobalPackage () {
-        EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();
-        return global.create();
-    }
-    
+
     protected AttributeType getAttributeType () {
         return myAttributeType.getSelectionModel().getSelectedItem();
     }

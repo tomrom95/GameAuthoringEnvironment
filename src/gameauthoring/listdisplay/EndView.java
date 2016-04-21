@@ -1,9 +1,6 @@
 package gameauthoring.listdisplay;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.DoublePredicate;
 import java.util.stream.Collectors;
 import engine.AttributeType;
 import engine.IEventPackage;
@@ -17,33 +14,27 @@ import engine.events.GameEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import util.PredicateGenerator;
 
 
-public abstract class EndView extends SubConditionView {
+public abstract class EndView extends OnAttributeView {
 
-    ResourceBundle myMathBundle = ResourceBundle.getBundle("defaults/math_operations");
-    private ComboBox<AttributeType> myAttributeType;
-    private TextField myValueToCompare;
-    private ComboBox<String> myChecks;
-    private ObservableList<AttributeType> myAttributeStorage;
+    ResourceBundle myEndOptions = ResourceBundle.getBundle("defaults/end_condition_options");
     private IGame myGame;
+    private ComboBox<String> myEventChoices;
 
-    public EndView (IGame game, ILevel level) {
-        super(level.getConditionsListProperty());
+    public EndView (IGame game, ILevel level, ObservableList<AttributeType> attributes) {
+        super(game, level.getConditionsListProperty(),
+              attributes);
         myGame = game;
-        myAttributeStorage = FXCollections
-                .observableArrayList(game.getAttributeManager().getAttributes().stream()
-                        .map(atty -> atty.getType()).collect(Collectors.toList()));
         initializeDisplay();
 
     }
 
     protected void initBoxes () {
-        myAttributeType = createComboBox(myAttributeStorage);
-        myValueToCompare = createTextField();
-        myChecks = createStringComboBox(FXCollections.observableArrayList(getCheckTypes()));
+        super.initBoxes();
+        myEventChoices =
+                createStringComboBox(FXCollections.observableArrayList(getKeys(myEndOptions)));
+
     }
 
     protected IEventPackage getGlobal () {
@@ -52,26 +43,16 @@ public abstract class EndView extends SubConditionView {
         return global.create();
     }
 
-    protected abstract EventType getEventType ();
+    protected EventType getEventType () {
+        return new EventTypeFactory().interpret(getChoice());
+    }
+
+    private String getChoice () {
+        return myEventChoices.getSelectionModel().getSelectedItem();
+    }
 
     protected IGame getGame () {
         return myGame;
-    }
-
-    protected AttributeType getAttributeType () {
-        return myAttributeType.getSelectionModel().getSelectedItem();
-    }
-
-    protected DoublePredicate createPredicate () {
-        return new PredicateGenerator().generateDouble(myValueToCompare.getText(),
-                                                       myChecks.getSelectionModel()
-                                                               .getSelectedItem());
-    }
-
-    private List<String> getCheckTypes () {
-        return Collections.list(myMathBundle.getKeys()).stream()
-                .map(key -> myMathBundle.getString(key))
-                .collect(Collectors.toList());
     }
 
     @Override

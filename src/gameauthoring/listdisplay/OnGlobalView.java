@@ -8,7 +8,7 @@ import engine.conditions.OnGlobalAttributeCondition;
 import javafx.collections.FXCollections;
 
 
-public class OnGlobalView extends OnAttributeView {
+public class OnGlobalView extends OnGameAttributeView {
 
     public OnGlobalView (IGame game) {
         super(game, FXCollections

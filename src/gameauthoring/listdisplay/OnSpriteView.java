@@ -15,7 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 
 
-public class OnSpriteView extends OnAttributeView {
+public class OnSpriteView extends OnGameAttributeView {
 
     private ComboBox<SpriteGroup> mySpriteGroup;
     private ComboBox<EventPackageDefinition> mySpriteEvent;
