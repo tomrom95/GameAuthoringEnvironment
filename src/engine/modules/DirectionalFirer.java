@@ -49,6 +49,7 @@ public class DirectionalFirer extends Firer {
     public void update (TimeDuration duration) {
 //    	updateTimeMap(duration);
 //        removeSpritesBeyondRange();
+    	super.update(duration);
         fire(duration);
     }
 

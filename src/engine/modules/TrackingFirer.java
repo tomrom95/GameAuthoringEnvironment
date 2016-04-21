@@ -51,6 +51,7 @@ public class TrackingFirer extends Firer {
 
     @Override
     public void update (TimeDuration duration) {
+    	super.update(duration);
         fire(duration);
     }
 
@@ -65,6 +66,7 @@ public class TrackingFirer extends Firer {
                                               mySprite.getLocation().getY()));
             bullet.getMovementStrategy().setOrientation(getTracker().calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
             getGame().bufferedAdd(bullet);
+            getFiredSprites().add(bullet);
             myTimeSinceFire.setToZero();
             
         }
