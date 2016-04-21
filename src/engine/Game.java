@@ -42,7 +42,6 @@ public class Game implements IGame {
         myGameInformation = gameInfo;
         myAttributeManager = new AttributeManager();
         myObstructionManager = new ObstructionManager(this);
-        myPlaceableManager = new PlaceableManager(this);
     }
 
     @Override
@@ -51,7 +50,6 @@ public class Game implements IGame {
         myConditionManager.update(duration);
         myAttributeManager.update(duration);
         myObstructionManager.update(duration);
-//        myPlaceableManager.update(duration); not updated for every time frame
     }
 
     @Override
