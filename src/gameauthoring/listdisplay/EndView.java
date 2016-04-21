@@ -42,10 +42,11 @@ public abstract class EndView extends OnAttributeView {
         global.getMyEventsList().add(new GameEvent(getEventType()));
         return global.create();
     }
-
+    
     protected EventType getEventType () {
         return new EventTypeFactory().interpret(getChoice());
     }
+
 
     private String getChoice () {
         return myEventChoices.getSelectionModel().getSelectedItem();
@@ -56,18 +57,12 @@ public abstract class EndView extends OnAttributeView {
     }
 
     @Override
-    protected ICondition subCreation () {
-        return new OnGlobalAttributeCondition(getGame(), getAttributeType(), createPredicate(),
-                                              createEmpty(), getGlobal());
-    }
-
-    @Override
     protected String getLabelKey (String key) {
         // TODO Auto-generated method stub
         return "GroupA";
     }
 
-    private IEventPackage createEmpty () {
+    protected IEventPackage createEmpty () {
         return new EventPackageDefinition().create();
     }
 

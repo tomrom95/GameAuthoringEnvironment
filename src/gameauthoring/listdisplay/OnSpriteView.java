@@ -30,8 +30,11 @@ public class OnSpriteView extends OnGameAttributeView {
 
     @Override
     protected void initBoxes () {
-        mySpriteGroup = createComboBox(getGame().getAuthorshipData().getMyCreatedGroups().getItems());
-        mySpriteEvent = createComboBox(getGame().getAuthorshipData().getMyCreatedEventPackages().getItems());
+        mySpriteGroup =
+                createComboBox(getGame().getAuthorshipData().getMyCreatedGroups().getItems());
+        mySpriteEvent =
+                createComboBox(getGame().getAuthorshipData().getMyCreatedEventPackages()
+                        .getItems());
         super.initBoxes();
     }
     

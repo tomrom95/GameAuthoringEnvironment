@@ -46,18 +46,6 @@ public abstract class OnAttributeView extends SubConditionView {
         return myGame;
     }
     
-    /**
-     * ResourceBundle is passed here so it can be used by subclasses to avoid duplicated code
-     * @param bundle
-     * @return
-     */
-
-    protected List<String> getKeys (ResourceBundle bundle) {
-        return Collections.list(bundle.getKeys()).stream()
-                .map(key -> bundle.getString(key))
-                .collect(Collectors.toList());
-    }
-
     protected AttributeType getAttributeType () {
         return myAttributeType.getSelectionModel().getSelectedItem();
     }

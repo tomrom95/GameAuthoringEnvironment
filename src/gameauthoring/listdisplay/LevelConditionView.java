@@ -49,6 +49,7 @@ public class LevelConditionView extends ListDisplay<ICondition> {
         ObservableList<String> list = FXCollections.observableArrayList();
         list.add("Global Attribute End Condition");        
         list.add("Sprite Attribute End Condition");
+        list.add("On Click End Condition");
         return list;
     }
 

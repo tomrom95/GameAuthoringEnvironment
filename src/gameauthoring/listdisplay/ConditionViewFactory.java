@@ -12,7 +12,7 @@ public class ConditionViewFactory {
     public ConditionViewFactory (IGame game) {
         myGame = game;
     }
-    
+
     public ConditionViewFactory (IGame game, ILevel level) {
         this(game);
         myLevel = level;
@@ -34,6 +34,8 @@ public class ConditionViewFactory {
                 return new GlobalEndView(myGame, myLevel);
             case "Sprite Attribute End Condition":
                 return new SpriteEndView(myGame, myLevel);
+            case "On Click End Condition":
+                return new ClickEndView(myGame, myLevel);
         }
 
         return null;

@@ -1,9 +1,11 @@
 package gameauthoring.listdisplay;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import engine.conditions.ICondition;
 import engine.profile.IProfilable;
 import engine.profile.Profile;
@@ -137,6 +139,19 @@ public abstract class SubConditionView {
         myNodes.add(text);
         return text;
     }
+    
+    /**
+     * ResourceBundle is passed here so it can be used by subclasses to avoid duplicated code
+     * @param bundle
+     * @return
+     */
+
+    protected List<String> getKeys (ResourceBundle bundle) {
+        return Collections.list(bundle.getKeys()).stream()
+                .map(key -> bundle.getString(key))
+                .collect(Collectors.toList());
+    }
+
 
     protected abstract String getLabelKey (String key);
 }
