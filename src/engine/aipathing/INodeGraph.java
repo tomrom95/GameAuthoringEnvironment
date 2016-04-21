@@ -1,6 +1,7 @@
 package engine.aipathing;
 
 import java.util.List;
+import java.util.function.Consumer;
 import util.Coordinate;
 
 
@@ -17,21 +18,23 @@ public interface INodeGraph {
      * Only one node can exist at each unique coordinate location
      * This method will either simply add this node, or will overwrite
      * the node and properly replace references in all other nodes
+     * 
      * @param node The IPathNode to add
      */
     void addNode (IPathNode node);
 
     /**
-     * Will compare coordinate values of internally held nodes and if 
+     * Will compare coordinate values of internally held nodes and if
      * one is the same as the input node, then will remove that node
      * and all references to that node from the graph
+     * 
      * @param node Removal will be based upon coordinate comparison
      */
     void removeNode (IPathNode node);
 
     /**
      * 
-     * @param loc The point around which to start searching 
+     * @param loc The point around which to start searching
      * @param maxDistance The radius of the search (inclusive)
      * @return List of all nodes that are within the specified distance of the input coordinate
      */
@@ -39,8 +42,17 @@ public interface INodeGraph {
 
     /**
      * The internal list of all coordinates which constitute the graph
+     * 
      * @return list of graph IPathNodes
      */
     List<IPathNode> getGraph ();
+
+    /**
+     * Will iterate through all existing nodes and consume
+     * using the provided function
+     * 
+     * @param toApply
+     */
+    void applyToNodes (Consumer<IPathNode> toApply);
 
 }
