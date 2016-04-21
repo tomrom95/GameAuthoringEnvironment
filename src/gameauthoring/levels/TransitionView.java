@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import engine.IGame;
 import engine.ILevel;
+import gameauthoring.creation.cellviews.NameCellView;
 import gameauthoring.util.Glyph;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,9 +45,11 @@ public class TransitionView implements Glyph {
     }
 
     private ComboBox<ILevel> createCombo (ObservableList<ILevel> levels) {
-        ComboBox<ILevel> combo = new ComboBox<>(levels);
-        myCombos.add(combo);
-        return combo;
+        ComboBox<ILevel> comboBox = new ComboBox<>(levels);
+        comboBox.setCellFactory(c -> new NameCellView<>());
+        comboBox.setButtonCell(new NameCellView<>());
+        myCombos.add(comboBox);
+        return comboBox;
     }
 
     private Node createPacket (String title, Node node) {
