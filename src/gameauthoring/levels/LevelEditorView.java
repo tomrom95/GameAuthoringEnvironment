@@ -31,23 +31,13 @@ public class LevelEditorView implements Glyph {
     private IFormDataManager myData = new FormDataManager();
     private IGame myGame;
     private ILevel myLevel;
-    private String myNumberEnemyKey = "Number of Enemies: ";
-    private String myRateKey = "Rate: ";
-    private String myWinConditionKey = "Win Condition: ";
-    private String myLoseConditionKey = "Lose Condition: ";
-    // TODO
 
-//    private IEntryView myNumberEnemy = new TextEntryView(myNumberEnemyKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-//    private IEntryView myRate = new TextEntryView(myRateKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-//    private IEntryView myWinCondition = new TextEntryView(myWinConditionKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-//    private IEntryView myLoseCondition = new TextEntryView(myLoseConditionKey, myData, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private AuthoringLevelConditions myLevelConditions;
 
-    LevelConditionView myConditions; 
-    
     public LevelEditorView (IGame gameModel, ILevel level) {
         myGame = gameModel;
         myLevel = level;
-        myConditions = new LevelConditionView(myGame, myLevel);
+        myLevelConditions = new AuthoringLevelConditions(gameModel, level);
     }
 
     @Override
@@ -62,13 +52,12 @@ public class LevelEditorView implements Glyph {
         HBox box = new HBox(10);
         box.setAlignment(Pos.BOTTOM_CENTER);
         box.getChildren().add(createWinLoseForm());
-        
+
         return box;
     }
 
     private Node createWinLoseForm () {
-        // TODO 
-        return myConditions.draw();
+        return myLevelConditions.draw();
     }
 
     private Node createWavesForm () {
@@ -77,8 +66,6 @@ public class LevelEditorView implements Glyph {
         form.setAlignment(Pos.CENTER_LEFT);
         form.setMinHeight(300);
         form.setMinWidth(200);
-        //form.add(myWinCondition.draw(), 0, 1);
-        //form.add(myLoseCondition.draw(), 0, 2);
         return form;
     }
 }

@@ -44,7 +44,7 @@ public class Game implements IGame {
         myGameInformation = gameInfo;
         myAttributeManager = new AttributeManager();
         myObstructionManager = new ObstructionManager(this);
-        
+
     }
 
     @Override

@@ -6,6 +6,8 @@ import engine.conditions.ICondition;
 import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.profile.IProfile;
+import engine.profile.Profile;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
@@ -28,11 +30,12 @@ public class Level implements ILevel {
     private IAttributeManager myAttributeManager;
     private INextLevelManager myNextLevelManager;
     private IPlaceableManager myPlaceableManager;
+    private IProfile myProfile;
 
     public Level () {
         // TODO need to actually instantiate internal manager objects
         // after creating the concrete classes
-
+        myProfile = new Profile();
         myAttributeManager = new AttributeManager();
         myConditionManager = new ConditionManager();
         mySpriteManager = new SpriteManager();
@@ -153,6 +156,16 @@ public class Level implements ILevel {
     @Override
     public IPlaceableManager getPlaceableManager () {
         return myPlaceableManager;
+    }
+
+    public IProfile getProfile () {
+        return myProfile;
+    }
+
+    @Override
+    public void setProfile (IProfile profile) {
+        myProfile = profile;
+
     }
 
 }

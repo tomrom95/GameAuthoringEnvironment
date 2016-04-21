@@ -2,6 +2,7 @@ package engine;
 
 import java.util.List;
 import engine.conditions.ICondition;
+import engine.profile.IProfilable;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
@@ -19,7 +20,7 @@ import util.Coordinate;
  * @author Jin An
  *
  */
-public interface ILevel extends Updateable, IAdder, IEventInternalizer {
+public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfilable {
 
     /**
      * @return The next level manager object for setting
