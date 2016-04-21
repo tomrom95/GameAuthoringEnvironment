@@ -33,7 +33,7 @@ public abstract class SubConditionView {
     private TextField myName = new TextField();
     private TextField myDescription = new TextField();
     private List<Node> myNodes;
-
+    
     public SubConditionView (ObservableList<ICondition> conditionList) {
         myList = conditionList;
         myNodes = new ArrayList<>();

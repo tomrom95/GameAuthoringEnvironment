@@ -1,7 +1,6 @@
 package gameauthoring.listdisplay;
 
 import engine.IGame;
-import javafx.scene.layout.Pane;
 
 
 /**

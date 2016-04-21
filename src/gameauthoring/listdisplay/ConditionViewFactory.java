@@ -1,5 +1,7 @@
 package gameauthoring.listdisplay;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ResourceBundle;
 import engine.IGame;
 import engine.ILevel;
 
@@ -23,7 +25,7 @@ public class ConditionViewFactory {
         // TODO replace with reflection
         switch (selection) {
             case "OnClickCondition":
-                return new OnClickView(myGame);
+                return test(myGame, "OnClickCondition");
             case "OnCollisionCondition":
                 return new OnCollisionView(myGame);
             case "OnGlobalAttribute":
@@ -39,5 +41,23 @@ public class ConditionViewFactory {
         }
 
         return null;
+    }
+
+    private SubConditionView test (IGame game, String key) {
+       String path = "defaults/condition_view_fact";
+       ResourceBundle bundle = ResourceBundle.getBundle(path);
+       String name = (bundle.getString(key));
+       try {
+        Class<?> c = Class.forName(name);
+        return (SubConditionView) c.getConstructors()[0].newInstance(game);
+    }
+        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | SecurityException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+       
+       
+       
+       return new OnCollisionView(game);
     }
 }

@@ -2,7 +2,6 @@ package gameauthoring.listdisplay;
 
 import engine.IGame;
 import engine.ILevel;
-import javafx.scene.layout.Pane;
 
 
 public class LevelConditionController extends ConditionController {
