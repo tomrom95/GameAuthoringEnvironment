@@ -5,6 +5,7 @@ import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
+import javafx.collections.ObservableList;
 import util.Coordinate;
 
 
@@ -30,7 +31,7 @@ public interface ILevelManager extends IAdder, IEventInternalizer {
     /**
      * @return an ObservableList of all the levels associated with this manager
      */
-    List<ILevel> getLevels ();
+    ObservableList<ILevel> getLevels ();
 
     /**
      * @return the list of Drawables of the current level
