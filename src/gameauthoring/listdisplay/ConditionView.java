@@ -1,4 +1,4 @@
-package gameauthoring.conditiontab;
+package gameauthoring.listdisplay;
 
 import java.util.ResourceBundle;
 import engine.Game;
@@ -31,7 +31,7 @@ public class ConditionView extends ListDisplay<ICondition> {
     public ConditionView (IGame iGame) {
         super(iGame.getConditionManager().getConditionListProperty());
         init();
-        new CondController(this, iGame);
+        new ConditionController(this, iGame);
     }
 
     private void init () {

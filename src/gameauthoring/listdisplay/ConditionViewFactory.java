@@ -1,13 +1,13 @@
-package gameauthoring.conditiontab;
+package gameauthoring.listdisplay;
 
 import engine.IGame;
 
 
-public class ConditionPopUpFactory {
+public class ConditionViewFactory {
 
     private IGame myGame;
 
-    public ConditionPopUpFactory (IGame game) {
+    public ConditionViewFactory (IGame game) {
         myGame = game;
     }
 
@@ -16,13 +16,13 @@ public class ConditionPopUpFactory {
         // TODO replace with reflection
         switch (selection) {
             case "OnClickCondition":
-                return new OnClickPopUp(myGame);
+                return new OnClickView(myGame);
             case "OnCollisionCondition":
-                return new OnCollisionPopUp(myGame);
+                return new OnCollisionView(myGame);
             case "OnGlobalAttribute":
-                return new OnGlobalPopUp(myGame);
+                return new OnGlobalView(myGame);
             case "OnSpriteAttribute":
-                return new OnSpritePopUp(myGame);
+                return new OnSpriteView(myGame);
         }
 
         return null;

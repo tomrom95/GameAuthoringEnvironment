@@ -1,7 +1,6 @@
 package engine;
 
-
-
+import engine.profile.IProfile;
 
 /**
  * This class defines the type of an attribute, and defines the functionality that allows checking

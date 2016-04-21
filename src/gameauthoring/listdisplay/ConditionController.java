@@ -1,4 +1,4 @@
-package gameauthoring.conditiontab;
+package gameauthoring.listdisplay;
 
 import engine.IGame;
 import javafx.scene.layout.Pane;
@@ -10,15 +10,15 @@ import javafx.scene.layout.Pane;
  * @author RyanStPierre
  *
  */
-public class CondController {
+public class ConditionController {
 
     private ConditionView myView;
 
-    private ConditionPopUpFactory myFactory;
+    private ConditionViewFactory myFactory;
 
-    public CondController (ConditionView conditionView, IGame game) {
+    public ConditionController (ConditionView conditionView, IGame game) {
         myView = conditionView;
-        myFactory = new ConditionPopUpFactory(game);
+        myFactory = new ConditionViewFactory(game);
 
         setActions();
 

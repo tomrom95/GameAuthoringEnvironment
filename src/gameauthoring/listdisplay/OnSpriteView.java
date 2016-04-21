@@ -1,4 +1,4 @@
-package gameauthoring.conditiontab;
+package gameauthoring.listdisplay;
 
 import java.util.stream.Collectors;
 import engine.AttributeType;
@@ -6,14 +6,15 @@ import engine.IGame;
 import javafx.collections.FXCollections;
 
 
-public class OnSpritePopUp extends OnAttributePopUp {
+public class OnSpriteView extends OnAttributeView {
 
-    public OnSpritePopUp (IGame game) {
+    public OnSpriteView (IGame game) {
         super(game, FXCollections
                 .observableArrayList(game.getAuthorshipData().getMyCreatedAttributes().getItems()
                         .stream()
                         .map(atty -> new AttributeType(atty.getType()))
                         .collect(Collectors.toList())));
     }
+    
 
 }

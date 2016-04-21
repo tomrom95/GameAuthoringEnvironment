@@ -1,12 +1,14 @@
-package gameauthoring.conditiontab;
+package gameauthoring.listdisplay;
 
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import engine.IGame;
 import javafx.collections.FXCollections;
 
 
-public class OnGlobalPopUp extends OnAttributePopUp {
-    public OnGlobalPopUp (IGame game) {
+public class OnGlobalView extends OnAttributeView {
+    
+    public OnGlobalView (IGame game) {
         super(game, FXCollections
                 .observableArrayList(game.getAttributeManager().getAttributes().stream()
                         .map(atty -> atty.getType()).collect(Collectors.toList())));

@@ -1,4 +1,4 @@
-package gameauthoring.conditiontab;
+package gameauthoring.listdisplay;
 
 import engine.profile.IProfilable;
 import gameauthoring.creation.cellviews.ProfileCellView;

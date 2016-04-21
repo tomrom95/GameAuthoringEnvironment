@@ -5,7 +5,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.Game;
 import engine.IGame;
-import gameauthoring.conditiontab.ConditionView;
+import gameauthoring.listdisplay.ConditionView;
 import gameauthoring.util.UIFactory;
 import gameplayer.GamePlayer;
 import javafx.event.ActionEvent;

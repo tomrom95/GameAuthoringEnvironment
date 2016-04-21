@@ -1,5 +1,6 @@
-package gameauthoring.conditiontab;
+package gameauthoring.listdisplay;
 
+import java.util.ResourceBundle;
 import engine.IGame;
 import engine.conditions.OnCollisionCondition;
 import engine.SpriteGroup;
@@ -17,8 +18,11 @@ import javafx.scene.layout.VBox;
  *
  */
 
-public class OnCollisionPopUp extends ConditionPopUp {
+public class OnCollisionView extends ConditionPopUp {
 
+    private static final String PATH = "defaults/on_collision_tab";
+    ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
+    
     private IGame myGame;
     private ComboBox<SpriteGroup> myGroupA;
     private ComboBox<EventPackageDefinition> myEventsA;
@@ -28,11 +32,11 @@ public class OnCollisionPopUp extends ConditionPopUp {
     private ComboBox<EventPackageDefinition> myThirdEvents;
     private ComboBox<EventPackageDefinition> myGlobalEvents;
 
-    public OnCollisionPopUp (IGame game) {
+    public OnCollisionView (IGame game) {
         super(game.getConditionManager().getConditionListProperty());
         myGame = game;
         initStage();
-        
+
     }
 
     @Override
@@ -43,46 +47,17 @@ public class OnCollisionPopUp extends ConditionPopUp {
     }
 
     private void initBoxes () {
-        // TODO Auto-generated method stub
-        myGroupA = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
-        addCellFactory(myGroupA);
+        myGroupA = createComboBox(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
+        myGroupB = createComboBox(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
+        myThirdParty = createComboBox(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
         myEventsA =
-                new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
-        addCellFactory(myEventsA);
-        myGroupB = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
-        addCellFactory(myGroupB);
+                createComboBox(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
         myEventsB =
-                new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
-        addCellFactory(myEventsB);
-        myThirdParty = new ComboBox<>(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
-        addCellFactory(myThirdParty);
+                createComboBox(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
         myThirdEvents =
-                new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
-        addCellFactory(myThirdEvents);
+                createComboBox(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
         myGlobalEvents =
-                new ComboBox<>(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
-        addCellFactory(myGlobalEvents);
-
-    }
-
-    private Node getHBox () {
-        HBox hbox = new HBox(CUSHION);
-        // Connections
-        hbox.getChildren().add(getCombo("Group A", myGroupA));
-        hbox.getChildren().add(getCombo("GroupB", myGroupB));
-        hbox.getChildren().add(getCombo("Third Party", myThirdParty));
-        hbox.getChildren().add(getCombo("Group A Effects", myEventsA));
-        hbox.getChildren().add(getCombo("Group B Effects", myEventsB));
-        hbox.getChildren().add(getCombo("Third Party Effects", myThirdEvents));
-        hbox.getChildren().add(getCombo("Global Effects", myGlobalEvents));
-        return hbox;
-
-    }
-
-    private Node getCombo (String label, Node node) {
-        VBox vbox = new VBox();
-        vbox.getChildren().addAll(new Label(label), node);
-        return vbox;
+                createComboBox(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
     }
 
     @Override
@@ -96,6 +71,11 @@ public class OnCollisionPopUp extends ConditionPopUp {
         EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();
         return new OnCollisionCondition(myGame, packageA.create(), packageB.create(),
                                         other.create(), global.create());
+    }
+
+    @Override
+    protected String getLabelKey (String key) {
+       return myBundle.getString(key);
     }
 
 }
