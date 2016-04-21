@@ -67,5 +67,4 @@ public class OnCollisionCondition extends Condition implements ICondition {
         applyOtherAndGlobalEventPackages(myGame, myOtherPackage, myGlobalPackage);
     }
 
-
 }

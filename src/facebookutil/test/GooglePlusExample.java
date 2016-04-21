@@ -14,7 +14,7 @@ import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
 
-public abstract class Google20Example {
+public abstract class GooglePlusExample {
 
     private static final String NETWORK_NAME = "G+";
     private static final String PROTECTED_RESOURCE_URL =
@@ -27,7 +27,6 @@ public abstract class Google20Example {
         mySecrets = ResourceBundle.getBundle("facebookutil/secret");
         final String clientId = mySecrets.getString("googleId");
         final String clientSecret = mySecrets.getString("googleSecret");
-        // final String secretState = "secret" + new Random().nextInt(999_999);
         final OAuth20Service service = new ServiceBuilder()
                 .apiKey(clientId)
                 .apiSecret(clientSecret)
@@ -41,8 +40,7 @@ public abstract class Google20Example {
 
         // Obtain the Authorization URL
         System.out.println("Fetching the Authorization URL...");
-        // pass access_type=offline to get refresh token
-        // https://developers.google.com/identity/protocols/OAuth2WebServer#preparing-to-start-the-oauth-20-flow
+
         final Map<String, String> additionalParams = new HashMap<>();
         additionalParams.put("access_type", "offline");
         // force to retrieve refresh token (if users are asked not the first time)
@@ -56,7 +54,6 @@ public abstract class Google20Example {
         final String code = in.nextLine();
         System.out.println();
 
-        // Trade the Request Token and Verfier for the Access Token
         System.out.println("Trading the Request Token for an Access Token...");
         OAuth2AccessToken accessToken = service.getAccessToken(code);
         System.out.println("Got the Access Token!");

@@ -6,7 +6,7 @@ import engine.modules.DirectionalFirer;
 
 
 /**
- * This class represents the definition of a directional firer, one that fired at a prespecified
+ * This class represents the definition of a directional firer, one that fired at a pre-specified
  * angle (where 0 is to the right)
  *
  */
