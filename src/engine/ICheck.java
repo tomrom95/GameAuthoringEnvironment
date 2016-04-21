@@ -1,14 +1,22 @@
 package engine;
 
+import javafx.beans.property.BooleanProperty;
+
 /**
  * Interface for a generic check 
  * @author RyanStPierre
  *
  */
-public interface ICheck {
+public interface ICheck extends Updateable {
 
     /**
-     * @return true if the check has been satisfied
+     * Subtracts cost
      */
-    boolean check ();
+    void alterAttribute ();
+    
+    /**
+     * Constantly tracks the status of the check 
+     * @return dynamic, not static like check
+     */
+    BooleanProperty getStatus ();
 }

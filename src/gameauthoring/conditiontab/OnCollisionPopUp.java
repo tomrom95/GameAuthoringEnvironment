@@ -32,6 +32,7 @@ public class OnCollisionPopUp extends ConditionPopUp {
         super(game.getConditionManager().getConditionListProperty());
         myGame = game;
         initStage();
+        
     }
 
     @Override

@@ -1,5 +1,6 @@
 package gameauthoring.conditiontab;
 
+import java.lang.reflect.Constructor;
 import engine.IGame;
 import engine.SpriteGroup;
 import engine.conditions.ICondition;
@@ -31,6 +32,7 @@ public class OnClickPopUp extends ConditionPopUp {
         super(game.getConditionManager().getConditionListProperty());
         myGame = game;
         initStage();
+        
 
     }
 

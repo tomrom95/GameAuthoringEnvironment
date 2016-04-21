@@ -311,28 +311,29 @@ public class UpgradeTest extends Application {
 
     private SpriteDefinition createShooterDef () {
         SpriteDefinition sd1 = new SpriteDefinition();
-        sd1.addModule(getUpgradeDefinition());
+        sd1.setUpgrade(getUpgradeDefinition());
         ImageGraphic plantImage = new ImageGraphic(50, 50, "/images/plant.png");
         sd1.setProfile(new Profile("Tower 1", "Plant", plantImage));
         sd1.setMovementDefinition(getStaticMover());
-        DirectionalFirerDefinition fireDef = new DirectionalFirerDefinition();
-        fireDef.setGame(myGame);
-        fireDef.setAngle(0);
-        fireDef.setWaitTime(3000);
-        fireDef.setProjectileDefinition(createMissileDef());
-        sd1.addModule(fireDef);
+        //DirectionalFirerDefinition fireDef = new DirectionalFirerDefinition();
+//        fireDef.setGame(myGame);
+//        fireDef.setAngle(0);
+//        fireDef.setWaitTime(3000);
+//        fireDef.setProjectileDefinition(createMissileDef());
+//        sd1.addModule(fireDef);
         return sd1;
     }
 
-    private ModuleDefinition getUpgradeDefinition () {
+    private UpgradeDefinition getUpgradeDefinition () {
         SpriteDefinition sd2 = new SpriteDefinition();
         ImageGraphic image = new ImageGraphic(100, 100, "/images/C.png");
         sd2.setProfile(new Profile("User Mover", "Controlled By User", image));
         sd2.setMovementDefinition(getUserMover());
 
         //TODO: had to comment this out to prevent errors. joe/ryan what is it supposed to be?
-       //UpgradeDefinition upgrade = new GlobalUpgradeDefinition(myGame, sd2, new AttributeType("Lives"), 5);
-       UpgradeDefinition upgrade = new GlobalUpgradeDefinition();
+       UpgradeDefinition upgrade = new GlobalUpgradeDefinition(myGame, sd2, new AttributeType("Lives"), 5);
+       //UpgradeDefinition upgrade = new GlobalUpgradeDefinition();
+       //upgrade.
 
        return upgrade;
     }
@@ -343,8 +344,8 @@ public class UpgradeTest extends Application {
         sd1.setProfile(new Profile("Pea", "Pea Bullet", plantImage));
         ConstantMoverDefinition mover = new ConstantMoverDefinition();
         double c = 4;
-        mover.setXVel(.2 / c);
-        mover.setYVel(.2 / c);
+       // mover.setXVel(.2 / c);
+        //mover.setYVel(.2 / c);
         sd1.setMovementDefinition(mover);
 
         return sd1;
