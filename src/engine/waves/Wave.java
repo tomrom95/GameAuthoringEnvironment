@@ -5,10 +5,10 @@ import engine.definitions.concrete.SpriteDefinition;
 
 public class Wave implements IWave {
 
-	private List<SpriteWaveData> mySprites;
+	private List<WaveBlock> mySprites;
 	private int totalSprites;
 
-	public Wave(List<SpriteWaveData> sprites) {
+	public Wave(List<WaveBlock> sprites) {
 		totalSprites = 0;
 		mySprites = sprites;
 		mySprites.stream().forEach(p -> totalSprites += p.getCount());
@@ -22,7 +22,7 @@ public class Wave implements IWave {
 	@Override
 	public boolean spawnSprite(SpriteDefinition s) {
 
-		for (SpriteWaveData data : mySprites) {
+		for (WaveBlock data : mySprites) {
 			if (data.getDefinition().equals(s)) {
 				data.setCount(data.getCount() - 1);
 				if (data.getCount() < 0) {

@@ -21,14 +21,12 @@ public class SpawnerModuleDefinition extends ModuleDefinition {
 
     private IGame myGame;
     private IAdder myAdder;
-    private double myDelay;
-    private List<SpriteDefinition> mySprites;
+    private List<WaveDefinition> myWaves;
 
-    public SpawnerModuleDefinition (IAdder adder, IGame game, double delay, List<SpriteDefinition> sprites) {
+    public SpawnerModuleDefinition (IAdder adder, IGame game, double delay, List<WaveDefinition> waves) {
         setGame(game);
         setAdder(adder);
-        myDelay = delay;
-        mySprites = sprites;
+        myWaves = waves;
     }
 
     private void setGame(IGame game) {
@@ -40,25 +38,18 @@ public class SpawnerModuleDefinition extends ModuleDefinition {
         myAdder = adder;
     }
 
-    public void setDelay (double delay) {
-        myDelay = delay;
-    }
 
-    public double getDelay () {
-        return myDelay;
-    }
-
-    public List<SpriteDefinition> getSpriteDefinitions(){
-    	return mySprites;
+    public List<WaveDefinition> getWaveDefinitions(){
+    	return myWaves;
     }
     
-    public void setSpriteDefinitions(List<SpriteDefinition> defs){
-    	mySprites = defs;
+    public void setWaveDefinitions(List<WaveDefinition> defs){
+    	myWaves = defs;
     }
     
     @Override
     public IModule create (Positionable parent) {
-        return new SpawningModule(myAdder, myGame, new TimeDuration(myDelay), parent, mySprites);
+        return new 
     }
 
 }

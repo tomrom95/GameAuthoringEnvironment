@@ -3,7 +3,7 @@ package engine.definitions.spawnerdef;
 import java.util.List;
 import java.util.stream.Collectors;
 import engine.definitions.concrete.IDefinition;
-import engine.waves.SpriteWaveData;
+import engine.waves.WaveBlock;
 import engine.waves.Wave;
 
 
@@ -14,18 +14,18 @@ import engine.waves.Wave;
  */
 public class WaveDefinition implements IDefinition {
 
-    private List<WaveDataDefinition> myData;
+    private List<WaveBlockDefinition> myBlocks;
 
-    public WaveDefinition (List<WaveDataDefinition> sprites) {
+    public WaveDefinition (List<WaveBlockDefinition> sprites) {
     	setListSprites(sprites);
     }
 
-    public void setListSprites (List<WaveDataDefinition> sprites) {
-        myData = sprites;
+    public void setListSprites (List<WaveBlockDefinition> sprites) {
+        myBlocks = sprites;
     }
 
     public Wave create(){
-        List<SpriteWaveData> spriteData = myData.stream().map(def -> def.create())
+        List<WaveBlock> spriteData = myBlocks.stream().map(def -> def.create())
                 .collect(Collectors.toList());
     	return new Wave(spriteData);
     }

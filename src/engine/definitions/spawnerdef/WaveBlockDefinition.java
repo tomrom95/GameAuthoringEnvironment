@@ -1,24 +1,35 @@
 package engine.definitions.spawnerdef;
 
 import engine.definitions.concrete.SpriteDefinition;
-import engine.waves.SpriteWaveData;
+import engine.waves.WaveBlock;
 
 
-public class WaveDataDefinition {
+public class WaveBlockDefinition {
 
     private SpriteDefinition mySpawnedSprite;
     private int myCount;
-
-    public WaveDataDefinition () {
+    private double myGapTime;
+    
+    public WaveBlockDefinition () {
         myCount = 0;
+        myGapTime = 0;
     }
 
-    public WaveDataDefinition (SpriteDefinition def, int count) {
+    public WaveBlockDefinition (SpriteDefinition def, int count, double gap) {
         mySpawnedSprite = def;
         setCount(count);
+        setGap(gap);
     }
 
-    public void setCount (int count) {
+    private void setGap(double gap) {
+    	myGapTime = gap;
+	}
+
+    public double getGap(){
+    	return myGapTime;
+    }
+    
+	public void setCount (int count) {
         myCount = count;
     }
 
@@ -34,8 +45,8 @@ public class WaveDataDefinition {
         return mySpawnedSprite;
     }
 
-    public SpriteWaveData create () {
-        return new SpriteWaveData(mySpawnedSprite, myCount);
+    public WaveBlock create () {
+        return new WaveBlock(mySpawnedSprite, myCount, myGapTime);
     }
 
 }
