@@ -1,24 +1,36 @@
 package gameauthoring.creation.subforms.events;
 
-import gameauthoring.creation.entryviews.IFormDataManager;
-import gameauthoring.creation.subforms.ISubFormView;
+import engine.profile.ProfileDisplay;
+import gameauthoring.creation.entryviews.SingleChoiceEntryView;
+import gameauthoring.creation.subforms.SubFormView;
+import gameauthoring.tabs.AuthoringView;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.control.ComboBox;
 
 
-public class EventSubFormView implements ISubFormView {
+public class EventSubFormView extends SubFormView {
 
-    @Override
-    public Node draw () {
-        ComboBox<String> box = new ComboBox<String>();
-        box.getItems().add("Death");
-        return box;
+    private SingleChoiceEntryView<ProfileDisplay> myEvents;
+    private String myEventKey = "Event type: ";
+
+    public EventSubFormView (ObservableList<ProfileDisplay> events) {
+        myEvents = new SingleChoiceEntryView<ProfileDisplay>(myEventKey,
+                                                             events,
+                                                             AuthoringView.DEFAULT_ENTRYVIEW);
+    }
+    
+    public String getEventSelection () {
+        return myEvents.getSelected().getProfile().getName().get();
     }
 
     @Override
-    public IFormDataManager getData () {
-        // TODO Auto-generated method stub
-        return null;
+    public Node draw () {
+        return myEvents.draw();
+    }
+
+    @Override
+    protected void initView () {
+        
     }
 
 }

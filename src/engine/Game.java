@@ -1,8 +1,6 @@
 package engine;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Consumer;
 import engine.definitions.AttributeDefinition;
 import engine.events.GameEvent;
@@ -43,8 +41,7 @@ public class Game implements IGame {
         myAuthorshipData = new AuthorshipData();
         myGameInformation = gameInfo;
         myAttributeManager = new AttributeManager();
-//        myObstructionManager = new ObstructionManager(this);
-
+        //myObstructionManager = new ObstructionManager(this);
     }
 
     @Override
