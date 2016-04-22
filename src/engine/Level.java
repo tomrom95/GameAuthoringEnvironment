@@ -13,6 +13,8 @@ import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
+import waves.IWaveSet;
+import waves.WaveSet;
 
 
 /**
@@ -30,6 +32,7 @@ public class Level implements ILevel {
     private IAttributeManager myAttributeManager;
     private INextLevelManager myNextLevelManager;
     private IProfile myProfile;
+    private IWaveSet myWaveSet;
 
     public Level () {
         // TODO need to actually instantiate internal manager objects
@@ -41,6 +44,7 @@ public class Level implements ILevel {
         myNextLevelManager = new NextLevelManager();
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
+        myWaveSet = new WaveSet();
     }
 
     @Override
@@ -49,6 +53,7 @@ public class Level implements ILevel {
         myConditionManager.update(duration);
         myAttributeManager.update(duration);
         myNextLevelManager.update(duration);
+        myWaveSet.update(duration);
     }
 
     @Override
@@ -161,5 +166,10 @@ public class Level implements ILevel {
        myProfile = profile;
         
     }
+
+	@Override
+	public IWaveSet getWaveSet() {
+		return myWaveSet;
+	}
 
 }

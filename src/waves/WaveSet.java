@@ -1,5 +1,6 @@
 package waves;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import engine.Attribute;
@@ -11,15 +12,15 @@ public class WaveSet implements IWaveSet {
 
 	private List<IWave> myWaves;
 	private IWave currentWave;
-	private IAttribute myIntervalTime;
+	private TimeDuration myIntervalTime;
 	private boolean stopWaves;
 	private TimeDuration myTimeSinceLastWave;
 
-	public WaveSet(List<IWave> waves, double interval) {
-		myWaves = waves;
+	public WaveSet() {
+		myWaves = new ArrayList<IWave>();
 		currentWave = myWaves.get(0);
 		myWaves.remove(0);
-		myIntervalTime = new Attribute(interval, AttributeType.WAVE_INTERVAL);
+		myIntervalTime = new TimeDuration(0);
 		myTimeSinceLastWave = new TimeDuration(0);
 	}
 
@@ -29,7 +30,7 @@ public class WaveSet implements IWaveSet {
 		myTimeSinceLastWave.increase(duration);
 
 		
-		if(myTimeSinceLastWave.getSeconds() >= myIntervalTime.getValueProperty().get() & stopWaves){
+		if(myTimeSinceLastWave.getSeconds() >= myIntervalTime.getSeconds() & stopWaves){
 			
 			stopWaves = false;
 			myTimeSinceLastWave.setToZero();
@@ -69,5 +70,13 @@ public class WaveSet implements IWaveSet {
 		return myWaves;
 	}
 
+	public TimeDuration getIntervalTime(){
+		return myIntervalTime;
+	}
+	
+	public void setIntervalTime(TimeDuration time){
+		myIntervalTime.setToZero();
+		myIntervalTime.increase(time);
+	}
 
 }
