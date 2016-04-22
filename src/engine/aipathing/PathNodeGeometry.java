@@ -17,6 +17,15 @@ public class PathNodeGeometry {
         // utility class so private constructor
     }
 
+
+    public static List<Coordinate> lineRounder (List<Coordinate> lineToRound) {
+        List<Coordinate> toReturn = new ArrayList<>();
+        for (Coordinate coord : lineToRound) {
+            toReturn.add(new Coordinate(Math.round(coord.getX()), Math.round(coord.getY())));
+        }
+        return toReturn;
+    }
+
     /**
      * This method will return a list of points that sample the line
      * between two coordinates at the interval required to maintain
