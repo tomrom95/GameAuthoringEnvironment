@@ -8,6 +8,7 @@ import engine.IGame;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.fire.DirectionalFireSFC;
 import gameauthoring.creation.subforms.fire.FiringSFC;
+import gameauthoring.creation.subforms.fire.FiringSFCmult;
 import gameauthoring.creation.subforms.fire.TrackingFireSFC;
 import gameauthoring.creation.subforms.movement.MovementSubFormController;
 import gameauthoring.creation.subforms.movement.SmartAIMovementSubFormController;
@@ -40,6 +41,9 @@ public class SubFormControllerFactory {
             System.out.println("profile");
             // return new ProfileSubFormController();
 
+        }
+        else if (type.equals("FireMult")){
+            return new FiringSFCmult(getMyGame());
         }
         else if (type.equals("Movement")) {
             return new MovementSubFormController(getMyGame());

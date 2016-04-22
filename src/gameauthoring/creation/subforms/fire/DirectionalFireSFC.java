@@ -24,6 +24,7 @@ public class DirectionalFireSFC implements ISubFormControllerSprite {
     private IFormDataManager myFormData;
     private IGame myGame;
     private FiringSFC myFiringSFC;
+ //   private FiringSFVmult myFiringMult;
     private double myDefaultAngle = 0;
     private double myDefaultWaitTime = 0;
     private DirectionalFirerDefinition myFireDef = new DirectionalFirerDefinition();
@@ -34,6 +35,20 @@ public class DirectionalFireSFC implements ISubFormControllerSprite {
         myGame = game;
         myFiringSFC = firingSubFormController;
     }
+
+    public DirectionalFireSFC (IGame game, FiringSFVmult firingSFVmult) {
+        myView = new DirectionalFireSFV();
+        myFormData = myView.getData();
+        myGame = game;
+ //       myFiringSFC = firingSFVmult;
+
+    }
+
+    public DirectionalFireSFC (IGame game, FiringSFCmult sFC) {
+        myView = new DirectionalFireSFV();
+        myFormData = myView.getData();
+        myGame = game;
+      }
 
     @Override
     public void initializeFields () {
@@ -53,7 +68,7 @@ public class DirectionalFireSFC implements ISubFormControllerSprite {
     // TODO: Check whether input is empty string or not, it gives error for now
     @Override
     public void updateItem (SpriteDefinition item) {
-        //myFiringSFC.removeCurrentFirer(item); TODO: fix this issue
+        // myFiringSFC.removeCurrentFirer(item); TODO: fix this issue
         try {
             Double angle =
                     Double.valueOf(myFormData.getValueProperty(myView.getMyAngleKey()).get()) *
@@ -63,8 +78,8 @@ public class DirectionalFireSFC implements ISubFormControllerSprite {
             myFireDef.setGame(myGame);
             myFireDef.setAngle(angle);
             myFireDef.setWaitTime(waitTime);
-            myFireDef.setProjectileDefinition(myFiringSFC.getMyMissile());    
-            if(!item.getModuleDefinitions().contains(myFireDef)){
+            myFireDef.setProjectileDefinition(myFiringSFC.getMyMissile());
+            if (!item.getModuleDefinitions().contains(myFireDef)) {
                 item.addModule(myFireDef);
             }
         }
@@ -74,7 +89,5 @@ public class DirectionalFireSFC implements ISubFormControllerSprite {
             err.showError();
         }
     }
-    
-    
 
 }

@@ -11,6 +11,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -48,15 +49,23 @@ public class UIFactory {
         return node.snapshot(new SnapshotParameters(), null);
     }
     
-    public ScrollPane makeScrollPane(int width, int height){
-        ScrollPane pane = new ScrollPane();
+    public ScrollPane makeScrollPane(Node content, int width, int height){
+        ScrollPane pane = new ScrollPane(content);
         pane.setPrefSize(width, height);
         return pane;
     }
     
-    public HBox makeHBox(double spacing, List<Node> content){
+    public HBox makeHBox(double spacing, Node...content ){
         HBox box = new HBox(spacing);
         box.getChildren().addAll(content);
+        return box;
+    }
+    
+    public VBox makeVBox(double spacing, Node...content ){
+        VBox box = new VBox(spacing);
+        if(content!=null){
+            box.getChildren().addAll(content);
+        }
         return box;
     }
 }

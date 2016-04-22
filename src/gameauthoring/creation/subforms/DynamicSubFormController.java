@@ -21,7 +21,6 @@ public abstract class DynamicSubFormController implements ISubFormControllerSpri
     private ISubFormController<SpriteDefinition> myCurrentSubFormController;
     private IGame myGame;
     private DynamicSFCFactory mySFCFactory;
-    private UIFactory myUIFactory = new UIFactory();
 
     /**
      * Constructor

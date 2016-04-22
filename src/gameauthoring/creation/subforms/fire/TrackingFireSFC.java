@@ -32,6 +32,18 @@ public class TrackingFireSFC implements ISubFormControllerSprite {
         myFiringSFC = firingSubFormController;
     }
 
+    public TrackingFireSFC (IGame game, FiringSFVmult firingSFVmult) {
+        myView = new TrackingFirerSFV(game.getAuthorshipData().getMyCreatedGroups());
+        myFormData = myView.getData();
+        myGame = game;
+    }
+
+    public TrackingFireSFC (IGame game, FiringSFCmult sFC) {
+        myView = new TrackingFirerSFV(game.getAuthorshipData().getMyCreatedGroups());
+        myFormData = myView.getData();
+        myGame = game;
+    }
+
     @Override
     public void initializeFields () {
         populateViewsWithData(myDefaultWaitTime);
