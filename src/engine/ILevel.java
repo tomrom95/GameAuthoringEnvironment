@@ -7,6 +7,7 @@ import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
 import util.Coordinate;
+import waves.IWaveSet;
 
 
 /**
@@ -77,6 +78,8 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
     /**
      * @param sprite to be removed
      */
+    
+    IWaveSet getWaveSet();
 
     void remove (ISprite sprite);
 
