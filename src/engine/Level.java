@@ -29,6 +29,7 @@ public class Level implements ILevel {
     private ISpriteManager mySpriteManager;
     private IAttributeManager myAttributeManager;
     private INextLevelManager myNextLevelManager;
+    private IPlaceableManager myPlaceableManager;
     private IProfile myProfile;
 
     public Level () {
@@ -41,6 +42,7 @@ public class Level implements ILevel {
         myNextLevelManager = new NextLevelManager();
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
+        myPlaceableManager = new PlaceableManager(this);
     }
 
     @Override
@@ -152,14 +154,18 @@ public class Level implements ILevel {
     }
 
     @Override
+    public IPlaceableManager getPlaceableManager () {
+        return myPlaceableManager;
+    }
+
     public IProfile getProfile () {
         return myProfile;
     }
 
     @Override
     public void setProfile (IProfile profile) {
-       myProfile = profile;
-        
+        myProfile = profile;
+
     }
 
 }

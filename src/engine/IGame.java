@@ -12,6 +12,7 @@ import engine.rendering.IGameGridConfig;
  * @author David Maydew
  * @author Ryan St.Pierre
  * @author Jonathan Im
+ * @author Jin An
  *
  */
 public interface IGame extends IGamePlayable {
