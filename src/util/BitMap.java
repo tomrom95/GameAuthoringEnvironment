@@ -81,8 +81,8 @@ public class BitMap implements Iterable<Boolean> {
     @Override
     public Iterator<Boolean> iterator () {
         return new Iterator<Boolean>() {
-            private final int myMaxValue = getHeight() * getWidth();
-            private int myCurLoc = 0;
+            private final int myMaxValue = getHeight() * getWidth() - 1;
+            private int myCurLoc = -1;
 
             @Override
             public boolean hasNext () {
@@ -92,7 +92,7 @@ public class BitMap implements Iterable<Boolean> {
             @Override
             public Boolean next () {
                 myCurLoc++;
-                return new Boolean(getBitMap()[myCurLoc / getWidth()][myCurLoc % getWidth()]);
+                return new Boolean(getBitMap()[myCurLoc / getHeight()][myCurLoc % getHeight()]);
             }
 
         };
