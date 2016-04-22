@@ -25,13 +25,14 @@ public class FiringSFCmult implements ISubFormControllerSprite {
 
     public void addSFC (RemovableSpriteSFC sfc) {
         mySFCs.add(sfc);
+        sfc.initializeFields();
         myView.addSFV(sfc.getSubFormView());
     }
 
     public void removeSFC (RemovableSpriteSFC sfc) {
         mySFCs.remove(sfc);
         myView.removeSFV(sfc.getSubFormView());
-        sfc.removeModule();
+        sfc.removeModule(sfc.getFirerDefinition());
     }
 
     @Override

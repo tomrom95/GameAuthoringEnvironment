@@ -11,6 +11,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * Implementation of IFiringSFVmult with button display
+ * 
+ * @author Joe Lilien
+ *
+ */
 public class FiringSFVmult extends SubFormView {
     private GridPane myContainer;
     private UIFactory myUIFactory = new UIFactory();
@@ -20,6 +26,7 @@ public class FiringSFVmult extends SubFormView {
 
     
     public FiringSFVmult(IGame game, FiringSFCmult SFC){    
+        //TODO: maybe use factory here for new subforms
         Button dir = myUIFactory.createButton("direc", e->SFC.addSFC(new DirectionalFireSFC(game, SFC)));
         Button track = myUIFactory.createButton("track", e->SFC.addSFC(new TrackingFireSFC(game,SFC)));
         buttonHolder = myUIFactory.makeHBox(10, dir,track);

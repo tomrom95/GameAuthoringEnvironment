@@ -5,7 +5,6 @@ import engine.definitions.DirectionalFirerDefinition;
 import engine.definitions.FirerDefinition;
 import engine.definitions.SpriteDefinition;
 import gameauthoring.creation.entryviews.IFormDataManager;
-import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.util.ErrorMessage;
 
@@ -18,16 +17,14 @@ import gameauthoring.util.ErrorMessage;
  *
  */
 
-public class DirectionalFireSFC implements RemovableSpriteSFC {
+public class DirectionalFireSFC extends RemovableSpriteSFC {
 
     private DirectionalFireSFV myView;
     private IFormDataManager myFormData;
     private IGame myGame;
-    private FiringSFCmult myFiringSFC;
     private double myDefaultAngle = 0;
     private double myDefaultWaitTime = 0;
     private DirectionalFirerDefinition myFireDef = new DirectionalFirerDefinition();
-    private SpriteDefinition mySpriteDefinition;
 
     public DirectionalFireSFC (IGame game, FiringSFCmult sfc) {
         myView =
@@ -35,7 +32,6 @@ public class DirectionalFireSFC implements RemovableSpriteSFC {
                                        e -> sfc.removeSFC(this));
         myFormData = myView.getData();
         myGame = game;
-        myFiringSFC = sfc;
     }
 
     @Override
@@ -55,7 +51,7 @@ public class DirectionalFireSFC implements RemovableSpriteSFC {
 
     @Override
     public void updateItem (SpriteDefinition item) {
-        mySpriteDefinition = item;
+        setMySpriteDefinition(item);
         try {
             Double angle =
                     Double.valueOf(myFormData.getValueProperty(myView.getMyAngleKey()).get()) *
@@ -77,14 +73,10 @@ public class DirectionalFireSFC implements RemovableSpriteSFC {
         }
     }
 
+
     @Override
-    public void removeModule () {
-        if (mySpriteDefinition != null) {
-            if (mySpriteDefinition.getModuleDefinitions().contains(myFireDef)) {
-                mySpriteDefinition.remove(myFireDef);
-            }
-        }
-//        myFiringSFC.removeSFC(this);
+    public FirerDefinition getFirerDefinition () {
+        return myFireDef;
     }
 
 }

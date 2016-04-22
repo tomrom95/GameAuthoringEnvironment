@@ -3,11 +3,13 @@ package gameauthoring.creation.subforms;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.ImageEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
+import gameauthoring.creation.entryviews.SliderEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+
 
 /**
  * Implementation of IProfileSFV with GridPane arrangement of entryviews
@@ -26,25 +28,24 @@ public class ProfileSFV extends SubFormView implements IProfileSFV {
     private IEntryView myName;
     private IEntryView myImage;
     private IEntryView myDescription;
-    private IEntryView myImageWidth;
-    private IEntryView myImageHeight;
+    private SliderEntryView myImageWidth;
+    private SliderEntryView myImageHeight;
 
     public ProfileSFV () {
         myName =
                 new TextEntryView(myNameKey, this.getData(), 250, 40,
                                   AuthoringView.DEFAULT_ENTRYVIEW);
-        myImage =
-                new ImageEntryView(myImageKey, this.getData(), 200, 200,
-                                   AuthoringView.DEFAULT_ENTRYVIEW);
         myDescription =
                 new TextEntryView(myDescriptionKey, this.getData(), 250, 100,
                                   AuthoringView.DEFAULT_ENTRYVIEW);
         myImageWidth =
-                new NumberEntryView(myImageWidthKey, this.getData(), 40, 30,
-                                    AuthoringView.DEFAULT_ENTRYVIEW);
+                new SliderEntryView(myImageWidthKey, AuthoringView.DEFAULT_ENTRYVIEW, 10, 200);
         myImageHeight =
-                new NumberEntryView(myImageHeightKey, this.getData(), 40, 30,
-                                    AuthoringView.DEFAULT_ENTRYVIEW);
+                new SliderEntryView(myImageHeightKey, AuthoringView.DEFAULT_ENTRYVIEW, 10, 200);
+        myImage =
+                new ImageEntryView(myImageKey, this.getData(), myImageWidth.getValueProperty(),
+                                   myImageHeight.getValueProperty(),
+                                   AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
     }
 
@@ -78,12 +79,12 @@ public class ProfileSFV extends SubFormView implements IProfileSFV {
     }
 
     @Override
-    public String getMyImageWidthKey () {
-        return myImageWidthKey;
+    public double getMyImageWidth () {
+        return myImageWidth.getValueProperty().get();
     }
 
     @Override
-    public String getMyImageHeightKey () {
-        return myImageHeightKey;
+    public double getMyImageHeight () {
+        return myImageHeight.getValueProperty().get();
     }
 }

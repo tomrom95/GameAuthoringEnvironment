@@ -1,10 +1,10 @@
 package gameauthoring.creation.subforms.fire;
 
 import engine.IGame;
+import engine.definitions.FirerDefinition;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.TrackingFirerDefinition;
 import gameauthoring.creation.entryviews.IFormDataManager;
-import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 
 
@@ -16,28 +16,18 @@ import gameauthoring.creation.subforms.ISubFormView;
  *
  */
 
-public class TrackingFireSFC implements RemovableSpriteSFC {
+public class TrackingFireSFC extends RemovableSpriteSFC {
 
     private TrackingFirerSFV myView;
     private IFormDataManager myFormData;
     private IGame myGame;
-    private FiringSFCmult myFiringSFC;
     private double myDefaultWaitTime = 0;
     private TrackingFirerDefinition myFireDef = new TrackingFirerDefinition();
-    private SpriteDefinition mySpriteDefinition;
-
-    // public TrackingFireSFC (IGame game, FiringSFC firingSubFormController) {
-    // myView = new TrackingFirerSFV(game.getAuthorshipData().getMyCreatedGroups());
-    // myFormData = myView.getData();
-    // myGame = game;
-    // myFiringSFC = firingSubFormController;
-    // }
 
     public TrackingFireSFC (IGame game, FiringSFCmult sfc) {
         myView = new TrackingFirerSFV(game.getAuthorshipData(), e -> sfc.removeSFC(this));
         myFormData = myView.getData();
         myGame = game;
-        myFiringSFC = sfc;
     }
 
     @Override
@@ -51,7 +41,7 @@ public class TrackingFireSFC implements RemovableSpriteSFC {
 
     @Override
     public void updateItem (SpriteDefinition item) {
-        mySpriteDefinition = item;
+        setMySpriteDefinition(item);
         myFireDef.setGame(myGame);
         Double waitTime =
                 Double.valueOf(myFormData.getValueProperty(myView.getWaitTimeKey()).get());
@@ -67,15 +57,10 @@ public class TrackingFireSFC implements RemovableSpriteSFC {
     public ISubFormView getSubFormView () {
         return myView;
     }
-
+    
     @Override
-    public void removeModule () {
-        if (mySpriteDefinition != null) {
-            if (mySpriteDefinition.getModuleDefinitions().contains(myFireDef)) {
-                mySpriteDefinition.remove(myFireDef);
-            }
-        }
-//        myFiringSFC.removeSFC(this);
+    public FirerDefinition getFirerDefinition(){
+        return myFireDef;
     }
 
 }
