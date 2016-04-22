@@ -32,4 +32,38 @@ public class PathNode implements IPathNode {
         return new Coordinate(myLocation.getX(), myLocation.getY());
     }
 
+    @Override
+    public int hashCode () {
+        final int PRIME = 31;
+        int result = 1;
+        result = PRIME * result + ((myLocation == null) ? 0 : myLocation.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals (Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        PathNode other = (PathNode) 
+                obj;
+        if (myLocation == null) {
+            if (other.myLocation != null) {
+                return false;
+            }
+        }
+        else if (!myLocation.equals(other.myLocation)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+
 }

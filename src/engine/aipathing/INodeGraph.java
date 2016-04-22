@@ -45,7 +45,7 @@ public interface INodeGraph {
      * 
      * @return list of graph IPathNodes
      */
-    List<IPathNode> getGraph ();
+    List<IPathNode> getNodes ();
 
     /**
      * Will iterate through all existing nodes and consume
