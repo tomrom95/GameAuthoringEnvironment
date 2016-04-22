@@ -49,7 +49,7 @@ public class SpawnerModuleDefinition extends ModuleDefinition {
     
     @Override
     public IModule create (Positionable parent) {
-        return new 
+    	return new SpawningModule (myAdder,  myGame, new TimeDuration(),  parent, new ArrayList<SpriteDefinition>()); 
     }
 
 }
