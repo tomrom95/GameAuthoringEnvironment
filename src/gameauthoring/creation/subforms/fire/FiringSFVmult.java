@@ -1,8 +1,6 @@
 package gameauthoring.creation.subforms.fire;
 
 import engine.IGame;
-import gameauthoring.creation.subforms.ISubFormController;
-import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.util.UIFactory;
@@ -19,11 +17,9 @@ public class FiringSFVmult extends SubFormView {
     private ScrollPane myPane;
     private VBox myPaneContent;
     private HBox buttonHolder;
-    private FiringSFCmult mySFC;
 
     
     public FiringSFVmult(IGame game, FiringSFCmult SFC){    
-        mySFC = SFC;
         Button dir = myUIFactory.createButton("direc", e->SFC.addSFC(new DirectionalFireSFC(game, SFC)));
         Button track = myUIFactory.createButton("track", e->SFC.addSFC(new TrackingFireSFC(game,SFC)));
         buttonHolder = myUIFactory.makeHBox(10, dir,track);
