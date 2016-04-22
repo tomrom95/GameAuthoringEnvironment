@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 
@@ -59,9 +60,21 @@ public class SceneCreator implements Glyph {
             pane.getChildren().addAll(myView.getPane(), myView.getGrids().getPane(),
                                       placeableButton(pane));
         else {
-            updatePlaceableArea();
             pane.getChildren().addAll(myView.getGrids().getPane(), myView.getPane(),
                                       placeableButton(pane));
+            updatePlaceableArea();
+//            printPlaceableArea();
+        }
+    }
+
+    private void printPlaceableArea () {
+        for (int i = 0; i < 50; i++) {
+            for (int j = 0; j < 50; j++) {
+                System.out
+                        .print((myLevel.getPlaceableManager().getPlaceableArea().getBitMap()[i][j]) ? "1"
+                                                                                                   : "0");
+            }
+            System.out.println("");
         }
     }
 
@@ -73,22 +86,18 @@ public class SceneCreator implements Glyph {
      */
     private void updatePlaceableArea () {
         Rectangle[][] blocks = myView.getGrids().getBlocks();
-        int count = 0;
         for (int row = 0; row < myView.getGrids().NUM_BLOCK_ROW; row++) {
             for (int col = 0; col < myView.getGrids().NUM_BLOCK_COL; col++) {
-                if (blocks[row][col].getFill() == Color.RED) {
-                    updateCorrespondingBlock(row, col);
-                    count++;
-                }
+                updateCorrespondingBlock(row, col, blocks[row][col].getFill());
             }
         }
     }
 
-    private void updateCorrespondingBlock (int row, int col) {
+    private void updateCorrespondingBlock (int row, int col, Paint color) {
         int blockSize = myView.getGrids().BLOCK_SIZE;
-        for (int r = (blockSize) * row; r < (blockSize) * (row+1); r++) {
-            for (int c = (blockSize) * (col); c < (blockSize) * (col+1); c++) {
-                myLevel.getPlaceableManager().getPlaceableArea().set(r, c, true);
+        for (int r = (blockSize) * row; r < (blockSize) * (row + 1); r++) {
+            for (int c = (blockSize) * (col); c < (blockSize) * (col + 1); c++) {
+                myLevel.getPlaceableManager().getPlaceableArea().set(r, c, color == Color.RED);
             }
         }
     }

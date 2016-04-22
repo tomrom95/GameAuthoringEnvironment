@@ -107,6 +107,10 @@ public class AuthoringRenderer extends LevelRenderer {
     public GridRenderer getGrids(){
         return myTileView;
     }
+    
+    public ILevel getLevel(){
+        return myLevel;
+    }
 
     private void add (Node node) {
         getPane().getChildren().add(node);

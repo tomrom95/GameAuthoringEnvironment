@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
  * Has some default helper methods to help out with repetitive javafx
  * code
  * @author Tommy
+ * @author Jin An
  *
  */
 public interface Draggable{
@@ -39,5 +40,6 @@ public interface Draggable{
     public void setOnDragOver(DragEvent e);
     
     public void setOnDragDropped(DragEvent e);
-
+    
+    public boolean checkPlaceable (DragEvent e);
 }
