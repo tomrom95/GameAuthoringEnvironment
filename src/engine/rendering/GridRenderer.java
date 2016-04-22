@@ -15,7 +15,7 @@ import javafx.scene.shape.Rectangle;
  *
  */
 public class GridRenderer implements IRenderer {
-
+    //TODO: Confirm the numbers
     private GridPane myPane;
     private Rectangle[][] myBlocks;
     public final int NUM_BLOCK_ROW = 29;
@@ -28,23 +28,26 @@ public class GridRenderer implements IRenderer {
     }
 
     private void drawGridLines () {
-        // TODO: Hard-coded numbers
         for (int i = 0; i < NUM_BLOCK_ROW; i++) {
             for (int j = 0; j < NUM_BLOCK_COL; j++) {
                 Rectangle rect = new Rectangle(BLOCK_SIZE, BLOCK_SIZE);
                 rect.setFill(Color.TRANSPARENT);
-                rect.setOnMouseClicked(e -> handleMouseClick(rect, e));
+                rect.setOnMouseClicked(e -> handleMouseClick(rect));
                 myBlocks[i][j] = rect;
                 myPane.add(rect, i, j);
             }
         }
     }
 
-    private void handleMouseClick (Rectangle rect, MouseEvent e) {
-        if (rect.getFill() == Color.TRANSPARENT)
+    private void handleMouseClick (Rectangle rect) {
+        if (rect.getFill() == Color.TRANSPARENT) {
             rect.setFill(Color.RED);
-        else
+            // myBlocks[row][column] = rect;
+        }
+        else if (rect.getFill() == Color.RED) {
             rect.setFill(Color.TRANSPARENT);
+            // myBlocks[row][column] = rect;
+        }
     }
 
     public Pane getPane () {

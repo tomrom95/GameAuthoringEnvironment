@@ -63,7 +63,7 @@ public class SceneCreator implements Glyph {
             pane.getChildren().addAll(myView.getGrids().getPane(), myView.getPane(),
                                       placeableButton(pane));
             updatePlaceableArea();
-//            printPlaceableArea();
+            printPlaceableArea();
         }
     }
 
