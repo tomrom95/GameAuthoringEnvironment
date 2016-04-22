@@ -26,7 +26,7 @@ public class SpawnerDefinition extends SpriteDefinition {
         getProfile().setNew(SPAWNER_NAME, SPAWNER_DESCRIPTION, SPAWNER_URL, DEFAULT_SIZE, DEFAULT_SIZE);
         // TODO wave definition should specify an empty constructor so it can handle its own default
         // rather than passing null
-        mySpawningModule = new SpawnerModuleDefinition(game, new WaveDefinition(null), 1);
+        //mySpawningModule = new SpawnerModuleDefinition(game, new WaveDefinition(null), 1);
     }
 
     @Override

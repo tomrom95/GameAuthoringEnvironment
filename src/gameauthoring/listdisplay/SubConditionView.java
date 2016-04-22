@@ -10,6 +10,7 @@ import engine.conditions.ICondition;
 import engine.profile.IProfilable;
 import engine.profile.Profile;
 import gameauthoring.creation.cellviews.NameCellView;
+import gameauthoring.util.UIFactory;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -69,11 +70,6 @@ public abstract class SubConditionView {
         myNodes.add(combo);      
     }
 
-    protected void addCellFactory (ComboBox<? extends IProfilable> comboBox) {
-        comboBox.setCellFactory(c -> new NameCellView<>());
-        comboBox.setButtonCell(new NameCellView<>());
-    }
-
     protected void initializeDisplay () {
         initBoxes();
         add(getHBox(), 0, 1);
@@ -111,10 +107,9 @@ public abstract class SubConditionView {
     }
 
     protected <T extends IProfilable> ComboBox<T> createComboBox (ObservableList<T> list) {
-        ComboBox<T> box = new ComboBox<>(list);
-        addCellFactory(box);
-        myNodes.add(box);
-        return box;
+        ComboBox<T> combo = new UIFactory().createCombo(list);
+        myNodes.add(combo);
+        return combo;
     }
 
     protected ComboBox<String> createStringComboBox (ObservableList<String> list) {
