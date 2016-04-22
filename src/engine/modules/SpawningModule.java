@@ -5,6 +5,7 @@ import engine.Positionable;
 import engine.effects.DefaultAffectable;
 import engine.sprite.ISprite;
 import util.TimeDuration;
+import waves.IWave;
 
 
 /**
