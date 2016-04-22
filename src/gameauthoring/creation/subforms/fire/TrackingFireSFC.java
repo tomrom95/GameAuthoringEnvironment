@@ -21,11 +21,11 @@ public class TrackingFireSFC implements ISubFormControllerSprite {
     private TrackingFirerSFV myView;
     private IFormDataManager myFormData;
     private IGame myGame;
-    private FiringSubFormController myFiringSFC;
+    private FiringSFC myFiringSFC;
     private double myDefaultWaitTime = 0;
     private TrackingFirerDefinition myFireDef = new TrackingFirerDefinition();
 
-    public TrackingFireSFC (IGame game, FiringSubFormController firingSubFormController) {
+    public TrackingFireSFC (IGame game, FiringSFC firingSubFormController) {
         myView = new TrackingFirerSFV(game.getAuthorshipData().getMyCreatedGroups());
         myFormData = myView.getData();
         myGame = game;

@@ -41,7 +41,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         myPane = new GridPane();
         myPane.setGridLinesVisible(true);
         myPane.add(myAngle.draw(), 0, 0);
-        myPane.add(myWaitTime.draw(), 0, 1);
+        myPane.add(myWaitTime.draw(), 1, 0);
     }
 
     @Override

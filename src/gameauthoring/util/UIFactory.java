@@ -1,13 +1,16 @@
 package gameauthoring.util;
 
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 
 
 /**
@@ -43,5 +46,17 @@ public class UIFactory {
 
     public Image getImageFromNode (Node node) {
         return node.snapshot(new SnapshotParameters(), null);
+    }
+    
+    public ScrollPane makeScrollPane(int width, int height){
+        ScrollPane pane = new ScrollPane();
+        pane.setPrefSize(width, height);
+        return pane;
+    }
+    
+    public HBox makeHBox(double spacing, List<Node> content){
+        HBox box = new HBox(spacing);
+        box.getChildren().addAll(content);
+        return box;
     }
 }

@@ -7,6 +7,7 @@ import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.DynamicSubFormView;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.UIFactory;
 import javafx.collections.ObservableList;
 
 
@@ -16,10 +17,11 @@ import javafx.collections.ObservableList;
  * @author Jeremy Schreck
  *
  */
-public class FiringSubFormView extends DynamicSubFormView {
+public class FiringSFV extends DynamicSubFormView {
 
     private String myFireTypeKey = "Fire Type: ";
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
+
 
     /**
      * Constructor
@@ -30,7 +32,7 @@ public class FiringSubFormView extends DynamicSubFormView {
      * @param changeMissileAction The method to call when a user selects a different missile 
      * @param missiles The list of possible missiles to select
      */
-    public FiringSubFormView (List<ISubFormView> views,
+    public FiringSFV (List<ISubFormView> views,
                               Consumer<Integer> changeSelectionAction,
                               List<String> options,
                               Consumer<SpriteDefinition> changeMissileAction,

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import engine.IGame;
 import engine.definitions.SpriteDefinition;
+import gameauthoring.util.UIFactory;
 
 
 /**
@@ -20,6 +21,7 @@ public abstract class DynamicSubFormController implements ISubFormControllerSpri
     private ISubFormController<SpriteDefinition> myCurrentSubFormController;
     private IGame myGame;
     private DynamicSFCFactory mySFCFactory;
+    private UIFactory myUIFactory = new UIFactory();
 
     /**
      * Constructor
@@ -35,7 +37,7 @@ public abstract class DynamicSubFormController implements ISubFormControllerSpri
         setMyGame(game);
         setMySFCFactory(sfcFactory);
         setUpSubFormControllers(subFormIDs);
-        setMyCurrentSFC(0);
+        setMyCurrentSFC(0);//TODO: magic number
         setUpSubFormViews(mySubFormControllers);
     }
 

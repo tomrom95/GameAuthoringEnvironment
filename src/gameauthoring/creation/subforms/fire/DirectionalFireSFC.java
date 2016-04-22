@@ -23,12 +23,12 @@ public class DirectionalFireSFC implements ISubFormControllerSprite {
     private DirectionalFireSFV myView;
     private IFormDataManager myFormData;
     private IGame myGame;
-    private FiringSubFormController myFiringSFC;
+    private FiringSFC myFiringSFC;
     private double myDefaultAngle = 0;
     private double myDefaultWaitTime = 0;
     private DirectionalFirerDefinition myFireDef = new DirectionalFirerDefinition();
 
-    public DirectionalFireSFC (IGame game, FiringSubFormController firingSubFormController) {
+    public DirectionalFireSFC (IGame game, FiringSFC firingSubFormController) {
         myView = new DirectionalFireSFV();
         myFormData = myView.getData();
         myGame = game;

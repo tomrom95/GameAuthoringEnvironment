@@ -7,7 +7,7 @@ import engine.Game;
 import engine.IGame;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.fire.DirectionalFireSFC;
-import gameauthoring.creation.subforms.fire.FiringSubFormController;
+import gameauthoring.creation.subforms.fire.FiringSFC;
 import gameauthoring.creation.subforms.fire.TrackingFireSFC;
 import gameauthoring.creation.subforms.movement.MovementSubFormController;
 import gameauthoring.creation.subforms.movement.SmartAIMovementSubFormController;
@@ -63,7 +63,7 @@ public class SubFormControllerFactory {
             return new SelectSpriteSFC(getMyAuthorshipData().getMyCreatedSprites());
         }
         else if (type.equals("Firing")) {
-            return new FiringSubFormController(getMyGame());
+            return new FiringSFC(getMyGame());
         }
         else if (type.equals("Upgrade")) {
             return new UpgradeSFC(getMyGame());
@@ -98,7 +98,7 @@ public class SubFormControllerFactory {
                     .getMyCreatedAttributes());
         }
         else if (type.equals("Firing")) {
-            return new FiringSubFormController(getMyGame());
+            return new FiringSFC(getMyGame());
         }
         System.out.println("null");
 

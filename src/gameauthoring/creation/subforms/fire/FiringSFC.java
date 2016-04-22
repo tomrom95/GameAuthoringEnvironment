@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import engine.IGame;
 import engine.definitions.FirerDefinition;
-import engine.definitions.ModuleDefinition;
 import engine.definitions.SpriteDefinition;
 import gameauthoring.creation.subforms.DynamicSubFormController;
 
@@ -16,7 +15,7 @@ import gameauthoring.creation.subforms.DynamicSubFormController;
  * @author Jeremy Schreck
  *
  */
-public class FiringSubFormController extends DynamicSubFormController {
+public class FiringSFC extends DynamicSubFormController {
 
     private SpriteDefinition myMissile;
 
@@ -25,12 +24,12 @@ public class FiringSubFormController extends DynamicSubFormController {
      * 
      * @param game The current game object
      */
-    public FiringSubFormController (IGame game) {
+    public FiringSFC (IGame game) {
         super(game, new FiringSFCFactory(game, null),
               new ArrayList<String>(Arrays.asList("DirectionalFire", "TrackingFire")));
         List<String> options = new ArrayList<>(Arrays.asList("Directional", "Tracking"));
         setMyView(
-                  new FiringSubFormView(getMySubFormViews(), e -> changeSelection(e), options,
+                  new FiringSFV(getMySubFormViews(), e -> changeSelection(e), options,
                                         e -> changeMissile(e),
                                         game.getAuthorshipData().getMyCreatedMissiles()
                                                 .getItems()));
