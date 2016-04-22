@@ -44,4 +44,16 @@ public class SceneController {
     public ILevel getLevel(){
         return myLevel;
     }
+
+    public void addSpriteToLevel (SpriteDefinition sprite) {
+        myLevel.getAddableSprites().add(sprite);
+    }
+    
+    public void removeSpriteFromLevel (SpriteDefinition sprite) {
+        myLevel.getAddableSprites().remove(sprite);
+    }
+
+    public boolean isSpriteInLevel (SpriteDefinition profilable) {
+        return myLevel.getAddableSprites().contains(profilable);
+    }
 }

@@ -2,7 +2,6 @@ package gameplayer;
 
 import java.util.ResourceBundle;
 import engine.IGame;
-import engine.IGamePlayable;
 import engine.IOInterpeter;
 import engine.rendering.IRenderer;
 import engine.rendering.InGameRenderer;
@@ -10,14 +9,8 @@ import engine.rendering.LevelRenderer;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import util.TimeDuration;
 
@@ -46,7 +39,7 @@ public class GameEngine implements IGameEngine {
         myDisplay = new UserDisplay(myGame);
         myRenderer = new InGameRenderer(game, levelPane, myDisplay.getSpriteDisplay());
         myIOIntercepter = ioInterpreter;
-        mySideBar = new SideBarDisplay(myGame, myRenderer);
+        mySideBar = new PlayerSideBar(myGame, myRenderer);
         createLevelView(gamePane);
         initializeTimeline();
     }

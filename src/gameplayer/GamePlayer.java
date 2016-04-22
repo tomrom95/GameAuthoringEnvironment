@@ -1,7 +1,6 @@
 package gameplayer;
 
 import java.util.ResourceBundle;
-import engine.Game;
 import engine.IGame;
 import engine.IOInterpeter;
 import javafx.scene.Scene;

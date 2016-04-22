@@ -50,6 +50,10 @@ public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> imple
         myTarget.getPane().setOnDragOver(event -> setOnDragOver(event));
         myTarget.getPane().setOnDragDropped(event -> setOnDragDropped(event));
     }
+    
+    protected SceneController getController () {
+        return myController;
+    }
 
     /**
      * Helper to get a the correct image from the sprite
