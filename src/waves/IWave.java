@@ -1,7 +1,6 @@
 package waves;
 
 import engine.definitions.SpriteDefinition;
-import engine.sprite.ISprite;
 
 
 /**

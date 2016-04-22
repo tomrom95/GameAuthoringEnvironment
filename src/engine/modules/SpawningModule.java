@@ -42,7 +42,7 @@ public class SpawningModule extends DefaultAffectable implements IModule {
         
         myDelay.increase(duration);
         //TODO : change these methods to seconds?
-        if (!myWave.waveCompleted() && myDelay.getMillis() >= myThreshold.getMillis()) {
+        if (!myWave.waveCompleted() && myDelay.getMillis() >= myThreshold.getMillis() & !myGame.getLevelManager().getCurrentLevel().getWaveSet().betweenWaves()) {
             mySpritesToSpawn.stream().forEach(p -> spawnSprite(p));
         }
     }

@@ -1,7 +1,8 @@
 package engine.definitions;
 
 import java.util.List;
-import engine.modules.Wave;
+import waves.SpriteWaveData;
+import waves.Wave;
 
 
 /**
@@ -11,18 +12,18 @@ import engine.modules.Wave;
  */
 public class WaveDefinition implements IDefinition {
 
-    private List<SpriteDefinition> mySprites;
+    private List<SpriteWaveData> mySprites;
 
-    public WaveDefinition (List<SpriteDefinition> sprites) {
-        setListSprites(sprites);
+    public WaveDefinition (List<SpriteWaveData> sprites) {
+    	setListSprites(sprites);
     }
 
-    public void setListSprites (List<SpriteDefinition> sprites) {
+    public void setListSprites (List<SpriteWaveData> sprites) {
         mySprites = sprites;
     }
 
-    public Wave create () {
-        return new Wave(mySprites);
+    public Wave create(){
+    	return new Wave(mySprites);
     }
 
 }

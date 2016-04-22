@@ -24,7 +24,6 @@ public class AttributeType extends StringBasedType {
     public static final AttributeType FIRE_RATE = new AttributeType("Firerate");
     public static final AttributeType FIRE_RANGE = new AttributeType("Firerange");
     public static final AttributeType ORIENTATION = new AttributeType("Orientation");
-    public static final AttributeType WAVE_INTERVAL = new AttributeType("Wave Interval Time");
 
     public AttributeType (String type) {
         super(type);

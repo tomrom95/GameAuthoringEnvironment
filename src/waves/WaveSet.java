@@ -3,9 +3,6 @@ package waves;
 import java.util.ArrayList;
 import java.util.List;
 
-import engine.Attribute;
-import engine.AttributeType;
-import engine.IAttribute;
 import util.TimeDuration;
 
 public class WaveSet implements IWaveSet {
