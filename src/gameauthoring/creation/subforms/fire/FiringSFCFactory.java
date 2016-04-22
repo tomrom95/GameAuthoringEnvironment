@@ -1,6 +1,7 @@
 package gameauthoring.creation.subforms.fire;
 
 import engine.IGame;
+import engine.definitions.SpriteDefinition;
 import gameauthoring.creation.subforms.DynamicSFCFactory;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 
@@ -12,7 +13,7 @@ import gameauthoring.creation.subforms.ISubFormControllerSprite;
  * @author Jeremy Schreck
  *
  */
-public class FiringSFCFactory extends DynamicSFCFactory {
+public class FiringSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
 
     private FiringSubFormController myFiringSFC;
 
@@ -29,7 +30,7 @@ public class FiringSFCFactory extends DynamicSFCFactory {
     }
 
     @Override
-    public ISubFormControllerSprite createSpriteSubFormController (String type) {
+    public ISubFormControllerSprite createSubFormController (String type) {
         if (type.equals("DirectionalFire")) {
             return new DirectionalFireSFC(getMyGame(), getMyFiringSFC());
         }
