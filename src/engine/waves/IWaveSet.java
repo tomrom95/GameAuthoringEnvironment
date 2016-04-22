@@ -15,4 +15,6 @@ public interface IWaveSet extends Updateable {
 	void setWaveList(List<IWave> waves);
 	
 	List<IWave> getWaveList();
+	
+	void updateCurrentWave ();
 }

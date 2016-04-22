@@ -2,6 +2,7 @@ package engine.waves;
 
 import java.util.List;
 import engine.definitions.concrete.SpriteDefinition;
+import util.TimeDuration;
 
 public class Wave implements IWave {
 
@@ -36,6 +37,12 @@ public class Wave implements IWave {
 			
 		}
 		return false;
+	}
+
+	@Override
+	public void update(TimeDuration duration) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

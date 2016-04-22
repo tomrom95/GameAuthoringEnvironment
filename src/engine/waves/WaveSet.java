@@ -16,28 +16,15 @@ public class WaveSet implements IWaveSet {
 		
 	}
 	
-	public void initializeFirstWave(){
+	@Override
+	public void updateCurrentWave(){
 		currentWave = myWaves.get(0);
 		myWaves.remove(0);
 	}
 
 	@Override
 	public void update(TimeDuration duration) {
-		
-		myTimeSinceLastWave.increase(duration);
-
-		
-		if(myTimeSinceLastWave.getSeconds() >= myIntervalTime.getSeconds() & stopWaves){
-			
-			stopWaves = false;
-			myTimeSinceLastWave.setToZero();
-		}
-		else if (currentWave.waveCompleted() & !stopWaves) {
-			stopWaves = true;
-			myTimeSinceLastWave.setToZero();
-			currentWave = myWaves.get(0);
-			myWaves.remove(0);
-		}
+	
 	}
 
 	@Override

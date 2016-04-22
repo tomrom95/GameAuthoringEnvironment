@@ -1,5 +1,6 @@
 package engine.waves;
 
+import engine.Updateable;
 import engine.definitions.concrete.SpriteDefinition;
 
 
@@ -8,7 +9,7 @@ import engine.definitions.concrete.SpriteDefinition;
  * step
  *
  */
-public interface IWave {
+public interface IWave extends Updateable {
 
     /**
      * @return the next Sprite to be spawned

@@ -26,8 +26,6 @@ public class SpawningModule extends DefaultAffectable implements IModule {
     private IGame myGame;
     private IWaveSet myWaveSet;
     private Positionable myParent;
- 
-    private List<SpriteDefinition> mySpritesToSpawn;
 
     public SpawningModule (IAdder adder, IGame game, Positionable parent, List<WaveDefinition> waves) {
         myParent = parent;
@@ -37,28 +35,20 @@ public class SpawningModule extends DefaultAffectable implements IModule {
         List<IWave> myWaves = new ArrayList<IWave>();
         waves.stream().forEachOrdered(p -> myWaves.add(p.create()));
         myWaveSet.setWaveList(myWaves);
-        
+        myWaveSet.updateCurrentWave();
         
     }
 
     @Override
     public void update (TimeDuration duration) {
-        myWave = myGame.getLevelManager().getCurrentLevel().getWaveSet().getCurrentWave();
-        
-        myDelay.increase(duration);
-        //TODO : change these methods to seconds?
-        if (!myWave.waveCompleted() && myDelay.getMillis() >= myThreshold.getMillis() & !myGame.getLevelManager().getCurrentLevel().getWaveSet().betweenWaves()) {
-            mySpritesToSpawn.stream().forEach(p -> spawnSprite(p));
-        }
+    	if(WaveSet.keepSpawning()){
+    		 ISprite spawn = myWaveSet.getCurrentWave().spawnSprite()
+    			        spawn.setPath(myParent.getPath());	
+    			        myAdder.bufferedAdd(spawn, myParent.getLocation());
+    	}
+       
     }
     
-    private void spawnSprite(SpriteDefinition s){
-    	if(myWave.spawnSprite(s)){
-    		ISprite spawn = s.create();
-            spawn.setPath(myParent.getPath());
-            myAdder.bufferedAdd(spawn, myParent.getLocation());
-            myDelay.setToZero();
-    	} 	
-    }
-
+   
+    
 }
