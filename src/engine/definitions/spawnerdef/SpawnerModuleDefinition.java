@@ -1,5 +1,6 @@
 package engine.definitions.spawnerdef;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import engine.IAdder;
@@ -49,7 +50,7 @@ public class SpawnerModuleDefinition extends ModuleDefinition {
     
     @Override
     public IModule create (Positionable parent) {
-    	return new SpawningModule (myAdder,  myGame, new TimeDuration(),  parent, new ArrayList<SpriteDefinition>()); 
+    	return new SpawningModule(myAdder, myGame, parent, myWaves);
     }
 
 }
