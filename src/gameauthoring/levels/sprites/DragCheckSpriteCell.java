@@ -29,6 +29,7 @@ public class DragCheckSpriteCell extends DraggableSpriteCell implements Checkabl
 
     private Node createCheckBox () {
         CheckBox checkBox = new CheckBox();
+        checkBox.setSelected(getController().isSpriteInLevel(getProfilable()));
         checkBox.selectedProperty()
                 .addListener( (observable, oldValue, newValue) -> checkBoxChange(oldValue,
                                                                                  newValue));

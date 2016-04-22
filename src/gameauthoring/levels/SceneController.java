@@ -52,4 +52,8 @@ public class SceneController {
     public void removeSpriteFromLevel (SpriteDefinition sprite) {
         myLevel.getAddableSprites().remove(sprite);
     }
+
+    public boolean isSpriteInLevel (SpriteDefinition profilable) {
+        return myLevel.getAddableSprites().contains(profilable);
+    }
 }
