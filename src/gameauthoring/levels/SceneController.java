@@ -11,7 +11,7 @@ import util.Coordinate;
 /**
  * Controller for the scene actions. Can do actions like
  * swapping the background and adding a sprite to the screen.
- * This is also used by the game player to add sprites to the screen and update the bitmap
+ * This is also used by the game player to add sprites to the screen.
  * 
  * @author Tommy
  * @author Jin An
@@ -39,9 +39,5 @@ public class SceneController {
 
     public void addSprite (double x, double y, SpriteDefinition spriteDefinition) {
         myLevel.add(spriteDefinition.create(), new Coordinate(x, y));
-    }
-
-    public void updateBitMap (double x, double y, boolean value) {
-        myLevel.getPlaceableManager().getPlaceableArea().set((int) x, (int) y, value);
     }
 }

@@ -18,7 +18,7 @@ public class AuthoringRenderer extends LevelRenderer {
     private ILevel myLevel;
     private Map<ISprite, Node> mySpriteNodeMap;
     private GridRenderer myTileView;
-
+    
     public AuthoringRenderer (ILevel level, Pane pane, GridPane gridPane) {
         super(pane);
         myLevel = level;
@@ -102,6 +102,10 @@ public class AuthoringRenderer extends LevelRenderer {
             add(node);
             return node;
         }
+    }
+    
+    public GridRenderer getGrids(){
+        return myTileView;
     }
 
     private void add (Node node) {
