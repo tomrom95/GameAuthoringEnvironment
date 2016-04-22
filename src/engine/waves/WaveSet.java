@@ -9,16 +9,16 @@ public class WaveSet implements IWaveSet {
 
 	private List<IWave> myWaves;
 	private IWave currentWave;
-	private TimeDuration myIntervalTime;
 	private boolean stopWaves;
-	private TimeDuration myTimeSinceLastWave;
 
 	public WaveSet() {
 		myWaves = new ArrayList<IWave>();
+		
+	}
+	
+	public void initializeFirstWave(){
 		currentWave = myWaves.get(0);
 		myWaves.remove(0);
-		myIntervalTime = new TimeDuration(0);
-		myTimeSinceLastWave = new TimeDuration(0);
 	}
 
 	@Override

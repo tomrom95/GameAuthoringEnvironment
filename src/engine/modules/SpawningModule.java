@@ -1,14 +1,18 @@
 package engine.modules;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import engine.IAdder;
 import engine.IGame;
 import engine.Positionable;
 import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.spawnerdef.WaveDefinition;
 import engine.effects.DefaultAffectable;
 import engine.sprite.ISprite;
 import engine.waves.IWave;
+import engine.waves.IWaveSet;
+import engine.waves.WaveSet;
 import util.TimeDuration;
 
 
@@ -20,20 +24,21 @@ public class SpawningModule extends DefaultAffectable implements IModule {
 
     private IAdder myAdder;
     private IGame myGame;
-    private IWave myWave;
+    private IWaveSet myWaveSet;
     private Positionable myParent;
-    private TimeDuration myDelay;
-    private TimeDuration myThreshold;
+ 
     private List<SpriteDefinition> mySpritesToSpawn;
 
-    public SpawningModule (IAdder adder, IGame game, TimeDuration threshold, Positionable parent, List<SpriteDefinition> sprites) {
+    public SpawningModule (IAdder adder, IGame game, Positionable parent, List<WaveDefinition> waves) {
         myParent = parent;
         myAdder = adder;
         myGame = game;
-        myDelay = new TimeDuration();
-        myThreshold = threshold;
-        mySpritesToSpawn = sprites;
-        myWave = myGame.getLevelManager().getCurrentLevel().getWaveSet().getCurrentWave();
+        myWaveSet = new WaveSet();
+        List<IWave> myWaves = new ArrayList<IWave>();
+        waves.stream().forEachOrdered(p -> myWaves.add(p.create()));
+        myWaveSet.setWaveList(myWaves);
+        
+        
     }
 
     @Override
