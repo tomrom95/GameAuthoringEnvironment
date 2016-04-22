@@ -2,6 +2,7 @@ package gameauthoring.waves;
 
 import java.util.ResourceBundle;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
+import gameauthoring.creation.cellviews.WaveDragCell;
 import gameauthoring.util.UIFactory;
 import graphics.IGraphic;
 import javafx.scene.Node;

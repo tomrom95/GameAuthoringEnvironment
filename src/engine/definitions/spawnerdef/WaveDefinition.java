@@ -18,7 +18,7 @@ import engine.waves.Wave;
 public class WaveDefinition implements IDefinition, IProfilable {
     
     private List<WaveBlockDefinition> myBlocks;
-    private Profile myProfile = new Profile();
+    private IProfile myProfile = new Profile();
 
     public WaveDefinition (List<WaveBlockDefinition> sprites) {
     	setListSprites(sprites);
@@ -41,8 +41,11 @@ public class WaveDefinition implements IDefinition, IProfilable {
 
     @Override
     public void setProfile (IProfile profile) {
-        myProfile = profile;
-        
+        myProfile = profile;        
+    }
+    
+    public List<WaveBlockDefinition> getWaveBlocks() {
+        return myBlocks;
     }
 
 }

@@ -1,9 +1,10 @@
-package gameauthoring.waves;
+package gameauthoring.creation.cellviews;
 
 import com.dooapp.xstreamfx.FXConverters;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
+import gameauthoring.waves.ListGraphicFactory;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;

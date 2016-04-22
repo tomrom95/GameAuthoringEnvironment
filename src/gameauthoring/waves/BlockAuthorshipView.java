@@ -1,5 +1,6 @@
 package gameauthoring.waves;
 
+import java.util.ResourceBundle;
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
@@ -21,6 +22,7 @@ import util.StringParser;
 public class BlockAuthorshipView implements Glyph {
 
     private UIFactory myFactory = new UIFactory();
+    private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     private GridPane myPane = new GridPane();
     private ObservableList<WaveBlockDefinition> myBlockList;
     private TextField myCount;
@@ -29,6 +31,7 @@ public class BlockAuthorshipView implements Glyph {
     private ComboBox<SpriteDefinition> mySpriteChoices;
 
     public BlockAuthorshipView (IGame game, ObservableList<WaveBlockDefinition> list) {
+        myPane.getStyleClass().add(myStyle.getString("Block"));
         myCreate = new Button("Create");
         factoryGenerate(game);
         myBlockList = list;

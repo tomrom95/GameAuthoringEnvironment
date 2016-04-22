@@ -96,4 +96,8 @@ public class UIFactory {
     public Node createImageView (IGraphic image, double width, double height) {
         return image.getVisualRepresentation(new ScaleFactory(width, height));
     }
+
+    public Button createButton (String title) {
+        return new Button(title);
+    }
 }
