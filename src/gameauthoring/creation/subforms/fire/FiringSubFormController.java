@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import engine.IGame;
+import engine.definitions.FirerDefinition;
+import engine.definitions.ModuleDefinition;
 import engine.definitions.SpriteDefinition;
 import gameauthoring.creation.subforms.DynamicSubFormController;
 
@@ -19,7 +21,7 @@ public class FiringSubFormController extends DynamicSubFormController<SpriteDefi
     private SpriteDefinition myMissile;
 
     /**
-     * Constructor 
+     * Constructor
      * 
      * @param game The current game object
      */
@@ -41,10 +43,11 @@ public class FiringSubFormController extends DynamicSubFormController<SpriteDefi
 
     }
 
-   /**
-    * The method handler called when the user changes which missile is selected
-    * @param missile
-    */
+    /**
+     * The method handler called when the user changes which missile is selected
+     * 
+     * @param missile
+     */
     private void changeMissile (SpriteDefinition missile) {
         myMissile = missile;
 
@@ -54,6 +57,15 @@ public class FiringSubFormController extends DynamicSubFormController<SpriteDefi
         return myMissile;
     }
 
-
+    public void removeCurrentFirer (SpriteDefinition item) {
+        item.getModuleDefinitions().stream().filter(e -> e instanceof FirerDefinition)
+                .forEach(e->item.remove(e));
+        
+//        for(ModuleDefinition e: item.getModuleDefinitions()){
+//            if(e instanceof FirerDefinition){
+//                item.remove(e);
+//            }
+//        }
+    }
 
 }

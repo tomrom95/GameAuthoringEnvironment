@@ -36,7 +36,7 @@ public class MainUserInterface {
 
     private static final String SPACING_KEY = "spacing";
     private static final String SPLASHTITLEKEY = "splashtitle";
-    private static final String LABELS_PATH = "languages/labels";
+    private static final String LABELS_PATH = "languages/labels_en";
     private final ResourceBundle mySpecs = ResourceBundle.getBundle("defaults/splashscreen");
     private ResourceBundle myLabels;
     private Stage myStage;

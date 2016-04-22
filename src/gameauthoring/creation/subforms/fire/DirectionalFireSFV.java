@@ -15,22 +15,19 @@ import javafx.scene.layout.GridPane;
  * @author Dhrumil
  *
  */
-public class DirectionalFireSubFormView extends SubFormView {
+public class DirectionalFireSFV extends SubFormView implements IDirectionalFireSFV{
 
-    private GridPane myPane = new GridPane();
-
+    private GridPane myPane;
     private String myAngleKey = "Angle: ";
     private String myWaitTimeKey = "Wait Time: ";
     private String myProjectileKey = "Projectile: ";
-
-    private IEntryView myAngle =
-            new NumberEntryView(myAngleKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myWaitTime =
-            new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30,
-                              AuthoringView.DEFAULT_ENTRYVIEW);  
+    private IEntryView myAngle;
+    private IEntryView myWaitTime; 
 
 
-    public DirectionalFireSubFormView () {
+    public DirectionalFireSFV () {
+        myAngle = new NumberEntryView(myAngleKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myWaitTime = new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW); 
         initView();
     }
 
@@ -39,21 +36,25 @@ public class DirectionalFireSubFormView extends SubFormView {
         return myPane;
     }
 
-    public void initView () {
+    @Override
+    protected void initView () {
+        myPane = new GridPane();
         myPane.setGridLinesVisible(true);
         myPane.add(myAngle.draw(), 0, 0);
         myPane.add(myWaitTime.draw(), 0, 1);
-        // myPane.add(myProjectile.draw(), 1, 0);
     }
 
+    @Override
     public String getMyProjectileKey () {
         return myProjectileKey;
     }
 
+    @Override
     public String getMyAngleKey () {
         return myAngleKey;
     }
 
+    @Override
     public String getMyWaitTimeKey () {
         return myWaitTimeKey;
     }

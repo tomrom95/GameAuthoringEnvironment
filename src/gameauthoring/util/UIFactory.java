@@ -1,11 +1,13 @@
 package gameauthoring.util;
 
+import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -43,5 +45,15 @@ public class UIFactory {
 
     public Image getImageFromNode (Node node) {
         return node.snapshot(new SnapshotParameters(), null);
+    }
+
+    public Optional<String> getTextDialog (String holder,
+                                           String title,
+                                           String content) {
+        TextInputDialog dialog = new TextInputDialog(holder);
+        dialog.setTitle(title);
+        dialog.setContentText(content);
+        return dialog.showAndWait();
+
     }
 }

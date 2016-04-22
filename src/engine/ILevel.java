@@ -2,6 +2,7 @@ package engine;
 
 import java.util.List;
 import engine.conditions.ICondition;
+import engine.profile.IProfilable;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
@@ -16,9 +17,10 @@ import util.Coordinate;
  * @author David Maydew
  * @author Ryan St.Pierre
  * @author Jonathan Im
+ * @author Jin An
  *
  */
-public interface ILevel extends Updateable, IAdder, IEventInternalizer {
+public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfilable {
 
     /**
      * @return The next level manager object for setting
@@ -40,6 +42,11 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer {
      * @return the Image of the background of the level
      */
     ImageGraphic getBackgroundImage ();
+
+    /**
+     * @return the object that contains the Bit Map of which terrains are tower-placeable
+     */
+    IPlaceableManager getPlaceableManager ();
 
     void setBackgroundImage (ImageGraphic graphic);
 

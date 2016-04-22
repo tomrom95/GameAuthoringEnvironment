@@ -1,7 +1,9 @@
 package gameauthoring.tabs;
 
 import engine.definitions.SpriteDefinition;
+import engine.profile.Profile;
 import java.util.List;
+import java.util.Optional;
 import engine.Game;
 import engine.IConditionManager;
 import engine.IGame;
@@ -56,9 +58,8 @@ public class SceneTabViewer implements ITabViewer {
 
         myLevelTabs = new TabPane();
         Tab createLevelTab = createButtonTab();
-        Tab firstLevelTab = myUIFactory.createTab("Level 1", false, view.draw());
-        myLevelTabs.getSelectionModel().select(firstLevelTab);
-        myLevelTabs.getTabs().addAll(createLevelTab, firstLevelTab);
+        myLevelTabs.getTabs().addAll(createLevelTab);
+        addNewLevel("Start");
     }
 
     @Override
@@ -68,27 +69,35 @@ public class SceneTabViewer implements ITabViewer {
 
     /**
      * Create Add level button tab. This makes the UI design clean and by disabling the tab and only
-     * enabling the button,  there won't be any awkward UI errors.
+     * enabling the button, there won't be any awkward UI errors.
      * 
      * @return
      */
     private Tab createButtonTab () {
         Tab createLevelTab = new Tab();
         Button addNewLevelButton = new Button("+");
-        addNewLevelButton.setOnAction(e -> addNewLevel());
+        addNewLevelButton.setOnAction(e -> addNewNamedLevel());
         createLevelTab.setGraphic(addNewLevelButton);
         createLevelTab.setDisable(true);
         createLevelTab.setClosable(false);
         return createLevelTab;
     }
 
-    private void addNewLevel () {
-        ObjectProperty<ILevel> newLevel = new SimpleObjectProperty<>(new Level());
-        myLevelManager.createNewLevel(newLevel.get());
+    private void addNewNamedLevel () {
+        Optional<String> name = new UIFactory().getTextDialog("Enter", "Level Adder", "Level Name: ");
+        if (name.isPresent()) {
+            addNewLevel(name.get());
+        }
+    }
+
+    private void addNewLevel (String name) {
+        ILevel newLevel = new Level();
+        newLevel.setProfile(new Profile(name));
+        myLevelManager.createNewLevel(newLevel);
         LevelEditorView view =
                 new LevelEditorView(myGame, myGame.getLevelManager().getCurrentLevel());
         Tab newLevelTab =
-                myUIFactory.createTab("Level" + (myLevelTabs.getTabs().size()), true, view.draw());
+                myUIFactory.createTab(name, true, view.draw());
         myLevelTabs.getTabs().add(newLevelTab);
         myLevelTabs.getSelectionModel().select(newLevelTab);
     }

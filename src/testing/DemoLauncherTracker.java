@@ -281,8 +281,6 @@ public class DemoLauncherTracker extends Application {
         sd1.setProfile(new Profile("Pea", "Pea Bullet", plantImage));
         ConstantMoverDefinition mover = new ConstantMoverDefinition();
         double c = 1;
-        mover.setXVel(.2 / c);
-        mover.setYVel(.2 / c);
         sd1.setMovementDefinition(mover);
 
         return sd1;
