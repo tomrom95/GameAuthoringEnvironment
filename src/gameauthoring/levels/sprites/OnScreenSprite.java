@@ -65,7 +65,7 @@ public class OnScreenSprite implements Draggable, Glyph {
 
     @Override
     public void setOnDragDropped (DragEvent e) {
-        if(checkPlaceable(e)){
+        if (checkPlaceable(e)) {
             myController.moveSprite(mySprite, e.getX(), e.getY());
             levelView.render();
         }
@@ -112,7 +112,6 @@ public class OnScreenSprite implements Draggable, Glyph {
                     return false;
             }
         }
-        System.out.println("You can place it!");
         return true;
     }
 }

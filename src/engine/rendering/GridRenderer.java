@@ -25,9 +25,10 @@ public class GridRenderer implements IRenderer {
     public GridRenderer (GridPane pane) {
         myPane = pane;
         myBlocks = new Rectangle[NUM_BLOCK_ROW][NUM_BLOCK_COL];
+        initializeGridLines();
     }
 
-    private void drawGridLines () {
+    private void initializeGridLines () {
         for (int i = 0; i < NUM_BLOCK_ROW; i++) {
             for (int j = 0; j < NUM_BLOCK_COL; j++) {
                 Rectangle rect = new Rectangle(BLOCK_SIZE, BLOCK_SIZE);
@@ -42,11 +43,9 @@ public class GridRenderer implements IRenderer {
     private void handleMouseClick (Rectangle rect) {
         if (rect.getFill() == Color.TRANSPARENT) {
             rect.setFill(Color.RED);
-            // myBlocks[row][column] = rect;
         }
         else if (rect.getFill() == Color.RED) {
             rect.setFill(Color.TRANSPARENT);
-            // myBlocks[row][column] = rect;
         }
     }
 
@@ -60,6 +59,5 @@ public class GridRenderer implements IRenderer {
 
     @Override
     public void render () {
-        drawGridLines();
     }
 }

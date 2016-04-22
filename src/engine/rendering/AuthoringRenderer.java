@@ -35,7 +35,6 @@ public class AuthoringRenderer extends LevelRenderer {
     public void render () {
         drawBackground(getBackgroundURL());
         drawSprites();
-        myTileView.render();
     }
 
     @Override
