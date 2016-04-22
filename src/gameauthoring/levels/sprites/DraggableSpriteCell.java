@@ -46,7 +46,7 @@ public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> imple
         db.setContent(this.createClipboard(DRAG_STRING));
 
         db.setDragView(getSpriteImage());
-
+       
         myTarget.getPane().setOnDragOver(event -> setOnDragOver(event));
         myTarget.getPane().setOnDragDropped(event -> setOnDragDropped(event));
     }

@@ -1,15 +1,16 @@
 package gameauthoring.waves;
 
-public class DataAuthorshipController {
+public class BlockAuthorshipController {
 
-    private DataAuthorshipView myView;
+    private BlockAuthorshipView myView;
     
-    public DataAuthorshipController (DataAuthorshipView view) {
+    public BlockAuthorshipController (BlockAuthorshipView view) {
         myView = view;
         setAction();
     }
 
     private void setAction () {
+        
         myView.setOnButtonAction(e -> myView.addToList());
         
     }
