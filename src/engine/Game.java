@@ -40,7 +40,7 @@ public class Game implements IGame {
         myAuthorshipData = new AuthorshipData();
         myGameInformation = gameInfo;
         myAttributeManager = new AttributeManager();
-        myObstructionManager = new ObstructionManager(this);
+        //myObstructionManager = new ObstructionManager(this);
     }
 
     @Override

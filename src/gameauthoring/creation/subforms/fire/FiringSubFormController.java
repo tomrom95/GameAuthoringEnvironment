@@ -14,7 +14,7 @@ import gameauthoring.creation.subforms.DynamicSubFormController;
  * @author Jeremy Schreck
  *
  */
-public class FiringSubFormController extends DynamicSubFormController {
+public class FiringSubFormController extends DynamicSubFormController<SpriteDefinition> {
 
     private SpriteDefinition myMissile;
 

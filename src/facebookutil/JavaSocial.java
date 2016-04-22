@@ -23,6 +23,8 @@ import facebookutil.xstream.UserWriter;
  */
 public class JavaSocial implements IJavaSocial {
     
+    public static final String RESOURCE_FOLDER = "voogasalad/facebookutil/";
+    
     private List<IUser> myUsers;
     private HighScoreBoard myHighScores;
     private IUser activeUser;
