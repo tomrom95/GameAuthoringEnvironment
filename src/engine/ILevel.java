@@ -18,6 +18,7 @@ import waves.IWaveSet;
  * @author David Maydew
  * @author Ryan St.Pierre
  * @author Jonathan Im
+ * @author Jin An
  *
  */
 public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfilable {
@@ -42,6 +43,11 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
      * @return the Image of the background of the level
      */
     ImageGraphic getBackgroundImage ();
+
+    /**
+     * @return the object that contains the Bit Map of which terrains are tower-placeable
+     */
+    IPlaceableManager getPlaceableManager ();
 
     void setBackgroundImage (ImageGraphic graphic);
 
