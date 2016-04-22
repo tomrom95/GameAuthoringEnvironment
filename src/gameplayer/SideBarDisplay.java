@@ -3,7 +3,7 @@ package gameplayer;
 import engine.IGame;
 import engine.definitions.SpriteDefinition;
 import engine.rendering.LevelRenderer;
-import gameauthoring.util.Glyph;
+import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.levels.SceneController;
 import gameauthoring.levels.sprites.DraggableSpriteCell;
 import gameauthoring.shareddata.DefinitionCollection;
@@ -36,7 +36,7 @@ public class SideBarDisplay extends SizeableGlyph {
 
     @Override
     public Node draw () {
-        return createAccordion ();
+        return createAccordion();
     }
 
     protected Accordion createAccordion () {
@@ -46,8 +46,8 @@ public class SideBarDisplay extends SizeableGlyph {
             selector.getPanes().add(toAdd);
             selector.expandedPaneProperty().set(toAdd);
         });
-        selector.setMaxSize(parseString(getString("SideBarWidth")), 
-                             parseString(getString("SideBarHeight")));
+        selector.setMaxSize(parseString(getString("SideBarWidth")),
+                            parseString(getString("SideBarHeight")));
         return selector;
     }
 
@@ -58,10 +58,15 @@ public class SideBarDisplay extends SizeableGlyph {
     }
 
     protected ListView<SpriteDefinition> createSpriteList (ObservableList<SpriteDefinition> collection) {
-        
+
         ListView<SpriteDefinition> list = new ListView<SpriteDefinition>();
         list.setItems(collection);
-        list.setCellFactory(c -> new DraggableSpriteCell(levelView, myController));
+        list.setCellFactory(c -> getSpriteCellView(levelView, myController));
         return list;
+    }
+
+    protected ProfileCellView<SpriteDefinition> getSpriteCellView (LevelRenderer view,
+                                                                   SceneController controller) {
+        return new DraggableSpriteCell(view, controller);
     }
 }

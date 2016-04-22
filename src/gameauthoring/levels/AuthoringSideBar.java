@@ -4,6 +4,8 @@ import engine.IGame;
 import engine.definitions.SpriteDefinition;
 import engine.definitions.concrete.SpawnerDefinition;
 import engine.rendering.LevelRenderer;
+import gameauthoring.creation.cellviews.ProfileCellView;
+import gameauthoring.levels.sprites.DragCheckSpriteCell;
 import gameplayer.SideBarDisplay;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +37,12 @@ public class AuthoringSideBar extends SideBarDisplay {
         ObservableList<SpriteDefinition> list = FXCollections.observableArrayList();
         list.add(new SpawnerDefinition(myGame));
         return createSpriteList(list);
+    }
+    
+    @Override
+    protected ProfileCellView<SpriteDefinition> getSpriteCellView (LevelRenderer view,
+                                                                   SceneController controller) {
+        return new DragCheckSpriteCell(view, controller);
     }
 
 }
