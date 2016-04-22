@@ -15,7 +15,7 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import util.DoubleStringParser;
+import util.StringParser;
 
 /**
  * Displays the tools for the user during game play
@@ -82,10 +82,10 @@ public class GamePlayerTools {
     }
 
     private ImageView getImage (String url) {
-        DoubleStringParser parser = new DoubleStringParser();
+        StringParser parser = new StringParser();
         ImageView image = new ImageView(url);
-        image.setFitWidth(parser.parse(mySizes.getString("Width")));
-        image.setFitHeight(parser.parse(mySizes.getString("Height")));
+        image.setFitWidth(parser.parseDouble(mySizes.getString("Width")));
+        image.setFitHeight(parser.parseDouble(mySizes.getString("Height")));
        
         return image;
     }

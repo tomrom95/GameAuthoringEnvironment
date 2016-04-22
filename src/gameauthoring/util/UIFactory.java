@@ -11,6 +11,7 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -56,6 +57,12 @@ public class UIFactory {
         addCellFactory(box);
         return box;
     }
+    
+
+    public TextField createTextField () {
+       return new TextField();
+    }
+
 
 
     private <T extends IProfilable> void addCellFactory (ComboBox<T> comboBox) {

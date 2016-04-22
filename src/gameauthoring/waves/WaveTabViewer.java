@@ -33,6 +33,7 @@ public class WaveTabViewer implements Glyph {
 
     private void init () {
         myPane.add(myWaveAuthorship.draw(), 1, 1);
+        myPane.add(mySpriteList, 2, 1);
 
     }
 

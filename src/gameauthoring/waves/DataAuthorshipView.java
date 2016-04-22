@@ -11,27 +11,32 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import util.StringParser;
 
 public class DataAuthorshipView implements Glyph {
 
     private UIFactory myFactory = new UIFactory();
     private GridPane myPane = new GridPane();
     private ObservableList<WaveDataDefinition> myDataList;
+    private TextField myCount;
     private Button myCreate;
     private ComboBox<SpriteDefinition> mySpriteChoices;
     
     public DataAuthorshipView (IGame game, ObservableList<WaveDataDefinition> list) {
         myCreate = new Button("Create");
         mySpriteChoices = myFactory.createCombo(game.getAuthorshipData().getAllCreatedSprites());
+        myCount = myFactory.createTextField();
         myDataList = list;
         init();
         new DataAuthorshipController(this);
     }
     
     private void init () {
-        myPane.add(myCreate, 1, 1);
+        myPane.add(myCreate, 2, 1);
+        myPane.add(myCount, 1, 1);
         myPane.add(mySpriteChoices, 1, 0);
         
     }
@@ -55,13 +60,11 @@ public class DataAuthorshipView implements Glyph {
     }
 
     private SpriteDefinition getSpriteDef () {
-        // TODO Auto-generated method stub
-        return null;
+        return mySpriteChoices.getSelectionModel().getSelectedItem();
     }
 
     private int getCount () {
-        // TODO Auto-generated method stub
-        return 0;
+        return new StringParser().parseInt(myCount.getText());
     }
 
 }
