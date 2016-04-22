@@ -1,5 +1,8 @@
 package util;
 
+import java.util.Iterator;
+
+
 /**
  * Object representation of Bitmap. It will be used for implementing placeable-area, obstruction,
  * and artificial intelligence Pathing.
@@ -8,7 +11,7 @@ package util;
  * @author Jon Im
  *
  */
-public class BitMap {
+public class BitMap implements Iterable<Boolean> {
 
     private boolean[][] myBitMap;
     private int myWidth;
@@ -17,7 +20,7 @@ public class BitMap {
     public BitMap (int width, int height) {
         initialize(width, height);
     }
-    
+
     public BitMap (BitMap map) {
         initialize(map.getWidth(), map.getHeight());
         for (int i = 0; i < myWidth; i++) {
@@ -70,9 +73,30 @@ public class BitMap {
     public void set (int row, int column, boolean value) {
         myBitMap[row][column] = value;
     }
-    
-    public boolean[][] getBitMap (){
+
+    public boolean[][] getBitMap () {
         return myBitMap;
+    }
+
+    @Override
+    public Iterator<Boolean> iterator () {
+        return new Iterator<Boolean>() {
+            private final int myMaxValue = getHeight() * getWidth();
+            private int myCurLoc = 0;
+
+            @Override
+            public boolean hasNext () {
+                return myCurLoc < myMaxValue;
+            }
+
+            @Override
+            public Boolean next () {
+                myCurLoc++;
+                return new Boolean(getBitMap()[myCurLoc / getWidth()][myCurLoc % getWidth()]);
+            }
+
+        };
+
     }
 
 }

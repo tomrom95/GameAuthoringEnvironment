@@ -1,6 +1,5 @@
 package engine.aipathing;
 
-import engine.IGame;
 import util.BitMap;
 import util.Coordinate;
 import java.util.List;
@@ -46,10 +45,6 @@ public class GameGraphFactory implements INodeGraphFactory {
         connectUnobstructedNodes(placedNodes);
         List<IPathNode> traversableGapNodes = addEdgeNodes(toReturn, edges, obstructionMap);
         connectFloatingNodes(traversableGapNodes, toReturn , gap, placedNodes);
-        
-   
- 
-
         return toReturn;
 
     }
