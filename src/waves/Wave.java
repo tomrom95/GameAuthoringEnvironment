@@ -7,23 +7,25 @@ import engine.sprite.ISprite;
 
 public class Wave implements IWave {
 
-    private List<SpriteDefinition> mySprites;
+    private List<SpriteWaveData> mySprites;
 
-    public Wave (List<SpriteDefinition> sprites) {
-        myCurrent = 0;
-        mySprites = sprites;
+    public Wave (List<SpriteWaveData> sprites) {
+       mySprites = sprites;
+       
     }
 
-    @Override
-    public ISprite getNextSprite () {
-        ISprite sprite = mySprites.get(myCurrent).create();
-        myCurrent++;
-        return sprite;
-    }
+   
 
-    @Override
-    public boolean hasNext () {
-        return myCurrent < mySprites.size();
-    }
+	@Override
+	public boolean waveCompleted() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void spawnSprite(SpriteDefinition s) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
