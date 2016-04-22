@@ -12,6 +12,6 @@ import gameauthoring.creation.subforms.ISubFormControllerSprite;
 public interface RemovableSpriteSFC extends ISubFormControllerSprite {
     
 
-    void removeModule (SpriteDefinition item);
+    void removeModule ();
     
 }

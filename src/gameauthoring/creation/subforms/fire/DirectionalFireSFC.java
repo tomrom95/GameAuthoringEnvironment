@@ -27,9 +27,12 @@ public class DirectionalFireSFC implements RemovableSpriteSFC {
     private double myDefaultAngle = 0;
     private double myDefaultWaitTime = 0;
     private DirectionalFirerDefinition myFireDef = new DirectionalFirerDefinition();
+    private SpriteDefinition mySpriteDefinition;
 
     public DirectionalFireSFC (IGame game, FiringSFCmult sfc) {
-        myView = new DirectionalFireSFV(game.getAuthorshipData().getMyCreatedMissiles(), e->sfc.removeSFC(this));
+        myView =
+                new DirectionalFireSFV(game.getAuthorshipData().getMyCreatedMissiles(),
+                                       e -> sfc.removeSFC(this));
         myFormData = myView.getData();
         myGame = game;
         myFiringSFC = sfc;
@@ -52,6 +55,7 @@ public class DirectionalFireSFC implements RemovableSpriteSFC {
 
     @Override
     public void updateItem (SpriteDefinition item) {
+        mySpriteDefinition = item;
         try {
             Double angle =
                     Double.valueOf(myFormData.getValueProperty(myView.getMyAngleKey()).get()) *
@@ -67,17 +71,20 @@ public class DirectionalFireSFC implements RemovableSpriteSFC {
             }
         }
         catch (Exception e) {
-            ErrorMessage err = new ErrorMessage("All Fields for Directional Firer Must Be Complete");
+            ErrorMessage err =
+                    new ErrorMessage("All Fields for Directional Firer Must Be Complete");
             err.showError();
         }
     }
 
     @Override
-    public void removeModule (SpriteDefinition item) {
-        if(item.getModuleDefinitions().contains(myFireDef)){
-            item.remove(myFireDef);       
+    public void removeModule () {
+        if (mySpriteDefinition != null) {
+            if (mySpriteDefinition.getModuleDefinitions().contains(myFireDef)) {
+                mySpriteDefinition.remove(myFireDef);
+            }
         }
-        myFiringSFC.removeSFC(this);
+//        myFiringSFC.removeSFC(this);
     }
 
 }

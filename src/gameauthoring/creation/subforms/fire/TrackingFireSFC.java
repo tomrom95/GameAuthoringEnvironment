@@ -24,16 +24,17 @@ public class TrackingFireSFC implements RemovableSpriteSFC {
     private FiringSFCmult myFiringSFC;
     private double myDefaultWaitTime = 0;
     private TrackingFirerDefinition myFireDef = new TrackingFirerDefinition();
+    private SpriteDefinition mySpriteDefinition;
 
-//    public TrackingFireSFC (IGame game, FiringSFC firingSubFormController) {
-//        myView = new TrackingFirerSFV(game.getAuthorshipData().getMyCreatedGroups());
-//        myFormData = myView.getData();
-//        myGame = game;
-//        myFiringSFC = firingSubFormController;
-//    }
+    // public TrackingFireSFC (IGame game, FiringSFC firingSubFormController) {
+    // myView = new TrackingFirerSFV(game.getAuthorshipData().getMyCreatedGroups());
+    // myFormData = myView.getData();
+    // myGame = game;
+    // myFiringSFC = firingSubFormController;
+    // }
 
     public TrackingFireSFC (IGame game, FiringSFCmult sfc) {
-        myView = new TrackingFirerSFV(game.getAuthorshipData(),e->sfc.removeSFC(this));
+        myView = new TrackingFirerSFV(game.getAuthorshipData(), e -> sfc.removeSFC(this));
         myFormData = myView.getData();
         myGame = game;
         myFiringSFC = sfc;
@@ -50,6 +51,7 @@ public class TrackingFireSFC implements RemovableSpriteSFC {
 
     @Override
     public void updateItem (SpriteDefinition item) {
+        mySpriteDefinition = item;
         myFireDef.setGame(myGame);
         Double waitTime =
                 Double.valueOf(myFormData.getValueProperty(myView.getWaitTimeKey()).get());
@@ -67,11 +69,13 @@ public class TrackingFireSFC implements RemovableSpriteSFC {
     }
 
     @Override
-    public void removeModule (SpriteDefinition item) {
-        if(item.getModuleDefinitions().contains(myFireDef)){
-            item.remove(myFireDef);       
+    public void removeModule () {
+        if (mySpriteDefinition != null) {
+            if (mySpriteDefinition.getModuleDefinitions().contains(myFireDef)) {
+                mySpriteDefinition.remove(myFireDef);
+            }
         }
-        myFiringSFC.removeSFC(this);        
+//        myFiringSFC.removeSFC(this);
     }
 
 }

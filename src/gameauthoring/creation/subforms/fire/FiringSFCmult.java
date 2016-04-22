@@ -6,41 +6,43 @@ import engine.definitions.SpriteDefinition;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 
+
+/**
+ * Allows User to add or remove multiple firing module definitions to a sprite definition, contains
+ * a list of more specific SFC's that allow for specification of actual module details
+ * 
+ * @author Joe Lilien
+ *
+ */
 public class FiringSFCmult implements ISubFormControllerSprite {
     private FiringSFVmult myView;
     private List<RemovableSpriteSFC> mySFCs;
-    private List<RemovableSpriteSFC> myRemovedSFCs;
-    
-    public FiringSFCmult(IGame game){
-        myView = new FiringSFVmult(game,this);
+
+    public FiringSFCmult (IGame game) {
+        myView = new FiringSFVmult(game, this);
         mySFCs = new ArrayList<>();
-        myRemovedSFCs = new ArrayList<>();
-        
     }
-    
-    public void addSFC(RemovableSpriteSFC sfc){
+
+    public void addSFC (RemovableSpriteSFC sfc) {
         mySFCs.add(sfc);
         myView.addSFV(sfc.getSubFormView());
     }
-    
-    public void removeSFC(RemovableSpriteSFC sfc){
+
+    public void removeSFC (RemovableSpriteSFC sfc) {
         mySFCs.remove(sfc);
         myView.removeSFV(sfc.getSubFormView());
-        myRemovedSFCs.add(sfc);
+        sfc.removeModule();
     }
-    
+
     @Override
     public void updateItem (SpriteDefinition item) {
-        mySFCs.forEach(e->e.updateItem(item));
-        myRemovedSFCs.forEach(e->e.removeModule(item));
-        //myRemovedSFCs.clear();
-        System.out.println(item.getModuleDefinitions());
+        mySFCs.forEach(e -> e.updateItem(item));
     }
 
     @Override
     public void initializeFields () {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
