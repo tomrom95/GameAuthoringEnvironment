@@ -17,6 +17,15 @@ public class BitMap {
     public BitMap (int width, int height) {
         initialize(width, height);
     }
+    
+    public BitMap (BitMap map) {
+        initialize(map.getWidth(), map.getHeight());
+        for (int i = 0; i < myWidth; i++) {
+            for (int j = 0; j < myHeight; j++) {
+                this.set(i, j, map.valueOf(i, j));
+            }
+        }
+    }
 
     public BitMap () {
         this(1, 1);

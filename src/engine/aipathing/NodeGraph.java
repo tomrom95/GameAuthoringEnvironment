@@ -49,8 +49,8 @@ public class NodeGraph implements INodeGraph {
     }
 
     /**
-     * Will remove all references in all other nodes to the input node,
-     * will then remove the node itself
+     * Will remove all references in all other nodes to the input node
+     * Will then remove the node itself
      * 
      * @param node
      * @param listToClean
@@ -65,6 +65,11 @@ public class NodeGraph implements INodeGraph {
 
     private void removeNeighborReferences (IPathNode toRemove, IPathNode fromMyNeighbors) {
         fromMyNeighbors.getNeighbors().remove(toRemove);
+    }
+
+    @Override
+    public boolean containsNode (IPathNode node) {
+        return getNodes().contains(node);
     }
 
 }

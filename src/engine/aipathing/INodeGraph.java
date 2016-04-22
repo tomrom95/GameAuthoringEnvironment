@@ -31,6 +31,14 @@ public interface INodeGraph {
      * @param node Removal will be based upon coordinate comparison
      */
     void removeNode (IPathNode node);
+    
+    /**
+     * True if the node if the coordinate point already is represented
+     * by a node in the graph
+     * @param node upon which to perform the check
+     * @return true if contained, false if not
+     */
+    boolean containsNode (IPathNode node);
 
     /**
      * 
