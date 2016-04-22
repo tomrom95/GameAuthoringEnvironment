@@ -40,4 +40,8 @@ public class SceneController {
     public void addSprite (double x, double y, SpriteDefinition spriteDefinition) {
         myLevel.add(spriteDefinition.create(), new Coordinate(x, y));
     }
+    
+    public ILevel getLevel(){
+        return myLevel;
+    }
 }

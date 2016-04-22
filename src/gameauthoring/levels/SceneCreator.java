@@ -2,10 +2,7 @@ package gameauthoring.levels;
 
 import engine.IGame;
 import engine.ILevel;
-import engine.IPlaceableManager;
-import engine.PlaceableManager;
 import engine.rendering.AuthoringRenderer;
-import engine.rendering.GridRenderer;
 import gameauthoring.util.Glyph;
 import gameauthoring.util.UIFactory;
 import javafx.scene.Node;
@@ -89,8 +86,8 @@ public class SceneCreator implements Glyph {
 
     private void updateCorrespondingBlock (int row, int col) {
         int blockSize = myView.getGrids().BLOCK_SIZE;
-        for (int r = (blockSize) * (row - 1); r < (blockSize) * row; r++) {
-            for (int c = (blockSize) * (col - 1); c < (blockSize) * col; c++) {
+        for (int r = (blockSize) * row; r < (blockSize) * (row+1); r++) {
+            for (int c = (blockSize) * (col); c < (blockSize) * (col+1); c++) {
                 myLevel.getPlaceableManager().getPlaceableArea().set(r, c, true);
             }
         }

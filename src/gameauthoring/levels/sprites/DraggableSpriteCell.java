@@ -70,11 +70,27 @@ public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> imple
 
     @Override
     public void setOnDragDropped (DragEvent e) {
-        Dragboard db = e.getDragboard();
-        if (db.hasString()) {
-            myController.addSprite(e.getX(), e.getY(), getProfilable());
-            myTarget.render();
+        if (checkPlaceable(e)) {
+            Dragboard db = e.getDragboard();
+            if (db.hasString()) {
+                myController.addSprite(e.getX(), e.getY(), getProfilable());
+                myTarget.render();
+            }
         }
+        // else
+        // "You can't place there. please change placeable view"
     }
 
+    private boolean checkPlaceable (DragEvent e) {
+        for (int r = (int) e.getY(); r < (int) (e.getY() + getProfilable().getProfile()
+                .getImageHeight().doubleValue()); r++) {
+            for (int c = (int) e.getX(); c < (int) (e.getX() + getProfilable().getProfile()
+                    .getImageWidth().doubleValue()); c++) {
+                if (myController.getLevel().getPlaceableManager().getPlaceableArea().getBitMap()[r][c])
+                    return false;
+            }
+        }
+        System.out.println("You can place it!");
+        return true;
+    }
 }
