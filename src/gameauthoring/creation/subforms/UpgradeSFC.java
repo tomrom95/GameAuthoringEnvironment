@@ -2,8 +2,8 @@ package gameauthoring.creation.subforms;
 
 import engine.AttributeType;
 import engine.IGame;
-import engine.definitions.ModuleDefinition;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.ModuleDefinition;
 import engine.definitions.upgrades.GlobalUpgradeDefinition;
 import engine.definitions.upgrades.SpriteUpgradeDefinition;
 import engine.definitions.upgrades.UpgradeDefinition;

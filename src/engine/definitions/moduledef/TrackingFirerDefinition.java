@@ -1,4 +1,4 @@
-package engine.definitions;
+package engine.definitions.moduledef;
 
 import java.util.List;
 import engine.Positionable;

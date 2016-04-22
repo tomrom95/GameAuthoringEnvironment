@@ -4,7 +4,7 @@ import java.util.List;
 import engine.AuthorshipData;
 import engine.Game;
 import engine.IGame;
-import engine.definitions.EventPackageDefinition;
+import engine.definitions.concrete.EventPackageDefinition;
 
 public class CreationControllerEvent extends CreationController<EventPackageDefinition>{
 

@@ -7,7 +7,7 @@ import engine.ILevel;
 import engine.SpriteGroup;
 import engine.conditions.ICondition;
 import engine.conditions.OnClickCondition;
-import engine.definitions.EventPackageDefinition;
+import engine.definitions.concrete.EventPackageDefinition;
 import javafx.scene.control.ComboBox;
 
 

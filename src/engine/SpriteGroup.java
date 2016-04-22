@@ -2,7 +2,7 @@ package engine;
 
 import java.util.ArrayList;
 import java.util.List;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.profile.IProfilable;
 import engine.profile.IProfile;
 import engine.profile.Profile;

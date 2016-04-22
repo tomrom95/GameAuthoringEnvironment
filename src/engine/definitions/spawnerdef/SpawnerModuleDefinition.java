@@ -1,10 +1,12 @@
-package engine.definitions;
+package engine.definitions.spawnerdef;
 
 import java.util.List;
 
 import engine.IAdder;
 import engine.IGame;
 import engine.Positionable;
+import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.ModuleDefinition;
 import engine.modules.IModule;
 import engine.modules.SpawningModule;
 import util.TimeDuration;

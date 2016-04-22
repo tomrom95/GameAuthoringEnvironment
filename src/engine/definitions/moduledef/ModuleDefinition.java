@@ -1,6 +1,7 @@
-package engine.definitions;
+package engine.definitions.moduledef;
 
 import engine.Positionable;
+import engine.definitions.concrete.IDefinition;
 import engine.modules.IModule;
 
 

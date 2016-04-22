@@ -5,11 +5,11 @@ import java.util.List;
 import engine.IAdder;
 import engine.IGame;
 import engine.Positionable;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.effects.DefaultAffectable;
 import engine.sprite.ISprite;
+import engine.waves.IWave;
 import util.TimeDuration;
-import waves.IWave;
 
 
 /**

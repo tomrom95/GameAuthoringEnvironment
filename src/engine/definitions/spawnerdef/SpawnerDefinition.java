@@ -1,13 +1,11 @@
-package engine.definitions.concrete;
+package engine.definitions.spawnerdef;
 
-import engine.definitions.SpriteDefinition;
-import engine.definitions.WaveDefinition;
 import engine.modules.StaticMover;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
 import engine.IGame;
-import engine.definitions.SpawnerModuleDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 
 
 /**

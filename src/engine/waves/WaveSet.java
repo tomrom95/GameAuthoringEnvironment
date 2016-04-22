@@ -1,4 +1,4 @@
-package waves;
+package engine.waves;
 
 import java.util.ArrayList;
 import java.util.List;

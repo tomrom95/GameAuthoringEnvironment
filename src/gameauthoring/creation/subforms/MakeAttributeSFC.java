@@ -1,6 +1,6 @@
 package gameauthoring.creation.subforms;
 
-import engine.definitions.AttributeDefinition;
+import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.util.ErrorMessage;
 

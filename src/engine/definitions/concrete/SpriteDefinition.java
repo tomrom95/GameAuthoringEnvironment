@@ -1,9 +1,12 @@
-package engine.definitions;
+package engine.definitions.concrete;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import engine.IAttribute;
+import engine.definitions.moduledef.ModuleDefinition;
+import engine.definitions.moduledef.MovementDefinition;
+import engine.definitions.moduledef.StaticMovementDefintion;
 import engine.definitions.upgrades.NullUpgradeDefinition;
 import engine.definitions.upgrades.UpgradeDefinition;
 import engine.modules.GraphicModule;

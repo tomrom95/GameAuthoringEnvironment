@@ -1,4 +1,4 @@
-package engine.definitions;
+package engine.definitions.concrete;
 
 import util.Coordinate;
 

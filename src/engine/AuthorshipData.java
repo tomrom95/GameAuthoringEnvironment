@@ -1,9 +1,9 @@
 package engine;
 
 import java.util.List;
-import engine.definitions.AttributeDefinition;
-import engine.definitions.EventPackageDefinition;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.AttributeDefinition;
+import engine.definitions.concrete.EventPackageDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.FXCollections;
 

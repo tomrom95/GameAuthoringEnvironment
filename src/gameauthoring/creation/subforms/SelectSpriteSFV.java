@@ -4,7 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import java.util.*;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.MultiChoiceEntryView;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.shareddata.IDefinitionCollection;

@@ -1,7 +1,8 @@
-package engine.definitions;
+package engine.definitions.moduledef;
 
 import engine.IGame;
 import engine.Positionable;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.modules.Firer;
 import engine.modules.IModule;
 

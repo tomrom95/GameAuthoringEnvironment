@@ -1,4 +1,4 @@
-package engine.definitions;
+package engine.definitions.moduledef;
 
 import engine.Positionable;
 import engine.modules.ConstantMover;

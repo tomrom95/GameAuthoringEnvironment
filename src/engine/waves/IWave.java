@@ -1,6 +1,6 @@
-package waves;
+package engine.waves;
 
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 
 
 /**

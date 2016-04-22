@@ -1,6 +1,7 @@
-package engine.definitions;
+package engine.definitions.moduledef;
 
 import engine.Positionable;
+import engine.definitions.concrete.KeyControlDefinition;
 import engine.modules.IMovementModule;
 import engine.modules.UserMover;
 

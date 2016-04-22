@@ -2,7 +2,7 @@ package gameauthoring.creation.forms;
 
 import java.util.List;
 import java.util.function.Consumer;
-import engine.definitions.IDefinition;
+import engine.definitions.concrete.IDefinition;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.util.Glyph;
 import javafx.collections.ObservableList;

@@ -4,10 +4,10 @@ import java.util.List;
 import engine.conditions.ICondition;
 import engine.profile.IProfilable;
 import engine.sprite.ISprite;
+import engine.waves.IWaveSet;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
 import util.Coordinate;
-import waves.IWaveSet;
 
 
 /**

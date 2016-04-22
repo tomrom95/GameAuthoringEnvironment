@@ -9,12 +9,12 @@ import engine.interactionevents.MouseIOEvent;
 import engine.profile.IProfile;
 import engine.profile.Profile;
 import engine.sprite.ISprite;
+import engine.waves.IWaveSet;
+import engine.waves.WaveSet;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
-import waves.IWaveSet;
-import waves.WaveSet;
 
 
 /**
