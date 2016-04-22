@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -77,6 +78,12 @@ public class UIFactory {
         slider.setShowTickMarks(showTicks);
         slider.setShowTickLabels(showLabels);
         return slider;
+    }
+    
+    public TitledPane makeTitledPane(String title, Node content, boolean isExpanded){
+        TitledPane pane = new TitledPane(title,content);
+        pane.setExpanded(isExpanded);
+        return pane;
     }
     
 }

@@ -28,7 +28,6 @@ public class SpriteDefinition implements IProfilable {
 
     private MovementDefinition myMovementDefinition;
     private List<ModuleDefinition> myModuleDefinitions;
-//    private List<ModuleDefinition> myFiringDefinitions;
     private UpgradeDefinition myUpgrade;
     private Coordinate myLocation;
     private List<AttributeDefinition> myAttributes;
@@ -40,7 +39,6 @@ public class SpriteDefinition implements IProfilable {
         myMovementDefinition = new StaticMovementDefintion();
         myUpgrade = new NullUpgradeDefinition();
         myModuleDefinitions = new ArrayList<>();
-//        myFiringDefinitions = new ArrayList<>();
         myAttributes = new ArrayList<>();
         myLocation = new Coordinate(0, 0);
         myProfile = new Profile();
@@ -79,14 +77,6 @@ public class SpriteDefinition implements IProfilable {
                 .map(attDef -> attDef.create())
                 .collect(Collectors.toList());
     }
-//    
-//    public List<ModuleDefinition> getFiringDefinitions(){
-//        return myFiringDefinitions;
-//    }
-//    
-//    public void setFiringDefinitions(List<ModuleDefinition> definitions){
-//        myFiringDefinitions = new ArrayList<>(definitions);
-//    }
 
     public void addModule (ModuleDefinition definition) {
         myModuleDefinitions.add(definition);

@@ -7,8 +7,10 @@ import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.UIFactory;
 import javafx.beans.property.BooleanProperty;
 import javafx.scene.Node;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
 
 
@@ -19,17 +21,20 @@ import javafx.scene.layout.GridPane;
  *
  */
 public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
+    
     private String myUpgradeChoicesKey = "Next Level Defender: ";
     private String myUpgradableKey = "Upgradable: ";
     private String myGlobalKey = "Deplete Global Resource: ";
     private String myAttributeChoicesKey = "Depelted Resource: ";
     private String myCostKey = "Cost: ";
+    private TitledPane myContainer;
     private SingleChoiceEntryView<SpriteDefinition> myUpgradeChoices;
     private SingleChoiceEntryView<AttributeDefinition> myAttributeChoices;
     private CheckEntryView isUpgradable;
     private CheckEntryView isGlobalResource;
     private NumberEntryView myCost;
-    private GridPane myContainer;
+    private GridPane myPane;
+    private UIFactory myUIFactory = new UIFactory();
 
     public UpgradeSFV (AuthorshipData data) {
 
@@ -59,14 +64,14 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     }
 
     @Override
-    protected void initView () {
-        myContainer = new GridPane();
-        myContainer.add(isUpgradable.draw(), 0, 0);
-        myContainer.add(isGlobalResource.draw(), 0, 1);
-        myContainer.add(myAttributeChoices.draw(), 1, 1);
-        myContainer.add(myCost.draw(), 1, 2);
-        myContainer.add(myUpgradeChoices.draw(), 1, 0);
-
+    protected void initView () {        
+        myPane = new GridPane();
+        myPane.add(isUpgradable.draw(), 0, 0);
+        myPane.add(isGlobalResource.draw(), 0, 1);
+        myPane.add(myAttributeChoices.draw(), 1, 1);
+        myPane.add(myCost.draw(), 1, 2);
+        myPane.add(myUpgradeChoices.draw(), 1, 0);
+        myContainer = myUIFactory.makeTitledPane(myUpgradableKey, myPane, false);
     }
 
     private void initBinding (AuthorshipData data) {
