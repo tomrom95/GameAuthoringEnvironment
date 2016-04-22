@@ -18,8 +18,8 @@ public class GridRenderer implements IRenderer {
     //TODO: Confirm the numbers
     private GridPane myPane;
     private Rectangle[][] myBlocks;
-    public final int NUM_BLOCK_ROW = 29;
-    public final int NUM_BLOCK_COL = 16;
+    public final int NUM_BLOCK_ROW = 16;
+    public final int NUM_BLOCK_COL = 29;
     public final int BLOCK_SIZE = 25;
 
     public GridRenderer (GridPane pane) {
@@ -35,7 +35,7 @@ public class GridRenderer implements IRenderer {
                 rect.setFill(Color.TRANSPARENT);
                 rect.setOnMouseClicked(e -> handleMouseClick(rect));
                 myBlocks[i][j] = rect;
-                myPane.add(rect, i, j);
+                myPane.add(rect, j, i);
             }
         }
     }
