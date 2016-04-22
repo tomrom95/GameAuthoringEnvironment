@@ -1,6 +1,6 @@
-package engine.modules;
+package waves;
 
-import engine.sprite.ISprite;
+import engine.definitions.SpriteDefinition;
 
 
 /**
@@ -13,7 +13,8 @@ public interface IWave {
     /**
      * @return the next Sprite to be spawned
      */
-    ISprite getNextSprite ();
-
-    boolean hasNext ();
+	boolean waveCompleted ();
+	   
+	boolean spawnSprite (SpriteDefinition s);
+	
 }

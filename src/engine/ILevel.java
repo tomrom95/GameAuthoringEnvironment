@@ -7,6 +7,7 @@ import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
 import util.Coordinate;
+import waves.IWaveSet;
 
 
 /**
@@ -17,6 +18,7 @@ import util.Coordinate;
  * @author David Maydew
  * @author Ryan St.Pierre
  * @author Jonathan Im
+ * @author Jin An
  *
  */
 public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfilable {
@@ -41,6 +43,11 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
      * @return the Image of the background of the level
      */
     ImageGraphic getBackgroundImage ();
+
+    /**
+     * @return the object that contains the Bit Map of which terrains are tower-placeable
+     */
+    IPlaceableManager getPlaceableManager ();
 
     void setBackgroundImage (ImageGraphic graphic);
 
@@ -77,6 +84,8 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
     /**
      * @param sprite to be removed
      */
+    
+    IWaveSet getWaveSet();
 
     void remove (ISprite sprite);
 

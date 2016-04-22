@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import engine.IGame;
+import engine.definitions.SpriteDefinition;
 import gameauthoring.creation.subforms.DynamicSubFormController;
 
 
@@ -13,7 +14,7 @@ import gameauthoring.creation.subforms.DynamicSubFormController;
  * @author Jeremy Schreck
  *
  */
-public class MovementSubFormController extends DynamicSubFormController {
+public class MovementSubFormController extends DynamicSubFormController<SpriteDefinition> {
 
     /**
      * Constructor
