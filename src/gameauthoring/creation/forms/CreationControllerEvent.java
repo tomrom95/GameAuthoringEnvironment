@@ -2,11 +2,19 @@ package gameauthoring.creation.forms;
 
 import java.util.List;
 import engine.AuthorshipData;
-import engine.Game;
 import engine.IGame;
 import engine.definitions.EventPackageDefinition;
+import gameauthoring.creation.subforms.SubFormControllerFactory;
+import gameauthoring.creation.subforms.EventsSFCFactory;
 
-public class CreationControllerEvent extends CreationController<EventPackageDefinition>{
+
+/**
+ * This class controls the creation of events
+ * 
+ * @author Tommy, Jeremy Schreck
+ *
+ */
+public class CreationControllerEvent extends CreationController<EventPackageDefinition> {
 
     public CreationControllerEvent (String title,
                                     List<String> sfcs,
@@ -17,12 +25,17 @@ public class CreationControllerEvent extends CreationController<EventPackageDefi
     @Override
     protected void addToAuthorshipData (AuthorshipData authorshipData) {
         authorshipData.setMyCreatedEvents(getMyDefinitionCollection());
-        
+
     }
 
     @Override
     protected EventPackageDefinition createBlankItem () {
         return new EventPackageDefinition();
+    }
+
+    @Override
+    protected SubFormControllerFactory<EventPackageDefinition> createSFCFactory (IGame game) {
+        return new EventsSFCFactory(game);
     }
 
 }

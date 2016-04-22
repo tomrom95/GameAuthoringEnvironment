@@ -1,7 +1,6 @@
 package gameauthoring.creation.forms;
 
 import java.util.List;
-import engine.Game;
 import engine.IGame;
 
 
@@ -33,9 +32,12 @@ public class CreationControllerFactory {
         return new CreationControllerAttribute(title, sfcs, myGame);
     }
 
-    public CreationControllerGlobals createGlobalsCreationController (String title, List<String> sfcs, IGame myGame) {
+    public CreationControllerGlobals createGlobalsCreationController (String title,
+                                                                      List<String> sfcs,
+                                                                      IGame myGame) {
         return new CreationControllerGlobals(title, sfcs, myGame);
     }
+
     public CreationControllerEvent createEventCreationController (String title,
                                                                   List<String> sfcs,
                                                                   IGame myGame) {

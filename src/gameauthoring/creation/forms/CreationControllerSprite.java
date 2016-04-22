@@ -2,16 +2,16 @@ package gameauthoring.creation.forms;
 
 import java.util.List;
 import engine.AuthorshipData;
-import engine.Game;
 import engine.IGame;
 import engine.definitions.SpriteDefinition;
-import gameauthoring.shareddata.DefinitionCollection;
+import gameauthoring.creation.subforms.SpriteSFCFactory;
+import gameauthoring.creation.subforms.SubFormControllerFactory;
 
 
 /**
- * This class controls the creation of Sprites
+ * This class controls the creation of Sprite Definitions
  * 
- * @author jeremy
+ * @author Jeremy Schreck
  *
  */
 public class CreationControllerSprite extends CreationController<SpriteDefinition> {
@@ -20,9 +20,6 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
                                      List<String> subFormStrings,
                                      IGame myGame) {
         super(title, subFormStrings, myGame);
-        // TODO: Change back to this to fix casting issue
-        // setMySubFormControllers(getMySFCFactory().createSpriteSubFormControllers(subFormStrings));
-
     }
 
     public void init (List<String> sfcs) {
@@ -37,6 +34,11 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
     @Override
     protected void addToAuthorshipData (AuthorshipData authorshipData) {
         authorshipData.addCreatedSprites(getMyDefinitionCollection());
+    }
+
+    @Override
+    protected SubFormControllerFactory<SpriteDefinition> createSFCFactory (IGame game) {
+        return new SpriteSFCFactory(game);
     }
 
 }
