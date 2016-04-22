@@ -1,5 +1,7 @@
 package waves;
 
+import java.util.List;
+
 import engine.Updateable;
 
 public interface IWaveSet extends Updateable {
@@ -9,4 +11,8 @@ public interface IWaveSet extends Updateable {
 	boolean betweenWaves ();
 	
 	boolean allWavesCompleted();
+	
+	void setWaveList(List<IWave> waves);
+	
+	List<IWave> getWaveList();
 }

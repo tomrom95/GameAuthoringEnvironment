@@ -59,4 +59,15 @@ public class WaveSet implements IWaveSet {
 
 	}
 
+	@Override
+	public void setWaveList(List<IWave> waves) {
+		myWaves = waves;
+	}
+
+	@Override
+	public List<IWave> getWaveList() {
+		return myWaves;
+	}
+
+
 }
