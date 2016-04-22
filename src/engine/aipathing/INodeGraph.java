@@ -31,10 +31,11 @@ public interface INodeGraph {
      * @param node Removal will be based upon coordinate comparison
      */
     void removeNode (IPathNode node);
-    
+
     /**
      * True if the node if the coordinate point already is represented
      * by a node in the graph
+     * 
      * @param node upon which to perform the check
      * @return true if contained, false if not
      */
@@ -62,5 +63,14 @@ public interface INodeGraph {
      * @param toApply
      */
     void applyToNodes (Consumer<IPathNode> toApply);
+
+    /**
+     * Modifies the neighbor list of the two nodes such that they
+     * think they are mutually connected
+     * 
+     * @param first
+     * @param second
+     */
+    void connectNodes (IPathNode first, IPathNode second);
 
 }

@@ -31,7 +31,8 @@ public class NodeGraph implements INodeGraph {
 
     @Override
     public List<IPathNode> getNodesNear (Coordinate loc, double maxDistance) {
-        return getNodesWithFilter(node -> Coordinate.distance(loc, node.getLocation()) <= maxDistance);
+        return getNodesWithFilter(node -> Coordinate.distance(loc,
+                                                              node.getLocation()) <= maxDistance);
     }
 
     public List<IPathNode> getNodesWithFilter (Predicate<IPathNode> filter) {
@@ -70,6 +71,18 @@ public class NodeGraph implements INodeGraph {
     @Override
     public boolean containsNode (IPathNode node) {
         return getNodes().contains(node);
+    }
+
+    @Override
+    public void connectNodes (IPathNode first, IPathNode second) {
+        addIfDoesNotContain(first, second.getNeighbors());
+        addIfDoesNotContain(second, first.getNeighbors());
+    }
+
+    private void addIfDoesNotContain (IPathNode node, List<IPathNode> list) {
+        if (!list.contains(node)) {
+            list.add(node);
+        }
     }
 
 }

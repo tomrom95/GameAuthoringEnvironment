@@ -8,7 +8,7 @@ import util.Coordinate;
 public class PathNode implements IPathNode {
 
     private List<IPathNode> myNeighbors;
-    private List<PathFlag> myFlags;
+    private List<NodePathFlag> myFlags;
     private Coordinate myLocation;
 
     public PathNode (Coordinate location) {
@@ -23,7 +23,7 @@ public class PathNode implements IPathNode {
     }
 
     @Override
-    public List<PathFlag> getFlags () {
+    public List<NodePathFlag> getFlags () {
         return myFlags;
     }
 

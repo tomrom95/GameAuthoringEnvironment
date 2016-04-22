@@ -24,29 +24,49 @@ public class GameGraphFactory implements INodeGraphFactory {
 
     }
 
-    private NodeGraph fillNodeGraph (BitMap obstructionMap, int gap, List<List<Coordinate>> edges) {
+    private INodeGraph fillNodeGraph (BitMap obstructionMap, int gap, List<List<Coordinate>> edges) {
         // TODO fill in method
         // tracking the nodes that we put in using an array
-        int widthNodes = obstructionMap.getWidth() / gap;
-        int heightNodes = obstructionMap.getHeight() / gap;
-        PathNode[][] placedNodes = new PathNode[widthNodes][heightNodes];
+        INodeGraph toReturn = new NodeGraph(); 
+        int numHorizontalNodes = obstructionMap.getWidth() / gap;
+        int numHeightNodes = obstructionMap.getHeight() / gap;
+        IPathNode[][] placedNodes = new PathNode[numHorizontalNodes][numHeightNodes];
+        //place the standard grid
+        for(int i = 0; i < obstructionMap.getWidth(); i+=gap){
+            for(int j = 0; j < obstructionMap.getHeight(); j+=gap){
+                if(obstructionMap.valueOf(i, j)){
+                    IPathNode toAdd = new PathNode(new Coordinate(i,j));
+                    toReturn.addNode(toAdd);
+                    placedNodes[i][j] = toAdd;
+                }
+            }
+        }
 
         // fill map with nodes at gapped interval
-        // place nodes half-way between different edges
+        // place nodes half-way between different edge points if distance is <= NODE_GAP
         // connect nodes by doing distance search
         // distance gridDistance * sqrt(2) radius circle
         // Fill a new INodeGraph with nodes except where obstructed at minGap resolution
         // connect the nodes to their cardinal neighbors
         // maybe use a data structure to store this
-        NodeGraph toReturn = new NodeGraph();
-        return null;
+        
+        return toReturn;
 
     }
 
     private List<List<Coordinate>> findAllEdges (BitMap obstructionMap) {
+        BitMap destructiveCopy = new BitMap(obstructionMap);
+
+        
         // TODO fill in method
         return null;
     }
+    
+    private List<Coordinate> recursiveEdgeHelper(BitMap obstructionMap, List<Coordinate> inEdge ){
+        //TODO fill in method
+        return null;
+    }
+    
 
     private BitMap getObstructionMap () {
         return myObstructionMap;

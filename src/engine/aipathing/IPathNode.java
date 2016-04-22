@@ -24,7 +24,7 @@ public interface IPathNode {
      * the map, we will support flags on each node
      * @return
      */
-    List<PathFlag> getFlags ();
+    List<NodePathFlag> getFlags ();
 
     /**
      * @return Copied version of the coordinate in the virtual
