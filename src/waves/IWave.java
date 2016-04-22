@@ -16,6 +16,6 @@ public interface IWave {
      */
 	boolean waveCompleted ();
 	   
-	void spawnSprite (SpriteDefinition s);
+	boolean spawnSprite (SpriteDefinition s);
 	
 }

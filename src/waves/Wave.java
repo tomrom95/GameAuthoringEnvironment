@@ -8,24 +8,35 @@ import engine.sprite.ISprite;
 public class Wave implements IWave {
 
     private List<SpriteWaveData> mySprites;
-
+    private int totalSprites;
     public Wave (List<SpriteWaveData> sprites) {
+       totalSprites = 0;
        mySprites = sprites;
-       
+       mySprites.stream().forEach(p -> totalSprites += p.getCount());
     }
 
    
 
 	@Override
 	public boolean waveCompleted() {
-		// TODO Auto-generated method stub
-		return false;
+		return totalSprites == 0;
 	}
 
 	@Override
-	public void spawnSprite(SpriteDefinition s) {
-		// TODO Auto-generated method stub
-		
+	public boolean spawnSprite(SpriteDefinition s) {
+		for(SpriteWaveData data : mySprites){
+			if(data.getDefinition().equals(s)){
+				data.setCount(data.getCount() - 1);
+				if(data.getCount() < 0){
+					return false;
+				} else{
+					totalSprites -- ;
+					return true;
+				}
+			}
+		}
+		return false;
 	}
-
+		
+	
 }
