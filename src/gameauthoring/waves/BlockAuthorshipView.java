@@ -21,8 +21,10 @@ import util.StringParser;
 
 public class BlockAuthorshipView implements Glyph {
 
-    private UIFactory myFactory = new UIFactory();
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
+    private ResourceBundle mySize = ResourceBundle.getBundle("defaults/wave_tab_size");
+    private UIFactory myFactory = new UIFactory();
+
     private GridPane myPane = new GridPane();
     private ObservableList<WaveBlockDefinition> myBlockList;
     private TextField myCount;
@@ -31,12 +33,19 @@ public class BlockAuthorshipView implements Glyph {
     private ComboBox<SpriteDefinition> mySpriteChoices;
 
     public BlockAuthorshipView (IGame game, ObservableList<WaveBlockDefinition> list) {
-        myPane.getStyleClass().add(myStyle.getString("Block"));
+        stylePane();
         myCreate = new Button("Create");
         factoryGenerate(game);
         myBlockList = list;
         init();
         new BlockAuthorshipController(this);
+    }
+
+    private void stylePane () {
+        myPane.getStyleClass().add(myStyle.getString("Block"));
+        myPane.setPrefSize(Double.parseDouble(mySize.getString("BlockWidth")),
+                           Double.parseDouble(mySize.getString("BlockHeight")));
+
     }
 
     private void factoryGenerate (IGame game) {

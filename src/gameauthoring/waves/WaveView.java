@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 
 
 public class WaveView implements Glyph {
-
+    
     ResourceBundle myBundle = ResourceBundle.getBundle("defaults/default_names");
     private ListView<WaveDefinition> myWaveList;
     private IGame myGame;

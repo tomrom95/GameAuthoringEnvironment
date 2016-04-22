@@ -29,8 +29,10 @@ public class WaveTabController {
     }
 
     private void transfer () {
-        myView.transfer(getList(myView.getWaveSelection()));
-        editMode();
+        if(myView.getWaveSelection()!=null) {
+            myView.transfer(getList(myView.getWaveSelection()));
+            editMode();
+        }
     }
 
     private void editMode () {

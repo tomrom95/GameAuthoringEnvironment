@@ -2,6 +2,7 @@ package gameauthoring.waves;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import engine.IGame;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
@@ -21,13 +22,15 @@ import javafx.scene.layout.HBox;
 
 
 /**
- * 
+ * Controls the wave for creating a wave.  This includes creating wave blocks and using 
+ * them to build a wave.
  * @author RyanStPierre
  *
  */
 
 public class WaveTabViewer implements Glyph {
 
+    private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/wave_tab_size");
     private GridPane myPane = new GridPane();
     private ObservableList<WaveBlockDefinition> myBlockList = FXCollections.observableArrayList();
     private ListView<WaveBlockDefinition> myBlockListView = new ListView<>(myBlockList);
@@ -45,14 +48,17 @@ public class WaveTabViewer implements Glyph {
     }
 
     private void init () {
+        listInit();
+        myPane.add(myWaveAuthorship.draw(), 1, 1, 1, 2);
+        myPane.add(myBlockListView, 1, 3);
+        myPane.add(myWaveDisplay.draw(), 2, 2, 1, 2);
+        myPane.add(myCreationZone.draw(), 2, 1);
+    }
 
+    private void listInit () {
         myBlockListView.setCellFactory(e -> new WaveDragCell());
-        myBlockListView.setPrefWidth(400);
-        myPane.add(myWaveAuthorship.draw(), 1, 1);
-        myPane.add(myBlockListView, 2, 1, 1, 4);
-        myPane.add(myWaveDisplay.draw(), 1, 4);
-        myPane.add(myCreationZone.draw(), 1, 3);
-
+        myBlockListView.setPrefWidth(Double.parseDouble(myBundle.getString("BlockListWidth")));
+        myBlockListView.setPrefHeight(Double.parseDouble(myBundle.getString("BlockListHeight")));     
     }
 
     public void createWave () {

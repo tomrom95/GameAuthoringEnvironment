@@ -15,8 +15,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 
+
 /**
- * Used to create drag and drop reorder list view 
+ * Used to create drag and drop reorder list view
+ * For intra-list organization
  * @author RyanStPierre
  *
  */
@@ -25,6 +27,7 @@ public class WaveDragCell extends ListCell<WaveBlockDefinition> {
 
     ListGraphicFactory myFactory = new ListGraphicFactory();
     private XStream myXStream;
+
     public WaveDragCell () {
 
         initXStream();
@@ -35,13 +38,13 @@ public class WaveDragCell extends ListCell<WaveBlockDefinition> {
     }
 
     /**
-     * Needed to recover drag information 
+     * Needed to recover drag information
      */
     private void initXStream () {
         myXStream = new XStream(new DomDriver());
         FXConverters.configure(myXStream);
         myXStream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
-        
+
     }
 
     private void over (DragEvent event) {
@@ -59,10 +62,35 @@ public class WaveDragCell extends ListCell<WaveBlockDefinition> {
             return;
         }
 
-        WaveBlockDefinition retrieved = retrieve(event.getDragboard().getString());
+        int toRemove = getFirst(event.getDragboard().getString());
+        String toRetrieve = getLast(event.getDragboard().getString());
+        WaveBlockDefinition retrieved = retrieve(toRetrieve);
         int index = getListView().getItems().indexOf(this.getItem());
+        getListView().getItems().remove(toRemove);
         getListView().getItems().add(index, retrieved);
 
+    }
+
+    /**
+     * Returns the index information of the String
+     * @param string
+     * @return
+     */
+    private int getFirst (String data) {
+        return Integer.parseInt(data.substring(0, dividerIndex(data)));
+    }
+
+    /**
+     * Returns the xml part of the copy
+     * @param string
+     * @return
+     */
+    private String getLast (String data) {
+        return data.substring(dividerIndex(data) +1);
+    }
+    
+    private int dividerIndex (String data) {
+        return data.indexOf(",");
     }
 
     private WaveBlockDefinition retrieve (String data) {
@@ -73,14 +101,14 @@ public class WaveDragCell extends ListCell<WaveBlockDefinition> {
         Dragboard db = this.startDragAndDrop(TransferMode.MOVE);
         ClipboardContent cc = new ClipboardContent();
         db.setDragView(myFactory.getImage(this), 0, 0);
-        cc.putString(serialize(this.getItem()));
+        cc.putString(serialize(this.getItem(), getListView().getItems().indexOf(this.getItem())));
         db.setContent(cc);
         event.consume();
-        getListView().getItems().remove(this.getItem());
     }
 
-    private String serialize (WaveBlockDefinition item) {
-        return myXStream.toXML(item);
+    private String serialize (WaveBlockDefinition item, int index) {
+        String xml = myXStream.toXML(item);
+        return index + "," + xml;
     }
 
     @Override
