@@ -44,11 +44,11 @@ public class GameGraphFactory implements INodeGraphFactory {
         }
         connectUnobstructedNodes(placedNodes);
         List<IPathNode> traversableGapNodes = addEdgeNodes(toReturn, edges, obstructionMap);
-        connectFloatingNodes(traversableGapNodes, toReturn , gap, placedNodes);
+        connectFloatingNodes(traversableGapNodes, toReturn, gap, placedNodes);
         return toReturn;
 
     }
-    
+
     /**
      * 
      * @param nodes to add
@@ -56,18 +56,23 @@ public class GameGraphFactory implements INodeGraphFactory {
      * @param graphInterval the sample distance of the placed node
      * @param placedNodes cache of placed nodes to avoid having to check every node in graph
      */
-    private void connectFloatingNodes(List<IPathNode> nodes, INodeGraph graph, int graphInterval, IPathNode[][] placedNodes){
+    private void connectFloatingNodes (List<IPathNode> nodes,
+                                       INodeGraph graph,
+                                       int graphInterval,
+                                       IPathNode[][] placedNodes,
+                                       BitMap obstructionMap) {
         // connect nodes by doing distance search
         // distance NODE_GAP * sqrt(2) radius circle
-        //TODO
+        // TODO
     }
-    
-    private List<IPathNode> addEdgeNodes(INodeGraph graph, List<List<Coordinate>> edges, BitMap obstructionMap){
-        
+
+    private List<IPathNode> addEdgeNodes (INodeGraph graph,
+                                          List<List<Coordinate>> edges,
+                                          BitMap obstructionMap) {
 
         // fill map with nodes at gapped interval
         // place nodes half-way between different edge points if distance is <= NODE_GAP
-        //TODO
+        // TODO
         return null;
     }
 
@@ -77,10 +82,6 @@ public class GameGraphFactory implements INodeGraphFactory {
         // will check straight lines between nodes to see if there
         // are any obstructed pixels
         // TODO
-    }
-
-    private void connectOrthogonalCardinalPairsForLocation (IPathNode[][] nodes, int i, int j) {
-
     }
 
     /**
@@ -109,29 +110,22 @@ public class GameGraphFactory implements INodeGraphFactory {
     }
 
     /**
-     * Will check the obstruction map to see if all the pixels in the straight line
-     * between the nodes are not obstructed and thus if the nodes should be
-     * connected
-     * 
-     * @param first Node to connect
-     * @param second Node to connect
+     * Will perform obstruction checks by checking a series of coordinates within the map
+     * to see if they are all false
+     * @param first Node in the pair to connect
+     * @param second Node in the pair to connect
+     * @param obstructionMap
      */
-    private void connectOrthogIfNotObstr (BitMap obstructionMap,
-                                          IPathNode first,
-                                          IPathNode second) {
-        // TODO
+    private void connectIfNotObstructed (IPathNode first, IPathNode second, BitMap obstructionMap) {
+        //TODO
     }
-
-    /**
-     * Blocks touching at the corners will not allow things too move diagonal through
-     * Thus will need to include a one pixel offset set orthogonal to the diagonal line
-     * 
-     * @param first Node to connect
-     * @param second Node to connect
-     */
-    private void connectDiagIfNotObstr (BitMap obstructionMap, IPathNode first, IPathNode second) {
-        // TODO
+    
+    private boolean checkIfLineObstructed(List<Coordinate> line){
+        //TODO
+        return false;
     }
+    
+    
 
     private List<List<Coordinate>> findAllEdges (BitMap obstructionMap) {
         BitMap destructiveCopy = new BitMap(obstructionMap);
