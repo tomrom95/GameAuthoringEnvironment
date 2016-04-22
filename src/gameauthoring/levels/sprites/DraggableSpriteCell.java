@@ -70,11 +70,43 @@ public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> imple
 
     @Override
     public void setOnDragDropped (DragEvent e) {
-        Dragboard db = e.getDragboard();
-        if (db.hasString()) {
-            myController.addSprite(e.getX(), e.getY(), getProfilable());
-            myTarget.render();
+        if (checkPlaceable(e)) {
+            Dragboard db = e.getDragboard();
+            if (db.hasString()) {
+                myController.addSprite(e.getX(), e.getY(), getProfilable());
+                myTarget.render();
+            }
+        }
+        // else
+        // "You can't place there. please change placeable view"
+    }
+
+    private void printPlaceableArea () {
+        for (int i = 0; i < 50; i++) {
+            for (int j = 0; j < 50; j++) {
+                System.out
+                        .print((myController.getLevel().getPlaceableManager().getPlaceableArea().getBitMap()[i][j]) ? "1"
+                                                                                                   : "0");
+            }
+            System.out.println("");
         }
     }
 
+    // TODO: TEST THIS
+    public boolean checkPlaceable (DragEvent e) {
+        double halfHeight = (0.5) * (getProfilable().getProfile().getImageHeight().doubleValue());
+        double halfWidth = (0.5) * (getProfilable().getProfile().getImageWidth().doubleValue());
+        printPlaceableArea();
+        for (int r = (int) (e.getY() - halfHeight); r < (int) (e.getY() + halfHeight); r++) {
+            for (int c = (int) (e.getX() - halfWidth); c < (int) (e.getX() + halfWidth); c++) {
+                if (myController.getLevel().getPlaceableManager().getPlaceableArea().getBitMap()[r][c])
+                    return false;
+                System.out.println("Row: " + r + " Column: " + c);
+                System.out.println(myController.getLevel().getPlaceableManager().getPlaceableArea()
+                        .getBitMap()[r][c]);
+            }
+        }
+        System.out.println("You can place it!");
+        return true;
+    }
 }

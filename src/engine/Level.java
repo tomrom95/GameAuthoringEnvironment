@@ -45,8 +45,8 @@ public class Level implements ILevel {
         myNextLevelManager = new NextLevelManager();
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
+        myPlaceableManager = new PlaceableManager(this,1250,600);
         myWaveSet = new WaveSet();
-        myPlaceableManager = new PlaceableManager(this);
     }
 
     @Override

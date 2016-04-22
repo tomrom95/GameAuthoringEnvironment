@@ -11,19 +11,9 @@ public class PlaceableManager implements IPlaceableManager {
     private ILevel myLevel;
     private BitMap myCurrentPlaceableMap;
 
-    public PlaceableManager (int width, int height) {
-        myCurrentPlaceableMap = new BitMap(width,height);
-    }
-    
-    public PlaceableManager (ILevel level) {
+    public PlaceableManager (ILevel level, int width, int height) {
+        myCurrentPlaceableMap = new BitMap(width, height);
         myLevel = level;
-        myCurrentPlaceableMap = getBitMapForCurrentLevel(getLevel());
-    }
-
-    private BitMap getBitMapForCurrentLevel (ILevel level) {
-        // TODO: Return the bitmap saved from authoring environment
-        // TODO: DEFAULT width and height
-        return new BitMap(1000, 800);
     }
 
     private ILevel getLevel () {
@@ -35,10 +25,15 @@ public class PlaceableManager implements IPlaceableManager {
         myCurrentPlaceableMap = parseCurrentLevelForPlaceable(getLevel());
     }
 
+    /**
+     * Check all the sprites and update the bitmap. true: occupied, false: not occupied
+     * 
+     * @param level
+     * @return
+     */
     private BitMap parseCurrentLevelForPlaceable (ILevel level) {
-        BitMap placeableMap = getBitMapForCurrentLevel(level);
+        BitMap placeableMap = getPlaceableArea();
 
-        // Check all the sprites and update the bitmap
         List<ISprite> listOfSprites = level.getSprites();
         for (ISprite sprite : listOfSprites) {
             for (int row = (int) sprite.getBounds().getTop(); row <= (int) sprite.getBounds()

@@ -3,7 +3,6 @@ package gameauthoring.levels;
 import engine.IGame;
 import engine.ILevel;
 import engine.rendering.AuthoringRenderer;
-import engine.rendering.GridRenderer;
 import gameauthoring.util.Glyph;
 import gameauthoring.util.UIFactory;
 import javafx.scene.Node;
@@ -14,6 +13,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 
 
 /**
@@ -21,6 +23,7 @@ import javafx.scene.layout.StackPane;
  * of the level itself and a sidebar view of created sprites to add
  * 
  * @author Tommy
+ * @author Jin An
  *
  */
 public class SceneCreator implements Glyph {
@@ -29,7 +32,7 @@ public class SceneCreator implements Glyph {
     public final static int WIDTH = 700;
 
     private IGame gameModel;
-    private AuthoringRenderer myLevelView;
+    private AuthoringRenderer myView;
     private ILevel myLevel;
     private SceneController myController;
     private boolean myPlaceableEnable;
@@ -49,22 +52,60 @@ public class SceneCreator implements Glyph {
         return container;
     }
 
-    private void handlePlaceableButton (Pane pane, Pane levelPane, Pane gridPane) {
+    private void handlePlaceableButton (Pane pane) {
         myPlaceableEnable = !myPlaceableEnable;
+
         pane.getChildren().clear();
         if (myPlaceableEnable)
-            pane.getChildren().addAll(levelPane, gridPane,
-                                      placeableButton(pane, levelPane, gridPane));
-        else
-            pane.getChildren().addAll(gridPane, levelPane,
-                                      placeableButton(pane, levelPane, gridPane));
-
+            pane.getChildren().addAll(myView.getPane(), myView.getGrids().getPane(),
+                                      placeableButton(pane));
+        else {
+            pane.getChildren().addAll(myView.getGrids().getPane(), myView.getPane(),
+                                      placeableButton(pane));
+            updatePlaceableArea();
+            printPlaceableArea();
+        }
     }
 
-    private Button placeableButton (Pane pane, Pane levelPane, Pane gridPane) {
+    private void printPlaceableArea () {
+        for (int i = 0; i < 50; i++) {
+            for (int j = 0; j < 50; j++) {
+                System.out
+                        .print((myLevel.getPlaceableManager().getPlaceableArea().getBitMap()[i][j]) ? "1"
+                                                                                                   : "0");
+            }
+            System.out.println("");
+        }
+    }
+
+    /**
+     * Updates the bit map which represents placeable area every time author clicks the
+     * enable/disable placeable View button.
+     * 
+     * @param gridPane
+     */
+    private void updatePlaceableArea () {
+        Rectangle[][] blocks = myView.getGrids().getBlocks();
+        for (int row = 0; row < myView.getGrids().NUM_BLOCK_ROW; row++) {
+            for (int col = 0; col < myView.getGrids().NUM_BLOCK_COL; col++) {
+                updateCorrespondingBlock(row, col, blocks[row][col].getFill());
+            }
+        }
+    }
+
+    private void updateCorrespondingBlock (int row, int col, Paint color) {
+        int blockSize = myView.getGrids().BLOCK_SIZE;
+        for (int r = (blockSize) * row; r < (blockSize) * (row + 1); r++) {
+            for (int c = (blockSize) * (col); c < (blockSize) * (col + 1); c++) {
+                myLevel.getPlaceableManager().getPlaceableArea().set(r, c, color == Color.RED);
+            }
+        }
+    }
+
+    private Button placeableButton (Pane pane) {
         return (new UIFactory())
                 .createButton((myPlaceableEnable ? "Disable" : "Enable") + " Placeable View",
-                              e -> handlePlaceableButton(pane, levelPane, gridPane));
+                              e -> handlePlaceableButton(pane));
     }
 
     /**
@@ -75,7 +116,7 @@ public class SceneCreator implements Glyph {
      * @return
      */
     private Node createSpriteSelection () {
-        return new AuthoringSideBar(gameModel, myLevelView).draw();
+        return new AuthoringSideBar(gameModel, myView).draw();
     }
 
     /**
@@ -89,13 +130,13 @@ public class SceneCreator implements Glyph {
         Pane root = new StackPane();
         Pane levelPane = new Pane();
         GridPane gridPane = new GridPane();
-        Button enablePlaceableButton = placeableButton(root, levelPane, gridPane);
+        Button enablePlaceableButton = placeableButton(root);
 
         gridPane.setGridLinesVisible(true);
         root.getChildren().addAll(gridPane, levelPane, enablePlaceableButton);
         myController.setBackground(DEFAULT_BACKGROUND);
-        myLevelView = new AuthoringRenderer(myLevel, levelPane, gridPane);
-        myLevelView.render();
+        myView = new AuthoringRenderer(myLevel, levelPane, gridPane);
+        myView.render();
         levelPane.setOnMouseClicked(e -> handleMouseClick(e));
         return root;
     }
@@ -108,7 +149,7 @@ public class SceneCreator implements Glyph {
     private void handleMouseClick (MouseEvent e) {
         if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
             myController.uploadNewBackground();
-            myLevelView.render();
+            myView.render();
         }
     }
 }

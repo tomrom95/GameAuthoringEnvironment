@@ -16,9 +16,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 
+
 /**
  * Authoring environment sprite that allows for moving around the screen and includes
  * a context menu for deletion and path creation
+ * 
  * @author Tommy
  *
  */
@@ -63,12 +65,15 @@ public class OnScreenSprite implements Draggable, Glyph {
 
     @Override
     public void setOnDragDropped (DragEvent e) {
-        myController.moveSprite(mySprite, e.getX(), e.getY());
-        levelView.render();
+        if(checkPlaceable(e)){
+            myController.moveSprite(mySprite, e.getX(), e.getY());
+            levelView.render();
+        }
     }
 
     /**
      * Sets the sprite action menu on right click
+     * 
      * @param node
      */
     private void createRightClickMenu (Node node) {
@@ -84,6 +89,7 @@ public class OnScreenSprite implements Draggable, Glyph {
     /**
      * Helper to get the context menu. Can be overridden for various
      * context menus
+     * 
      * @param container
      * @return
      */
@@ -96,4 +102,17 @@ public class OnScreenSprite implements Draggable, Glyph {
         return mySprite;
     }
 
+    @Override
+    public boolean checkPlaceable (DragEvent e) {
+        for (int r = (int) e.getY(); r < (int) (e.getY() + mySprite.getBounds().getBottom() - mySprite
+                .getBounds().getTop()); r++) {
+            for (int c = (int) e.getX(); c < (int) (e.getX() + mySprite.getBounds().getRight() - mySprite
+                    .getBounds().getLeft()); c++) {
+                if (levelView.getLevel().getPlaceableManager().getPlaceableArea().getBitMap()[r][c])
+                    return false;
+            }
+        }
+        System.out.println("You can place it!");
+        return true;
+    }
 }
