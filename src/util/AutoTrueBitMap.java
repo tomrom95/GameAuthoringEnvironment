@@ -24,7 +24,7 @@ public class AutoTrueBitMap extends BitMap {
      * @return
      */
     public boolean valueOf (int row, int column) {
-        if (row >= getWidth() || column >= getHeight() || row < 0 || column < 0) {
+        if (!inBounds(row, column)) {
             return true;
         }
         return getBitMap()[row][column];

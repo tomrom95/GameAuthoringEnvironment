@@ -59,6 +59,14 @@ public interface IBitMap {
     void set (int row, int column, boolean value);
     
     /**
+     * Sets bit to be true = 1, false = 1 at {@link ArrayPosition#getX()},
+     * {@link ArrayPosition#getY()} 
+     * @param pos
+     * @param value
+     */
+    void set (ArrayPosition pos, boolean value);
+    
+    /**
      * @return An iterator across the columns, then rows of the bit values<br>
      * 1 returns true<br>
      * 0 returns false
@@ -76,5 +84,20 @@ public interface IBitMap {
      * @return
      */
     boolean[][] getBitMap ();
+    
+    /**
+     * Checks to see if an intended access is in bounds
+     * @param x
+     * @param y
+     * @return
+     */
+    boolean inBounds (int x, int y);
+    
+    /**
+     * See {@link #inBounds(int, int)}
+     * @param pos
+     * @return
+     */
+    boolean inBounds (ArrayPosition pos);
 
 }

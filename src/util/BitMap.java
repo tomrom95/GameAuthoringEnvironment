@@ -11,7 +11,7 @@ import java.util.Iterator;
  * @author Jon Im
  *
  */
-public class BitMap implements Iterable<Boolean>, IBitMap{
+public class BitMap implements Iterable<Boolean>, IBitMap {
 
     private boolean[][] myBitMap;
     private int myWidth;
@@ -35,6 +35,7 @@ public class BitMap implements Iterable<Boolean>, IBitMap{
     }
 
     /**
+     * @deprecated
      * Should use constructors and overloaded constructors instead of having
      * methods for post initialization
      * Please replace usage with {@link #BitMap()} or {@link #BitMap(int, int) BitMap(int width, int
@@ -165,6 +166,21 @@ public class BitMap implements Iterable<Boolean>, IBitMap{
 
         };
 
+    }
+
+    @Override
+    public boolean inBounds (int x, int y) {
+        return (x >= 0) && (x < getWidth()) && (y >= 0) && (y < getHeight());
+    }
+
+    @Override
+    public boolean inBounds (ArrayPosition pos) {
+        return inBounds(pos.getX(), pos.getY());
+    }
+
+    @Override
+    public void set (ArrayPosition pos, boolean value) {
+        set(pos.getX(), pos.getY(), value);
     }
 
 }

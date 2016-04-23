@@ -93,11 +93,10 @@ public class GameGraphFactory implements INodeGraphFactory {
             ArrayPosition pos = iter.next();
             if (isEdge(obMapCopy, pos)) {
                 edgeList.add(recursiveEdgeHelper(obstructionMap, pos, new ArrayList<>()));
-                //if so then recursively build edge set by moving along this edge
+                removeObstructionMask(obMapCopy, pos);
             }
         }
-        // TODO fill in method
-        return null;
+        return edgeList;
     }
     /**
      * This method will clear all the bits that are considered part of the same contiguous
@@ -105,18 +104,44 @@ public class GameGraphFactory implements INodeGraphFactory {
      * @param obstructionMap
      * @param pos
      */
-    private void removeObstructionMask(IBitMap obstructionMap,
-                                       ArrayPosition pos){
+    private void removeObstructionMask (IBitMap obstructionMap,
+                                        ArrayPosition pos) {
+        if (obstructionMap.valueOf(pos)) {
+            obstructionMap.set(pos, false);
+            List<ArrayPosition> toCheck = surroundingPositions(pos);
+            for (ArrayPosition check : toCheck) {
+                if (obstructionMap.inBounds(check)) {
+                    removeObstructionMask(obstructionMap, check);
+                }
+            }
+        }
         
     }
     
-    
+    /**
+     * Finds the edges
+     * @param obstructionMap
+     * @param pos
+     * @param inEdge
+     * @return
+     */
     private List<ArrayPosition> recursiveEdgeHelper (IBitMap obstructionMap,
                                                      ArrayPosition pos,
                                                      List<ArrayPosition> inEdge) {
-        List<ArrayPosition> toCheck = surroundingPositions(pos);
-        
-        return null;
+        if (isEdge(obstructionMap, pos)) {
+            if (!inEdge.contains(pos)) {
+                inEdge.add(pos);
+                List<ArrayPosition> toCheck = surroundingPositions(pos);
+                for (ArrayPosition check : toCheck) {
+                    if (obstructionMap.inBounds(check)) {
+                        if (!inEdge.contains(check)) {
+                            recursiveEdgeHelper(obstructionMap, check, inEdge);
+                        }
+                    }
+                }
+            }
+        }
+        return inEdge;
     }
     
     /**
@@ -168,8 +193,13 @@ public class GameGraphFactory implements INodeGraphFactory {
         return toReturn;
     }
     
+    private List<ArrayPosition> inBoundsSurroundingPositions(ArrayPosition pos, IBitMap obstructionMap){
+        
+        return null;
+    }
+    
     /**
-     * Diagonal and adjacent ArrayPositions surrouding an input position
+     * Diagonal and adjacent ArrayPositions surrounding an input position
      * @param pos
      * @return
      */
@@ -197,6 +227,7 @@ public class GameGraphFactory implements INodeGraphFactory {
             }
         }
     }
+    
 
     private boolean inBounds (IPathNode[][] nodes, ArrayPosition pos) {
         int width = nodes.length;
