@@ -66,8 +66,25 @@ public class BitMap implements Iterable<Boolean> {
         myBitMap[row][column] = !(myBitMap[row][column]);
     }
 
+    /**
+     * This method will return false for any requests that fall outside the bounds
+     * of the stored array
+     * 
+     * @param row
+     * @param column
+     * @return
+     */
     public boolean valueOf (int row, int column) {
+        if (row >= getWidth() || column >= getHeight() || row < 0 || column < 0) {
+            return false;
+        }
         return myBitMap[row][column];
+    }
+
+    public boolean valueOf (Coordinate coord) {
+        return valueOf((int)
+                       coord.getX(), (int) 
+                       coord.getY());
     }
 
     public void set (int row, int column, boolean value) {
