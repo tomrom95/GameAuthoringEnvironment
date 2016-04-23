@@ -55,7 +55,7 @@
 
 .cond_list .list-cell:even { 
 	-fx-text-fill: #4d004d;
-	-fx-background-color: #e6f9ff;
+	-fx-background-color: #ebccff;
 }
 
 .editor_pane { 

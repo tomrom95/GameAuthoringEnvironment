@@ -5,7 +5,7 @@ import engine.IGame;
 import engine.ILevel;
 import engine.rendering.AuthoringRenderer;
 import gameauthoring.util.Glyph;
-import gameauthoring.util.UIFactory;
+import gameauthoring.util.BasicUIFactory;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
@@ -92,7 +92,7 @@ public class SceneCreator implements Glyph {
     }
 
     private Button placeableButton (Pane pane) {
-        return (new UIFactory())
+        return (new BasicUIFactory())
                 .createButton((myPlaceableEnable ? "Disable" : "Enable") + " Placeable View",
                               e -> handlePlaceableButton(pane));
     }

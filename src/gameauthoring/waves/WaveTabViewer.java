@@ -11,7 +11,7 @@ import engine.definitions.spawnerdef.WaveDefinition;
 import gameauthoring.creation.cellviews.WaveDragCell;
 import gameauthoring.util.ErrorMessage;
 import gameauthoring.util.Glyph;
-import gameauthoring.util.UIFactory;
+import gameauthoring.util.BasicUIFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -75,7 +75,7 @@ public class WaveTabViewer implements Glyph {
             error.showError();
             return;
         }
-        Optional<String> option = new UIFactory().getTextDialog(
+        Optional<String> option = new BasicUIFactory().getTextDialog(
                                                                 myLang.getString("nameHolder"),
                                                                 myLang.getString("WaveTitle"),
                                                                 myLang.getString("WaveNameInstr"));

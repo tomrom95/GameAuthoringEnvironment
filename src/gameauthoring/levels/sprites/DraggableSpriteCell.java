@@ -5,7 +5,7 @@ import engine.rendering.LevelRenderer;
 import engine.rendering.UnscaledFactory;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.levels.SceneController;
-import gameauthoring.util.UIFactory;
+import gameauthoring.util.BasicUIFactory;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
@@ -64,7 +64,7 @@ public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> imple
         Node spriteNode =
                 getProfilable().getProfile().getImage()
                         .getVisualRepresentation(new UnscaledFactory());
-        return new UIFactory().getImageFromNode(spriteNode);
+        return new BasicUIFactory().getImageFromNode(spriteNode);
     }
 
     @Override

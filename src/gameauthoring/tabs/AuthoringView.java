@@ -6,7 +6,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.Game;
 import engine.IGame;
 import gameauthoring.listdisplay.GameConditionView;
-import gameauthoring.util.UIFactory;
+import gameauthoring.util.BasicUIFactory;
 import gameauthoring.waves.WaveTabViewer;
 import gameplayer.GamePlayer;
 import javafx.event.ActionEvent;
@@ -57,7 +57,7 @@ public class AuthoringView implements IAuthoringView {
     public static final String STYLESHEET = "custom.css";
     public static final String DEFAULT_RESOURCE_PACKAGE = "defaults/";
     public static final String DEFAULT_ENTRYVIEW = "defaultTextEntry";
-    private UIFactory myUIFactory = new UIFactory();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
     
     public AuthoringView () {
         GameFactory gameFactory = new GameFactory();
