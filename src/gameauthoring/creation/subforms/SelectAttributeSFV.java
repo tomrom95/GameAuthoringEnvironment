@@ -11,6 +11,7 @@ import gameauthoring.util.DraggableRemoveCellImage;
 import gameauthoring.util.UIFactory;
 import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -67,7 +68,7 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
         myAttributeSelector.getListView()
                 .setCellFactory(c -> new DraggableAddCell<AttributeDefinition>(mySelectedView
                         .getListView()));
-        myContainer = myUIFactory.makeHBox(20, myAttributeSelector.draw(), mySelectedView.draw());
+        myContainer = myUIFactory.makeHBox(20, Pos.CENTER, myAttributeSelector.draw(), mySelectedView.draw());
     }
 
 }

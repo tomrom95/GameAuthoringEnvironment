@@ -15,9 +15,11 @@ import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.UIFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 
 /**
@@ -30,17 +32,15 @@ import javafx.scene.layout.GridPane;
  */
 public class TrackingFirerSFV extends SubFormView implements ITrackingFireSFV {
 
-    private GridPane myPane;
+    private HBox myPane;
     private String myWaitTimeKey = "Wait Time: ";
     private String myTargetsKey = "Targets: ";
     private IEntryView myWaitTime;
     private SingleChoiceEntryView<SpriteGroup> myTargets;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
-    private Button myRemoveButton;
     private UIFactory myUIFactory= new UIFactory();
 
     public TrackingFirerSFV (AuthorshipData data, EventHandler<ActionEvent> e) {
-        myRemoveButton = myUIFactory.createButton("remove",e);
         myWaitTime =
                 new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
@@ -55,12 +55,7 @@ public class TrackingFirerSFV extends SubFormView implements ITrackingFireSFV {
     
     @Override
     protected void initView () {
-        myPane = new GridPane();
-        myPane.setGridLinesVisible(true);
-        myPane.add(myWaitTime.draw(), 0, 0);
-        myPane.add(myTargets.draw(), 1, 0);
-        myPane.add(myMissileSelectionView.draw(), 0, 2);
-        myPane.add(myRemoveButton, 1, 2);  
+        myPane = myUIFactory.makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(), myWaitTime.draw(), myTargets.draw());       
     }
 
     public SingleChoiceEntryView<SpriteGroup> getTargetsCoice () {

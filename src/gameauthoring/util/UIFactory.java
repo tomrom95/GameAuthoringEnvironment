@@ -43,10 +43,10 @@ public class UIFactory {
         return newButton;
     }
 
-    public Button createImageButton (String text,
-                                     ImageView imgview,
+    public Button createImageButton (Node imgview,
                                      EventHandler<ActionEvent> action) {
-        Button newButton = new Button(text, imgview);
+        Button newButton = new Button();
+        newButton.setGraphic(imgview);
         newButton.setOnAction(action);
         return newButton;
     }
@@ -80,11 +80,12 @@ public class UIFactory {
         return pane;
     }
 
-    public HBox makeHBox (double spacing, Node ... content) {
+    public HBox makeHBox (double spacing, Pos alignment, Node ... content) {
         HBox box = new HBox(spacing);
         if (content != null) {
             box.getChildren().addAll(content);
         }
+        box.setAlignment(alignment);
         return box;
     }
 

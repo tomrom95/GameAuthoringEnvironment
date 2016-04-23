@@ -3,6 +3,7 @@ package gameauthoring.creation.forms;
 import java.util.*;
 import java.util.function.Consumer;
 import gameauthoring.creation.subforms.ISubFormView;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -25,10 +26,10 @@ public class FormView implements IFormView {
     private Button myNewButton = new Button("New");
     private List<Node> myButtons = new ArrayList<Node>(Arrays.asList(mySaveButton,myDeleteButton, myNewButton));
     private List<ISubFormView> mySubFormViews;
-    private static final double HEIGHT = 525; //TODO: move to common resource file    
+    private static final double HEIGHT = 500; //TODO: move to common resource file    
     
 
-    public FormView(List<ISubFormView> subFormViews){
+    public FormView(List<ISubFormView> subFormViews){        
         mySubFormViews = subFormViews;
         mySubFormViewer.getStyleClass().add("myFormView");
         mySubFormViewer.setMaxHeight(HEIGHT);

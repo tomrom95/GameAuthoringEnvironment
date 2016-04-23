@@ -4,6 +4,7 @@ import engine.IGame;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.util.UIFactory;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -26,10 +27,9 @@ public class FiringSFVmult extends SubFormView {
 
     
     public FiringSFVmult(IGame game, FiringSFCmult SFC){    
-        //TODO: maybe use factory here for new subforms
-        Button dir = myUIFactory.createButton("direc", e->SFC.addSFC(new DirectionalFireSFC(game, SFC)));
-        Button track = myUIFactory.createButton("track", e->SFC.addSFC(new TrackingFireSFC(game,SFC)));
-        buttonHolder = myUIFactory.makeHBox(10, dir,track);
+        Button dir = myUIFactory.createImageButton(myUIFactory.makeImageDisplay("images/direct.png", "DIRECT"), e->SFC.addSFC(new DirectionalFireSFC(game, SFC)));
+        Button track = myUIFactory.createImageButton(myUIFactory.makeImageDisplay("images/tracking.png", "TRACKING"), e->SFC.addSFC(new TrackingFireSFC(game,SFC)));
+        buttonHolder = myUIFactory.makeHBox(10, Pos.CENTER, dir, track);
         initView();
     }
     
@@ -38,7 +38,7 @@ public class FiringSFVmult extends SubFormView {
     protected void initView () {
         myContainer = new GridPane();
         myPaneContent = myUIFactory.makeVBox(10, (Node[]) null);
-        myPane = myUIFactory.makeScrollPane(myPaneContent, 300, 300); //TODO: magic number
+        myPane = myUIFactory.makeScrollPane(myPaneContent, 500, 300); //TODO: magic number
         myContainer.add(buttonHolder, 0, 0);
         myContainer.add(myPane, 0, 1);
         

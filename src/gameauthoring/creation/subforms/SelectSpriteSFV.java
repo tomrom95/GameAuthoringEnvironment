@@ -1,6 +1,7 @@
 package gameauthoring.creation.subforms;
 
 import javafx.collections.FXCollections;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
@@ -54,8 +55,8 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
             myAccordion.getPanes().add(tp);
         }
         mySelected.getListView().setCellFactory(c->new DraggableRemoveCell<SpriteDefinition>(myAccordion));
-        mySelected.getListView().setPlaceholder(new Label("Drag Sprites Here To Add To Group"));
-        myContainer = myUIFactory.makeHBox(10, myAccordion, mySelected.draw());
+        mySelected.getListView().setPlaceholder(new Label("Drag Sprites Here"));
+        myContainer = myUIFactory.makeHBox(10, Pos.CENTER, myAccordion, mySelected.draw());
     }
 
     /**
@@ -64,11 +65,7 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
      * @return
      */
     public List<SpriteDefinition> getChosen () {
-        List<SpriteDefinition> list = new ArrayList<>();
-        for (MultiChoiceEntryView<SpriteDefinition> view : myViews) {
-            list.addAll(view.getSelected());
-        }
-        return list;
+        return mySelected.getSelected();
     }
 
     @Override
