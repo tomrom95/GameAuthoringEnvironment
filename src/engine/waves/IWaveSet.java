@@ -4,11 +4,11 @@ import java.util.List;
 
 import engine.Updateable;
 
-public interface IWaveSet extends Updateable {
+public interface IWaveSet {
 	
 	IWave getCurrentWave ();
 		
-	boolean betweenWaves ();
+	boolean getStopWaves ();
 	
 	boolean allWavesCompleted();
 	
@@ -17,4 +17,8 @@ public interface IWaveSet extends Updateable {
 	List<IWave> getWaveList();
 	
 	void updateCurrentWave ();
+	
+	void setStopWaves(boolean b);
+	
+	
 }

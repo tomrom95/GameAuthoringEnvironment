@@ -2,6 +2,8 @@ package engine.waves;
 
 import engine.Updateable;
 import engine.definitions.concrete.SpriteDefinition;
+import engine.sprite.ISprite;
+import util.TimeDuration;
 
 
 /**
@@ -9,13 +11,15 @@ import engine.definitions.concrete.SpriteDefinition;
  * step
  *
  */
-public interface IWave extends Updateable {
+public interface IWave {
 
     /**
      * @return the next Sprite to be spawned
      */
-	boolean waveCompleted ();
-	   
-	boolean spawnSprite (SpriteDefinition s);
-	
+    boolean waveCompleted ();
+
+    ISprite spawnSprite ();
+    
+    boolean satisfiedSpawnInterval(TimeDuration t);
+
 }
