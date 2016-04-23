@@ -2,6 +2,7 @@ package engine;
 
 import java.util.List;
 import engine.conditions.ICondition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.profile.IProfilable;
 import engine.sprite.ISprite;
 import engine.waves.IWaveSet;
@@ -64,6 +65,13 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
      * @param resource to be added
      */
     void addGlobalResource (IResource resource);
+    
+    /**
+     * Gets the list of sprite definitions that can be chosen by the user
+     * to use on this level
+     * @return list of sprite definitions
+     */
+    ObservableList<SpriteDefinition> getAddableSprites ();
 
     /**
      * @return an observable list of the sprites in this level

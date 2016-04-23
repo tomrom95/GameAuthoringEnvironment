@@ -3,9 +3,8 @@ package gameplayer;
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
-import gameauthoring.util.Glyph;
+import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.levels.SceneController;
-import gameauthoring.levels.sprites.DraggableSpriteCell;
 import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -22,7 +21,7 @@ import javafx.scene.control.TitledPane;
  * @author Tommy
  *
  */
-public class SideBarDisplay extends SizeableGlyph {
+public abstract class SideBarDisplay extends SizeableGlyph {
 
     private IGame myGame;
     private LevelRenderer levelView;
@@ -36,32 +35,44 @@ public class SideBarDisplay extends SizeableGlyph {
 
     @Override
     public Node draw () {
-        return createAccordion ();
+        Accordion accordion = createAccordion();
+        fillAccordion(accordion);
+        return accordion;
     }
 
-    protected Accordion createAccordion () {
+    private Accordion createAccordion () {
         Accordion selector = new Accordion();
-        myGame.getAuthorshipData().getMyCreatedSprites().stream().forEach(c -> {
-            TitledPane toAdd = createAccordionPane(c);
-            selector.getPanes().add(toAdd);
-            selector.expandedPaneProperty().set(toAdd);
-        });
-        selector.setMaxSize(parseString(getString("SideBarWidth")), 
-                             parseString(getString("SideBarHeight")));
-        return selector;
+        selector.setMaxSize(parseString(getString("SideBarWidth")),
+                            parseString(getString("SideBarHeight")));
+        return selector;        
     }
+    
+    protected abstract void fillAccordion (Accordion accordion);
 
-    private TitledPane createAccordionPane (DefinitionCollection<SpriteDefinition> collection) {
+    protected abstract ProfileCellView<SpriteDefinition> getSpriteCellView ();
+    
+    protected TitledPane createAccordionPane (DefinitionCollection<SpriteDefinition> collection) {
         ListView<SpriteDefinition> spriteList = createSpriteList(collection.getItems());
         TitledPane pane = new TitledPane(collection.getTitle(), spriteList);
         return pane;
     }
 
     protected ListView<SpriteDefinition> createSpriteList (ObservableList<SpriteDefinition> collection) {
-        
         ListView<SpriteDefinition> list = new ListView<SpriteDefinition>();
         list.setItems(collection);
-        list.setCellFactory(c -> new DraggableSpriteCell(levelView, myController));
+        list.setCellFactory(c -> getSpriteCellView());
         return list;
+    }
+                                                                   
+    protected IGame getGame () {
+        return myGame;
+    }
+    
+    protected LevelRenderer getLevelView () {
+        return levelView;
+    }
+    
+    protected SceneController getController () {
+        return myController;
     }
 }

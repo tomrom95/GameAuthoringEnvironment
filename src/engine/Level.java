@@ -3,6 +3,7 @@ package engine;
 import java.util.List;
 import java.util.function.Consumer;
 import engine.conditions.ICondition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
@@ -12,6 +13,7 @@ import engine.sprite.ISprite;
 import engine.waves.IWaveSet;
 import engine.waves.WaveSet;
 import graphics.ImageGraphic;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
@@ -34,6 +36,7 @@ public class Level implements ILevel {
     private IPlaceableManager myPlaceableManager;
     private IWaveSetManager myWaveSetManager;
     private IProfile myProfile;
+    private ObservableList<SpriteDefinition> myAddableSprites;
 
     public Level () {
         // TODO need to actually instantiate internal manager objects
@@ -45,8 +48,9 @@ public class Level implements ILevel {
         myNextLevelManager = new NextLevelManager();
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
-        myPlaceableManager = new PlaceableManager(this,1250,600);
         myWaveSetManager = new WaveSetManager();
+        myPlaceableManager = new PlaceableManager(this,600,1250);
+        myAddableSprites = FXCollections.observableArrayList();
     }
 
     @Override
@@ -182,5 +186,10 @@ public class Level implements ILevel {
     }
 
 	
+
+    @Override
+    public ObservableList<SpriteDefinition> getAddableSprites () {
+        return myAddableSprites;
+    }
 
 }

@@ -2,17 +2,10 @@ package gameauthoring.levels;
 
 import engine.IGame;
 import engine.ILevel;
-import gameauthoring.creation.entryviews.FormDataManager;
-import gameauthoring.creation.entryviews.IEntryView;
-import gameauthoring.creation.entryviews.IFormDataManager;
-import gameauthoring.creation.entryviews.TextEntryView;
-import gameauthoring.listdisplay.LevelConditionView;
-import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.Glyph;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 
@@ -28,7 +21,6 @@ import javafx.scene.layout.HBox;
 public class LevelEditorView implements Glyph {
 
     private BorderPane myLayout;
-    private IFormDataManager myData = new FormDataManager();
     private IGame myGame;
     private ILevel myLevel;
 
@@ -58,14 +50,5 @@ public class LevelEditorView implements Glyph {
 
     private Node createWinLoseForm () {
         return myLevelConditions.draw();
-    }
-
-    private Node createWavesForm () {
-        // TODO
-        GridPane form = new GridPane();
-        form.setAlignment(Pos.CENTER_LEFT);
-        form.setMinHeight(300);
-        form.setMinWidth(200);
-        return form;
     }
 }
