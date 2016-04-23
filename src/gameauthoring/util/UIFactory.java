@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -97,6 +98,12 @@ public class UIFactory {
         listView.getStyleClass().add(cssClass);
     }
     
+    public Accordion makeAccordion(double width){
+        Accordion item = new Accordion();
+        item.setMaxWidth(width);
+        return item;
+    }
+    
     
 
     public Optional<String> getTextDialog (String holder,
@@ -106,6 +113,5 @@ public class UIFactory {
         dialog.setTitle(title);
         dialog.setContentText(content);
         return dialog.showAndWait();
-
     }
 }

@@ -7,6 +7,7 @@ import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.DraggableAddCell;
 import gameauthoring.util.DraggableRemoveCell;
+import gameauthoring.util.DraggableRemoveCellImage;
 import gameauthoring.util.UIFactory;
 import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
@@ -61,7 +62,7 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
         mySelectedView.getListView().setPlaceholder(new Label("Drag Desired Attributes Here"));
         mySelectedView.getListView().setOrientation(Orientation.HORIZONTAL);
         mySelectedView.getListView()
-                .setCellFactory(c -> new DraggableRemoveCell<AttributeDefinition>(myAttributeSelector
+                .setCellFactory(c -> new DraggableRemoveCellImage<AttributeDefinition>(myAttributeSelector
                         .getListView()));
         myAttributeSelector.getListView()
                 .setCellFactory(c -> new DraggableAddCell<AttributeDefinition>(mySelectedView
