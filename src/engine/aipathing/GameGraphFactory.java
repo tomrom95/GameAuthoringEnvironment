@@ -90,7 +90,7 @@ public class GameGraphFactory implements INodeGraphFactory {
             }
         }
 
-        // if getting weird results check to see if recomparing already compared edges is 
+        // if getting weird results check to see if re-comparing already compared edges is 
         //causing problems
         return;
     }
@@ -104,7 +104,9 @@ public class GameGraphFactory implements INodeGraphFactory {
         if (PathNodeGeometry.distance(pos1, pos2) <= gap) {
             ArrayPosition pixelMidPoint = PathNodeGeometry.midPoint(pos1, pos2);
             IPathNode proposed = new PathNode(pixelMidPoint);
-            List<ArrayPosition> toCheck = surroundingPositions(pixelMidPoint);
+            //need to check the placed nodes, which are placed at gap intervals
+            List<ArrayPosition> toCheck =
+                    surroundingPositions(convertPixelToGraphPosition(pixelMidPoint, gap));
             List<ArrayPosition> toConnect = new ArrayList<>();
             for (ArrayPosition check : toCheck) {
                 addIfBoundsAndNull(toConnect, placedNodes, check);
@@ -121,6 +123,10 @@ public class GameGraphFactory implements INodeGraphFactory {
         }
         return;
 
+    }
+
+    private ArrayPosition convertPixelToGraphPosition (ArrayPosition pos, int gap) {
+        return new ArrayPosition((pos.getX() / gap), (pos.getY() / gap));
     }
     
 
