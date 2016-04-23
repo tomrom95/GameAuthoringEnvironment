@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -32,7 +33,8 @@ import javafx.scene.image.ImageView;
 public class UIFactory {
 
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
-
+    private static final double CUSHION = 10;
+    
     public Button createButton (String text, EventHandler<ActionEvent> action) {
         Button newButton = new Button(text);
         newButton.setOnAction(action);
@@ -58,7 +60,7 @@ public class UIFactory {
     public Button createStyledButton (String text,
                                       String styleClass) {
         Button newButton = new Button(text);
-        newButton.getStyleClass().add(myStyle.getString(styleClass));
+        addStyling(newButton, styleClass);
         return newButton;
     }
 
@@ -88,8 +90,10 @@ public class UIFactory {
         return box;
     }
 
-    public TextField createTextField () {
-        return new TextField();
+    public TextField createTextField (double width) {
+        TextField text = new TextField();
+        text.setMaxWidth(width);
+        return text;
     }
 
     private <T extends IProfilable> void addCellFactory (ComboBox<T> comboBox) {
@@ -114,17 +118,26 @@ public class UIFactory {
     
     public Label createTitleLabel (String title) {
         Label label = createLabel(title);
-        label.getStyleClass().add(myStyle.getString("TitleLabel"));
+        addStyling(label, "TitleLabel");
         return label;
     }
 
 
+    public Node createTitledSlider (String title, Slider s) {
+        VBox vbox = new VBox (CUSHION);
+        vbox.getChildren().add(createLabel(title));
+        vbox.getChildren().add(s);
+        return vbox;
+    }
+    
     public Slider createSlider (double min, double max, double start, double increment) {
         Slider slider = new Slider();
         slider.setMin(min);
         slider.setMax(max);
         slider.setValue(start);
         slider.setBlockIncrement(increment);
+        slider.setShowTickLabels(true);
+        slider.setShowTickMarks(true);
         return slider;
     }
 
@@ -134,5 +147,15 @@ public class UIFactory {
 
     public Button createButton (String title) {
         return new Button(title);
+    }
+
+    public Node createSubTitleLabel (String string) {
+        Label label = createLabel(string);
+        addStyling(label, "SubTitleLabel");
+        return label;
+    }
+    
+    private void addStyling(Node node, String key) {
+        node.getStyleClass().add(myStyle.getString(key));
     }
 }

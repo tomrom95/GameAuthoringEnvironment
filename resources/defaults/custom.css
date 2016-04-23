@@ -1,5 +1,8 @@
 .wave_tab {
     -fx-background-color: #8fbc8f;
+    -fx-hgap: 20;
+    -fx-vgap: 10;
+    -fx-padding: 10;
 }
 
 .cButton {
@@ -20,6 +23,13 @@
 	-fx-font-size: 26px;
     -fx-font-weight: bold;
     -fx-text-fill: #000000;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+    -fx-font-family: "Helvetica";
+}
+
+.sub_title_label {
+	-fx-font-size: 18px;
+    -fx-text-fill: #006600;
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
     -fx-font-family: "Helvetica";
 }

@@ -5,11 +5,11 @@ import java.util.ResourceBundle;
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
-import engine.definitions.spawnerdef.WaveDefinition;
 import gameauthoring.util.Glyph;
 import gameauthoring.util.UIFactory;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -17,10 +17,13 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import util.StringParser;
+
 
 /**
  * Allows the user to create wave blocks to use in the making of waves
+ * 
  * @author RyanStPierre
  *
  */
@@ -36,7 +39,7 @@ public class BlockAuthorshipView implements Glyph {
     private GridPane myPane = new GridPane();
     private ObservableList<WaveBlockDefinition> myBlockList;
     private TextField myCount;
-    private Slider myGap;
+    private Slider myGapSlider;
     private Button myCreate;
     private ComboBox<SpriteDefinition> mySpriteChoices;
 
@@ -57,25 +60,34 @@ public class BlockAuthorshipView implements Glyph {
 
     private void factoryGenerate (IGame game) {
         mySpriteChoices = myFactory.createCombo(game.getAuthorshipData().getAllCreatedSprites());
-        myCount = myFactory.createTextField();
+        mySpriteChoices.setMinWidth(Double.parseDouble(mySize.getString("ComboWidth")));
+        myCount = myFactory.createTextField(Double.parseDouble(mySize.getString("TextWidth")));
         createSlider();
     }
 
     private void createSlider () {
-        double min = 0;
-        double max = 0;
-        double start =0;
-        double tick = 0;
-        myGap = myFactory.createSlider(min, max, start, tick);
+        double min = Double.parseDouble(mySize.getString("SliderMin"));
+        double max = Double.parseDouble(mySize.getString("SliderMax"));
+        double start = Double.parseDouble(mySize.getString("SliderStart"));
+        double tick = Double.parseDouble(mySize.getString("SliderTick"));
+        myGapSlider = myFactory.createSlider(min, max, start, tick);
     }
 
     private void init () {
         myCreate = myFactory.createButton(myLang.getString("Create"));
-        myPane.add(myFactory.createTitleLabel(myLang.getString("BlockTitle")), 0, 0);
-        myPane.add(myCount, 3, 1);
-        myPane.add(mySpriteChoices, 0, 1);
-        myPane.add(myGap, 2, 1);
-        myPane.add(myCreate, 3, 2);
+        myPane.add(myFactory.createTitleLabel(myLang.getString("BlockTitle")), 0, 0, 3, 1);
+        myPane.add(addLabel(myCount, myLang.getString("Count")), 3, 1, 3, 1);
+        myPane.add(addLabel(mySpriteChoices, myLang.getString("SpriteChoice")), 0, 1);
+        myPane.add(myCreate, 5, 2);
+        myPane.add(addLabel(myGapSlider, myLang.getString("SpawnGapTime")), 2, 1);
+    }
+
+    private Node addLabel (Node node, String string) {
+        VBox vbox = new VBox(Double.parseDouble(mySize.getString("Cushion")));
+        vbox.getChildren().addAll(myFactory.createSubTitleLabel(string), node);
+        vbox.setAlignment(Pos.TOP_RIGHT);
+        return vbox;
+        
     }
 
     @Override
@@ -103,7 +115,7 @@ public class BlockAuthorshipView implements Glyph {
     }
 
     private double getGap () {
-        return myGap.getValue();
+        return myGapSlider.getValue();
     }
 
     private SpriteDefinition getSpriteDef () {
