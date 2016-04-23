@@ -11,6 +11,10 @@ public class ArrayPosition {
     private int myX;
     private int myY;
 
+    public ArrayPosition (ArrayPosition pos) {
+        this(pos.getX(), pos.getY());
+    }
+
     public ArrayPosition () {
         this(0, 0);
     }

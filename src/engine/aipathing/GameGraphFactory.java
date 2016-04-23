@@ -2,10 +2,14 @@ package engine.aipathing;
 
 import util.BitMap;
 import util.Coordinate;
+import util.ArrayPosition;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class GameGraphFactory implements INodeGraphFactory {
+    private static final int INT_ONE = 1;
+    private static final int INT_NEG_ONE = -1;
     private static final double ONE = 1d;
     private static final int NODE_GAP = 10;
     private BitMap myObstructionMap;
@@ -33,14 +37,14 @@ public class GameGraphFactory implements INodeGraphFactory {
         // place the standard grid
         for (int i = 0; i < obstructionMap.getWidth(); i += gap) {
             for (int j = 0; j < obstructionMap.getHeight(); j += gap) {
-                if (obstructionMap.valueOf(i, j)) {
+                if (!obstructionMap.valueOf(i, j)) {
                     IPathNode toAdd = new PathNode(new Coordinate(i, j));
                     toReturn.addNode(toAdd);
                     placedNodes[i][j] = toAdd;
                 }
             }
         }
-        connectUnobstructedNodes(placedNodes);
+        connectUnobstructedNodes(placedNodes, obstructionMap);
         List<IPathNode> traversableGapNodes = addEdgeNodes(toReturn, edges, obstructionMap);
         connectFloatingNodes(traversableGapNodes, toReturn, gap, placedNodes, obstructionMap);
         return toReturn;
@@ -74,20 +78,63 @@ public class GameGraphFactory implements INodeGraphFactory {
         return null;
     }
 
-    private void connectUnobstructedNodes (IPathNode[][] nodes) {
-        //method to use is below
-        //connectIfNotObstructed
-        // the above method will check the actual bitmap between the two points
-        // to see if the nodes should be connected
+    private void connectUnobstructedNodes (IPathNode[][] nodes, BitMap obstructionMap) {
         int width = nodes.length;
         int height = nodes[0].length;
-        
-        
-        // will connect cardinal and diagonal, for diagonal will simply check
-        // one on each side of the line as well, so that corner blocks will stop
-        // will check straight lines between nodes to see if there
-        // are any obstructed pixels
-        // TODO
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                ArrayPosition pos = new ArrayPosition(i, j);
+                List<ArrayPosition> toCheck = nodesToCheck(nodes, pos);
+                for (ArrayPosition potNeigh : toCheck) {
+                    connectIfNotObstructed(nodes[potNeigh.getX()][potNeigh.getY()]
+                            , nodes[pos.getX()][pos.getY()]
+                            , obstructionMap);
+                }
+            }
+        }
+    }
+    
+    /**
+     * Will list all legal and non-null nodes that are either directly
+     * adjacent or diagonally so in relation to the proposed array 
+     * location
+     * @param nodes
+     * @param xLoc
+     * @param yLoc
+     * @return
+     */
+    private List<ArrayPosition> nodesToCheck (IPathNode[][] nodes, ArrayPosition pos) {
+        List<ArrayPosition> toReturn = new ArrayList<>();
+        addIfInBounds(toReturn, nodes,
+                      new ArrayPosition(pos.getX() + INT_ONE, pos.getY() + INT_ONE));
+        addIfInBounds(toReturn, nodes, new ArrayPosition(pos.getX() + INT_ONE, pos.getY()));
+        addIfInBounds(toReturn, nodes, new ArrayPosition(pos.getX(), pos.getY() + INT_ONE));
+        addIfInBounds(toReturn, nodes,
+                      new ArrayPosition(pos.getX() + INT_NEG_ONE, pos.getY() + INT_NEG_ONE));
+        addIfInBounds(toReturn, nodes, new ArrayPosition(pos.getX() + INT_NEG_ONE, pos.getY()));
+        addIfInBounds(toReturn, nodes, new ArrayPosition(pos.getX(), pos.getY() + INT_NEG_ONE));
+        addIfInBounds(toReturn, nodes,
+                      new ArrayPosition(pos.getX() + INT_ONE, pos.getY() + INT_NEG_ONE));
+        addIfInBounds(toReturn, nodes,
+                      new ArrayPosition(pos.getX() + INT_NEG_ONE, pos.getY() + INT_ONE));
+        return toReturn;
+    }
+    
+    private void addIfInBounds (List<ArrayPosition> addable,
+                                IPathNode[][] nodes,
+                                ArrayPosition pos) {
+        if (inBounds(nodes, pos)) {
+            addable.add(pos);
+        }
+    }
+
+    private boolean inBounds (IPathNode[][] nodes, ArrayPosition pos) {
+        int width = nodes.length;
+        int height = nodes[0].length;
+        return (pos.getX() < width) 
+                && (pos.getX() > 0) 
+                && (pos.getY() < height) 
+                && (pos.getY() > 0);
     }
 
     /**
