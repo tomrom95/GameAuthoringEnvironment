@@ -4,7 +4,7 @@ import java.util.List;
 import engine.AuthorshipData;
 import engine.Game;
 import engine.IGame;
-import engine.definitions.AttributeDefinition;
+import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
 
 

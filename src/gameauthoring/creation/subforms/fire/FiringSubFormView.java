@@ -2,7 +2,7 @@ package gameauthoring.creation.subforms.fire;
 
 import java.util.List;
 import java.util.function.Consumer;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.DynamicSubFormView;
 import gameauthoring.creation.subforms.ISubFormView;

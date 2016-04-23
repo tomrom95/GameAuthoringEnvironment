@@ -1,7 +1,7 @@
 package gameauthoring.creation.subforms.events;
 
 import java.util.List;
-import engine.definitions.AttributeDefinition;
+import engine.definitions.concrete.AttributeDefinition;
 import engine.profile.ProfileDisplay;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;

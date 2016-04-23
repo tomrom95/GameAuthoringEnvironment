@@ -7,6 +7,7 @@ import engine.Game;
 import engine.IGame;
 import gameauthoring.listdisplay.GameConditionView;
 import gameauthoring.util.UIFactory;
+import gameauthoring.waves.WaveTabViewer;
 import gameplayer.GamePlayer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -48,6 +49,7 @@ public class AuthoringView implements IAuthoringView {
     private ObjectCreationTabViewer myCreationTabViewer;
     private SceneTabViewer mySceneTabViewer;
     private GameConditionView myConditionView;
+    private WaveTabViewer myWaveTabView;
     private BorderPane myLayout;
     private IGame myGame;
     public static final int WIDTH = 1200;
@@ -97,6 +99,7 @@ public class AuthoringView implements IAuthoringView {
         myCreationTabViewer = new ObjectCreationTabViewer(getMyGame());
         myConditionView = new GameConditionView(getMyGame());
         mySceneTabViewer = new SceneTabViewer(getMyGame());
+        myWaveTabView = new WaveTabViewer(getMyGame());
     }
 
     private Node createStatusBar () {
@@ -142,8 +145,9 @@ public class AuthoringView implements IAuthoringView {
         Tab creationTab =
                 myUIFactory.createTab("Create Objects", false, myCreationTabViewer.draw());
         Tab conditionTab = myUIFactory.createTab("Conditions", false, myConditionView.draw());
+        Tab waveTab = myUIFactory.createTab("Waves", false, myWaveTabView.draw());
         Tab sceneTab = myUIFactory.createTab("Build Scenes/Levels", false, mySceneTabViewer.draw());
-        tabpane.getTabs().addAll(gameTab, creationTab, conditionTab, sceneTab);
+        tabpane.getTabs().addAll(gameTab, creationTab, conditionTab, waveTab, sceneTab);
         return tabpane;
     }
 

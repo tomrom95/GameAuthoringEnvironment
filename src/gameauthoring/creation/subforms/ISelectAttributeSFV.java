@@ -1,7 +1,7 @@
 package gameauthoring.creation.subforms;
 
 import java.util.List;
-import engine.definitions.AttributeDefinition;
+import engine.definitions.concrete.AttributeDefinition;
 
 /**
  * Allows for users to select any number of created attributes to add to a given sprite definition

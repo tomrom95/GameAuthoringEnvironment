@@ -1,7 +1,7 @@
 package gameauthoring.creation.subforms.movement;
 
-import engine.definitions.ConstantMoverDefinition;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.ConstantMoverDefinition;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;

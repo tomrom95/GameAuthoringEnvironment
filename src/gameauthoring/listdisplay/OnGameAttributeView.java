@@ -4,7 +4,7 @@ import engine.AttributeType;
 import engine.IEventPackage;
 import engine.IGame;
 import engine.SpriteGroup;
-import engine.definitions.EventPackageDefinition;
+import engine.definitions.concrete.EventPackageDefinition;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 

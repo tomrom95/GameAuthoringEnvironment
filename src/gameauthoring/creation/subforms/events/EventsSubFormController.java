@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import engine.IGame;
-import engine.definitions.EventPackageDefinition;
+import engine.definitions.concrete.EventPackageDefinition;
 import gameauthoring.creation.subforms.DynamicSubFormController;
 
 public class EventsSubFormController extends DynamicSubFormController<EventPackageDefinition>{

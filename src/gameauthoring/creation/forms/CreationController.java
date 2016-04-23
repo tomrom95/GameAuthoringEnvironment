@@ -6,7 +6,7 @@ import java.util.*;
 import engine.AuthorshipData;
 import engine.Game;
 import engine.IGame;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;

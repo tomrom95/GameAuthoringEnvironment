@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import engine.IGame;
-import engine.definitions.FirerDefinition;
-import engine.definitions.ModuleDefinition;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.FirerDefinition;
+import engine.definitions.moduledef.ModuleDefinition;
 import gameauthoring.creation.subforms.DynamicSubFormController;
 
 

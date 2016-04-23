@@ -1,7 +1,7 @@
 package gameplayer;
 
 import engine.IGame;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.levels.SceneController;

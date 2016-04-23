@@ -1,6 +1,6 @@
 package gameauthoring.creation.subforms;
 
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 
 
 /**

@@ -1,8 +1,8 @@
 package gameauthoring.creation.subforms.movement;
 
-import engine.definitions.KeyControlDefinition;
-import engine.definitions.SpriteDefinition;
-import engine.definitions.UserMoverDefinition;
+import engine.definitions.concrete.KeyControlDefinition;
+import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.UserMoverDefinition;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;

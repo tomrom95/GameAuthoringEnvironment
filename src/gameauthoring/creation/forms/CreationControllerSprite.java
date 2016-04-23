@@ -4,7 +4,7 @@ import java.util.List;
 import engine.AuthorshipData;
 import engine.Game;
 import engine.IGame;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
 
 
