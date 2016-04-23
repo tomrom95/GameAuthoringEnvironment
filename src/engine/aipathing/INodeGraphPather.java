@@ -1,8 +1,8 @@
 package engine.aipathing;
 
 import java.util.List;
-import util.BitMap;
 import util.Coordinate;
+import util.IBitMap;
 
 
 public interface INodeGraphPather {
@@ -16,6 +16,6 @@ public interface INodeGraphPather {
      * @param goal
      * @return
      */
-    List<Coordinate> findPathFor (BitMap obstructionMap, Coordinate start, Coordinate goal);
+    List<Coordinate> findPathFor (IBitMap obstructionMap, Coordinate start, Coordinate goal);
 
 }

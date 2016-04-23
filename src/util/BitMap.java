@@ -11,7 +11,7 @@ import java.util.Iterator;
  * @author Jon Im
  *
  */
-public class BitMap implements Iterable<Boolean> {
+public class BitMap implements Iterable<Boolean>, IBitMap{
 
     private boolean[][] myBitMap;
     private int myWidth;
@@ -21,7 +21,7 @@ public class BitMap implements Iterable<Boolean> {
         initialize(width, height);
     }
 
-    public BitMap (BitMap map) {
+    public BitMap (IBitMap map) {
         initialize(map.getWidth(), map.getHeight());
         for (int i = 0; i < myWidth; i++) {
             for (int j = 0; j < myHeight; j++) {
@@ -54,39 +54,62 @@ public class BitMap implements Iterable<Boolean> {
         myHeight = height;
     }
 
+    /* (non-Javadoc)
+     * @see util.IBitMap#getHeight()
+     */
+    @Override
     public int getHeight () {
         return myHeight;
     }
 
+    /* (non-Javadoc)
+     * @see util.IBitMap#getWidth()
+     */
+    @Override
     public int getWidth () {
         return myWidth;
     }
 
+    /* (non-Javadoc)
+     * @see util.IBitMap#flip(int, int)
+     */
+    @Override
     public void flip (int row, int column) {
         myBitMap[row][column] = !(myBitMap[row][column]);
     }
 
-    /**
-     * This method will return false for any requests that fall outside the bounds
-     * of the stored array
-     * 
-     * @param row
-     * @param column
-     * @return
+
+    /* (non-Javadoc)
+     * @see util.IBitMap#valueOf(int, int)
      */
+    @Override
     public boolean valueOf (int row, int column) {
-        if (row >= getWidth() || column >= getHeight() || row < 0 || column < 0) {
-            return false;
-        }
         return myBitMap[row][column];
     }
 
+    
+    /* (non-Javadoc)
+     * @see util.IBitMap#valueOf(util.ArrayPosition)
+     */
+    @Override
+    public boolean valueOf (ArrayPosition pos) {
+        return valueOf(pos.getX(), pos.getY());
+    }
+
+    /* (non-Javadoc)
+     * @see util.IBitMap#valueOf(util.Coordinate)
+     */
+    @Override
     public boolean valueOf (Coordinate coord) {
         return valueOf((int)
                        coord.getX(), (int) 
                        coord.getY());
     }
 
+    /* (non-Javadoc)
+     * @see util.IBitMap#set(int, int, boolean)
+     */
+    @Override
     public void set (int row, int column, boolean value) {
         myBitMap[row][column] = value;
     }
@@ -95,6 +118,9 @@ public class BitMap implements Iterable<Boolean> {
         return myBitMap;
     }
 
+    /* (non-Javadoc)
+     * @see util.IBitMap#iterator()
+     */
     @Override
     public Iterator<Boolean> iterator () {
         return new Iterator<Boolean>() {
@@ -110,6 +136,31 @@ public class BitMap implements Iterable<Boolean> {
             public Boolean next () {
                 myCurLoc++;
                 return new Boolean(getBitMap()[myCurLoc / getHeight()][myCurLoc % getHeight()]);
+            }
+
+        };
+
+    }
+    
+    
+    /* (non-Javadoc)
+     * @see util.IBitMap#positionIterator()
+     */
+    @Override
+    public Iterator<ArrayPosition> positionIterator () {
+        return new Iterator<ArrayPosition>() {
+            private final int myMaxValue = getHeight() * getWidth() - 1;
+            private int myCurLoc = -1;
+
+            @Override
+            public boolean hasNext () {
+                return myCurLoc < myMaxValue;
+            }
+
+            @Override
+            public ArrayPosition next () {
+                myCurLoc++;
+                return new ArrayPosition(myCurLoc / getHeight(), myCurLoc % getHeight());
             }
 
         };
