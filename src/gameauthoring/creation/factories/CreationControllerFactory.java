@@ -2,6 +2,7 @@ package gameauthoring.creation.factories;
 
 import java.util.List;
 import engine.IGame;
+import gameauthoring.creation.forms.CreationController;
 import gameauthoring.creation.forms.CreationControllerAttribute;
 import gameauthoring.creation.forms.CreationControllerEvent;
 import gameauthoring.creation.forms.CreationControllerGlobals;
@@ -17,11 +18,21 @@ import gameauthoring.creation.forms.CreationControllerSprite;
  *
  */
 public class CreationControllerFactory {
-
+    
+    
     public CreationControllerFactory () {
-
     }
 
+    public CreationController<?> createCreationController(String className, String title, List<String> sfcs, IGame game){
+        try {
+            return (CreationController<?>) Reflection.createInstance(className, title, sfcs, game);
+        } catch (ReflectionException e){
+            //TODO handle exception
+        } catch (ClassCastException e) {
+            //TODO handle exception
+        }
+        return null;
+    }
     public CreationControllerSprite createSpriteCreationController (String title,
                                                                     List<String> sfcs,
                                                                     IGame myGame) {
