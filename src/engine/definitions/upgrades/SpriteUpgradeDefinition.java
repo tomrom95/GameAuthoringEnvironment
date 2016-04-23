@@ -5,7 +5,7 @@ import engine.Check;
 import engine.ICheck;
 import engine.IGame;
 import engine.Positionable;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 
 
 public class SpriteUpgradeDefinition extends UpgradeDefinition {

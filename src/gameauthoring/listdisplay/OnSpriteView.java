@@ -10,7 +10,7 @@ import engine.SpriteGroup;
 import engine.conditions.ICondition;
 import engine.conditions.OnGlobalAttributeCondition;
 import engine.conditions.OnSpriteAttributeCondition;
-import engine.definitions.EventPackageDefinition;
+import engine.definitions.concrete.EventPackageDefinition;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 

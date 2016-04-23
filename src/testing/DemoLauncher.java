@@ -13,35 +13,28 @@ import engine.IGame;
 import engine.ISpriteGroup;
 import engine.SpriteGroup;
 import engine.conditions.OnCollisionCondition;
-import engine.definitions.AttributeDefinition;
-import engine.definitions.ConstantMoverDefinition;
-import engine.definitions.DirectionalFirerDefinition;
-import engine.definitions.KeyControlDefinition;
-import engine.definitions.MovementDefinition;
-import engine.definitions.PathMoverDefinition;
-import engine.definitions.SpawnerModuleDefinition;
-import engine.definitions.SpriteDefinition;
-import engine.definitions.StaticMovementDefintion;
-import engine.definitions.UserMoverDefinition;
-import engine.definitions.WaveDefinition;
-import engine.definitions.concrete.SpawnerDefinition;
 import engine.definitions.costs.Cost;
+import engine.definitions.concrete.AttributeDefinition;
+import engine.definitions.concrete.KeyControlDefinition;
+import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.ConstantMoverDefinition;
+import engine.definitions.moduledef.DirectionalFirerDefinition;
+import engine.definitions.moduledef.MovementDefinition;
+import engine.definitions.moduledef.PathMoverDefinition;
+import engine.definitions.moduledef.StaticMovementDefintion;
+import engine.definitions.moduledef.UserMoverDefinition;
 import engine.effects.DecreaseEffect;
 import engine.effects.IEffect;
 import engine.events.EventPackage;
 import engine.events.EventType;
 import engine.events.GameEvent;
-import engine.modules.PathMover;
-import engine.modules.SpawningModule;
 import engine.profile.Profile;
 import engine.rendering.GameGridConfigNonScaling;
-import engine.sprite.ISprite;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameplayer.GamePlayer;
 import graphics.ImageGraphic;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import util.Coordinate;
 
 
 public class DemoLauncher extends Application {
@@ -104,6 +97,7 @@ public class DemoLauncher extends Application {
         FXConverters.configure(xstream);
         xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
         xstream.toXML(game);
+        System.out.println("Success!");
     }
 
     private void createConditions (IGame game) {

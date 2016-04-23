@@ -25,6 +25,7 @@ import util.BundleOperations;
 public class GameConditionView extends ConditionView {
 
     private static final String PATH = "defaults/game_condition_view";
+    private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/game_cond_view");
 
     public GameConditionView (IGame game) {
         super(game.getConditionManager().getConditionListProperty());
@@ -36,13 +37,14 @@ public class GameConditionView extends ConditionView {
         initListView();
         add(createLeft(), 0, 0, 1, 3);
         add(createTop(), 1, 1, 1, 1);
-        
+
     }
 
     private void initListView () {
-        getListView().setPrefWidth(1100);
-        getListView().setPrefHeight(200);
+        getListView().setPrefWidth(Double.parseDouble(myBundle.getString("ListWidth")));
+        getListView().setPrefHeight(Double.parseDouble(myBundle.getString("ListHeight")));
         add(getListView(), 0, 3, 2, 1);
+        getOptions().getStyleClass().add(getStyle("CondListView"));
     }
 
     private Node createLeft () {
@@ -50,17 +52,33 @@ public class GameConditionView extends ConditionView {
     }
 
     private Node createTop () {
-        
-        getEditor().setPrefWidth(700);
-        getEditor().setPrefHeight(400);
-        getEditor().setStyle("-fx-background-color: #d0d0e1;");
+
+        getEditor().setPrefWidth(getTopWidth());
+        getEditor().setPrefHeight(getTopHeight());
         getEditor().getChildren().add(getPlus());
+
         return getEditor();
     }
 
+    private double getTopWidth () {
+        return Double.parseDouble(myBundle.getString("TopWidth"));
+    }
+    
+    private double getTopHeight () {
+        return Double.parseDouble(myBundle.getString("TopHeight"));
+    }
     private Node getPlus () {
-        Image image = new Image("/images/gray-plus-md.png");
-        return new ImageView(image);
+        Image image = new Image(myBundle.getString("ImageURL"));
+        ImageView view = new ImageView(image);
+        view.setTranslateX(half(getTopWidth()) -
+                           half(view.getBoundsInLocal().getWidth()));
+        view.setTranslateY(half(getTopHeight()) -
+                           half(view.getBoundsInLocal().getHeight()));
+        return view;
+    }
+
+    private double half (double input) {
+        return input * .5;
     }
 
     protected ObservableList<String> getList () {

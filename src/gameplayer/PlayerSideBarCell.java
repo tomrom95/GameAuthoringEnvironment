@@ -1,6 +1,6 @@
 package gameplayer;
 
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.costs.ICost;
 import engine.rendering.LevelRenderer;
 import gameauthoring.levels.SceneController;

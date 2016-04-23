@@ -1,7 +1,7 @@
 package gameauthoring.creation.subforms;
 
 import engine.SpriteGroup;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
 import java.util.*;
 

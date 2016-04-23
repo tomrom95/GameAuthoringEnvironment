@@ -1,7 +1,6 @@
 package engine.definitions.concrete;
 
 import java.util.List;
-import engine.definitions.SpriteDefinition;
 import engine.modules.PathMover;
 import engine.sprite.ISprite;
 import util.Coordinate;
