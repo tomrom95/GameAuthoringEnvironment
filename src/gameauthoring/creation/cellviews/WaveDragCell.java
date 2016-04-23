@@ -97,7 +97,7 @@ public class WaveDragCell extends ListCell<WaveBlockDefinition> {
     private void dragStart (MouseEvent event) {
         Dragboard db = this.startDragAndDrop(TransferMode.MOVE);
         ClipboardContent cc = new ClipboardContent();
-        db.setDragView(myFactory.getImage(this), 0, 0);
+        db.setDragView(myFactory.getTransferImage(this), 0, 0);
         cc.putString(serialize(this.getItem(), getListView().getItems().indexOf(this.getItem())));
         db.setContent(cc);
         event.consume();

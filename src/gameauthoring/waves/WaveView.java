@@ -11,14 +11,19 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
 
 public class WaveView implements Glyph {
     
-    ResourceBundle myBundle = ResourceBundle.getBundle("defaults/default_names");
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
+    private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/default_names");
+    private ResourceBundle mySize = ResourceBundle.getBundle("defaults/wave_tab_size");
     private ListView<WaveDefinition> myWaveList;
     private IGame myGame;
 
@@ -51,6 +56,9 @@ public class WaveView implements Glyph {
 
     private void setWaveList (ObservableList<WaveDefinition> list) {
         myWaveList = new ListView<>(list);
+        myWaveList.getStyleClass().add(myStyle.getString("WaveList"));
+        myWaveList.setPlaceholder(new Label(myLang.getString("NoWaveContent")));
+        myWaveList.setPrefWidth(Double.parseDouble(mySize.getString("WaveWidth")));
         myWaveList.setCellFactory(e -> new NameCellView<WaveDefinition>());
     }
     

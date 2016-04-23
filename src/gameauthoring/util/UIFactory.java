@@ -71,6 +71,12 @@ public class UIFactory {
         newButton.setOnAction(action);
         return newButton;
     }
+    
+    public Button createImageButton (String url) {
+        Image image = new Image(url);
+        Button newButton = new Button(null, new ImageView(image));
+        return newButton;
+    }
 
     public Tab createTab (String text, boolean closable, Node content) {
         Tab newTab = new Tab();
@@ -149,7 +155,7 @@ public class UIFactory {
         return new Button(title);
     }
 
-    public Node createSubTitleLabel (String string) {
+    public Label createSubTitleLabel (String string) {
         Label label = createLabel(string);
         addStyling(label, "SubTitleLabel");
         return label;

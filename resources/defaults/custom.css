@@ -1,10 +1,39 @@
 .wave_tab {
     -fx-background-color: #8fbc8f;
-    -fx-hgap: 20;
-    -fx-vgap: 10;
+    -fx-hgap: 30;
+    -fx-vgap: 2;
+    -fx-padding: 7;
+}
+
+.wave_grid {
+    -fx-background-color: #8fbc8f;
+    -fx-hgap: 30;
+    -fx-vgap: 5;
     -fx-padding: 10;
 }
 
+.wave_list .list-cell {
+	-fx-font-family: "Helvetica";
+    -fx-font-size: 28px;
+}
+
+.wave_list .list-cell:odd { 
+	-fx-text-fill: black;
+	-fx-background-color: white;
+}
+
+.wave_list .list-cell:even {
+	-fx-text-fill: black;
+	-fx-background-color: #D3D3D3; 
+}
+
+.wave_list .list-cell:filled:hover { 
+    -fx-background-color: #009933;
+}
+
+.wave_list .list-cell:filled:selected { 
+    -fx-background-color:  #e6ffe6; 
+}
 .cButton {
 	 -fx-background-color:
         linear-gradient(#006600, #8fbc8f),

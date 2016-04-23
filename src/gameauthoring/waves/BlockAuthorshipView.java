@@ -30,6 +30,7 @@ import util.StringParser;
 
 public class BlockAuthorshipView implements Glyph {
 
+    private static final int SEC_TO_MILLI = 1000;
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     private ResourceBundle mySize = ResourceBundle.getBundle("defaults/wave_tab_size");
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
@@ -74,7 +75,7 @@ public class BlockAuthorshipView implements Glyph {
     }
 
     private void init () {
-        myCreate = myFactory.createButton(myLang.getString("Create"));
+        myCreate = myFactory.createImageButton(mySize.getString("CreateURL"));
         myPane.add(myFactory.createTitleLabel(myLang.getString("BlockTitle")), 0, 0, 3, 1);
         myPane.add(addLabel(myCount, myLang.getString("Count")), 3, 1, 3, 1);
         myPane.add(addLabel(mySpriteChoices, myLang.getString("SpriteChoice")), 0, 1);
@@ -115,7 +116,7 @@ public class BlockAuthorshipView implements Glyph {
     }
 
     private double getGap () {
-        return myGapSlider.getValue();
+        return myGapSlider.getValue() * SEC_TO_MILLI;
     }
 
     private SpriteDefinition getSpriteDef () {
