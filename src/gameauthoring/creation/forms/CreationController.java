@@ -8,10 +8,10 @@ import engine.Game;
 import engine.IGame;
 import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
+import gameauthoring.creation.factories.SubFormControllerFactory;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.ProfileSFC;
-import gameauthoring.creation.subforms.SubFormControllerFactory;
 import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.ObservableList;
 

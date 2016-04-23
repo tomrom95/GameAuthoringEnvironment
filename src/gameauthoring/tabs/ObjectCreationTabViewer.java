@@ -1,7 +1,7 @@
 package gameauthoring.tabs;
 
+import gameauthoring.creation.factories.CreationControllerFactory;
 import gameauthoring.creation.forms.CreationController;
-import gameauthoring.creation.forms.CreationControllerFactory;
 import gameauthoring.creation.forms.IObjectCreationView;
 import gameauthoring.util.UIFactory;
 import java.util.ArrayList;

@@ -4,8 +4,8 @@ import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
 import engine.definitions.SpriteDefinition;
-import gameauthoring.creation.subforms.SpriteSFCFactory;
-import gameauthoring.creation.subforms.SubFormControllerFactory;
+import gameauthoring.creation.factories.SpriteSFCFactory;
+import gameauthoring.creation.factories.SubFormControllerFactory;
 
 
 /**

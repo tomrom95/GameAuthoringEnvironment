@@ -2,7 +2,7 @@ package gameauthoring.creation.subforms.fire;
 
 import engine.IGame;
 import engine.definitions.SpriteDefinition;
-import gameauthoring.creation.subforms.DynamicSFCFactory;
+import gameauthoring.creation.factories.DynamicSFCFactory;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 
 /**

@@ -4,8 +4,8 @@ import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
 import engine.definitions.AttributeDefinition;
-import gameauthoring.creation.subforms.AttributeSFCFactory;
-import gameauthoring.creation.subforms.SubFormControllerFactory;
+import gameauthoring.creation.factories.AttributeSFCFactory;
+import gameauthoring.creation.factories.SubFormControllerFactory;
 
 
 /**

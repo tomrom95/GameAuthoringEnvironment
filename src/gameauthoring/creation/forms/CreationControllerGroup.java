@@ -4,8 +4,8 @@ import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
 import engine.SpriteGroup;
-import gameauthoring.creation.subforms.GroupSFCFactory;
-import gameauthoring.creation.subforms.SubFormControllerFactory;
+import gameauthoring.creation.factories.GroupSFCFactory;
+import gameauthoring.creation.factories.SubFormControllerFactory;
 
 
 public class CreationControllerGroup extends CreationController<SpriteGroup> {

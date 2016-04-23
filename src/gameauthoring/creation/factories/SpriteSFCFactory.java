@@ -1,7 +1,10 @@
-package gameauthoring.creation.subforms;
+package gameauthoring.creation.factories;
 
 import engine.IGame;
 import engine.definitions.SpriteDefinition;
+import gameauthoring.creation.subforms.ISubFormController;
+import gameauthoring.creation.subforms.SelectAttributeSFC;
+import gameauthoring.creation.subforms.UpgradeSFC;
 import gameauthoring.creation.subforms.fire.FiringSubFormController;
 import gameauthoring.creation.subforms.movement.MovementSubFormController;
 

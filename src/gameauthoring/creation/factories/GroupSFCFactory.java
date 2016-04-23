@@ -1,7 +1,9 @@
-package gameauthoring.creation.subforms;
+package gameauthoring.creation.factories;
 
 import engine.IGame;
 import engine.SpriteGroup;
+import gameauthoring.creation.subforms.ISubFormController;
+import gameauthoring.creation.subforms.SelectSpriteSFC;
 
 public class GroupSFCFactory extends SubFormControllerFactory<SpriteGroup>{
 

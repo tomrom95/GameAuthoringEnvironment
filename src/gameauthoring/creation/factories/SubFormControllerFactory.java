@@ -1,4 +1,4 @@
-package gameauthoring.creation.subforms;
+package gameauthoring.creation.factories;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import engine.AuthorshipData;
 import engine.IGame;
 import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
+import gameauthoring.creation.subforms.ISubFormController;
+import gameauthoring.creation.subforms.ProfileSFC;
 import gameauthoring.creation.subforms.events.EventsSubFormController;
 import gameauthoring.creation.subforms.fire.FiringSubFormController;
 import gameauthoring.creation.subforms.movement.MovementSubFormController;
