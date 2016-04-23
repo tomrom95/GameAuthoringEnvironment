@@ -2,6 +2,7 @@ package engine.aipathing;
 
 import java.util.ArrayList;
 import java.util.List;
+import util.ArrayPosition;
 import util.Coordinate;
 
 
@@ -15,6 +16,10 @@ public class PathNode implements IPathNode {
         myNeighbors = new ArrayList<>();
         myFlags = new ArrayList<>();
         myLocation = location;
+    }
+
+    public PathNode (ArrayPosition pos) {
+        this(new Coordinate(pos.getX(), pos.getY()));
     }
 
     @Override

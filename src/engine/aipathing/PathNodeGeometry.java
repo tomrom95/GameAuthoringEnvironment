@@ -2,6 +2,7 @@ package engine.aipathing;
 
 import java.util.ArrayList;
 import java.util.List;
+import util.ArrayPosition;
 import util.Coordinate;
 
 
@@ -13,6 +14,8 @@ import util.Coordinate;
  *
  */
 public class PathNodeGeometry {
+    private static final int INT_TWO = 2;
+
     private PathNodeGeometry () {
         // utility class so private constructor
     }
@@ -67,5 +70,20 @@ public class PathNodeGeometry {
 
     private static double proportionSoThatBothLessThanOne (double first, double second) {
         return Math.abs(first) > Math.abs(second) ? Math.abs(first) : Math.abs(second);
+    }
+
+    public static double distance (ArrayPosition pos1, ArrayPosition pos2) {
+        double x1 = pos1.getX();
+        double x2 = pos2.getX();
+        double y1 = pos1.getY();
+        double y2 = pos2.getY();
+        double deltaX = x2 - x1;
+        double deltaY = y2 - y1;
+        return Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+    }
+    
+    public static ArrayPosition midPoint (ArrayPosition pos1, ArrayPosition pos2) {
+        return new ArrayPosition((pos1.getX() + pos2.getX()) / INT_TWO,
+                                 (pos1.getY() + pos2.getY()) / INT_TWO);
     }
 }
