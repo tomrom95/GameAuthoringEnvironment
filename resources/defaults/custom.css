@@ -34,6 +34,35 @@
 .wave_list .list-cell:filled:selected { 
     -fx-background-color:  #e6ffe6; 
 }
+
+.cond_list .list-cell {
+	-fx-font-family: "Zapf-Chancery";
+    -fx-font-size: 20px;
+}
+
+.cond_list .list-cell:empty {
+	-fx-background-color: white;
+}
+
+.cond_list .list-cell:odd { 
+	-fx-text-fill: #4d004d;
+	-fx-background-color: white;
+}
+
+.cond_list .list-cell:filled:selected { 
+    -fx-background-color:  #80dfff; 
+}
+
+.cond_list .list-cell:even { 
+	-fx-text-fill: #4d004d;
+	-fx-background-color: #e6f9ff;
+}
+
+.editor_pane { 
+	-fx-background-color: #d0d0e1;	
+	
+}
+
 .cButton {
 	 -fx-background-color:
         linear-gradient(#006600, #8fbc8f),
