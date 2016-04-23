@@ -43,7 +43,7 @@ public class SpawningModule extends DefaultAffectable implements IModule {
 
     @Override
     public void update (TimeDuration duration) {
-    	if(myWaveSet.getStopWaves() & myWaveSet.getCurrentWave().satisfiedSpawnInterval(duration)){
+    	if(!myWaveSet.getStopWaves() & myWaveSet.getCurrentWave().satisfiedSpawnInterval(duration)){
     		 ISprite spawn = myWaveSet.getCurrentWave().spawnSprite();
     			        spawn.setPath(myParent.getPath());	
     			        myAdder.bufferedAdd(spawn, myParent.getLocation());
