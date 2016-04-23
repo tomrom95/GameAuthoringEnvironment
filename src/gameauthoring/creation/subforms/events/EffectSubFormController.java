@@ -14,7 +14,8 @@ import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 
 public class EffectSubFormController implements ISubFormController<EventPackageDefinition> {
-    
+    private static final String NAME = "Effect"; //TODO maybe put in resource file
+
     private IGame myGame;
     private EffectSubFormView myView;
     
@@ -31,6 +32,11 @@ public class EffectSubFormController implements ISubFormController<EventPackageD
 
     @Override
     public void updateItem (EventPackageDefinition item) {
+        // Default profile instead of profileSFC
+        item.getProfile().getName().set(NAME);
+        item.getProfile().getDescription().set(myView.getEffectType());
+        
+        
         AttributeDefinition attrDef = myView.getAttribute();
         Attribute lengthAttr = new Attribute(new AttributeType("length"));
         lengthAttr.setValue(Double.valueOf(myView.getData().getValueProperty(myView.getLengthKey()).get()));

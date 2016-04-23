@@ -16,9 +16,13 @@ import javafx.collections.ObservableList;
 
 
 public class EventSubFormController implements ISubFormController<EventPackageDefinition> {
+    private static final String NAME = "Event"; //TODO maybe put in resource file
+
     private static final String PATH = "defaults/event_types";
     private ResourceBundle eventTypes = ResourceBundle.getBundle(PATH);
     private EventSubFormView myView;
+    
+    
 
     public EventSubFormController () {
         myView = new EventSubFormView(getEvents());
@@ -35,6 +39,12 @@ public class EventSubFormController implements ISubFormController<EventPackageDe
 
     @Override
     public void updateItem (EventPackageDefinition item) {
+        
+        // Default profile instead of profileSFC
+        item.getProfile().getName().set(NAME);
+        item.getProfile().getDescription().set(myView.getEventSelection());
+        
+        
         GameEvent event = new GameEvent(new EventType(myView.getEventSelection()));
         
         //TODO: need to find and replace instead of adding on each save

@@ -24,14 +24,17 @@ public abstract class SubFormControllerFactory<T extends IProfilable> {
 
     public List<ISubFormController<T>> createSubFormControllers (List<String> subFormStrings) {
         List<ISubFormController<T>> list = new ArrayList<>();
-        list.add(this.createProfileSFC());
         for (String subFormString : subFormStrings) {
-            list.add(createSubFormController(subFormString));
+            if(subFormString.equals("ProfileSFC")){
+                list.add(createProfileSFC());
+            }else{
+                list.add(createSubFormController(subFormString));
+            }
         }
         return list;
 
     }
-
+   
     protected abstract ISubFormController<T> createSubFormController (String type);
 
     protected IGame getMyGame () {

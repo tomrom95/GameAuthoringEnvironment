@@ -48,16 +48,16 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private void initializeLists () {
 
-        List<String> myGlobalSFCs = new ArrayList<String>(Arrays.asList("LevelSpecific", "Attribute"));
+        List<String> myGlobalSFCs = new ArrayList<String>(Arrays.asList("ProfileSFC", "LevelSpecific", "Attribute"));
 
-        List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
+        List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("ProfileSFC", "Attribute"));
 
-        List<String> myMissileSFCs = new ArrayList<String>(Arrays.asList("Movement"));
+        List<String> myMissileSFCs = new ArrayList<String>(Arrays.asList("ProfileSFC", "Movement"));
         List<String> myEnemySFCs =
-                new ArrayList<String>(Arrays.asList("SelectAttribute", "Movement"));
+                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Movement"));
         List<String> myDefenderSFCs =
-                new ArrayList<String>(Arrays.asList("SelectAttribute", "Upgrade", "Movement", "Firing"));
-        List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("SelectSprite"));
+                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Upgrade", "Movement", "Firing"));
+        List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("ProfileSFC", "SelectSprite"));
 
         List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
 
