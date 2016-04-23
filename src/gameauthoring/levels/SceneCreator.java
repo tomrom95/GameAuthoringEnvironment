@@ -1,5 +1,6 @@
 package gameauthoring.levels;
 
+import util.Tile;
 import engine.IGame;
 import engine.ILevel;
 import engine.rendering.AuthoringRenderer;
@@ -73,10 +74,10 @@ public class SceneCreator implements Glyph {
      * @param gridPane
      */
     private void updatePlaceableArea () {
-        Rectangle[][] blocks = myView.getGrids().getBlocks();
+        Tile[][] blocks = myView.getGrids().getBlocks();
         for (int row = 0; row < myView.getGrids().NUM_BLOCK_ROW; row++) {
             for (int col = 0; col < myView.getGrids().NUM_BLOCK_COL; col++) {
-                updateCorrespondingBlock(row, col, blocks[row][col].getFill());
+                updateCorrespondingBlock(row, col, blocks[row][col].getTile().getFill());
             }
         }
     }

@@ -23,7 +23,7 @@ public class AuthoringRenderer extends LevelRenderer {
         super(pane);
         myLevel = level;
         mySpriteNodeMap = new HashMap<>();
-        myTileView = new GridRenderer(gridPane);
+        myTileView = new GridRenderer(level, gridPane);
     }
 
     private Node createOnScreenSprite (ISprite sprite) {
