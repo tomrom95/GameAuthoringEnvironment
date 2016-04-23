@@ -1,5 +1,9 @@
 package engine.rendering;
 
+import util.Bounds;
+import util.Tile;
+import engine.ILevel;
+import engine.sprite.ISprite;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -17,49 +21,60 @@ import javafx.scene.shape.Rectangle;
 public class GridRenderer implements IRenderer {
     //TODO: Confirm the numbers
     private GridPane myPane;
-    private Rectangle[][] myBlocks;
-    public final int NUM_BLOCK_ROW = 29;
-    public final int NUM_BLOCK_COL = 16;
+    private ILevel myLevel;
+    private Tile[][] myBlocks;
+    public final int NUM_BLOCK_ROW = 16;
+    public final int NUM_BLOCK_COL = 29;
     public final int BLOCK_SIZE = 25;
 
-    public GridRenderer (GridPane pane) {
+    public GridRenderer (ILevel level, GridPane pane) {
         myPane = pane;
-        myBlocks = new Rectangle[NUM_BLOCK_ROW][NUM_BLOCK_COL];
+        myLevel = level;
+        myBlocks = new Tile[NUM_BLOCK_ROW][NUM_BLOCK_COL];
+        initializeGridLines();
     }
 
-    private void drawGridLines () {
+    private void initializeGridLines () {
         for (int i = 0; i < NUM_BLOCK_ROW; i++) {
             for (int j = 0; j < NUM_BLOCK_COL; j++) {
-                Rectangle rect = new Rectangle(BLOCK_SIZE, BLOCK_SIZE);
-                rect.setFill(Color.TRANSPARENT);
-                rect.setOnMouseClicked(e -> handleMouseClick(rect));
-                myBlocks[i][j] = rect;
-                myPane.add(rect, i, j);
+                Tile tile = new Tile(new Rectangle(BLOCK_SIZE,BLOCK_SIZE),i,j);
+                tile.getTile().setFill(Color.TRANSPARENT);
+                tile.getTile().setOnMouseClicked(e -> handleMouseClick(tile));
+                myBlocks[i][j] = tile;
+                myPane.add(tile.getTile(), j, i);
             }
         }
     }
 
-    private void handleMouseClick (Rectangle rect) {
-        if (rect.getFill() == Color.TRANSPARENT) {
-            rect.setFill(Color.RED);
-            // myBlocks[row][column] = rect;
-        }
-        else if (rect.getFill() == Color.RED) {
-            rect.setFill(Color.TRANSPARENT);
-            // myBlocks[row][column] = rect;
+    private void handleMouseClick (Tile tile) {
+        if(checkClickable(tile)){
+            if (tile.getTile().getFill() == Color.TRANSPARENT) {
+                tile.getTile().setFill(Color.RED);
+            }
+            else if (tile.getTile().getFill() == Color.RED) {
+                tile.getTile().setFill(Color.TRANSPARENT);
+            }
         }
     }
 
+    private boolean checkClickable(Tile tile){
+        for(ISprite sprite: myLevel.getSprites()){
+            Bounds rectBounds = new Bounds(BLOCK_SIZE*tile.getColPosition(),BLOCK_SIZE*tile.getRowPosition(),(double)BLOCK_SIZE,(double)BLOCK_SIZE);
+            if(sprite.getBounds().collide(rectBounds))
+                return false;
+        }
+        return true;
+    }
+    
     public Pane getPane () {
         return myPane;
     }
 
-    public Rectangle[][] getBlocks () {
+    public Tile[][] getBlocks () {
         return myBlocks;
     }
 
     @Override
     public void render () {
-        drawGridLines();
     }
 }
