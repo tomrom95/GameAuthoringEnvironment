@@ -1,7 +1,9 @@
 package engine.aipathing;
 
+import util.AutoTrueBitMap;
 import util.BitMap;
 import util.Coordinate;
+import util.IBitMap;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,20 +15,19 @@ public class TestPath {
     }
 
     public static void main (String[] args) {
-//        BitMap testMap = new BitMap(10, 20);
-//        int i = 0;
-//        for (Boolean b : testMap) {
-//            System.out.println(i + " " + b.toString());
-//            i++;
-//        }
+        IBitMap obstructionMap = new AutoTrueBitMap(1000, 800);
+        INodeGraphFactory tester = new GameGraphFactory(obstructionMap);
+        INodeGraph testGraph = tester.getConstructedGraph();
+
+
         
-        Coordinate start = new Coordinate(1,1);
-        Coordinate end = new Coordinate(2,5);
-        List<Coordinate> test = PathNodeGeometry.lineBetween(start, end);
-        test = PathNodeGeometry.lineRounder(test);
-        for(Coordinate coord : test){
-            System.out.println("x: " + coord.getX() + " y: " + coord.getY());
-        }
+//        Coordinate start = new Coordinate(1,1);
+//        Coordinate end = new Coordinate(2,5);
+//        List<Coordinate> test = PathNodeGeometry.lineBetween(start, end);
+//        test = PathNodeGeometry.lineRounder(test);
+//        for(Coordinate coord : test){
+//            System.out.println("x: " + coord.getX() + " y: " + coord.getY());
+//        }
         
 
     }

@@ -1,6 +1,6 @@
 package util;
 
-public class AutoTrueBitMap extends BitMap {
+public class AutoTrueBitMap extends BitMapAbstract  {
     
     public AutoTrueBitMap (int width, int height) {
         super(width, height);
@@ -14,7 +14,7 @@ public class AutoTrueBitMap extends BitMap {
         super(map);
     }
 
-    @Override
+    
     /**
      * This method will return true for any requests that fall outside the bounds
      * of the stored array
@@ -23,6 +23,7 @@ public class AutoTrueBitMap extends BitMap {
      * @param column
      * @return
      */
+
     public boolean valueOf (int row, int column) {
         if (!inBounds(row, column)) {
             return true;

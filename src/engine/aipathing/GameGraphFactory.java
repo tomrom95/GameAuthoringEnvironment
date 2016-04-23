@@ -42,8 +42,8 @@ public class GameGraphFactory implements INodeGraphFactory {
         int numHeightNodes = obstructionMap.getHeight() / gap;
         IPathNode[][] placedNodes = new PathNode[numHorizontalNodes][numHeightNodes];
         // place the standard grid less obstructed areas
-        for (int i = 0; i < obstructionMap.getWidth(); i += gap) {
-            for (int j = 0; j < obstructionMap.getHeight(); j += gap) {
+        for (int i = 0; i < numHorizontalNodes; i += gap) {
+            for (int j = 0; j < numHeightNodes; j += gap) {
                 if (!obstructionMap.valueOf(i, j)) {
                     IPathNode toAdd = new PathNode(new Coordinate(i, j));
                     toReturn.addNode(toAdd);
@@ -133,7 +133,7 @@ public class GameGraphFactory implements INodeGraphFactory {
     
     private List<List<ArrayPosition>> findAllEdges (IBitMap obstructionMap) {
         List<List<ArrayPosition>> edgeList = new ArrayList<>();
-        IBitMap obMapCopy = new BitMap(obstructionMap);
+        IBitMap obMapCopy = new AutoTrueBitMap(obstructionMap);
         Iterator<ArrayPosition> iter = obMapCopy.positionIterator();
         while (iter.hasNext()) {
             ArrayPosition pos = iter.next();
@@ -203,7 +203,7 @@ public class GameGraphFactory implements INodeGraphFactory {
         boolean edgeBot = !obstructionMap.valueOf(pos.getX(), pos.getY() + INT_ONE);
         boolean edgeRight = !obstructionMap.valueOf(pos.getX() + INT_ONE, pos.getY());
         boolean edgeLeft = !obstructionMap.valueOf(pos.getX() - INT_ONE, pos.getY());
-        return edgeTop || edgeBot || edgeRight || edgeLeft && selfObstructed;
+        return (edgeTop || edgeBot || edgeRight || edgeLeft) && selfObstructed;
     }
 
     private void connectUnobstructedNodes (IPathNode[][] nodes, IBitMap obstructionMap) {
@@ -212,11 +212,15 @@ public class GameGraphFactory implements INodeGraphFactory {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 ArrayPosition pos = new ArrayPosition(i, j);
-                List<ArrayPosition> toCheck = nodesToCheck(nodes, pos);
-                for (ArrayPosition potNeigh : toCheck) {
-                    connectIfNotObstructed(nodes[potNeigh.getX()][potNeigh.getY()],
-                                           nodes[pos.getX()][pos.getY()],
-                                           obstructionMap);
+                if (inBoundsAndNotNull(nodes, pos)) {
+                    List<ArrayPosition> toCheck = nodesToCheck(nodes, pos);
+                    for (ArrayPosition potNeigh : toCheck) {
+                        if (inBoundsAndNotNull(nodes, potNeigh)) {
+                            connectIfNotObstructed(nodes[potNeigh.getX()][potNeigh.getY()],
+                                                   nodes[pos.getX()][pos.getY()],
+                                                   obstructionMap);
+                        }
+                    }
                 }
             }
         }
@@ -261,15 +265,21 @@ public class GameGraphFactory implements INodeGraphFactory {
     
     
     private void addIfBoundsAndNull (List<ArrayPosition> addable,
-                                IPathNode[][] nodes,
-                                ArrayPosition pos) {
-        
-        
-        if (inBounds(nodes, pos)) {
-            if (nodes[pos.getX()][pos.getY()] != null) {
-                addable.add(pos);    
-            }
+                                     IPathNode[][] nodes,
+                                     ArrayPosition pos) {
+
+        if (inBoundsAndNotNull(nodes, pos)) {
+            addable.add(pos);
         }
+
+    }
+
+    private boolean inBoundsAndNotNull (IPathNode[][] nodes, ArrayPosition pos) {
+        return inBounds(nodes, pos) && isNotNull(nodes, pos);
+    }
+
+    private boolean isNotNull (IPathNode[][] nodes, ArrayPosition pos) {
+        return nodes[pos.getX()][pos.getY()] != null;
     }
     
 
