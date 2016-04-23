@@ -111,6 +111,7 @@ public abstract class DynamicSubFormView extends SubFormView {
     public void changeSubView (int index) {
         myPane.getChildren().remove(myCurrentSubView);
         myCurrentSubView = mySubViews.get(index).draw();
+        System.out.println("In here");
         myPane.add(myCurrentSubView, this.myCurrentSubViewX, this.myCurrentSubViewY);
     }
 

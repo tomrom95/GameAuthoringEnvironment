@@ -3,14 +3,20 @@ package engine;
 import java.util.List;
 import java.util.function.Consumer;
 import engine.conditions.ICondition;
+import engine.definitions.SpriteDefinition;
 import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.profile.IProfile;
+import engine.profile.Profile;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
+import waves.IWaveSet;
+import waves.WaveSet;
 
 
 /**
@@ -27,17 +33,24 @@ public class Level implements ILevel {
     private ISpriteManager mySpriteManager;
     private IAttributeManager myAttributeManager;
     private INextLevelManager myNextLevelManager;
+    private IPlaceableManager myPlaceableManager;
+    private IProfile myProfile;
+    private IWaveSet myWaveSet;
+    private ObservableList<SpriteDefinition> myAddableSprites;
 
     public Level () {
         // TODO need to actually instantiate internal manager objects
         // after creating the concrete classes
-
+        myProfile = new Profile();
         myAttributeManager = new AttributeManager();
         myConditionManager = new ConditionManager();
         mySpriteManager = new SpriteManager();
         myNextLevelManager = new NextLevelManager();
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
+        myPlaceableManager = new PlaceableManager(this,600,1250);
+        //myWaveSet = new WaveSet();
+        myAddableSprites = FXCollections.observableArrayList();
     }
 
     @Override
@@ -46,6 +59,7 @@ public class Level implements ILevel {
         myConditionManager.update(duration);
         myAttributeManager.update(duration);
         myNextLevelManager.update(duration);
+        myWaveSet.update(duration);
     }
 
     @Override
@@ -146,6 +160,31 @@ public class Level implements ILevel {
     @Override
     public INextLevelManager getNextLevelManager () {
         return myNextLevelManager;
+    }
+
+    @Override
+    public IPlaceableManager getPlaceableManager () {
+        return myPlaceableManager;
+    }
+
+    public IProfile getProfile () {
+        return myProfile;
+    }
+
+    @Override
+    public void setProfile (IProfile profile) {
+        myProfile = profile;
+
+    }
+
+	@Override
+	public IWaveSet getWaveSet() {
+		return myWaveSet;
+	}
+
+    @Override
+    public ObservableList<SpriteDefinition> getAddableSprites () {
+        return myAddableSprites;
     }
 
 }

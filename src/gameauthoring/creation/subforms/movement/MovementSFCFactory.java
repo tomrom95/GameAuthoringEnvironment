@@ -1,6 +1,7 @@
 package gameauthoring.creation.subforms.movement;
 
 import engine.IGame;
+import engine.definitions.SpriteDefinition;
 import gameauthoring.creation.subforms.DynamicSFCFactory;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 
@@ -12,7 +13,7 @@ import gameauthoring.creation.subforms.ISubFormControllerSprite;
  * @author Jeremy Schreck
  *
  */
-public class MovementSFCFactory extends DynamicSFCFactory {
+public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
 
     public MovementSFCFactory (IGame game) {
         super(game);
@@ -20,7 +21,7 @@ public class MovementSFCFactory extends DynamicSFCFactory {
     }
 
     @Override
-    public ISubFormControllerSprite createSpriteSubFormController (String type) {
+    public ISubFormControllerSprite createSubFormController (String type) {
         if (type.equals("SmartAI")) {
 
             return new SmartAIMovementSubFormController();

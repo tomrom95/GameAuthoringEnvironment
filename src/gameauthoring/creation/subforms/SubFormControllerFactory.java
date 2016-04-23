@@ -3,16 +3,15 @@ package gameauthoring.creation.subforms;
 import java.util.ArrayList;
 import java.util.List;
 import engine.AuthorshipData;
-import engine.Game;
 import engine.IGame;
+import engine.definitions.SpriteDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.fire.DirectionalFireSFC;
 import gameauthoring.creation.subforms.fire.FiringSFC;
 import gameauthoring.creation.subforms.fire.FiringSFCmult;
 import gameauthoring.creation.subforms.fire.TrackingFireSFC;
+import gameauthoring.creation.subforms.events.EventsSubFormController;
 import gameauthoring.creation.subforms.movement.MovementSubFormController;
-import gameauthoring.creation.subforms.movement.SmartAIMovementSubFormController;
-import gameauthoring.creation.subforms.movement.UserMoverSubFormController;
 
 
 public class SubFormControllerFactory {
@@ -60,14 +59,13 @@ public class SubFormControllerFactory {
             return new MakeAttributeSFC();
         }
         else if (type.equals("Events")) {
-            return new EventsSubFormController(getMyAuthorshipData().getMyCreatedAttributes(),
-                                               getMyAuthorshipData().getMyCreatedEventPackages());
+            return new EventsSubFormController(getMyGame());
         }
         else if (type.equals("SelectSprite")) {
             return new SelectSpriteSFC(getMyAuthorshipData().getMyCreatedSprites());
         }
         else if (type.equals("Firing")) {
-            return new FiringSFC(getMyGame());
+            return new FiringSFC(myGame);
         }
         else if (type.equals("Upgrade")) {
             return new UpgradeSFC(getMyGame());
@@ -78,15 +76,15 @@ public class SubFormControllerFactory {
     }
 
     // Non general
-    public List<ISubFormControllerSprite> createSpriteSubFormControllers (List<String> subFormStrings) {
-        List<ISubFormControllerSprite> list = new ArrayList<ISubFormControllerSprite>();        
+    public List<ISubFormController<SpriteDefinition>> createSpriteSubFormControllers (List<String> subFormStrings) {
+        List<ISubFormController<SpriteDefinition>> list = new ArrayList<>();        
         for (String subFormString : subFormStrings) {
             list.add(createSpriteSubFormController(subFormString));
         }
         return list;
     }
 
-    public ISubFormControllerSprite createSpriteSubFormController (String type) {
+    public ISubFormController<SpriteDefinition> createSpriteSubFormController (String type) {
 
         if (type.equals("Profile")) {
             // return new ProfileSubFormController();
@@ -102,7 +100,7 @@ public class SubFormControllerFactory {
                     .getMyCreatedAttributes());
         }
         else if (type.equals("Firing")) {
-            return new FiringSFC(getMyGame());
+            return new FiringSFC(myGame);
         }
         System.out.println("null");
 

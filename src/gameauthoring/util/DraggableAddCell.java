@@ -40,6 +40,12 @@ public class DraggableAddCell<T extends IProfilable> extends DraggableCell<T>{
             }
         }
     }
+
+    @Override
+    public boolean checkPlaceable (DragEvent e) {
+        // TODO Auto-generated method stub
+        return false;
+    }
     
 
 }

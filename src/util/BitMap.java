@@ -61,5 +61,9 @@ public class BitMap {
     public void set (int row, int column, boolean value) {
         myBitMap[row][column] = value;
     }
+    
+    public boolean[][] getBitMap (){
+        return myBitMap;
+    }
 
 }

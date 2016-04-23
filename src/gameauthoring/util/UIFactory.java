@@ -3,6 +3,7 @@ package gameauthoring.util;
 import java.util.List;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import javafx.beans.property.DoubleProperty;
+import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -14,6 +15,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -96,4 +98,14 @@ public class UIFactory {
     }
     
     
+
+    public Optional<String> getTextDialog (String holder,
+                                           String title,
+                                           String content) {
+        TextInputDialog dialog = new TextInputDialog(holder);
+        dialog.setTitle(title);
+        dialog.setContentText(content);
+        return dialog.showAndWait();
+
+    }
 }

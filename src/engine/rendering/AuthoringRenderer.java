@@ -9,6 +9,7 @@ import engine.ILevel;
 import engine.sprite.ISprite;
 import gameauthoring.levels.sprites.OnScreenSprite;
 import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 
@@ -16,16 +17,24 @@ public class AuthoringRenderer extends LevelRenderer {
 
     private ILevel myLevel;
     private Map<ISprite, Node> mySpriteNodeMap;
-
-    public AuthoringRenderer (ILevel level, Pane pane) {
+    private GridRenderer myTileView;
+    
+    public AuthoringRenderer (ILevel level, Pane pane, GridPane gridPane) {
         super(pane);
         myLevel = level;
         mySpriteNodeMap = new HashMap<>();
+        myTileView = new GridRenderer(level, gridPane);
     }
 
     private Node createOnScreenSprite (ISprite sprite) {
         return (new OnScreenSprite(this, myLevel, sprite)).draw();
         // this.draw(spriteNode, sprite);
+    }
+
+    @Override
+    public void render () {
+        drawBackground(getBackgroundURL());
+        drawSprites();
     }
 
     @Override
@@ -92,6 +101,14 @@ public class AuthoringRenderer extends LevelRenderer {
             add(node);
             return node;
         }
+    }
+    
+    public GridRenderer getGrids(){
+        return myTileView;
+    }
+    
+    public ILevel getLevel(){
+        return myLevel;
     }
 
     private void add (Node node) {

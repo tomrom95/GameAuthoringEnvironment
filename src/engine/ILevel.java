@@ -2,10 +2,13 @@ package engine;
 
 import java.util.List;
 import engine.conditions.ICondition;
+import engine.definitions.SpriteDefinition;
+import engine.profile.IProfilable;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
 import util.Coordinate;
+import waves.IWaveSet;
 
 
 /**
@@ -16,9 +19,10 @@ import util.Coordinate;
  * @author David Maydew
  * @author Ryan St.Pierre
  * @author Jonathan Im
+ * @author Jin An
  *
  */
-public interface ILevel extends Updateable, IAdder, IEventInternalizer {
+public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfilable {
 
     /**
      * @return The next level manager object for setting
@@ -41,6 +45,11 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer {
      */
     ImageGraphic getBackgroundImage ();
 
+    /**
+     * @return the object that contains the Bit Map of which terrains are tower-placeable
+     */
+    IPlaceableManager getPlaceableManager ();
+
     void setBackgroundImage (ImageGraphic graphic);
 
     /**
@@ -49,6 +58,13 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer {
      * @param resource to be added
      */
     void addGlobalResource (IResource resource);
+    
+    /**
+     * Gets the list of sprite definitions that can be chosen by the user
+     * to use on this level
+     * @return list of sprite definitions
+     */
+    ObservableList<SpriteDefinition> getAddableSprites ();
 
     /**
      * @return an observable list of the sprites in this level
@@ -76,6 +92,8 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer {
     /**
      * @param sprite to be removed
      */
+    
+    IWaveSet getWaveSet();
 
     void remove (ISprite sprite);
 

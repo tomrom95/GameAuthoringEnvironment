@@ -35,4 +35,10 @@ public class DraggableRemoveCell<T extends IProfilable> extends DraggableCell<T>
         getListView().getItems().remove(getIndex());
     }
 
+    @Override
+    public boolean checkPlaceable (DragEvent e) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
 }
