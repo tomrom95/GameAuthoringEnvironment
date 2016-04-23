@@ -1,8 +1,9 @@
 package waves;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
+import engine.definitions.SpriteDefinition;
 import util.TimeDuration;
 
 public class WaveSet implements IWaveSet {
@@ -15,8 +16,9 @@ public class WaveSet implements IWaveSet {
 
 	public WaveSet() {
 		myWaves = new ArrayList<IWave>();
-		currentWave = myWaves.get(0);
-		myWaves.remove(0);
+		currentWave = new Wave(new ArrayList<>(Arrays.asList(new SpriteWaveData(new SpriteDefinition(), 0))));
+		//currentWave = myWaves.get(0);
+		//myWaves.remove(0);
 		myIntervalTime = new TimeDuration(0);
 		myTimeSinceLastWave = new TimeDuration(0);
 	}
