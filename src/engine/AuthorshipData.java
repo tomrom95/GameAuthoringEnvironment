@@ -114,4 +114,9 @@ public class AuthorshipData {
         myCreatedGlobals = createdGlobals;
     }
 
+    public void addWave (WaveDefinition waveDef) {
+        myCreatedWaves.addItem(waveDef);
+        
+    }
+
 }

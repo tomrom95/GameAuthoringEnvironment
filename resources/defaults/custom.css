@@ -1,4 +1,6 @@
-
+.wave_tab {
+    -fx-background-color: #8fbc8f;
+}
 
 .root {
     -fx-base: lightgray;
