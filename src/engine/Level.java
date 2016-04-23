@@ -32,6 +32,7 @@ public class Level implements ILevel {
     private IAttributeManager myAttributeManager;
     private INextLevelManager myNextLevelManager;
     private IPlaceableManager myPlaceableManager;
+    private IWaveSetManager myWaveSetManager;
     private IProfile myProfile;
 
     public Level () {
@@ -45,14 +46,17 @@ public class Level implements ILevel {
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
         myPlaceableManager = new PlaceableManager(this,1250,600);
+        myWaveSetManager = new WaveSetManager();
     }
 
     @Override
     public void update (TimeDuration duration) {
+        myWaveSetManager.update(duration);
         mySpriteManager.update(duration);
         myConditionManager.update(duration);
         myAttributeManager.update(duration);
         myNextLevelManager.update(duration);
+        
     }
 
     @Override
@@ -159,6 +163,8 @@ public class Level implements ILevel {
     public IPlaceableManager getPlaceableManager () {
         return myPlaceableManager;
     }
+    
+    
 
     public IProfile getProfile () {
         return myProfile;
@@ -168,6 +174,11 @@ public class Level implements ILevel {
     public void setProfile (IProfile profile) {
         myProfile = profile;
 
+    }
+
+    @Override
+    public IWaveSetManager getWaveSetManager () {
+        return myWaveSetManager;
     }
 
 	

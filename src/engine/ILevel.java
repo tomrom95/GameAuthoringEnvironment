@@ -28,6 +28,13 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
      *         winning and losing levels
      */
     INextLevelManager getNextLevelManager ();
+    
+    
+    /**
+     * 
+     * @return The waveset manager object for this level
+     */
+    IWaveSetManager getWaveSetManager ();
 
     /**
      * @return the condition manager for this level
