@@ -64,6 +64,33 @@ public class ObjectCreationTabViewer implements ITabViewer {
         CreationControllerFactory ccFactory = new CreationControllerFactory();
         // TODO: take sfcs out of cc constructors
 
+        
+        CreationController<?> ccGlobal =
+                ccFactory.createCreationController("gameauthoring.creation.forms.CreationControllerGlobals", "Global Resources", myGlobalSFCs,
+                                                            myGame);
+
+        CreationController<?> ccAttributes =
+                ccFactory.createCreationController("gameauthoring.creation.forms.CreationControllerAttribute", "Character Attributes", myAttributeSFCs,
+                                                            myGame);
+        CreationController<?> ccMissiles =
+                ccFactory.createCreationController("gameauthoring.creation.forms.CreationControllerMissile", "Missiles", myMissileSFCs,
+                                                         myGame);
+        CreationController<?> ccEnemies =
+                ccFactory.createCreationController("gameauthoring.creation.forms.CreationControllerSprite", "Enemies", myEnemySFCs,
+                                                         myGame);
+        CreationController<?> ccDefenders =
+                ccFactory.createCreationController("gameauthoring.creation.forms.CreationControllerSprite", "Defender", myDefenderSFCs,
+                                                         myGame);
+        CreationController<?> ccGroups =
+                ccFactory.createCreationController("gameauthoring.creation.forms.CreationControllerGroup", "Groups", myGroupSFCs, myGame);
+
+        CreationController<?> ccEvents =
+                ccFactory.createCreationController("gameauthoring.creation.forms.CreationControllerEvent", "Events", myEventSFCs, myGame);
+        CreationController<?> ccBadArgsTest =
+                ccFactory.createCreationController("gameauthoring.creation.forms.FormView", "Events", myEventSFCs, myGame);
+        CreationController<?> ccClassCastExceptionTest =
+                ccFactory.createCreationController("gameauthoring.creation.forms.FormView");
+       /*
         CreationController<?> ccGlobal =
                 ccFactory.createGlobalsCreationController("Global Resources", myGlobalSFCs,
                                                             myGame);
@@ -85,6 +112,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         CreationController<?> ccEvents =
                 ccFactory.createEventCreationController("Events", myEventSFCs, myGame);
+*/
 
         myCCs = new ArrayList<CreationController<?>>();
 
