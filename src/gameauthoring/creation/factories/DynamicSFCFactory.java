@@ -1,7 +1,8 @@
-package gameauthoring.creation.subforms;
+package gameauthoring.creation.factories;
 
 import engine.IGame;
 import engine.profile.IProfilable;
+import gameauthoring.creation.subforms.ISubFormController;
 
 
 /**

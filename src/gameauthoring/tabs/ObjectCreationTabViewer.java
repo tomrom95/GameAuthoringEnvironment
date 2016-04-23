@@ -1,7 +1,7 @@
 package gameauthoring.tabs;
 
+import gameauthoring.creation.factories.CreationControllerFactory;
 import gameauthoring.creation.forms.CreationController;
-import gameauthoring.creation.forms.CreationControllerFactory;
 import gameauthoring.creation.forms.IObjectCreationView;
 import gameauthoring.util.UIFactory;
 import java.util.ArrayList;
@@ -48,22 +48,49 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private void initializeLists () {
 
-        List<String> myGlobalSFCs = new ArrayList<String>(Arrays.asList("LevelSpecific", "Attribute"));
+        List<String> myGlobalSFCs = new ArrayList<String>(Arrays.asList("ProfileSFC", "LevelSpecific", "Attribute"));
 
-        List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
+        List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("ProfileSFC", "Attribute"));
 
-        List<String> myMissileSFCs = new ArrayList<String>(Arrays.asList("Movement"));
+        List<String> myMissileSFCs = new ArrayList<String>(Arrays.asList("ProfileSFC", "Movement"));
         List<String> myEnemySFCs =
-                new ArrayList<String>(Arrays.asList("SelectAttribute", "Movement"));
+                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Movement"));
         List<String> myDefenderSFCs =
-                new ArrayList<String>(Arrays.asList("SelectAttribute", "Upgrade", "Movement", "Firing"));
-        List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("SelectSprite"));
+                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Upgrade", "Movement", "Firing"));
+        List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("ProfileSFC", "SelectSprite"));
 
         List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
 
         CreationControllerFactory ccFactory = new CreationControllerFactory();
         // TODO: take sfcs out of cc constructors
 
+        
+        CreationController<?> ccGlobal =
+                ccFactory.createCreationController("gameauthoring.creation.forms.CreationControllerGlobals", "Global Resources", myGlobalSFCs,
+                                                            myGame);
+
+        CreationController<?> ccAttributes =
+                ccFactory.createCreationController("gameauthoring.creation.forms.CreationControllerAttribute", "Character Attributes", myAttributeSFCs,
+                                                            myGame);
+        CreationController<?> ccMissiles =
+                ccFactory.createCreationController("gameauthoring.creation.forms.CreationControllerMissile", "Missiles", myMissileSFCs,
+                                                         myGame);
+        CreationController<?> ccEnemies =
+                ccFactory.createCreationController("gameauthoring.creation.forms.CreationControllerSprite", "Enemies", myEnemySFCs,
+                                                         myGame);
+        CreationController<?> ccDefenders =
+                ccFactory.createCreationController("gameauthoring.creation.forms.CreationControllerSprite", "Defender", myDefenderSFCs,
+                                                         myGame);
+        CreationController<?> ccGroups =
+                ccFactory.createCreationController("gameauthoring.creation.forms.CreationControllerGroup", "Groups", myGroupSFCs, myGame);
+
+        CreationController<?> ccEvents =
+                ccFactory.createCreationController("gameauthoring.creation.forms.CreationControllerEvent", "Events", myEventSFCs, myGame);
+        CreationController<?> ccBadArgsTest =
+                ccFactory.createCreationController("gameauthoring.creation.forms.FormView", "Events", myEventSFCs, myGame);
+        CreationController<?> ccClassCastExceptionTest =
+                ccFactory.createCreationController("gameauthoring.creation.forms.FormView");
+       /*
         CreationController<?> ccGlobal =
                 ccFactory.createGlobalsCreationController("Global Resources", myGlobalSFCs,
                                                             myGame);
@@ -85,6 +112,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         CreationController<?> ccEvents =
                 ccFactory.createEventCreationController("Events", myEventSFCs, myGame);
+*/
 
         myCCs = new ArrayList<CreationController<?>>();
 

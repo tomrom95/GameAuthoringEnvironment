@@ -1,8 +1,8 @@
 package gameauthoring.creation.subforms.events;
 
 import engine.IGame;
+import gameauthoring.creation.factories.DynamicSFCFactory;
 import engine.definitions.concrete.EventPackageDefinition;
-import gameauthoring.creation.subforms.DynamicSFCFactory;
 import gameauthoring.creation.subforms.ISubFormController;
 
 public class EventSFCFactory extends DynamicSFCFactory <EventPackageDefinition> {
