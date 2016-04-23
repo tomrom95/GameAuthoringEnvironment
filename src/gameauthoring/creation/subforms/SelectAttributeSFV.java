@@ -5,7 +5,17 @@ import engine.definitions.AttributeDefinition;
 import gameauthoring.creation.entryviews.MultiChoiceEntryView;
 import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.DraggableAddCell;
+import gameauthoring.util.DraggableRemoveCell;
+import gameauthoring.util.UIFactory;
+import javafx.collections.FXCollections;
+import javafx.geometry.Orientation;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 
 /**
@@ -16,29 +26,47 @@ import javafx.scene.Node;
  */
 public class SelectAttributeSFV extends SubFormView implements ISelectAttributeSFV {
 
-    private String myAttributesKey = "Attributes :";
+    private String myAttributesKey = "Available Attributes: ";
+    private String mySelectedKey = "Selected Attributes: ";
     private MultiChoiceEntryView<AttributeDefinition> myAttributeSelector;
+    private HBox myContainer;
+    private UIFactory myUIFactory = new UIFactory();
+    private MultiChoiceEntryView<AttributeDefinition> mySelectedView;
 
     public SelectAttributeSFV (IDefinitionCollection<AttributeDefinition> attributes) {
         myAttributeSelector =
                 new MultiChoiceEntryView<AttributeDefinition>(myAttributesKey,
-                                                              attributes.getItems(), 400, 200,
+                                                              attributes.getItems(), 150, 200,
                                                               AuthoringView.DEFAULT_ENTRYVIEW);
+        mySelectedView =
+                new MultiChoiceEntryView<AttributeDefinition>(mySelectedKey,
+                                                              FXCollections.observableArrayList(),
+                                                              300, 200,
+                                                              AuthoringView.DEFAULT_ENTRYVIEW);
+        initView();
     }
 
     @Override
     public Node draw () {
-        return myAttributeSelector.draw();
+        return myContainer;
     }
 
     @Override
     public List<AttributeDefinition> getSelectedAttributes () {
-        return myAttributeSelector.getSelected();
+        return mySelectedView.getListView().getItems();
     }
 
     @Override
     protected void initView () {
-
+        mySelectedView.getListView().setPlaceholder(new Label("Drag Desired Attributes Here"));
+        mySelectedView.getListView().setOrientation(Orientation.HORIZONTAL);
+        mySelectedView.getListView()
+                .setCellFactory(c -> new DraggableRemoveCell<AttributeDefinition>(myAttributeSelector
+                        .getListView()));
+        myAttributeSelector.getListView()
+                .setCellFactory(c -> new DraggableAddCell<AttributeDefinition>(mySelectedView
+                        .getListView()));
+        myContainer = myUIFactory.makeHBox(20, myAttributeSelector.draw(), mySelectedView.draw());
     }
 
 }

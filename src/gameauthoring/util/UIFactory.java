@@ -1,6 +1,7 @@
 package gameauthoring.util;
 
 import java.util.List;
+import gameauthoring.creation.cellviews.ProfileCellView;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
@@ -61,7 +63,9 @@ public class UIFactory {
     
     public HBox makeHBox(double spacing, Node...content ){
         HBox box = new HBox(spacing);
-        box.getChildren().addAll(content);
+        if(content!=null){
+            box.getChildren().addAll(content);
+        }
         return box;
     }
     
@@ -85,5 +89,11 @@ public class UIFactory {
         pane.setExpanded(isExpanded);
         return pane;
     }
+    
+    public void modifyListView(ListView<?> listView, double width, double height, String cssClass){
+        listView.setPrefSize(width, height);
+        listView.getStyleClass().add(cssClass);
+    }
+    
     
 }

@@ -5,6 +5,7 @@ import engine.rendering.LevelRenderer;
 import engine.rendering.UnscaledFactory;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.levels.SceneController;
+import gameauthoring.util.DraggableCell;
 import gameauthoring.util.UIFactory;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -22,45 +23,16 @@ import javafx.scene.input.TransferMode;
  * @author Tommy
  *
  */
-public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> implements Draggable {
+public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
     private static final String DRAG_STRING = "Sprite";
 
     private LevelRenderer myTarget;
     private SceneController myController;
 
     public DraggableSpriteCell (LevelRenderer target, SceneController controller) {
+        setTarget(target.getPane());
         myTarget = target;
         myController = controller;
-    }
-
-    @Override
-    protected Node createSpriteCell (SpriteDefinition profile) {
-        Node node = super.createSpriteCell(profile);
-        this.setActions(node);
-        return node;
-    }
-
-    @Override
-    public void setOnDragDetected (MouseEvent e, Node node) {
-        Dragboard db = node.startDragAndDrop(TransferMode.COPY);
-        db.setContent(this.createClipboard(DRAG_STRING));
-
-        db.setDragView(getSpriteImage());
-
-        myTarget.getPane().setOnDragOver(event -> setOnDragOver(event));
-        myTarget.getPane().setOnDragDropped(event -> setOnDragDropped(event));
-    }
-
-    /**
-     * Helper to get a the correct image from the sprite
-     * 
-     * @return
-     */
-    private Image getSpriteImage () {
-        Node spriteNode =
-                getProfilable().getProfile().getImage()
-                        .getVisualRepresentation(new UnscaledFactory());
-        return new UIFactory().getImageFromNode(spriteNode);
     }
 
     @Override

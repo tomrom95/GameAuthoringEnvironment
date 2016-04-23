@@ -56,15 +56,5 @@ public class FiringSFC extends DynamicSubFormController {
         return myMissile;
     }
 
-    public void removeCurrentFirer (SpriteDefinition item) {
-        item.getModuleDefinitions().stream().filter(e -> e instanceof FirerDefinition)
-                .forEach(e->item.remove(e));
-        
-//        for(ModuleDefinition e: item.getModuleDefinitions()){
-//            if(e instanceof FirerDefinition){
-//                item.remove(e);
-//            }
-//        }
-    }
 
 }
