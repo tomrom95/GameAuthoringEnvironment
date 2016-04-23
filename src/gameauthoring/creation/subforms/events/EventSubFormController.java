@@ -36,6 +36,8 @@ public class EventSubFormController implements ISubFormController<EventPackageDe
     @Override
     public void updateItem (EventPackageDefinition item) {
         GameEvent event = new GameEvent(new EventType(myView.getEventSelection()));
+        
+        //TODO: need to find and replace instead of adding on each save
         item.getMyEventsList().add(event);
     }
 

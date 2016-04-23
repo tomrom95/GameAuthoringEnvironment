@@ -36,6 +36,8 @@ public class EffectSubFormController implements ISubFormController<EventPackageD
         lengthAttr.setValue(Double.valueOf(myView.getData().getValueProperty(myView.getLengthKey()).get()));
         double val = Double.valueOf(myView.getData().getValueProperty(myView.getValueKey()).get());
         Effect effect = getEffect(myView.getEffectType(), lengthAttr, attrDef, val);
+        
+        //TODO: need to find and replace instead of adding on each save
         item.getMyEffectsList().add(effect);
     }
 
