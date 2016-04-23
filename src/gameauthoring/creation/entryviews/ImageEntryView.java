@@ -71,10 +71,7 @@ public class ImageEntryView extends EntryView {
     }
 
     private void initImageView (DoubleProperty width, DoubleProperty height) {
-        myImage = new ImageView(new Image(getClass().getClassLoader()
-                .getResourceAsStream(imagePath)));
-        myImage.fitHeightProperty().bind(height);
-        myImage.fitWidthProperty().bind(width);
+        myImage = myUIFactory.makeImageView(imagePath, width, height);       
         myImageChoice.addListener(c -> updateImage());
     }
 

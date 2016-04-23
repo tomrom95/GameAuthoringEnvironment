@@ -4,6 +4,60 @@
     -fx-base: lightgray;
     -fx-background: aliceblue;
 }
+  
+.authoringTabs > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {  
+    -fx-alignment: CENTER;  
+    -fx-text-fill: #2381E9;  
+    -fx-font-weight: bold;  
+}  
+  
+  
+.authoringTabs > .tab-header-area > .tab-header-background {  
+    -fx-background-color: lightskyblue;  
+    -fx-border-color: #a3a7a8;  
+    -fx-border-width: 0 0 1 0;  
+    -fx-background-insets: 0;  
+    -fx-pref-height: 45px;    
+}  
+
+
+.authoringTabs > .tab-header-area > .headers-region > .tab:top {  
+    -fx-border-color: #a3a7a8;  
+    -fx-border-radius: 5 5 0 0;  
+    -fx-background-color: lightskyblue;  
+    -fx-pref-height: 60px;    
+    -fx-background-insets: 0;  
+}  
+
+.authoringTabs > .tab-header-area > .headers-region > .tab:selected:top {  
+    -fx-border-color: #2381E9 #a3a7a8 #a3a7a8 #a3a7a8;  
+    -fx-border-width: 5 1 1 1;     
+    -fx-border-radius: 5 5 0 0;  
+    -fx-pref-height: 60px;    
+    -fx-background-color: lightskyblue;  
+    -fx-background-insets: 0;  
+}  
+
+.button {
+    -fx-text-fill: white;
+    -fx-background-color: grey;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 5;
+}
+
+.button:hover {
+    -fx-background-color: #3a3a3a;
+}
+
+.label
+{
+    -fx-text-fill: grey;
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+    -fx-font-family: "Futura";
+}
+
 
 .myObjectListView {
 	-fx-min-width: 450;

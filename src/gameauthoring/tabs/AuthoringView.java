@@ -138,11 +138,12 @@ public class AuthoringView implements IAuthoringView {
 
     private TabPane createAllTabs () {
         TabPane tabpane = new TabPane();
-        Tab gameTab = myUIFactory.createTab("Game", false, myGameTabViewer.draw());
+        tabpane.getStyleClass().add("authoringTabs");
+        Tab gameTab = myUIFactory.createTabGraphic(myUIFactory.makeImageDisplay("images/plant.png", "Game"), false, myGameTabViewer.draw());
         Tab creationTab =
-                myUIFactory.createTab("Create Objects", false, myCreationTabViewer.draw());
-        Tab conditionTab = myUIFactory.createTab("Conditions", false, myConditionView.draw());
-        Tab sceneTab = myUIFactory.createTab("Build Scenes/Levels", false, mySceneTabViewer.draw());
+                myUIFactory.createTabText("Create Objects", false, myCreationTabViewer.draw());
+        Tab conditionTab = myUIFactory.createTabText("Conditions", false, myConditionView.draw());
+        Tab sceneTab = myUIFactory.createTabText("Build Scenes/Levels", false, mySceneTabViewer.draw());
         tabpane.getTabs().addAll(gameTab, creationTab, conditionTab, sceneTab);
         return tabpane;
     }
