@@ -1,5 +1,6 @@
 package gameauthoring.levels;
 
+import util.Tile;
 import engine.IGame;
 import engine.ILevel;
 import engine.rendering.AuthoringRenderer;
@@ -63,18 +64,6 @@ public class SceneCreator implements Glyph {
             pane.getChildren().addAll(myView.getGrids().getPane(), myView.getPane(),
                                       placeableButton(pane));
             updatePlaceableArea();
-            printPlaceableArea();
-        }
-    }
-
-    private void printPlaceableArea () {
-        for (int i = 0; i < 50; i++) {
-            for (int j = 0; j < 50; j++) {
-                System.out
-                        .print((myLevel.getPlaceableManager().getPlaceableArea().getBitMap()[i][j]) ? "1"
-                                                                                                   : "0");
-            }
-            System.out.println("");
         }
     }
 
@@ -85,10 +74,10 @@ public class SceneCreator implements Glyph {
      * @param gridPane
      */
     private void updatePlaceableArea () {
-        Rectangle[][] blocks = myView.getGrids().getBlocks();
+        Tile[][] blocks = myView.getGrids().getBlocks();
         for (int row = 0; row < myView.getGrids().NUM_BLOCK_ROW; row++) {
             for (int col = 0; col < myView.getGrids().NUM_BLOCK_COL; col++) {
-                updateCorrespondingBlock(row, col, blocks[row][col].getFill());
+                updateCorrespondingBlock(row, col, blocks[row][col].getTile().getFill());
             }
         }
     }

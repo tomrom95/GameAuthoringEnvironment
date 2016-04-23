@@ -48,7 +48,7 @@ public class Level implements ILevel {
         myNextLevelManager = new NextLevelManager();
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
-        myPlaceableManager = new PlaceableManager(this,1250,600);
+        myPlaceableManager = new PlaceableManager(this,600,1250);
         //myWaveSet = new WaveSet();
         myAddableSprites = FXCollections.observableArrayList();
     }
