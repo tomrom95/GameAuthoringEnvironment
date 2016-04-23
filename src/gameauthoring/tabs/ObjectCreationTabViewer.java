@@ -114,6 +114,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
     @Override
     public void init () {
         myTabPane = new TabPane();
+        myTabPane.getStyleClass().add("subTab");
         generateCreationViewList();
         generateAllSubTabs();
     }
