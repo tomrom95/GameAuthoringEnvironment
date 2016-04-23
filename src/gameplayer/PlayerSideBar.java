@@ -4,7 +4,6 @@ import engine.IGame;
 import engine.definitions.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.creation.cellviews.ProfileCellView;
-import gameauthoring.levels.sprites.DraggableSpriteCell;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.ListView;
@@ -25,10 +24,11 @@ public class PlayerSideBar extends SideBarDisplay {
     public PlayerSideBar (IGame game, LevelRenderer renderer) {
         super(game, renderer);
     }
-    
+
     @Override
     protected void fillAccordion (Accordion accordion) {
-        accordion.getPanes().add(createAccordionPane(this.getGame().getLevelManager().getCurrentLevel().getAddableSprites()));
+        accordion.getPanes().add(createAccordionPane(this.getGame().getLevelManager()
+                .getCurrentLevel().getAddableSprites()));
     }
 
     protected TitledPane createAccordionPane (ObservableList<SpriteDefinition> spriteList) {
@@ -38,6 +38,6 @@ public class PlayerSideBar extends SideBarDisplay {
     }
 
     protected ProfileCellView<SpriteDefinition> getSpriteCellView () {
-        return new DraggableSpriteCell(getLevelView(), getController());
+        return new PlayerSideBarCell(getLevelView(), getController());
     }
 }
