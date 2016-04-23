@@ -6,7 +6,7 @@ import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
 import engine.Positionable;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.sprite.ISprite;
 import util.Coordinate;
 import util.TimeDuration;

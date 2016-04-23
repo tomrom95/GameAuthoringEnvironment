@@ -1,8 +1,8 @@
 package gameauthoring.levels;
 
 import engine.IGame;
-import engine.definitions.SpriteDefinition;
-import engine.definitions.concrete.SpawnerDefinition;
+import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.spawnerdef.SpawnerDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.levels.sprites.DragCheckSpriteCell;

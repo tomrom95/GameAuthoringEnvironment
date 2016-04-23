@@ -3,7 +3,7 @@ package engine.modules;
 import engine.IAdder;
 import engine.ICheck;
 import engine.Positionable;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.events.GameEvent;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;

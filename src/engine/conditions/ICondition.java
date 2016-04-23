@@ -1,8 +1,7 @@
 package engine.conditions;
 
 import engine.IOAffectable;
-
-import engine.definitions.IDefinition;
+import engine.definitions.concrete.IDefinition;
 import engine.profile.IProfilable;
 
 /**

@@ -1,7 +1,7 @@
 package gameauthoring.creation.subforms;
 
-import engine.definitions.AttributeDefinition;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.AttributeDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import javafx.beans.property.BooleanProperty;
 
 /**

@@ -2,7 +2,7 @@ package engine;
 
 import java.util.List;
 import java.util.function.Consumer;
-import engine.definitions.AttributeDefinition;
+import engine.definitions.concrete.AttributeDefinition;
 import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;

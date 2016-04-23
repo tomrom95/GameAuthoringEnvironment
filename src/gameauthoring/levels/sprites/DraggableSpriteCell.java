@@ -1,6 +1,6 @@
 package gameauthoring.levels.sprites;
 
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import engine.rendering.UnscaledFactory;
 import gameauthoring.creation.cellviews.ProfileCellView;
@@ -46,7 +46,7 @@ public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> imple
         db.setContent(this.createClipboard(DRAG_STRING));
 
         db.setDragView(getSpriteImage());
-
+       
         myTarget.getPane().setOnDragOver(event -> setOnDragOver(event));
         myTarget.getPane().setOnDragDropped(event -> setOnDragDropped(event));
     }

@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
-import engine.definitions.AttributeDefinition;
+import engine.definitions.concrete.AttributeDefinition;
 
 
 public class EffectFactory {
