@@ -70,5 +70,11 @@ public interface IBitMap {
      * columns then the rows
      */
     Iterator<ArrayPosition> positionIterator ();
+    
+    /**
+     * Access to the underlying array itself
+     * @return
+     */
+    boolean[][] getBitMap ();
 
 }

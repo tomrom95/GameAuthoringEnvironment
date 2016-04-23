@@ -86,13 +86,14 @@ public class GameGraphFactory implements INodeGraphFactory {
     }
     
     private List<List<ArrayPosition>> findAllEdges (IBitMap obstructionMap) {
+        List<List<ArrayPosition>> edgeList = new ArrayList<>();
         IBitMap obMapCopy = new BitMap(obstructionMap);
         Iterator<ArrayPosition> iter = obMapCopy.positionIterator();
-        while(iter.hasNext()){
+        while (iter.hasNext()) {
             ArrayPosition pos = iter.next();
             boolean isObstructed = obMapCopy.valueOf(pos);
-            if(isObstructed && isEdge(obMapCopy, pos)){
-                //check if cardinals are edge
+            if (isObstructed && isEdge(obMapCopy, pos)) {
+                edgeList.add(recursiveEdgeHelper(obstructionMap, new ArrayList<>()));
                 //if so then recursively build edge set by moving along this edge
             }
         }
@@ -112,9 +113,12 @@ public class GameGraphFactory implements INodeGraphFactory {
      * @param pos
      * @return 
      */
-    private boolean isEdge(IBitMap obstructionMap, ArrayPosition pos){
-        //check only the cardinal directions
-        return false;
+    private boolean isEdge (IBitMap obstructionMap, ArrayPosition pos) {
+        boolean edgeTop = !obstructionMap.valueOf(pos.getX(), pos.getY() - INT_ONE);
+        boolean edgeBot = !obstructionMap.valueOf(pos.getX(), pos.getY() + INT_ONE);
+        boolean edgeRight = !obstructionMap.valueOf(pos.getX() + INT_ONE, pos.getY());
+        boolean edgeLeft = !obstructionMap.valueOf(pos.getX() - INT_ONE, pos.getY());
+        return edgeTop || edgeBot || edgeRight || edgeLeft;
     }
 
     private void connectUnobstructedNodes (IPathNode[][] nodes, IBitMap obstructionMap) {
