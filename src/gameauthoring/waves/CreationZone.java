@@ -14,7 +14,6 @@ public class CreationZone implements Glyph {
 
     private HBox myPane = new HBox();
     private UIFactory myFactory = new UIFactory();
-    private TextField myWaveName;
     private Button myActionButton;
     private Button mySaveButton;
 
@@ -24,11 +23,9 @@ public class CreationZone implements Glyph {
 
     private void init () {
 
-        myWaveName = myFactory.createTextField();
-        myActionButton = myFactory.createButton("Add wave");
-        mySaveButton = myFactory.createButton("Save");
+        myActionButton = myFactory.createStyledButton("Add wave", "CustomButton");
+        mySaveButton = myFactory.createStyledButton("Save", "CustomSave");
         mySaveButton.setVisible(false);
-        myPane.getChildren().add(myWaveName);
         myPane.getChildren().add(myActionButton);
         myPane.getChildren().add(mySaveButton);
 
@@ -37,10 +34,6 @@ public class CreationZone implements Glyph {
     @Override
     public Node draw () {
         return myPane;
-    }
-
-    public String getText () {
-        return myWaveName.getText();
     }
 
     public void setButtonAction (EventHandler<MouseEvent> event) {

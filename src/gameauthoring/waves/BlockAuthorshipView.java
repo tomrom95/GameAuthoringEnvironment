@@ -1,5 +1,6 @@
 package gameauthoring.waves;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
@@ -18,11 +19,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import util.StringParser;
 
+/**
+ * Allows the user to create wave blocks to use in the making of waves
+ * @author RyanStPierre
+ *
+ */
 
 public class BlockAuthorshipView implements Glyph {
 
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     private ResourceBundle mySize = ResourceBundle.getBundle("defaults/wave_tab_size");
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+
     private UIFactory myFactory = new UIFactory();
 
     private GridPane myPane = new GridPane();
@@ -34,7 +42,6 @@ public class BlockAuthorshipView implements Glyph {
 
     public BlockAuthorshipView (IGame game, ObservableList<WaveBlockDefinition> list) {
         stylePane();
-        myCreate = new Button("Create");
         factoryGenerate(game);
         myBlockList = list;
         init();
@@ -51,11 +58,20 @@ public class BlockAuthorshipView implements Glyph {
     private void factoryGenerate (IGame game) {
         mySpriteChoices = myFactory.createCombo(game.getAuthorshipData().getAllCreatedSprites());
         myCount = myFactory.createTextField();
-        myGap = myFactory.createSlider();
+        createSlider();
+    }
+
+    private void createSlider () {
+        double min = 0;
+        double max = 0;
+        double start =0;
+        double tick = 0;
+        myGap = myFactory.createSlider(min, max, start, tick);
     }
 
     private void init () {
-        myPane.add(myFactory.createLabel("Block Wave Creation"), 0, 0);
+        myCreate = myFactory.createButton(myLang.getString("Create"));
+        myPane.add(myFactory.createTitleLabel(myLang.getString("BlockTitle")), 0, 0);
         myPane.add(myCount, 3, 1);
         myPane.add(mySpriteChoices, 0, 1);
         myPane.add(myGap, 2, 1);

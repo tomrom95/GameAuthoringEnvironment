@@ -2,6 +2,41 @@
     -fx-background-color: #8fbc8f;
 }
 
+.cButton {
+	 -fx-background-color:
+        linear-gradient(#006600, #8fbc8f),
+        radial-gradient(center 50% -40%, radius 200%, #009933 45%, #00b33c 50%);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-text-fill: #FFFFFF;
+     -fx-font-family: "Helvetica";
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+   
+}
+
+.title_label {
+	-fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+    -fx-font-family: "Helvetica";
+}
+
+.saveButton {
+	 -fx-background-color:
+        linear-gradient(#FFFFFF,#f0f0f5),
+        radial-gradient(center 50% -40%, radius 200%,#FFFFFF 45%, #f0f0f5 50%);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-text-fill: #e60000;
+     -fx-font-family: "Helvetica";
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+   
+}
+
 .root {
     -fx-base: lightgray;
     -fx-background: aliceblue;

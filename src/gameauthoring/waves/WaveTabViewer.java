@@ -2,6 +2,7 @@ package gameauthoring.waves;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import engine.IGame;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
@@ -37,8 +38,7 @@ public class WaveTabViewer implements Glyph {
     private WaveView myWaveDisplay;
     private CreationZone myCreationZone;
     private BlockAuthorshipView myWaveAuthorship;
-
-    
+   
     public WaveTabViewer (IGame game) {
         myWaveDisplay = new WaveView(game, game.getAuthorshipData().getCreatedWaves().getItems());
         myWaveAuthorship = new BlockAuthorshipView(game, myBlockList);
@@ -62,10 +62,13 @@ public class WaveTabViewer implements Glyph {
     }
 
     public void createWave () {
-        myWaveDisplay.add(myBlockList, myCreationZone.getText());
-        myBlockList.clear();
+        Optional<String> option = new UIFactory().getTextDialog("name", "Wave", "Please select wave name");
+        if (option.isPresent()) {
+            myWaveDisplay.add(myBlockList, option.get());
+            myBlockList.clear();
+        }
     }
-    
+
     public void transfer (List<WaveBlockDefinition> blocks) {
         myBlockList.setAll(blocks);
     }

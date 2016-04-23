@@ -27,7 +27,7 @@ public abstract class SubConditionView {
 
     protected static final double CUSHION = 10;
     private static final String DEFAULT_IMAGE = "/images/C.png";
-    ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
 
     private GridPane myGroup = new GridPane();
     private ObservableList<ICondition> myList;

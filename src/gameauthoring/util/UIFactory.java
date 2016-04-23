@@ -1,6 +1,7 @@
 package gameauthoring.util;
 
 import java.util.Optional;
+import java.util.ResourceBundle;
 import engine.profile.IProfilable;
 import engine.rendering.ScaleFactory;
 import gameauthoring.creation.cellviews.NameCellView;
@@ -30,9 +31,34 @@ import javafx.scene.image.ImageView;
  */
 public class UIFactory {
 
+    private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
+
     public Button createButton (String text, EventHandler<ActionEvent> action) {
         Button newButton = new Button(text);
         newButton.setOnAction(action);
+        return newButton;
+    }
+
+    /**
+     * Creates a button with the given CSS style class
+     * 
+     * @param text
+     * @param action
+     * @return
+     */
+
+    public Button createStyledButton (String text,
+                                      EventHandler<ActionEvent> action,
+                                      String styleClass) {
+        Button newButton = createStyledButton(text, styleClass);
+        newButton.setOnAction(action);
+        return newButton;
+    }
+
+    public Button createStyledButton (String text,
+                                      String styleClass) {
+        Button newButton = new Button(text);
+        newButton.getStyleClass().add(myStyle.getString(styleClass));
         return newButton;
     }
 
@@ -55,24 +81,21 @@ public class UIFactory {
     public Image getImageFromNode (Node node) {
         return node.snapshot(new SnapshotParameters(), null);
     }
-    
+
     public <T extends IProfilable> ComboBox<T> createCombo (ObservableList<T> list) {
         ComboBox<T> box = new ComboBox<>(list);
         addCellFactory(box);
         return box;
     }
-    
 
     public TextField createTextField () {
-       return new TextField();
+        return new TextField();
     }
-
-
 
     private <T extends IProfilable> void addCellFactory (ComboBox<T> comboBox) {
         comboBox.setCellFactory(c -> new NameCellView<>());
         comboBox.setButtonCell(new NameCellView<>());
-        
+
     }
 
     public Optional<String> getTextDialog (String holder,
@@ -84,13 +107,25 @@ public class UIFactory {
         return dialog.showAndWait();
 
     }
-    
+
     public Label createLabel (String title) {
         return new Label(title);
     }
+    
+    public Label createTitleLabel (String title) {
+        Label label = createLabel(title);
+        label.getStyleClass().add(myStyle.getString("TitleLabel"));
+        return label;
+    }
 
-    public Slider createSlider () {
-        return new Slider();
+
+    public Slider createSlider (double min, double max, double start, double increment) {
+        Slider slider = new Slider();
+        slider.setMin(min);
+        slider.setMax(max);
+        slider.setValue(start);
+        slider.setBlockIncrement(increment);
+        return slider;
     }
 
     public Node createImageView (IGraphic image, double width, double height) {

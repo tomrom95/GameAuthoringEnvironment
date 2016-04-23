@@ -1,5 +1,10 @@
 package gameauthoring.waves;
 
+/**
+ * Controller for the block authorship view
+ * @author RyanStPierre
+ *
+ */
 public class BlockAuthorshipController {
 
     private BlockAuthorshipView myView;

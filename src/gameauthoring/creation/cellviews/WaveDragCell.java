@@ -5,21 +5,18 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
 import gameauthoring.waves.ListGraphicFactory;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.HBox;
 
 
 /**
  * Used to create drag and drop reorder list view
  * For intra-list organization
- * @author RyanStPierre
+ * @author RyanStPierre 
  *
  */
 
