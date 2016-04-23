@@ -91,34 +91,48 @@ public class GameGraphFactory implements INodeGraphFactory {
         Iterator<ArrayPosition> iter = obMapCopy.positionIterator();
         while (iter.hasNext()) {
             ArrayPosition pos = iter.next();
-            boolean isObstructed = obMapCopy.valueOf(pos);
-            if (isObstructed && isEdge(obMapCopy, pos)) {
-                edgeList.add(recursiveEdgeHelper(obstructionMap, new ArrayList<>()));
+            if (isEdge(obMapCopy, pos)) {
+                edgeList.add(recursiveEdgeHelper(obstructionMap, pos, new ArrayList<>()));
                 //if so then recursively build edge set by moving along this edge
             }
         }
         // TODO fill in method
         return null;
     }
-
-    private List<ArrayPosition> recursiveEdgeHelper (IBitMap obstructionMap, List<Coordinate> inEdge) {
-        // TODO fill in method
+    /**
+     * This method will clear all the bits that are considered part of the same contiguous
+     * obstruction
+     * @param obstructionMap
+     * @param pos
+     */
+    private void removeObstructionMask(IBitMap obstructionMap,
+                                       ArrayPosition pos){
+        
+    }
+    
+    
+    private List<ArrayPosition> recursiveEdgeHelper (IBitMap obstructionMap,
+                                                     ArrayPosition pos,
+                                                     List<ArrayPosition> inEdge) {
+        List<ArrayPosition> toCheck = surroundingPositions(pos);
+        
         return null;
     }
     
     /**
-     * Assumes that we are on an obstructed location, will return true if one
-     * of the non-diagonally adjacent squares is not obstructed
+     * Obstruction edges are all the positions that are themselves obstructed, but
+     * have adjacent neighbors that are themselves not obstructed
      * @param obstructionMap
-     * @param pos
-     * @return 
+     * @param pos to check if it is an edge
+     * @return  True if one of the non-diagonally adjacent squares is not obstructed
      */
     private boolean isEdge (IBitMap obstructionMap, ArrayPosition pos) {
+        boolean selfObstructed = obstructionMap.valueOf(pos);
         boolean edgeTop = !obstructionMap.valueOf(pos.getX(), pos.getY() - INT_ONE);
         boolean edgeBot = !obstructionMap.valueOf(pos.getX(), pos.getY() + INT_ONE);
         boolean edgeRight = !obstructionMap.valueOf(pos.getX() + INT_ONE, pos.getY());
         boolean edgeLeft = !obstructionMap.valueOf(pos.getX() - INT_ONE, pos.getY());
-        return edgeTop || edgeBot || edgeRight || edgeLeft;
+        return edgeTop || edgeBot || edgeRight || edgeLeft && selfObstructed;
     }
 
     private void connectUnobstructedNodes (IPathNode[][] nodes, IBitMap obstructionMap) {
@@ -148,20 +162,27 @@ public class GameGraphFactory implements INodeGraphFactory {
      */
     private List<ArrayPosition> nodesToCheck (IPathNode[][] nodes, ArrayPosition pos) {
         List<ArrayPosition> toReturn = new ArrayList<>();
-        checkBoundsAndNull(toReturn, nodes,
-                      new ArrayPosition(pos.getX() + INT_ONE, pos.getY() + INT_ONE));
-        checkBoundsAndNull(toReturn, nodes, new ArrayPosition(pos.getX() + INT_ONE, pos.getY()));
-        checkBoundsAndNull(toReturn, nodes, new ArrayPosition(pos.getX(), pos.getY() + INT_ONE));
-        checkBoundsAndNull(toReturn, nodes,
-                      new ArrayPosition(pos.getX() + INT_NEG_ONE, pos.getY() + INT_NEG_ONE));
-        checkBoundsAndNull(toReturn, nodes,
-                           new ArrayPosition(pos.getX() + INT_NEG_ONE, pos.getY()));
-        checkBoundsAndNull(toReturn, nodes,
-                           new ArrayPosition(pos.getX(), pos.getY() + INT_NEG_ONE));
-        checkBoundsAndNull(toReturn, nodes,
-                      new ArrayPosition(pos.getX() + INT_ONE, pos.getY() + INT_NEG_ONE));
-        checkBoundsAndNull(toReturn, nodes,
-                      new ArrayPosition(pos.getX() + INT_NEG_ONE, pos.getY() + INT_ONE));
+        for (ArrayPosition checkPos : surroundingPositions(pos)) {
+            checkBoundsAndNull(toReturn, nodes, checkPos);
+        }
+        return toReturn;
+    }
+    
+    /**
+     * Diagonal and adjacent ArrayPositions surrouding an input position
+     * @param pos
+     * @return
+     */
+    private List<ArrayPosition> surroundingPositions (ArrayPosition pos) {
+        List<ArrayPosition> toReturn = new ArrayList<>();
+        toReturn.add(new ArrayPosition(pos.getX() + INT_ONE, pos.getY() + INT_ONE));
+        toReturn.add(new ArrayPosition(pos.getX() + INT_ONE, pos.getY()));
+        toReturn.add(new ArrayPosition(pos.getX(), pos.getY() + INT_ONE));
+        toReturn.add(new ArrayPosition(pos.getX() + INT_NEG_ONE, pos.getY() + INT_NEG_ONE));
+        toReturn.add(new ArrayPosition(pos.getX() + INT_NEG_ONE, pos.getY()));
+        toReturn.add(new ArrayPosition(pos.getX(), pos.getY() + INT_NEG_ONE));
+        toReturn.add(new ArrayPosition(pos.getX() + INT_ONE, pos.getY() + INT_NEG_ONE));
+        toReturn.add(new ArrayPosition(pos.getX() + INT_NEG_ONE, pos.getY() + INT_ONE));
         return toReturn;
     }
     
@@ -171,8 +192,7 @@ public class GameGraphFactory implements INodeGraphFactory {
         
         
         if (inBounds(nodes, pos)) {
-            if (nodes[pos.getX()][pos.getY()] != null)
-            {
+            if (nodes[pos.getX()][pos.getY()] != null) {
                 addable.add(pos);    
             }
         }
