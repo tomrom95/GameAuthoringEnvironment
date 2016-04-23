@@ -3,9 +3,9 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
-import engine.definitions.AttributeDefinition;
 import gameauthoring.creation.factories.AttributeSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
+import engine.definitions.concrete.AttributeDefinition;
 
 
 /**

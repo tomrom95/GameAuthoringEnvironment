@@ -1,7 +1,7 @@
 package gameauthoring.creation.factories;
 
 import engine.IGame;
-import engine.definitions.AttributeDefinition;
+import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.LevelSpecificSFC;
 import gameauthoring.creation.subforms.MakeAttributeSFC;

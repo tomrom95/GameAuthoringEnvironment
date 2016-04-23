@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ProfileSFC;

@@ -1,6 +1,6 @@
 package gameauthoring.levels.sprites;
 
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.levels.SceneController;
 import javafx.scene.Node;

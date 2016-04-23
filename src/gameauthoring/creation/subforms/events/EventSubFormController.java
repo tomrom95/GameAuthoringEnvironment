@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import engine.IGame;
-import engine.definitions.EventPackageDefinition;
+import engine.definitions.concrete.EventPackageDefinition;
 import engine.events.EventType;
 import engine.events.GameEvent;
 import engine.profile.ProfileDisplay;

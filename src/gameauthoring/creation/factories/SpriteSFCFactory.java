@@ -1,7 +1,7 @@
 package gameauthoring.creation.factories;
 
 import engine.IGame;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.SelectAttributeSFC;
 import gameauthoring.creation.subforms.UpgradeSFC;

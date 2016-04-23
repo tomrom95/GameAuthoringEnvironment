@@ -3,9 +3,11 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
-import engine.definitions.SpriteDefinition;
+
 import gameauthoring.creation.factories.SpriteSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
+import engine.definitions.concrete.SpriteDefinition;
+import gameauthoring.shareddata.DefinitionCollection;
 
 
 /**

@@ -1,8 +1,10 @@
 package gameauthoring.listdisplay;
 
+import java.util.ResourceBundle;
 import engine.conditions.ICondition;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -10,6 +12,7 @@ import javafx.scene.layout.Pane;
 
 public abstract class ConditionView extends ListDisplay<ICondition> {
 
+    private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     private Pane myEditor = new Pane();
     private ListView<String> myOptions;
     
@@ -24,6 +27,7 @@ public abstract class ConditionView extends ListDisplay<ICondition> {
     }
     
     protected Pane getEditor () {
+        myEditor.getStyleClass().add(getStyle("EditorPane"));
         return myEditor;
     }
 
@@ -40,6 +44,10 @@ public abstract class ConditionView extends ListDisplay<ICondition> {
     public void populate (Node node) {
         getEditor().getChildren().clear();
         getEditor().getChildren().add(node);
+    }
+    
+    public String getStyle (String style) {
+        return myStyle.getString(style);
     }
 
 }

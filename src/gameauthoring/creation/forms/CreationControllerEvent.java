@@ -3,9 +3,10 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
-import engine.definitions.EventPackageDefinition;
+
 import gameauthoring.creation.factories.EventsSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
+import engine.definitions.concrete.EventPackageDefinition;
 
 
 /**

@@ -2,13 +2,13 @@ package engine;
 
 import java.util.List;
 import engine.conditions.ICondition;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.profile.IProfilable;
 import engine.sprite.ISprite;
+import engine.waves.IWaveSet;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
 import util.Coordinate;
-import waves.IWaveSet;
 
 
 /**
@@ -29,6 +29,13 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
      *         winning and losing levels
      */
     INextLevelManager getNextLevelManager ();
+    
+    
+    /**
+     * 
+     * @return The waveset manager object for this level
+     */
+    IWaveSetManager getWaveSetManager ();
 
     /**
      * @return the condition manager for this level
@@ -93,7 +100,6 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
      * @param sprite to be removed
      */
     
-    IWaveSet getWaveSet();
 
     void remove (ISprite sprite);
 

@@ -1,7 +1,6 @@
 package engine.definitions.concrete;
 
-import engine.definitions.SpriteDefinition;
-import engine.definitions.TrackingFirerDefinition;
+import engine.definitions.moduledef.TrackingFirerDefinition;
 import engine.modules.StaticMover;
 import engine.sprite.ISprite;
 
