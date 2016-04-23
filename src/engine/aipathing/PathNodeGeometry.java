@@ -2,6 +2,7 @@ package engine.aipathing;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
 import util.ArrayPosition;
 import util.Coordinate;
 
@@ -47,13 +48,16 @@ public class PathNodeGeometry {
         double curX = start.getX();
         double curY = start.getY();
         List<Coordinate> toReturn = new ArrayList<>();
-        while (curX <= end.getX()) {
+        BiFunction<Double, Double, Boolean> comparator = deltaX > 0 ? (first, second) -> first < second : (first,second) -> first > second;
+        while (comparator.apply(curX, end.getX())) {
             toReturn.add(new Coordinate(curX, curY));
             curX += deltaX;
             curY += deltaY;
         }
         return toReturn;
     }
+    
+    
 
     /**
      * See {@link #lineBetween(Coordinate, Coordinate)}

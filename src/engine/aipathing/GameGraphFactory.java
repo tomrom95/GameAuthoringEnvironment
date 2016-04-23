@@ -42,10 +42,10 @@ public class GameGraphFactory implements INodeGraphFactory {
         int numHeightNodes = obstructionMap.getHeight() / gap;
         IPathNode[][] placedNodes = new PathNode[numHorizontalNodes][numHeightNodes];
         // place the standard grid less obstructed areas
-        for (int i = 0; i < numHorizontalNodes; i += gap) {
-            for (int j = 0; j < numHeightNodes; j += gap) {
+        for (int i = 0; i < numHorizontalNodes; i++) {
+            for (int j = 0; j < numHeightNodes; j++) {
                 if (!obstructionMap.valueOf(i, j)) {
-                    IPathNode toAdd = new PathNode(new Coordinate(i, j));
+                    IPathNode toAdd = new PathNode(new Coordinate(i*gap, j*gap));
                     toReturn.addNode(toAdd);
                     placedNodes[i][j] = toAdd;
                 }
@@ -287,9 +287,9 @@ public class GameGraphFactory implements INodeGraphFactory {
         int width = nodes.length;
         int height = nodes[0].length;
         return (pos.getX() < width) 
-                && (pos.getX() > 0) 
+                && (pos.getX() >= 0) 
                 && (pos.getY() < height) 
-                && (pos.getY() > 0);
+                && (pos.getY() >= 0);
     }
 
     /**

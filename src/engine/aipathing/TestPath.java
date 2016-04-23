@@ -18,6 +18,7 @@ public class TestPath {
         IBitMap obstructionMap = new AutoTrueBitMap(1000, 800);
         INodeGraphFactory tester = new GameGraphFactory(obstructionMap);
         INodeGraph testGraph = tester.getConstructedGraph();
+        //System.out.println("test");
 
 
         
