@@ -14,7 +14,7 @@ import gameauthoring.util.ErrorMessage;
  */
 public class MakeAttributeSFC implements ISubFormControllerAttribute {
 
-    private MakeAttributeSFV myView;
+    private IMakeAttributeSFV myView;
     private IFormDataManager myFormData;
     private double myInitialValue = 0;
 

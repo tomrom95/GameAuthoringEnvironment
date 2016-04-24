@@ -126,10 +126,13 @@
     -fx-alignment: CENTER;  
     -fx-text-fill: #2381E9;  
     -fx-font-weight: bold;  
+    	-fx-cursor: hand;  
+    
 }  
   
   
-.authoringTabs > .tab-header-area > .tab-header-background {  
+.authoringTabs > .tab-header-area > .tab-header-background {
+	-fx-cursor: hand;  
     -fx-background-color: lightskyblue;  
     -fx-border-color: #a3a7a8;  
     -fx-border-width: 0 0 1 0;  
@@ -143,8 +146,13 @@
     -fx-border-radius: 5 5 0 0;  
     -fx-background-color: lightskyblue;  
     -fx-pref-height: 90px;    
+    -fx-cursor: hand;  
     -fx-background-insets: 0;  
 }  
+
+.authoringTabs > .tab-header-area > .headers-region > .tab:hover:top {
+	-fx-background-color: deepskyblue;  
+}
 
 .authoringTabs > .tab-header-area > .headers-region > .tab:selected:top {  
     -fx-border-color: #2381E9 #a3a7a8 #a3a7a8 #a3a7a8;  
@@ -175,9 +183,14 @@
     -fx-border-color: #a3a7a8;  
     -fx-border-radius: 5 5 0 0;  
     -fx-background-color: lightgray;  
+    -fx-cursor: hand;
     -fx-pref-height: 30px;    
     -fx-background-insets: 0;  
 }  
+
+.subTab > .tab-header-area > .headers-region > .tab:hover:top {  
+	-fx-background-color: slategray;
+}
 
 .subTab > .tab-header-area > .headers-region > .tab:selected:top {  
     -fx-border-color: black #a3a7a8 #a3a7a8 #a3a7a8;  
@@ -194,7 +207,7 @@
     -fx-text-fill: white;
 	-fx-background-color:
         linear-gradient(grey, lightgray),
-        radial-gradient(center 50% -40%, radius 200%, grey 45%, gray 50%);
+        radial-gradient(center 50% -40%, radius 200%, grey 45%, slategrey 50%);
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-padding: 5;
@@ -205,7 +218,7 @@
     -fx-background-color: #3a3a3a;
 }
 
-.label
+.entryViewLabel
 {
     -fx-text-fill: grey;
     -fx-font-weight: bold;

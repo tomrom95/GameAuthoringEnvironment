@@ -19,7 +19,7 @@ import gameauthoring.util.ErrorMessage;
 
 public class DirectionalFireSFC extends RemovableSpriteSFC {
 
-    private DirectionalFireSFV myView;
+    private IDirectionalFireSFV myView;
     private IFormDataManager myFormData;
     private IGame myGame;
     private double myDefaultAngle = 0;

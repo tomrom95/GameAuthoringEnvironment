@@ -8,14 +8,14 @@ import engine.definitions.costs.ICost;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 
-public class CostSubFormController implements ISubFormControllerSprite{
+public class CostSFC implements ISubFormControllerSprite{
     private static final int START_COST = 0;
     
-    private CostSubFormView myView;
+    private ICostSFV myView;
     private IGame myGame;
     
-    public CostSubFormController (IGame game) {
-        myView = new CostSubFormView(game.getAuthorshipData());
+    public CostSFC (IGame game) {
+        myView = new CostSFV(game.getAuthorshipData());
         myGame = game;
     }
 

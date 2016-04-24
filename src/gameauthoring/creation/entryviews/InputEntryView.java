@@ -38,7 +38,7 @@ public abstract class InputEntryView extends EntryView {
         this.myTextInput.setMaxSize(width, height);
         this.myTextInput.textProperty().bindBidirectional(getData().getValueProperty());
         this.myContainer = new GridPane();
-        myContainer.add(new Label(myLabel), 0, 0);
+        myContainer.add(getLabel(), 0, 0);
         myContainer.add(myTextInput, 0, 1);
         myContainer.getStyleClass().add(cssClass);
 
