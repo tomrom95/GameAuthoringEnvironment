@@ -34,14 +34,14 @@ public class TestFiringModules extends TestCase {
     // assigning the values
     @Override
     protected void setUp(){
-        game = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
+        game = new Game(new GameGridConfigNonScaling((int) GamePlayer.PREFWIDTH, (int) GamePlayer.PREFHEIGHT));
         
         projectile = new SpriteDefinition();
         mover = new ConstantMoverDefinition();
         mover.setSpeed(100);
         System.out.println(mover.getSpeed());
-        mover.setXVel(10);
-        mover.setYVel(10);
+        mover.setSpeed(10);
+        mover.setOrientaiton(0);
         projectile.setMovementDefinition(mover);
         System.out.println(projectile.getMovementDefinition().getSpeed());
         
