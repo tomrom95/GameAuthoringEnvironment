@@ -91,7 +91,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
                                                    myGame);
         CreationController<?> ccDefenders =
                 ccFactory.createCreationController(myControllerResources.getString("Defenders"),
-                                                   myLang.getString("Defender"), myDefenderSFCs,
+                                                   myLang.getString("Defenders"), myDefenderSFCs,
                                                    myGame);
         CreationController<?> ccGroups =
                 ccFactory.createCreationController(myControllerResources.getString("Groups"),
