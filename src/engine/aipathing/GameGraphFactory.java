@@ -120,10 +120,12 @@ public class GameGraphFactory implements INodeGraphFactory {
                                     IPathNode[][] placedNodes) {
         if (PathNodeGeometry.distance(pos1, pos2) <= gap) {
             ArrayPosition pixelMidPoint = PathNodeGeometry.midPoint(pos1, pos2);
-            IPathNode proposed = new PathNode(pixelMidPoint);
-            if (!graph.containsNode(proposed)) {
-                addNodeToGraph(graph, proposed);
-                return proposed;
+            if(!obstructionMap.valueOf(pixelMidPoint)){
+                IPathNode proposed = new PathNode(pixelMidPoint);
+                if (!graph.containsNode(proposed)) {
+                    addNodeToGraph(graph, proposed);
+                    return proposed;
+                }
             }
         }
         return null;
@@ -168,8 +170,31 @@ public class GameGraphFactory implements INodeGraphFactory {
                                       pos);
             }
         }
+        edgeList.add(edgeBorder(obstructionMap));
         return edgeList;
     }
+
+    private List<ArrayPosition> edgeBorder (IBitMap obstructionMap) {
+        List<ArrayPosition> border = new ArrayList<>();
+        for (int i = -1; i <= obstructionMap.getHeight(); i++) {
+            addIfNotContained(border, new ArrayPosition(-1, i));
+            addIfNotContained(border, new ArrayPosition(obstructionMap.getWidth(), i));
+        }
+        for (int i = -1; i <= obstructionMap.getWidth(); i++) {
+            addIfNotContained(border, new ArrayPosition(i, -1));
+            addIfNotContained(border, new ArrayPosition(i, obstructionMap.getHeight()));
+        }
+        return border;
+    }
+    
+    
+    private <T> void addIfNotContained (List<T> list, T obj) {
+        if (!list.contains(obj)) {
+            list.add(obj);
+        }
+    }
+    
+    
     /**
      * This method will clear all the bits that are considered part of the same contiguous
      * obstruction
@@ -239,7 +264,7 @@ public class GameGraphFactory implements INodeGraphFactory {
 
     private void connectUnobstructedNodes (IPathNode[][] nodes, IBitMap obstructionMap) {
         int width = nodes.length;
-        int height = nodes[0].length;
+        int height = width > 0 ? nodes[0].length : 0;
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 ArrayPosition pos = new ArrayPosition(i, j);
@@ -316,7 +341,7 @@ public class GameGraphFactory implements INodeGraphFactory {
 
     private boolean inBounds (IPathNode[][] nodes, ArrayPosition pos) {
         int width = nodes.length;
-        int height = nodes[0].length;
+        int height = width > 0 ? nodes[0].length : 0;
         return (pos.getX() < width) 
                 && (pos.getX() >= 0) 
                 && (pos.getY() < height) 

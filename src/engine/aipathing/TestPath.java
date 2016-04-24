@@ -16,19 +16,19 @@ public class TestPath {
     }
 
     public static void main (String[] args) {
-        IBitMap obstructionMap = new AutoTrueBitMap(50, 50);
+        IBitMap obstructionMap = new AutoTrueBitMap(5, 5);
         //setting some obstructions up
-        for(int i = 0; i < 30; i++){
-            for(int j = 0; j < 50; j++){
+        for(int i = 1; i < 4; i++){
+            for(int j = 1; j < 4; j++){
                 obstructionMap.set(i, j, true);
             }
         }
-        
-        for(int i = 31; i < 50; i++){
-            for(int j = 0; j < 50; j++){
-                obstructionMap.set(i, j, true);
-            }
-        }
+//        
+//        for(int i = 31; i < 50; i++){
+//            for(int j = 0; j < 50; j++){
+//                obstructionMap.set(i, j, true);
+//            }
+//        }
         
         //System.out.println("test");
         INodeGraphFactory tester = new GameGraphFactory(obstructionMap);
