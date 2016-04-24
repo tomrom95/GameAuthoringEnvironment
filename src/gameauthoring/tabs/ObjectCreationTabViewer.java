@@ -64,7 +64,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
                 new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Movement"));
         List<String> myDefenderSFCs =
                 new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Upgrade",
-                                                    "Movement", "Firing"));
+                                                    "Cost", "Movement", "Firing"));
         List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("ProfileSFC", "SelectSprite"));
 
         List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
@@ -91,7 +91,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
                                                    myGame);
         CreationController<?> ccDefenders =
                 ccFactory.createCreationController(myControllerResources.getString("Defenders"),
-                                                   myLang.getString("Defender"), myDefenderSFCs,
+                                                   myLang.getString("Defenders"), myDefenderSFCs,
                                                    myGame);
         CreationController<?> ccGroups =
                 ccFactory.createCreationController(myControllerResources.getString("Groups"),
