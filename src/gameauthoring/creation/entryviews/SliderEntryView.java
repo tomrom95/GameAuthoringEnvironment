@@ -1,5 +1,6 @@
 package gameauthoring.creation.entryviews;
 
+import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.UIFactory;
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.Node;
@@ -10,7 +11,7 @@ import javafx.scene.layout.GridPane;
 public class SliderEntryView extends EntryView{
     private GridPane myContainer;
     private Slider mySlider;
-    private UIFactory myUIFactory = new UIFactory();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
 
     public SliderEntryView (String label, String cssClass, double min, double max) {
         super(label);

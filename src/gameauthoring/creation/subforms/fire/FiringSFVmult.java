@@ -3,6 +3,7 @@ package gameauthoring.creation.subforms.fire;
 import engine.IGame;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.SubFormView;
+import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.UIFactory;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -20,7 +21,7 @@ import javafx.scene.layout.VBox;
  */
 public class FiringSFVmult extends SubFormView {
     private GridPane myContainer;
-    private UIFactory myUIFactory = new UIFactory();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private ScrollPane myPane;
     private VBox myPaneContent;
     private HBox buttonHolder;

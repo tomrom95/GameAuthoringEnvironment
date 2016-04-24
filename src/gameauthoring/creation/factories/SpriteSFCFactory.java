@@ -6,7 +6,7 @@ import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.SelectAttributeSFC;
 import gameauthoring.creation.subforms.UpgradeSFC;
 import gameauthoring.creation.subforms.costs.CostSubFormController;
-import gameauthoring.creation.subforms.fire.FiringSubFormController;
+import gameauthoring.creation.subforms.fire.FiringSFC;
 import gameauthoring.creation.subforms.movement.MovementSubFormController;
 
 
@@ -28,7 +28,7 @@ public class SpriteSFCFactory extends SubFormControllerFactory<SpriteDefinition>
                     .getMyCreatedAttributes());
         }
         else if (type.equals("Firing")) {
-            return new FiringSubFormController(getMyGame());
+            return new FiringSFC(getMyGame());
         }
         else if (type.equals("Upgrade")) {
             return new UpgradeSFC(getMyGame());

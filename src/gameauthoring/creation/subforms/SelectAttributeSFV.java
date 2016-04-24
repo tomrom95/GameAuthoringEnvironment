@@ -5,6 +5,7 @@ import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.creation.entryviews.MultiChoiceEntryView;
 import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.DraggableAddCell;
 import gameauthoring.util.DraggableRemoveCell;
 import gameauthoring.util.DraggableRemoveCellImage;
@@ -32,7 +33,7 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
     private String mySelectedKey = "Selected Attributes: ";
     private MultiChoiceEntryView<AttributeDefinition> myAttributeSelector;
     private HBox myContainer;
-    private UIFactory myUIFactory = new UIFactory();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private MultiChoiceEntryView<AttributeDefinition> mySelectedView;
 
     public SelectAttributeSFV (IDefinitionCollection<AttributeDefinition> attributes) {

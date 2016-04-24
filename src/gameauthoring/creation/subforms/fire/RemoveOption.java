@@ -1,6 +1,7 @@
 package gameauthoring.creation.subforms.fire;
 
 import gameauthoring.creation.subforms.SubFormView;
+import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.Glyph;
 import gameauthoring.util.UIFactory;
 import javafx.event.ActionEvent;
@@ -21,7 +22,7 @@ import javafx.scene.control.MenuItem;
 public class RemoveOption implements Glyph{
 
     private Button removeMenu;
-    private UIFactory myUIFactory = new UIFactory();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
     
     public RemoveOption(EventHandler<ActionEvent> e){
         initRemove(e);

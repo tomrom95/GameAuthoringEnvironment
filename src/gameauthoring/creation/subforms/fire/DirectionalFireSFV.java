@@ -7,6 +7,7 @@ import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.UIFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,7 +34,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     private IEntryView myAngle;
     private IEntryView myWaitTime; 
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
-    private UIFactory myUIFactory= new UIFactory();
+    private BasicUIFactory myUIFactory= new BasicUIFactory();
     private RemoveOption myRemove;
 
     public DirectionalFireSFV (IDefinitionCollection<SpriteDefinition> missiles, RemoveOption remove) {

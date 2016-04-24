@@ -12,6 +12,7 @@ import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.UIFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -38,7 +39,7 @@ public class TrackingFirerSFV extends SubFormView implements ITrackingFireSFV {
     private IEntryView myWaitTime;
     private SingleChoiceEntryView<SpriteGroup> myTargets;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
-    private UIFactory myUIFactory= new UIFactory();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private RemoveOption myRemove;
 
     public TrackingFirerSFV (AuthorshipData data, RemoveOption remove) {

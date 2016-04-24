@@ -1,6 +1,7 @@
 package gameauthoring.util;
 
 import engine.profile.IProfilable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 
@@ -8,7 +9,7 @@ import javafx.scene.control.Label;
 public class DraggableRemoveCellImage<T extends IProfilable> extends DraggableRemoveCell<T> {
 
     private static final double PIC_SIZE = 150;
-    private UIFactory myUIFactory = new UIFactory();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
 
     public DraggableRemoveCellImage (Node target) {
         super(target);

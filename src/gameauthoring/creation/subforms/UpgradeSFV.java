@@ -7,6 +7,7 @@ import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.UIFactory;
 import javafx.beans.property.BooleanProperty;
 import javafx.scene.Node;
@@ -34,7 +35,7 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     private CheckEntryView isGlobalResource;
     private NumberEntryView myCost;
     private GridPane myPane;
-    private UIFactory myUIFactory = new UIFactory();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
 
     public UpgradeSFV (AuthorshipData data) {
 

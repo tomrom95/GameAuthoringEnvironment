@@ -5,12 +5,9 @@ import engine.rendering.LevelRenderer;
 import engine.rendering.UnscaledFactory;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.levels.SceneController;
-<<<<<<< HEAD
 import gameauthoring.util.DraggableCell;
 import gameauthoring.util.UIFactory;
-=======
 import gameauthoring.util.BasicUIFactory;
->>>>>>> 35e884e236ca1d5dd1498c64b45272dc01a58d47
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
@@ -61,21 +58,7 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
         return myController;
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * Helper to get a the correct image from the sprite
-     * 
-     * @return
-     */
-    private Image getSpriteImage () {
-        Node spriteNode =
-                getProfilable().getProfile().getImage()
-                        .getVisualRepresentation(new UnscaledFactory());
-        return new BasicUIFactory().getImageFromNode(spriteNode);
-    }
 
->>>>>>> 35e884e236ca1d5dd1498c64b45272dc01a58d47
     @Override
     public void setOnDragOver (DragEvent e) {
         e.acceptTransferModes(TransferMode.COPY);

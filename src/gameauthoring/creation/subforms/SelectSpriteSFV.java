@@ -13,6 +13,7 @@ import gameauthoring.creation.entryviews.MultiChoiceEntryView;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.DraggableAddCell;
 import gameauthoring.util.DraggableRemoveCell;
 import gameauthoring.util.UIFactory;
@@ -30,7 +31,7 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
     private List<MultiChoiceEntryView<SpriteDefinition>> myViews;
     private List<DefinitionCollection<SpriteDefinition>> mySprites;
     private MultiChoiceEntryView<SpriteDefinition> mySelected;
-    private UIFactory myUIFactory = new UIFactory();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private String mySelectedLabel = "Sprites in Group: ";
 
     public SelectSpriteSFV (List<DefinitionCollection<SpriteDefinition>> sprites) {
