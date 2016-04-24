@@ -77,10 +77,14 @@ public class DraggableSpriteCell extends ProfileCellView<SpriteDefinition> imple
         if (checkPlaceable(e)) {
             Dragboard db = e.getDragboard();
             if (db.hasString()) {
-                myController.addSprite(e.getX(), e.getY(), getProfilable());
-                myTarget.render();
+                addSprite(e.getX(), e.getY());
             }
         }
+    }
+
+    protected void addSprite (double x, double y) {
+        myController.addSprite(x, x, getProfilable());
+        myTarget.render();
     }
 
     // TODO: TEST THIS

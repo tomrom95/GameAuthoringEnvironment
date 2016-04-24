@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import engine.IAttribute;
+import engine.definitions.costs.ICost;
+import engine.definitions.costs.NullCost;
 import engine.definitions.moduledef.ModuleDefinition;
 import engine.definitions.moduledef.MovementDefinition;
 import engine.definitions.moduledef.StaticMovementDefintion;
@@ -35,7 +37,7 @@ public class SpriteDefinition implements IProfilable {
     private Coordinate myLocation;
     private List<AttributeDefinition> myAttributes;
     private IProfile myProfile;
-    private SpriteType mySpriteType;
+    private ICost myCost;
 
     public SpriteDefinition () {
         // TODO Set a default from resource file. THis is just for view testing
@@ -45,6 +47,7 @@ public class SpriteDefinition implements IProfilable {
         myAttributes = new ArrayList<AttributeDefinition>();
         myLocation = new Coordinate(0, 0);
         myProfile = new Profile();
+        myCost = new NullCost();
     }
 
     public ISprite create () {
@@ -139,6 +142,14 @@ public class SpriteDefinition implements IProfilable {
         // TODO: check if this should be one reference or new one every time
 
         return new SpriteType(getProfile().getName().get());
+    }
+    
+    public ICost getCost () {
+        return myCost;
+    }
+    
+    public void setCost (ICost cost) {
+        myCost = cost;
     }
 
 }
