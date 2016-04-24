@@ -38,8 +38,4 @@ public class GameTabViewer implements ITabViewer {
     public Node draw () {
         return myController.getGameInfoView().draw();
     }
-
-    public void setGameInformation () {
-        myController.setGameInformation();
-    }
 }
