@@ -1,6 +1,7 @@
 package gameauthoring.gameinformation;
 
 import engine.IGame;
+import gameauthoring.creation.entryviews.FormDataManager;
 import gameauthoring.creation.entryviews.IFormDataManager;
 
 
@@ -22,18 +23,18 @@ public class GameInfoController {
         myView = new GameInfoView();
         myGame = game;
         myFormData = myView.getData();
+        initialize();
     }
 
-    public void setGameInformation () {
-        String author = myFormData.getValueProperty(myView.getMyAuthorKey()).get();
-        String dateCreated = myFormData.getValueProperty(myView.getMyDateCreatedKey()).get();
-        String name = myFormData.getValueProperty(myView.getMyNameKey()).get();
-        String url = myFormData.getValueProperty(myView.getMySplashScreenKey()).get();
-
-        myGame.getGameInformation().setAuthor(author);
-        myGame.getGameInformation().setDateCreated(dateCreated);
-        myGame.getGameInformation().setName(name);
-        myGame.getGameInformation().setSplashScreen(url);
+    private void initialize () {
+        myFormData.getValueProperty(myView.getMyAuthorKey())
+                .bindBidirectional(myGame.getGameInformation().getAuthorProperty());
+        myFormData.getValueProperty(myView.getMyDateCreatedKey())
+                .bindBidirectional(myGame.getGameInformation().getDateCreatedProperty());
+        myFormData.getValueProperty(myView.getMyNameKey())
+                .bindBidirectional(myGame.getGameInformation().getNameProperty());
+        myFormData.getValueProperty(myView.getMySplashScreenKey())
+                .bindBidirectional(myGame.getGameInformation().getSplashScreenURLProperty());
     }
 
     public GameInfoView getGameInfoView () {

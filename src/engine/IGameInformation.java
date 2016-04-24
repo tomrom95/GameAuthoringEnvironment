@@ -64,5 +64,7 @@ public interface IGameInformation {
      * @param splashScreen
      */
     void setSplashScreen (String url);
+    
+    StringProperty getSplashScreenURLProperty();
 
 }

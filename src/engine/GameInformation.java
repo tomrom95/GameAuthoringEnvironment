@@ -49,6 +49,11 @@ public class GameInformation implements IGameInformation {
     public String getSplashScreenURL () {
         return mySplashScreen.getUrlProperty().get();
     }
+    
+    @Override
+    public StringProperty getSplashScreenURLProperty () {
+        return mySplashScreen.getUrlProperty();
+    }
 
     @Override
     public void setAuthor (String author) {
