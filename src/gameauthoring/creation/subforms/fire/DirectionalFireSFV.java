@@ -1,11 +1,21 @@
 package gameauthoring.creation.subforms.fire;
 
+import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
+import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
+import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.BasicUIFactory;
+import gameauthoring.util.UIFactory;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 
 /**
@@ -17,17 +27,22 @@ import javafx.scene.layout.GridPane;
  */
 public class DirectionalFireSFV extends SubFormView implements IDirectionalFireSFV{
 
-    private GridPane myPane;
+    private HBox myPane;
     private String myAngleKey = "Angle: ";
     private String myWaitTimeKey = "Wait Time: ";
     private String myProjectileKey = "Projectile: ";
     private IEntryView myAngle;
     private IEntryView myWaitTime; 
+    private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
+    private BasicUIFactory myUIFactory= new BasicUIFactory();
+    private RemoveOption myRemove;
 
-
-    public DirectionalFireSFV () {
+    public DirectionalFireSFV (IDefinitionCollection<SpriteDefinition> missiles, RemoveOption remove) {
+        myRemove = remove;
         myAngle = new NumberEntryView(myAngleKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-        myWaitTime = new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW); 
+        myWaitTime = new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myMissileSelectionView =
+                new SingleChoiceEntryView<>("Missile", missiles.getItems(), AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
     }
 
@@ -38,10 +53,8 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
 
     @Override
     protected void initView () {
-        myPane = new GridPane();
-        myPane.setGridLinesVisible(true);
-        myPane.add(myAngle.draw(), 0, 0);
-        myPane.add(myWaitTime.draw(), 0, 1);
+        myPane = myUIFactory.makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(), myWaitTime.draw(), myAngle.draw(), myRemove.draw());
+        myPane.getStyleClass().add("firer");
     }
 
     @Override
@@ -57,6 +70,11 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     @Override
     public String getMyWaitTimeKey () {
         return myWaitTimeKey;
+    }
+    
+    @Override
+    public SpriteDefinition getMissileSelection () {
+        return myMissileSelectionView.getSelected();
     }
 
 }

@@ -18,9 +18,9 @@ public interface IProfileSFV {
     String getMyImageKey ();
 
 
-    String getMyImageWidthKey ();
+    double getMyImageWidth ();
 
 
-    String getMyImageHeightKey ();
+    double getMyImageHeight ();
     
 }

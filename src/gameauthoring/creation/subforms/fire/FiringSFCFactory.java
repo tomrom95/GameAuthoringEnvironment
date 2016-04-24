@@ -15,7 +15,7 @@ import gameauthoring.creation.subforms.ISubFormControllerSprite;
  */
 public class FiringSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
 
-    private FiringSubFormController myFiringSFC;
+    private FiringSFC myFiringSFC;
 
     /**
      * Constructor 
@@ -23,7 +23,7 @@ public class FiringSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
      * @param game The current game object
      * @param firingSFC A reference to the Firing SFC that controls the sub-firing SFCs
      */
-    public FiringSFCFactory (IGame game, FiringSubFormController firingSFC) {
+    public FiringSFCFactory (IGame game, FiringSFC firingSFC) {
 
         super(game);
         myFiringSFC = firingSFC;
@@ -40,7 +40,7 @@ public class FiringSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
         return null;
     }
 
-    private FiringSubFormController getMyFiringSFC () {
+    private FiringSFC getMyFiringSFC () {
         return myFiringSFC;
     }
 }
