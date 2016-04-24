@@ -38,12 +38,13 @@ public class TestFire {
     private SpriteDefinition myTower;
     private DirectionalFirerDefinition myDirectionalFirer;
     private TrackingFirerDefinition myTrackingFirer;
+//    private UserFirerDefinition myUserFirer;
     private Game myGame;
     private SpriteDefinition myEnemy;
 
     @Before
     public void setUp () {
-        myGame = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
+        myGame = new Game(new GameGridConfigNonScaling((int) GamePlayer.PREFWIDTH, (int) GamePlayer.PREFHEIGHT));
         createMover();
         createProjectile();
         createTower();
@@ -55,7 +56,7 @@ public class TestFire {
 
     @After
     public void tearDown () {
-        myGame = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
+        myGame = new Game(new GameGridConfigNonScaling((int) GamePlayer.PREFWIDTH, (int) GamePlayer.PREFHEIGHT));
         myTowerList.clear();
         Iterator<ModuleDefinition> modules = myTower.getModuleDefinitions().iterator();
 
@@ -147,6 +148,10 @@ public class TestFire {
 
         myTowerList.stream().forEach(sprite -> sprite.update(new TimeDuration(100000)));
         assertEquals(bullets, myGame.getLevelManager().getCurrentLevel().getSprites().size());
+    }
+    
+    @Test
+    public void testUserFirer () {
     }
 
 }
