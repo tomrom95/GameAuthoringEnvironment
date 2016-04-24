@@ -26,7 +26,6 @@ public class CreationControllerFactory {
 
     public CreationController<?> createCreationController(String className, String title, List<String> sfcs, IGame game){
         try {
-            System.out.println(className);
             return (CreationController<?>) Reflection.createInstance(className, title, sfcs, game);
         } catch (ReflectionException e){
             System.out.println("reflection exception " + e.getMessage());
