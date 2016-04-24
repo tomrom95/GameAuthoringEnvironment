@@ -118,15 +118,13 @@ public class GameGraphFactory implements INodeGraphFactory {
             for (ArrayPosition check : toCheck) {
                 addIfBoundsAndNull(toConnect, placedNodes, check);
             }
-            for (ArrayPosition check : toConnect) {
-                if (connectIfNotObstructed(proposed, placedNodes[check.getX()][check.getY()],
-                                           obstructionMap)) {
-                    if (!graph.containsNode(proposed)) {
-                        graph.addNode(proposed);
-                    }
-                }
+            if (!graph.containsNode(proposed)) {
+                graph.addNode(proposed);
             }
-
+            for (ArrayPosition check : toConnect) {
+                connectIfNotObstructed(proposed, placedNodes[check.getX()][check.getY()],
+                                       obstructionMap);
+            }
         }
         return;
 

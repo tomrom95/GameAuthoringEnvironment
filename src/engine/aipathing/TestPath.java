@@ -18,11 +18,18 @@ public class TestPath {
     public static void main (String[] args) {
         IBitMap obstructionMap = new AutoTrueBitMap(50, 50);
         //setting some obstructions up
-        for(int i = 10; i < 30; i++){
-            for(int j = 10; j < 30; j++){
+        for(int i = 0; i < 30; i++){
+            for(int j = 0; j < 50; j++){
                 obstructionMap.set(i, j, true);
             }
         }
+        
+        for(int i = 31; i < 50; i++){
+            for(int j = 0; j < 50; j++){
+                obstructionMap.set(i, j, true);
+            }
+        }
+        
         //System.out.println("test");
         INodeGraphFactory tester = new GameGraphFactory(obstructionMap);
         INodeGraph testGraph = tester.getConstructedGraph();
