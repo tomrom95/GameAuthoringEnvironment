@@ -218,7 +218,7 @@
     -fx-background-color: #3a3a3a;
 }
 
-.label
+.entryViewLabel
 {
     -fx-text-fill: grey;
     -fx-font-weight: bold;
