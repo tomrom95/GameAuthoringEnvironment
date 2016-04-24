@@ -4,6 +4,7 @@ import java.util.ResourceBundle;
 import engine.IGame;
 import engine.ILevel;
 import engine.conditions.ICondition;
+import gameauthoring.creation.cellviews.CardCell;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -34,7 +35,6 @@ public class LevelConditionView extends ConditionView {
     private Node createMiddle () {
         getEditor().setPrefWidth(700);
         getEditor().setPrefHeight(200);
-        getEditor().setStyle("-fx-background-color: #d0d0e1;");
         return getEditor();
     }
 
@@ -51,9 +51,10 @@ public class LevelConditionView extends ConditionView {
     }
 
     private void initListView () {
-        getListView().setPrefWidth(200);
+        getListView().setPrefWidth(80);
         getListView().setPrefHeight(200);
         add(getListView(), 3, 0, 1, 1);
+        getOptions().setCellFactory(cell -> new CardCell(50));
     }
 
 }

@@ -6,10 +6,13 @@ import java.util.ResourceBundle;
 import engine.IGame;
 import engine.ILevel;
 import gameauthoring.creation.cellviews.NameCellView;
+import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.Glyph;
+import gameauthoring.util.UIFactory;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -20,13 +23,18 @@ import util.BundleOperations;
 
 public class TransitionView implements Glyph {
 
-    ResourceBundle myBundle = ResourceBundle.getBundle("defaults/transition_options");
-    private VBox myPane = new VBox();
+    private static final double CUSHION = 10;
+    private UIFactory myFactory = new BasicUIFactory();
+    private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/transition_options");
+    private VBox myPane = new VBox(CUSHION);
     private ComboBox<ILevel> myWinningLevel;
     private ComboBox<ILevel> myLosingLevel;
     private List<Node> myCombos;
 
     public TransitionView (IGame game, ILevel level) {
+        myPane.setMinWidth(180);
+        myPane.setAlignment(Pos.TOP_CENTER);
+        myPane.getStyleClass().add("transition_pane");
         init(game.getLevelManager().getLevels());
         new TransitionController(this, level.getNextLevelManager());
     }
@@ -53,10 +61,10 @@ public class TransitionView implements Glyph {
     }
 
     private Node createPacket (String title, Node node) {
-        HBox hbox = new HBox();
-        hbox.getChildren().add(new Label(title));
-        hbox.getChildren().add(node);
-        return hbox;
+        VBox vbox = new VBox(CUSHION/2);
+        vbox.getChildren().add(myFactory.createSubTitleLabel(title));
+        vbox.getChildren().add(node);
+        return vbox;
     }
 
     private void add (Node node) {
@@ -69,8 +77,7 @@ public class TransitionView implements Glyph {
     }
 
     public void setWinAction (EventHandler<ActionEvent> event) {
-        myWinningLevel.setOnAction(event);
-        
+        myWinningLevel.setOnAction(event);       
     }
 
     public void setLoseAction (EventHandler<ActionEvent> event) {

@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
 import gameauthoring.creation.cellviews.WaveDragCell;
 import gameauthoring.util.BasicUIFactory;
+import gameauthoring.util.UIFactory;
 import graphics.IGraphic;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -19,7 +20,7 @@ public class ListGraphicFactory {
 
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/list_graphic_factory");
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
-    private BasicUIFactory myFactory = new BasicUIFactory();
+    private UIFactory myFactory = new BasicUIFactory();
 
     public Node createGraphic (WaveBlockDefinition item) {
         HBox hbox = new HBox(toDouble(myBundle.getString("Buffer")));

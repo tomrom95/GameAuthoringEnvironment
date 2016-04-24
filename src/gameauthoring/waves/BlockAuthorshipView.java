@@ -6,6 +6,7 @@ import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
 import gameauthoring.util.Glyph;
+import gameauthoring.util.UIFactory;
 import gameauthoring.util.BasicUIFactory;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -35,7 +36,7 @@ public class BlockAuthorshipView implements Glyph {
     private ResourceBundle mySize = ResourceBundle.getBundle("defaults/wave_tab_size");
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
 
-    private BasicUIFactory myFactory = new BasicUIFactory();
+    private UIFactory myFactory = new BasicUIFactory();
 
     private GridPane myPane = new GridPane();
     private ObservableList<WaveBlockDefinition> myBlockList;

@@ -1,6 +1,7 @@
 package gameauthoring.waves;
 
 import gameauthoring.util.Glyph;
+import gameauthoring.util.UIFactory;
 import gameauthoring.util.BasicUIFactory;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -13,7 +14,7 @@ import javafx.scene.layout.HBox;
 public class CreationZone implements Glyph {
 
     private HBox myPane = new HBox();
-    private BasicUIFactory myFactory = new BasicUIFactory();
+    private UIFactory myFactory = new BasicUIFactory();
     private Button myActionButton;
     private Button mySaveButton;
 
