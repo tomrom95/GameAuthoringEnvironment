@@ -40,6 +40,8 @@ public class PathNodeGeometry {
      * @return Coordinates of line in order from start to end
      */
     public static List<Coordinate> lineBetween (Coordinate start, Coordinate end) {
+        List<Coordinate> toReturn = new ArrayList<>();
+        toReturn.add(start);
         double deltaX = end.getX() - start.getX();
         double deltaY = end.getY() - start.getY();
         double makePixelOrLess = proportionSoThatBothLessThanOne(deltaX, deltaY);
@@ -47,13 +49,13 @@ public class PathNodeGeometry {
         deltaY = deltaY / makePixelOrLess;
         double curX = start.getX();
         double curY = start.getY();
-        List<Coordinate> toReturn = new ArrayList<>();
         BiFunction<Double, Double, Boolean> comparator = deltaX > 0 ? (first, second) -> first < second : (first,second) -> first > second;
         while (comparator.apply(curX, end.getX())) {
             toReturn.add(new Coordinate(curX, curY));
             curX += deltaX;
             curY += deltaY;
         }
+        toReturn.add(end);
         return toReturn;
     }
     

@@ -82,27 +82,37 @@ public class GameGraphFactory implements INodeGraphFactory {
                                           IBitMap obstructionMap,
                                           int gap,
                                           IPathNode[][] placedNodes) {
+        List<IPathNode> addedNodes = new ArrayList<>();
         for (List<ArrayPosition> edge1 : edges) {
             for (List<ArrayPosition> edge2 : edges) {
                 if (!edge1.equals(edge2)) {
                     for (ArrayPosition pos1 : edge1) {
                         for (ArrayPosition pos2 : edge2) {
                             if (!pos1.equals(pos2)) {
-                                attemptGapNodeAdd(graph, pos1, pos2, obstructionMap, gap,
-                                                  placedNodes);
+                                addToListIfNotNull(addedNodes, attemptGapNodeAdd(graph, pos1, pos2, obstructionMap, gap,
+                                                  placedNodes));
                            }
                        }
                    }
                 }
             }
         }
+        for(IPathNode iter : addedNodes){
+            connectWithAllInGraph(graph, iter, obstructionMap);
+        }
 
         // if getting weird results check to see if re-comparing already compared edges is 
         //causing problems
         return;
     }
+    
+    private <T> void addToListIfNotNull (List<T> list, T obj) {
+        if (obj != null) {
+            list.add(obj);
+        }
+    }
 
-    private void attemptGapNodeAdd (INodeGraph graph,
+    private IPathNode attemptGapNodeAdd (INodeGraph graph,
                                     ArrayPosition pos1,
                                     ArrayPosition pos2,
                                     IBitMap obstructionMap,
@@ -111,29 +121,38 @@ public class GameGraphFactory implements INodeGraphFactory {
         if (PathNodeGeometry.distance(pos1, pos2) <= gap) {
             ArrayPosition pixelMidPoint = PathNodeGeometry.midPoint(pos1, pos2);
             IPathNode proposed = new PathNode(pixelMidPoint);
-            //need to check the placed nodes, which are placed at gap intervals
-            List<ArrayPosition> toCheck =
-                    surroundingPositions(convertPixelToGraphPosition(pixelMidPoint, gap));
-            List<ArrayPosition> toConnect = new ArrayList<>();
-            for (ArrayPosition check : toCheck) {
-                addIfBoundsAndNull(toConnect, placedNodes, check);
-            }
             if (!graph.containsNode(proposed)) {
-                graph.addNode(proposed);
-            }
-            for (ArrayPosition check : toConnect) {
-                connectIfNotObstructed(proposed, placedNodes[check.getX()][check.getY()],
-                                       obstructionMap);
+                addNodeToGraph(graph, proposed);
+                return proposed;
             }
         }
-        return;
+        return null;
+    }
+    
+    /**
+     * Without overwriting the existing nodes
+     * 
+     * @param graph
+     * @param node
+     */
+    private void addNodeToGraph (INodeGraph graph, IPathNode node) {
+        if (!graph.containsNode(node)) {
+            graph.addNode(node);
+        }
+    }
 
+    private void connectWithAllInGraph (INodeGraph graph,
+                                        IPathNode toConnect,
+                                        IBitMap obstructionMap) {
+        graph.getNodes()
+            .stream()
+            .filter(node -> !node.equals(toConnect))
+            .forEach(node -> connectIfNotObstructed(toConnect, node, obstructionMap));
     }
 
     private ArrayPosition convertPixelToGraphPosition (ArrayPosition pos, int gap) {
         return new ArrayPosition((pos.getX() / gap), (pos.getY() / gap));
     }
-    
 
     
     private List<List<ArrayPosition>> findAllEdges (IBitMap obstructionMap) {
