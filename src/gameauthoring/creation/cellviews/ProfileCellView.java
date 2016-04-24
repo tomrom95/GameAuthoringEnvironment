@@ -5,6 +5,7 @@ import engine.profile.IProfile;
 import engine.rendering.GraphicFactory;
 import engine.rendering.ScaleFactory;
 import engine.rendering.UnscaledFactory;
+import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.UIFactory;
 import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
@@ -28,7 +29,6 @@ import javafx.scene.text.Text;
 public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     private static final double PIC_SIZE = 30;
-
     private E myProfile;
     
 
@@ -46,6 +46,16 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
     }
 
     protected Node createSpriteCell (E profile) {
+        HBox container = getHBox(profile);
+        return container;
+    }
+
+    /**
+     * For subclasses to alter the HBox not the node
+     * @param profile
+     * @return
+     */
+    protected HBox getHBox (E profile) {
         HBox container = new HBox(10);
         container.setAlignment(Pos.CENTER_LEFT);
       
@@ -90,7 +100,7 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
         Node node =
                 getProfilable().getProfile().getImage()
                         .getVisualRepresentation(new UnscaledFactory());
-        return new UIFactory().getImageFromNode(node);
+        return new BasicUIFactory().getImageFromNode(node);
     }
 
 }

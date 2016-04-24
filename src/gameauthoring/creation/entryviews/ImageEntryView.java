@@ -6,6 +6,7 @@ import gameauthoring.util.ErrorMessage;
 import gameauthoring.util.UIFactory;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import gameauthoring.util.BasicUIFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
@@ -34,7 +35,7 @@ public class ImageEntryView extends EntryView {
     private Button myChooseImage;
     private ImageView myImage;
     private String imagePath = "images/Square.png";
-    private UIFactory myUIFactory = new UIFactory();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private String buttonLabel = "Choose Image"; // TODO: Resource file
 
     public ImageEntryView (String label,

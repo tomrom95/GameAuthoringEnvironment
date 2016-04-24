@@ -3,7 +3,7 @@ package gameauthoring.tabs;
 import gameauthoring.creation.factories.CreationControllerFactory;
 import gameauthoring.creation.forms.CreationController;
 import gameauthoring.creation.forms.IObjectCreationView;
-import gameauthoring.util.UIFactory;
+import gameauthoring.util.BasicUIFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +30,7 @@ import javafx.scene.control.TabPane;
 public class ObjectCreationTabViewer implements ITabViewer {
 
     private TabPane myTabPane;
-    private UIFactory myUIFactory = new UIFactory();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private ResourceBundle myControllerResources = ResourceBundle
             .getBundle("defaults/create_creation_controller");
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
@@ -63,8 +63,9 @@ public class ObjectCreationTabViewer implements ITabViewer {
         List<String> myEnemySFCs =
                 new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Movement"));
         List<String> myDefenderSFCs =
-                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Upgrade", "Movement", "FireMult"));
 
+                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Upgrade",
+                                                    "Cost", "Movement", "FireMult"));
         List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("ProfileSFC", "SelectSprite"));
 
         List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));

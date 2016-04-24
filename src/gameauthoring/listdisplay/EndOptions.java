@@ -15,7 +15,7 @@ public class EndOptions {
     private ComboBox<String> myEventChoices;
 
     public EndOptions () {
-        myEventChoices = new ComboBox(BundleOperations.getValuesAsObservable(myEndOptions));
+        myEventChoices = new ComboBox<>(BundleOperations.getValuesAsObservable(myEndOptions));
     }
 
     public IEventPackage getGlobal () {

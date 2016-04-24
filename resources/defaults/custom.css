@@ -55,7 +55,7 @@
 
 .cond_list .list-cell:even { 
 	-fx-text-fill: #4d004d;
-	-fx-background-color: #e6f9ff;
+	-fx-background-color: #ebccff;
 }
 
 .editor_pane { 
@@ -74,6 +74,18 @@
      -fx-font-family: "Helvetica";
     -fx-font-size: 18px;
     -fx-font-weight: bold;
+   
+}
+
+.white_button {
+    -fx-background-color: 
+        linear-gradient(#f2f2f2, #d6d6d6),
+        linear-gradient(#ffffff 0%, #d9d9d9 20%, #ebccff 100%),
+        linear-gradient(#ffffff 0%, #f6f6f6 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
    
 }
 
@@ -244,34 +256,12 @@
 	-fx-text-fill: black
 }
 
+.cond_pane {
+	-fx-padding: 30
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.transition_pane {
+	-fx-padding: 20;
+	-fx-background-color: #f0f0f5;
+}
 
