@@ -15,7 +15,7 @@ public class DeleteableProfileCellView<E extends IProfilable> extends ProfileCel
     ListGraphicFactory myFactory = new ListGraphicFactory();
     @Override
     protected HBox createSpriteCell (E profile) {
-        HBox container = super.createSpriteCell(profile);
+        HBox container = super.getHBox(profile);
         container.getChildren().add(myFactory.createDelete(getListView().getItems(), profile));
         return container;
     }
