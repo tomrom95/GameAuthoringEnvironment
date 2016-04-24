@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -35,7 +36,7 @@ public abstract class SubConditionView {
     private GridPane myGroup = new GridPane();
     private ObservableList<ICondition> myList;
     private TextField myName = new TextField();
-    private TextField myDescription = new TextField();
+    private TextArea myDescription = new TextArea();
     private List<Node> myNodes;
     
     public SubConditionView (ObservableList<ICondition> conditionList) {

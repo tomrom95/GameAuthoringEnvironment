@@ -5,6 +5,7 @@ import engine.Game;
 import engine.IGame;
 import engine.conditions.ICondition;
 import gameauthoring.creation.cellviews.CardCell;
+import gameauthoring.creation.cellviews.DeleteableProfileCellView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,6 +46,7 @@ public class GameConditionView extends ConditionView {
         getListView().setPrefWidth(Double.parseDouble(myBundle.getString("ListWidth")));
         getListView().setPrefHeight(Double.parseDouble(myBundle.getString("ListHeight")));
         add(getListView(), 0, 3, 2, 1);
+        getListView().setCellFactory(cell -> new DeleteableProfileCellView<ICondition>());
         getOptions().getStyleClass().add(getStyle("CondListView"));
         getOptions().setCellFactory(cell -> new CardCell(Double
                 .parseDouble(myBundle.getString("CardSize"))));

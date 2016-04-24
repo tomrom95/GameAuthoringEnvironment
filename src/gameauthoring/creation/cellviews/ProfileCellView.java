@@ -42,7 +42,7 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
         }
     }
 
-    protected Node createSpriteCell (E profile) {
+    protected HBox createSpriteCell (E profile) {
         HBox container = new HBox(10);
         container.setAlignment(Pos.CENTER_LEFT);
       

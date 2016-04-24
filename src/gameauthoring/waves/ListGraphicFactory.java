@@ -33,7 +33,7 @@ public class ListGraphicFactory {
         return hbox;
     }
 
-    private Node createDelete (ObservableList<WaveBlockDefinition> list, WaveBlockDefinition item) {
+    public <E> Node createDelete (ObservableList<E> list, E item) {
         Button button = myFactory.createImageButton(myBundle.getString("DeleteURL"));
         button.setOnMouseClicked(e -> list.remove(item));
         return button;
