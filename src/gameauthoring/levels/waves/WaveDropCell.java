@@ -27,8 +27,8 @@ public class WaveDropCell extends NameCellView<WaveDefinition> {
         ClipboardContent cc = new ClipboardContent();
         cc.putString("Ryan");
         db.setContent(cc);
-        myTarget.setOnDragOver(event -> dragOver(event));
-        myTarget.setOnDragDropped(event -> drop(event));
+        myTarget.draw().setOnDragOver(event -> dragOver(event));
+        myTarget.draw().setOnDragDropped(event -> drop(event));
     }
 
     private void drop (DragEvent event) {

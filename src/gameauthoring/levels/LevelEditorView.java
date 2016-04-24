@@ -37,8 +37,9 @@ public class LevelEditorView implements Glyph {
     @Override
     public Node draw () {
         myLayout = new BorderPane();
-        myLayout.setRight(new SpawnerAuthoringView(myGame).draw());
-        myLayout.setCenter((new SceneCreator(myGame, myLevel)).draw());
+        SceneCreator scene = new SceneCreator(myGame, myLevel);
+        myLayout.setRight(new SpawnerAuthoringView(myGame, myLevel, scene.getRenderer()).draw());
+        myLayout.setCenter(scene.draw());
         myLayout.setBottom(createBottomForms());
         return myLayout;
     }

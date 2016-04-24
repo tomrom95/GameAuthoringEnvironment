@@ -1,26 +1,22 @@
 package gameauthoring.levels.waves;
 
 import engine.IGame;
-import engine.definitions.spawnerdef.WaveDefinition;
+import engine.ILevel;
+import engine.rendering.AuthoringRenderer;
 import gameauthoring.util.Glyph;
 import javafx.scene.Node;
-import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 
 public class SpawnerAuthoringView implements Glyph {
 
-    private IGame myGame;
     private VBox myPane = new VBox();
     private WaveOptionView myWaveOptions;
     private SpawnerView mySpawner;
 
-    public SpawnerAuthoringView (IGame game) {
-        myGame = game;
+    public SpawnerAuthoringView (IGame game, ILevel level, AuthoringRenderer renderer) {
         myWaveOptions = new WaveOptionView (game);
-        mySpawner = new SpawnerView ();
+        mySpawner = new SpawnerView (game, level, renderer);
         new SpawnerAuthoringController(mySpawner, myWaveOptions);
     }
 
