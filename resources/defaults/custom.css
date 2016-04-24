@@ -167,7 +167,7 @@
     -fx-border-color: #a3a7a8;  
     -fx-border-width: 0 0 1 0;  
     -fx-background-insets: 0;  
-    -fx-pref-height: 45px;    
+    -fx-pref-height: 30px;    
 }  
 
 
@@ -183,7 +183,7 @@
     -fx-border-color: black #a3a7a8 #a3a7a8 #a3a7a8;  
     -fx-border-width: 5 1 1 1;     
     -fx-border-radius: 5 5 0 0;  
-    -fx-pref-height: 35px;    
+    -fx-pref-height: 30px;    
     -fx-background-color: lightskyblue;  
     -fx-background-insets: 0;  
 }  

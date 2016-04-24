@@ -63,7 +63,6 @@ public class AuthoringView implements IAuthoringView {
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
     private ResourceBundle myImages = ResourceBundle.getBundle("defaults/authoringmenus");
 
-
     public AuthoringView () {
         GameFactory gameFactory = new GameFactory();
         myGame = gameFactory.createGame();
@@ -121,17 +120,17 @@ public class AuthoringView implements IAuthoringView {
         newMenuItem.setOnAction(action);
         return newMenuItem;
     }
-//    private Node createStatusBar () {
-//        Image home = new Image(myImages.getString(HOME), 40, 40, true, true);
-//        Image save = new Image(myImages.getString(SAVE), 40, 40, true, true);
-//        ImageView homeView = new ImageView(home);
-//        ImageView saveView = new ImageView(save);
-//        Button homeButton = myUIFactory.createImageButton(HOME, homeView, e -> goHome());
-//        Button saveButton = myUIFactory.createImageButton(SAVE, saveView, e -> saveToXML());
-//        
-//        HBox statusBar = new HBox(10, homeButton, saveButton);
-//        return statusBar;
-//    }
+    // private Node createStatusBar () {
+    // Image home = new Image(myImages.getString(HOME), 40, 40, true, true);
+    // Image save = new Image(myImages.getString(SAVE), 40, 40, true, true);
+    // ImageView homeView = new ImageView(home);
+    // ImageView saveView = new ImageView(save);
+    // Button homeButton = myUIFactory.createImageButton(HOME, homeView, e -> goHome());
+    // Button saveButton = myUIFactory.createImageButton(SAVE, saveView, e -> saveToXML());
+    //
+    // HBox statusBar = new HBox(10, homeButton, saveButton);
+    // return statusBar;
+    // }
 
     private Node createContents () {
         TabPane tabPane = createAllTabs();
@@ -152,8 +151,8 @@ public class AuthoringView implements IAuthoringView {
         myGame.createAndSortGlobals();
 
         String xml = xstream.toXML(myGame);
-        //IGame game = (IGame) xstream.fromXML(xml);
-        //GamePlayer player = new GamePlayer(game);
+        // IGame game = (IGame) xstream.fromXML(xml);
+        // GamePlayer player = new GamePlayer(game);
     }
 
     private TabPane createAllTabs () {
@@ -166,13 +165,22 @@ public class AuthoringView implements IAuthoringView {
                                              false, myGameTabViewer.draw());
         Tab creationTab =
                 myUIFactory.createTabGraphic(myUIFactory.makeImageDisplay("images/tools.png",
-                        "OBJECT CREATOR"), false, myCreationTabViewer.draw());
-        Tab conditionTab = myUIFactory.createTabGraphic(myUIFactory.makeImageDisplay("images/collision.png",
-                "CONDITIONS"), false, myConditionView.draw());
+                                                                          "OBJECT CREATOR"),
+                                             false, myCreationTabViewer.draw());
+        Tab conditionTab =
+                myUIFactory.createTabGraphic(myUIFactory.makeImageDisplay("images/collision.png",
+                                                                          "CONDITIONS"),
+                                             false, myConditionView.draw());
+        Tab waveTab =
+                myUIFactory.createTabGraphic(
+                                             myUIFactory.makeImageDisplay("images/waves.png",
+                                                                          "WAVES"),
+                                             false, myWaveTabView.draw());
         Tab sceneTab =
                 myUIFactory.createTabGraphic(myUIFactory.makeImageDisplay("images/scene.png",
-                        "SCENE BUILDER"), false, mySceneTabViewer.draw());
-        tabpane.getTabs().addAll(gameTab, creationTab, conditionTab, sceneTab);
+                                                                          "SCENE BUILDER"),
+                                             false, mySceneTabViewer.draw());
+        tabpane.getTabs().addAll(gameTab, creationTab, conditionTab, waveTab, sceneTab);
 
         return tabpane;
     }
