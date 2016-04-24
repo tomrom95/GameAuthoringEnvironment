@@ -14,11 +14,15 @@ import engine.definitions.moduledef.ConstantMoverDefinition;
 import engine.definitions.moduledef.DirectionalFirerDefinition;
 import engine.definitions.moduledef.ModuleDefinition;
 import engine.definitions.moduledef.TrackingFirerDefinition;
+import engine.definitions.moduledef.UserFirerDefinition;
+import engine.interactionevents.InputType;
+import engine.interactionevents.KeyIOEvent;
 import engine.profile.Profile;
 import engine.rendering.GameGridConfigNonScaling;
 import engine.sprite.ISprite;
 import gameplayer.GamePlayer;
 import util.Coordinate;
+import util.Key;
 import util.TimeDuration;
 
 
@@ -38,7 +42,7 @@ public class TestFire {
     private SpriteDefinition myTower;
     private DirectionalFirerDefinition myDirectionalFirer;
     private TrackingFirerDefinition myTrackingFirer;
-//    private UserFirerDefinition myUserFirer;
+    private UserFirerDefinition myUserFirer;
     private Game myGame;
     private SpriteDefinition myEnemy;
 
@@ -51,6 +55,7 @@ public class TestFire {
         myEnemy = createEnemy();
         createDirectionalFirer();
         createTrackingFirer();
+        createUserFirer();
         myTowerList = new ArrayList<ISprite>();
     }
 
@@ -108,6 +113,22 @@ public class TestFire {
         myTrackingFirer.setTargets(myGroup);
         myTower.addModule(myTrackingFirer);
     }
+    
+    public void createUserFirer () {
+        myUserFirer = new UserFirerDefinition();
+        myUserFirer.setProjectileDefinition(myProjectile);
+        myUserFirer.setWaitTime(1000);
+        myUserFirer.setGame(myGame);
+        myUserFirer.setAngle(0);
+        myUserFirer.setAngleStep(20);
+        myUserFirer.setDecrease("d");
+        myUserFirer.setIncrease("f");
+        myUserFirer.setFire("s");
+        myUserFirer.setRanged(false);
+        
+    }
+    
+    
 
     @Test
     public void testFire () {
@@ -152,6 +173,17 @@ public class TestFire {
     
     @Test
     public void testUserFirer () {
+        myTower.addModule(myUserFirer);
+        int bullets = 50;
+        for (int i = 0; i < bullets; i++) {
+            ISprite tower = myTower.create();
+            myTowerList.add(tower);
+            myGame.add(tower);
+        }
+        myTowerList.stream().forEach(sprite -> sprite.registerKeyEvent(new KeyIOEvent(InputType.KEY_PRESSED, new Key("s"))));
+        assertEquals(bullets, myGame.getLevelManager().getCurrentLevel().getSprites().size());
+
+
     }
 
 }
