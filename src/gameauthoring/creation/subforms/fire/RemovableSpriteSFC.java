@@ -1,7 +1,7 @@
 package gameauthoring.creation.subforms.fire;
 
-import engine.definitions.FirerDefinition;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.FirerDefinition;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;

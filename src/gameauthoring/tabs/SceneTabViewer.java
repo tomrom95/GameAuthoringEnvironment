@@ -1,6 +1,5 @@
 package gameauthoring.tabs;
 
-import engine.definitions.SpriteDefinition;
 import engine.profile.Profile;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +9,7 @@ import engine.IGame;
 import engine.ILevel;
 import engine.ILevelManager;
 import engine.Level;
+import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.levels.LevelEditorView;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.util.UIFactory;

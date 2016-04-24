@@ -24,7 +24,7 @@ public class Check implements ICheck {
         myType = type;
         myCost = cost;
         myStatus = new SimpleBooleanProperty(false);
-
+        bindStatus(myStatus);
     }
 
     public void alterAttribute () {
@@ -40,18 +40,16 @@ public class Check implements ICheck {
 
     @Override
     public void update (TimeDuration duration) {
-        // TODO Auto-generated method stub
-       
+        // Unnecessary now
+
+    }
+    
+    private void bindStatus (BooleanProperty myStatus2) {
         for (IAttribute attribute : myManager.getAttributes()) {
-            if (attribute.getType().equals(myType) &&
-                attribute.getValueProperty().get() >= myCost) {
-               // System.out.println("here");
-                myStatus.set(true);
-                return;
+            if (attribute.getType().equals(myType)) {
+                myStatus.bind(attribute.getValueProperty().greaterThanOrEqualTo(myCost));
             }
         }
-        myStatus.set(false);
-
     }
 
     @Override

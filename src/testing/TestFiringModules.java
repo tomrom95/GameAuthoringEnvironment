@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import engine.Game;
 import engine.SpriteGroup;
-import engine.definitions.ConstantMoverDefinition;
-import engine.definitions.DirectionalFirerDefinition;
-import engine.definitions.SpriteDefinition;
-import engine.definitions.TrackingFirerDefinition;
+import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.ConstantMoverDefinition;
+import engine.definitions.moduledef.DirectionalFirerDefinition;
+import engine.definitions.moduledef.TrackingFirerDefinition;
 import engine.modules.Firer;
 import engine.profile.Profile;
 import engine.rendering.GameGridConfigNonScaling;
@@ -34,14 +34,14 @@ public class TestFiringModules extends TestCase {
     // assigning the values
     @Override
     protected void setUp(){
-        game = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
+        game = new Game(new GameGridConfigNonScaling((int) GamePlayer.PREFWIDTH, (int) GamePlayer.PREFHEIGHT));
         
         projectile = new SpriteDefinition();
         mover = new ConstantMoverDefinition();
         mover.setSpeed(100);
         System.out.println(mover.getSpeed());
-        mover.setXVel(10);
-        mover.setYVel(10);
+        mover.setSpeed(10);
+        mover.setOrientaiton(0);
         projectile.setMovementDefinition(mover);
         System.out.println(projectile.getMovementDefinition().getSpeed());
         

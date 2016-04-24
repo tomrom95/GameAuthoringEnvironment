@@ -6,15 +6,16 @@ import java.util.List;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IGame;
-import engine.definitions.AttributeDefinition;
-import engine.definitions.EventPackageDefinition;
+import engine.definitions.concrete.AttributeDefinition;
+import engine.definitions.concrete.EventPackageDefinition;
 import engine.effects.Effect;
 import engine.effects.EffectFactory;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 
 public class EffectSubFormController implements ISubFormController<EventPackageDefinition> {
-    
+    private static final String NAME = "Effect"; //TODO maybe put in resource file
+
     private IGame myGame;
     private EffectSubFormView myView;
     
@@ -31,11 +32,18 @@ public class EffectSubFormController implements ISubFormController<EventPackageD
 
     @Override
     public void updateItem (EventPackageDefinition item) {
+        // Default profile instead of profileSFC
+        item.getProfile().getName().set(NAME);
+        item.getProfile().getDescription().set(myView.getEffectType());
+        
+        
         AttributeDefinition attrDef = myView.getAttribute();
         Attribute lengthAttr = new Attribute(new AttributeType("length"));
         lengthAttr.setValue(Double.valueOf(myView.getData().getValueProperty(myView.getLengthKey()).get()));
         double val = Double.valueOf(myView.getData().getValueProperty(myView.getValueKey()).get());
         Effect effect = getEffect(myView.getEffectType(), lengthAttr, attrDef, val);
+        
+        //TODO: need to find and replace instead of adding on each save
         item.getMyEffectsList().add(effect);
     }
 

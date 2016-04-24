@@ -2,7 +2,7 @@ package engine;
 
 import java.util.List;
 import java.util.function.Consumer;
-import engine.definitions.AttributeDefinition;
+import engine.definitions.concrete.AttributeDefinition;
 import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
@@ -50,7 +50,7 @@ public class Game implements IGame {
         myLevelManager.update(duration);
         myConditionManager.update(duration);
         myAttributeManager.update(duration);
-        myObstructionManager.update(duration);
+//        myObstructionManager.update(duration);
     }
 
     @Override

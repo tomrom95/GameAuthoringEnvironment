@@ -5,7 +5,7 @@ import engine.IGame;
 import engine.SpriteGroup;
 import engine.conditions.ICondition;
 import engine.conditions.OnClickCondition;
-import engine.definitions.EventPackageDefinition;
+import engine.definitions.concrete.EventPackageDefinition;
 import javafx.scene.control.ComboBox;
 
 public class OnClickView extends SubConditionView {

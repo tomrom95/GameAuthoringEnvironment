@@ -1,6 +1,6 @@
 package gameauthoring.levels.sprites;
 
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import engine.rendering.UnscaledFactory;
 import gameauthoring.creation.cellviews.ProfileCellView;
@@ -48,7 +48,7 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
         db.setContent(this.createClipboard(DRAG_STRING));
 
         db.setDragView(getSpriteImage());
-
+       
         myTarget.getPane().setOnDragOver(event -> setOnDragOver(event));
         myTarget.getPane().setOnDragDropped(event -> setOnDragDropped(event));
     }
@@ -67,10 +67,14 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
         if (checkPlaceable(e)) {
             Dragboard db = e.getDragboard();
             if (db.hasString()) {
-                myController.addSprite(e.getX(), e.getY(), getProfilable());
-                myTarget.render();
+                addSprite(e.getX(), e.getY());
             }
         }
+    }
+
+    protected void addSprite (double x, double y) {
+        myController.addSprite(x, x, getProfilable());
+        myTarget.render();
     }
 
     // TODO: TEST THIS

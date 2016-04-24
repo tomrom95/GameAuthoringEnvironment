@@ -3,20 +3,20 @@ package engine;
 import java.util.List;
 import java.util.function.Consumer;
 import engine.conditions.ICondition;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.profile.IProfile;
 import engine.profile.Profile;
 import engine.sprite.ISprite;
+import engine.waves.IWaveSet;
+import engine.waves.WaveSet;
 import graphics.ImageGraphic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
-import waves.IWaveSet;
-import waves.WaveSet;
 
 
 /**
@@ -34,8 +34,8 @@ public class Level implements ILevel {
     private IAttributeManager myAttributeManager;
     private INextLevelManager myNextLevelManager;
     private IPlaceableManager myPlaceableManager;
+    private IWaveSetManager myWaveSetManager;
     private IProfile myProfile;
-    private IWaveSet myWaveSet;
     private ObservableList<SpriteDefinition> myAddableSprites;
 
     public Level () {
@@ -48,18 +48,19 @@ public class Level implements ILevel {
         myNextLevelManager = new NextLevelManager();
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
+        myWaveSetManager = new WaveSetManager();
         myPlaceableManager = new PlaceableManager(this,600,1250);
-        //myWaveSet = new WaveSet();
         myAddableSprites = FXCollections.observableArrayList();
     }
 
     @Override
     public void update (TimeDuration duration) {
+        myWaveSetManager.update(duration);
         mySpriteManager.update(duration);
         myConditionManager.update(duration);
         myAttributeManager.update(duration);
         myNextLevelManager.update(duration);
-        myWaveSet.update(duration);
+        
     }
 
     @Override
@@ -166,6 +167,8 @@ public class Level implements ILevel {
     public IPlaceableManager getPlaceableManager () {
         return myPlaceableManager;
     }
+    
+    
 
     public IProfile getProfile () {
         return myProfile;
@@ -177,10 +180,12 @@ public class Level implements ILevel {
 
     }
 
-	@Override
-	public IWaveSet getWaveSet() {
-		return myWaveSet;
-	}
+    @Override
+    public IWaveSetManager getWaveSetManager () {
+        return myWaveSetManager;
+    }
+
+	
 
     @Override
     public ObservableList<SpriteDefinition> getAddableSprites () {

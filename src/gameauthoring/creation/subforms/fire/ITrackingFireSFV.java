@@ -1,6 +1,6 @@
 package gameauthoring.creation.subforms.fire;
 
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 
 /**
  * Allows users to define properties of a given TrackingFirer ModuleDefinition for a sprite

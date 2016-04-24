@@ -2,7 +2,7 @@ package gameauthoring.listdisplay;
 
 import java.util.ResourceBundle;
 import engine.IEventPackage;
-import engine.definitions.EventPackageDefinition;
+import engine.definitions.concrete.EventPackageDefinition;
 import engine.events.EventType;
 import engine.events.GameEvent;
 import javafx.scene.control.ComboBox;

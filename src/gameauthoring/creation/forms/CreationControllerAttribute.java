@@ -2,9 +2,11 @@ package gameauthoring.creation.forms;
 
 import java.util.List;
 import engine.AuthorshipData;
-import engine.Game;
 import engine.IGame;
-import engine.definitions.AttributeDefinition;
+
+import gameauthoring.creation.factories.AttributeSFCFactory;
+import gameauthoring.creation.factories.SubFormControllerFactory;
+import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
 
 
@@ -25,10 +27,8 @@ public class CreationControllerAttribute extends CreationController<AttributeDef
      */
     public CreationControllerAttribute (String title,
                                         List<String> subFormStrings,
-                                        IGame myGame) {
-        super(title, subFormStrings, myGame);
-        // TODO: add this back
-        // setMySubFormControllers(getMySFCFactory().createAttributeSubFormControllers(subFormStrings));
+                                        IGame game) {
+        super(title, subFormStrings, game);
 
     }
 
@@ -39,8 +39,12 @@ public class CreationControllerAttribute extends CreationController<AttributeDef
 
     @Override
     protected void addToAuthorshipData (AuthorshipData authorshipData) {
-
         authorshipData.setMyCreatedAttributes(getMyDefinitionCollection());
+    }
+
+    @Override
+    protected SubFormControllerFactory<AttributeDefinition> createSFCFactory (IGame game) {
+        return new AttributeSFCFactory(game);
 
     }
 

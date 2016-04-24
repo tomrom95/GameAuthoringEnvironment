@@ -1,8 +1,8 @@
 package gameauthoring.creation.subforms;
 
 import engine.AuthorshipData;
-import engine.definitions.AttributeDefinition;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.AttributeDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;

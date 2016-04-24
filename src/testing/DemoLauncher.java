@@ -2,6 +2,9 @@ package testing;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.dooapp.xstreamfx.FXConverters;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.Game;
@@ -10,34 +13,28 @@ import engine.IGame;
 import engine.ISpriteGroup;
 import engine.SpriteGroup;
 import engine.conditions.OnCollisionCondition;
-import engine.definitions.AttributeDefinition;
-import engine.definitions.ConstantMoverDefinition;
-import engine.definitions.DirectionalFirerDefinition;
-import engine.definitions.KeyControlDefinition;
-import engine.definitions.MovementDefinition;
-import engine.definitions.PathMoverDefinition;
-import engine.definitions.SpawnerModuleDefinition;
-import engine.definitions.SpriteDefinition;
-import engine.definitions.StaticMovementDefintion;
-import engine.definitions.UserMoverDefinition;
-import engine.definitions.WaveDefinition;
-import engine.definitions.concrete.SpawnerDefinition;
+import engine.definitions.costs.Cost;
+import engine.definitions.concrete.AttributeDefinition;
+import engine.definitions.concrete.KeyControlDefinition;
+import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.ConstantMoverDefinition;
+import engine.definitions.moduledef.DirectionalFirerDefinition;
+import engine.definitions.moduledef.MovementDefinition;
+import engine.definitions.moduledef.PathMoverDefinition;
+import engine.definitions.moduledef.StaticMovementDefintion;
+import engine.definitions.moduledef.UserMoverDefinition;
 import engine.effects.DecreaseEffect;
 import engine.effects.IEffect;
 import engine.events.EventPackage;
 import engine.events.EventType;
 import engine.events.GameEvent;
-import engine.modules.PathMover;
-import engine.modules.SpawningModule;
 import engine.profile.Profile;
 import engine.rendering.GameGridConfigNonScaling;
-import engine.sprite.ISprite;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameplayer.GamePlayer;
 import graphics.ImageGraphic;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import util.Coordinate;
 
 
 public class DemoLauncher extends Application {
@@ -60,7 +57,7 @@ public class DemoLauncher extends Application {
 
     private void makeGame () {
         IGame game =
-                new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT) {
+                new Game(new GameGridConfigNonScaling((int) GamePlayer.PREFWIDTH, (int) GamePlayer.PREFHEIGHT) {
 
                     @Override
                     public void setYScalingFactor (double scaleY) {
@@ -86,28 +83,21 @@ public class DemoLauncher extends Application {
                         return 0;
                     }
 
-                    @Override
-                    public double getGridWidth () {
-                        // TODO Auto-generated method stub
-                        return 0;
-                    }
-
-                    @Override
-                    public double getGridHeight () {
-                        // TODO Auto-generated method stub
-                        return 0;
-                    }
                 });
         myGame = game;
         createGlobalAtts(game);
         createSpriteDefs(game);
         setBackground();
-        addSpawner1(game);
-        addSpawner2(game);
-        addSpawner3(game);
-        addSpawner4(game);
+        //addSpawner1(game);
+        //addSpawner2(game);
+        //addSpawner3(game);
+        //addSpawner4(game);
         createConditions(game);
-
+        XStream xstream = new XStream(new DomDriver());
+        FXConverters.configure(xstream);
+        xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
+        xstream.toXML(game);
+        System.out.println("Success!");
     }
 
     private void createConditions (IGame game) {
@@ -204,7 +194,7 @@ public class DemoLauncher extends Application {
                 .setBackgroundImage(new ImageGraphic(0, 0, "/images/pvz.jpg"));
 
     }
-
+/*
     private void addSpawner1 (IGame game) {
         SpawnerDefinition s = new SpawnerDefinition(game);
         List<SpriteDefinition> sprites = new ArrayList<SpriteDefinition>();
@@ -272,6 +262,7 @@ public class DemoLauncher extends Application {
         spawner.setPath(path);
         game.add(spawner);
     }
+    */
 
     private SpriteDefinition createBucket () {
         SpriteDefinition sd1 = new SpriteDefinition();
@@ -325,6 +316,7 @@ public class DemoLauncher extends Application {
         DefinitionCollection<SpriteDefinition> dc = new DefinitionCollection<>("Towers");
 
         SpriteDefinition sd1 = createShooterDef();
+        sd1.setCost(new Cost(game, new AttributeType("Lives"), 7));
 
         SpriteDefinition sd2 = new SpriteDefinition();
         ImageGraphic image = new ImageGraphic(100, 100, "/images/C.png");
@@ -335,6 +327,7 @@ public class DemoLauncher extends Application {
         dc.addItem(sd2);
         game.getAuthorshipData()
                 .addCreatedSprites(dc);
+        game.getLevelManager().getCurrentLevel().getAddableSprites().addAll(sd1, sd2);
     }
 
     private SpriteDefinition createShooterDef () {
@@ -358,11 +351,6 @@ public class DemoLauncher extends Application {
         sd1.setProfile(new Profile("Pea", "Pea Bullet", plantImage));
         ConstantMoverDefinition mover = new ConstantMoverDefinition();
         double c = 4;
-<<<<<<< HEAD
-=======
-       // mover.setXVel(.2 / c);
-        //mover.setYVel(.2 / c);
->>>>>>> 5105d2d87cde9068b80827c39ee02a331ea85e9c
         sd1.setMovementDefinition(mover);
 
         return sd1;

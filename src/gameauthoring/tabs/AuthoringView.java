@@ -1,12 +1,14 @@
 package gameauthoring.tabs;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
 import com.dooapp.xstreamfx.FXConverters;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-import engine.Game;
 import engine.IGame;
 import gameauthoring.listdisplay.GameConditionView;
 import gameauthoring.util.UIFactory;
+import gameauthoring.waves.WaveTabViewer;
 import gameplayer.GamePlayer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,9 +25,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -35,8 +34,10 @@ import javafx.stage.Stage;
  * game as XML. It contains "game information", "create objects", and "build scene" tabs. These are
  * divided in order for the users to easily create their own game.
  * 
- * TODO: Resourcebundle for unprotected string values
+ * TODO: Support multiple languages
  * TODO: Create gamewriter class and save it as XML
+ * TODO: Implement go Home button
+ * TODO: Implement saveToXML method
  * 
  * @author Jin An
  *
@@ -48,6 +49,7 @@ public class AuthoringView implements IAuthoringView {
     private ObjectCreationTabViewer myCreationTabViewer;
     private SceneTabViewer mySceneTabViewer;
     private GameConditionView myConditionView;
+    private WaveTabViewer myWaveTabView;
     private BorderPane myLayout;
     private IGame myGame;
     public static final int WIDTH = 1200;
@@ -55,6 +57,10 @@ public class AuthoringView implements IAuthoringView {
     public static final String STYLESHEET = "custom.css";
     public static final String DEFAULT_RESOURCE_PACKAGE = "defaults/";
     public static final String DEFAULT_ENTRYVIEW = "defaultTextEntry";
+    public static final String HOME = "Home";
+    public static final String SAVE = "Save";
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myImages = ResourceBundle.getBundle("defaults/authoringmenus");
     private UIFactory myUIFactory = new UIFactory();
 
     public AuthoringView () {
@@ -97,6 +103,7 @@ public class AuthoringView implements IAuthoringView {
         myCreationTabViewer = new ObjectCreationTabViewer(getMyGame());
         myConditionView = new GameConditionView(getMyGame());
         mySceneTabViewer = new SceneTabViewer(getMyGame());
+        myWaveTabView = new WaveTabViewer(getMyGame());
     }
 
     private MenuBar createMenuBar () {
@@ -113,18 +120,17 @@ public class AuthoringView implements IAuthoringView {
         newMenuItem.setOnAction(action);
         return newMenuItem;
     }
-
-    // private Node createStatusBar () {
-    // Image home = new Image("images/home-button.png", 40, 40, true, true);
-    // Image save = new Image("images/save-button.jpg", 40, 40, true, true);
-    // ImageView homeView = new ImageView(home);
-    // ImageView saveView = new ImageView(save);
-    // Button homeButton = myUIFactory.createImageButton("Home", homeView, e -> goHome());
-    // Button saveButton = myUIFactory.createImageButton("Save", saveView, e -> saveToXML());
-    //
-    // HBox statusBar = new HBox(10, homeButton, saveButton);
-    // return statusBar;
-    // }
+//    private Node createStatusBar () {
+//        Image home = new Image(myImages.getString(HOME), 40, 40, true, true);
+//        Image save = new Image(myImages.getString(SAVE), 40, 40, true, true);
+//        ImageView homeView = new ImageView(home);
+//        ImageView saveView = new ImageView(save);
+//        Button homeButton = myUIFactory.createImageButton(HOME, homeView, e -> goHome());
+//        Button saveButton = myUIFactory.createImageButton(SAVE, saveView, e -> saveToXML());
+//        
+//        HBox statusBar = new HBox(10, homeButton, saveButton);
+//        return statusBar;
+//    }
 
     private Node createContents () {
         TabPane tabPane = createAllTabs();
@@ -133,12 +139,10 @@ public class AuthoringView implements IAuthoringView {
         return contents;
     }
 
-    // TODO: GoHome Button
     private void goHome () {
 
     }
 
-    // TODO: Create GameWriter Class and save it as XML
     private void saveToXML () {
 
         XStream xstream = new XStream(new DomDriver());
@@ -147,8 +151,8 @@ public class AuthoringView implements IAuthoringView {
         myGame.createAndSortGlobals();
 
         String xml = xstream.toXML(myGame);
-        IGame game = (IGame) xstream.fromXML(xml);
-        GamePlayer player = new GamePlayer(game);
+        //IGame game = (IGame) xstream.fromXML(xml);
+        //GamePlayer player = new GamePlayer(game);
     }
 
     private TabPane createAllTabs () {
@@ -168,6 +172,7 @@ public class AuthoringView implements IAuthoringView {
                 myUIFactory.createTabGraphic(myUIFactory.makeImageDisplay("images/scene.png",
                         "SCENE BUILDER"), false, mySceneTabViewer.draw());
         tabpane.getTabs().addAll(gameTab, creationTab, conditionTab, sceneTab);
+
         return tabpane;
     }
 

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.SpriteGroup;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;

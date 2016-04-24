@@ -2,7 +2,6 @@ package gameauthoring.creation.forms;
 
 import java.util.List;
 import engine.AuthorshipData;
-import engine.Game;
 import engine.IGame;
 
 

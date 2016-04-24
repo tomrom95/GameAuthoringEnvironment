@@ -6,8 +6,8 @@ import engine.IAdder;
 import engine.ICheck;
 import engine.IGame;
 import engine.Positionable;
-import engine.definitions.ModuleDefinition;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.ModuleDefinition;
 import engine.modules.IModule;
 import engine.modules.UpgradeModule;
 

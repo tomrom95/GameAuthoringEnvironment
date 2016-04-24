@@ -2,7 +2,7 @@ package gameplayer;
 
 import java.util.ResourceBundle;
 import gameauthoring.util.Glyph;
-import util.DoubleStringParser;
+import util.StringParser;
 
 /**
  * Capturing the commonality of Glyphs that need the bundle to size
@@ -16,8 +16,8 @@ public abstract class SizeableGlyph implements Glyph {
 
     protected double parseString (String input) {
         // TODO return error
-        DoubleStringParser parser = new DoubleStringParser();
-        return parser.parse(input);
+        StringParser parser = new StringParser();
+        return parser.parseDouble(input);
     }
 
     protected String getString (String key) {

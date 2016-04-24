@@ -6,6 +6,7 @@ import engine.IGame;
 import engine.definitions.SpriteDefinition;
 import gameauthoring.util.UIFactory;
 import engine.profile.IProfilable;
+import gameauthoring.creation.factories.DynamicSFCFactory;
 
 
 /**

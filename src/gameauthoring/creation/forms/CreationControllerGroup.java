@@ -2,9 +2,10 @@ package gameauthoring.creation.forms;
 
 import java.util.List;
 import engine.AuthorshipData;
-import engine.Game;
 import engine.IGame;
 import engine.SpriteGroup;
+import gameauthoring.creation.factories.GroupSFCFactory;
+import gameauthoring.creation.factories.SubFormControllerFactory;
 
 
 public class CreationControllerGroup extends CreationController<SpriteGroup> {
@@ -13,9 +14,6 @@ public class CreationControllerGroup extends CreationController<SpriteGroup> {
                                     List<String> sfcs,
                                     IGame myGame) {
         super(title, sfcs, myGame);
-        // TODO: Change back to this to fix casting issue
-        // setMySubFormControllers(getMySFCFactory().createSpriteSubFormControllers(subFormStrings));
-
     }
 
     @Override
@@ -26,6 +24,12 @@ public class CreationControllerGroup extends CreationController<SpriteGroup> {
     @Override
     protected void addToAuthorshipData (AuthorshipData authorshipData) {
         authorshipData.setMyCreatedGroups(getMyDefinitionCollection());
+    }
+
+    @Override
+    protected SubFormControllerFactory<SpriteGroup> createSFCFactory (IGame game) {
+        // TODO Auto-generated method stub
+        return new GroupSFCFactory(game);
     }
 
 }

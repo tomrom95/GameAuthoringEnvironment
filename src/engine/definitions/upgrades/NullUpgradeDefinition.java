@@ -5,7 +5,7 @@ import engine.ICheck;
 import engine.IGame;
 import engine.NullFalseCheck;
 import engine.Positionable;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.modules.NullUpgradeModule;
 import engine.modules.UpgradeModule;
 

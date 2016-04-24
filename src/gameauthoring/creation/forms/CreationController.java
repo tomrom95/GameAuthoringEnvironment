@@ -6,12 +6,12 @@ import java.util.*;
 import engine.AuthorshipData;
 import engine.Game;
 import engine.IGame;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.profile.IProfilable;
+import gameauthoring.creation.factories.SubFormControllerFactory;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.ProfileSFC;
-import gameauthoring.creation.subforms.SubFormControllerFactory;
 import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.ObservableList;
 
@@ -27,10 +27,8 @@ import javafx.collections.ObservableList;
 public abstract class CreationController<T extends IProfilable> {
     private IObjectCreationView<T> myView;
     private List<? extends ISubFormController<T>> mySubFormControllers;
-    // private ProfileSubFormController<IProfilable> myProfileSubFormController;
-
     private String myTitle;
-    private SubFormControllerFactory mySFCFactory;
+    private SubFormControllerFactory<T> mySFCFactory;
     private DefinitionCollection<T> myDefinitionCollection;
 
     // New Design stuff
@@ -52,8 +50,9 @@ public abstract class CreationController<T extends IProfilable> {
                                IGame myGame) {
 
         myTitle = title;
-        mySFCFactory = new SubFormControllerFactory(myGame);
         myView = new ObjectCreationView<T>();
+        setMySFCFactory(createSFCFactory(myGame));
+
         myDefinitionCollection = new DefinitionCollection<>(getMyTitle(),
                                                             getMyObjectCreationView().getItems());
         mySubFormTemplate = subFormStrings;
@@ -61,6 +60,8 @@ public abstract class CreationController<T extends IProfilable> {
         addToAuthorshipData(myGame.getAuthorshipData());
 
     }
+
+    protected abstract SubFormControllerFactory<T> createSFCFactory (IGame game);
 
     /**
      * Initialization. Creates its subFormControllers from a factory, passes
@@ -75,12 +76,9 @@ public abstract class CreationController<T extends IProfilable> {
      * @param subFormStrings The strings from xml representing which subforms to create
      */
     public void init (List<String> subFormStrings) {
-        /// TODO: fix casting issue. move to abstract method that calls
-        // more specific factory method below, or come up with new solution
         mySubFormControllers =
-                (List<? extends ISubFormController<T>>) getMySFCFactory()
+                getMySFCFactory()
                         .createSubFormControllers(subFormStrings);
-        // setMyProfileSubFormController(getMySFCFactory().createProfileSFC());
         List<ISubFormView> subFormViews = getSubFormViews(getMySubFormControllers());
         myView.init(subFormViews);
         setupConnections();
@@ -157,7 +155,7 @@ public abstract class CreationController<T extends IProfilable> {
 
         // New Design
         List<? extends ISubFormController<T>> SFCs =
-                (List<? extends ISubFormController<T>>) getMySFCFactory()
+                getMySFCFactory()
                         .createSubFormControllers(this.mySubFormTemplate);
         myMap.put(item, SFCs);
 
@@ -227,22 +225,17 @@ public abstract class CreationController<T extends IProfilable> {
         return myTitle;
     }
 
-    public SubFormControllerFactory getMySFCFactory () {
+    public SubFormControllerFactory<T> getMySFCFactory () {
         return mySFCFactory;
+    }
+
+    public void setMySFCFactory (SubFormControllerFactory<T> sfcFactory) {
+        this.mySFCFactory = sfcFactory;
     }
 
     protected void setMySubFormControllers (List<? extends ISubFormController<T>> mySubFormControllers) {
         this.mySubFormControllers = mySubFormControllers;
     }
-    //
-    // private ProfileSubFormController<IProfilable> getMyProfileSubFormController () {
-    // return myProfileSubFormController;
-    // }
-    //
-    // private void setMyProfileSubFormController (ProfileSubFormController<IProfilable>
-    // myProfileSubFormController) {
-    // this.myProfileSubFormController = myProfileSubFormController;
-    // }
 
     protected DefinitionCollection<T> getMyDefinitionCollection () {
         return myDefinitionCollection;

@@ -1,9 +1,9 @@
 package gameauthoring.creation.subforms.fire;
 
 import engine.IGame;
-import engine.definitions.FirerDefinition;
-import engine.definitions.SpriteDefinition;
-import engine.definitions.TrackingFirerDefinition;
+import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.FirerDefinition;
+import engine.definitions.moduledef.TrackingFirerDefinition;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormView;
 

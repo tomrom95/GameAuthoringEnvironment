@@ -4,7 +4,7 @@ import engine.IAdder;
 import engine.IAttribute;
 import engine.ICheck;
 import engine.Positionable;
-import engine.definitions.SpriteDefinition;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.effects.IEffect;
 import engine.events.EventType;
 import engine.events.GameEvent;
