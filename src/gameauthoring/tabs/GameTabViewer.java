@@ -1,25 +1,22 @@
 package gameauthoring.tabs;
 
-import engine.Game;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import engine.IGame;
 import gameauthoring.creation.entryviews.FormDataManager;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.entryviews.ImageEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 
 /**
  * GameTabViewer serves to display Text/Image EntryView to authors so that they can fill in the game
  * information such as name of the game, author of the game, and an image file for splash screen.
  * 
- * TODO: ResourceBundle for unprotected string value
+ * TODO: Multiple Language for label
  * 
  * @author Jin An
  *
@@ -28,13 +25,13 @@ public class GameTabViewer implements ITabViewer {
 
     private GridPane myLayout;
     private IFormDataManager myData = new FormDataManager();
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
 
-    private String myNameKey = "Name of the Game: ";
-    private String myAuthorKey = "Author: ";
-    private String mySplashScreenKey = "Splash Screen: ";
-    private IEntryView myName = new TextEntryView(myNameKey, myData, 200, 60, "titleScreen");
-    private IEntryView myAuthor = new TextEntryView(myAuthorKey, myData, 200, 60, "titleScreen");
-    private IEntryView mySplashScreen = new ImageEntryView(mySplashScreenKey, myData, 600, 400, AuthoringView.DEFAULT_ENTRYVIEW);
+    private String myNameKey = myLang.getString("NameOfGame");
+    private String myAuthorKey = myLang.getString("Author");
+    private String myDateCreated = myLang.getString("Date");
+    private String mySplashScreenKey = myLang.getString("SplashScreen");
+    private static final int HORIZONTAL_GAP = 150;
 
     public GameTabViewer () {
         init();
@@ -47,10 +44,21 @@ public class GameTabViewer implements ITabViewer {
     @Override
     public void init () {
         myLayout = new GridPane();
-        myLayout.add(myName.draw(), 0, 0);
-        myLayout.add(myAuthor.draw(), 0, 1);
-        myLayout.add(mySplashScreen.draw(), 1, 0, 1, 2);
-        myLayout.setHgap(150);
+        createEntryViews();
+    }
+
+    private void createEntryViews () {
+        IEntryView name = new TextEntryView(myNameKey, myData, 200, 60, "titleScreen");
+        IEntryView author = new TextEntryView(myAuthorKey, myData, 200, 60, "titleScreen");
+        IEntryView dateCreated = new TextEntryView(myDateCreated, myData, 200, 60, "titleScreen");
+        IEntryView splashScreen =
+                new ImageEntryView(mySplashScreenKey, myData, 600, 400,
+                                   AuthoringView.DEFAULT_ENTRYVIEW);
+        myLayout.add(name.draw(), 0, 0);
+        myLayout.add(author.draw(), 0, 1);
+        myLayout.add(dateCreated.draw(), 0, 2);
+        myLayout.add(splashScreen.draw(), 1, 0, 1, 3);
+        myLayout.setHgap(HORIZONTAL_GAP);
     }
 
     @Override
