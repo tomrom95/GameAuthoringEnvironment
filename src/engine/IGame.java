@@ -49,7 +49,7 @@ public interface IGame extends IGamePlayable {
      *         an externally updated scaling factor to support resizing
      */
     IGameGridConfig getGameGridConfig ();
-
+    
     /**
      * Iterates through the DefinitionCollection of created Global AttributeDefinitions, creates the
      * attribute, and places it in the correct location within the game
