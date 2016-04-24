@@ -1,22 +1,18 @@
 package gameauthoring.tabs;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
 import com.dooapp.xstreamfx.FXConverters;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-import engine.Game;
 import engine.IGame;
 import gameauthoring.listdisplay.GameConditionView;
 import gameauthoring.util.UIFactory;
 import gameauthoring.waves.WaveTabViewer;
 import gameplayer.GamePlayer;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
@@ -24,9 +20,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -57,6 +50,10 @@ public class AuthoringView implements IAuthoringView {
     public static final String STYLESHEET = "custom.css";
     public static final String DEFAULT_RESOURCE_PACKAGE = "defaults/";
     public static final String DEFAULT_ENTRYVIEW = "defaultTextEntry";
+    public static final String HOME = "Home";
+    public static final String SAVE = "Save";
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myImages = ResourceBundle.getBundle("defaults/authoringmenus");
     private UIFactory myUIFactory = new UIFactory();
     
     public AuthoringView () {
@@ -103,12 +100,12 @@ public class AuthoringView implements IAuthoringView {
     }
 
     private Node createStatusBar () {
-        Image home = new Image("images/home-button.png", 40, 40, true, true);
-        Image save = new Image("images/save-button.jpg", 40, 40, true, true);
+        Image home = new Image(myImages.getString(HOME), 40, 40, true, true);
+        Image save = new Image(myImages.getString(SAVE), 40, 40, true, true);
         ImageView homeView = new ImageView(home);
         ImageView saveView = new ImageView(save);
-        Button homeButton = myUIFactory.createImageButton("Home", homeView, e -> goHome());
-        Button saveButton = myUIFactory.createImageButton("Save", saveView, e -> saveToXML());
+        Button homeButton = myUIFactory.createImageButton(HOME, homeView, e -> goHome());
+        Button saveButton = myUIFactory.createImageButton(SAVE, saveView, e -> saveToXML());
         
         HBox statusBar = new HBox(10, homeButton, saveButton);
         return statusBar;
@@ -141,12 +138,12 @@ public class AuthoringView implements IAuthoringView {
 
     private TabPane createAllTabs () {
         TabPane tabpane = new TabPane();
-        Tab gameTab = myUIFactory.createTab("Game", false, myGameTabViewer.draw());
+        Tab gameTab = myUIFactory.createTab(myLang.getString("Game"), false, myGameTabViewer.draw());
         Tab creationTab =
-                myUIFactory.createTab("Create Objects", false, myCreationTabViewer.draw());
-        Tab conditionTab = myUIFactory.createTab("Conditions", false, myConditionView.draw());
-        Tab waveTab = myUIFactory.createTab("Waves", false, myWaveTabView.draw());
-        Tab sceneTab = myUIFactory.createTab("Build Scenes/Levels", false, mySceneTabViewer.draw());
+                myUIFactory.createTab(myLang.getString("CreateObjects"), false, myCreationTabViewer.draw());
+        Tab conditionTab = myUIFactory.createTab(myLang.getString("Conditions"), false, myConditionView.draw());
+        Tab waveTab = myUIFactory.createTab(myLang.getString("Waves"), false, myWaveTabView.draw());
+        Tab sceneTab = myUIFactory.createTab(myLang.getString("BuildScenes"), false, mySceneTabViewer.draw());
         tabpane.getTabs().addAll(gameTab, creationTab, conditionTab, waveTab, sceneTab);
         return tabpane;
     }
