@@ -38,41 +38,43 @@ public class ImageEntryView extends EntryView {
     private BasicUIFactory myUIFactory = new BasicUIFactory();
     private String buttonLabel = "Choose Image"; // TODO: Resource file
 
+    public ImageEntryView (String label, IFormDataManager data, String cssClass) {
+        super(label, data);
+        this.myImageChoice.bindBidirectional(getData().getValueProperty());
+        initFileChooser(new FileChooser());
+    }
+
     public ImageEntryView (String label,
                            IFormDataManager data,
                            double width,
                            double height,
                            String cssClass) {
-        super(label, data);
-        this.myImageChoice.bindBidirectional(getData().getValueProperty());
-        initFileChooser(new FileChooser());
+        this(label, data, cssClass);
         initImageView(new SimpleDoubleProperty(width), new SimpleDoubleProperty(height));
         init(label, cssClass);
     }
 
     public ImageEntryView (String label,
-                           IFormDataManager data,
+                           IFormDataManager data,                           
                            DoubleProperty width,
-                           DoubleProperty height,
-                           String cssClass) {
-        super(label, data);
-        this.myImageChoice.bindBidirectional(getData().getValueProperty());
-        initFileChooser(new FileChooser());
+                           DoubleProperty height,String cssClass) {
+        this(label, data, cssClass);
         initImageView(width, height);
         init(label, cssClass);
+
     }
 
     @Override
     protected void init (String label, String cssClass) {
         this.myContainer = new GridPane();
-        myContainer.add(new Label(myLabel), 0, 0);
+        myContainer.add(getLabel(), 0, 0);
         myContainer.add(myChooseImage, 0, 1);
         myContainer.add(myImage, 0, 2);
         myContainer.getStyleClass().add(cssClass);
     }
 
     private void initImageView (DoubleProperty width, DoubleProperty height) {
-        myImage = myUIFactory.makeImageView(imagePath, width, height);       
+        myImage = myUIFactory.makeImageView(imagePath, width, height);
         myImageChoice.addListener(c -> updateImage());
     }
 

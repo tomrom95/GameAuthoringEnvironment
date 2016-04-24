@@ -7,7 +7,7 @@ import java.util.*;
 
 public class SelectSpriteSFC implements ISubFormControllerGroup{
     
-    private SelectSpriteSFV myView;
+    private ISelectSpriteSFV myView;
 
     public SelectSpriteSFC (List<DefinitionCollection<SpriteDefinition>> sprites) {
         myView = new SelectSpriteSFV(sprites);

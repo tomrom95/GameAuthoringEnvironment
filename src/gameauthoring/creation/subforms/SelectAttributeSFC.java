@@ -12,7 +12,7 @@ import gameauthoring.shareddata.IDefinitionCollection;
  */
 public class SelectAttributeSFC implements ISubFormControllerSprite {
 
-    private SelectAttributeSFV myView;
+    private ISelectAttributeSFV myView;
 
     public SelectAttributeSFC (IDefinitionCollection<AttributeDefinition> attributes) {
         myView = new SelectAttributeSFV(attributes);

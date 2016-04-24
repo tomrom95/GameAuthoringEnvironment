@@ -11,7 +11,7 @@ import javafx.beans.property.BooleanProperty;
  *
  */
 
-public interface IUpgradeSFV {
+public interface IUpgradeSFV  extends ISubFormView{
 
     BooleanProperty isUpgradableProperty ();
 

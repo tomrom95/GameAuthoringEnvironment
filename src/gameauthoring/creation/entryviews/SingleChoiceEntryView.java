@@ -34,7 +34,7 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
     @Override
     protected void init (String label, String cssClass) {
         this.myContainer = new GridPane();
-        myContainer.add(new Label(getLabel()), 0, 0);
+        myContainer.add(getLabel(), 0, 0);
         myContainer.add(myChoices, 0, 1);
         myContainer.getStyleClass().add(cssClass);
     }

@@ -7,7 +7,7 @@ package gameauthoring.creation.subforms;
  * @author Joe Lilien
  *
  */
-public interface IProfileSFV {
+public interface IProfileSFV  extends ISubFormView{
 
     String getMyNameKey ();
 

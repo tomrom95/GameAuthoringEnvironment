@@ -13,7 +13,7 @@ import gameauthoring.util.ErrorMessage;
 
 public class UpgradeSFC implements ISubFormControllerSprite {
 
-    private UpgradeSFV mySFV;
+    private IUpgradeSFV mySFV;
     private IGame myGame;
     private UpgradeDefinition myGlobalUpgrade;
     private UpgradeDefinition mySpriteUpgrade;

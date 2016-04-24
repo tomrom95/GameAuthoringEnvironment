@@ -75,7 +75,7 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
     }
 
     protected void addSprite (double x, double y) {
-        myController.addSprite(x, x, getProfilable());
+        myController.addSprite(x, y, getProfilable());
         myTarget.render();
     }
 
