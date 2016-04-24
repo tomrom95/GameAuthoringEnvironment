@@ -17,6 +17,11 @@ public class Coordinate {
         setX(xCor);
         setY(yCor);
     }
+    
+    public Coordinate (ArrayPosition pos) {
+        setX(pos.getX());
+        setY(pos.getY());
+    }
 
     public double getX () {
         return myXCoordinate;

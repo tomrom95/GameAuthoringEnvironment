@@ -6,6 +6,7 @@ import util.Coordinate;
 import util.IBitMap;
 import java.util.ArrayList;
 import java.util.List;
+import engine.aipathing.GameGraphFactory;
 
 
 public class TestPath {
@@ -15,10 +16,20 @@ public class TestPath {
     }
 
     public static void main (String[] args) {
-        IBitMap obstructionMap = new AutoTrueBitMap(1000, 800);
+        IBitMap obstructionMap = new AutoTrueBitMap(50, 50);
+        //setting some obstructions up
+        for(int i = 10; i < 30; i++){
+            for(int j = 10; j < 30; j++){
+                obstructionMap.set(i, j, true);
+            }
+        }
+        //System.out.println("test");
         INodeGraphFactory tester = new GameGraphFactory(obstructionMap);
         INodeGraph testGraph = tester.getConstructedGraph();
-        //System.out.println("test");
+        for(IPathNode node : testGraph.getNodes()){
+            System.out.println(node.getLocation().getX() + " " + node.getLocation().getY());
+        }
+        System.out.println("test");
 
 
         

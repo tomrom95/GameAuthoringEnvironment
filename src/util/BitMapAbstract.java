@@ -14,6 +14,7 @@ public abstract class BitMapAbstract implements IBitMap, Iterable<Boolean> {
 
     public BitMapAbstract (IBitMap map) {
         initialize(map.getWidth(), map.getHeight());
+        //myBitMap = map.getBitMap().clone();
         Iterator<ArrayPosition> iter = map.positionIterator();
         while (iter.hasNext()) {
             ArrayPosition pos = iter.next();
@@ -138,5 +139,7 @@ public abstract class BitMapAbstract implements IBitMap, Iterable<Boolean> {
     public boolean inBounds (ArrayPosition pos) {
         return inBounds(pos.getX(), pos.getY());
     }
+    
+
 
 }

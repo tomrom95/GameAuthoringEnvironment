@@ -8,6 +8,8 @@ import util.AutoTrueBitMap;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Class responsible for turning IGame objects
@@ -42,10 +44,11 @@ public class GameGraphFactory implements INodeGraphFactory {
         int numHeightNodes = obstructionMap.getHeight() / gap;
         IPathNode[][] placedNodes = new PathNode[numHorizontalNodes][numHeightNodes];
         // place the standard grid less obstructed areas
-        for (int i = 0; i < numHorizontalNodes; i++) {
-            for (int j = 0; j < numHeightNodes; j++) {
-                if (!obstructionMap.valueOf(i, j)) {
-                    IPathNode toAdd = new PathNode(new Coordinate(i*gap, j*gap));
+        for (int i = 0; i <= numHorizontalNodes; i++) {
+            for (int j = 0; j <= numHeightNodes; j++) {
+                ArrayPosition pixelLocation = new ArrayPosition(i*gap + (gap/2), j*gap + (gap/2));
+                if (!obstructionMap.valueOf(pixelLocation)) {
+                    IPathNode toAdd = new PathNode(new Coordinate(pixelLocation));
                     toReturn.addNode(toAdd);
                     placedNodes[i][j] = toAdd;
                 }
@@ -139,7 +142,9 @@ public class GameGraphFactory implements INodeGraphFactory {
             ArrayPosition pos = iter.next();
             if (isEdge(obMapCopy, pos)) {
                 edgeList.add(recursiveEdgeHelper(obMapCopy, pos, new ArrayList<>()));
-                removeObstructionMask(obMapCopy, pos);
+                removeObstructionMask(obMapCopy, new AutoTrueBitMap(obMapCopy.getWidth(),
+                                                                    obMapCopy.getHeight()),
+                                      pos);
             }
         }
         return edgeList;
@@ -148,18 +153,23 @@ public class GameGraphFactory implements INodeGraphFactory {
      * This method will clear all the bits that are considered part of the same contiguous
      * obstruction
      * @param obstructionMap
+     * @param checkedMap a new instance of BitMap with all false of the same size as obstructionMap
      * @param pos
      */
     private void removeObstructionMask (IBitMap obstructionMap,
+                                        IBitMap checkedMap,
                                         ArrayPosition pos) {
         if (obstructionMap.valueOf(pos)) {
             obstructionMap.set(pos, false);
+            checkedMap.set(pos, true);
             List<ArrayPosition> toCheck = surroundingPositions(pos);
-            for (ArrayPosition check : toCheck) {
-                if (obstructionMap.inBounds(check)) {
-                    removeObstructionMask(obstructionMap, check);
-                }
-            }
+            toCheck = toCheck.stream()
+                    .filter(iterPos -> obstructionMap.inBounds(iterPos))
+                    .filter(iterPos -> !checkedMap.valueOf(iterPos))
+                    .collect(Collectors.toList());
+            toCheck.stream().forEach(iterPos -> checkedMap.set(iterPos, true));
+            toCheck.stream()
+                .forEach(iterPos-> removeObstructionMask(obstructionMap, checkedMap, iterPos));
         }
         
     }
