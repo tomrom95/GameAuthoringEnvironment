@@ -6,6 +6,7 @@ import gameauthoring.creation.cellviews.ProfileCellView;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.GridPane;
@@ -54,7 +55,7 @@ public class MultiChoiceEntryView<E extends IProfilable> extends EntryView {
             }
         }
 
-    }
+    }    
 
     public void clearSelection () {
         myChoices.getSelectionModel().clearSelection();

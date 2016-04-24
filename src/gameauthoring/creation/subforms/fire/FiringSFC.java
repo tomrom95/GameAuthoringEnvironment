@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import engine.IGame;
+
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.FirerDefinition;
 import engine.definitions.moduledef.ModuleDefinition;
@@ -16,7 +17,8 @@ import gameauthoring.creation.subforms.DynamicSubFormController;
  * @author Jeremy Schreck
  *
  */
-public class FiringSubFormController extends DynamicSubFormController<SpriteDefinition> {
+
+public class FiringSFC extends DynamicSubFormController<SpriteDefinition> {
 
     private SpriteDefinition myMissile;
 
@@ -25,12 +27,12 @@ public class FiringSubFormController extends DynamicSubFormController<SpriteDefi
      * 
      * @param game The current game object
      */
-    public FiringSubFormController (IGame game) {
+    public FiringSFC (IGame game) {
         super(game, new FiringSFCFactory(game, null),
               new ArrayList<String>(Arrays.asList("DirectionalFire", "TrackingFire")));
         List<String> options = new ArrayList<>(Arrays.asList("Directional", "Tracking"));
         setMyView(
-                  new FiringSubFormView(getMySubFormViews(), e -> changeSelection(e), options,
+                  new FiringSFV(getMySubFormViews(), e -> changeSelection(e), options,
                                         e -> changeMissile(e),
                                         game.getAuthorshipData().getMyCreatedMissiles()
                                                 .getItems()));
@@ -57,15 +59,5 @@ public class FiringSubFormController extends DynamicSubFormController<SpriteDefi
         return myMissile;
     }
 
-    public void removeCurrentFirer (SpriteDefinition item) {
-        item.getModuleDefinitions().stream().filter(e -> e instanceof FirerDefinition)
-                .forEach(e->item.remove(e));
-        
-//        for(ModuleDefinition e: item.getModuleDefinitions()){
-//            if(e instanceof FirerDefinition){
-//                item.remove(e);
-//            }
-//        }
-    }
 
 }

@@ -3,7 +3,7 @@ package gameauthoring.tabs;
 import gameauthoring.creation.factories.CreationControllerFactory;
 import gameauthoring.creation.forms.CreationController;
 import gameauthoring.creation.forms.IObjectCreationView;
-import gameauthoring.util.UIFactory;
+import gameauthoring.util.BasicUIFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +30,7 @@ import javafx.scene.control.TabPane;
 public class ObjectCreationTabViewer implements ITabViewer {
 
     private TabPane myTabPane;
-    private UIFactory myUIFactory = new UIFactory();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private ResourceBundle myControllerResources = ResourceBundle
             .getBundle("defaults/create_creation_controller");
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
@@ -63,8 +63,9 @@ public class ObjectCreationTabViewer implements ITabViewer {
         List<String> myEnemySFCs =
                 new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Movement"));
         List<String> myDefenderSFCs =
+
                 new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Upgrade",
-                                                    "Movement", "Firing"));
+                                                    "Cost", "Movement", "FireMult"));
         List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("ProfileSFC", "SelectSprite"));
 
         List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
@@ -91,7 +92,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
                                                    myGame);
         CreationController<?> ccDefenders =
                 ccFactory.createCreationController(myControllerResources.getString("Defenders"),
-                                                   myLang.getString("Defender"), myDefenderSFCs,
+                                                   myLang.getString("Defenders"), myDefenderSFCs,
                                                    myGame);
         CreationController<?> ccGroups =
                 ccFactory.createCreationController(myControllerResources.getString("Groups"),
@@ -133,6 +134,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
     @Override
     public void init () {
         myTabPane = new TabPane();
+        myTabPane.getStyleClass().add("subTab");
         generateCreationViewList();
         generateAllSubTabs();
     }
@@ -146,7 +148,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private void generateAllSubTabs () {
         for (int i = 0; i < myCCs.size(); i++) {
-            Tab tab = myUIFactory.createTab(myCCs.get(i).getMyTitle(), false, myCVs.get(i).draw());
+            Tab tab = myUIFactory.createTabText(myCCs.get(i).getMyTitle(), false, myCVs.get(i).draw());
             myTabPane.getTabs().add(tab);
         }
     }

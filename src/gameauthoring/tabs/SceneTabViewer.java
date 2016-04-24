@@ -12,7 +12,7 @@ import engine.Level;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.levels.LevelEditorView;
 import gameauthoring.shareddata.DefinitionCollection;
-import gameauthoring.util.UIFactory;
+import gameauthoring.util.BasicUIFactory;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Node;
@@ -36,7 +36,7 @@ public class SceneTabViewer implements ITabViewer {
     private IConditionManager myConditionManager;
     private List<DefinitionCollection<SpriteDefinition>> mySprites;
     private IGame myGame;
-    private UIFactory myUIFactory = new UIFactory();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
 
     public SceneTabViewer () {
         init();
@@ -57,6 +57,7 @@ public class SceneTabViewer implements ITabViewer {
                 new LevelEditorView(myGame, myGame.getLevelManager().getCurrentLevel());
 
         myLevelTabs = new TabPane();
+        myLevelTabs.getStyleClass().add("subTab");
         Tab createLevelTab = createButtonTab();
         myLevelTabs.getTabs().addAll(createLevelTab);
         addNewLevel("Start");
@@ -84,7 +85,7 @@ public class SceneTabViewer implements ITabViewer {
     }
 
     private void addNewNamedLevel () {
-        Optional<String> name = new UIFactory().getTextDialog("Enter", "Level Adder", "Level Name: ");
+        Optional<String> name = new BasicUIFactory().getTextDialog("Enter", "Level Adder", "Level Name: ");
         if (name.isPresent()) {
             addNewLevel(name.get());
         }
@@ -97,7 +98,7 @@ public class SceneTabViewer implements ITabViewer {
         LevelEditorView view =
                 new LevelEditorView(myGame, myGame.getLevelManager().getCurrentLevel());
         Tab newLevelTab =
-                myUIFactory.createTab(name, true, view.draw());
+                myUIFactory.createTabText(name, true, view.draw());
         myLevelTabs.getTabs().add(newLevelTab);
         myLevelTabs.getSelectionModel().select(newLevelTab);
     }

@@ -41,5 +41,5 @@ public interface Draggable{
     
     public void setOnDragDropped(DragEvent e);
     
-    public boolean checkPlaceable (DragEvent e);
+    public boolean checkPlaceable (DragEvent e); //TODO: maybe take this out of interface
 }
