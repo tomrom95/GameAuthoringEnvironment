@@ -17,7 +17,7 @@ public class WaveOptionView implements Glyph{
     }
 
     private void init () {
-        myWaveOptions.setMaxWidth(100);
+        myWaveOptions.setMaxWidth(300);
         myWaveOptions.setCellFactory(cell -> new NameCellView<WaveDefinition>());        
     }
 
