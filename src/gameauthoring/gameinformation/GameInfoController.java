@@ -4,6 +4,14 @@ import engine.IGame;
 import gameauthoring.creation.entryviews.IFormDataManager;
 
 
+/**
+ * Controller class for Game Information. When save button is pressed in the AuthoringView,
+ * setGameInformation() will be called to connect with backend. It contains the gameInfoView which
+ * renders the view
+ * 
+ * @author Jin An
+ *
+ */
 public class GameInfoController {
 
     private GameInfoView myView;

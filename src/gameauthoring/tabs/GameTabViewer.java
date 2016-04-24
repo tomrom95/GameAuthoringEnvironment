@@ -1,14 +1,14 @@
 package gameauthoring.tabs;
 
 import engine.IGame;
-import engine.IGameInformation;
 import gameauthoring.gameinformation.GameInfoController;
 import javafx.scene.Node;
 
 
 /**
  * GameTabViewer serves to display Text/Image EntryView to authors so that they can fill in the game
- * information such as name of the game, author of the game, and an image file for splash screen.
+ * information such as name of the game, author of the game, date created, and an image file for
+ * splash screen. It instantiates the controller class.
  * 
  * TODO: Multiple Language for label
  * 

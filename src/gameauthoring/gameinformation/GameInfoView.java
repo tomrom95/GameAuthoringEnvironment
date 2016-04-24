@@ -13,6 +13,13 @@ import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.Glyph;
 
 
+/**
+ * View class for Game Information. It creates entryViews for name, author, data created, and
+ * splashscreen of the game that allow authors to put information.
+ * 
+ * @author Jin An
+ *
+ */
 public class GameInfoView implements Glyph {
 
     private GridPane myLayout;
