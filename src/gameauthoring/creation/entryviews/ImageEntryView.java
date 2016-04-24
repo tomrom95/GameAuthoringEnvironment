@@ -3,7 +3,7 @@ package gameauthoring.creation.entryviews;
 import java.io.File;
 import java.net.MalformedURLException;
 import gameauthoring.util.ErrorMessage;
-import gameauthoring.util.UIFactory;
+import gameauthoring.util.BasicUIFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
@@ -32,7 +32,7 @@ public class ImageEntryView extends EntryView {
     private Button myChooseImage;
     private ImageView myImage;
     private String imagePath = "images/Square.png";
-    private UIFactory myUIFactory = new UIFactory();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private String buttonLabel = "Choose Image"; // TODO: Resource file
 
     public ImageEntryView (String label,

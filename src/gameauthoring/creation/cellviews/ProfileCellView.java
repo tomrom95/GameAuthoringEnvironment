@@ -25,7 +25,6 @@ import javafx.scene.text.Text;
 public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     private static final double PIC_SIZE = 30;
-
     private E myProfile;
     
 
@@ -43,10 +42,18 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
     }
 
     protected Node createSpriteCell (E profile) {
+        HBox container = getHBox(profile);
+        return container;
+    }
+
+    /**
+     * For subclasses to alter the HBox not the node
+     * @param profile
+     * @return
+     */
+    protected HBox getHBox (E profile) {
         HBox container = new HBox(10);
         container.setAlignment(Pos.CENTER_LEFT);
-      
-
         container.getChildren().add(createImageProfile(profile.getProfile()));
         container.getChildren().add(createTextProfile(profile.getProfile()));
         return container;
