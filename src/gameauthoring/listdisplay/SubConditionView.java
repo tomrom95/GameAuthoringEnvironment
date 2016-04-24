@@ -1,21 +1,23 @@
 package gameauthoring.listdisplay;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 import engine.conditions.ICondition;
 import engine.profile.IProfilable;
 import engine.profile.Profile;
-import gameauthoring.creation.cellviews.NameCellView;
+import gameauthoring.util.BasicUIFactory;
+import gameauthoring.util.ConditionUIFactory;
+import gameauthoring.util.ErrorMessage;
+import gameauthoring.util.IncompleteFormException;
 import gameauthoring.util.UIFactory;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -28,14 +30,17 @@ public abstract class SubConditionView {
     protected static final double CUSHION = 10;
     private static final String DEFAULT_IMAGE = "/images/C.png";
     private ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle mySize = ResourceBundle.getBundle("defaults/subcondition");
 
+    private UIFactory myFactory = new ConditionUIFactory();
     private GridPane myGroup = new GridPane();
     private ObservableList<ICondition> myList;
     private TextField myName = new TextField();
-    private TextField myDescription = new TextField();
+    private TextArea myDescription = new TextArea();
     private List<Node> myNodes;
     
     public SubConditionView (ObservableList<ICondition> conditionList) {
+        myGroup.getStyleClass().add("cond_pane");
         myList = conditionList;
         myNodes = new ArrayList<>();
     }
@@ -46,23 +51,23 @@ public abstract class SubConditionView {
         myGroup.setVgap(CUSHION);
         add(addProfileInfo(), 0, 0);
         initializeDisplay();
-
     }
 
     private void setSizes () {
-        myDescription.setPrefSize(350, 200);
+        myDescription.setPrefSize(Double.parseDouble(mySize.getString("DescriptionWidth")),
+                                  Double.parseDouble(mySize.getString("DescriptionHeight")));
     }
 
     private Node addProfileInfo () {
         HBox hbox = new HBox(CUSHION);
-        hbox.getChildren().add(createVBox(new Label("Name"), myName));
-        hbox.getChildren().add(createVBox(new Label("Description"), myDescription));
+        hbox.getChildren().add(createVBox(myLabels.getString("Name"), myName));
+        hbox.getChildren().add(createVBox(myLabels.getString("Description"), myDescription));
         return hbox;
     }
 
-    private Node createVBox (Node node1, Node node2) {
+    private Node createVBox (String label, Node node2) {
         VBox vbox = new VBox(CUSHION);
-        vbox.getChildren().addAll(node1, node2);
+        vbox.getChildren().addAll(myFactory.createSubTitleLabel(label), node2);
         return vbox;
     }
     
@@ -79,14 +84,20 @@ public abstract class SubConditionView {
     protected abstract void initBoxes ();
 
     private Node createButton () {
-        Button button = new Button("Create");
-        button.setOnAction(e -> addCondition(createCondition()));
+        Button button = myFactory.createButton(myLabels.getString("Create"));
+        button.setOnAction(e -> addCondition());
         return button;
     }
 
-    private void addCondition (ICondition createCondition) {
-        if (createCondition != null) {
-            myList.add(createCondition);
+    private void addCondition () {
+        
+        try  {
+            ICondition condition = createCondition();
+            myList.add(condition);
+        }
+        catch (IncompleteFormException e) {
+            ErrorMessage error = new ErrorMessage(e.getMessage());
+            error.showError();          
         }
     }
 
@@ -94,10 +105,14 @@ public abstract class SubConditionView {
         myGroup.add(node, column, row);
     }
 
-    private ICondition createCondition () {
-        ICondition condition = subCreation();
-        condition.setProfile(new Profile(myName.getText(), myDescription.getText(), DEFAULT_IMAGE));
-        return condition;
+    private ICondition createCondition () throws IncompleteFormException {
+        try {
+            ICondition condition = subCreation();
+            condition.setProfile(new Profile(myName.getText(), myDescription.getText(), DEFAULT_IMAGE));
+            return condition;
+        } catch (NullPointerException | NumberFormatException e) {
+            throw new IncompleteFormException(myLabels.getString("FillForm"));
+        }
     }
 
     protected abstract ICondition subCreation ();
@@ -107,7 +122,7 @@ public abstract class SubConditionView {
     }
 
     protected <T extends IProfilable> ComboBox<T> createComboBox (ObservableList<T> list) {
-        ComboBox<T> combo = new UIFactory().createCombo(list);
+        ComboBox<T> combo = new BasicUIFactory().createCombo(list);
         myNodes.add(combo);
         return combo;
     }
@@ -118,6 +133,10 @@ public abstract class SubConditionView {
         return box;
     }
 
+    /**
+     * Loops through the property file grabbing the proper labels
+     * @return HBox of label/combo-box pairs
+     */
     protected Node getHBox () {
         HBox hbox = new HBox(CUSHION);
         for (int i = 0; i < myNodes.size(); i++) {
