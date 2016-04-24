@@ -1,6 +1,5 @@
 package engine.aipathing;
 
-import util.BitMap;
 import util.Coordinate;
 import util.IBitMap;
 import util.ArrayPosition;
@@ -8,7 +7,6 @@ import util.AutoTrueBitMap;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -19,6 +17,7 @@ import java.util.stream.Collectors;
  *
  */
 public class GameGraphFactory implements INodeGraphFactory {
+    private static final int INT_TWO = 2;
     private static final int INT_ONE = 1;
     private static final int INT_NEG_ONE = -1;
     private static final double ONE = 1d;
@@ -46,7 +45,7 @@ public class GameGraphFactory implements INodeGraphFactory {
         // place the standard grid less obstructed areas
         for (int i = 0; i <= numHorizontalNodes; i++) {
             for (int j = 0; j <= numHeightNodes; j++) {
-                ArrayPosition pixelLocation = new ArrayPosition(i*gap + (gap/2), j*gap + (gap/2));
+                ArrayPosition pixelLocation = pixelForArrayLoc(i, j, gap);
                 if (!obstructionMap.valueOf(pixelLocation)) {
                     IPathNode toAdd = new PathNode(new Coordinate(pixelLocation));
                     toReturn.addNode(toAdd);
@@ -58,6 +57,11 @@ public class GameGraphFactory implements INodeGraphFactory {
         addEdgeNodes(toReturn, edges, obstructionMap, gap, placedNodes);
         return toReturn;
 
+    }
+
+    private ArrayPosition pixelForArrayLoc (int widthAccess, int heightAccess, int gap) {
+        return new ArrayPosition(widthAccess * gap + (gap / INT_TWO),
+                                 heightAccess * gap + (gap / INT_TWO));
     }
 
 
