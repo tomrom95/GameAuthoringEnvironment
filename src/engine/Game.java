@@ -49,7 +49,7 @@ public class Game implements IGame {
         myLevelManager.update(duration);
         myConditionManager.update(duration);
         myAttributeManager.update(duration);
-        myObstructionManager.update(duration);
+//        myObstructionManager.update(duration);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package engine.modules;
 
+import java.util.ArrayList;
 import java.util.List;
 import engine.Attribute;
 import engine.AttributeType;
@@ -13,69 +14,80 @@ import engine.interactionevents.KeyIOEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.Key;
+import util.TimeDuration;
 
 
 /**
  * This class provides the behavior necessary to implement a user controlled fire module in the
  * game.
  *
- * @author Dhrumil
- *          This class looks complete, but it is extremely far from complete, do not even bother
- *         evaluating the code, it is very far from functional
+ * @author Dhrumil Timko
  */
-public class UserFirer extends Firer {
+public class UserFirer extends DirectionalFirer {
 
- 
+    private Key myFireKey;
+    private Key myIncreaseKey;
+    private Key myDecreaseKey;
+    private double myAngleChange;
 
-	private Key myFireKey;
-    private List<SpriteDefinition> myProjectileList;
-    private SpriteDefinition myProjectile;
-    private IAttribute myAmmo;
-    private IGame myGame;
+    public UserFirer (Positionable parent,
+                      SpriteDefinition fireSprite,
+                      Key fireKey,
+                      Key increaseKey,
+                      Key decreaseKey,
+                      double waitTime,
+                      double angle,
+                      double change
 
-    public UserFirer (Positionable parent, SpriteDefinition fireSprite, Key fireKey, IGame game, double ammo) {
-    	super(parent);
+    ) {
+        super(fireSprite, parent, waitTime, angle);
         myFireKey = fireKey;
-        myProjectile = fireSprite;
-        myGame = game;
-        myAmmo = new Attribute(ammo, AttributeType.AMMO);
+        myIncreaseKey = increaseKey;
+        myDecreaseKey = decreaseKey;
+        myAngleChange = change;
     }
 
     @Override
-    public void applyEffect (IEffect effect) {
-        getAmmo().applyEffect(effect);
+    public void update (TimeDuration duration) {
+        super.firerUpdate(duration);
     }
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
         if (keyEvent.getType() == InputType.KEY_PRESSED &&
-            keyEvent.getKey().isEqual(myFireKey)) {
+            keyEvent.getKey().isEqual(myFireKey) | keyEvent.getKey()
+                    .equals(myDecreaseKey) | keyEvent.getKey().equals(myIncreaseKey)) {
             registerKeyPress(keyEvent.getKey());
         }
     }
 
-    private void registerKeyPress (Key fire) {
-
-        myProjectile.create();
+    private void registerKeyPress (Key k) {
+        if(k.equals(myFireKey)){
+            fireSprite();
+        } else if (k.equals(myIncreaseKey)){
+            increaseAngle();
+        } else if(k.equals(myDecreaseKey)){
+            decreaseAngle();
+        } else{
+            //do nothing
+        }
     }
 
-    /*
-     * needs to be methods to create the X and Y velocity
-     * (non-Javadoc)
-     *
-     * @see engine.modules.Firer#getAttributes()
-     */
+    private void increaseAngle () {
+        setAngle(getAngle() + myAngleChange);
+    }
+
+    private void decreaseAngle () {
+        setAngle(getAngle() - myAngleChange);
+    }
+
+    private void fireSprite () {
+        super.fire();
+    }
+
     @Override
-    public ObservableList<IAttribute> getAttributes () {
-        ObservableList<IAttribute> attributeList = FXCollections.observableArrayList();
-        attributeList.add(myAmmo);
-        return attributeList;
+    protected List<IAttribute> getSpecificAttributes () {
+        return new ArrayList<>();
     }
-
-	@Override
-	protected List<IAttribute> getSpecificAttributes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

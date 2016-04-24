@@ -1,12 +1,14 @@
 package gameauthoring.tabs;
 
+import gameauthoring.creation.factories.CreationControllerFactory;
 import gameauthoring.creation.forms.CreationController;
-import gameauthoring.creation.forms.CreationControllerFactory;
 import gameauthoring.creation.forms.IObjectCreationView;
 import gameauthoring.util.BasicUIFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import engine.AuthorshipData;
 import engine.Game;
 import engine.IGame;
@@ -29,6 +31,9 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private TabPane myTabPane;
     private BasicUIFactory myUIFactory = new BasicUIFactory();
+    private ResourceBundle myControllerResources = ResourceBundle
+            .getBundle("defaults/create_creation_controller");
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
 
     private IGame myGame;
 
@@ -48,16 +53,19 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private void initializeLists () {
 
-        List<String> myGlobalSFCs = new ArrayList<String>(Arrays.asList("LevelSpecific", "Attribute"));
+        List<String> myGlobalSFCs =
+                new ArrayList<String>(Arrays.asList("ProfileSFC", "LevelSpecific", "Attribute"));
 
-        List<String> myAttributeSFCs = new ArrayList<String>(Arrays.asList("Attribute"));
+        List<String> myAttributeSFCs =
+                new ArrayList<String>(Arrays.asList("ProfileSFC", "Attribute"));
 
-        List<String> myMissileSFCs = new ArrayList<String>(Arrays.asList("Movement"));
+        List<String> myMissileSFCs = new ArrayList<String>(Arrays.asList("ProfileSFC", "Movement"));
         List<String> myEnemySFCs =
-                new ArrayList<String>(Arrays.asList("SelectAttribute", "Movement"));
+                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Movement"));
         List<String> myDefenderSFCs =
-                new ArrayList<String>(Arrays.asList("SelectAttribute", "Upgrade", "Movement", "Firing"));
-        List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("SelectSprite"));
+                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Upgrade",
+                                                    "Cost", "Movement", "Firing"));
+        List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("ProfileSFC", "SelectSprite"));
 
         List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
 
@@ -65,26 +73,37 @@ public class ObjectCreationTabViewer implements ITabViewer {
         // TODO: take sfcs out of cc constructors
 
         CreationController<?> ccGlobal =
-                ccFactory.createGlobalsCreationController("Global Resources", myGlobalSFCs,
-                                                            myGame);
+                ccFactory.createCreationController(myControllerResources.getString("Globals"),
+                                                   myLang.getString("Globals"), myGlobalSFCs,
+                                                   myGame);
 
         CreationController<?> ccAttributes =
-                ccFactory.createAttributeCreationController("Character Attributes", myAttributeSFCs,
-                                                            myGame);
+                ccFactory.createCreationController(myControllerResources.getString("Attributes"),
+                                                   myLang.getString("Attributes"), myAttributeSFCs,
+                                                   myGame);
         CreationController<?> ccMissiles =
-                ccFactory.createSpriteCreationController("Missiles", myMissileSFCs,
-                                                         myGame);
+                ccFactory.createCreationController(myControllerResources.getString("Missiles"),
+                                                   myLang.getString("Missiles"), myMissileSFCs,
+                                                   myGame);
         CreationController<?> ccEnemies =
-                ccFactory.createSpriteCreationController("Enemies", myEnemySFCs,
-                                                         myGame);
+                ccFactory.createCreationController(myControllerResources.getString("Enemies"),
+                                                   myLang.getString("Enemies"), myEnemySFCs,
+                                                   myGame);
         CreationController<?> ccDefenders =
-                ccFactory.createSpriteCreationController("Defender", myDefenderSFCs,
-                                                         myGame);
+                ccFactory.createCreationController(myControllerResources.getString("Defenders"),
+                                                   myLang.getString("Defenders"), myDefenderSFCs,
+                                                   myGame);
         CreationController<?> ccGroups =
-                ccFactory.createGroupCC("Groups", myGroupSFCs, myGame);
-
+                ccFactory.createCreationController(myControllerResources.getString("Groups"),
+                                                   myLang.getString("Groups"), myGroupSFCs, myGame);
         CreationController<?> ccEvents =
-                ccFactory.createEventCreationController("Events", myEventSFCs, myGame);
+                ccFactory.createCreationController(myControllerResources.getString("Events"),
+                                                   myLang.getString("Events"), myEventSFCs, myGame);
+        CreationController<?> ccBadArgsTest =
+                ccFactory.createCreationController("gameauthoring.creation.forms.FormView",
+                                                   "Events", myEventSFCs, myGame);
+        CreationController<?> ccClassCastExceptionTest =
+                ccFactory.createCreationController("gameauthoring.creation.forms.FormView");
 
         myCCs = new ArrayList<CreationController<?>>();
 
