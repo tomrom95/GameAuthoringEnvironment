@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import engine.IGame;
 import engine.profile.IProfilable;
+import gameauthoring.creation.factories.DynamicSFCFactory;
 
 
 /**

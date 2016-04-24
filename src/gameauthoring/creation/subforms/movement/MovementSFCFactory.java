@@ -1,8 +1,10 @@
 package gameauthoring.creation.subforms.movement;
 
 import engine.IGame;
+
+import gameauthoring.creation.factories.DynamicSFCFactory;
 import engine.definitions.concrete.SpriteDefinition;
-import gameauthoring.creation.subforms.DynamicSFCFactory;
+
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 
 
