@@ -5,6 +5,7 @@ import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.SelectAttributeSFC;
 import gameauthoring.creation.subforms.UpgradeSFC;
+import gameauthoring.creation.subforms.costs.CostSubFormController;
 import gameauthoring.creation.subforms.fire.FiringSubFormController;
 import gameauthoring.creation.subforms.movement.MovementSubFormController;
 
@@ -31,6 +32,8 @@ public class SpriteSFCFactory extends SubFormControllerFactory<SpriteDefinition>
         }
         else if (type.equals("Upgrade")) {
             return new UpgradeSFC(getMyGame());
+        } else if (type.equals("Cost")) {
+            return new CostSubFormController(getMyGame());
         }
 
         System.out.println("null");
