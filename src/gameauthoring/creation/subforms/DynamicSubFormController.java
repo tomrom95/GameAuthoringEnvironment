@@ -36,7 +36,7 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
         setMyGame(game);
         setMySFCFactory(sfcFactory);
         setUpSubFormControllers(subFormIDs);
-        setMyCurrentSFC(0);
+        setMyCurrentSFC(0);//TODO: magic number
         setUpSubFormViews(mySubFormControllers);
     }
 

@@ -3,6 +3,9 @@ package gameauthoring.creation.entryviews;
 import java.io.File;
 import java.net.MalformedURLException;
 import gameauthoring.util.ErrorMessage;
+import gameauthoring.util.UIFactory;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import gameauthoring.util.BasicUIFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -43,10 +46,20 @@ public class ImageEntryView extends EntryView {
         super(label, data);
         this.myImageChoice.bindBidirectional(getData().getValueProperty());
         initFileChooser(new FileChooser());
+        initImageView(new SimpleDoubleProperty(width), new SimpleDoubleProperty(height));
+        init(label, cssClass);
+    }
+
+    public ImageEntryView (String label,
+                           IFormDataManager data,
+                           DoubleProperty width,
+                           DoubleProperty height,
+                           String cssClass) {
+        super(label, data);
+        this.myImageChoice.bindBidirectional(getData().getValueProperty());
+        initFileChooser(new FileChooser());
         initImageView(width, height);
         init(label, cssClass);
-
-
     }
 
     @Override
@@ -58,11 +71,8 @@ public class ImageEntryView extends EntryView {
         myContainer.getStyleClass().add(cssClass);
     }
 
-    private void initImageView (double width, double height) {
-        myImage = new ImageView(new Image(getClass().getClassLoader()
-                .getResourceAsStream(imagePath)));
-        myImage.setFitWidth(width);
-        myImage.setFitHeight(height);
+    private void initImageView (DoubleProperty width, DoubleProperty height) {
+        myImage = myUIFactory.makeImageView(imagePath, width, height);       
         myImageChoice.addListener(c -> updateImage());
     }
 
