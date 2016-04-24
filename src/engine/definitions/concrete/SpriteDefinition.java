@@ -43,8 +43,8 @@ public class SpriteDefinition implements IProfilable {
         // TODO Set a default from resource file. THis is just for view testing
         myMovementDefinition = new StaticMovementDefintion();
         myUpgrade = new NullUpgradeDefinition();
-        myModuleDefinitions = new ArrayList<ModuleDefinition>();
-        myAttributes = new ArrayList<AttributeDefinition>();
+        myModuleDefinitions = new ArrayList<>();
+        myAttributes = new ArrayList<>();
         myLocation = new Coordinate(0, 0);
         myProfile = new Profile();
         myCost = new NullCost();

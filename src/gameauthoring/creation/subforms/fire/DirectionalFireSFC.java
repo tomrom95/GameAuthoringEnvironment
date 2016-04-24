@@ -5,7 +5,6 @@ import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.DirectionalFirerDefinition;
 import engine.definitions.moduledef.FirerDefinition;
 import gameauthoring.creation.entryviews.IFormDataManager;
-import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.util.ErrorMessage;
 
@@ -18,21 +17,22 @@ import gameauthoring.util.ErrorMessage;
  *
  */
 
-public class DirectionalFireSFC implements ISubFormControllerSprite {
+public class DirectionalFireSFC extends RemovableSpriteSFC {
 
     private DirectionalFireSFV myView;
     private IFormDataManager myFormData;
     private IGame myGame;
-    private FiringSubFormController myFiringSFC;
     private double myDefaultAngle = 0;
     private double myDefaultWaitTime = 0;
     private DirectionalFirerDefinition myFireDef = new DirectionalFirerDefinition();
 
-    public DirectionalFireSFC (IGame game, FiringSubFormController firingSubFormController) {
-        myView = new DirectionalFireSFV();
+    public DirectionalFireSFC (IGame game, FiringSFCmult sfc) {
+        super(sfc);
+        myView =
+                new DirectionalFireSFV(game.getAuthorshipData().getMyCreatedMissiles(),
+                                       getRemoveMenu());
         myFormData = myView.getData();
         myGame = game;
-        myFiringSFC = firingSubFormController;
     }
 
     @Override
@@ -50,10 +50,9 @@ public class DirectionalFireSFC implements ISubFormControllerSprite {
         return myView;
     }
 
-    // TODO: Check whether input is empty string or not, it gives error for now
     @Override
     public void updateItem (SpriteDefinition item) {
-        //myFiringSFC.removeCurrentFirer(item); TODO: fix this issue
+        setMySpriteDefinition(item);
         try {
             Double angle =
                     Double.valueOf(myFormData.getValueProperty(myView.getMyAngleKey()).get()) *
@@ -63,8 +62,8 @@ public class DirectionalFireSFC implements ISubFormControllerSprite {
             myFireDef.setGame(myGame);
             myFireDef.setAngle(angle);
             myFireDef.setWaitTime(waitTime);
-            myFireDef.setProjectileDefinition(myFiringSFC.getMyMissile());    
-            if(!item.getModuleDefinitions().contains(myFireDef)){
+            myFireDef.setProjectileDefinition(myView.getMissileSelection());
+            if (!item.getModuleDefinitions().contains(myFireDef)) {
                 item.addModule(myFireDef);
             }
         }
@@ -74,7 +73,11 @@ public class DirectionalFireSFC implements ISubFormControllerSprite {
             err.showError();
         }
     }
-    
-    
+
+
+    @Override
+    public FirerDefinition getFirerDefinition () {
+        return myFireDef;
+    }
 
 }

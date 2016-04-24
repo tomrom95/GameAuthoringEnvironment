@@ -4,10 +4,14 @@ import engine.profile.IProfilable;
 import engine.profile.IProfile;
 import engine.rendering.GraphicFactory;
 import engine.rendering.ScaleFactory;
+import engine.rendering.UnscaledFactory;
+import gameauthoring.util.BasicUIFactory;
+import gameauthoring.util.UIFactory;
 import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -54,7 +58,9 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
     protected HBox getHBox (E profile) {
         HBox container = new HBox(10);
         container.setAlignment(Pos.CENTER_LEFT);
-        container.getChildren().add(createImageProfile(profile.getProfile()));
+      
+
+        container.getChildren().add(createImageProfile(profile.getProfile(),PIC_SIZE));
         container.getChildren().add(createTextProfile(profile.getProfile()));
         return container;
     }
@@ -74,8 +80,8 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
         return text;
     }
 
-    private Node createImageProfile (IProfile profile) {
-        GraphicFactory graphics = new ScaleFactory(PIC_SIZE, PIC_SIZE);
+    protected Node createImageProfile (IProfile profile, double picSize) {
+        GraphicFactory graphics = new ScaleFactory(picSize, picSize);
 
         Node node = profile.getImage().getVisualRepresentation(graphics);
         return node;
@@ -83,6 +89,18 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     protected E getProfilable () {
         return myProfile;
+    }
+    
+    /**
+     * Helper to get a the correct image from the sprite
+     * 
+     * @return
+     */
+    protected Image getSpriteImage () {
+        Node node =
+                getProfilable().getProfile().getImage()
+                        .getVisualRepresentation(new UnscaledFactory());
+        return new BasicUIFactory().getImageFromNode(node);
     }
 
 }

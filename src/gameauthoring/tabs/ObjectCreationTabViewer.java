@@ -63,8 +63,9 @@ public class ObjectCreationTabViewer implements ITabViewer {
         List<String> myEnemySFCs =
                 new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Movement"));
         List<String> myDefenderSFCs =
+
                 new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Upgrade",
-                                                    "Cost", "Movement", "Firing"));
+                                                    "Cost", "Movement", "FireMult"));
         List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("ProfileSFC", "SelectSprite"));
 
         List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
@@ -133,6 +134,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
     @Override
     public void init () {
         myTabPane = new TabPane();
+        myTabPane.getStyleClass().add("subTab");
         generateCreationViewList();
         generateAllSubTabs();
     }
@@ -146,7 +148,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private void generateAllSubTabs () {
         for (int i = 0; i < myCCs.size(); i++) {
-            Tab tab = myUIFactory.createTab(myCCs.get(i).getMyTitle(), false, myCVs.get(i).draw());
+            Tab tab = myUIFactory.createTabText(myCCs.get(i).getMyTitle(), false, myCVs.get(i).draw());
             myTabPane.getTabs().add(tab);
         }
     }

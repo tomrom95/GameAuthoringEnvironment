@@ -9,7 +9,6 @@ import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ProfileSFC;
 import gameauthoring.creation.subforms.events.EventsSubFormController;
-import gameauthoring.creation.subforms.fire.FiringSubFormController;
 import gameauthoring.creation.subforms.movement.MovementSubFormController;
 
 

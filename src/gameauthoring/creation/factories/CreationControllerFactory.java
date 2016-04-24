@@ -28,11 +28,11 @@ public class CreationControllerFactory {
         try {
             return (CreationController<?>) Reflection.createInstance(className, title, sfcs, game);
         } catch (ReflectionException e){
-            System.out.println("reflection exception" + e.getMessage());
+            System.out.println("reflection exception " + e.getMessage());
             //TODO handle exception
         } catch (ClassCastException e) {
             //TODO handle exception
-            System.out.println("class cast exception" + e.getMessage());
+            System.out.println("class cast exception " + e.getMessage());
 
         }
         System.out.println(className);
