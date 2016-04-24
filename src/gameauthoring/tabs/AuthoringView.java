@@ -29,8 +29,10 @@ import javafx.stage.Stage;
  * game as XML. It contains "game information", "create objects", and "build scene" tabs. These are
  * divided in order for the users to easily create their own game.
  * 
- * TODO: Resourcebundle for unprotected string values
+ * TODO: Support multiple languages
  * TODO: Create gamewriter class and save it as XML
+ * TODO: Implement go Home button
+ * TODO: Implement saveToXML method
  * 
  * @author Jin An
  *
@@ -118,12 +120,10 @@ public class AuthoringView implements IAuthoringView {
         return contents;
     }
 
-    // TODO: GoHome Button
     private void goHome () {
 
     }
 
-    // TODO: Create GameWriter Class and save it as XML
     private void saveToXML () {
 
         XStream xstream = new XStream(new DomDriver());
