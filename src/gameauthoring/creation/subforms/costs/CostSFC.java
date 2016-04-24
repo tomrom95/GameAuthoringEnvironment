@@ -11,7 +11,7 @@ import gameauthoring.creation.subforms.ISubFormView;
 public class CostSFC implements ISubFormControllerSprite{
     private static final int START_COST = 0;
     
-    private ICostSFV myView;
+    private CostSFV myView;
     private IGame myGame;
     
     public CostSFC (IGame game) {

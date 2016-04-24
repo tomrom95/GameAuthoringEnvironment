@@ -15,7 +15,7 @@ import javafx.scene.layout.HBox;
  * @author Tommy
  *
  */
-public class CostSFV extends SubFormView implements ICostSFV{
+public class CostSFV extends SubFormView{
     private static final int SPACING = 5;
     
     private String myAttributeChoicesKey = "Resource Required: ";
@@ -48,12 +48,10 @@ public class CostSFV extends SubFormView implements ICostSFV{
         myContainer.getChildren().add(myCost.draw());
     }
     
-    @Override
     public AttributeDefinition getSelectedAttribute () {
         return myAttributes.getSelected();
     }
     
-    @Override
     public String getCostKey () {
         return myCostKey;
     }
