@@ -34,8 +34,10 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     private IEntryView myWaitTime; 
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
     private UIFactory myUIFactory= new UIFactory();
+    private RemoveOption myRemove;
 
-    public DirectionalFireSFV (IDefinitionCollection<SpriteDefinition> missiles, EventHandler<ActionEvent> e) {
+    public DirectionalFireSFV (IDefinitionCollection<SpriteDefinition> missiles, RemoveOption remove) {
+        myRemove = remove;
         myAngle = new NumberEntryView(myAngleKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
         myWaitTime = new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
         myMissileSelectionView =
@@ -50,7 +52,8 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
 
     @Override
     protected void initView () {
-        myPane = myUIFactory.makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(), myWaitTime.draw(), myAngle.draw());
+        myPane = myUIFactory.makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(), myWaitTime.draw(), myAngle.draw(), myRemove.draw());
+        myPane.getStyleClass().add("firer");
     }
 
     @Override

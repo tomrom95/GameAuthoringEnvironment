@@ -25,7 +25,8 @@ public class TrackingFireSFC extends RemovableSpriteSFC {
     private TrackingFirerDefinition myFireDef = new TrackingFirerDefinition();
 
     public TrackingFireSFC (IGame game, FiringSFCmult sfc) {
-        myView = new TrackingFirerSFV(game.getAuthorshipData(), e -> sfc.removeSFC(this));
+        super(sfc);
+        myView = new TrackingFirerSFV(game.getAuthorshipData(), getRemoveMenu());
         myFormData = myView.getData();
         myGame = game;
     }

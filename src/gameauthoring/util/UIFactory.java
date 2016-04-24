@@ -89,18 +89,19 @@ public class UIFactory {
         return box;
     }
 
-    public VBox makeVBox (double spacing, Node ... content) {
+    public VBox makeVBox (double spacing, Pos alignment, Node ... content) {
         VBox box = new VBox(spacing);
         if (content != null) {
             box.getChildren().addAll(content);
         }
+        box.setAlignment(alignment);
         return box;
     }
 
     public Node makeImageDisplay (String imageURL, String label) {
         Label tag = new Label(label);
         ImageView graphic = makeImageView(imageURL, 50, 50);
-        VBox box = makeVBox(5, graphic, tag);
+        VBox box = makeVBox(5, Pos.CENTER, graphic, tag);
         box.setAlignment(Pos.CENTER);
         return box;
     }

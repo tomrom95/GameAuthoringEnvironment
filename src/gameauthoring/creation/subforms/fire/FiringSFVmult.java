@@ -37,8 +37,8 @@ public class FiringSFVmult extends SubFormView {
     @Override
     protected void initView () {
         myContainer = new GridPane();
-        myPaneContent = myUIFactory.makeVBox(10, (Node[]) null);
-        myPane = myUIFactory.makeScrollPane(myPaneContent, 500, 300); //TODO: magic number
+        myPaneContent = myUIFactory.makeVBox(10, Pos.CENTER, (Node[]) null);
+        myPane = myUIFactory.makeScrollPane(myPaneContent, 550, 300); //TODO: magic number
         myContainer.add(buttonHolder, 0, 0);
         myContainer.add(myPane, 0, 1);
         

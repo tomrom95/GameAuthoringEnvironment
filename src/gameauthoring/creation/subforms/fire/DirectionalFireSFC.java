@@ -27,9 +27,10 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
     private DirectionalFirerDefinition myFireDef = new DirectionalFirerDefinition();
 
     public DirectionalFireSFC (IGame game, FiringSFCmult sfc) {
+        super(sfc);
         myView =
                 new DirectionalFireSFV(game.getAuthorshipData().getMyCreatedMissiles(),
-                                       e -> sfc.removeSFC(this));
+                                       getRemoveMenu());
         myFormData = myView.getData();
         myGame = game;
     }

@@ -39,8 +39,10 @@ public class TrackingFirerSFV extends SubFormView implements ITrackingFireSFV {
     private SingleChoiceEntryView<SpriteGroup> myTargets;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
     private UIFactory myUIFactory= new UIFactory();
+    private RemoveOption myRemove;
 
-    public TrackingFirerSFV (AuthorshipData data, EventHandler<ActionEvent> e) {
+    public TrackingFirerSFV (AuthorshipData data, RemoveOption remove) {
+        myRemove = remove;
         myWaitTime =
                 new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
@@ -55,7 +57,8 @@ public class TrackingFirerSFV extends SubFormView implements ITrackingFireSFV {
     
     @Override
     protected void initView () {
-        myPane = myUIFactory.makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(), myWaitTime.draw(), myTargets.draw());       
+        myPane = myUIFactory.makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(), myWaitTime.draw(), myTargets.draw(), myRemove.draw());
+        myPane.getStyleClass().add("firer");
     }
 
     public SingleChoiceEntryView<SpriteGroup> getTargetsCoice () {

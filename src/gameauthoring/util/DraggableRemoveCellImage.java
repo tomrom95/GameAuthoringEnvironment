@@ -18,7 +18,7 @@ public class DraggableRemoveCellImage<T extends IProfilable> extends DraggableRe
     protected Node createSpriteCell (T profile) {
         Label label = new Label(profile.getProfile().getName().get());
         Node image = createImageProfile(profile.getProfile(), PIC_SIZE);
-        Node node = myUIFactory.makeVBox(10, image, label);
+        Node node = myUIFactory.makeVBox(10, Pos.CENTER, image, label);
         setActions(node);
         return node;
     }
