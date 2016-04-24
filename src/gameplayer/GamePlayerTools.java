@@ -20,8 +20,8 @@ import util.StringParser;
 
 public class GamePlayerTools {
 
-    private static final String TOOL_PATH = "defaults/ToolBar";
-    private static final String TOOL_PATH_SIZES = "defaults/ToolBarSizes";
+    private static final String TOOL_PATH = "defaults/tool_bar";
+    private static final String TOOL_PATH_SIZES = "defaults/tool_bar_sizes";
     ResourceBundle myToolButtons = ResourceBundle.getBundle(TOOL_PATH);
     ResourceBundle mySizes = ResourceBundle.getBundle(TOOL_PATH_SIZES);
     ToolBar myTools = new ToolBar();

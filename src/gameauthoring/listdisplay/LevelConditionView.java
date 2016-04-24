@@ -16,6 +16,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import util.BundleOperations;
 
+/**
+ * Winning, losing and other end conditions
+ * @author RyanStPierre
+ *
+ */
 
 public class LevelConditionView extends ConditionView {
 

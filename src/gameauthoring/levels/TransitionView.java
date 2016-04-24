@@ -20,6 +20,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import util.BundleOperations;
 
+/**
+ * Gives the author the ability to chose the levels in which to proceed after winning and losing
+ * @author RyanStPierre
+ *
+ */
 
 public class TransitionView implements Glyph {
 
