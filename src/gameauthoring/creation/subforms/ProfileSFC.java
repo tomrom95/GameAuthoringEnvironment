@@ -28,7 +28,7 @@ public class ProfileSFC<T extends IProfilable> implements ISubFormController<T> 
      * implementation of that in constructor, but still issues to work out (current Implementation)
      * 
      */
-    private ProfileSFV myView;
+    private IProfileSFV myView;
     private IFormDataManager myFormData;
     private String myDefaultName = "<Name>"; // TODO: move strings to resource file
     private String myDefaultDescription = "<Description>";

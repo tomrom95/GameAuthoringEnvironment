@@ -4,7 +4,7 @@ import engine.definitions.concrete.AttributeDefinition;
 
 public class LevelSpecificSFC implements ISubFormControllerAttribute{
     
-    private LevelSpecificSFV myView;
+    private ILevelSpecificSFV myView;
     
     public LevelSpecificSFC(){
         myView = new LevelSpecificSFV();

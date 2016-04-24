@@ -7,7 +7,7 @@ package gameauthoring.creation.subforms;
  * @author Joe Lilien
  *
  */
-public interface ILevelSpecificSFV {
+public interface ILevelSpecificSFV extends ISubFormView{
 
     boolean isLevelSpecific ();
 
