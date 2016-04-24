@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import engine.IAttribute;
 import engine.IGame;
-import engine.ISpriteGroup;
 import engine.Positionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
@@ -27,17 +26,16 @@ public class GoalBasedMover extends Mover {
 
     private INodeGraphPather myPather;
     private IGame myGame;
-    private ISpriteGroup myGoalGroup;
+    //private ISpriteGroup myGoalGroup;
     private IOrientationFinder myRotationStrategy;
 
     public GoalBasedMover (Positionable positionable,
                            IGame game,
-                           ISpriteGroup goalGroup,
                            boolean shouldRotate) {
         super(positionable);
         myPather = new AStarPather();
         myGame = game;
-        myGoalGroup = goalGroup;
+        //myGoalGroup = goalGroup;
         myRotationStrategy = getRotationStrategy(shouldRotate);
     }
 
@@ -124,7 +122,7 @@ public class GoalBasedMover extends Mover {
     private List<ISprite> goalSprites (List<ISprite> spriteList) {
         return spriteList
                 .stream()
-                .filter(sprite -> myGoalGroup.contains(sprite.getType()))
+                .filter(sprite -> sprite.getStatusModule().isGoal())
                 .collect(Collectors.toList());
     }
 

@@ -220,6 +220,13 @@ public class Sprite extends DefaultAffectable implements ISprite {
         return myUpgrade.isUgradeable();
     }
 
+    @Override
+    public IStatus getStatusModule () {
+        return myStatus;
+    }
+    
+
+
 
     
     
