@@ -5,7 +5,7 @@ import engine.rendering.AuthoringRenderer;
 import engine.rendering.UnscaledFactory;
 import engine.sprite.ISprite;
 import gameauthoring.util.Glyph;
-import gameauthoring.util.UIFactory;
+import gameauthoring.util.BasicUIFactory;
 import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.image.Image;
@@ -56,7 +56,7 @@ public class OnScreenSprite implements Draggable, Glyph {
     }
 
     private Image getSpriteImage (Node source) {
-        return (new UIFactory()).getImageFromNode(source);
+        return (new BasicUIFactory()).getImageFromNode(source);
     }
 
     @Override

@@ -115,7 +115,7 @@ public class WaveDragCell extends ListCell<WaveBlockDefinition> {
             setGraphic(null);
         }
         else {
-            setGraphic(myFactory.createGraphic(item));
+            setGraphic(myFactory.createGraphic(getListView().getItems(), item));
         }
     }
 
