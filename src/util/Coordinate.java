@@ -45,7 +45,7 @@ public class Coordinate {
     }
 
     public static double distance (Coordinate first, Coordinate second) {
-        return Math.sqrt(Math.pow(first.getX() - second.getX(), 2) -
+        return Math.sqrt(Math.pow(first.getX() - second.getX(), 2) +
                          Math.pow(first.getY() - second.getY(), 2));
     }
 

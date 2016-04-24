@@ -85,4 +85,26 @@ public class NodeGraph implements INodeGraph {
         }
     }
 
+    @Override
+    public IPathNode getClosestNode (Coordinate loc) {
+        return getNodes()
+                .stream()
+                .reduce((x, y)
+                         -> Coordinate.distance(x.getLocation(), loc) >=
+                         Coordinate.distance(y.getLocation(), loc)
+                         ? y : x)
+                .orElse(null);
+        
+        
+//        double closestDist = Double.MAX_VALUE;
+//        IPathNode closest = null;
+//        for (IPathNode node : getNodes()) {
+//            if (Coordinate.distance(node.getLocation(), loc) < closestDist) {
+//                closest = node;
+//                closestDist = Coordinate.distance(node.getLocation(), loc);
+//            }
+//        }
+//        return closest;
+    }
+
 }

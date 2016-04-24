@@ -36,6 +36,7 @@ public class TestPath {
         for(IPathNode node : testGraph.getNodes()){
             System.out.println(node.getLocation().getX() + " " + node.getLocation().getY());
         }
+        IPathNode close = testGraph.getClosestNode(new Coordinate(1,2));
         System.out.println("test");
 
 

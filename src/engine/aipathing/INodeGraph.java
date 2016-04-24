@@ -48,6 +48,12 @@ public interface INodeGraph {
      * @return List of all nodes that are within the specified distance of the input coordinate
      */
     List<IPathNode> getNodesNear (Coordinate loc, double maxDistance);
+    
+    /**
+     * @param loc
+     * @return The node in the graph closest to the Coordinate location
+     */
+    IPathNode getClosestNode(Coordinate loc);
 
     /**
      * The internal list of all coordinates which constitute the graph
