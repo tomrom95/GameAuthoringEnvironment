@@ -278,7 +278,7 @@ public class BasicUIFactory implements UIFactory {
     }
 
     @Override
-    public TextField createTextField (String holder, int width) {
+    public TextField createTextField (String holder, double width) {
         TextField field = this.createTextField(width);
         field.setPromptText(holder);
         return field;

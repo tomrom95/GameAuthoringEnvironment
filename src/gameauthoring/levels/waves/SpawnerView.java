@@ -1,5 +1,7 @@
 package gameauthoring.levels.waves;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
 import engine.IGame;
 import engine.ILevel;
 import engine.definitions.spawnerdef.SpawnerDefinition;
@@ -31,13 +33,26 @@ import util.Coordinate;
 import util.StringParser;
 
 
+/**
+ * Responsible for showing the spawner image, the gap time, and associated waves
+ * Draggable so the spawner can be dragged onto the level
+ * 
+ * @author RyanStPierre
+ * @author TommyRomano
+ */
 public class SpawnerView implements Glyph, Draggable {
+
     private static final String DRAG_STRING = "Spawner";
+    private static final String EMPTY = "";
+
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/spawner_view");
+    private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
 
     private HBox myPane = new HBox();
     private UIFactory myFactory = new BasicUIFactory();
     private ListView<WaveDefinition> myWaves;
-    private ObservableList<WaveDefinition> myBacking = FXCollections.observableArrayList();
+    private ObservableList<WaveDefinition> myBacking;
     private SpawnerDefinition mySpawner;
     private ILevel myLevel;
     private IGame myGame;
@@ -49,39 +64,54 @@ public class SpawnerView implements Glyph, Draggable {
         myLevel = level;
         myGame = game;
         myRenderer = renderer;
-        myPane.getStyleClass().add("spawner_border");
     }
 
     private void init () {
-        myWaves = new ListView<>(myBacking);
-        myWaves.setPlaceholder(new Label("Drag waves here to\n associate them\n with the spawner"));
-        myWaves.getStyleClass().add("list_green");
-        myDelay = myFactory.createTextField("Enter gap", 100);
-        myWaves.setMinWidth(150);
+        initWaves();
+        myDelay = myFactory.createTextField(myLang.getString("GapPrompt"),
+                                            Double.parseDouble(myBundle.getString("TextWidth")));
         myPane.getChildren().add(getLeft());
         myPane.getChildren().add(myWaves);
+        myPane.getStyleClass().add(myStyle.getString("Bordered"));
+    }
 
+    private void initWaves () {
+        myBacking = FXCollections.observableArrayList();
+        myWaves = new ListView<>(myBacking);
+        myWaves.setPlaceholder(new Label(myLang.getString("EmptyWavesPrompt")));
+        myWaves.getStyleClass().add(myStyle.getString("GreenList"));
+        setSize();
+    }
+
+    private void setSize () {
+        double width = Double.parseDouble(myBundle.getString("ListWidth"));
+        myWaves.setMinWidth(width);
+        myWaves.setMaxWidth(width);   
     }
 
     private Node getLeft () {
-        VBox vbox = new VBox(20);
+        VBox vbox = new VBox(Double.parseDouble(myBundle.getString("VSpacing")));
         vbox.setAlignment(Pos.TOP_CENTER);
         vbox.getChildren().add(getView());
         vbox.getChildren().add(myDelay);
-        vbox.getChildren().add(myFactory.createButton("Clear", e -> reset()));
+        vbox.getChildren().add(myFactory.createButton(myLang.getString("Clear"), e -> reset()));
         return vbox;
     }
 
     private Node getView () {
         ImageView view = new ImageView(getImage());
         view.setOnDragDetected(e -> setOnDragDetected(e, view));
-        view.setFitWidth(70);
-        view.setFitHeight(70);
+        view.setFitWidth(Double.parseDouble(myBundle.getString("ImageSize")));
+        view.setFitHeight(Double.parseDouble(myBundle.getString("ImageSize")));
         return view;
     }
 
     private Image getImage () {
-        return new Image("images/spawner.png");
+        return new Image(getImageURL());
+    }
+
+    private String getImageURL () {
+        return myBundle.getString("ImageURL");
     }
 
     @Override
@@ -97,6 +127,11 @@ public class SpawnerView implements Glyph, Draggable {
         return new StringParser().parseDouble(myDelay.getText());
     }
 
+    private void reset () {
+        myBacking.clear();
+        myDelay.clear();
+    }
+
     @Override
     public void setOnDragDetected (MouseEvent e, Node node) {
         createSpawner();
@@ -107,12 +142,15 @@ public class SpawnerView implements Glyph, Draggable {
         myRenderer.getPane().setOnDragDropped(event -> setOnDragDropped(event));
     }
 
+    /**
+     * Creates the spawner to be put in the level
+     */
     private void createSpawner () {
         try {
             SpawnerModuleDefinition spawnerDef =
                     new SpawnerModuleDefinition(myLevel, myGame, getDelay(), myWaves.getItems());
             mySpawner = new SpawnerDefinition(myGame);
-            mySpawner.setProfile(new Profile("", "", "images/transfer.png"));
+            mySpawner.setProfile(new Profile(DRAG_STRING, EMPTY, getImageURL()));
             mySpawner.setMySpawningModule(spawnerDef);
         }
         catch (NumberFormatException e) {
@@ -130,11 +168,6 @@ public class SpawnerView implements Glyph, Draggable {
         myLevel.add(mySpawner.create(), new Coordinate(e.getX(), e.getY()));
         myRenderer.render();
         reset();
-    }
-
-    private void reset () {
-        myBacking.clear();
-        myDelay.clear();      
     }
 
     @Override

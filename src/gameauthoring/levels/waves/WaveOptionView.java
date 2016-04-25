@@ -1,5 +1,7 @@
 package gameauthoring.levels.waves;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
 import engine.IGame;
 import engine.definitions.spawnerdef.WaveDefinition;
 import gameauthoring.creation.cellviews.NameCellView;
@@ -8,8 +10,17 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
+/**
+ * Displays the list view of waves the author has already created 
+ * @author RyanStPierre
+ *
+ */
 public class WaveOptionView implements Glyph{
 
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/spawner_view");
+    private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
+    
     private ListView<WaveDefinition> myWaveOptions;
     
     public WaveOptionView (IGame game) {
@@ -18,9 +29,9 @@ public class WaveOptionView implements Glyph{
     }
 
     private void init () {
-        myWaveOptions.setPrefWidth(255);
-        myWaveOptions.getStyleClass().add("list_green");
-        myWaveOptions.setPlaceholder(new Label("Go to the Waves Tab\n to add waves"));
+        myWaveOptions.setPrefWidth(Double.parseDouble(myBundle.getString("PrefWidth")));
+        myWaveOptions.getStyleClass().add(myStyle.getString("GreenList"));
+        myWaveOptions.setPlaceholder(new Label(myLang.getString("CreateWavePrompt")));
         myWaveOptions.setCellFactory(cell -> new NameCellView<WaveDefinition>());        
     }
 
