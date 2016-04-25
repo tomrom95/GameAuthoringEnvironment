@@ -12,12 +12,6 @@ import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
-/**
- * 
- * 
- * @author Joe Lilien
- *
- */
 public class UserMoverSubFormView extends SubFormView {
     
     private GridPane myPane = new GridPane();

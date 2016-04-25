@@ -5,15 +5,22 @@ import java.util.function.Consumer;
 import gameauthoring.creation.subforms.DynamicSubFormView;
 import gameauthoring.creation.subforms.ISubFormView;
 
+
+/**
+ * CLASS NOT USED UNDER CURRENT STRUCTURE
+ * TODO: remove this class
+ * 
+ * @author Owner
+ *
+ */
 public class EventsSubFormView extends DynamicSubFormView{ 
 
     public EventsSubFormView (List<ISubFormView> subforms,
                               Consumer<Integer> changeSelectionAction,
                               List<String> options) {
-        super(subforms, changeSelectionAction, options);
+        super(options);
     }
 
-    @Override
     protected String getSelectionKey () {
         return "Event or Effect: ";
     }
