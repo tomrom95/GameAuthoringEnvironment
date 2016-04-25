@@ -45,12 +45,10 @@ public class GridRenderer implements IRenderer {
         myNumBlockCol = (int) (myLevel.getBackgroundImageWidth() / BLOCK_SIZE);
     }
 
-    public boolean isGridVisible(){
-        return myPane.isGridLinesVisible();
-    }
     private void initializeGridLines () {
-        GridPane newPane = myOriginalPane;
-        newPane.getChildren().clear();
+        GridPane newPane = new GridPane();
+        newPane.setGridLinesVisible(true);
+        newPane.setMaxSize(myLevel.getBackgroundImageWidth(),myLevel.getBackgroundImageHeight());
         for (int i = 0; i < myNumBlockRow; i++) {
             for (int j = 0; j < myNumBlockCol; j++) {
                 Tile tile = new Tile(new Rectangle(BLOCK_SIZE, BLOCK_SIZE), i, j);
@@ -61,7 +59,6 @@ public class GridRenderer implements IRenderer {
             }
         }
         myPane = newPane;
-        myPane.setMaxSize(myLevel.getBackgroundImageWidth(),myLevel.getBackgroundImageHeight());
     }
 
     private void handleMouseClick (Tile tile) {
