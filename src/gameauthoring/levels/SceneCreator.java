@@ -29,6 +29,8 @@ import javafx.scene.shape.Rectangle;
  */
 public class SceneCreator implements Glyph {
     private final static String DEFAULT_BACKGROUND = "images/grass.jpg";
+    private final static int DEFAULT_WIDTH = 700;
+    private final static int DEFAULT_HEIGHT = 400;
 
     private IGame gameModel;
     private AuthoringRenderer myView;
@@ -53,11 +55,11 @@ public class SceneCreator implements Glyph {
 
     private void handlePlaceableButton (Pane pane) {
         myPlaceableEnable = !myPlaceableEnable;
-
         pane.getChildren().clear();
         if (myPlaceableEnable)
             pane.getChildren().addAll(myView.getPane(), myView.getGrids().getPane(),
                                       placeableButton(pane));
+        
         else {
             pane.getChildren().addAll(myView.getGrids().getPane(), myView.getPane(),
                                       placeableButton(pane));
@@ -122,9 +124,10 @@ public class SceneCreator implements Glyph {
         gridPane.setGridLinesVisible(true);
         root.getChildren().addAll(gridPane, levelPane, enablePlaceableButton);
         myController.setBackground(DEFAULT_BACKGROUND);
+        myLevel.setBackgroundImageSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         myView = new AuthoringRenderer(myLevel, levelPane, gridPane);
         myView.render();
-        levelPane.setOnMouseClicked(e -> handleMouseClick(e));
+        levelPane.setOnMouseClicked(e -> handleMouseClick(e,root));
         return root;
     }
 
@@ -133,10 +136,11 @@ public class SceneCreator implements Glyph {
      * 
      * @param e
      */
-    private void handleMouseClick (MouseEvent e) {
+    private void handleMouseClick (MouseEvent e, Pane pane) {
         if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
             myController.uploadNewBackground();
             myView.render();
+            myView.updateTile();
         }
     }
 }

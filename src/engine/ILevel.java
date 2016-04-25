@@ -29,8 +29,7 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
      *         winning and losing levels
      */
     INextLevelManager getNextLevelManager ();
-    
-    
+
     /**
      * 
      * @return The waveset manager object for this level
@@ -59,16 +58,18 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
 
     void setBackgroundImage (ImageGraphic graphic);
 
+    void setBackgroundImageSize(double width, double height);
     /**
      * Add a global resource to this level
      *
      * @param resource to be added
      */
     void addGlobalResource (IResource resource);
-    
+
     /**
      * Gets the list of sprite definitions that can be chosen by the user
      * to use on this level
+     * 
      * @return list of sprite definitions
      */
     ObservableList<SpriteDefinition> getAddableSprites ();
@@ -96,10 +97,12 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
      */
     List<? extends Drawable> getDrawables ();
 
+    double getBackgroundImageWidth();
+    
+    double getBackgroundImageHeight();
     /**
      * @param sprite to be removed
      */
-    
 
     void remove (ISprite sprite);
 

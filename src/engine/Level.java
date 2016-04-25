@@ -15,6 +15,7 @@ import engine.waves.WaveSet;
 import graphics.ImageGraphic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.BackgroundImage;
 import util.Coordinate;
 import util.TimeDuration;
 
@@ -30,6 +31,8 @@ public class Level implements ILevel {
 
     private IConditionManager myConditionManager;
     private ImageGraphic myBackgroundImage;
+    private double myBackgroundImageWidth;
+    private double myBackgroundImageHeight;
     private ISpriteManager mySpriteManager;
     private IAttributeManager myAttributeManager;
     private INextLevelManager myNextLevelManager;
@@ -192,4 +195,19 @@ public class Level implements ILevel {
         return myAddableSprites;
     }
 
+    @Override
+    public double getBackgroundImageWidth () {
+        return myBackgroundImageWidth;
+    }
+
+    @Override
+    public double getBackgroundImageHeight () {
+        return myBackgroundImageHeight;
+    }
+
+    @Override
+    public void setBackgroundImageSize (double width, double height) {
+        myBackgroundImageWidth = width;
+        myBackgroundImageHeight = height;        
+    }
 }

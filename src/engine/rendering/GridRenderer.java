@@ -19,17 +19,17 @@ import javafx.scene.shape.Rectangle;
  *
  */
 public class GridRenderer implements IRenderer {
-    //TODO: Confirm the numbers
     private GridPane myPane;
+    private GridPane myOriginalPane;
     private ILevel myLevel;
     private Tile[][] myBlocks;
     private int myNumBlockRow;
     private int myNumBlockCol;
     public final int BLOCK_SIZE = 25;
-    public final double TRANSLATE_RATIO = 1.8;
 
     public GridRenderer (ILevel level, GridPane pane) {
         myPane = pane;
+        myOriginalPane = pane;
         myLevel = level;
         init();
     }
@@ -41,24 +41,31 @@ public class GridRenderer implements IRenderer {
     }
 
     private void calculateTileArraySize () {
-        myNumBlockRow = (int)(myLevel.getBackgroundImage().getHeight().get() / BLOCK_SIZE / TRANSLATE_RATIO);
-        myNumBlockCol = (int)(myLevel.getBackgroundImage().getWidth().get() / BLOCK_SIZE / TRANSLATE_RATIO);
+        myNumBlockRow = (int) (myLevel.getBackgroundImageHeight() / BLOCK_SIZE);
+        myNumBlockCol = (int) (myLevel.getBackgroundImageWidth() / BLOCK_SIZE);
     }
 
+    public boolean isGridVisible(){
+        return myPane.isGridLinesVisible();
+    }
     private void initializeGridLines () {
+        GridPane newPane = myOriginalPane;
+        newPane.getChildren().clear();
         for (int i = 0; i < myNumBlockRow; i++) {
             for (int j = 0; j < myNumBlockCol; j++) {
-                Tile tile = new Tile(new Rectangle(BLOCK_SIZE,BLOCK_SIZE),i,j);
+                Tile tile = new Tile(new Rectangle(BLOCK_SIZE, BLOCK_SIZE), i, j);
                 tile.getTile().setFill(Color.TRANSPARENT);
                 tile.getTile().setOnMouseClicked(e -> handleMouseClick(tile));
                 myBlocks[i][j] = tile;
-                myPane.add(tile.getTile(), j, i);
+                newPane.add(tile.getTile(), j, i);
             }
         }
+        myPane = newPane;
+        myPane.setMaxSize(myLevel.getBackgroundImageWidth(),myLevel.getBackgroundImageHeight());
     }
 
     private void handleMouseClick (Tile tile) {
-        if(checkClickable(tile)){
+        if (checkClickable(tile)) {
             if (tile.getTile().getFill() == Color.TRANSPARENT) {
                 tile.getTile().setFill(Color.RED);
             }
@@ -68,15 +75,18 @@ public class GridRenderer implements IRenderer {
         }
     }
 
-    private boolean checkClickable(Tile tile){
-        for(ISprite sprite: myLevel.getSprites()){
-            Bounds rectBounds = new Bounds(BLOCK_SIZE*tile.getColPosition(),BLOCK_SIZE*tile.getRowPosition(),(double)BLOCK_SIZE,(double)BLOCK_SIZE);
-            if(sprite.getBounds().collide(rectBounds))
+    private boolean checkClickable (Tile tile) {
+        for (ISprite sprite : myLevel.getSprites()) {
+            Bounds rectBounds =
+                    new Bounds(BLOCK_SIZE * tile.getColPosition(), BLOCK_SIZE *
+                                                                   tile.getRowPosition(),
+                               (double) BLOCK_SIZE, (double) BLOCK_SIZE);
+            if (sprite.getBounds().collide(rectBounds))
                 return false;
         }
         return true;
     }
-    
+
     public Pane getPane () {
         return myPane;
     }
@@ -84,16 +94,17 @@ public class GridRenderer implements IRenderer {
     public Tile[][] getBlocks () {
         return myBlocks;
     }
-    
-    public int getNumBlockRow(){
+
+    public int getNumBlockRow () {
         return myNumBlockRow;
     }
-    
-    public int getNumBlockCol(){
+
+    public int getNumBlockCol () {
         return myNumBlockCol;
     }
 
     @Override
     public void render () {
+        init();
     }
 }
