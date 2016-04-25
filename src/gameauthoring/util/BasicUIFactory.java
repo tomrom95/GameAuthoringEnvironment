@@ -150,6 +150,11 @@ public class BasicUIFactory implements UIFactory {
         return box;
     }
     
+    public VBox makeVBox (double spacing, Pos alignment, double width, double height, Node ... content) {
+        VBox box = makeVBox(spacing, alignment, content);
+        box.setMinSize(width, height);
+        return box;
+    }
 
     public VBox makeVBox (double spacing, Pos alignment, Node ... content) {
         VBox box = new VBox(spacing);

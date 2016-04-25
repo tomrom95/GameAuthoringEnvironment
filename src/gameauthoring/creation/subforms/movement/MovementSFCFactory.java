@@ -33,7 +33,7 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
 
         }
         else if (type.equals("CONSTANT")) {
-            return new ConstantMoverSubFormController();
+            return new ConstantMoverSFC();
 
         }
         else if (type.equals("USERMOVER")) {
@@ -41,7 +41,7 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
 
         }
         else if (type.equals("TRACKING")) {
-            return new TrackingMoverSubFormController(getMyGame());
+            return new TrackingMoverSFC(getMyGame());
 
         }
 

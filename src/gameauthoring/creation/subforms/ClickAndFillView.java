@@ -60,8 +60,8 @@ public abstract class ClickAndFillView extends SubFormView{
     @Override
     protected void initView () {
         myContainer = new GridPane();
-        myPaneContent = myUIFactory.makeVBox(10, Pos.CENTER, (Node[]) null);
-        myPane = myUIFactory.makeScrollPane(myPaneContent, 550, 300); //TODO: magic number
+        myPaneContent = myUIFactory.makeVBox(10, Pos.CENTER, 525, 300, (Node[]) null);
+        myPane = myUIFactory.makeScrollPane(myPaneContent, 525, 300); //TODO: magic number
         myContainer.add(buttonHolder, 0, 0);
         myContainer.add(myPane, 0, 1);        
     }
