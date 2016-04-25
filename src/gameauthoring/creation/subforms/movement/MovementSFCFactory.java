@@ -24,7 +24,7 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
 
     @Override
     public ISubFormControllerSprite createSubFormController (String type) {
-        if (type.equals("SmartAI")) {
+        if (type.equals("SMARTAI")) {
 
             return new SmartAIMovementSubFormController();
         }

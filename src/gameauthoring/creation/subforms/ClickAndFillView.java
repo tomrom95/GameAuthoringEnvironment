@@ -19,18 +19,29 @@ public abstract class ClickAndFillView extends SubFormView{
     private VBox myPaneContent;
     private HBox buttonHolder;
     private List<Button> myButtons = new ArrayList<>();
+    private ResourceBundle myProperties =
+            ResourceBundle.getBundle("defaults/click_and_fill_images");
     
-    public List<Button> getMyButtons () {
-        return myButtons;
-    }
-
-    public void setMyButtons (List<Button> myButtons) {
-        this.myButtons = myButtons;
+    public ResourceBundle getMyProperties () {
+        return myProperties;
     }
 
     public ClickAndFillView(List<String> options){
         initButtonHolder(options);
     }
+    
+    public List<Button> getMyButtons () {
+        return myButtons;
+    }
+
+    public BasicUIFactory getMyUIFactory () {
+        return myUIFactory;
+    }
+
+    public void setMyButtons (List<Button> myButtons) {
+        this.myButtons = myButtons;
+    }
+    
     
     private void initButtonHolder(List<String> options){
         buttonHolder = myUIFactory.makeHBox(20, Pos.CENTER, (Node[]) null);

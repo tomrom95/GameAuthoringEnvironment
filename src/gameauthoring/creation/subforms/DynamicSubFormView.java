@@ -2,10 +2,6 @@ package gameauthoring.creation.subforms;
 
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Consumer;
-import engine.profile.ProfileDisplay;
-import gameauthoring.creation.entryviews.IEntryView;
-import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
@@ -29,11 +25,7 @@ import javafx.scene.layout.HBox;
  */
 public class DynamicSubFormView extends ClickAndFillView {
 
-
-    private ResourceBundle myProperties =
-            ResourceBundle.getBundle("/defaults/click_and_fill_images");
-    private BasicUIFactory myUIFactory = new BasicUIFactory();
-
+    
     /**
      * Constructor
      * 
@@ -58,7 +50,7 @@ public class DynamicSubFormView extends ClickAndFillView {
     @Override
     protected void initAndAddButtons (HBox buttonHolder, List<String> options) {
         for(String s : options){
-            Button button = myUIFactory.createImageButton(myUIFactory.makeImageDisplay(myProperties.getString(s), s));
+            Button button = getMyUIFactory().createImageButton(getMyUIFactory().makeImageDisplay(getMyProperties().getString(s), s));
             getMyButtons().add(button);
         }
         buttonHolder.getChildren().addAll(getMyButtons());
