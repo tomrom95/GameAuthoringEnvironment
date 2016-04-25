@@ -1,6 +1,7 @@
 package gameauthoring.creation.entryviews;
 
 import gameauthoring.util.Glyph;
+import javafx.scene.control.Label;
 
 
 /**
@@ -14,6 +15,6 @@ public interface IEntryView extends Glyph {
 
     FormData getData ();
 
-    String getLabel ();
+    Label getLabel ();
 
 }

@@ -14,8 +14,6 @@ import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import engine.sprite.SpriteType;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
 
@@ -64,6 +62,7 @@ public class TrackingFirer extends Firer {
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
                                               mySprite.getLocation().getY()));
+
             bullet.getMovementStrategy().setOrientation(getTracker().calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
             getGame().bufferedAdd(bullet);
             getFiredSprites().add(bullet);
@@ -88,17 +87,15 @@ public class TrackingFirer extends Firer {
     public void registerKeyEvent (KeyIOEvent keyEvent) {
     }
 
-
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
     }
 
-	@Override
-	protected List<IAttribute> getSpecificAttributes() {
-		List<IAttribute> toAdd = new ArrayList<>();
-		toAdd.add(myWaitTime);
-		return toAdd;
-	}
+    @Override
+    protected List<IAttribute> getSpecificAttributes () {
+        List<IAttribute> toAdd = new ArrayList<>();
+        toAdd.add(myWaitTime);
+        return toAdd;
+    }
 
-   
 }

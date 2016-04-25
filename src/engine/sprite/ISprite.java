@@ -7,6 +7,7 @@ import engine.Drawable;
 import engine.IAttribute;
 import engine.Positionable;
 import engine.IResource;
+import engine.IStatus;
 import engine.Updateable;
 import engine.modules.IGraphicModule;
 import engine.modules.IModule;
@@ -59,5 +60,7 @@ public interface ISprite extends Drawable, Updateable, Affectable, Positionable 
     void setObstruction (boolean value);
 
     void setPath (List<Coordinate> path);
+    
+    IStatus getStatusModule();
 
 }

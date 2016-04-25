@@ -37,7 +37,7 @@ public class AuthorshipData {
     private DefinitionCollection<AttributeDefinition> myCreatedAttributes;
     private DefinitionCollection<SpriteGroup> myCreatedGroups;
     private DefinitionCollection<EventPackageDefinition> myCreatedEventPackages;
-
+    
     public AuthorshipData () {
         myCreatedSprites = FXCollections.observableArrayList();
         myGroupSprites = FXCollections.observableArrayList();
@@ -58,7 +58,7 @@ public class AuthorshipData {
                                                                         .observableArrayList());
         myCreatedEventPackages = new DefinitionCollection<EventPackageDefinition>("Created Groups",
                                                                                   FXCollections
-                                                                                          .observableArrayList());
+                                                                              .observableArrayList());
     }
 
     /**

@@ -31,7 +31,7 @@ import javafx.scene.layout.HBox;
  * @author Joe Lilien
  *
  */
-public class TrackingFirerSFV extends SubFormView implements ITrackingFireSFV {
+public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
     private HBox myPane;
     private String myWaitTimeKey = "Wait Time: ";
@@ -42,7 +42,7 @@ public class TrackingFirerSFV extends SubFormView implements ITrackingFireSFV {
     private BasicUIFactory myUIFactory = new BasicUIFactory();
     private RemoveOption myRemove;
 
-    public TrackingFirerSFV (AuthorshipData data, RemoveOption remove) {
+    public TrackingFireSFV (AuthorshipData data, RemoveOption remove) {
         myRemove = remove;
         myWaitTime =
                 new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30,
@@ -62,8 +62,9 @@ public class TrackingFirerSFV extends SubFormView implements ITrackingFireSFV {
         myPane.getStyleClass().add("firer");
     }
 
-    public SingleChoiceEntryView<SpriteGroup> getTargetsCoice () {
-        return myTargets;
+    @Override
+    public SpriteGroup getTargetsCoice () {
+        return myTargets.getSelected();
     }
 
     @Override
@@ -75,11 +76,6 @@ public class TrackingFirerSFV extends SubFormView implements ITrackingFireSFV {
     @Override
     public String getWaitTimeKey () {
         return myWaitTimeKey;
-    }
-
-    @Override
-    public String getTargetsKey () {
-        return myTargetsKey;
     }
 
     @Override

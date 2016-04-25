@@ -1,6 +1,8 @@
 package gameauthoring.creation.subforms.fire;
 
 import engine.definitions.concrete.SpriteDefinition;
+import gameauthoring.creation.subforms.ISubFormView;
+
 
 /**
  * Allows users to select properties of a directional firing module
@@ -8,7 +10,7 @@ import engine.definitions.concrete.SpriteDefinition;
  * @author Joe Lilien
  *
  */
-public interface IDirectionalFireSFV {
+public interface IDirectionalFireSFV extends ISubFormView {
 
     String getMyProjectileKey ();
 

@@ -9,7 +9,13 @@ import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 
-public class CostSubFormView extends SubFormView {
+/**
+ * Implementation of ICostSFV with HBox arrangement and combobox layout
+ * 
+ * @author Tommy
+ *
+ */
+public class CostSFV extends SubFormView{
     private static final int SPACING = 5;
     
     private String myAttributeChoicesKey = "Resource Required: ";
@@ -18,7 +24,7 @@ public class CostSubFormView extends SubFormView {
     private NumberEntryView myCost;
     private HBox myContainer;
     
-    public CostSubFormView (AuthorshipData data) {
+    public CostSFV (AuthorshipData data) {
         myAttributes =
                 new SingleChoiceEntryView<AttributeDefinition>(myAttributeChoicesKey,
                                                                data.getMyCreatedGlobals()
