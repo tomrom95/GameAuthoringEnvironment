@@ -26,8 +26,7 @@ public class NumberTextField extends TextField {
     }
 
     private boolean validate (String text) {
-        return text.matches("[0-9]*");
+        return text.matches("-?((\\d*)|(\\d+\\.\\d*))");
         // TODO:  tried this, some issues 
-        // ^\\d+\\.?\\d*$
     }
 }

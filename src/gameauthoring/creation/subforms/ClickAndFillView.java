@@ -48,8 +48,15 @@ public abstract class ClickAndFillView extends SubFormView{
         initAndAddButtons(buttonHolder,options);
     }    
     
-    protected abstract void initAndAddButtons (HBox buttonHolder, List<String> options);
-
+    
+    private void initAndAddButtons (HBox buttonHolder, List<String> options) {
+        for(String s : options){
+            Button button = getMyUIFactory().createImageButton(getMyUIFactory().makeImageDisplay(getMyProperties().getString(s), s));
+            getMyButtons().add(button);
+        }
+        buttonHolder.getChildren().addAll(getMyButtons());
+    }
+    
     @Override
     protected void initView () {
         myContainer = new GridPane();
