@@ -20,10 +20,10 @@ public class UserMoverSubFormController implements ISubFormControllerSprite {
     private UserMoverSubFormView myView;
     private IFormDataManager myFormData;
     private double myDefaultSpeed = 0;
-    private String myDefaultUpKey = "w";
-    private String myDefaultDownKey = "s";
-    private String myDefaultRightKey = "f";
-    private String myDefaultLeftKey = "a";
+    private String myDefaultUpKey = "W";
+    private String myDefaultDownKey = "S";
+    private String myDefaultLeftKey = "A";
+    private String myDefaultRightKey = "D";
 
     public UserMoverSubFormController () {
         this.myView = new UserMoverSubFormView();
