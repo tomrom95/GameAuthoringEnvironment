@@ -61,7 +61,6 @@ public class GameConditionView extends ConditionView {
         getEditor().setPrefWidth(getTopWidth());
         getEditor().setPrefHeight(getTopHeight());
         getEditor().getChildren().add(getPlus());
-
         return getEditor();
     }
 

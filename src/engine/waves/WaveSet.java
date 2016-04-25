@@ -18,6 +18,9 @@ public class WaveSet implements IWaveSet {
 
     @Override
     public void updateCurrentWave () {
+        if(myWaves.isEmpty()) {
+            return;
+        }
         currentWave = myWaves.get(0);
         myWaves.remove(0);
     }
