@@ -36,13 +36,8 @@ public class TrackingMoverSFC implements ISubFormControllerSprite {
         Double mySpeedDouble =
                 Double.valueOf(myFormData.getValueProperty(myView.getSpeedKey()).get());
         newTrackingMoverDef.setSpeed(mySpeedDouble);
-        String[] targetStrings =
-                myFormData.getValueProperty(myView.getTargetsKey()).get().split(", ");
-        List<SpriteType> targets = new ArrayList<SpriteType>();
-        for (String s : targetStrings) {
-            targets.add(new SpriteType(s));
-        }
-        newTrackingMoverDef.setTargets(targets);
+        newTrackingMoverDef.setTargets(myView.getTargetsCoice().getSelected().getSpriteTypes());
+    
 
         item.setMovementDefinition(newTrackingMoverDef);
     }

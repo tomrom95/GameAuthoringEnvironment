@@ -144,7 +144,7 @@ public class AuthoringView implements IAuthoringView {
     }
 
     private void saveToXML () {
-
+        
         XStream xstream = new XStream(new DomDriver());
         FXConverters.configure(xstream);
         xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);

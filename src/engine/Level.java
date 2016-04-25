@@ -15,7 +15,9 @@ import engine.waves.WaveSet;
 import graphics.ImageGraphic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.BackgroundImage;
 import util.Coordinate;
+import util.Tile;
 import util.TimeDuration;
 
 
@@ -30,10 +32,12 @@ public class Level implements ILevel {
 
     private IConditionManager myConditionManager;
     private ImageGraphic myBackgroundImage;
+    private double myBackgroundImageWidth;
+    private double myBackgroundImageHeight;
     private ISpriteManager mySpriteManager;
     private IAttributeManager myAttributeManager;
     private INextLevelManager myNextLevelManager;
-    private IPlaceableManager myPlaceableManager;
+    private PlaceableTileManager myPlaceableTileManager;
     private IWaveSetManager myWaveSetManager;
     private IProfile myProfile;
     private ObservableList<SpriteDefinition> myAddableSprites;
@@ -49,7 +53,7 @@ public class Level implements ILevel {
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
         myWaveSetManager = new WaveSetManager();
-        myPlaceableManager = new PlaceableManager(this,600,1250);
+        myPlaceableTileManager = new PlaceableTileManager(this);
         myAddableSprites = FXCollections.observableArrayList();
     }
 
@@ -60,7 +64,7 @@ public class Level implements ILevel {
         myConditionManager.update(duration);
         myAttributeManager.update(duration);
         myNextLevelManager.update(duration);
-        
+
     }
 
     @Override
@@ -163,13 +167,6 @@ public class Level implements ILevel {
         return myNextLevelManager;
     }
 
-    @Override
-    public IPlaceableManager getPlaceableManager () {
-        return myPlaceableManager;
-    }
-    
-    
-
     public IProfile getProfile () {
         return myProfile;
     }
@@ -185,11 +182,34 @@ public class Level implements ILevel {
         return myWaveSetManager;
     }
 
-	
-
     @Override
     public ObservableList<SpriteDefinition> getAddableSprites () {
         return myAddableSprites;
     }
 
+    @Override
+    public double getBackgroundImageWidth () {
+        return myBackgroundImageWidth;
+    }
+
+    @Override
+    public double getBackgroundImageHeight () {
+        return myBackgroundImageHeight;
+    }
+
+    @Override
+    public void setBackgroundImageSize (double width, double height) {
+        myBackgroundImageWidth = width;
+        myBackgroundImageHeight = height;
+    }
+
+    @Override
+    public IPlaceableTileManager getPlaceableTileManager () {
+        return myPlaceableTileManager;
+    }
+
+    @Override
+    public void initializePlaceableTiles (int row, int column) {
+        myPlaceableTileManager.set(row, column);
+    }
 }

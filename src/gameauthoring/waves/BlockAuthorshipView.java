@@ -88,8 +88,7 @@ public class BlockAuthorshipView implements Glyph {
         VBox vbox = new VBox(Double.parseDouble(mySize.getString("Cushion")));
         vbox.getChildren().addAll(myFactory.createSubTitleLabel(string), node);
         vbox.setAlignment(Pos.TOP_RIGHT);
-        return vbox;
-        
+        return vbox;        
     }
 
     @Override

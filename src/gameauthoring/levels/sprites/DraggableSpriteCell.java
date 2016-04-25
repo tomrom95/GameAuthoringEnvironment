@@ -49,7 +49,7 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
         db.setContent(this.createClipboard(DRAG_STRING));
 
         db.setDragView(getSpriteImage());
-       
+
         myTarget.getPane().setOnDragOver(event -> setOnDragOver(event));
         myTarget.getPane().setOnDragDropped(event -> setOnDragDropped(event));
     }
@@ -58,7 +58,6 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
         return myController;
     }
 
-
     @Override
     public void setOnDragOver (DragEvent e) {
         e.acceptTransferModes(TransferMode.COPY);
@@ -66,7 +65,8 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
 
     @Override
     public void setOnDragDropped (DragEvent e) {
-        if (checkPlaceable(e)) {
+        // if (checkPlaceable(e)) {
+        if (checkPlaceableTile(e)) {
             Dragboard db = e.getDragboard();
             if (db.hasString()) {
                 addSprite(e.getX(), e.getY());
@@ -75,8 +75,20 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
     }
 
     protected void addSprite (double x, double y) {
-        myController.addSprite(x, x, getProfilable());
+        myController.addSprite(x, y, getProfilable());
         myTarget.render();
+    }
+
+    private boolean checkPlaceableTile (DragEvent e) {
+        double halfHeight = (0.5) * (getProfilable().getProfile().getImageHeight().doubleValue());
+        double halfWidth = (0.5) * (getProfilable().getProfile().getImageWidth().doubleValue());
+        for (int r = (int) ((e.getY() - halfHeight) / 25); r < (int) ((e.getY() + halfHeight) / 25); r++) {
+            for (int c = (int) ((e.getX() - halfWidth) / 25); c < (int) ((e.getX() + halfWidth) / 25); c++) {
+                if (myController.getLevel().getPlaceableTileManager().getPlaceableMap().getBitMap()[r][c])
+                    return false;
+            }
+        }
+        return true;
     }
 
     // TODO: TEST THIS

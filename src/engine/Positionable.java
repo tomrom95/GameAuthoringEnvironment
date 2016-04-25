@@ -28,4 +28,14 @@ public interface Positionable {
      * Should remove the Sprite
      */
     void remove ();
+
+    /**
+     * @return the angle by which the renderer should rotate the displayed node
+     */
+    double getOrientation ();
+
+    /**
+     * @return the angle by which the renderer should rotate the displayed node
+     */
+    void setOrientation (double angle);
 }

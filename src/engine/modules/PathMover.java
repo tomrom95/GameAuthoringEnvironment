@@ -57,7 +57,7 @@ public class PathMover extends Mover {
      * @return boolean flagging whether the sprite will overshoot its coordinate target
      */
     private boolean overshootNext (TimeDuration duration) {
-        double distancePossible = duration.getMillis() * mySpeed.getValueProperty().get();
+        double distancePossible = duration.getMillis() * getSpeed();
         double distance = Math.sqrt(xDifference() * xDifference() + yDifference() * yDifference());
         return distancePossible > distance;
     }
@@ -85,7 +85,7 @@ public class PathMover extends Mover {
         double xDiff = xDifference();
         double yDiff = yDifference();
         double constant =
-                Math.sqrt(square(mySpeed.getValueProperty().get()) /
+                Math.sqrt(square(getSpeed()) /
                           (square(xDiff) + square(yDiff)));
         if (!isZero(constant)) {
             setXVelocity(xDiff * constant);

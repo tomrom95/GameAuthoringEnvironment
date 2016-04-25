@@ -28,20 +28,25 @@ import util.BundleOperations;
 
 public class TransitionView implements Glyph {
 
-    private static final double CUSHION = 10;
-    private UIFactory myFactory = new BasicUIFactory();
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/transition_options");
-    private VBox myPane = new VBox(CUSHION);
+    private ResourceBundle mySize = ResourceBundle.getBundle("defaults/level_cond");
+    
+    private UIFactory myFactory = new BasicUIFactory();  
+    private VBox myPane = new VBox();
     private ComboBox<ILevel> myWinningLevel;
     private ComboBox<ILevel> myLosingLevel;
     private List<Node> myCombos;
 
     public TransitionView (IGame game, ILevel level) {
-        myPane.setMinWidth(180);
-        myPane.setAlignment(Pos.TOP_CENTER);
-        myPane.getStyleClass().add("transition_pane");
+        stylePane();
         init(game.getLevelManager().getLevels());
         new TransitionController(this, level.getNextLevelManager());
+    }
+
+    private void stylePane () {
+        myPane.setMinWidth(Double.parseDouble(mySize.getString("PaneWidth")));
+        myPane.setAlignment(Pos.TOP_CENTER);
+        myPane.getStyleClass().add("transition_pane");
     }
 
     private void init (ObservableList<ILevel> levels) {
@@ -66,7 +71,7 @@ public class TransitionView implements Glyph {
     }
 
     private Node createPacket (String title, Node node) {
-        VBox vbox = new VBox(CUSHION/2);
+        VBox vbox = new VBox(Double.parseDouble(mySize.getString("Padding")));
         vbox.getChildren().add(myFactory.createSubTitleLabel(title));
         vbox.getChildren().add(node);
         return vbox;
