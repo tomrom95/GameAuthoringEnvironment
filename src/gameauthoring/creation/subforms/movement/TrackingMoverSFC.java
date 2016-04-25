@@ -11,16 +11,16 @@ import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 
 
-public class TrackingMoverSubFormController implements ISubFormControllerSprite {
+public class TrackingMoverSFC implements ISubFormControllerSprite {
 
-    private TrackingMoverSubFormView myView;
+    private TrackingMoverSFV myView;
     private IFormDataManager myFormData;
     private IGame myGame;
     private double myDefaultSpeed = 0;
 
-    public TrackingMoverSubFormController (IGame game) {
+    public TrackingMoverSFC (IGame game) {
         this.myGame = game;
-        this.myView = new TrackingMoverSubFormView(game.getAuthorshipData().getMyCreatedGroups());
+        this.myView = new TrackingMoverSFV(game.getAuthorshipData().getMyCreatedGroups());
         this.myFormData = myView.getData();
     }
 

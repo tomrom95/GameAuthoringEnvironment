@@ -122,6 +122,7 @@
     -fx-base: lightgray;
     -fx-background: aliceblue;
 }
+
   
 .authoringTabs > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {  
     -fx-alignment: CENTER;  
@@ -219,6 +220,15 @@
     -fx-background-color: #3a3a3a;
 }
 
+
+.staticLabel {
+	-fx-text-fill: red;
+    -fx-font-weight: bold;
+    -fx-font-size: 35;
+    -fx-font-family: "Futura";
+}
+
+
 .entryViewLabel
 {
     -fx-text-fill: grey;
@@ -242,6 +252,15 @@
 	-fx-background-radius: 5.0; 
 	-fx-background-color: lightgray;
 	-fx-border-color: lightskyblue;
+    -fx-border-width: 10px;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+}
+
+.mover {
+	-fx-background-radius: 5.0; 
+	-fx-background-color: lightgray;
+	-fx-border-color: springgreen;
     -fx-border-width: 10px;
     -fx-padding: 10;
     -fx-spacing: 8;
