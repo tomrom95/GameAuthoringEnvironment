@@ -70,7 +70,6 @@ public class UserMover extends Mover {
     protected void move (TimeDuration duration) {
         double xChange = distance(getXVel().getValueProperty().get(), durationToDouble(duration));
         double yChange = distance(getYVel().getValueProperty().get(), durationToDouble(duration));
-        System.out.println(xChange);
         move(getNextCoordinate(xChange, yChange));
     }
 
