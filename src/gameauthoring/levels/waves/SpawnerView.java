@@ -58,6 +58,7 @@ public class SpawnerView implements Glyph, Draggable {
     
     private Node getView () {
         ImageView view = new ImageView(getImage());
+        view.setOnDragDetected(e -> setOnDragDetected(e, view));
         return view;
     }
     
@@ -98,8 +99,7 @@ public class SpawnerView implements Glyph, Draggable {
 
     @Override
     public void setOnDragOver (DragEvent e) {
-        // TODO Auto-generated method stub
-        
+        e.acceptTransferModes(TransferMode.COPY);
     }
 
     @Override
