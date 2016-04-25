@@ -63,7 +63,8 @@ public class SceneCreator implements Glyph {
         else {
             pane.getChildren().addAll(myView.getGrids().getPane(), myView.getPane(),
                                       placeableButton(pane));
-            updatePlaceableArea();
+//            updatePlaceableArea();
+            updatePlaceableTile();
         }
     }
 
@@ -78,6 +79,16 @@ public class SceneCreator implements Glyph {
         for (int row = 0; row < myView.getGrids().getNumBlockRow(); row++) {
             for (int col = 0; col < myView.getGrids().getNumBlockCol(); col++) {
                 updateCorrespondingBlock(row, col, blocks[row][col].getTile().getFill());
+            }
+        }
+    }
+    
+    private void updatePlaceableTile(){
+        Tile[][] blocks = myView.getGrids().getBlocks();
+        myLevel.initializePlaceableTiles(myView.getGrids().getNumBlockRow(),myView.getGrids().getNumBlockCol());
+        for (int row = 0; row < myView.getGrids().getNumBlockRow(); row++) {
+            for (int col = 0; col < myView.getGrids().getNumBlockCol(); col++) {
+                myLevel.getPlaceableTileManager().getPlaceableMap().set(row, col, blocks[row][col].getTile().getFill() == Color.RED);
             }
         }
     }

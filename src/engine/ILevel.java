@@ -9,6 +9,7 @@ import engine.waves.IWaveSet;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
 import util.Coordinate;
+import util.Tile;
 
 
 /**
@@ -56,8 +57,12 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
      */
     IPlaceableManager getPlaceableManager ();
 
+    IPlaceableTileManager getPlaceableTileManager();
+    
     void setBackgroundImage (ImageGraphic graphic);
 
+    void initializePlaceableTiles (int row, int column);
+    
     void setBackgroundImageSize(double width, double height);
     /**
      * Add a global resource to this level

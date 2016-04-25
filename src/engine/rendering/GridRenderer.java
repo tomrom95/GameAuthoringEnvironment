@@ -20,7 +20,6 @@ import javafx.scene.shape.Rectangle;
  */
 public class GridRenderer implements IRenderer {
     private GridPane myPane;
-    private GridPane myOriginalPane;
     private ILevel myLevel;
     private Tile[][] myBlocks;
     private int myNumBlockRow;
@@ -29,7 +28,6 @@ public class GridRenderer implements IRenderer {
 
     public GridRenderer (ILevel level, GridPane pane) {
         myPane = pane;
-        myOriginalPane = pane;
         myLevel = level;
         init();
     }
