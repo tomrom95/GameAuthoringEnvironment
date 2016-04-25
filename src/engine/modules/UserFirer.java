@@ -75,10 +75,16 @@ public class UserFirer extends DirectionalFirer {
 
     private void increaseAngle () {
         setAngle(getAngle() + myAngleChange);
+        if(getAngle() >= 360){
+            setAngle(getAngle() - 360);
+        }
     }
 
     private void decreaseAngle () {
         setAngle(getAngle() - myAngleChange);
+        if(getAngle() < 0){
+            setAngle(360 - getAngle());
+        }
     }
 
     private void fireSprite () {
