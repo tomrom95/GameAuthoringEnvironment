@@ -4,6 +4,7 @@ import java.io.File;
 import engine.ILevel;
 import engine.definitions.concrete.SpriteDefinition;
 import graphics.ImageGraphic;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import util.Coordinate;
 
@@ -33,7 +34,8 @@ public class SceneController {
     }
 
     public void setBackground (String imageURL) {
-        ImageGraphic background = new ImageGraphic(0, 0, imageURL);
+        Image image = new Image(imageURL);
+        ImageGraphic background = new ImageGraphic(image.getWidth(), image.getHeight(), imageURL);
         myLevel.setBackgroundImage(background);
     }
 

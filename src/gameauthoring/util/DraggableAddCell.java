@@ -1,13 +1,9 @@
 package gameauthoring.util;
 
 import engine.profile.IProfilable;
-import gameauthoring.creation.cellviews.ProfileCellView;
-import gameauthoring.levels.sprites.Draggable;
-import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 
 /**
@@ -40,12 +36,4 @@ public class DraggableAddCell<T extends IProfilable> extends DraggableCell<T>{
             }
         }
     }
-
-    @Override
-    public boolean checkPlaceable (DragEvent e) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-    
-
 }
