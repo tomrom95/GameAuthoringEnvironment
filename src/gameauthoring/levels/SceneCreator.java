@@ -29,8 +29,6 @@ import javafx.scene.shape.Rectangle;
  */
 public class SceneCreator implements Glyph {
     private final static String DEFAULT_BACKGROUND = "images/grass.jpg";
-    public final static int HEIGHT = 400;
-    public final static int WIDTH = 700;
 
     private IGame gameModel;
     private AuthoringRenderer myView;
@@ -75,8 +73,8 @@ public class SceneCreator implements Glyph {
      */
     private void updatePlaceableArea () {
         Tile[][] blocks = myView.getGrids().getBlocks();
-        for (int row = 0; row < myView.getGrids().NUM_BLOCK_ROW; row++) {
-            for (int col = 0; col < myView.getGrids().NUM_BLOCK_COL; col++) {
+        for (int row = 0; row < myView.getGrids().getNumBlockRow(); row++) {
+            for (int col = 0; col < myView.getGrids().getNumBlockCol(); col++) {
                 updateCorrespondingBlock(row, col, blocks[row][col].getTile().getFill());
             }
         }

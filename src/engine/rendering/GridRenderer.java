@@ -23,20 +23,31 @@ public class GridRenderer implements IRenderer {
     private GridPane myPane;
     private ILevel myLevel;
     private Tile[][] myBlocks;
-    public final int NUM_BLOCK_ROW = 16;
-    public final int NUM_BLOCK_COL = 29;
+    private int myNumBlockRow;
+    private int myNumBlockCol;
     public final int BLOCK_SIZE = 25;
+    public final double TRANSLATE_RATIO = 1.8;
 
     public GridRenderer (ILevel level, GridPane pane) {
         myPane = pane;
         myLevel = level;
-        myBlocks = new Tile[NUM_BLOCK_ROW][NUM_BLOCK_COL];
+        init();
+    }
+
+    private void init () {
+        calculateTileArraySize();
+        myBlocks = new Tile[myNumBlockRow][myNumBlockCol];
         initializeGridLines();
     }
 
+    private void calculateTileArraySize () {
+        myNumBlockRow = (int)(myLevel.getBackgroundImage().getHeight().get() / BLOCK_SIZE / TRANSLATE_RATIO);
+        myNumBlockCol = (int)(myLevel.getBackgroundImage().getWidth().get() / BLOCK_SIZE / TRANSLATE_RATIO);
+    }
+
     private void initializeGridLines () {
-        for (int i = 0; i < NUM_BLOCK_ROW; i++) {
-            for (int j = 0; j < NUM_BLOCK_COL; j++) {
+        for (int i = 0; i < myNumBlockRow; i++) {
+            for (int j = 0; j < myNumBlockCol; j++) {
                 Tile tile = new Tile(new Rectangle(BLOCK_SIZE,BLOCK_SIZE),i,j);
                 tile.getTile().setFill(Color.TRANSPARENT);
                 tile.getTile().setOnMouseClicked(e -> handleMouseClick(tile));
@@ -72,6 +83,14 @@ public class GridRenderer implements IRenderer {
 
     public Tile[][] getBlocks () {
         return myBlocks;
+    }
+    
+    public int getNumBlockRow(){
+        return myNumBlockRow;
+    }
+    
+    public int getNumBlockCol(){
+        return myNumBlockCol;
     }
 
     @Override
