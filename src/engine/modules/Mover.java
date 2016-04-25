@@ -42,19 +42,19 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
         myPath = new ArrayList<>();
     }
 
-    private Coordinate getLocation () {
-        return myParent.getLocation();
+    protected Coordinate getLocation () {
+        return getParent().getLocation();
     }
 
     protected void move (TimeDuration duration) {
-    	updateVelocities();
-        double xChange = distance(getXVel().getValueProperty().get(), duration.getSeconds());
-        double yChange = distance(getYVel().getValueProperty().get(), duration.getSeconds());
+        updateVelocities();
+        double xChange = distance(getXVel().getValueProperty().get(), durationToDouble(duration));
+        double yChange = distance(getYVel().getValueProperty().get(), durationToDouble(duration));
         move(getNextCoordinate(xChange, yChange));
     }
 
     protected void move (Coordinate coordinate) {
-        myParent.setLocation(coordinate);
+        getParent().setLocation(coordinate);
     }
 
     private Coordinate getNextCoordinate (double xChange, double yChange) {
@@ -62,7 +62,7 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
                               getLocation().getY() + yChange);
     }
 
-    private double distance (double rate, double time) {
+    protected double distance (double rate, double time) {
         return rate * time;
     }
 
@@ -116,35 +116,40 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     private void setYVel (double newVel) {
         myYVel.setValue(newVel);
     }
-    
-    private void updateVelocities(){
-    	setXVel(mySpeed.getValueProperty().get() * Math.cos(myOrientation.getValueProperty().get()));
-    	setYVel(mySpeed.getValueProperty().get() * Math.sin(myOrientation.getValueProperty().get()));
+
+    private void updateVelocities () {
+        setXVel(getSpeed() *
+                Math.cos(myOrientation.getValueProperty().get()));
+        setYVel(getSpeed() *
+                Math.sin(myOrientation.getValueProperty().get()));
     }
+
     /**
-     * the angle is stored in radians, all conversion of angles will occur before it is 
+     * the angle is stored in radians, all conversion of angles will occur before it is
      * presented to the user, and right after it is taken in by the user
      *
      * The X and Y velocities are only set according to this method and set speed now
-     * @return 
+     * 
+     * @return
      */
     @Override
-    public void setOrientation(double newAngle){
-    	myOrientation.setValue(newAngle * DEGREES_TO_RADS);
-    	setXVel(Math.cos(newAngle* DEGREES_TO_RADS) * mySpeed.getValueProperty().get());
-    	setYVel(Math.sin(newAngle * DEGREES_TO_RADS) * mySpeed.getValueProperty().get());
-    	
+    public void setOrientation (double newAngle) {
+        myOrientation.setValue(newAngle * DEGREES_TO_RADS);
+        setXVel(Math.cos(newAngle * DEGREES_TO_RADS) * mySpeed.getValueProperty().get());
+        setYVel(Math.sin(newAngle * DEGREES_TO_RADS) * mySpeed.getValueProperty().get());
+
     }
+
     /**
      * this sets the speed and the X and Y velocities according to the current speed and angle.
      * 
      * The X and Y velocities are only set according to this method and set orientation now
      */
     @Override
-    public void setSpeed(double newSpeed){
-    	mySpeed.setValue(newSpeed);
-    	setXVel(Math.cos(myOrientation.getValueProperty().get()) * newSpeed);
-    	setYVel(Math.sin(myOrientation.getValueProperty().get()) * newSpeed);
+    public void setSpeed (double newSpeed) {
+        mySpeed.setValue(newSpeed);
+        setXVel(Math.cos(myOrientation.getValueProperty().get()) * newSpeed);
+        setYVel(Math.sin(myOrientation.getValueProperty().get()) * newSpeed);
     }
 
     @Override
@@ -162,11 +167,17 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
         return myOrientation.getValueProperty().get();
     }
 
-    
-    @Override 
-    public double getSpeed(){
-    	return mySpeed.getValueProperty().get();
+    @Override
+    public double getSpeed () {
+        return mySpeed.getValueProperty().get();
     }
-    
+
+    protected Positionable getParent () {
+        return myParent;
+    }
+
+    protected double durationToDouble (TimeDuration duration) {
+        return duration.getSeconds();
+    }
 
 }

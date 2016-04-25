@@ -3,13 +3,14 @@ package engine;
 import java.util.List;
 import engine.sprite.ISprite;
 import util.BitMap;
+import util.IBitMap;
 import util.TimeDuration;
 
 
 public class PlaceableManager implements IPlaceableManager {
 
     private ILevel myLevel;
-    private BitMap myCurrentPlaceableMap;
+    private IBitMap myCurrentPlaceableMap;
 
     public PlaceableManager (ILevel level, int width, int height) {
         myCurrentPlaceableMap = new BitMap(width, height);
@@ -31,8 +32,8 @@ public class PlaceableManager implements IPlaceableManager {
      * @param level
      * @return
      */
-    private BitMap parseCurrentLevelForPlaceable (ILevel level) {
-        BitMap placeableMap = getPlaceableArea();
+    private IBitMap parseCurrentLevelForPlaceable (ILevel level) {
+        IBitMap placeableMap = getPlaceableArea();
 
         List<ISprite> listOfSprites = level.getSprites();
         for (ISprite sprite : listOfSprites) {
@@ -48,7 +49,7 @@ public class PlaceableManager implements IPlaceableManager {
     }
 
     @Override
-    public BitMap getPlaceableArea () {
+    public IBitMap getPlaceableArea () {
         return myCurrentPlaceableMap;
     }
 

@@ -1,6 +1,6 @@
 package engine;
 
-import util.BitMap;
+import util.IBitMap;
 
 
 /**
@@ -12,5 +12,5 @@ import util.BitMap;
  */
 public interface IPlaceableManager extends Updateable {
 
-    BitMap getPlaceableArea ();
+    IBitMap getPlaceableArea ();
 }
