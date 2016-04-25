@@ -1,14 +1,15 @@
 .wave_tab {
     -fx-background-color: #8fbc8f;
     -fx-hgap: 30;
-    -fx-vgap: 2;
-    -fx-padding: 7;
+    -fx-vgap: 0;
+    -fx-spacing: 0;
+    -fx-padding: 4;
 }
 
 .wave_grid {
     -fx-background-color: #8fbc8f;
     -fx-hgap: 30;
-    -fx-vgap: 5;
+    -fx-vgap: 20;
     -fx-padding: 10;
 }
 
@@ -275,6 +276,7 @@
 
 .transition_pane {
 	-fx-padding: 20;
+	-fx-spacing: 10;
 	-fx-background-color: #f0f0f5;
 }
 
@@ -292,5 +294,10 @@
 	-fx-border-color: #2e8b57;
     -fx-border-width: .5px;
     -fx-background-color: #ecf9f2;
+}
+
+.purple_outline {
+	-fx-border-color: #d0d0e1;
+    -fx-border-width: 3px;
 }
 
