@@ -93,4 +93,6 @@ public interface UIFactory {
 
     Label createSubTitleLabel (String string);
 
+    TextField createTextField (String string, int i);
+
 }

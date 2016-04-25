@@ -277,4 +277,12 @@ public class BasicUIFactory implements UIFactory {
         node.getStyleClass().add(myStyle.getString(key));
     }
 
+    @Override
+    public TextField createTextField (String holder, int width) {
+        TextField field = this.createTextField(width);
+        field.setPromptText(holder);
+        return field;
+        
+    }
+
 }

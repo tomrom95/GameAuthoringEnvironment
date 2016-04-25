@@ -5,6 +5,7 @@ import engine.definitions.spawnerdef.WaveDefinition;
 import gameauthoring.creation.cellviews.NameCellView;
 import gameauthoring.util.Glyph;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 public class WaveOptionView implements Glyph{
@@ -17,7 +18,9 @@ public class WaveOptionView implements Glyph{
     }
 
     private void init () {
-        myWaveOptions.setMaxWidth(300);
+        myWaveOptions.setPrefWidth(255);
+        myWaveOptions.getStyleClass().add("list_green");
+        myWaveOptions.setPlaceholder(new Label("Go to the Waves Tab\n to add waves"));
         myWaveOptions.setCellFactory(cell -> new NameCellView<WaveDefinition>());        
     }
 
