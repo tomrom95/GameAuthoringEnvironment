@@ -16,6 +16,7 @@ import engine.events.GameEvent;
 public class SpriteStatus extends DefaultAffectable implements IStatus {
 
     private boolean myIsDead;
+    private boolean myIsGoal;
     private boolean myDoesObstruct;
     
 
@@ -50,5 +51,16 @@ public class SpriteStatus extends DefaultAffectable implements IStatus {
         myDoesObstruct = value;
         
     }
+
+    @Override
+    public boolean isGoal () {
+        return myIsGoal;
+    }
+
+    @Override
+    public void setIsGoal (boolean value) {
+        myIsGoal = value;
+    }
+    
 
 }

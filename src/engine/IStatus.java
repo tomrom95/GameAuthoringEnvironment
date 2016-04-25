@@ -36,4 +36,16 @@ public interface IStatus extends Affectable, GameEventHandler {
      * @param value {@code true} if this sprite obstructs, {@code false} if it does not
      */
     void setObstruction (boolean value);
+    
+    /**
+     * Whether or not the sprite should be considered a goal
+     * @return
+     */
+    boolean isGoal();
+    
+    /**
+     * Set whether or not the sprite should be considered a goal
+     * @param value
+     */
+    void setIsGoal(boolean value);
 }

@@ -2,9 +2,11 @@ package gameauthoring.levels;
 
 import engine.IGame;
 import engine.ILevel;
+import gameauthoring.levels.waves.SpawnerAuthoringView;
 import gameauthoring.util.Glyph;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
@@ -35,7 +37,9 @@ public class LevelEditorView implements Glyph {
     @Override
     public Node draw () {
         myLayout = new BorderPane();
-        myLayout.setCenter((new SceneCreator(myGame, myLevel)).draw());
+        SceneCreator scene = new SceneCreator(myGame, myLevel);
+        myLayout.setRight(new SpawnerAuthoringView(myGame, myLevel, scene.getRenderer()).draw());
+        myLayout.setCenter(scene.draw());
         myLayout.setBottom(createBottomForms());
         return myLayout;
     }

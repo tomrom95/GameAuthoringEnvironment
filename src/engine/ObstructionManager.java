@@ -3,6 +3,7 @@ package engine;
 import engine.sprite.ISprite;
 import util.BitMap;
 import util.Bounds;
+import util.IBitMap;
 import util.TimeDuration;
 
 /**
@@ -15,7 +16,7 @@ import util.TimeDuration;
 public class ObstructionManager implements IObstructionManager {
     private static final boolean POSITION_OBSTRUCTED = true;
     private IGame myGame;
-    private BitMap myCurrentObstructionMap;
+    private IBitMap myCurrentObstructionMap;
 
     ObstructionManager (IGame game) {
         myGame = game;
@@ -28,24 +29,24 @@ public class ObstructionManager implements IObstructionManager {
     }
     
     @Override
-    public BitMap getObstructionMap () {
+    public IBitMap getObstructionMap () {
         return myCurrentObstructionMap;
     }
 
-    private BitMap parseCurrentGameForObstructions (IGame game) {
-        BitMap obstructionMap = getBitMapSizedForCurrentGame(game);
+    private IBitMap parseCurrentGameForObstructions (IGame game) {
+        IBitMap obstructionMap = getBitMapSizedForCurrentGame(game);
         game.getLevelManager().getCurrentLevel().getSprites().stream()
                 .forEach(sprite -> ifObstructsMarkSprite(obstructionMap, sprite));
         return obstructionMap;
     }
 
-    private void ifObstructsMarkSprite (BitMap map, ISprite sprite) {
+    private void ifObstructsMarkSprite (IBitMap map, ISprite sprite) {
         if (sprite.doesObstruct()) {
             markSpriteOnMap(map, sprite);
         }
     }
 
-    private void markSpriteOnMap (BitMap map, ISprite sprite) {
+    private void markSpriteOnMap (IBitMap map, ISprite sprite) {
         Bounds bound = sprite.getBounds();
         int leftX = (int) Math.round(bound.getLeft());
         int rightX = (int) Math.round(bound.getRight());
@@ -62,7 +63,7 @@ public class ObstructionManager implements IObstructionManager {
         return myGame;
     }
 
-    private BitMap getBitMapSizedForCurrentGame (IGame game) {
+    private IBitMap getBitMapSizedForCurrentGame (IGame game) {
         int gameWidth = game.getGameGridConfig().getGridWidth();
         int gameHeight = game.getGameGridConfig().getGridHeight();
         return new BitMap(gameWidth, gameHeight);

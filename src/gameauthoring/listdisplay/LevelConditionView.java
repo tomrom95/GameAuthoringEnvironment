@@ -24,6 +24,8 @@ import util.BundleOperations;
 
 public class LevelConditionView extends ConditionView {
 
+    ResourceBundle myBundle = ResourceBundle.getBundle("defaults/level_cond");
+    
     public LevelConditionView (IGame game, ILevel level) {
         super(level.getConditionsListProperty());
         init();
@@ -34,12 +36,17 @@ public class LevelConditionView extends ConditionView {
         add(createLeft(), 1, 0, 1, 1);
         add(createMiddle(), 2, 0, 1, 1);
         initListView();
+        setOptionStyle();
+    }
 
+    private void setOptionStyle () {
+        getOptions().setCellFactory(cell -> new CardCell(parse(myBundle.getString("CardSize"))));
+        getOptions().getStyleClass().add("purple_outline");
     }
 
     private Node createMiddle () {
-        getEditor().setPrefWidth(700);
-        getEditor().setPrefHeight(200);
+        getEditor().setPrefWidth(parse(myBundle.getString("MiddleWidth")));
+        getEditor().setPrefHeight(parse(myBundle.getString("MiddleHeight")));
         return getEditor();
     }
 
@@ -56,10 +63,15 @@ public class LevelConditionView extends ConditionView {
     }
 
     private void initListView () {
-        getListView().setPrefWidth(80);
-        getListView().setPrefHeight(200);
+        getListView().setMinWidth(Double.parseDouble(myBundle.getString("ListViewWidth")));
+        getListView().setMaxWidth(Double.parseDouble(myBundle.getString("ListViewWidth")));
+        getListView().setPrefHeight(Double.parseDouble(myBundle.getString("ListViewHeight")));
+        getListView().getStyleClass().add("purple_outline");
         add(getListView(), 3, 0, 1, 1);
-        getOptions().setCellFactory(cell -> new CardCell(50));
+    }
+    
+    private double parse (String string) {
+       return Double.parseDouble(string);
     }
 
 }

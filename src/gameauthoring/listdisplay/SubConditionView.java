@@ -31,6 +31,7 @@ public abstract class SubConditionView {
     private static final String DEFAULT_IMAGE = "/images/C.png";
     private ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
     private ResourceBundle mySize = ResourceBundle.getBundle("defaults/subcondition");
+    private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
 
     private UIFactory myFactory = new ConditionUIFactory();
     private GridPane myGroup = new GridPane();
@@ -40,7 +41,7 @@ public abstract class SubConditionView {
     private List<Node> myNodes;
     
     public SubConditionView (ObservableList<ICondition> conditionList) {
-        myGroup.getStyleClass().add("cond_pane");
+        myGroup.getStyleClass().add(myStyle.getString("ConditionPane"));
         myList = conditionList;
         myNodes = new ArrayList<>();
     }

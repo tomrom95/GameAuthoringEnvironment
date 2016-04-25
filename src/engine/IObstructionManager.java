@@ -1,7 +1,7 @@
 package engine;
 
 import engine.modules.IModule;
-import util.BitMap;
+import util.IBitMap;
 
 /**
  * This object will interrogate the sprite lists and their status module in order
@@ -17,5 +17,5 @@ public interface IObstructionManager extends Updateable {
      * bounds objects as stored by each sprite
      * @return {@code return} the bit map of the obstructed locations
      */
-    BitMap getObstructionMap ();
+    IBitMap getObstructionMap ();
 }

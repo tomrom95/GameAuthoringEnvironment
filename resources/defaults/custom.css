@@ -1,14 +1,15 @@
 .wave_tab {
     -fx-background-color: #8fbc8f;
     -fx-hgap: 30;
-    -fx-vgap: 2;
-    -fx-padding: 7;
+    -fx-vgap: 0;
+    -fx-spacing: 0;
+    -fx-padding: 4;
 }
 
 .wave_grid {
     -fx-background-color: #8fbc8f;
     -fx-hgap: 30;
-    -fx-vgap: 5;
+    -fx-vgap: 20;
     -fx-padding: 10;
 }
 
@@ -145,7 +146,7 @@
     -fx-border-color: #a3a7a8;  
     -fx-border-radius: 5 5 0 0;  
     -fx-background-color: lightskyblue;  
-    -fx-pref-height: 90px;    
+    -fx-pref-height: 75px;    
     -fx-cursor: hand;  
     -fx-background-insets: 0;  
 }  
@@ -158,7 +159,7 @@
     -fx-border-color: #2381E9 #a3a7a8 #a3a7a8 #a3a7a8;  
     -fx-border-width: 5 1 1 1;     
     -fx-border-radius: 5 5 0 0;  
-    -fx-pref-height: 90px;    
+    -fx-pref-height: 75px;    
     -fx-background-color: lightskyblue;  
     -fx-background-insets: 0;  
 }  
@@ -275,6 +276,28 @@
 
 .transition_pane {
 	-fx-padding: 20;
+	-fx-spacing: 10;
 	-fx-background-color: #f0f0f5;
+}
+
+.spawn_v {
+	-fx-border-color: #2e8b57;
+    -fx-border-width: 2px;
+	-fx-padding: 4;
+}
+
+.spawner_border {
+	-fx-spacing: 10;
+}
+
+.list_green {
+	-fx-border-color: #2e8b57;
+    -fx-border-width: .5px;
+    -fx-background-color: #ecf9f2;
+}
+
+.purple_outline {
+	-fx-border-color: #d0d0e1;
+    -fx-border-width: 3px;
 }
 
