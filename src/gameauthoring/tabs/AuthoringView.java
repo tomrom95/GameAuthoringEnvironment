@@ -52,7 +52,7 @@ public class AuthoringView implements IAuthoringView {
     private WaveTabViewer myWaveTabView;
     private BorderPane myLayout;
     private IGame myGame;
-    public static final int WIDTH = 1500;
+    public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
     public static final String STYLESHEET = "custom.css";
     public static final String DEFAULT_RESOURCE_PACKAGE = "defaults/";
