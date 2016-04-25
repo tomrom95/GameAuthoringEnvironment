@@ -65,7 +65,6 @@ public class OnScreenSprite implements Draggable, Glyph {
 
     @Override
     public void setOnDragDropped (DragEvent e) {
-        // if (checkPlaceable(e)) {
         if (checkPlaceableTile(e)) {
             myController.moveSprite(mySprite, e.getX(), e.getY());
         }
@@ -109,21 +108,6 @@ public class OnScreenSprite implements Draggable, Glyph {
         for(int r = (int)((e.getY()-halfHeight)/25); r < (int)((e.getY() + halfHeight)/25); r++){       
             for (int c = (int)((e.getX()-halfWidth)/25); c < (int)((e.getX()+halfWidth)/25); c++){
                 if(levelView.getLevel().getPlaceableTileManager().getPlaceableMap().getBitMap()[r][c])
-                    return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public boolean checkPlaceable (DragEvent e) {
-        double halfHeight =
-                (0.5) * (mySprite.getBounds().getBottom() - mySprite.getBounds().getTop());
-        double halfWidth =
-                (0.5) * (mySprite.getBounds().getRight() - mySprite.getBounds().getLeft());
-        for (int r = (int) (e.getY() - halfHeight); r < (int) (e.getY() + halfHeight); r++) {
-            for (int c = (int) (e.getX() - halfWidth); c < (int) (e.getX() + halfWidth); c++) {
-                if (levelView.getLevel().getPlaceableManager().getPlaceableArea().getBitMap()[r][c])
                     return false;
             }
         }

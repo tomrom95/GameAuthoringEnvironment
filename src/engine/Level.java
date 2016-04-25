@@ -37,7 +37,6 @@ public class Level implements ILevel {
     private ISpriteManager mySpriteManager;
     private IAttributeManager myAttributeManager;
     private INextLevelManager myNextLevelManager;
-    private IPlaceableManager myPlaceableManager;
     private PlaceableTileManager myPlaceableTileManager;
     private IWaveSetManager myWaveSetManager;
     private IProfile myProfile;
@@ -54,7 +53,6 @@ public class Level implements ILevel {
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
         myWaveSetManager = new WaveSetManager();
-//        myPlaceableManager = new PlaceableManager(this,600,1250);
         myPlaceableTileManager = new PlaceableTileManager(this);
         myAddableSprites = FXCollections.observableArrayList();
     }
@@ -66,7 +64,7 @@ public class Level implements ILevel {
         myConditionManager.update(duration);
         myAttributeManager.update(duration);
         myNextLevelManager.update(duration);
-        
+
     }
 
     @Override
@@ -169,13 +167,6 @@ public class Level implements ILevel {
         return myNextLevelManager;
     }
 
-    @Override
-    public IPlaceableManager getPlaceableManager () {
-        return myPlaceableManager;
-    }
-    
-    
-
     public IProfile getProfile () {
         return myProfile;
     }
@@ -190,8 +181,6 @@ public class Level implements ILevel {
     public IWaveSetManager getWaveSetManager () {
         return myWaveSetManager;
     }
-
-	
 
     @Override
     public ObservableList<SpriteDefinition> getAddableSprites () {
@@ -211,7 +200,7 @@ public class Level implements ILevel {
     @Override
     public void setBackgroundImageSize (double width, double height) {
         myBackgroundImageWidth = width;
-        myBackgroundImageHeight = height;        
+        myBackgroundImageHeight = height;
     }
 
     @Override

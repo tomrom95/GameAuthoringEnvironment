@@ -59,45 +59,22 @@ public class SceneCreator implements Glyph {
         if (myPlaceableEnable)
             pane.getChildren().addAll(myView.getPane(), myView.getGrids().getPane(),
                                       placeableButton(pane));
-        
+
         else {
             pane.getChildren().addAll(myView.getGrids().getPane(), myView.getPane(),
                                       placeableButton(pane));
-//            updatePlaceableArea();
             updatePlaceableTile();
         }
     }
 
-    /**
-     * Updates the bit map which represents placeable area every time author clicks the
-     * enable/disable placeable View button.
-     * 
-     * @param gridPane
-     */
-    private void updatePlaceableArea () {
+    private void updatePlaceableTile () {
         Tile[][] blocks = myView.getGrids().getBlocks();
+        myLevel.initializePlaceableTiles(myView.getGrids().getNumBlockRow(), myView.getGrids()
+                .getNumBlockCol());
         for (int row = 0; row < myView.getGrids().getNumBlockRow(); row++) {
             for (int col = 0; col < myView.getGrids().getNumBlockCol(); col++) {
-                updateCorrespondingBlock(row, col, blocks[row][col].getTile().getFill());
-            }
-        }
-    }
-    
-    private void updatePlaceableTile(){
-        Tile[][] blocks = myView.getGrids().getBlocks();
-        myLevel.initializePlaceableTiles(myView.getGrids().getNumBlockRow(),myView.getGrids().getNumBlockCol());
-        for (int row = 0; row < myView.getGrids().getNumBlockRow(); row++) {
-            for (int col = 0; col < myView.getGrids().getNumBlockCol(); col++) {
-                myLevel.getPlaceableTileManager().getPlaceableMap().set(row, col, blocks[row][col].getTile().getFill() == Color.RED);
-            }
-        }
-    }
-
-    private void updateCorrespondingBlock (int row, int col, Paint color) {
-        int blockSize = myView.getGrids().BLOCK_SIZE;
-        for (int r = (blockSize) * row; r < (blockSize) * (row + 1); r++) {
-            for (int c = (blockSize) * (col); c < (blockSize) * (col + 1); c++) {
-                myLevel.getPlaceableManager().getPlaceableArea().set(r, c, color == Color.RED);
+                myLevel.getPlaceableTileManager().getPlaceableMap()
+                        .set(row, col, blocks[row][col].getTile().getFill() == Color.RED);
             }
         }
     }
@@ -138,7 +115,7 @@ public class SceneCreator implements Glyph {
         myLevel.setBackgroundImageSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         myView = new AuthoringRenderer(myLevel, levelPane, gridPane);
         myView.render();
-        levelPane.setOnMouseClicked(e -> handleMouseClick(e,root));
+        levelPane.setOnMouseClicked(e -> handleMouseClick(e, root));
         return root;
     }
 
@@ -152,6 +129,9 @@ public class SceneCreator implements Glyph {
             myController.uploadNewBackground();
             myView.render();
             myView.updateTile();
+            pane.getChildren().clear();
+            pane.getChildren().addAll(myView.getGrids().getPane(), myView.getPane(),
+                                      placeableButton(pane));
         }
     }
 }

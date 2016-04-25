@@ -55,15 +55,14 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
     /**
      * @return the object that contains the Bit Map of which terrains are tower-placeable
      */
-    IPlaceableManager getPlaceableManager ();
+    IPlaceableTileManager getPlaceableTileManager ();
 
-    IPlaceableTileManager getPlaceableTileManager();
-    
     void setBackgroundImage (ImageGraphic graphic);
 
     void initializePlaceableTiles (int row, int column);
-    
-    void setBackgroundImageSize(double width, double height);
+
+    void setBackgroundImageSize (double width, double height);
+
     /**
      * Add a global resource to this level
      *
@@ -102,9 +101,10 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
      */
     List<? extends Drawable> getDrawables ();
 
-    double getBackgroundImageWidth();
-    
-    double getBackgroundImageHeight();
+    double getBackgroundImageWidth ();
+
+    double getBackgroundImageHeight ();
+
     /**
      * @param sprite to be removed
      */
