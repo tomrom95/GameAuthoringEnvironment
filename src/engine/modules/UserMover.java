@@ -26,8 +26,6 @@ import util.TimeDuration;
 
 public class UserMover extends Mover {
 
-    private IAttribute mySpeed;
-
     private Map<Direction, Key> myKeys;
     private Map<Direction, Boolean> myTraveling;
 
@@ -35,7 +33,7 @@ public class UserMover extends Mover {
                       ControlKeys controls,
                       Positionable sprite) {
         super(sprite);
-        mySpeed = new Attribute(speed, AttributeType.SPEED);
+        setSpeedUnOriented(speed);
         makeKeyMap(controls);
         makeTravelingMap();
 
@@ -101,6 +99,8 @@ public class UserMover extends Mover {
     }
 
     private void registerKeyPress (Key key) {
+        System.out.println(key.getKeyCode());
+        myKeys.get(Direction.RIGHT).getKeyCode();
         if (key.isEqual(myKeys.get(Direction.RIGHT))) {
             goRight();
         }
@@ -168,22 +168,23 @@ public class UserMover extends Mover {
     }
 
     private void goRight () {
-        getXVel().setValue(mySpeed.getValueProperty().get());
+        getXVel().setValue(getSpeed());
         myTraveling.put(Direction.RIGHT, true);
+        System.out.println(getXVel().getValueProperty().get());
     }
 
     private void goLeft () {
-        getXVel().setValue(-mySpeed.getValueProperty().get());
+        getXVel().setValue(-getSpeed());
         myTraveling.put(Direction.LEFT, true);
     }
 
     private void goUp () {
-        getYVel().setValue(-mySpeed.getValueProperty().get());
+        getYVel().setValue(-getSpeed());
         myTraveling.put(Direction.UP, true);
     }
 
     private void goDown () {
-        getYVel().setValue(mySpeed.getValueProperty().get());
+        getYVel().setValue(getSpeed());
         myTraveling.put(Direction.DOWN, true);
     }
 
@@ -195,9 +196,7 @@ public class UserMover extends Mover {
 
     @Override
     public List<IAttribute> getSpecificAttributes () {
-        List<IAttribute> attributeList = new ArrayList<>();
-        attributeList.add(mySpeed);
-        return attributeList;
+        return new ArrayList<>();
     }
 
 }

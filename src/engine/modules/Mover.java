@@ -2,6 +2,7 @@ package engine.modules;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
@@ -26,6 +27,8 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     public static final double NO_MOTION = 0;
     public static final double RADS_TO_DEGREES = 180 / Math.PI;
     public static final double DEGREES_TO_RADS = Math.PI / 180;
+
+   
     private IAttribute myXVel;
     private IAttribute myYVel;
     private IAttribute myOrientation;
@@ -171,13 +174,17 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     public double getSpeed () {
         return mySpeed.getValueProperty().get();
     }
+    
+    protected void setSpeedUnOriented (double speed) {
+        mySpeed.getValueProperty().set(speed);
+    }
 
     protected Positionable getParent () {
         return myParent;
     }
 
     protected double durationToDouble (TimeDuration duration) {
-        return duration.getSeconds();
+        return duration.getSeconds() * 30;
     }
 
 }

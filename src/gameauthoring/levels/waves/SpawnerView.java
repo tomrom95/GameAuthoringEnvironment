@@ -172,9 +172,4 @@ public class SpawnerView implements Glyph, Draggable {
         reset();
     }
 
-    @Override
-    public boolean checkPlaceable (DragEvent e) {
-        return true;
-    }
-
 }

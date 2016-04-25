@@ -79,7 +79,7 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
         myTarget.render();
     }
 
-    private boolean checkPlaceableTile (DragEvent e) {
+    private boolean checkPlaceableTile2 (DragEvent e) {
         double halfHeight = (0.5) * (getProfilable().getProfile().getImageHeight().doubleValue());
         double halfWidth = (0.5) * (getProfilable().getProfile().getImageWidth().doubleValue());
         for (int r = (int) ((e.getY() - halfHeight) / 25); r < (int) ((e.getY() + halfHeight) / 25); r++) {
@@ -92,7 +92,7 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
     }
 
     // TODO: TEST THIS
-    public boolean checkPlaceable (DragEvent e) {
+    public boolean checkPlaceableTile (DragEvent e) {
 //        double halfHeight = (0.5) * (getProfilable().getProfile().getImageHeight().doubleValue());
 //        double halfWidth = (0.5) * (getProfilable().getProfile().getImageWidth().doubleValue());
 //        for (int r = (int) (e.getY() - halfHeight); r < (int) (e.getY() + halfHeight); r++) {
