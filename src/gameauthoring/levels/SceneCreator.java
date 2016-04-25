@@ -29,8 +29,8 @@ import javafx.scene.shape.Rectangle;
  */
 public class SceneCreator implements Glyph {
     private final static String DEFAULT_BACKGROUND = "images/grass.jpg";
-    public final static int HEIGHT = 400;
-    public final static int WIDTH = 700;
+    private final static int DEFAULT_WIDTH = 700;
+    private final static int DEFAULT_HEIGHT = 400;
 
     private IGame gameModel;
     private AuthoringRenderer myRenderer;
@@ -61,38 +61,27 @@ public class SceneCreator implements Glyph {
 
     private void handlePlaceableButton (Pane pane) {
         myPlaceableEnable = !myPlaceableEnable;
-
         pane.getChildren().clear();
         if (myPlaceableEnable)
             pane.getChildren().addAll(myRenderer.getPane(), myRenderer.getGrids().getPane(),
                                       placeableButton(pane));
+
         else {
             pane.getChildren().addAll(myRenderer.getGrids().getPane(), myRenderer.getPane(),
                                       placeableButton(pane));
-            updatePlaceableArea();
+            updatePlaceableTile();
         }
     }
 
-    /**
-     * Updates the bit map which represents placeable area every time author clicks the
-     * enable/disable placeable View button.
-     * 
-     * @param gridPane
-     */
-    private void updatePlaceableArea () {
+    private void updatePlaceableTile () {
         Tile[][] blocks = myRenderer.getGrids().getBlocks();
-        for (int row = 0; row < myRenderer.getGrids().NUM_BLOCK_ROW; row++) {
-            for (int col = 0; col < myRenderer.getGrids().NUM_BLOCK_COL; col++) {
-                updateCorrespondingBlock(row, col, blocks[row][col].getTile().getFill());
-            }
-        }
-    }
+        myLevel.initializePlaceableTiles(myRenderer.getGrids().getNumBlockRow(), myRenderer.getGrids()
+                .getNumBlockCol());
+        for (int row = 0; row < myRenderer.getGrids().getNumBlockRow(); row++) {
+            for (int col = 0; col < myRenderer.getGrids().getNumBlockCol(); col++) {
+                myLevel.getPlaceableTileManager().getPlaceableMap()
+                        .set(row, col, blocks[row][col].getTile().getFill() == Color.RED);
 
-    private void updateCorrespondingBlock (int row, int col, Paint color) {
-        int blockSize = myRenderer.getGrids().BLOCK_SIZE;
-        for (int r = (blockSize) * row; r < (blockSize) * (row + 1); r++) {
-            for (int c = (blockSize) * (col); c < (blockSize) * (col + 1); c++) {
-                myLevel.getPlaceableManager().getPlaceableArea().set(r, c, color == Color.RED);
             }
         }
     }
@@ -130,9 +119,11 @@ public class SceneCreator implements Glyph {
         gridPane.setGridLinesVisible(true);
         root.getChildren().addAll(gridPane, levelPane, enablePlaceableButton);
         myController.setBackground(DEFAULT_BACKGROUND);
+
+        myLevel.setBackgroundImageSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         myRenderer = new AuthoringRenderer(myLevel, levelPane, gridPane);
         myRenderer.render();
-        levelPane.setOnMouseClicked(e -> handleMouseClick(e));
+        levelPane.setOnMouseClicked(e -> handleMouseClick(e, root));
         return root;
     }
 
@@ -141,13 +132,17 @@ public class SceneCreator implements Glyph {
      * 
      * @param e
      */
-    private void handleMouseClick (MouseEvent e) {
+    private void handleMouseClick (MouseEvent e, Pane pane) {
         if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
             myController.uploadNewBackground();
             myRenderer.render();
+            myRenderer.updateTile();
+            pane.getChildren().clear();
+            pane.getChildren().addAll(myRenderer.getGrids().getPane(), myRenderer.getPane(),
+                                      placeableButton(pane));
         }
     }
-    
+
     public AuthoringRenderer getRenderer () {
         return myRenderer;
     }

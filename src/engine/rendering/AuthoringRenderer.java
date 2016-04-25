@@ -31,10 +31,19 @@ public class AuthoringRenderer extends LevelRenderer {
         // this.draw(spriteNode, sprite);
     }
 
+    public void updateTile (){
+        myTileView.render();
+    }
+    
     @Override
     public void render () {
         drawBackground(getBackgroundURL());
+        updateNewBackgroundSize();
         drawSprites();
+    }
+
+    private void updateNewBackgroundSize () {
+        myLevel.setBackgroundImageSize(getPane().getMinWidth(),getPane().getMinHeight());        
     }
 
     @Override
