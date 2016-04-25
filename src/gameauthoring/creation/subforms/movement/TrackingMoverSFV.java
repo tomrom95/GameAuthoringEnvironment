@@ -11,7 +11,7 @@ import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
-public class TrackingMoverSubFormView extends SubFormView {
+public class TrackingMoverSFV extends SubFormView {
     
     private GridPane myPane = new GridPane();
     
@@ -21,7 +21,7 @@ public class TrackingMoverSubFormView extends SubFormView {
     private IEntryView mySpeed; 
     private SingleChoiceEntryView<SpriteGroup> myTargets;
 
-    public TrackingMoverSubFormView(DefinitionCollection<SpriteGroup> groupsList) {
+    public TrackingMoverSFV(DefinitionCollection<SpriteGroup> groupsList) {
         myTargets = new SingleChoiceEntryView<SpriteGroup>(myTargetsKey, groupsList.getItems(), AuthoringView.DEFAULT_ENTRYVIEW);
         mySpeed = new TextEntryView(mySpeedKey, this.getData(), 150, 30,AuthoringView.DEFAULT_ENTRYVIEW);    
         initView();

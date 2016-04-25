@@ -3,13 +3,13 @@ package gameauthoring.creation.entryviews;
 import javafx.scene.control.TextField;
 
 /**
- * TextField that only accepts numbers
+ * TextField that only accepts one character
  * 
  * @author Joe Lilien
  *
  */
 
-public class NumberTextField extends TextField {
+public class CharacterTextField extends TextField {
 
     @Override
     public void replaceText (int start, int end, String text) {
@@ -26,7 +26,6 @@ public class NumberTextField extends TextField {
     }
 
     private boolean validate (String text) {
-        return text.matches("-?((\\d*)|(\\d+\\.\\d*))");
-        // TODO:  tried this, some issues 
+        return text.length()<=1;
     }
 }

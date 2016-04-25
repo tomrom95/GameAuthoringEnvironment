@@ -11,11 +11,12 @@ import gameauthoring.creation.subforms.ISubFormControllerSprite;
  * which the FiringSFC will dynamically switch between based on user input
  * 
  * @author Jeremy Schreck
+ * @author Joe Lilien
  *
  */
 public class FiringSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
 
-    private FiringSFC myFiringSFC;
+    private FiringSFCmult myFiringSFC;
 
     /**
      * Constructor 
@@ -23,24 +24,23 @@ public class FiringSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
      * @param game The current game object
      * @param firingSFC A reference to the Firing SFC that controls the sub-firing SFCs
      */
-    public FiringSFCFactory (IGame game, FiringSFC firingSFC) {
-
+    public FiringSFCFactory (IGame game, FiringSFCmult myFiringSFC) {
         super(game);
-        myFiringSFC = firingSFC;
+        this.myFiringSFC = myFiringSFC;
     }
 
     @Override
-    public ISubFormControllerSprite createSubFormController (String type) {
-        if (type.equals("DirectionalFire")) {
+    public RemovableSpriteSFC createSubFormController (String type) {
+        if (type.equals("DIRECTIONAL")) {
             return new DirectionalFireSFC(getMyGame(), getMyFiringSFC());
         }
-        else if (type.equals("TrackingFire")) {
+        else if (type.equals("TRACKING")) {
             return new TrackingFireSFC(getMyGame(), getMyFiringSFC());
         }
         return null;
     }
 
-    private FiringSFC getMyFiringSFC () {
+    private FiringSFCmult getMyFiringSFC () {
         return myFiringSFC;
     }
 }

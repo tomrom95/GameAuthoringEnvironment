@@ -63,10 +63,7 @@ public class SubFormControllerFactory {
         }
         else if (type.equals("SelectSprite")) {
             return new SelectSpriteSFC(getMyAuthorshipData().getMyCreatedSprites());
-        }
-        else if (type.equals("Firing")) {
-            return new FiringSFC(myGame);
-        }
+        }    
         else if (type.equals("Upgrade")) {
             return new UpgradeSFC(getMyGame());
         }
@@ -98,9 +95,6 @@ public class SubFormControllerFactory {
         else if (type.equals("SelectAttribute")) {
             return new SelectAttributeSFC(getMyAuthorshipData()
                     .getMyCreatedAttributes());
-        }
-        else if (type.equals("Firing")) {
-            return new FiringSFC(myGame);
         }
         System.out.println("null");
 

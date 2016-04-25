@@ -3,6 +3,7 @@ package gameauthoring.creation.subforms.movement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import gameauthoring.creation.entryviews.CharacterEntryView;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
@@ -21,10 +22,10 @@ public class UserMoverSubFormView extends SubFormView {
     private String myRightKey = "Right Key: ";
     private String myLeftKey = "Left Key:  ";
     private IEntryView mySpeed = new NumberEntryView(mySpeedKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myUp = new TextEntryView(myUpKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myDown = new TextEntryView(myDownKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myRight = new TextEntryView(myRightKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myLeft = new TextEntryView(myLeftKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView myUp = new CharacterEntryView(myUpKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView myDown = new CharacterEntryView(myDownKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView myRight = new CharacterEntryView(myRightKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private IEntryView myLeft = new CharacterEntryView(myLeftKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
     private List<IEntryView> myEntryViews = new ArrayList<IEntryView>(Arrays.asList(mySpeed, myLeft, myRight, myUp, myDown));
 
 

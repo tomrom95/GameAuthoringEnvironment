@@ -11,13 +11,8 @@ public class EventsSubFormController extends DynamicSubFormController<EventPacka
 
     public EventsSubFormController (IGame game) {
        super(game, new EventSFCFactory(game),
-             new ArrayList<String>(Arrays.asList("Event", "Effect")));
+             new ArrayList<String>(Arrays.asList("EVENT", "EFFECT")));
        
-       List<String> options = new ArrayList<>(Arrays.asList("Event", "Attribute Effect"));
-       
-       setMyView(new EventsSubFormView(getMySubFormViews(),
-                                       e -> changeSelection(e),
-                                       options));
     }
 
 }

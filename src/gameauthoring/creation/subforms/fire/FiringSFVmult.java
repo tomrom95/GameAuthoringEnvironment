@@ -1,6 +1,8 @@
 package gameauthoring.creation.subforms.fire;
 
+import java.util.List;
 import engine.IGame;
+import gameauthoring.creation.subforms.ClickAndFillView;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.util.BasicUIFactory;
@@ -13,52 +15,23 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+
 /**
  * Implementation of IFiringSFVmult with button display
  * 
  * @author Joe Lilien
  *
  */
-public class FiringSFVmult extends SubFormView {
-    private GridPane myContainer;
-    private BasicUIFactory myUIFactory = new BasicUIFactory();
-    private ScrollPane myPane;
-    private VBox myPaneContent;
-    private HBox buttonHolder;
+public class FiringSFVmult extends ClickAndFillView {
 
-    
-    public FiringSFVmult(IGame game, FiringSFCmult SFC){    
-        Button dir = myUIFactory.createImageButton(myUIFactory.makeImageDisplay("images/direct.png", "DIRECT"), e->SFC.addSFC(new DirectionalFireSFC(game, SFC)));
-        Button track = myUIFactory.createImageButton(myUIFactory.makeImageDisplay("images/tracking.png", "TRACKING"), e->SFC.addSFC(new TrackingFireSFC(game,SFC)));
-        buttonHolder = myUIFactory.makeHBox(10, Pos.CENTER, dir, track);
+    public FiringSFVmult (List<String> options) {
+        super(options);
         initView();
     }
-    
 
     @Override
-    protected void initView () {
-        myContainer = new GridPane();
-        myPaneContent = myUIFactory.makeVBox(10, Pos.CENTER, (Node[]) null);
-        myPane = myUIFactory.makeScrollPane(myPaneContent, 550, 300); //TODO: magic number
-        myContainer.add(buttonHolder, 0, 0);
-        myContainer.add(myPane, 0, 1);
-        
+    protected void addOrSetSFV (ISubFormView subFormView) {
+        super.getMyPaneContent().getChildren().add(subFormView.draw());
     }
-    
-    @Override
-    public Node draw () {
-        return myContainer;
-    }
-
-    public void addSFV (ISubFormView subFormView) {
-        myPaneContent.getChildren().add(subFormView.draw());
-    }
-
-    public void removeSFV (ISubFormView subFormView) {
-        myPaneContent.getChildren().remove(subFormView.draw());
-    }
-
-
-
 
 }
