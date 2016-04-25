@@ -18,7 +18,7 @@ import gameauthoring.creation.subforms.ISubFormView;
 
 public class TrackingFireSFC extends RemovableSpriteSFC {
 
-    private TrackingFirerSFV myView;
+    private ITrackingFireSFV myView;
     private IFormDataManager myFormData;
     private IGame myGame;
     private double myDefaultWaitTime = 0;
@@ -26,7 +26,7 @@ public class TrackingFireSFC extends RemovableSpriteSFC {
 
     public TrackingFireSFC (IGame game, FiringSFCmult sfc) {
         super(sfc);
-        myView = new TrackingFirerSFV(game.getAuthorshipData(), getRemoveMenu());
+        myView = new TrackingFireSFV(game.getAuthorshipData(), getRemoveMenu());
         myFormData = myView.getData();
         myGame = game;
     }
@@ -47,7 +47,7 @@ public class TrackingFireSFC extends RemovableSpriteSFC {
         Double waitTime =
                 Double.valueOf(myFormData.getValueProperty(myView.getWaitTimeKey()).get());
         myFireDef.setWaitTime(waitTime);
-        myFireDef.setTargets(myView.getTargetsCoice().getSelected());
+        myFireDef.setTargets(myView.getTargetsCoice());
         myFireDef.setProjectileDefinition(myView.getSelectedMissile());
         if (!item.getModuleDefinitions().contains(myFireDef)) {
             item.addModule(myFireDef);

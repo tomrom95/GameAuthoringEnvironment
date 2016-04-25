@@ -8,62 +8,24 @@ package util;
  * @author Jon Im
  *
  */
-public class BitMap {
+public class BitMap extends BitMapAbstract {
 
-    private boolean[][] myBitMap;
-    private int myWidth;
-    private int myHeight;
-
+    
     public BitMap (int width, int height) {
-        initialize(width, height);
+        super(width, height);
+    }
+
+    public BitMap (IBitMap map) {
+        super(map);
     }
 
     public BitMap () {
         this(1, 1);
     }
-
-    /**
-     * Should use constructors and overloaded constructors instead of having
-     * methods for post initialization
-     * Please replace usage with {@link #BitMap()} or {@link #BitMap(int, int) BitMap(int width, int
-     * height)}
-     * 
-     * @param width
-     * @param height
-     */
-    @Deprecated
-    public void createBitMap (int width, int height) {
-        initialize(width, height);
-    }
-
-    private void initialize (int width, int height) {
-        myBitMap = new boolean[width][height];
-        myWidth = width;
-        myHeight = height;
-    }
-
-    public int getHeight () {
-        return myHeight;
-    }
-
-    public int getWidth () {
-        return myWidth;
-    }
-
-    public void flip (int row, int column) {
-        myBitMap[row][column] = !(myBitMap[row][column]);
-    }
-
-    public boolean valueOf (int row, int column) {
-        return myBitMap[row][column];
-    }
-
-    public void set (int row, int column, boolean value) {
-        myBitMap[row][column] = value;
-    }
     
-    public boolean[][] getBitMap (){
-        return myBitMap;
+    public boolean valueOf (int row, int column) {
+        return getBitMap()[row][column];
     }
-
+   
+   
 }

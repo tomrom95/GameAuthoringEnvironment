@@ -21,11 +21,9 @@ import gameauthoring.creation.subforms.ISubFormView;
 public class StaticMoverSubFormController implements ISubFormControllerSprite {
 
     private StaticMoverSubFormView myView;
-    private IFormDataManager myFormData;
 
     public StaticMoverSubFormController () {
         myView = new StaticMoverSubFormView();
-        myFormData = myView.getData();
     }
 
     @Override

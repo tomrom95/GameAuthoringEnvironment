@@ -11,16 +11,16 @@ import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 
 
-public class TrackingMoverSubFormController implements ISubFormControllerSprite {
+public class TrackingMoverSFC implements ISubFormControllerSprite {
 
-    private TrackingMoverSubFormView myView;
+    private TrackingMoverSFV myView;
     private IFormDataManager myFormData;
     private IGame myGame;
     private double myDefaultSpeed = 0;
 
-    public TrackingMoverSubFormController (IGame game) {
+    public TrackingMoverSFC (IGame game) {
         this.myGame = game;
-        this.myView = new TrackingMoverSubFormView(game.getAuthorshipData().getMyCreatedGroups());
+        this.myView = new TrackingMoverSFV(game.getAuthorshipData().getMyCreatedGroups());
         this.myFormData = myView.getData();
     }
 
@@ -36,13 +36,8 @@ public class TrackingMoverSubFormController implements ISubFormControllerSprite 
         Double mySpeedDouble =
                 Double.valueOf(myFormData.getValueProperty(myView.getSpeedKey()).get());
         newTrackingMoverDef.setSpeed(mySpeedDouble);
-        String[] targetStrings =
-                myFormData.getValueProperty(myView.getTargetsKey()).get().split(", ");
-        List<SpriteType> targets = new ArrayList<SpriteType>();
-        for (String s : targetStrings) {
-            targets.add(new SpriteType(s));
-        }
-        newTrackingMoverDef.setTargets(targets);
+        newTrackingMoverDef.setTargets(myView.getTargetsCoice().getSelected().getSpriteTypes());
+    
 
         item.setMovementDefinition(newTrackingMoverDef);
     }

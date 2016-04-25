@@ -13,9 +13,9 @@ public class EventSFCFactory extends DynamicSFCFactory <EventPackageDefinition> 
 
     @Override
     public ISubFormController<EventPackageDefinition> createSubFormController (String type) {
-        if (type.equals("Event")) {
+        if (type.equals("EVENT")) {
             return new EventSubFormController();
-        } else if (type.equals("Effect")) {
+        } else if (type.equals("EFFECT")) {
             return new EffectSubFormController(this.getMyGame());
         }
         return null;

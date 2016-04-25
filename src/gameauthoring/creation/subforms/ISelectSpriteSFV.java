@@ -10,7 +10,7 @@ import engine.definitions.concrete.SpriteDefinition;
  * @author Joe Lilien
  *
  */
-public interface ISelectSpriteSFV {
+public interface ISelectSpriteSFV  extends ISubFormView{
 
     List<SpriteDefinition> getChosen ();
 
