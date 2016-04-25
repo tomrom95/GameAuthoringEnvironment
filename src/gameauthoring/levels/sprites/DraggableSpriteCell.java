@@ -81,14 +81,14 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
 
     // TODO: TEST THIS
     public boolean checkPlaceable (DragEvent e) {
-        double halfHeight = (0.5) * (getProfilable().getProfile().getImageHeight().doubleValue());
-        double halfWidth = (0.5) * (getProfilable().getProfile().getImageWidth().doubleValue());
-        for (int r = (int) (e.getY() - halfHeight); r < (int) (e.getY() + halfHeight); r++) {
-            for (int c = (int) (e.getX() - halfWidth); c < (int) (e.getX() + halfWidth); c++) {
-                if (myController.getLevel().getPlaceableManager().getPlaceableArea().getBitMap()[r][c])
-                    return false;
-            }
-        }
+//        double halfHeight = (0.5) * (getProfilable().getProfile().getImageHeight().doubleValue());
+//        double halfWidth = (0.5) * (getProfilable().getProfile().getImageWidth().doubleValue());
+//        for (int r = (int) (e.getY() - halfHeight); r < (int) (e.getY() + halfHeight); r++) {
+//            for (int c = (int) (e.getX() - halfWidth); c < (int) (e.getX() + halfWidth); c++) {
+//                if (myController.getLevel().getPlaceableManager().getPlaceableArea().getBitMap()[r][c])
+//                    return false;
+//            }
+//        }
         return true;
     }
 }

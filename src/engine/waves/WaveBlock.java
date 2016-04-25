@@ -1,6 +1,8 @@
 package engine.waves;
 
 import engine.definitions.concrete.SpriteDefinition;
+import engine.sprite.ISprite;
+import engine.sprite.Sprite;
 import util.TimeDuration;
 
 public class WaveBlock {
@@ -29,6 +31,15 @@ public class WaveBlock {
 	
 	protected TimeDuration getGap(){
 		return myGapTime;
+	}
+	
+	public ISprite spawn () {
+	    myCount--;
+	    return myDefinition.create();
+	}
+	
+	public boolean isComplete () {
+	    return myCount <= 0;
 	}
 	
 

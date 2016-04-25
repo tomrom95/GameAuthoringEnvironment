@@ -57,7 +57,7 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
         getParent().setLocation(coordinate);
     }
 
-    private Coordinate getNextCoordinate (double xChange, double yChange) {
+    protected Coordinate getNextCoordinate (double xChange, double yChange) {
         return new Coordinate(getLocation().getX() + xChange,
                               getLocation().getY() + yChange);
     }

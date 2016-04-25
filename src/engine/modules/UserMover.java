@@ -65,6 +65,14 @@ public class UserMover extends Mover {
         myKeys.put(Direction.RIGHT, controls.getRightKey());
         myKeys.put(Direction.DOWN, controls.getDownKey());
     }
+    
+    @Override
+    protected void move (TimeDuration duration) {
+        double xChange = distance(getXVel().getValueProperty().get(), durationToDouble(duration));
+        double yChange = distance(getYVel().getValueProperty().get(), durationToDouble(duration));
+        System.out.println(xChange);
+        move(getNextCoordinate(xChange, yChange));
+    }
 
     @Override
     public void update (TimeDuration duration) {
