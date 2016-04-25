@@ -31,7 +31,7 @@ public class Game implements IGame {
 
     public Game (IGameGridConfig gridConfiguration) {
         // TODO remove hardcoded strings
-        this(new GameInformation("title", "author", "date"));
+        this(new GameInformation());
         myGameGridConfig = gridConfiguration;
     }
 
@@ -41,6 +41,7 @@ public class Game implements IGame {
         myAuthorshipData = new AuthorshipData();
         myGameInformation = gameInfo;
         myAttributeManager = new AttributeManager();
+
         //myObstructionManager = new ObstructionManager(this);
     }
 
@@ -112,7 +113,7 @@ public class Game implements IGame {
     public List<IAttribute> getGlobalAttributes () {
         return getAttributeManager().getAttributes();
     }
-
+    
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
         myLevelManager.add(sprite, coordinate);
@@ -138,8 +139,6 @@ public class Game implements IGame {
         return myObstructionManager;
     }
     
-    
-
     @Override
     public IGameGridConfig getGameGridConfig () {
         return myGameGridConfig;

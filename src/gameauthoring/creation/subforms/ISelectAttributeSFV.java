@@ -11,7 +11,7 @@ import engine.definitions.concrete.AttributeDefinition;
  * @author Joe Lilien
  *
  */
-public interface ISelectAttributeSFV {
+public interface ISelectAttributeSFV  extends ISubFormView{
 
     List<AttributeDefinition> getSelectedAttributes ();
 

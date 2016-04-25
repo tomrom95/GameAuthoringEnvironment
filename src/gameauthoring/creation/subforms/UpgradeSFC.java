@@ -5,6 +5,7 @@ import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.ModuleDefinition;
 import engine.definitions.upgrades.GlobalUpgradeDefinition;
+import engine.definitions.upgrades.NullUpgradeDefinition;
 import engine.definitions.upgrades.SpriteUpgradeDefinition;
 import engine.definitions.upgrades.UpgradeDefinition;
 import gameauthoring.util.ErrorMessage;
@@ -12,7 +13,7 @@ import gameauthoring.util.ErrorMessage;
 
 public class UpgradeSFC implements ISubFormControllerSprite {
 
-    private UpgradeSFV mySFV;
+    private IUpgradeSFV mySFV;
     private IGame myGame;
     private UpgradeDefinition myGlobalUpgrade;
     private UpgradeDefinition mySpriteUpgrade;
@@ -44,6 +45,9 @@ public class UpgradeSFC implements ISubFormControllerSprite {
                     item.setUpgrade(mySpriteUpgrade);
                    
                 }
+            }
+            else{
+                item.setUpgrade(new NullUpgradeDefinition());
             }
         }
         catch (Exception e) {

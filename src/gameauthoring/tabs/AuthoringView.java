@@ -10,9 +10,14 @@ import gameauthoring.listdisplay.GameConditionView;
 import gameauthoring.util.BasicUIFactory;
 import gameauthoring.waves.WaveTabViewer;
 import gameplayer.GamePlayer;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
@@ -57,12 +62,12 @@ public class AuthoringView implements IAuthoringView {
     public static final String SAVE = "Save";
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
     private ResourceBundle myImages = ResourceBundle.getBundle("defaults/authoringmenus");
-    
+
     public AuthoringView () {
         GameFactory gameFactory = new GameFactory();
         myGame = gameFactory.createGame();
     }
-    
+
     public AuthoringView (IGame game) {
         myGame = game;
     }
@@ -87,7 +92,7 @@ public class AuthoringView implements IAuthoringView {
         initializeTabViewers();
         myLayout = new BorderPane();
         myLayout.setCenter(createContents());
-        myLayout.setTop(createStatusBar());
+        myLayout.setTop(createMenuBar());
         Scene scene = new Scene(myLayout, WIDTH, HEIGHT);
         scene.getStylesheets().add(DEFAULT_RESOURCE_PACKAGE + STYLESHEET);
         s.setScene(scene);
@@ -101,17 +106,31 @@ public class AuthoringView implements IAuthoringView {
         myWaveTabView = new WaveTabViewer(getMyGame());
     }
 
-    private Node createStatusBar () {
-        Image home = new Image(myImages.getString(HOME), 40, 40, true, true);
-        Image save = new Image(myImages.getString(SAVE), 40, 40, true, true);
-        ImageView homeView = new ImageView(home);
-        ImageView saveView = new ImageView(save);
-        Button homeButton = myUIFactory.createImageButton(HOME, homeView, e -> goHome());
-        Button saveButton = myUIFactory.createImageButton(SAVE, saveView, e -> saveToXML());
-        
-        HBox statusBar = new HBox(10, homeButton, saveButton);
-        return statusBar;
+    private MenuBar createMenuBar () {
+        MenuBar menuBar = new MenuBar();
+        Menu fileMenu = new Menu("File");
+        MenuItem saveItem = createMenuItems("Save your game as XML Files", e -> saveToXML());
+        fileMenu.getItems().add(saveItem);
+        menuBar.getMenus().add(fileMenu);
+        return menuBar;
     }
+
+    private MenuItem createMenuItems (String itemName, EventHandler<ActionEvent> action) {
+        MenuItem newMenuItem = new MenuItem(itemName);
+        newMenuItem.setOnAction(action);
+        return newMenuItem;
+    }
+    // private Node createStatusBar () {
+    // Image home = new Image(myImages.getString(HOME), 40, 40, true, true);
+    // Image save = new Image(myImages.getString(SAVE), 40, 40, true, true);
+    // ImageView homeView = new ImageView(home);
+    // ImageView saveView = new ImageView(save);
+    // Button homeButton = myUIFactory.createImageButton(HOME, homeView, e -> goHome());
+    // Button saveButton = myUIFactory.createImageButton(SAVE, saveView, e -> saveToXML());
+    //
+    // HBox statusBar = new HBox(10, homeButton, saveButton);
+    // return statusBar;
+    // }
 
     private Node createContents () {
         TabPane tabPane = createAllTabs();
@@ -125,26 +144,44 @@ public class AuthoringView implements IAuthoringView {
     }
 
     private void saveToXML () {
-
+        
         XStream xstream = new XStream(new DomDriver());
         FXConverters.configure(xstream);
         xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
         myGame.createAndSortGlobals();
-        
+
         String xml = xstream.toXML(myGame);
-        //IGame game = (IGame) xstream.fromXML(xml);
-        //GamePlayer player = new GamePlayer(game);
+        // IGame game = (IGame) xstream.fromXML(xml);
+        // GamePlayer player = new GamePlayer(game);
     }
 
     private TabPane createAllTabs () {
         TabPane tabpane = new TabPane();
-        Tab gameTab = myUIFactory.createTab(myLang.getString("Game"), false, myGameTabViewer.draw());
+        tabpane.getStyleClass().add("authoringTabs");
+        Tab gameTab =
+                myUIFactory.createTabGraphic(
+                                             myUIFactory.makeImageDisplay("images/game.png",
+                                                                          "GAME"),
+                                             false, myGameTabViewer.draw());
         Tab creationTab =
-                myUIFactory.createTab(myLang.getString("CreateObjects"), false, myCreationTabViewer.draw());
-        Tab conditionTab = myUIFactory.createTab(myLang.getString("Conditions"), false, myConditionView.draw());
-        Tab waveTab = myUIFactory.createTab(myLang.getString("Waves"), false, myWaveTabView.draw());
-        Tab sceneTab = myUIFactory.createTab(myLang.getString("BuildScenes"), false, mySceneTabViewer.draw());
+                myUIFactory.createTabGraphic(myUIFactory.makeImageDisplay("images/tools.png",
+                                                                          "OBJECT CREATOR"),
+                                             false, myCreationTabViewer.draw());
+        Tab conditionTab =
+                myUIFactory.createTabGraphic(myUIFactory.makeImageDisplay("images/collision.png",
+                                                                          "CONDITIONS"),
+                                             false, myConditionView.draw());
+        Tab waveTab =
+                myUIFactory.createTabGraphic(
+                                             myUIFactory.makeImageDisplay("images/waves.png",
+                                                                          "WAVES"),
+                                             false, myWaveTabView.draw());
+        Tab sceneTab =
+                myUIFactory.createTabGraphic(myUIFactory.makeImageDisplay("images/scene.png",
+                                                                          "SCENE BUILDER"),
+                                             false, mySceneTabViewer.draw());
         tabpane.getTabs().addAll(gameTab, creationTab, conditionTab, waveTab, sceneTab);
+
         return tabpane;
     }
 

@@ -8,7 +8,7 @@ package gameauthoring.creation.subforms;
  * @author Joe Lilien
  *
  */
-public interface IMakeAttributeSFV {
+public interface IMakeAttributeSFV extends ISubFormView{
 
     String getMyStartingValueKey ();
 

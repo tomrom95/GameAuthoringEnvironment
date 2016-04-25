@@ -3,15 +3,24 @@ package gameauthoring.creation.subforms.fire;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import engine.AuthorshipData;
 import engine.SpriteGroup;
+import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.BasicUIFactory;
+import gameauthoring.util.UIFactory;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 
 /**
@@ -22,35 +31,40 @@ import javafx.scene.layout.GridPane;
  * @author Joe Lilien
  *
  */
-public class TrackingFirerSFV extends SubFormView implements ITrackingFireSFV {
+public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
-    private GridPane myPane;
+    private HBox myPane;
     private String myWaitTimeKey = "Wait Time: ";
     private String myTargetsKey = "Targets: ";
     private IEntryView myWaitTime;
     private SingleChoiceEntryView<SpriteGroup> myTargets;
+    private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
+    private RemoveOption myRemove;
 
-    public TrackingFirerSFV (DefinitionCollection<SpriteGroup> groupsList) {
+    public TrackingFireSFV (AuthorshipData data, RemoveOption remove) {
+        myRemove = remove;
         myWaitTime =
                 new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myTargets =
-                new SingleChoiceEntryView<SpriteGroup>(myTargetsKey, groupsList.getItems(),
+                new SingleChoiceEntryView<SpriteGroup>(myTargetsKey, data.getMyCreatedGroups().getItems(),
                                                        AuthoringView.DEFAULT_ENTRYVIEW);
+        myMissileSelectionView =
+                new SingleChoiceEntryView<>("Missile", data.getMyCreatedMissiles().getItems(), AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
 
     }
     
     @Override
     protected void initView () {
-        myPane = new GridPane();
-        myPane.setGridLinesVisible(true);
-        myPane.add(myWaitTime.draw(), 0, 0);
-        myPane.add(myTargets.draw(), 1, 0);
+        myPane = myUIFactory.makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(), myWaitTime.draw(), myTargets.draw(), myRemove.draw());
+        myPane.getStyleClass().add("firer");
     }
 
-    public SingleChoiceEntryView<SpriteGroup> getTargetsCoice () {
-        return myTargets;
+    @Override
+    public SpriteGroup getTargetsCoice () {
+        return myTargets.getSelected();
     }
 
     @Override
@@ -65,8 +79,8 @@ public class TrackingFirerSFV extends SubFormView implements ITrackingFireSFV {
     }
 
     @Override
-    public String getTargetsKey () {
-        return myTargetsKey;
+    public SpriteDefinition getSelectedMissile () {
+        return myMissileSelectionView.getSelected();
     }
 
 }

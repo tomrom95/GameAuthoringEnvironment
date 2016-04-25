@@ -1,6 +1,13 @@
 package gameauthoring.util;
 
+import java.util.List;
+import gameauthoring.creation.cellviews.ProfileCellView;
+import graphics.ImageGraphic;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import java.util.Optional;
+import engine.rendering.GraphicFactory;
+import engine.rendering.UnscaledFactory;
 import java.util.ResourceBundle;
 import engine.profile.IProfilable;
 import engine.rendering.ScaleFactory;
@@ -9,9 +16,21 @@ import graphics.IGraphic;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Slider;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TitledPane;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -29,6 +48,7 @@ import javafx.scene.layout.VBox;
  * @author RyanStPierre
  *
  */
+
 public interface UIFactory {
      
     Button createButton (String text, EventHandler<ActionEvent> action);
@@ -40,11 +60,12 @@ public interface UIFactory {
     Button createStyledButton (String text,
                                       String styleClass);
 
-    public Button createImageButton (String text,
+ 
+     Button createImageButton (String text,
                                      ImageView imgview,
                                      EventHandler<ActionEvent> action);
 
-    public Button createImageButton (String url);
+     Button createImageButton (String url);
 
     Tab createTab (String text, boolean closable, Node content);
 

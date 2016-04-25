@@ -6,20 +6,28 @@ import engine.profile.IProfilable;
 import engine.rendering.ScaleFactory;
 import gameauthoring.creation.cellviews.NameCellView;
 import graphics.IGraphic;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
@@ -49,6 +57,7 @@ public class BasicUIFactory implements UIFactory {
      * @return
      */
 
+    
     public Button createStyledButton (String text,
                                       EventHandler<ActionEvent> action,
                                       String styleClass) {
@@ -72,11 +81,6 @@ public class BasicUIFactory implements UIFactory {
         return newButton;
     }
     
-    public Button createImageButton (String url) {
-        Image image = new Image(url);
-        Button newButton = new Button(null, new ImageView(image));
-        return newButton;
-    }
 
     public Tab createTab (String text, boolean closable, Node content) {
         Tab newTab = new Tab();
@@ -86,10 +90,120 @@ public class BasicUIFactory implements UIFactory {
         return newTab;
     }
 
+
+    
+    public Button createImageButton (Node imgview,
+                                     EventHandler<ActionEvent> action) {
+        Button newButton = new Button();
+        newButton.setGraphic(imgview);
+        newButton.setOnAction(action);
+        return newButton;
+    }
+    
+    public Button createImageButton (String url) {
+        Image image = new Image(url);
+        Button newButton = new Button(null, new ImageView(image));
+        return newButton;
+    }
+
+    public Tab createTab (boolean closable, Node content) {
+        Tab newTab = new Tab();
+        newTab.setClosable(closable);
+        newTab.setContent(content);
+        return newTab;
+    }
+
+    public Tab createTabText (String text, boolean closable, Node content) {
+        Tab tab = createTab(closable, content);
+        tab.setText(text);
+        return tab;
+    }
+
+    public Tab createTabGraphic (Node graphic, boolean closable, Node content) {
+        Tab tab = createTab(closable, content);
+        tab.setGraphic(graphic);
+        return tab;
+    }
+
     public Image getImageFromNode (Node node) {
         return node.snapshot(new SnapshotParameters(), null);
     }
 
+    public ScrollPane makeScrollPane (Node content, int width, int height) {
+        ScrollPane pane = new ScrollPane(content);
+        pane.setPrefSize(width, height);
+        return pane;
+    }
+
+    public HBox makeHBox (double spacing, Pos alignment, Node ... content) {
+        HBox box = new HBox(spacing);
+        if (content != null) {
+            box.getChildren().addAll(content);
+        }
+        box.setAlignment(alignment);
+        return box;
+    }
+
+    public VBox makeVBox (double spacing, Pos alignment, Node ... content) {
+        VBox box = new VBox(spacing);
+        if (content != null) {
+            box.getChildren().addAll(content);
+        }
+        box.setAlignment(alignment);
+        return box;
+    }
+
+    public Node makeImageDisplay (String imageURL, String label) {
+        Label tag = new Label(label);
+        ImageView graphic = makeImageView(imageURL, 50, 50);
+        VBox box = makeVBox(5, Pos.CENTER, graphic, tag);
+        box.setAlignment(Pos.CENTER);
+        return box;
+    }
+
+    public ImageView makeImageView (String imageURL, DoubleProperty width, DoubleProperty height) {
+        ImageView image = new ImageView(new Image(getClass().getClassLoader()
+                .getResourceAsStream(imageURL)));
+        image.fitWidthProperty().bind(width);
+        image.fitHeightProperty().bind(height);
+        return image;
+
+    }
+
+    public ImageView makeImageView (String imageURL, double width, double height) {
+        ImageView image =
+                makeImageView(imageURL, new SimpleDoubleProperty(width),
+                              new SimpleDoubleProperty(height));
+        return image;
+
+    }
+
+    public Slider makeSlider (double min, double max, boolean showTicks, boolean showLabels) {
+        Slider slider = new Slider(min, max, min + (max - min) / 2);
+        slider.setShowTickMarks(showTicks);
+        slider.setShowTickLabels(showLabels);
+        return slider;
+    }
+
+    public TitledPane makeTitledPane (String title, Node content, boolean isExpanded) {
+        TitledPane pane = new TitledPane(title, content);
+        pane.setExpanded(isExpanded);
+        return pane;
+    }
+
+    public void modifyListView (ListView<?> listView,
+                                double width,
+                                double height,
+                                String cssClass) {
+        listView.setPrefSize(width, height);
+        listView.getStyleClass().add(cssClass);
+    }
+
+    public Accordion makeAccordion (double width) {
+        Accordion item = new Accordion();
+        item.setMaxWidth(width);
+        return item;
+    }
     public <T extends IProfilable> ComboBox<T> createCombo (ObservableList<T> list) {
         ComboBox<T> box = new ComboBox<>(list);
         addCellFactory(box);
@@ -105,7 +219,6 @@ public class BasicUIFactory implements UIFactory {
     private <T extends IProfilable> void addCellFactory (ComboBox<T> comboBox) {
         comboBox.setCellFactory(c -> new NameCellView<>());
         comboBox.setButtonCell(new NameCellView<>());
-
     }
 
     public Optional<String> getTextDialog (String holder,
@@ -115,7 +228,6 @@ public class BasicUIFactory implements UIFactory {
         dialog.setTitle(title);
         dialog.setContentText(content);
         return dialog.showAndWait();
-
     }
 
     public Label createLabel (String title) {
@@ -164,4 +276,5 @@ public class BasicUIFactory implements UIFactory {
     protected void addStyling(Node node, String key) {
         node.getStyleClass().add(myStyle.getString(key));
     }
+
 }

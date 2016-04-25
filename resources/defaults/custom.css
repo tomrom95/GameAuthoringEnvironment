@@ -121,14 +121,129 @@
     -fx-base: lightgray;
     -fx-background: aliceblue;
 }
+  
+.authoringTabs > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {  
+    -fx-alignment: CENTER;  
+    -fx-text-fill: #2381E9;  
+    -fx-font-weight: bold;  
+    	-fx-cursor: hand;  
+    
+}  
+  
+  
+.authoringTabs > .tab-header-area > .tab-header-background {
+	-fx-cursor: hand;  
+    -fx-background-color: lightskyblue;  
+    -fx-border-color: #a3a7a8;  
+    -fx-border-width: 0 0 1 0;  
+    -fx-background-insets: 0;  
+    -fx-pref-height: 45px;    
+}  
+
+
+.authoringTabs > .tab-header-area > .headers-region > .tab:top {  
+    -fx-border-color: #a3a7a8;  
+    -fx-border-radius: 5 5 0 0;  
+    -fx-background-color: lightskyblue;  
+    -fx-pref-height: 90px;    
+    -fx-cursor: hand;  
+    -fx-background-insets: 0;  
+}  
+
+.authoringTabs > .tab-header-area > .headers-region > .tab:hover:top {
+	-fx-background-color: deepskyblue;  
+}
+
+.authoringTabs > .tab-header-area > .headers-region > .tab:selected:top {  
+    -fx-border-color: #2381E9 #a3a7a8 #a3a7a8 #a3a7a8;  
+    -fx-border-width: 5 1 1 1;     
+    -fx-border-radius: 5 5 0 0;  
+    -fx-pref-height: 90px;    
+    -fx-background-color: lightskyblue;  
+    -fx-background-insets: 0;  
+}  
+
+.subTab > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {  
+    -fx-alignment: CENTER;  
+    -fx-text-fill: #2381E9;  
+    -fx-font-weight: bold;  
+}  
+  
+  
+.subTab > .tab-header-area > .tab-header-background {  
+    -fx-background-color: aliceblue;  
+    -fx-border-color: #a3a7a8;  
+    -fx-border-width: 0 0 1 0;  
+    -fx-background-insets: 0;  
+    -fx-pref-height: 30px;    
+}  
+
+
+.subTab > .tab-header-area > .headers-region > .tab:top {  
+    -fx-border-color: #a3a7a8;  
+    -fx-border-radius: 5 5 0 0;  
+    -fx-background-color: lightgray;  
+    -fx-cursor: hand;
+    -fx-pref-height: 30px;    
+    -fx-background-insets: 0;  
+}  
+
+.subTab > .tab-header-area > .headers-region > .tab:hover:top {  
+	-fx-background-color: slategray;
+}
+
+.subTab > .tab-header-area > .headers-region > .tab:selected:top {  
+    -fx-border-color: black #a3a7a8 #a3a7a8 #a3a7a8;  
+    -fx-border-width: 5 1 1 1;     
+    -fx-border-radius: 5 5 0 0;  
+    -fx-pref-height: 30px;    
+    -fx-background-color: lightskyblue;  
+    -fx-background-insets: 0;  
+}  
+
+
+.button {
+	-fx-cursor: hand;
+    -fx-text-fill: white;
+	-fx-background-color:
+        linear-gradient(grey, lightgray),
+        radial-gradient(center 50% -40%, radius 200%, grey 45%, slategrey 50%);
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 5;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
+
+.button:hover {
+    -fx-background-color: #3a3a3a;
+}
+
+.entryViewLabel
+{
+    -fx-text-fill: grey;
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+    -fx-font-family: "Futura";
+}
+
 
 .myObjectListView {
 	-fx-min-width: 450;
+	-fx-background-color: aliceblue;
 	-fx-padding: 0 0 10 0;
 }
 
 .myFormView {
-	-fx-min-width: 550
+	-fx-min-width: 550;
+}
+
+.firer {
+	-fx-background-radius: 5.0; 
+	-fx-background-color: lightgray;
+	-fx-border-color: lightskyblue;
+    -fx-border-width: 10px;
+    -fx-padding: 10;
+    -fx-spacing: 8;
 }
 
 .titleScreen{

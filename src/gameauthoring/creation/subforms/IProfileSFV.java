@@ -7,7 +7,7 @@ package gameauthoring.creation.subforms;
  * @author Joe Lilien
  *
  */
-public interface IProfileSFV {
+public interface IProfileSFV  extends ISubFormView{
 
     String getMyNameKey ();
 
@@ -18,9 +18,9 @@ public interface IProfileSFV {
     String getMyImageKey ();
 
 
-    String getMyImageWidthKey ();
+    double getMyImageWidth ();
 
 
-    String getMyImageHeightKey ();
+    double getMyImageHeight ();
     
 }
