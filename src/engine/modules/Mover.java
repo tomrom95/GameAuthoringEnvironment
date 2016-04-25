@@ -24,11 +24,11 @@ import util.TimeDuration;
  */
 public abstract class Mover extends DefaultAffectable implements IMovementModule {
 
+    private static final double MULTIPLIER = 30;
     public static final double NO_MOTION = 0;
     public static final double RADS_TO_DEGREES = 180 / Math.PI;
     public static final double DEGREES_TO_RADS = Math.PI / 180;
-
-   
+    
     private IAttribute myXVel;
     private IAttribute myYVel;
     private IAttribute myOrientation;
@@ -184,7 +184,7 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     }
 
     protected double durationToDouble (TimeDuration duration) {
-        return duration.getSeconds() * 30;
+        return duration.getSeconds() * MULTIPLIER;
     }
 
 }
