@@ -49,7 +49,7 @@ public class Level implements ILevel {
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
         myWaveSetManager = new WaveSetManager();
-        myPlaceableManager = new PlaceableManager(this,600,1250);
+        myPlaceableManager = new PlaceableManager(this,35,20);
         myAddableSprites = FXCollections.observableArrayList();
     }
 
