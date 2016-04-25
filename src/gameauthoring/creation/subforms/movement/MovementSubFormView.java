@@ -1,9 +1,11 @@
 package gameauthoring.creation.subforms.movement;
 
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.function.Consumer;
 import gameauthoring.creation.subforms.DynamicSubFormView;
 import gameauthoring.creation.subforms.ISubFormView;
+import javafx.scene.layout.HBox;
 
 
 /**
@@ -14,6 +16,7 @@ import gameauthoring.creation.subforms.ISubFormView;
  */
 public class MovementSubFormView extends DynamicSubFormView {
 
+    private ResourceBundle myProperties = ResourceBundle.getBundle("defaults/click_and_fill_images");
     private String myMoveTypeKey = "Movement Type: ";
 
     /**
@@ -24,13 +27,17 @@ public class MovementSubFormView extends DynamicSubFormView {
      * @param options  The titles of the different movement options
      */
     public MovementSubFormView (List<ISubFormView> views,
-                                Consumer<Integer> action,
                                 List<String> options) {
-        super(views, action, options);
+        super(views, options);
     }
 
     @Override
     protected String getSelectionKey () {
         return myMoveTypeKey;
+    }
+
+    @Override
+    protected void initAndAddButtons (HBox buttonHolder) {
+        
     }
 }

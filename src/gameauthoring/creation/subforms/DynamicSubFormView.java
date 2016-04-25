@@ -1,6 +1,7 @@
 package gameauthoring.creation.subforms;
 
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.function.Consumer;
 import engine.profile.ProfileDisplay;
 import gameauthoring.creation.entryviews.IEntryView;
@@ -8,10 +9,15 @@ import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.BasicUIFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 
 /**
@@ -21,16 +27,12 @@ import javafx.scene.layout.GridPane;
  * @author Jeremy Schreck
  *
  */
-public abstract class DynamicSubFormView extends SubFormView {
+public class DynamicSubFormView extends ClickAndFillView {
 
-    private List<ISubFormView> mySubViews;
-    private GridPane myPane;
-    private IEntryView mySelectionView;
-    private Node myCurrentSubView;
-    private int myCurrentSubViewX = 1;
-    private int myCurrentSubViewY = 0;
-    private int mySelectionViewX = 0;
-    private int mySelectionViewY = 0;
+
+    private ResourceBundle myProperties =
+            ResourceBundle.getBundle("/defaults/click_and_fill_images");
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
 
     /**
      * Constructor
@@ -41,95 +43,25 @@ public abstract class DynamicSubFormView extends SubFormView {
      * @param action The method to call when user selects a different sub-subview
      * @param options A list of strings containing the titles of each sub-subview
      */
-    public DynamicSubFormView (List<ISubFormView> views,
-                               Consumer<Integer> action,
-                               List<String> options) {
-        this.myPane = new GridPane();
-        this.mySubViews = views;
-        this.myCurrentSubView = mySubViews.get(0).draw();
-        initSelectionView(action, options);
+    public DynamicSubFormView (List<String> options) {
+        super(options);
         initView();
 
     }
 
-    /**
-     * Initialize the selection view
-     * 
-     * Note: can be overriden by subclasses if desired
-     * 
-     * @param action The method to call when user selects a different sub-subview
-     * @param options A list of strings containing the titles of each sub-subview
-     */
-    protected void initSelectionView (Consumer<Integer> action, List<String> options) {
-
-        SingleChoiceEntryView<ProfileDisplay> entryView =
-                new SingleChoiceEntryView<ProfileDisplay>(getSelectionKey(),
-                                                          createListOfSelectionOptions(options),
-                                                          AuthoringView.DEFAULT_ENTRYVIEW);
-
-        entryView.addComboIndexListener(action);
-        entryView.setSelected(0);
-        mySelectionView = entryView;
-
-    }
-
-    /**
-     * Helper method for converting a list of strings to observable list of profile displays
-     * 
-     * @param options A list of strings containing the titles of each sub-subview
-     * @return An observable list of ProfileDisplays based off the titles in options
-     */
-    private ObservableList<ProfileDisplay> createListOfSelectionOptions (List<String> options) {
-        ObservableList<ProfileDisplay> listOfSelectionOptions = FXCollections.observableArrayList();
-
-        for (String option : options) {
-            listOfSelectionOptions.add(new ProfileDisplay(option));
-        }
-        return listOfSelectionOptions;
-    }
-
-    /**
-     * Initialize the main view of this subform
-     */
-    protected void initView () {
-        myPane.add(mySelectionView.draw(), this.mySelectionViewX, this.mySelectionViewY);
-        myPane.add(myCurrentSubView, this.myCurrentSubViewX, this.myCurrentSubViewY);
-    }
-
-    /**
-     * Get the name of the type of thing you are selecting between
-     * 
-     * @return A String to be used as the label of the selection view
-     */
-    protected abstract String getSelectionKey ();
-
-    /**
-     * Change which sub-subview is currently being displayed
-     * 
-     * @param index The index of the sub-subview in mySubViews
-     */
-    public void changeSubView (int index) {
-        myPane.getChildren().remove(myCurrentSubView);
-        myCurrentSubView = mySubViews.get(index).draw();
-        System.out.println("In here");
-        myPane.add(myCurrentSubView, this.myCurrentSubViewX, this.myCurrentSubViewY);
+    @Override
+    protected void addOrSetSFV (ISubFormView sfv) {
+        getMyPaneContent().getChildren().clear();
+        getMyPaneContent().getChildren().add(sfv.draw());
     }
 
     @Override
-    public Node draw () {
-        return myPane;
+    protected void initAndAddButtons (HBox buttonHolder, List<String> options) {
+        for(String s : options){
+            Button button = myUIFactory.createImageButton(myUIFactory.makeImageDisplay(myProperties.getString(s), s));
+            getMyButtons().add(button);
+        }
+        buttonHolder.getChildren().addAll(getMyButtons());
     }
 
-    // Getters and setters
-    protected void setMyCurrentSubViewX (int x) {
-        this.myCurrentSubViewX = x;
-    }
-
-    protected void setMyCurrentSubViewY (int y) {
-        this.myCurrentSubViewY = y;
-    }
-
-    protected GridPane getMyGridPane () {
-        return this.myPane;
-    }
 }

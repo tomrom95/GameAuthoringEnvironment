@@ -28,19 +28,19 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
 
             return new SmartAIMovementSubFormController();
         }
-        else if (type.equals("Static")) {
+        else if (type.equals("STATIC")) {
             return new StaticMoverSubFormController();
 
         }
-        else if (type.equals("Constant")) {
+        else if (type.equals("CONSTANT")) {
             return new ConstantMoverSubFormController();
 
         }
-        else if (type.equals("UserMover")) {
+        else if (type.equals("USERMOVER")) {
             return new UserMoverSubFormController();
 
         }
-        else if (type.equals("Tracking")) {
+        else if (type.equals("TRACKING")) {
             return new TrackingMoverSubFormController(getMyGame());
 
         }
