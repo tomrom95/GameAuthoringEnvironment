@@ -21,9 +21,17 @@ import javafx.collections.ObservableList;
  */
 public class AuthorshipData {
 
-    private List<DefinitionCollection<SpriteDefinition>> myCreatedSprites;
-    private DefinitionCollection<SpriteDefinition> myCreatedMissiles;
+    // TODO: figure out better way of organizing authorhsip data and making it flexible
+        // we may want these three lists 
+        // created sprites would have all sprites (including spawners?)
+        // group sprites would have all sprites minus spawners
+        // level selector sprite would have all sprites plus spawners minus missiles
 
+    private List<DefinitionCollection<SpriteDefinition>> myCreatedSprites;
+    private List<DefinitionCollection<SpriteDefinition>> myGroupSprites;
+    private List<DefinitionCollection<SpriteDefinition>> myLevelSelectorSprites;
+
+    private DefinitionCollection<SpriteDefinition> myCreatedMissiles;
     private DefinitionCollection<WaveDefinition> myCreatedWaves;
     private DefinitionCollection<AttributeDefinition> myCreatedGlobals;
     private DefinitionCollection<AttributeDefinition> myCreatedAttributes;
@@ -32,6 +40,9 @@ public class AuthorshipData {
 
     public AuthorshipData () {
         myCreatedSprites = FXCollections.observableArrayList();
+        myGroupSprites = FXCollections.observableArrayList();
+        myLevelSelectorSprites = FXCollections.observableArrayList();
+        
         myCreatedWaves =
                 new DefinitionCollection<WaveDefinition>("Wave Definitions",
                                                          FXCollections.observableArrayList());
@@ -50,10 +61,6 @@ public class AuthorshipData {
                                                                                           .observableArrayList());
     }
 
-    public List<DefinitionCollection<SpriteDefinition>> getMyCreatedSprites () {
-        return myCreatedSprites;
-    }
-
     /**
      * Just for show and picking. Will not edit the overall lists!
      * 
@@ -64,6 +71,11 @@ public class AuthorshipData {
         List<SpriteDefinition> sprites = new ArrayList<>();
         getMyCreatedSprites().stream().forEach(col -> sprites.addAll(col.getItems()));
         return FXCollections.observableArrayList(sprites);
+    }
+
+    // Getters and setters
+    public List<DefinitionCollection<SpriteDefinition>> getMyCreatedSprites () {
+        return myCreatedSprites;
     }
 
     public DefinitionCollection<SpriteDefinition> getMyCreatedMissiles () {
@@ -94,6 +106,22 @@ public class AuthorshipData {
         myCreatedSprites.add(createdSprites);
     }
 
+    public List<DefinitionCollection<SpriteDefinition>> getMyGroupSprites () {
+        return myGroupSprites;
+    }
+
+    public void addGroupSprites (DefinitionCollection<SpriteDefinition> groupSprites) {
+        this.myGroupSprites.add(groupSprites);
+    }
+
+    public List<DefinitionCollection<SpriteDefinition>> getMyLevelSelectorSprites () {
+        return myLevelSelectorSprites;
+    }
+
+    public void addLevelSelectorSprites (DefinitionCollection<SpriteDefinition> levelSelectorSprites) {
+        this.myLevelSelectorSprites.add(levelSelectorSprites);
+    }
+
     public void setMyCreatedEvents (DefinitionCollection<EventPackageDefinition> createdEvents) {
         myCreatedEventPackages = createdEvents;
     }
@@ -116,7 +144,7 @@ public class AuthorshipData {
 
     public void addWave (WaveDefinition waveDef) {
         myCreatedWaves.addItem(waveDef);
-        
+
     }
 
 }

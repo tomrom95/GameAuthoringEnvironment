@@ -100,11 +100,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
         CreationController<?> ccEvents =
                 ccFactory.createCreationController(myControllerResources.getString("Events"),
                                                    myLang.getString("Events"), myEventSFCs, myGame);
-        CreationController<?> ccBadArgsTest =
-                ccFactory.createCreationController("gameauthoring.creation.forms.FormView",
-                                                   "Events", myEventSFCs, myGame);
-        CreationController<?> ccClassCastExceptionTest =
-                ccFactory.createCreationController("gameauthoring.creation.forms.FormView");
+     
 
         myCCs = new ArrayList<CreationController<?>>();
 
