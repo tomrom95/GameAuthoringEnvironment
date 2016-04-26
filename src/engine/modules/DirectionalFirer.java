@@ -100,7 +100,6 @@ public class DirectionalFirer extends Firer {
     }
 
     protected void setAngle (double theta) {
-        System.out.println(theta);
         myAngle = theta;
     }
 
