@@ -1,9 +1,11 @@
 package gameauthoring.creation.entryviews;
 
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 
 /**
@@ -16,32 +18,26 @@ import javafx.scene.layout.GridPane;
  */
 public abstract class InputEntryView extends EntryView {
 
-    private GridPane myContainer;
+    private HBox myContainer;
     private TextInputControl myTextInput;
     private double width;
     private double height;
 
     public InputEntryView (String label,
-                           IFormDataManager data,
                            double width,
                            double height,
                            String cssClass) {
-        super(label, data);
+        super(label);
         this.width = width;
         this.height = height;
-
     }
 
     @Override
     protected void init (String label, String cssClass) {
-        this.myTextInput.setMinSize(width, height);
-        this.myTextInput.setMaxSize(width, height);
-        this.myTextInput.textProperty().bindBidirectional(getData().getValueProperty());
-        this.myContainer = new GridPane();
-        myContainer.add(getLabel(), 0, 0);
-        myContainer.add(myTextInput, 0, 1);
+        myTextInput.setMinSize(width, height);
+        myTextInput.setMaxSize(width, height);
+        myContainer = getMyFactory().makeHBox(20, Pos.CENTER, getLabel(), myTextInput);
         myContainer.getStyleClass().add(cssClass);
-
     }
 
     protected void setInputControl (TextInputControl text) {

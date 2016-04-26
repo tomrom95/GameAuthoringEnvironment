@@ -1,6 +1,8 @@
 package gameauthoring.creation.forms;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import engine.AuthorshipData;
 import engine.IGame;
 
@@ -18,6 +20,7 @@ import gameauthoring.shareddata.DefinitionCollection;
  */
 public class CreationControllerSprite extends CreationController<SpriteDefinition> {
 
+    
     public CreationControllerSprite (String title,
                                      List<String> subFormStrings,
                                      IGame myGame) {
@@ -36,8 +39,17 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
     @Override
     protected void addToAuthorshipData (AuthorshipData authorshipData) {
         //authorshipData.addCreatedSprites(getMyDefinitionCollection());
-        //TODO need to make createdSprites a map so I can get Enemies and Defenders separately
+        //TODO need to make createdSprites a map so I can get Enemies and Defenders separately        
         // other option is to make subclasses of creationcontroller sprite for each one
+        
+        //TODO: super hacky fix for now
+//        if(getMyTitle().equals(myLang.getString("Enemies"))){
+//            setMyDefinitionCollection(authorshipData.getMyCreatedSprites().get(0));
+//        }
+//        else if(getMyTitle().equals(myLang.getString("Defenders"))){
+//            setMyDefinitionCollection(authorshipData.getMyCreatedSprites().get(1));
+//        }
+        
         setMyDefinitionCollection(authorshipData.getMyCreatedSprites().get(0));
 
         

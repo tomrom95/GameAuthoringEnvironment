@@ -1,7 +1,6 @@
 package gameauthoring.creation.entryviews;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import gameauthoring.util.BasicUIFactory;
 import javafx.scene.control.Label;
 
 
@@ -22,31 +21,24 @@ import javafx.scene.control.Label;
  */
 public abstract class EntryView implements IEntryView {
 
-    private FormData myFormData;
     private String myLabelCss = "entryViewLabel";
     private Label myLabel;
+    private BasicUIFactory myFactory = new BasicUIFactory();
 
     public EntryView (String label) {
         myLabel = new Label(label);
         myLabel.getStyleClass().add(myLabelCss);
     }
 
-    public EntryView (String label, IFormDataManager data) {
-        this(label);
-        myFormData = new FormData(label, new ArrayList<String>(Arrays.asList("")));
-        data.add(myFormData);
-    }
-
     @Override
     public Label getLabel () {
         return myLabel;
     }
-
-    @Override
-    public FormData getData () {
-        return myFormData;
-    }
     
-    protected abstract void init(String label, String cssClass);
+    protected BasicUIFactory getMyFactory(){
+        return myFactory;
+    }
+
+    protected abstract void init (String label, String cssClass);
 
 }

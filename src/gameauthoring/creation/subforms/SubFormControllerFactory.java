@@ -64,9 +64,7 @@ public class SubFormControllerFactory {
         else if (type.equals("SelectSprite")) {
             return new SelectSpriteSFC(getMyAuthorshipData().getMyCreatedSprites());
         }    
-        else if (type.equals("Upgrade")) {
-            return new UpgradeSFC(getMyGame());
-        }
+       
         System.out.println("null");
 
         return null;

@@ -15,12 +15,10 @@ import gameauthoring.util.ErrorMessage;
 public class MakeAttributeSFC implements ISubFormControllerAttribute {
 
     private IMakeAttributeSFV myView;
-    private IFormDataManager myFormData;
     private double myInitialValue = 0;
 
     public MakeAttributeSFC () {
         this.myView = new MakeAttributeSFV();
-        this.myFormData = myView.getData();
     }
 
     @Override

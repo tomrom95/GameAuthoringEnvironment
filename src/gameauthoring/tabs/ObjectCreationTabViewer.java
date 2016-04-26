@@ -54,12 +54,12 @@ public class ObjectCreationTabViewer implements ITabViewer {
         List<String> myAttributeSFCs =
                 new ArrayList<String>(Arrays.asList("ProfileSFC", "Attribute"));
 
-        List<String> myMissileSFCs = new ArrayList<String>(Arrays.asList("ProfileSFC", "Movement"));
+        List<String> myMissileSFCs = new ArrayList<String>(Arrays.asList("ProfileSFC", "UpgradeMissile","Movement"));
         List<String> myEnemySFCs =
-                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Movement"));
+                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "UpgradeEnemy","Movement"));
        List<String> myDefenderSFCs =
 
-                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Upgrade",
+                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "UpgradeDefender",
                                                     "Cost", "Movement", "FireMult"));
         List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("ProfileSFC", "SelectSprite"));
 
@@ -113,7 +113,6 @@ public class ObjectCreationTabViewer implements ITabViewer {
         ccGlobal.init(myGlobalSFCs);
         ccAttributes.init(myAttributeSFCs);
         ccMissiles.init(myMissileSFCs);
-
         ccEnemies.init(myEnemySFCs);
         ccDefenders.init(myDefenderSFCs);
         ccGroups.init(myGroupSFCs);

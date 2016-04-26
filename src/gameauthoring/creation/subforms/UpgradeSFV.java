@@ -1,11 +1,13 @@
 package gameauthoring.creation.subforms;
 
+import java.util.List;
 import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
+import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.UIFactory;
@@ -22,8 +24,8 @@ import javafx.scene.layout.GridPane;
  *
  */
 public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
-    
-    private String myUpgradeChoicesKey = "Next Level Defender: ";
+
+    private String myUpgradeChoicesKey = "Next Level: ";
     private String myUpgradableKey = "Upgradable: ";
     private String myGlobalKey = "Deplete Global Resource: ";
     private String myAttributeChoicesKey = "Depelted Resource: ";
@@ -37,14 +39,14 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     private GridPane myPane;
     private BasicUIFactory myUIFactory = new BasicUIFactory();
 
-    public UpgradeSFV (AuthorshipData data) {
+    public UpgradeSFV (AuthorshipData data, DefinitionCollection<SpriteDefinition> nextUpgrades) {
 
         // TODO: change list of sprite DefinitionCollections in authorship data to map most likely,
         // or separate them, should decide on that to avoid magic number like this
 
         myUpgradeChoices =
-                new SingleChoiceEntryView<SpriteDefinition>(myUpgradeChoicesKey, data
-                        .getMyCreatedSprites().get(1).getItems(),
+                new SingleChoiceEntryView<SpriteDefinition>(myUpgradeChoicesKey,
+                                                            nextUpgrades.getItems(),
                                                             AuthoringView.DEFAULT_ENTRYVIEW);
         myAttributeChoices =
                 new SingleChoiceEntryView<AttributeDefinition>(myAttributeChoicesKey,
@@ -65,7 +67,7 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     }
 
     @Override
-    protected void initView () {        
+    protected void initView () {
         myPane = new GridPane();
         myPane.add(isUpgradable.draw(), 0, 0);
         myPane.add(isGlobalResource.draw(), 0, 1);
@@ -90,7 +92,8 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
             myAttributeChoices.setItems(data.getMyCreatedGlobals().getItems());
         }
         else {
-            //TODO: maybe this should be from mySprite.getAttributes() so that you can only pick attributes that the sprite has
+            // TODO: maybe this should be from mySprite.getAttributes() so that you can only pick
+            // attributes that the sprite has
             myAttributeChoices.setItems(data.getMyCreatedAttributes().getItems());
         }
     }
@@ -139,6 +142,5 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     public void setNextUpgrade (SpriteDefinition item) {
         this.myUpgradeChoices.setSelected(item);
     }
-
 
 }

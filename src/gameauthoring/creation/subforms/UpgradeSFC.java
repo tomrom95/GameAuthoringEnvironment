@@ -9,6 +9,7 @@ import engine.definitions.upgrades.GlobalUpgradeDefinition;
 import engine.definitions.upgrades.NullUpgradeDefinition;
 import engine.definitions.upgrades.SpriteUpgradeDefinition;
 import engine.definitions.upgrades.UpgradeDefinition;
+import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.util.ErrorMessage;
 
 
@@ -20,8 +21,8 @@ public class UpgradeSFC implements ISubFormControllerSprite {
     private UpgradeDefinition mySpriteUpgrade;
     private double myInitialValue = 0;
 
-    public UpgradeSFC (IGame game) {
-        mySFV = new UpgradeSFV(game.getAuthorshipData());
+    public UpgradeSFC (IGame game, DefinitionCollection<SpriteDefinition> nextUpgrade) {
+        mySFV = new UpgradeSFV(game.getAuthorshipData(),nextUpgrade);
         this.myGame = game;
         this.myGlobalUpgrade = new GlobalUpgradeDefinition();
         this.mySpriteUpgrade = new SpriteUpgradeDefinition();
