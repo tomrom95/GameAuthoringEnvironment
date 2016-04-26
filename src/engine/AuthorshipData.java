@@ -2,15 +2,12 @@ package engine;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
 
 
@@ -30,9 +27,11 @@ public class AuthorshipData {
         // level selector sprite would have all sprites plus spawners minus missiles
 
     private List<DefinitionCollection<SpriteDefinition>> myCreatedSprites;
+    
+    
+    
     private List<DefinitionCollection<SpriteDefinition>> myGroupSprites;
     private List<DefinitionCollection<SpriteDefinition>> myLevelSelectorSprites;
-    private ObservableList<SpriteDefinition> myCreatedSpritesAsList;
 
     private DefinitionCollection<SpriteDefinition> myCreatedMissiles;
     private DefinitionCollection<WaveDefinition> myCreatedWaves;
@@ -43,7 +42,6 @@ public class AuthorshipData {
     
     public AuthorshipData () {
         myCreatedSprites = FXCollections.observableArrayList();
-        myCreatedSpritesAsList = FXCollections.observableArrayList();
         myGroupSprites = FXCollections.observableArrayList();
         myLevelSelectorSprites = FXCollections.observableArrayList();
         
@@ -72,12 +70,9 @@ public class AuthorshipData {
      */
 
     public ObservableList<SpriteDefinition> getAllCreatedSprites () {
-        return myCreatedSpritesAsList;
-        /*
         List<SpriteDefinition> sprites = new ArrayList<>();
         getMyCreatedSprites().stream().forEach(col -> sprites.addAll(col.getItems()));
         return FXCollections.observableArrayList(sprites);
-        */
     }
 
     // Getters and setters
@@ -110,32 +105,7 @@ public class AuthorshipData {
     }
 
     public void addCreatedSprites (DefinitionCollection<SpriteDefinition> createdSprites) {
-        myCreatedSprites.add(createdSprites);
-        myCreatedSpritesAsList.addAll(createdSprites.getItems());
-        createdSprites.getItems().addListener(new ListChangeListener<SpriteDefinition>() {
-            public void onChanged(Change<? extends SpriteDefinition> c) {
-                while (c.next()) {
-                    if (c.wasPermutated()) {
-                            for (int i = c.getFrom(); i < c.getTo(); ++i) {
-                                 //permutate
-                            }
-                        } else if (c.wasUpdated()) {
-                                 //update item
-                        } else {
-                            for (SpriteDefinition remitem : c.getRemoved()) {
-                                myCreatedSpritesAsList.remove(remitem);
-                            }
-                            for (SpriteDefinition additem : c.getAddedSubList()) {
-                                myCreatedSpritesAsList.add(additem);
-                            }
-                        }
-                    }
-                }
-
-           
-
-           
-            });
+        myCreatedSprites.add(createdSprites);        
     }
 
     public List<DefinitionCollection<SpriteDefinition>> getMyGroupSprites () {
