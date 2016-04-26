@@ -112,8 +112,9 @@ public class AuthoringView implements IAuthoringView {
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
         MenuItem saveItem = createMenuItems("Save game", e -> saveToXML());
-        MenuItem launchItem = createMenuItems("Launch game", e -> )
+        MenuItem launchItem = createMenuItems("Launch game", e -> launchGame());
         fileMenu.getItems().add(saveItem);
+        fileMenu.getItems().add(launchItem);
         menuBar.getMenus().add(fileMenu);
         return menuBar;
     }
@@ -148,6 +149,7 @@ public class AuthoringView implements IAuthoringView {
 
     private void saveToXML () {
         File f = getFile();
+        
         
     }
     
