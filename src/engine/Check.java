@@ -24,7 +24,7 @@ public class Check implements ICheck {
         myType = type;
         myCost = cost;
         myStatus = new SimpleBooleanProperty(false);
-        bindStatus(myStatus);
+        bindStatus();
     }
 
     public void alterAttribute () {
@@ -44,7 +44,7 @@ public class Check implements ICheck {
 
     }
     
-    private void bindStatus (BooleanProperty myStatus2) {
+    private void bindStatus () {
         for (IAttribute attribute : myManager.getAttributes()) {
             if (attribute.getType().equals(myType)) {
                 myStatus.bind(attribute.getValueProperty().greaterThanOrEqualTo(myCost));
