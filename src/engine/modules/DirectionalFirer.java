@@ -5,6 +5,7 @@ import java.util.List;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
+import engine.IGame;
 import engine.Positionable;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.sprite.ISprite;
@@ -28,12 +29,12 @@ public class DirectionalFirer extends Firer {
     private double myAngle;
     private TimeDuration myTimeSinceFire;
 
-    public DirectionalFirer (
+    public DirectionalFirer (IGame game,
                              SpriteDefinition projectile,
                              Positionable sprite,
                              double waitTime,
                              double theta) {
-        super(sprite);
+        super(game, sprite);
         myWaitTime = new Attribute(waitTime, AttributeType.FIRE_RATE);
         myTimeSinceFire = new TimeDuration(0);
         mySprite = sprite;
@@ -64,6 +65,7 @@ public class DirectionalFirer extends Firer {
     }
     
     protected void fire(){
+        System.out.println("here");
         myTimeSinceFire.setToZero();
         ISprite bullet = myProjectile.create();
         bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
@@ -98,6 +100,7 @@ public class DirectionalFirer extends Firer {
     }
 
     protected void setAngle (double theta) {
+        System.out.println(theta);
         myAngle = theta;
     }
 
