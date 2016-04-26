@@ -1,6 +1,7 @@
 package gameauthoring.tabs;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import com.dooapp.xstreamfx.FXConverters;
@@ -9,6 +10,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.IGame;
 import gameauthoring.listdisplay.GameConditionView;
 import gameauthoring.util.BasicUIFactory;
+import gameauthoring.util.ErrorMessage;
 import gameauthoring.waves.WaveTabViewer;
 import gameplayer.GamePlayer;
 import javafx.event.ActionEvent;
@@ -28,6 +30,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import serialize.GameWriter;
 
 
 /**
@@ -149,10 +152,19 @@ public class AuthoringView implements IAuthoringView {
 
     private void saveToXML () {
         File f = getFile();
-        
-        
+        myGame.createAndSortGlobals();
+        if (f != null) {
+            try {
+                new GameWriter().serialize(f, myGame);
+            }
+            catch (IOException e) {
+                ErrorMessage message = new ErrorMessage(e.getMessage());
+                message.showError();
+            }
+        }
+
     }
-    
+
     private void launchGame () {
         XStream xstream = new XStream(new DomDriver());
         FXConverters.configure(xstream);
