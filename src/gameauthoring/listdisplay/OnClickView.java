@@ -1,11 +1,13 @@
 package gameauthoring.listdisplay;
 
 import java.util.ResourceBundle;
+import engine.IEventPackage;
 import engine.IGame;
 import engine.SpriteGroup;
 import engine.conditions.ICondition;
 import engine.conditions.OnClickCondition;
 import engine.definitions.concrete.EventPackageDefinition;
+import engine.events.EventPackage;
 import javafx.scene.control.ComboBox;
 
 public class OnClickView extends SubConditionView {
@@ -28,12 +30,12 @@ public class OnClickView extends SubConditionView {
 
     @Override
     protected ICondition subCreation () {
-        EventPackageDefinition packageA = myEventsA.getSelectionModel().getSelectedItem();
-        packageA.setMySpriteGroup(myGroupA.getSelectionModel().getSelectedItem());
-        EventPackageDefinition packageB = myEventsB.getSelectionModel().getSelectedItem();
-        packageB.setMySpriteGroup(myGroupB.getSelectionModel().getSelectedItem());
         EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();
-        return new OnClickCondition(myGame, packageA.create(), packageB.create(), global.create());
+        EventPackageDefinition packageA = myEventsA.getSelectionModel().getSelectedItem();
+        EventPackageDefinition packageB = myEventsB.getSelectionModel().getSelectedItem();
+        return new OnClickCondition(myGame, packageA.create(myGroupA.getSelectionModel().getSelectedItem()), 
+                                    packageB.create(myGroupB.getSelectionModel().getSelectedItem()), 
+                                    global.create());
     }
 
     protected void initBoxes () {  

@@ -6,6 +6,7 @@ import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
+import engine.profile.Profile;
 import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,6 +63,13 @@ public class AuthorshipData {
                                                                                   FXCollections
                                                                               .observableArrayList());
         myCreatedMissiles = new DefinitionCollection<>("Missiles", FXCollections.observableArrayList());
+    }
+
+    //TODO why doesnt this work
+    private void init () {
+        SpriteGroup spriteGroup = new SpriteGroup(new ArrayList<>());
+        spriteGroup.setProfile(new Profile("Empty Group"));
+        myCreatedGroups.addItem(spriteGroup);
     }
 
     /**
