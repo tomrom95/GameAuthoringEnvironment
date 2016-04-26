@@ -81,7 +81,6 @@ public class SceneCreator implements Glyph {
             for (int col = 0; col < myRenderer.getGrids().getNumBlockCol(); col++) {
                 myLevel.getPlaceableTileManager().getPlaceableMap()
                         .set(row, col, blocks[row][col].getTile().getFill() == Color.RED);
-
             }
         }
     }
@@ -136,7 +135,7 @@ public class SceneCreator implements Glyph {
         if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
             myController.uploadNewBackground();
             myRenderer.render();
-            myRenderer.updateTile();
+            myRenderer.updateNewTiles();
             pane.getChildren().clear();
             pane.getChildren().addAll(myRenderer.getGrids().getPane(), myRenderer.getPane(),
                                       placeableButton(pane));
