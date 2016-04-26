@@ -84,7 +84,7 @@ public class GoalBasedMover extends Mover {
      * @return
      */
     private Coordinate linearInterp (Coordinate start, Coordinate end, double distance) {
-        double deltaX = start.getX() - end.getX();
+        double deltaX = end.getX() - start.getX();
         double deltaY = end.getY() - start.getY();
         if (deltaX == 0 && deltaY == 0) {
             return start;

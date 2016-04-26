@@ -78,5 +78,14 @@ public interface INodeGraph {
      * @param second
      */
     void connectNodes (IPathNode first, IPathNode second);
+    
+    /**
+     * Adds node and connects regardless of obstruction
+     * with the nearest other node
+     * Should be used ensure that movement is possible 
+     * regardless of resolution
+     * @param toAdd
+     */
+    void addAndConnectNode(IPathNode toAdd);
 
 }

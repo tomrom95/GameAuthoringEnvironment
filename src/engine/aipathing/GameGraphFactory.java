@@ -5,8 +5,10 @@ import util.IBitMap;
 import util.ArrayPosition;
 import util.AutoTrueBitMap;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -21,7 +23,7 @@ public class GameGraphFactory implements INodeGraphFactory {
     private static final int INT_ONE = 1;
     private static final int INT_NEG_ONE = -1;
     private static final double ONE = 1d;
-    private static final int NODE_GAP = 10;
+    private static final int NODE_GAP = 80;
     private IBitMap myObstructionMap;
 
     GameGraphFactory (IBitMap obstructionMap) {
@@ -43,8 +45,8 @@ public class GameGraphFactory implements INodeGraphFactory {
         int numHeightNodes = obstructionMap.getHeight() / gap;
         IPathNode[][] placedNodes = new PathNode[numHorizontalNodes][numHeightNodes];
         // place the standard grid less obstructed areas
-        for (int i = 0; i <= numHorizontalNodes; i++) {
-            for (int j = 0; j <= numHeightNodes; j++) {
+        for (int i = 0; i < numHorizontalNodes; i++) {
+            for (int j = 0; j < numHeightNodes; j++) {
                 ArrayPosition pixelLocation = pixelForArrayLoc(i, j, gap);
                 if (!obstructionMap.valueOf(pixelLocation)) {
                     IPathNode toAdd = new PathNode(new Coordinate(pixelLocation));
@@ -159,17 +161,17 @@ public class GameGraphFactory implements INodeGraphFactory {
     
     private List<List<ArrayPosition>> findAllEdges (IBitMap obstructionMap) {
         List<List<ArrayPosition>> edgeList = new ArrayList<>();
-        IBitMap obMapCopy = new AutoTrueBitMap(obstructionMap);
-        Iterator<ArrayPosition> iter = obMapCopy.positionIterator();
-        while (iter.hasNext()) {
-            ArrayPosition pos = iter.next();
-            if (isEdge(obMapCopy, pos)) {
-                edgeList.add(recursiveEdgeHelper(obMapCopy, pos, new ArrayList<>()));
-                removeObstructionMask(obMapCopy, new AutoTrueBitMap(obMapCopy.getWidth(),
-                                                                    obMapCopy.getHeight()),
-                                      pos);
-            }
-        }
+//        IBitMap obMapCopy = obstructionMap;
+//        Iterator<ArrayPosition> iter = obMapCopy.positionIterator();
+//        while (iter.hasNext()) {
+//            ArrayPosition pos = iter.next();
+//            if (isEdge(obMapCopy, pos)) {
+//                edgeList.add(recursiveEdgeHelper(obMapCopy, pos, new ArrayList<>()));
+//                removeObstructionMask(obMapCopy, new AutoTrueBitMap(obMapCopy.getWidth(),
+//                                                                    obMapCopy.getHeight()),
+//                                      pos);
+//            }
+//        }
         edgeList.add(edgeBorder(obstructionMap));
         return edgeList;
     }
@@ -177,16 +179,16 @@ public class GameGraphFactory implements INodeGraphFactory {
     private List<ArrayPosition> edgeBorder (IBitMap obstructionMap) {
         List<ArrayPosition> border = new ArrayList<>();
         for (int i = -1; i <= obstructionMap.getHeight(); i++) {
-            addIfNotContained(border, new ArrayPosition(-1, i));
-            addIfNotContained(border, new ArrayPosition(obstructionMap.getWidth(), i));
+            border.add(new ArrayPosition(-1, i));
+            border.add(new ArrayPosition(obstructionMap.getWidth(), i));
         }
         for (int i = -1; i <= obstructionMap.getWidth(); i++) {
-            addIfNotContained(border, new ArrayPosition(i, -1));
-            addIfNotContained(border, new ArrayPosition(i, obstructionMap.getHeight()));
+            border.add(new ArrayPosition(i, -1));
+            border.add(new ArrayPosition(i, obstructionMap.getHeight()));
         }
         return border;
     }
-    
+
     
     private <T> void addIfNotContained (List<T> list, T obj) {
         if (!list.contains(obj)) {
@@ -265,9 +267,11 @@ public class GameGraphFactory implements INodeGraphFactory {
     private void connectUnobstructedNodes (IPathNode[][] nodes, IBitMap obstructionMap) {
         int width = nodes.length;
         int height = width > 0 ? nodes[0].length : 0;
+        ArrayPosition pos = new ArrayPosition();
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                ArrayPosition pos = new ArrayPosition(i, j);
+                pos.setX(i);
+                pos.setY(j);
                 if (inBoundsAndNotNull(nodes, pos)) {
                     List<ArrayPosition> toCheck = nodesToCheck(nodes, pos);
                     for (ArrayPosition potNeigh : toCheck) {

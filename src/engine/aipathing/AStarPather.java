@@ -1,6 +1,7 @@
 package engine.aipathing;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,8 +32,12 @@ public class AStarPather implements INodeGraphPather {
                                          Coordinate goal) {
         INodeGraphFactory graphFactory = new GameGraphFactory(obstructionMap);
         INodeGraph graph = graphFactory.getConstructedGraph();
-        IPathNode startNode = graph.getClosestNode(start);
-        IPathNode goalNode = graph.getClosestNode(goal);
+//        IPathNode startNode = graph.getClosestNode(start);
+//        IPathNode goalNode = graph.getClosestNode(goal);
+        IPathNode startNode = new PathNode(start);
+        IPathNode goalNode = new PathNode(goal);
+        graph.addAndConnectNode(startNode);
+        graph.addAndConnectNode(goalNode);
         setGraph(graph);
         setGoal(goalNode);
         
@@ -98,7 +103,8 @@ public class AStarPather implements INodeGraphPather {
             cur = parentMap.get(cur);
             toReturn.add(cur.getLocation());
         }
-        toReturn.add(start.getLocation());
+        //toReturn.add(start.getLocation());
+        Collections.reverse(toReturn);
         return toReturn;
     }
     

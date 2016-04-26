@@ -14,6 +14,7 @@ import engine.conditions.OnSpriteAttributeCondition;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.KeyControlDefinition;
 import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.AIPatherDefinition;
 import engine.definitions.moduledef.MovementDefinition;
 import engine.definitions.moduledef.StaticMovementDefintion;
 import engine.definitions.moduledef.UserMoverDefinition;
@@ -32,7 +33,7 @@ import util.Coordinate;
 import graphics.ImageGraphic;
 
 
-public class Launcher extends Application {
+public class TestPathing extends Application {
 
     // Health attribute properties
     private static final double HEALTH_START_VAL = 100d;
@@ -40,7 +41,7 @@ public class Launcher extends Application {
     private static final String HEALTH_DESCRIPTION = "Health attribute";
     private static final String HEALTH_ATTY_TYPE = "Health";
     // Global Parameters
-    private static final double FPS_TARGET = 30;
+    private static final double FPS_TARGET = 10;
     private static final double PANE_WIDTH = 1200;
     private static final double PANE_HEIGHT = 800;
 
@@ -48,7 +49,7 @@ public class Launcher extends Application {
     private static final double SPRITE_MOVEMENT_SPEED = 3;
     private static final double SPRITE_HEIGHT = 50;
     private static final double SPRITE_WIDTH = 50;
-    private static final String SPRITE_IMAGE_URL = "/images/photo.png";
+    private static final String SPRITE_IMAGE_URL = "/images/C.png";
     private static final String USER_SPRITE_TYPE = "UserSprite";
     private static final String SPRITE_DESCRIPTION = "A sprite";
 
@@ -60,8 +61,8 @@ public class Launcher extends Application {
     private static final int ENEMY_INITIAL_Y = 100;
 
     // Other Parameters
-    private static final int SPRITE_INITIAL_X = 10;
-    private static final int SPRITE_INITIAL_Y = 10;
+    private static final int SPRITE_INITIAL_X = 300;
+    private static final int SPRITE_INITIAL_Y = 300;
 
     private static final String BACKGROUND_URL = "/images/pvz.jpg";
 
@@ -73,8 +74,8 @@ public class Launcher extends Application {
 
     private void addConditionsToTest (Game game) {
         game.getConditionManager().getConditionListProperty().add(createCollisionCondition(game));
-        game.getConditionManager().getConditionListProperty()
-                .add(createHealthAttributeZeroDeathCondition(game));
+//        game.getConditionManager().getConditionListProperty()
+//                .add(createHealthAttributeZeroDeathCondition(game));
     }
 
     private OnSpriteAttributeCondition createHealthAttributeZeroDeathCondition (Game game) {
@@ -150,8 +151,10 @@ public class Launcher extends Application {
     private void addSpritesToGame (Game game) {
         ISprite test = createEnemySpriteDefinition(ENEMY_INITIAL_X, ENEMY_INITIAL_Y).create();
         test.getStatusModule().setIsGoal(true);
+        ISprite myUser = createUserSpriteDefinition(SPRITE_INITIAL_X, SPRITE_INITIAL_Y).create();
+        myUser.setObstruction(true);
         game.bufferedAdd(test);
-        game.bufferedAdd(createUserSpriteDefinition(SPRITE_INITIAL_X, SPRITE_INITIAL_Y).create());
+        game.bufferedAdd(myUser);
     }
 
     @Override
@@ -164,6 +167,7 @@ public class Launcher extends Application {
 
         myGame =
                 new Game(new GameGridConfigNonScaling((int)GamePlayer.PREFWIDTH, (int)GamePlayer.PREFHEIGHT));
+//                new Game(new GameGridConfigNonScaling(50, 50));
         myGame.getLevelManager().getLevels().add(firstLevel);
         addSpritesToGame(myGame);
         addConditionsToTest(myGame);
@@ -202,7 +206,7 @@ public class Launcher extends Application {
 
     private SpriteDefinition createUserSpriteDefinition (int xloc, int yloc) {
         SpriteDefinition mySpriteDefinition = new SpriteDefinition();
-        mySpriteDefinition.setMovementDefinition(getUserControlledDefinition());
+        mySpriteDefinition.setMovementDefinition(getAIPather()); //TODO
         mySpriteDefinition.setProfile(userSpriteProfile());
         mySpriteDefinition.setLocation(new Coordinate(xloc, yloc));
         mySpriteDefinition.addAttribute(createHealthAttributeDefinition());
@@ -226,6 +230,14 @@ public class Launcher extends Application {
     private Profile userSpriteProfile () {
         return new Profile(USER_SPRITE_TYPE, SPRITE_DESCRIPTION,
                            new ImageGraphic(SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_IMAGE_URL));
+    }
+    
+    private AIPatherDefinition getAIPather () {
+        AIPatherDefinition toReturn = new AIPatherDefinition();
+        toReturn.setSpeed(SPRITE_MOVEMENT_SPEED);
+        toReturn.setGame(myGame);
+        return toReturn;
+
     }
 
     private UserMoverDefinition getUserControlledDefinition () {

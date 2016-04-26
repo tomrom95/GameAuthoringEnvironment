@@ -107,4 +107,11 @@ public class NodeGraph implements INodeGraph {
 //        return closest;
     }
 
+    @Override
+    public void addAndConnectNode (IPathNode toAdd) {
+        connectNodes(toAdd, getClosestNode(toAdd.getLocation()));
+        addNode(toAdd);
+        
+    }
+
 }

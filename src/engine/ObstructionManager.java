@@ -1,6 +1,7 @@
 package engine;
 
 import engine.sprite.ISprite;
+import util.AutoTrueBitMap;
 import util.BitMap;
 import util.Bounds;
 import util.IBitMap;
@@ -66,7 +67,7 @@ public class ObstructionManager implements IObstructionManager {
     private IBitMap getBitMapSizedForCurrentGame (IGame game) {
         int gameWidth = game.getGameGridConfig().getGridWidth();
         int gameHeight = game.getGameGridConfig().getGridHeight();
-        return new BitMap(gameWidth, gameHeight);
+        return new AutoTrueBitMap(gameWidth, gameHeight);
     }
 
 }
