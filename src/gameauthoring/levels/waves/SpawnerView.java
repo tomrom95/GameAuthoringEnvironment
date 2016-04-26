@@ -18,6 +18,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import gameauthoring.creation.cellviews.NameCellView;
 import gameauthoring.levels.sprites.Draggable;
 import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.Glyph;
@@ -80,6 +81,7 @@ public class SpawnerView implements Glyph, Draggable {
         myWaves = new ListView<>(myBacking);
         myWaves.setPlaceholder(new Label(myLang.getString("EmptyWavesPrompt")));
         myWaves.getStyleClass().add(myStyle.getString("GreenList"));
+        myWaves.setCellFactory(c -> new NameCellView<WaveDefinition>());
         setSize();
     }
 
@@ -168,11 +170,6 @@ public class SpawnerView implements Glyph, Draggable {
         myLevel.add(mySpawner.create(), new Coordinate(e.getX(), e.getY()));
         myRenderer.render();
         reset();
-    }
-
-    @Override
-    public boolean checkPlaceable (DragEvent e) {
-        return true;
     }
 
 }

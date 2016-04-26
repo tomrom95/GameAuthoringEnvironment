@@ -2,7 +2,6 @@ package engine.modules;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import engine.IAdder;
 import engine.IGame;
 import engine.Positionable;
@@ -27,7 +26,10 @@ public class SpawningModule extends DefaultAffectable implements IModule {
     private IWaveSet myWaveSet;
     private Positionable myParent;
 
-    public SpawningModule (IAdder adder, IGame game, Positionable parent, List<WaveDefinition> waves) {
+    public SpawningModule (IAdder adder,
+                           IGame game,
+                           Positionable parent,
+                           List<WaveDefinition> waves) {
         myParent = parent;
         myAdder = adder;
         myGame = game;
@@ -36,21 +38,20 @@ public class SpawningModule extends DefaultAffectable implements IModule {
         waves.stream().forEachOrdered(p -> myWaves.add(p.create()));
         myWaveSet.setWaveList(myWaves);
         myWaveSet.updateCurrentWave();
-        
+
         myGame.getLevelManager().getCurrentLevel().getWaveSetManager().addWaveSet(myWaveSet);
-        
+
     }
 
     @Override
     public void update (TimeDuration duration) {
-    	if(!myWaveSet.getStopWaves() & myWaveSet.getCurrentWave().satisfiedSpawnInterval(duration)){
-    		 ISprite spawn = myWaveSet.getCurrentWave().spawnSprite();
-    			        spawn.setPath(myParent.getPath());	
-    			        myAdder.bufferedAdd(spawn, myParent.getLocation());
-    	}
-       
+        if (!myWaveSet.getStopWaves() &
+            myWaveSet.getCurrentWave().satisfiedSpawnInterval(duration)) {
+            ISprite spawn = myWaveSet.getCurrentWave().spawnSprite();
+            spawn.setPath(myParent.getPath());
+            myAdder.bufferedAdd(spawn, myParent.getLocation());
+        }
+
     }
-    
-   
-    
+
 }

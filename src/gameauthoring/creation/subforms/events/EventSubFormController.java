@@ -41,7 +41,7 @@ public class EventSubFormController implements ISubFormController<EventPackageDe
     public void updateItem (EventPackageDefinition item) {
         
         // Default profile instead of profileSFC
-        item.getProfile().getName().set(NAME);
+        item.getProfile().getName().set(myView.getName());
         item.getProfile().getDescription().set(myView.getEventSelection());
         
         

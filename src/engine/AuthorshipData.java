@@ -2,11 +2,11 @@ package engine;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
+import engine.profile.Profile;
 import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,6 +28,9 @@ public class AuthorshipData {
         // level selector sprite would have all sprites plus spawners minus missiles
 
     private List<DefinitionCollection<SpriteDefinition>> myCreatedSprites;
+    
+    
+    
     private List<DefinitionCollection<SpriteDefinition>> myGroupSprites;
     private List<DefinitionCollection<SpriteDefinition>> myLevelSelectorSprites;
 
@@ -59,6 +62,13 @@ public class AuthorshipData {
         myCreatedEventPackages = new DefinitionCollection<EventPackageDefinition>("Created Groups",
                                                                                   FXCollections
                                                                               .observableArrayList());
+    }
+
+    //TODO why doesnt this work
+    private void init () {
+        SpriteGroup spriteGroup = new SpriteGroup(new ArrayList<>());
+        spriteGroup.setProfile(new Profile("Empty Group"));
+        myCreatedGroups.addItem(spriteGroup);
     }
 
     /**
@@ -103,7 +113,7 @@ public class AuthorshipData {
     }
 
     public void addCreatedSprites (DefinitionCollection<SpriteDefinition> createdSprites) {
-        myCreatedSprites.add(createdSprites);
+        myCreatedSprites.add(createdSprites);        
     }
 
     public List<DefinitionCollection<SpriteDefinition>> getMyGroupSprites () {
