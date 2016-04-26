@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.Game;
 import engine.IGame;
@@ -33,7 +34,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
     private BasicUIFactory myUIFactory = new BasicUIFactory();
     private ResourceBundle myControllerResources = ResourceBundle
             .getBundle("defaults/create_creation_controller");
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
 
     private IGame myGame;
 

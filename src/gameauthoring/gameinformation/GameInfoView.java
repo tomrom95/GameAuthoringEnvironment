@@ -2,6 +2,7 @@ package gameauthoring.gameinformation;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import splash.LocaleManager;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import gameauthoring.creation.entryviews.FormDataManager;
@@ -24,7 +25,7 @@ public class GameInfoView implements Glyph {
 
     private GridPane myLayout;
     private IFormDataManager myData = new FormDataManager();
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private String myNameKey = myLang.getString("NameOfGame");
     private String myAuthorKey = myLang.getString("Author");
     private String myDateCreatedKey = myLang.getString("Date");
