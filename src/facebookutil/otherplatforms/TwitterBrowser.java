@@ -1,4 +1,4 @@
-package facebookutil.test;
+package facebookutil.otherplatforms;
 
 import java.awt.Dimension;
 import java.util.ResourceBundle;
@@ -10,7 +10,6 @@ import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth10aService;
-import com.github.scribejava.core.oauth.OAuth20Service;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TextInputDialog;
@@ -23,14 +22,6 @@ public class TwitterBrowser {
     private static final String PROTECTED_RESOURCE_URL =
             "https://graph.facebook.com/v2.5/10204226196654701";
 
-    private static final String TWITTER_PROTECTED_RESOURCE_URL =
-            "https://api.twitter.com/1.1/account/verify_credentials.json";
-
-    private static final String CALLBACK_URL =
-            "https://duke.edu";
-
-    private OAuth20Service service;
-    private OAuth10aService twitterService;
     private OAuth1RequestToken twitterToken;
     private Scene myScene;
     private WebView myPage;
@@ -104,6 +95,5 @@ public class TwitterBrowser {
         System.out.println();
         System.out.println("That's it man! Go and build something awesome with ScribeJava! :)");
     }
-    
-    
+
 }

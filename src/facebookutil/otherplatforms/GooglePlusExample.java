@@ -1,8 +1,7 @@
-package facebookutil.test;
+package facebookutil.otherplatforms;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import com.github.scribejava.apis.GoogleApi20;
@@ -33,7 +32,7 @@ public abstract class GooglePlusExample {
                 .scope("https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.circles.write https://www.googleapis.com/auth/plus.circles.read https://www.googleapis.com/auth/plus.stream.write https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/plus.stream.read")
                 .callback("https://github.com/duke-compsci308-spring2016/voogasalad_GitDepends")
                 .build(GoogleApi20.instance());
-        final Scanner in = new Scanner(System.in, "UTF-8");
+        Scanner in = new Scanner(System.in, "UTF-8");
 
         System.out.println("=== " + NETWORK_NAME + "'s OAuth Workflow ===");
         System.out.println();
@@ -96,5 +95,6 @@ public abstract class GooglePlusExample {
 
             System.out.println();
         }
+        in.close();
     }
 }
