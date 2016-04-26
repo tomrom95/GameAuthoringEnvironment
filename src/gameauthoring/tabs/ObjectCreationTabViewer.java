@@ -40,11 +40,6 @@ public class ObjectCreationTabViewer implements ITabViewer {
     private List<CreationController<?>> myCCs;
     private List<IObjectCreationView<?>> myCVs;
 
-    public ObjectCreationTabViewer () {
-        initializeLists();
-        init();
-    }
-
     public ObjectCreationTabViewer (IGame iGame) {
         myGame = iGame;
         initializeLists();
@@ -62,7 +57,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
         List<String> myMissileSFCs = new ArrayList<String>(Arrays.asList("ProfileSFC", "Movement"));
         List<String> myEnemySFCs =
                 new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Movement"));
-        List<String> myDefenderSFCs =
+       List<String> myDefenderSFCs =
 
                 new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Upgrade",
                                                     "Cost", "Movement", "FireMult"));

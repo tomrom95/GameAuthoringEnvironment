@@ -151,7 +151,7 @@ public class AuthoringView implements IAuthoringView {
         myGame.createAndSortGlobals();
 
         String xml = xstream.toXML(myGame);
-        //System.out.println(xml);
+
         IGame game = (IGame) xstream.fromXML(xml);
         GamePlayer player = new GamePlayer(game);
     }

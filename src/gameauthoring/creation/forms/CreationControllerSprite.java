@@ -35,7 +35,12 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
 
     @Override
     protected void addToAuthorshipData (AuthorshipData authorshipData) {
-        authorshipData.addCreatedSprites(getMyDefinitionCollection());
+        //authorshipData.addCreatedSprites(getMyDefinitionCollection());
+        //TODO need to make createdSprites a map so I can get Enemies and Defenders separately
+        // other option is to make subclasses of creationcontroller sprite for each one
+        setMyDefinitionCollection(authorshipData.getMyCreatedSprites().get(0));
+
+        
         authorshipData.addGroupSprites(getMyDefinitionCollection());
         
         //uncomment if we want a different list for level selector sprites than created sprites

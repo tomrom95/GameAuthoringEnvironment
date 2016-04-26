@@ -2,6 +2,7 @@ package gameauthoring.creation.subforms.movement;
 
 import java.util.List;
 import engine.IGame;
+import engine.SpriteGroup;
 import java.util.ArrayList;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.TrackingMoverDefinition;
@@ -36,7 +37,7 @@ public class TrackingMoverSFC implements ISubFormControllerSprite {
         Double mySpeedDouble =
                 Double.valueOf(myFormData.getValueProperty(myView.getSpeedKey()).get());
         newTrackingMoverDef.setSpeed(mySpeedDouble);
-        newTrackingMoverDef.setTargets(myView.getTargetsCoice().getSelected().getSpriteTypes());
+        newTrackingMoverDef.setTargets(myView.getTargetsCoice().getSelected());
     
 
         item.setMovementDefinition(newTrackingMoverDef);
@@ -45,6 +46,16 @@ public class TrackingMoverSFC implements ISubFormControllerSprite {
     @Override
     public ISubFormView getSubFormView () {
         return myView;
+    }
+
+    @Override
+    public void populateViewsWithData (SpriteDefinition item) {
+        TrackingMoverDefinition movDef = (TrackingMoverDefinition) item.getMovementDefinition();
+        myFormData.set(myView.getSpeedKey(), Double.toString(item.getMovementDefinition().getSpeed()));
+        
+        myView.getTargetsCoice().setSelected(movDef.getTargets());
+        
+       
     }
 
 }

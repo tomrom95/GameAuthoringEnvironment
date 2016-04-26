@@ -10,8 +10,8 @@ import gameauthoring.creation.subforms.fire.DirectionalFireSFC;
 import gameauthoring.creation.subforms.fire.FiringSFC;
 import gameauthoring.creation.subforms.fire.FiringSFCmult;
 import gameauthoring.creation.subforms.fire.TrackingFireSFC;
-import gameauthoring.creation.subforms.events.EventsSubFormController;
-import gameauthoring.creation.subforms.movement.MovementSubFormController;
+import gameauthoring.creation.subforms.events.EventsSFC;
+import gameauthoring.creation.subforms.movement.MovementSFC;
 
 
 public class SubFormControllerFactory {
@@ -45,7 +45,7 @@ public class SubFormControllerFactory {
             return new FiringSFCmult(getMyGame());
         }
         else if (type.equals("Movement")) {
-            return new MovementSubFormController(getMyGame());
+            return new MovementSFC(getMyGame());
         }
      
         else if (type.equals("LevelSpecific")){
@@ -59,7 +59,7 @@ public class SubFormControllerFactory {
             return new MakeAttributeSFC();
         }
         else if (type.equals("Events")) {
-            return new EventsSubFormController(getMyGame());
+            return new EventsSFC(getMyGame());
         }
         else if (type.equals("SelectSprite")) {
             return new SelectSpriteSFC(getMyAuthorshipData().getMyCreatedSprites());
@@ -89,7 +89,7 @@ public class SubFormControllerFactory {
         }
 
         else if (type.equals("Movement")) {
-            return new MovementSubFormController(getMyGame());
+            return new MovementSFC(getMyGame());
         }
 
         else if (type.equals("SelectAttribute")) {

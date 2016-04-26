@@ -3,6 +3,7 @@ package gameauthoring.creation.subforms.fire;
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.FirerDefinition;
+import engine.definitions.moduledef.ModuleDefinition;
 import engine.definitions.moduledef.TrackingFirerDefinition;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormView;
@@ -22,10 +23,11 @@ public class TrackingFireSFC extends RemovableSpriteSFC {
     private IFormDataManager myFormData;
     private IGame myGame;
     private double myDefaultWaitTime = 0;
-    private TrackingFirerDefinition myFireDef = new TrackingFirerDefinition();
+    private TrackingFirerDefinition myFireDef;
 
-    public TrackingFireSFC (IGame game, FiringSFCmult sfc) {
+    public TrackingFireSFC (IGame game, FiringSFCmult sfc, TrackingFirerDefinition firingDef) {
         super(sfc);
+        myFireDef = firingDef;
         myView = new TrackingFireSFV(game.getAuthorshipData(), getRemoveMenu());
         myFormData = myView.getData();
         myGame = game;
@@ -49,19 +51,33 @@ public class TrackingFireSFC extends RemovableSpriteSFC {
         myFireDef.setWaitTime(waitTime);
         myFireDef.setTargets(myView.getTargetsCoice());
         myFireDef.setProjectileDefinition(myView.getSelectedMissile());
+
+        
         if (!item.getModuleDefinitions().contains(myFireDef)) {
-            item.addModule(myFireDef);
+         
+           item.addModule(myFireDef);
         }
+         
     }
 
     @Override
     public ISubFormView getSubFormView () {
         return myView;
     }
-    
+
     @Override
-    public FirerDefinition getFirerDefinition(){
+    public FirerDefinition getFirerDefinition () {
         return myFireDef;
+    }
+
+    @Override
+    public void populateViewsWithData (SpriteDefinition item) {
+
+        myFormData.getValueProperty(myView.getWaitTimeKey())
+                .set(Double.toString(myFireDef.getWaitTime()));
+        myView.setTargetsChoice(myFireDef.getTargets());
+        myView.setSelectedMissile(myFireDef.getProjectileDefinition());
+
     }
 
 }

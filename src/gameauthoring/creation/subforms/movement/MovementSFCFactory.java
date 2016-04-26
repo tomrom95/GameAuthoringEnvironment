@@ -4,7 +4,7 @@ import engine.IGame;
 
 import gameauthoring.creation.factories.DynamicSFCFactory;
 import engine.definitions.concrete.SpriteDefinition;
-
+import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 
 
@@ -26,10 +26,10 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
     public ISubFormControllerSprite createSubFormController (String type) {
         if (type.equals("SMARTAI")) {
 
-            return new SmartAIMovementSubFormController();
+            return new SmartAIMovementSFC();
         }
         else if (type.equals("STATIC")) {
-            return new StaticMoverSubFormController();
+            return new StaticMoverSFC();
 
         }
         else if (type.equals("CONSTANT")) {
@@ -37,7 +37,7 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
 
         }
         else if (type.equals("USERMOVER")) {
-            return new UserMoverSubFormController();
+            return new UserMoverSFC();
 
         }
         else if (type.equals("TRACKING")) {
@@ -45,6 +45,13 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
 
         }
 
+        return null;
+    }
+
+    @Override
+    public ISubFormController<SpriteDefinition> createSubFormController (String type,
+                                                                         Object ... params) {
+        // TODO Auto-generated method stub
         return null;
     }
 

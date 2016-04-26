@@ -90,6 +90,7 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
             myAttributeChoices.setItems(data.getMyCreatedGlobals().getItems());
         }
         else {
+            //TODO: maybe this should be from mySprite.getAttributes() so that you can only pick attributes that the sprite has
             myAttributeChoices.setItems(data.getMyCreatedAttributes().getItems());
         }
     }
@@ -100,7 +101,7 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     }
 
     @Override
-    public AttributeDefinition getDepeltedAttribute () {
+    public AttributeDefinition getDepletedAttribute () {
         return this.myAttributeChoices.getSelected();
     }
 
@@ -127,6 +128,16 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     @Override
     public void setIsUpgradable (boolean isSelected) {
         this.isUpgradableProperty().set(isSelected);
+    }
+
+    @Override
+    public void setDepletedAttribute (AttributeDefinition item) {
+        this.myAttributeChoices.setSelected(item);
+    }
+
+    @Override
+    public void setNextUpgrade (SpriteDefinition item) {
+        this.myUpgradeChoices.setSelected(item);
     }
 
 

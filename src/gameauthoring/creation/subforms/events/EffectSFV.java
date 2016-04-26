@@ -17,7 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
-public class EffectSubFormView extends SubFormView {
+public class EffectSFV extends SubFormView {
 
     private SingleChoiceEntryView<AttributeDefinition> myAttribute;
     private SingleChoiceEntryView<ProfileDisplay> myEffectType;
@@ -30,7 +30,7 @@ public class EffectSubFormView extends SubFormView {
     private String myTypeKey = "Effect type: ";
     private VBox myContainer;
 
-    public EffectSubFormView (IDefinitionCollection<AttributeDefinition> myCreatedAttributes,
+    public EffectSFV (IDefinitionCollection<AttributeDefinition> myCreatedAttributes,
                               List<String> effectTypes) {
         
         //TODO: extract new IProfileSFV implementation that just has a textfield for name so we can reuse this code
@@ -96,6 +96,19 @@ public class EffectSubFormView extends SubFormView {
     @Override
     public Node draw () {
         return myContainer;
+    }
+
+    public void setName (String name) {
+        myName.setText(name);
+    }
+
+    public void setEventSelection (String effectType) {
+        //TODO this is a hacky fix
+        for (ProfileDisplay pd : myEffectType.getItems()){
+            if(pd.getProfile().getName().get().equals(effectType)){
+                myEffectType.setSelected(pd);
+            }
+        }
     }
 
 }
