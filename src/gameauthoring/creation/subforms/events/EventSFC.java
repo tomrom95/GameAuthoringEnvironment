@@ -49,7 +49,9 @@ public class EventSFC implements ISubFormController<EventPackageDefinition> {
         
         //TODO: need to find and replace instead of adding on each save
         item.getMyEventsList().add(event);
-    }
+       
+       
+     }
 
     @Override
     public void initializeFields () {
@@ -59,6 +61,16 @@ public class EventSFC implements ISubFormController<EventPackageDefinition> {
     @Override
     public ISubFormView getSubFormView () {
         return myView;
+    }
+
+    @Override
+    public void populateViewsWithData (EventPackageDefinition item) {
+        myView.setName(item.getProfile().getName().get());
+        
+        //TODO problem: we can't set event selection because we don't have ProfileDisplay object, just the string
+        myView.setEventSelection(item.getProfile().getDescription().get());
+        //myView.setEventSelection(item.getMyEventsList().get(0).getEventType().getType());
+        
     }
 
 }

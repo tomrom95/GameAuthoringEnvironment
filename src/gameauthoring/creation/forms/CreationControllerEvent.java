@@ -25,7 +25,8 @@ public class CreationControllerEvent extends CreationController<EventPackageDefi
 
     @Override
     protected void addToAuthorshipData (AuthorshipData authorshipData) {
-        authorshipData.setMyCreatedEvents(getMyDefinitionCollection());
+        //authorshipData.setMyCreatedEvents(getMyDefinitionCollection());
+        setMyDefinitionCollection(authorshipData.getMyCreatedEventPackages());
 
     }
 

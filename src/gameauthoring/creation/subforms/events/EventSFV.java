@@ -4,6 +4,7 @@ import engine.profile.ProfileDisplay;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -48,6 +49,19 @@ public class EventSFV extends SubFormView {
 
     public String getName () {
         return myName.getText();
+    }
+
+    public void setEventSelection (String eventType) {
+        //TODO this is a hacky fix
+        for (ProfileDisplay pd : myEvents.getItems()){
+            if(pd.getProfile().getName().get().equals(eventType)){
+                myEvents.setSelected(pd);
+            }
+        }
+    }
+
+    public void setName (String name) {
+        myName.setText(name);
     }
 
 }

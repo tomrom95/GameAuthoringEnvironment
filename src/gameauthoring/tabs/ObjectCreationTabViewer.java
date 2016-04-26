@@ -68,7 +68,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
                                                     "Cost", "Movement", "FireMult"));*/
         List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("ProfileSFC", "SelectSprite"));
 
-        //List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
+        List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
 
         CreationControllerFactory ccFactory = new CreationControllerFactory();
         // TODO: take sfcs out of cc constructors
@@ -97,9 +97,9 @@ public class ObjectCreationTabViewer implements ITabViewer {
         CreationController<?> ccGroups =
                 ccFactory.createCreationController(myControllerResources.getString("Groups"),
                                                    myLang.getString("Groups"), myGroupSFCs, myGame);
-        /*CreationController<?> ccEvents =
+        CreationController<?> ccEvents =
                 ccFactory.createCreationController(myControllerResources.getString("Events"),
-                                                   myLang.getString("Events"), myEventSFCs, myGame);*/
+                                                   myLang.getString("Events"), myEventSFCs, myGame);
      
 
         myCCs = new ArrayList<CreationController<?>>();
@@ -113,7 +113,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         myCCs.add(ccGroups);
 
-       // myCCs.add(ccEvents);
+        myCCs.add(ccEvents);
 
         ccGlobal.init(myGlobalSFCs);
         ccAttributes.init(myAttributeSFCs);
@@ -123,7 +123,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
         //ccDefenders.init(myDefenderSFCs);
         ccGroups.init(myGroupSFCs);
 
-       // ccEvents.init(myEventSFCs);
+        ccEvents.init(myEventSFCs);
 
     }
 

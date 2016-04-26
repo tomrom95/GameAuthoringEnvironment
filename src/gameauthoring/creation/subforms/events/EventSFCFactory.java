@@ -21,4 +21,11 @@ public class EventSFCFactory extends DynamicSFCFactory <EventPackageDefinition> 
         return null;
     }
 
+    @Override
+    public ISubFormController<EventPackageDefinition> createSubFormController (String type,
+                                                                               Object ... params) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

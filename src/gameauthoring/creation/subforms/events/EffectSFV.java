@@ -98,4 +98,17 @@ public class EffectSFV extends SubFormView {
         return myContainer;
     }
 
+    public void setName (String name) {
+        myName.setText(name);
+    }
+
+    public void setEventSelection (String effectType) {
+        //TODO this is a hacky fix
+        for (ProfileDisplay pd : myEffectType.getItems()){
+            if(pd.getProfile().getName().get().equals(effectType)){
+                myEffectType.setSelected(pd);
+            }
+        }
+    }
+
 }

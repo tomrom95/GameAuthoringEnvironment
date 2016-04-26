@@ -26,23 +26,25 @@ public class EventsSFC extends DynamicSubFormController<EventPackageDefinition>{
 
     @Override
     protected void changeCurrentSFCBasedOnData (EventPackageDefinition item) {
-        item.g
-        MovementDefinition movDef = item.getMovementDefinition();
+        
         
         //TODO fix bad code or move to factory
-        if (movDef instanceof StaticMovementDefintion){
-            this.setMyCurrentSFC(new StaticMoverSFC());
-            
-        }else if (movDef instanceof ConstantMoverDefinition){
-            this.setMyCurrentSFC(new ConstantMoverSFC());
-            
-        }else if (movDef instanceof UserMoverDefinition){
-            this.setMyCurrentSFC(new UserMoverSFC());
-            
-        }else if (movDef instanceof TrackingMoverDefinition){
-            this.setMyCurrentSFC(new TrackingMoverSFC(getMyGame()));
-            
-        }        
+        if(!item.getMyEffectsList().isEmpty()){
+            //effect
+            this.setMyCurrentSFC(new EffectSFC(getMyGame()));
+        }else if (!item.getMyEventsList().isEmpty()){
+            //event
+            this.setMyCurrentSFC(new EventSFC());
+        }
+       
+    }
+    
+    @Override
+    public void updateItem(EventPackageDefinition item) {
+        item.getMyEffectsList().clear();
+        item.getMyEventsList().clear();
+        
+        super.updateItem(item);
     }
 
 }

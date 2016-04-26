@@ -10,6 +10,7 @@ import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.effects.Effect;
 import engine.effects.EffectFactory;
+import engine.effects.IEffect;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 
@@ -58,6 +59,24 @@ public class EffectSFC implements ISubFormController<EventPackageDefinition> {
     @Override
     public ISubFormView getSubFormView () {
         return myView;
+    }
+
+    @Override
+    public void populateViewsWithData (EventPackageDefinition item) {
+        myView.setName(item.getProfile().getName().get());
+        
+        //TODO problem: we can't set event selection because we don't have ProfileDisplay object, just the string
+        myView.setEventSelection(item.getProfile().getDescription().get());  
+        
+        IEffect effect = item.getMyEffectsList().get(0); //TODO: can we just change eventpackage to have one effect or event?
+        
+        //TODO: need to change effect to store attribute definition
+        //myView.setAttribute(effect.getAttributeType())
+        //TODO: need to move some Effect methods to Ieffect
+        //myView.getData().getValueProperty(myView.getLengthKey()).set(Double.toString(effect.getEffectLengthAttribute().getValueProperty().get()));
+        //myView.getData().getValueProperty(myView.getValueKey()).set(effect.getAlteringValue());
+        
+        
     }
 
 }
