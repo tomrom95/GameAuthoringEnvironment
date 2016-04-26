@@ -170,7 +170,6 @@ public class AuthoringView implements IAuthoringView {
         FXConverters.configure(xstream);
         xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
         myGame.createAndSortGlobals();
-
         String xml = xstream.toXML(myGame);
         IGame game = (IGame) xstream.fromXML(xml);
         GamePlayer player = new GamePlayer(game);
