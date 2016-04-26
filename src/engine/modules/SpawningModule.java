@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import engine.IAdder;
 import engine.IGame;
+import engine.ILevel;
 import engine.Positionable;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
@@ -22,24 +23,22 @@ import util.TimeDuration;
 public class SpawningModule extends DefaultAffectable implements IModule {
 
     private IAdder myAdder;
-    private IGame myGame;
     private IWaveSet myWaveSet;
     private Positionable myParent;
 
     public SpawningModule (IAdder adder,
-                           IGame game,
+                           ILevel level,
                            Positionable parent,
                            List<WaveDefinition> waves) {
         myParent = parent;
         myAdder = adder;
-        myGame = game;
         myWaveSet = new WaveSet();
         List<IWave> myWaves = new ArrayList<IWave>();
         waves.stream().forEachOrdered(p -> myWaves.add(p.create()));
         myWaveSet.setWaveList(myWaves);
         myWaveSet.updateCurrentWave();
 
-        myGame.getLevelManager().getCurrentLevel().getWaveSetManager().addWaveSet(myWaveSet);
+        level.getWaveSetManager().addWaveSet(myWaveSet);
 
     }
 
