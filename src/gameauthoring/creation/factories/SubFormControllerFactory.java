@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
-import engine.definitions.concrete.SpriteDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ProfileSFC;
-import gameauthoring.creation.subforms.events.EventsSubFormController;
-import gameauthoring.creation.subforms.movement.MovementSFC;
+
 
 
 public abstract class SubFormControllerFactory<T extends IProfilable> {
