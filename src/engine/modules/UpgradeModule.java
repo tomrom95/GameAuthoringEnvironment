@@ -32,8 +32,7 @@ public class UpgradeModule implements IModule {
     
     @Override
     public void update (TimeDuration duration) {
-        myCheck.update(duration);
-
+        //do nothing
     }
 
     @Override

@@ -35,11 +35,6 @@ public class Check implements ICheck {
         }
 
     }
-
-    @Override
-    public void update (TimeDuration duration) {
-        checkStatus();
-    }
     
     private void checkStatus () {
         for (IAttribute attribute : myManager.getAttributes()) {
@@ -55,6 +50,7 @@ public class Check implements ICheck {
 
     @Override
     public BooleanProperty getStatus () {
+        checkStatus();
         return myStatus;
     }
 
