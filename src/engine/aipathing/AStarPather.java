@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import engine.IGame;
 import util.Coordinate;
 import util.IBitMap;
 
@@ -20,18 +21,19 @@ public class AStarPather implements INodeGraphPather {
     //The below are initialized in the find path method;
     private IPathNode myGoal;
     private INodeGraph myGraph;
-    
+    private IGame myGame;
 
-    public AStarPather () {
+    public AStarPather (IGame game) {
         myHeuristic = new StraightLineHeuristic();
+        myGame = game;
     }
     
     @Override
     public List<Coordinate> findPathFor (IBitMap obstructionMap,
                                          Coordinate start,
                                          Coordinate goal) {
-        INodeGraphFactory graphFactory = new GameGraphFactory(obstructionMap);
-        INodeGraph graph = graphFactory.getConstructedGraph();
+        INodeGraphFactory graphFactory = new GameGraphFactory(obstructionMap, getGame());
+        INodeGraph graph = graphFactory.getConstructedGraph(start, goal);
         IPathNode startNode = graph.getClosestNode(start);
         IPathNode goalNode = graph.getClosestNode(goal);
 //        IPathNode startNode = new PathNode(start);
@@ -67,15 +69,18 @@ public class AStarPather implements INodeGraphPather {
                     .stream()
                     .reduce( (x, y) -> estimatedCost.get(x) > estimatedCost.get(y) ? y : x)
                     .orElse(null);
-            openSet.remove(cur);
-            closedSet.add(cur);
             if (cur.equals(goalNode)) {
                 return goalPath(cur, startNode, parentMap);
             }
+            openSet.remove(cur);
+            closedSet.add(cur);
+
             for (IPathNode node : cur.getNeighbors()) {
+                
                 if (closedSet.contains(node)) {
                     continue;
                 }
+
                 double curEstCost =
                         nodeCostThusFar.get(cur) +
                                     Coordinate.distance(cur.getLocation(), node.getLocation());
@@ -88,6 +93,7 @@ public class AStarPather implements INodeGraphPather {
                 parentMap.put(node, cur);
                 nodeCostThusFar.put(node, curEstCost);
                 estimatedCost.put(node, curEstCost + heuristic.estimateCost(node, goalNode, graph));
+
             }   
         }
         return new ArrayList<>();
@@ -139,6 +145,9 @@ public class AStarPather implements INodeGraphPather {
         this.myGraph = myGraph;
     }
     
+    private IGame getGame (){
+        return myGame;
+    }
 
 
 }

@@ -10,11 +10,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import engine.IGame;
 
 /**
  * Class responsible for turning IGame objects
  * into INodeGraphs which can be used by our AI pathing
  * classes
+ * 
+ * Adding the start and goal nodes as a part of the graph
  * @author jonathanim
  *
  */
@@ -23,27 +26,39 @@ public class GameGraphFactory implements INodeGraphFactory {
     private static final int INT_ONE = 1;
     private static final int INT_NEG_ONE = -1;
     private static final double ONE = 1d;
-    private static final int NODE_GAP = 80;
+    private static final int NODE_GAP = 300;
     private IBitMap myObstructionMap;
-
-    GameGraphFactory (IBitMap obstructionMap) {
+    private IGame myGame;
+    
+    GameGraphFactory (IBitMap obstructionMap, IGame game) {
         myObstructionMap = new AutoTrueBitMap(obstructionMap);
+        myGame = game;
     }
 
     @Override
-    public INodeGraph getConstructedGraph () {
+    public INodeGraph getConstructedGraph (Coordinate start, Coordinate goal) {
+        //need to move the find all edges call into the fillNodeGraph after
+        //the other obstruction checks potentially because it is desctructive on the
+        // bitmap, copying is too expensive
+        //also may need to rework the bitmap to calculate whether or not something is
+        //obstructed on demand, store the bound objects and then perform dynamic checks
+        //for each requested location
+        //TODO
+        INodeGraph toReturn = fillNodeGraph(getObstructionMap(), NODE_GAP,  start, goal);
         List<List<ArrayPosition>> edges = findAllEdges(getObstructionMap());
-        return fillNodeGraph(getObstructionMap(), NODE_GAP, edges);
+        addEdgeNodes(toReturn, edges, getObstructionMap(), NODE_GAP, toReturn.getPlacedNodes());
+        return toReturn;
 
     }
 
     private INodeGraph fillNodeGraph (IBitMap obstructionMap,
                                       int gap,
-                                      List<List<ArrayPosition>> edges) {
-        INodeGraph toReturn = new NodeGraph();
+                                      Coordinate start,
+                                      Coordinate goal) {
         int numHorizontalNodes = obstructionMap.getWidth() / gap;
         int numHeightNodes = obstructionMap.getHeight() / gap;
         IPathNode[][] placedNodes = new PathNode[numHorizontalNodes][numHeightNodes];
+        INodeGraph toReturn = new NodeGraph(placedNodes);
         // place the standard grid less obstructed areas
         for (int i = 0; i < numHorizontalNodes; i++) {
             for (int j = 0; j < numHeightNodes; j++) {
@@ -56,7 +71,13 @@ public class GameGraphFactory implements INodeGraphFactory {
             }
         }
         connectUnobstructedNodes(placedNodes, obstructionMap);
-        addEdgeNodes(toReturn, edges, obstructionMap, gap, placedNodes);
+        //adding the goal and start nodes
+        IPathNode startNode = new PathNode(start);
+        IPathNode goalNode = new PathNode(goal);
+        connectWithAllInGraph(toReturn, startNode, obstructionMap);
+        connectWithAllInGraph(toReturn, goalNode, obstructionMap);
+        toReturn.addNode(startNode);
+        toReturn.addNode(goalNode);
         return toReturn;
 
     }
@@ -161,6 +182,9 @@ public class GameGraphFactory implements INodeGraphFactory {
     
     private List<List<ArrayPosition>> findAllEdges (IBitMap obstructionMap) {
         List<List<ArrayPosition>> edgeList = new ArrayList<>();
+        //need to make the code below faster by refactoring the bitmap class
+        //to store a list of only the true locations, so that we can avoid iterating
+        // over all the positions, far too slow for pixel by pixel representation 
 //        IBitMap obMapCopy = obstructionMap;
 //        Iterator<ArrayPosition> iter = obMapCopy.positionIterator();
 //        while (iter.hasNext()) {
@@ -400,7 +424,7 @@ public class GameGraphFactory implements INodeGraphFactory {
 
     private boolean lineObstructed (List<Coordinate> line, IBitMap obstructionMap) {
         if (line.size() < 1) {
-            return true;
+            return false;
         }
         boolean isObstructed = false;
         Coordinate last = line.get(0);

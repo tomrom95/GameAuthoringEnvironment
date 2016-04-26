@@ -11,9 +11,11 @@ import util.Coordinate;
 public class NodeGraph implements INodeGraph {
 
     private List<IPathNode> myNodes;
+    private IPathNode[][] myPlacedNodes;
 
-    public NodeGraph () {
+    public NodeGraph (IPathNode[][] nodes) {
         myNodes = new ArrayList<>();
+        myPlacedNodes = nodes;
     }
 
     @Override
@@ -111,6 +113,17 @@ public class NodeGraph implements INodeGraph {
     public void addAndConnectNode (IPathNode toAdd) {
         connectNodes(toAdd, getClosestNode(toAdd.getLocation()));
         addNode(toAdd);
+        
+    }
+
+    @Override
+    public IPathNode[][] getPlacedNodes () {
+        return myPlacedNodes;
+    }
+
+    @Override
+    public void setPlacedNodes (IPathNode[][] toStore) {
+        myPlacedNodes = toStore;
         
     }
 

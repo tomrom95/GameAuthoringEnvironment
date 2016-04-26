@@ -49,14 +49,25 @@ public class PathNodeGeometry {
         deltaY = deltaY / makePixelOrLess;
         double curX = start.getX();
         double curY = start.getY();
-        BiFunction<Double, Double, Boolean> comparator = deltaX > 0 ? (first, second) -> first < second : (first,second) -> first > second;
-        while (comparator.apply(curX, end.getX())) {
+        BiFunction<Double, Double, Boolean> comparatorX = comparatorForDelta(deltaX);
+        BiFunction<Double, Double, Boolean> comparatorY = comparatorForDelta(deltaY);
+        while ( (comparatorX.apply(curX, end.getX()) || comparatorY.apply(curY, end.getY())) &&
+               bothAreNotZero(deltaX, deltaY)
+               ) {
             toReturn.add(new Coordinate(curX, curY));
             curX += deltaX;
             curY += deltaY;
         }
         toReturn.add(end);
         return toReturn;
+    }
+    
+    private static boolean bothAreNotZero(double first, double second){
+        return (first != 0d) && (second != 0d);
+    }
+    
+    private static BiFunction<Double, Double, Boolean> comparatorForDelta(double delta){
+        return delta > 0 ? (first, second) -> first <= second: (first, second) -> first >= second;
     }
     
     

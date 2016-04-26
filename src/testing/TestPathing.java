@@ -41,7 +41,7 @@ public class TestPathing extends Application {
     private static final String HEALTH_DESCRIPTION = "Health attribute";
     private static final String HEALTH_ATTY_TYPE = "Health";
     // Global Parameters
-    private static final double FPS_TARGET = 10;
+    private static final double FPS_TARGET = 30;
     private static final double PANE_WIDTH = 1200;
     private static final double PANE_HEIGHT = 800;
 
@@ -61,7 +61,7 @@ public class TestPathing extends Application {
     private static final int ENEMY_INITIAL_Y = 100;
 
     // Other Parameters
-    private static final int SPRITE_INITIAL_X = 300;
+    private static final int SPRITE_INITIAL_X = 800;
     private static final int SPRITE_INITIAL_Y = 300;
 
     private static final String BACKGROUND_URL = "/images/pvz.jpg";
@@ -152,7 +152,7 @@ public class TestPathing extends Application {
         ISprite test = createEnemySpriteDefinition(ENEMY_INITIAL_X, ENEMY_INITIAL_Y).create();
         test.getStatusModule().setIsGoal(true);
         ISprite myUser = createUserSpriteDefinition(SPRITE_INITIAL_X, SPRITE_INITIAL_Y).create();
-        myUser.setObstruction(true);
+        myUser.setObstruction(false);
         game.bufferedAdd(test);
         game.bufferedAdd(myUser);
     }

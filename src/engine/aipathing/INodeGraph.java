@@ -87,5 +87,17 @@ public interface INodeGraph {
      * @param toAdd
      */
     void addAndConnectNode(IPathNode toAdd);
+    
+    /**
+     * A cache of not all, but just the grid placed nodes
+     * for fast connection of new nodes to place
+     * @return
+     */
+    IPathNode[][] getPlacedNodes ();
+    
+    /**
+     * Storing the created 2-d array of the nodes 
+     */
+    void setPlacedNodes (IPathNode [][] toStore);
 
 }

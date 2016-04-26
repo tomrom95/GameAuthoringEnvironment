@@ -33,7 +33,7 @@ public class GoalBasedMover extends Mover {
                            IGame game,
                            boolean shouldRotate) {
         super(positionable);
-        myPather = new AStarPather();
+        myPather = new AStarPather(game);
         myGame = game;
         //myGoalGroup = goalGroup;
         myRotationStrategy = getRotationStrategy(shouldRotate);
@@ -47,6 +47,11 @@ public class GoalBasedMover extends Mover {
     public void update (TimeDuration duration) {
         Coordinate goal = findNearestGoal();
         List<Coordinate> goalPath = myPather.findPathFor(obstructionMap(), getLocation(), goal);
+//        System.out.println("Location: " + getLocation().getX() + "," + getLocation().getY());
+//        for(Coordinate c : goalPath){
+//            System.out.print("(" + c.getX() + "," + c.getY() + ") ");
+//        }
+//        System.out.println();
         Coordinate targetCoordinate =
                 furthestReachablePoint(getLocation(), goalPath,
                                        distance(getSpeed(), durationToDouble(duration)));
@@ -91,9 +96,9 @@ public class GoalBasedMover extends Mover {
         }
         double normalizeDistanceConstant =
                 Math.sqrt(Math.pow(distance, 2) / (Math.pow(deltaX, 2) + Math.pow(deltaY, 2)));
-        
-        return new Coordinate(start.getX() + deltaX * normalizeDistanceConstant,
+        Coordinate test = new Coordinate(start.getX() + deltaX * normalizeDistanceConstant,
                               start.getY() + deltaY * normalizeDistanceConstant);
+        return test;
     }
 
     /**
