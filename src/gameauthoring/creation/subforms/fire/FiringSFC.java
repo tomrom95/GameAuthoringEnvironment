@@ -74,6 +74,12 @@ public class FiringSFC extends DynamicSubFormController<SpriteDefinition> {
         return myMissile;
     }
 
+    @Override
+    protected void changeCurrentSFCBasedOnData (SpriteDefinition item) {
+        // TODO Auto-generated method stub
+        
+    }
+
    
 
 
