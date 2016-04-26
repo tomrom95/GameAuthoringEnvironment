@@ -99,7 +99,6 @@ public class UserMover extends Mover {
     }
 
     private void registerKeyPress (Key key) {
-        System.out.println(key.getKeyCode());
         myKeys.get(Direction.RIGHT).getKeyCode();
         if (key.isEqual(myKeys.get(Direction.RIGHT))) {
             goRight();
@@ -170,7 +169,6 @@ public class UserMover extends Mover {
     private void goRight () {
         getXVel().setValue(getSpeed());
         myTraveling.put(Direction.RIGHT, true);
-        System.out.println(getXVel().getValueProperty().get());
     }
 
     private void goLeft () {

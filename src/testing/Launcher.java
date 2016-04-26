@@ -45,7 +45,7 @@ public class Launcher extends Application {
     private static final double PANE_HEIGHT = 800;
 
     // Sprite Parameters
-    private static final double SPRITE_MOVEMENT_SPEED = 0.3;
+    private static final double SPRITE_MOVEMENT_SPEED = 3;
     private static final double SPRITE_HEIGHT = 50;
     private static final double SPRITE_WIDTH = 50;
     private static final String SPRITE_IMAGE_URL = "/images/photo.png";
