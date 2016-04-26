@@ -32,8 +32,8 @@ public class UserMoverSubFormController implements ISubFormControllerSprite {
 
     @Override
     public void initializeFields () {
-        populateViewsWithData(myDefaultSpeed, myDefaultUpKey, myDefaultDownKey, myDefaultRightKey,
-                              myDefaultLeftKey);
+        populateViewsWithData(myDefaultSpeed, myDefaultUpKey, myDefaultDownKey,
+                              myDefaultLeftKey, myDefaultRightKey);
     }
 
     private void populateViewsWithData (double speed,
