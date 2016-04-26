@@ -1,5 +1,6 @@
 package gameauthoring.tabs;
 
+import java.io.File;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import com.dooapp.xstreamfx.FXConverters;
@@ -25,6 +26,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 
@@ -109,7 +111,8 @@ public class AuthoringView implements IAuthoringView {
     private MenuBar createMenuBar () {
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
-        MenuItem saveItem = createMenuItems("Save your game as XML Files", e -> saveToXML());
+        MenuItem saveItem = createMenuItems("Save game", e -> saveToXML());
+        MenuItem launchItem = createMenuItems("Launch game", e -> )
         fileMenu.getItems().add(saveItem);
         menuBar.getMenus().add(fileMenu);
         return menuBar;
@@ -144,16 +147,26 @@ public class AuthoringView implements IAuthoringView {
     }
 
     private void saveToXML () {
+        File f = getFile();
         
+    }
+    
+    private void launchGame () {
         XStream xstream = new XStream(new DomDriver());
         FXConverters.configure(xstream);
         xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
         myGame.createAndSortGlobals();
 
         String xml = xstream.toXML(myGame);
-        //System.out.println(xml);
         IGame game = (IGame) xstream.fromXML(xml);
         GamePlayer player = new GamePlayer(game);
+    }
+
+    private File getFile () {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle(myLang.getString("SaveGame"));
+        fileChooser.setInitialDirectory(new File("resources/saved_games"));
+        return fileChooser.showSaveDialog(new Stage());
     }
 
     private TabPane createAllTabs () {
