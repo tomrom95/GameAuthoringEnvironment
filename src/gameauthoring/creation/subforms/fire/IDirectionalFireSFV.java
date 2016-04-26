@@ -20,4 +20,6 @@ public interface IDirectionalFireSFV extends ISubFormView {
 
     SpriteDefinition getMissileSelection ();
 
+    void setMissileSelection (SpriteDefinition projectileDefinition);
+
 }

@@ -33,6 +33,9 @@ public abstract class DynamicSFCFactory<T extends IProfilable> {
      * @return The ISubFormControllerSprite that the factory creates
      */
     public abstract ISubFormController<T> createSubFormController (String type);
+    
+    public abstract ISubFormController<T> createSubFormController (String type, Object ... params );
+
 
     // Getters and Setters
     protected IGame getMyGame () {

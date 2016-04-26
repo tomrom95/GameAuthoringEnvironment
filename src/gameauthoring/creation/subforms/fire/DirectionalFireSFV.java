@@ -72,4 +72,9 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         return myMissileSelectionView.getSelected();
     }
 
+    @Override
+    public void setMissileSelection (SpriteDefinition missile) {
+        this.myMissileSelectionView.setSelected(missile);
+    }
+
 }

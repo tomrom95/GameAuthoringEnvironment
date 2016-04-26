@@ -35,7 +35,10 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
 
     @Override
     protected void addToAuthorshipData (AuthorshipData authorshipData) {
-        authorshipData.addCreatedSprites(getMyDefinitionCollection());
+        //authorshipData.addCreatedSprites(getMyDefinitionCollection());
+        setMyDefinitionCollection(authorshipData.getMyCreatedSprites().get(0));
+
+        
         authorshipData.addGroupSprites(getMyDefinitionCollection());
         
         //uncomment if we want a different list for level selector sprites than created sprites

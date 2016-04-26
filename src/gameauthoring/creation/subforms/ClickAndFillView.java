@@ -72,6 +72,10 @@ public abstract class ClickAndFillView extends SubFormView{
         myPaneContent.getChildren().remove(subFormView.draw());
     }
     
+    public void clearSFVs() {
+        myPaneContent.getChildren().clear();
+    }
+    
     public VBox getMyPaneContent(){
         return myPaneContent;
     }

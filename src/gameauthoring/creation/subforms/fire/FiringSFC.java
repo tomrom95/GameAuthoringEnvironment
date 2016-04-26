@@ -6,10 +6,14 @@ import java.util.List;
 import engine.IGame;
 
 import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.DirectionalFirerDefinition;
 import engine.definitions.moduledef.FirerDefinition;
 import engine.definitions.moduledef.ModuleDefinition;
+import engine.definitions.moduledef.TrackingFirerDefinition;
+import engine.definitions.moduledef.UserFirerDefinition;
 import gameauthoring.creation.factories.DynamicSFCFactory;
 import gameauthoring.creation.subforms.DynamicSubFormController;
+import gameauthoring.creation.subforms.movement.StaticMoverSFC;
 
 /**
  * NOT USED WITH CURRENT IMPLEMENTATION
@@ -28,6 +32,7 @@ public class FiringSFC extends DynamicSubFormController<SpriteDefinition> {
                       List<String> subFormIDs) {
         super(game, sfcFactory, subFormIDs);
         // TODO Auto-generated constructor stub
+        
     }
 
     private SpriteDefinition myMissile;
@@ -68,6 +73,8 @@ public class FiringSFC extends DynamicSubFormController<SpriteDefinition> {
     public SpriteDefinition getMyMissile () {
         return myMissile;
     }
+
+   
 
 
 }
