@@ -1,27 +1,24 @@
 package util;
 
 import java.util.function.DoublePredicate;
+import util.predicates.EqualsDoublePredicate;
+import util.predicates.GreaterThanDoublePredicate;
+import util.predicates.LessThanDoublePredicate;
+
 
 public class PredicateGenerator {
 
     public DoublePredicate generateDouble (String value, String type) {
-        
         double valToCompare = Double.parseDouble(value);
         if (type.equals("==")) {
-            return new RealDoublePredicate(val -> val == valToCompare);
+            return new EqualsDoublePredicate(valToCompare);
         }
         else if (type.equals(">")) {
-            return new RealDoublePredicate(val -> val > valToCompare);
-        }
-        else if (type.equals("<")) {
-            return new RealDoublePredicate(val -> val < valToCompare);
-        }
-        else if (type.equals(">=")) {
-            return new RealDoublePredicate(val -> val >= valToCompare);
+            return new GreaterThanDoublePredicate(valToCompare);
         }
         else {
-            return new RealDoublePredicate(val -> val <= valToCompare);
+            return new LessThanDoublePredicate(valToCompare);
         }
-        
+
     }
 }

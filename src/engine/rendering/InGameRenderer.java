@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import engine.Drawable;
 import engine.IGamePlayable;
 import gameplayer.SpriteDisplay;
+import gameplayer.SpriteDisplayController;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
@@ -22,10 +23,10 @@ public class InGameRenderer extends LevelRenderer {
     private IGraphicFactory myFactory;
     private IGamePlayable myGame;
     private Map<Drawable, Node> myDrawNodeMap;
-    private SpriteDisplay mySpriteDisplay;
+    private SpriteDisplayController mySpriteDisplay;
     private boolean myFirstTime;
 
-    public InGameRenderer (IGamePlayable game, Pane pane, SpriteDisplay spriteDisplay) {
+    public InGameRenderer (IGamePlayable game, Pane pane, SpriteDisplayController spriteDisplay) {
         super(pane);
         myFactory = new UnscaledFactory();
         myGame = game;
