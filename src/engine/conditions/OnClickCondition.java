@@ -44,7 +44,6 @@ public class OnClickCondition extends Condition implements ICondition {
     }
 
     private void handleAction (ISprite sprite) {
-
         applyPackageToSprite(mySelfPackage, sprite);
         applyOtherAndGlobalEventPackages(myGame, myOtherPackage, myGlobalPackage);
     }
