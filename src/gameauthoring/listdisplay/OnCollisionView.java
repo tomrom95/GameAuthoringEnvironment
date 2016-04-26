@@ -56,14 +56,13 @@ public class OnCollisionView extends SubConditionView {
     @Override
     protected ICondition subCreation () {
         EventPackageDefinition packageA = myEventsA.getSelectionModel().getSelectedItem();
-        packageA.setMySpriteGroup(myGroupA.getSelectionModel().getSelectedItem());
         EventPackageDefinition packageB = myEventsB.getSelectionModel().getSelectedItem();
-        packageB.setMySpriteGroup(myGroupB.getSelectionModel().getSelectedItem());
         EventPackageDefinition other = myThirdEvents.getSelectionModel().getSelectedItem();
-        other.setMySpriteGroup(myThirdParty.getSelectionModel().getSelectedItem());
         EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();
-        return new OnCollisionCondition(myGame, packageA.create(), packageB.create(),
-                                        other.create(), global.create());
+        return new OnCollisionCondition(myGame, packageA.create(myGroupA.getSelectionModel().getSelectedItem()), 
+                                        packageB.create(myGroupB.getSelectionModel().getSelectedItem()),
+                                        other.create(myThirdParty.getSelectionModel().getSelectedItem()), 
+                                        global.create());
     }
 
     @Override

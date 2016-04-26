@@ -36,7 +36,7 @@ public class Launcher extends Application {
 
     // Health attribute properties
     private static final double HEALTH_START_VAL = 100d;
-    private static final String HEALTH_IMAGE_URL = "/GitDepends/Images/Health_pictogram.png";
+    private static final String HEALTH_IMAGE_URL = "/images/photo.png";
     private static final String HEALTH_DESCRIPTION = "Health attribute";
     private static final String HEALTH_ATTY_TYPE = "Health";
     // Global Parameters
@@ -52,8 +52,8 @@ public class Launcher extends Application {
     private static final String USER_SPRITE_TYPE = "UserSprite";
     private static final String SPRITE_DESCRIPTION = "A sprite";
 
-    // Enemy Parameters
-    private static final String ENEMY_IMAGE_URL = "/GitDepends/Images/rat.png";
+    // Enemy Parameters /GitDepends/Images/rat.png";
+    private static final String ENEMY_IMAGE_URL = "/images/photo.png";
     private static final String ENEMY_SPRITE_DESCR = "An enemy sprite";
     private static final String ENEMY_SPRITE_TYPE = "EnemySprite";
     private static final int ENEMY_INITIAL_X = 100;
@@ -162,7 +162,7 @@ public class Launcher extends Application {
         lm.createNewLevel(firstLevel);
 
         myGame =
-                new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
+                new Game(new GameGridConfigNonScaling((int)GamePlayer.PREFWIDTH, (int)GamePlayer.PREFHEIGHT));
         myGame.getLevelManager().getLevels().add(firstLevel);
         addSpritesToGame(myGame);
         addConditionsToTest(myGame);

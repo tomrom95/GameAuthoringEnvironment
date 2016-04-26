@@ -33,17 +33,16 @@ public class Wave implements IWave {
 
     @Override
     public ISprite spawnSprite () {
-        if (isBlockEmpty()) {
+        if (isBlockEmpty() && !myBlocks.isEmpty()) {
             currentBlock = myBlocks.get(0);
             myBlocks.remove(0);
         }
-        currentBlock.setCount(currentBlock.getCount() - 1);
-        return currentBlock.getDefinition().create();
+        return currentBlock.spawn();
 
     }
 
     private boolean isBlockEmpty () {
-        return currentBlock.getCount() == 0;
+        return currentBlock.isComplete();
     }
 
     @Override
