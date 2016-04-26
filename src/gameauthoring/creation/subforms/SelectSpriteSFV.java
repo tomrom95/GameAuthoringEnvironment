@@ -66,7 +66,7 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
      * @return
      */
     public List<SpriteDefinition> getChosen () {
-        return mySelected.getSelected();
+        return mySelected.getListView().getItems();
     }
 
     @Override
