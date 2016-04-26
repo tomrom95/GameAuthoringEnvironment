@@ -57,5 +57,10 @@ public enum ScoreOrder {
     private static Comparator<Score> compareDate () {
         return (Score s1, Score s2) -> s1.getDate().compareTo(s2.getDate());
     }
+    
+    @Override
+    public String toString () {
+        return this.name().replace("_", " ").toLowerCase();
+    }
 
 }
