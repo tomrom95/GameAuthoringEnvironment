@@ -12,13 +12,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
-public class EventSubFormView extends SubFormView {
+public class EventSFV extends SubFormView {
 
     private SingleChoiceEntryView<ProfileDisplay> myEvents;
     private String myEventKey = "Event type: ";
     private TextField myName;
 
-    public EventSubFormView (ObservableList<ProfileDisplay> events) {
+    public EventSFV (ObservableList<ProfileDisplay> events) {
         myEvents = new SingleChoiceEntryView<ProfileDisplay>(myEventKey,
                                                              events,
                                                              AuthoringView.DEFAULT_ENTRYVIEW);

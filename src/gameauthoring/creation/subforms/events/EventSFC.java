@@ -15,17 +15,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
-public class EventSubFormController implements ISubFormController<EventPackageDefinition> {
+public class EventSFC implements ISubFormController<EventPackageDefinition> {
     private static final String NAME = "Event"; //TODO maybe put in resource file
 
     private static final String PATH = "defaults/event_types";
     private ResourceBundle eventTypes = ResourceBundle.getBundle(PATH);
-    private EventSubFormView myView;
+    private EventSFV myView;
     
     
 
-    public EventSubFormController () {
-        myView = new EventSubFormView(getEvents());
+    public EventSFC () {
+        myView = new EventSFV(getEvents());
     }
 
     private ObservableList<ProfileDisplay> getEvents () {

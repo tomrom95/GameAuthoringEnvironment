@@ -18,7 +18,7 @@ import gameauthoring.creation.subforms.ISubFormView;
  */
 public class UserMoverSFC implements ISubFormControllerSprite {
 
-    private UserMoverSubFormView myView;
+    private UserMoverSFV myView;
     private IFormDataManager myFormData;
     private double myDefaultSpeed = 0;
     private String myDefaultUpKey = "W";
@@ -27,7 +27,7 @@ public class UserMoverSFC implements ISubFormControllerSprite {
     private String myDefaultRightKey = "D";
 
     public UserMoverSFC () {
-        this.myView = new UserMoverSubFormView();
+        this.myView = new UserMoverSFV();
         this.myFormData = myView.getData();
     }
 

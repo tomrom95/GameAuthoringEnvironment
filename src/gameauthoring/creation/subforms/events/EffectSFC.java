@@ -13,15 +13,15 @@ import engine.effects.EffectFactory;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 
-public class EffectSubFormController implements ISubFormController<EventPackageDefinition> {
+public class EffectSFC implements ISubFormController<EventPackageDefinition> {
     private static final String NAME = "Effect"; //TODO maybe put in resource file
 
     private IGame myGame;
-    private EffectSubFormView myView;
+    private EffectSFV myView;
     
-    public EffectSubFormController (IGame game) {
+    public EffectSFC (IGame game) {
         myGame = game;
-        myView = new EffectSubFormView(myGame.getAuthorshipData().getMyCreatedAttributes(),
+        myView = new EffectSFV(myGame.getAuthorshipData().getMyCreatedAttributes(),
                                               getEffects());
     }
 

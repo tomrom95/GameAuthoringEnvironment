@@ -4,7 +4,7 @@ import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormView;
 import javafx.scene.Node;
 
-public class SmartAIMovementSubFormView implements ISubFormView {
+public class SmartAIMovementSFV implements ISubFormView {
 
     @Override
     public Node draw () {

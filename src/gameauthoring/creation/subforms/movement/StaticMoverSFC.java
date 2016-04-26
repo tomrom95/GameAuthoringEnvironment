@@ -20,10 +20,10 @@ import gameauthoring.creation.subforms.ISubFormView;
 
 public class StaticMoverSFC implements ISubFormControllerSprite {
 
-    private StaticMoverSubFormView myView;
+    private StaticMoverSFV myView;
 
     public StaticMoverSFC () {
-        myView = new StaticMoverSubFormView();
+        myView = new StaticMoverSFV();
     }
 
     @Override

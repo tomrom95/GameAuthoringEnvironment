@@ -13,9 +13,9 @@ import gameauthoring.creation.subforms.ISubFormView;
  * @author Owner
  *
  */
-public class EventsSubFormView extends DynamicSubFormView{ 
+public class EventsSFV extends DynamicSubFormView{ 
 
-    public EventsSubFormView (List<ISubFormView> subforms,
+    public EventsSFV (List<ISubFormView> subforms,
                               Consumer<Integer> changeSelectionAction,
                               List<String> options) {
         super(options);

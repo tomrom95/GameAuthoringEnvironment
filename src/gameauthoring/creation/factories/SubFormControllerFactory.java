@@ -9,7 +9,7 @@ import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ProfileSFC;
 import gameauthoring.creation.subforms.events.EventsSubFormController;
-import gameauthoring.creation.subforms.movement.MovementSubFormController;
+import gameauthoring.creation.subforms.movement.MovementSFC;
 
 
 public abstract class SubFormControllerFactory<T extends IProfilable> {

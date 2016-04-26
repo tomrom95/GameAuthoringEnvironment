@@ -14,10 +14,10 @@ import javafx.scene.layout.GridPane;
  * @author Dhrumil
  *
  */
-public class StaticMoverSubFormView extends SubFormView {
+public class StaticMoverSFV extends SubFormView {
     private Label myLabel = new Label("STATIC SPRITE");
     
-    public StaticMoverSubFormView () {
+    public StaticMoverSFV () {
         myLabel.getStyleClass().add("staticLabel");
     }
 

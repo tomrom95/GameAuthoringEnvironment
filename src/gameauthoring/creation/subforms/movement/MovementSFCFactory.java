@@ -26,7 +26,7 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
     public ISubFormControllerSprite createSubFormController (String type) {
         if (type.equals("SMARTAI")) {
 
-            return new SmartAIMovementSubFormController();
+            return new SmartAIMovementSFC();
         }
         else if (type.equals("STATIC")) {
             return new StaticMoverSFC();
