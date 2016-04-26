@@ -18,6 +18,9 @@ public class CreationControllerMissile extends CreationControllerSprite {
     protected void addToAuthorshipData (AuthorshipData authorshipData) {
         //authorshipData.setMyCreatedMissiles(getMyDefinitionCollection());
         setMyDefinitionCollection(authorshipData.getMyCreatedMissiles());
+        
+        
+        
         authorshipData.addGroupSprites(getMyDefinitionCollection());
         
         //uncomment if missiles should be included in created sprites

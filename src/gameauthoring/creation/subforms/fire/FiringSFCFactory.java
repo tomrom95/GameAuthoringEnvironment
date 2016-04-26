@@ -4,6 +4,7 @@ import engine.IGame;
 import gameauthoring.creation.factories.DynamicSFCFactory;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.DirectionalFirerDefinition;
+import engine.definitions.moduledef.FirerDefinition;
 import engine.definitions.moduledef.TrackingFirerDefinition;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
@@ -48,8 +49,7 @@ public class FiringSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
     }
 
     @Override
-    public RemovableSpriteSFC createSubFormController (String type,
-                                                                         Object ... params) {
+    public RemovableSpriteSFC createSubFormController (String type, Object ... params) {
         if (type.equals("DIRECTIONAL")) {
             return new DirectionalFireSFC(getMyGame(), getMyFiringSFC(), (DirectionalFirerDefinition) params[0]);
         }

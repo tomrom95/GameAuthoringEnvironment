@@ -47,6 +47,7 @@ public class AuthorshipData {
         myCreatedSprites.add(new DefinitionCollection<SpriteDefinition>("Defenders", FXCollections.observableArrayList()));
 
         myGroupSprites = FXCollections.observableArrayList();
+       
         myLevelSelectorSprites = FXCollections.observableArrayList();
         
         myCreatedWaves =

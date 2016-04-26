@@ -40,11 +40,6 @@ public class ObjectCreationTabViewer implements ITabViewer {
     private List<CreationController<?>> myCCs;
     private List<IObjectCreationView<?>> myCVs;
 
-    public ObjectCreationTabViewer () {
-        initializeLists();
-        init();
-    }
-
     public ObjectCreationTabViewer (IGame iGame) {
         myGame = iGame;
         initializeLists();

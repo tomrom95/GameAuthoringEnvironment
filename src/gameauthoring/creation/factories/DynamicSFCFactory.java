@@ -1,6 +1,7 @@
 package gameauthoring.creation.factories;
 
 import engine.IGame;
+import engine.definitions.moduledef.FirerDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 
