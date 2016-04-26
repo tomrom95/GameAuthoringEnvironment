@@ -60,7 +60,7 @@ public class SceneTabViewer implements ITabViewer {
         myLevelTabs.getStyleClass().add("subTab");
         Tab createLevelTab = createButtonTab();
         myLevelTabs.getTabs().addAll(createLevelTab);
-        addNewLevel("Start");
+        addNewLevel("Start", myLevelManager.getCurrentLevel());
     }
 
     @Override
@@ -87,12 +87,12 @@ public class SceneTabViewer implements ITabViewer {
     private void addNewNamedLevel () {
         Optional<String> name = new BasicUIFactory().getTextDialog("Enter", "Level Adder", "Level Name: ");
         if (name.isPresent()) {
-            addNewLevel(name.get());
+            addNewLevel(name.get(), new Level());
         }
     }
 
-    private void addNewLevel (String name) {
-        ILevel newLevel = new Level();
+    private void addNewLevel (String name, ILevel newLevel) {
+       
         newLevel.setProfile(new Profile(name));
         myLevelManager.createNewLevel(newLevel);
         LevelEditorView view =
