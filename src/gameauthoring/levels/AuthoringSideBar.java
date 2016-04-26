@@ -2,15 +2,11 @@ package gameauthoring.levels;
 
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
-import engine.definitions.spawnerdef.SpawnerDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.levels.sprites.DragCheckSpriteCell;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameplayer.SideBarDisplay;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
@@ -28,7 +24,6 @@ public class AuthoringSideBar extends SideBarDisplay {
             accordion.getPanes().add(toAdd);
             accordion.expandedPaneProperty().set(toAdd);
         });
-        accordion.getPanes().add(createSpawnerPane());
     }
 
     protected TitledPane createAccordionPane (DefinitionCollection<SpriteDefinition> collection) {
@@ -39,16 +34,6 @@ public class AuthoringSideBar extends SideBarDisplay {
 
     protected ProfileCellView<SpriteDefinition> getSpriteCellView () {
         return new DragCheckSpriteCell(getLevelView(), getController());
-    }
-
-    private TitledPane createSpawnerPane () {
-        return new TitledPane("Spawners", createSpawnerList());
-    }
-
-    private Node createSpawnerList () {
-        ObservableList<SpriteDefinition> list = FXCollections.observableArrayList();
-        list.add(new SpawnerDefinition(getGame()));
-        return createSpriteList(list);
     }
 
 }
