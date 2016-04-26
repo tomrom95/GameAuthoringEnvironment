@@ -12,7 +12,9 @@ import gameauthoring.tabs.AuthoringView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 public class EffectSubFormView extends SubFormView {
@@ -21,14 +23,19 @@ public class EffectSubFormView extends SubFormView {
     private SingleChoiceEntryView<ProfileDisplay> myEffectType;
     private IEntryView myLength;
     private IEntryView myValue;
+    private TextField myName;
     private String myLengthKey = "For length in time: ";
     private String myValueKey = "By amount: ";
     private String myAttributeKey = "Affect Attribute ";
     private String myTypeKey = "Effect type: ";
-    private HBox myContainer;
+    private VBox myContainer;
 
     public EffectSubFormView (IDefinitionCollection<AttributeDefinition> myCreatedAttributes,
                               List<String> effectTypes) {
+        
+        myName = new TextField();
+        myName.setPromptText("Enter name: ");
+        
         myEffectType = new SingleChoiceEntryView<ProfileDisplay> (myTypeKey,
                                                                   createEffectTypeList(effectTypes),
                                                                   AuthoringView.DEFAULT_ENTRYVIEW);
@@ -54,11 +61,15 @@ public class EffectSubFormView extends SubFormView {
 
     @Override
     protected void initView () {
-        myContainer = new HBox(5);
-        myContainer.getChildren().add(myEffectType.draw());
-        myContainer.getChildren().add(myAttribute.draw());
-        myContainer.getChildren().add(myValue.draw());
-        myContainer.getChildren().add(myLength.draw());
+        myContainer = new VBox(4);
+        HBox hbox = new HBox(10);
+        myName.setMaxWidth(150);
+        myContainer.getChildren().add(myName);
+        hbox.getChildren().add(myEffectType.draw());
+        hbox.getChildren().add(myAttribute.draw());
+        hbox.getChildren().add(myValue.draw());
+        hbox.getChildren().add(myLength.draw());
+        myContainer.getChildren().add(hbox);
     }
 
     public AttributeDefinition getAttribute () {
@@ -69,8 +80,12 @@ public class EffectSubFormView extends SubFormView {
         return myEffectType.getSelected().getProfile().getName().get();
     }
     
+    public String getName () {
+        return myName.getText();
+    }
+    
     public String getValueKey () {
-        return myLengthKey;
+        return myValueKey;
     }
     
     public String getLengthKey () {
@@ -79,7 +94,6 @@ public class EffectSubFormView extends SubFormView {
 
     @Override
     public Node draw () {
-        System.out.println("Here" + myContainer.getChildren().size());
         return myContainer;
     }
 

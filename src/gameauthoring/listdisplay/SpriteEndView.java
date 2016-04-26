@@ -42,8 +42,7 @@ public class SpriteEndView extends AttributeEndView {
 
     private IEventPackage createSpritePackage () {
         EventPackageDefinition self = new EventPackageDefinition();
-        self.setMySpriteGroup(mySpriteGroup.getSelectionModel().getSelectedItem());
-        return self.create();
+        return self.create(mySpriteGroup.getSelectionModel().getSelectedItem());
     }
     
     @Override

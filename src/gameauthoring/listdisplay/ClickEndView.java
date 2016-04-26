@@ -38,8 +38,7 @@ public class ClickEndView extends SubConditionView {
 
     private IEventPackage getTargettedSprite () {
         EventPackageDefinition spriteTarget = new EventPackageDefinition();
-        spriteTarget.setMySpriteGroup(mySpriteGroup.getSelectionModel().getSelectedItem());
-        return spriteTarget.create();
+        return spriteTarget.create(mySpriteGroup.getSelectionModel().getSelectedItem());
     }
 
     @Override

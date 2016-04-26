@@ -27,13 +27,13 @@ public class EffectSubFormController implements ISubFormController<EventPackageD
 
     private List<String> getEffects () {
         // TODO auto populate
-        return new ArrayList<String>(Arrays.asList("Decrease", "Incresase", "Proportion"));
+        return new ArrayList<String>(Arrays.asList("Decrease", "Increase", "Proportion"));
     }
 
     @Override
     public void updateItem (EventPackageDefinition item) {
         // Default profile instead of profileSFC
-        item.getProfile().getName().set(NAME);
+        item.getProfile().getName().set(myView.getName());
         item.getProfile().getDescription().set(myView.getEffectType());
         
         

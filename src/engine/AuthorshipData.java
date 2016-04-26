@@ -144,7 +144,6 @@ public class AuthorshipData {
 
     public void setMyCreatedGroups (DefinitionCollection<SpriteGroup> createdGroups) {
         myCreatedGroups = createdGroups;
-        init();
     }
 
     public void setMyCreatedGlobals (DefinitionCollection<AttributeDefinition> createdGlobals) {

@@ -49,9 +49,15 @@ public class OnClickCondition extends Condition implements ICondition {
     }
 
     private void filterAndHandleSprites (IGame game, Predicate<ISprite> additionalFilter) {
+        System.out.println(mySelfPackage.getTargetedSpriteGroup().getSpriteTypes());
         getPackageFilteredSprites(game, mySelfPackage)
                 .filter(additionalFilter)
-                .forEach(sprite -> handleAction(sprite));
+                .forEach(sprite -> debug(sprite));
+    }
+
+    private void debug (ISprite sprite) {
+        System.out.println(sprite);
+        handleAction(sprite);
     }
 
 }

@@ -35,8 +35,7 @@ public abstract class OnGameAttributeView extends OnAttributeView {
 
     protected IEventPackage getThirdPartyPackage () {
         EventPackageDefinition other = myThirdEvents.getSelectionModel().getSelectedItem();
-        other.setMySpriteGroup(myThirdParty.getSelectionModel().getSelectedItem());
-        return other.create();
+        return other.create(myThirdParty.getSelectionModel().getSelectedItem());
     }
 
     protected IEventPackage getGlobalPackage () {

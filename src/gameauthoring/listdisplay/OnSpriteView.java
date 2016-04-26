@@ -55,8 +55,7 @@ public class OnSpriteView extends OnGameAttributeView {
 
     private IEventPackage getSpritePackage () {
         EventPackageDefinition self = mySpriteEvent.getSelectionModel().getSelectedItem();
-        self.setMySpriteGroup(mySpriteGroup.getSelectionModel().getSelectedItem());
-        return self.create();
+        return self.create(mySpriteGroup.getSelectionModel().getSelectedItem());
     }
 
 
