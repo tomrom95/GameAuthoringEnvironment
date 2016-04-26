@@ -44,7 +44,8 @@ public class AuthorshipData {
     public AuthorshipData () {
         myCreatedSprites = FXCollections.observableArrayList();
         myCreatedSprites.add(new DefinitionCollection<SpriteDefinition>("Enemies", FXCollections.observableArrayList()));
-        
+        myCreatedSprites.add(new DefinitionCollection<SpriteDefinition>("Defenders", FXCollections.observableArrayList()));
+
         myGroupSprites = FXCollections.observableArrayList();
         myLevelSelectorSprites = FXCollections.observableArrayList();
         

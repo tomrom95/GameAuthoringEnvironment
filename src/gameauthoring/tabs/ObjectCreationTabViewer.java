@@ -61,11 +61,11 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         List<String> myMissileSFCs = new ArrayList<String>(Arrays.asList("ProfileSFC", "Movement"));
         List<String> myEnemySFCs =
-                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Movement", "FireMult"));
-       /* List<String> myDefenderSFCs =
+                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Movement"));
+       List<String> myDefenderSFCs =
 
                 new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Upgrade",
-                                                    "Cost", "Movement", "FireMult"));*/
+                                                    "Cost", "Movement", "FireMult"));
         List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("ProfileSFC", "SelectSprite"));
 
         List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
@@ -90,10 +90,10 @@ public class ObjectCreationTabViewer implements ITabViewer {
                 ccFactory.createCreationController(myControllerResources.getString("Enemies"),
                                                    myLang.getString("Enemies"), myEnemySFCs,
                                                    myGame);
-        /*CreationController<?> ccDefenders =
+        CreationController<?> ccDefenders =
                 ccFactory.createCreationController(myControllerResources.getString("Defenders"),
                                                    myLang.getString("Defenders"), myDefenderSFCs,
-                                                   myGame);*/
+                                                   myGame);
         CreationController<?> ccGroups =
                 ccFactory.createCreationController(myControllerResources.getString("Groups"),
                                                    myLang.getString("Groups"), myGroupSFCs, myGame);
@@ -109,7 +109,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
         myCCs.add(ccMissiles);
 
         myCCs.add(ccEnemies);
-        //myCCs.add(ccDefenders);
+        myCCs.add(ccDefenders);
 
         myCCs.add(ccGroups);
 
@@ -120,7 +120,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
         ccMissiles.init(myMissileSFCs);
 
         ccEnemies.init(myEnemySFCs);
-        //ccDefenders.init(myDefenderSFCs);
+        ccDefenders.init(myDefenderSFCs);
         ccGroups.init(myGroupSFCs);
 
         ccEvents.init(myEventSFCs);

@@ -2,6 +2,7 @@ package gameauthoring.creation.subforms;
 
 import engine.AttributeType;
 import engine.IGame;
+import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.ModuleDefinition;
 import engine.definitions.upgrades.GlobalUpgradeDefinition;
@@ -38,15 +39,15 @@ public class UpgradeSFC implements ISubFormControllerSprite {
                 if (mySFV.isGlobalProperty().get()) {
                     myGlobalUpgrade.setParameters(myGame, nextUpgrade, type, cost);
                     item.setUpgrade(myGlobalUpgrade);
-                    
+
                 }
                 else {
                     mySpriteUpgrade.setParameters(myGame, nextUpgrade, type, cost);
                     item.setUpgrade(mySpriteUpgrade);
-                   
+
                 }
             }
-            else{
+            else {
                 item.setUpgrade(new NullUpgradeDefinition());
             }
         }
@@ -72,18 +73,29 @@ public class UpgradeSFC implements ISubFormControllerSprite {
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
         UpgradeDefinition upgrade = item.getUpgrade();
-        //TODO: fix bad code. just doing it now to see if populating works
-        // actually i'm gonna do the others and come back
-        if(upgrade instanceof NullUpgradeDefinition) {
+        // TODO: fix bad code. just doing it now to see if populating works
+        if (upgrade instanceof NullUpgradeDefinition) {
             mySFV.setIsUpgradable(false);
-        }else if (upgrade instanceof GlobalUpgradeDefinition){
-            
-            
-        }else if (upgrade instanceof SpriteUpgradeDefinition) {
-            //mySFV.setNextUpgrade(upgrade.getUpgrade());
-            
         }
-        
+        else {
+            mySFV.setIsUpgradable(true);
+            mySFV.getData().getValueProperty(mySFV.getMyCostKey())
+                    .set(Double.toString(upgrade.getCost()));
+
+            // TODO make upgrade definition contain attriubte definition instead of type for same reference
+            // mySFV.setDepletedAttribute(upgrade.getAttributeDefinition());
+            mySFV.setNextUpgrade(upgrade.getUpgrade());
+
+            if (upgrade instanceof GlobalUpgradeDefinition) {
+
+                mySFV.isGlobalProperty().set(true);
+
+            }
+            else if (upgrade instanceof SpriteUpgradeDefinition) {
+
+            }
+        }
+
     }
 
 }
