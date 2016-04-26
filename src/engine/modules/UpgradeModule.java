@@ -72,7 +72,6 @@ public class UpgradeModule implements IModule {
     }
     
     public BooleanProperty isUgradeable () {
-        
         return myCheck.getStatus();
     }
 

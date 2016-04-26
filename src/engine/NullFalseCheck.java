@@ -6,6 +6,9 @@ import util.TimeDuration;
 
 public class NullFalseCheck implements ICheck {
 
+    public NullFalseCheck () {
+        System.out.println("made");
+    }
     @Override
     public void update (TimeDuration duration) {
         // TODO Auto-generated method stub

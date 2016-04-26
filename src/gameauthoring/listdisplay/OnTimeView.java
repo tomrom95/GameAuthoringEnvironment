@@ -15,6 +15,7 @@ import util.TimeDuration;
 
 public class OnTimeView extends SubConditionView {
 
+    private static final double SEC_TO_MILLI = 1000;
     private static final String PATH = "defaults/on_time_view";
     ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
 
@@ -50,9 +51,13 @@ public class OnTimeView extends SubConditionView {
                                    sprite.create(myGroup.getSelectionModel().getSelectedItem()),
                                    global.create());
     }
-    
+
     private TimeDuration getTime () throws NumberFormatException {
-        return new TimeDuration(new StringParser().parseDouble(myDuration.getText())); 
+        return new TimeDuration(unitConvert(new StringParser().parseDouble(myDuration.getText())));
+    }
+
+    private double unitConvert (double ms) {
+        return ms * SEC_TO_MILLI;
     }
 
     @Override
