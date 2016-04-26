@@ -25,8 +25,8 @@ public class UserDisplay {
         return mySpriteDisplay.draw();
     }
 
-    public SpriteDisplay getSpriteDisplay () {
-        return mySpriteDisplay;
+    public SpriteDisplayController getSpriteDisplay () {
+        return mySpriteDisplay.getController();
     }
 
     public Node draw () {
