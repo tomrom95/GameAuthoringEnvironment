@@ -1,6 +1,7 @@
 package gameauthoring.creation.subforms;
 
 import engine.profile.IProfilable;
+import engine.profile.IProfile;
 import gameauthoring.creation.entryviews.IFormDataManager;
 
 
@@ -62,6 +63,12 @@ public class ProfileSFC<T extends IProfilable> implements ISubFormController<T> 
 
     }
 
+    @Override
+    public void populateViewsWithData (T item) {
+       IProfile profile = item.getProfile();
+       populateViewsWithData(profile.getName().get(), profile.getDescription().get(), profile.getImageURL());
+    }
+    
     @Override
     public ISubFormView getSubFormView () {
         return myView;

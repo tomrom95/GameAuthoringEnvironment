@@ -33,7 +33,7 @@ public class UpgradeSFC implements ISubFormControllerSprite {
                 double cost =
                         Double.parseDouble(mySFV.getData().getValueProperty(mySFV.getMyCostKey())
                                 .get());
-                AttributeType type = new AttributeType(mySFV.getDepeltedAttribute().getType());
+                AttributeType type = new AttributeType(mySFV.getDepletedAttribute().getType());
                 SpriteDefinition nextUpgrade = mySFV.getNextUpgrade();
                 if (mySFV.isGlobalProperty().get()) {
                     myGlobalUpgrade.setParameters(myGame, nextUpgrade, type, cost);
@@ -67,6 +67,23 @@ public class UpgradeSFC implements ISubFormControllerSprite {
     @Override
     public void initializeFields () {
         mySFV.getData().set(mySFV.getMyCostKey(), String.valueOf(this.myInitialValue));
+    }
+
+    @Override
+    public void populateViewsWithData (SpriteDefinition item) {
+        UpgradeDefinition upgrade = item.getUpgrade();
+        //TODO: fix bad code. just doing it now to see if populating works
+        // actually i'm gonna do the others and come back
+        if(upgrade instanceof NullUpgradeDefinition) {
+            mySFV.setIsUpgradable(false);
+        }else if (upgrade instanceof GlobalUpgradeDefinition){
+            
+            
+        }else if (upgrade instanceof SpriteUpgradeDefinition) {
+            //mySFV.setNextUpgrade(upgrade.getUpgrade());
+            
+        }
+        
     }
 
 }

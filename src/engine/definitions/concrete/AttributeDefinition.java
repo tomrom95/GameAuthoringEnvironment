@@ -71,5 +71,9 @@ public class AttributeDefinition implements IProfilable {
     public void setIsLevelSpecific (boolean level) {
         isLevelSpecific = level;
     }
+    
+    public boolean getIsLevelSpecific () {
+        return isLevelSpecific;
+    }
 
 }

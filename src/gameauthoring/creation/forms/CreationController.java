@@ -82,7 +82,7 @@ public abstract class CreationController<T extends IProfilable> {
         List<ISubFormView> subFormViews = getSubFormViews(getMySubFormControllers());
         myView.init(subFormViews);
         setupConnections();
-        newItem();
+        //newItem();
 
     }
 
@@ -152,16 +152,15 @@ public abstract class CreationController<T extends IProfilable> {
         T item = createBlankItem();
         addItem(item);
         getMyObjectCreationView().getObjectListView().setSelectedItem(item);
-
-        // New Design
-        List<? extends ISubFormController<T>> SFCs =
-                getMySFCFactory()
-                        .createSubFormControllers(this.mySubFormTemplate);
-        myMap.put(item, SFCs);
-
         showAndEdit(item);
+        
+        // New Design
+        //List<? extends ISubFormController<T>> SFCs = getMySFCFactory().createSubFormControllers(this.mySubFormTemplate);
+        //myMap.put(item, SFCs);
 
-        initializeSubFormViews();
+        //showAndEdit(item);
+
+        //initializeSubFormViews();
     }
 
     /**
@@ -190,8 +189,12 @@ public abstract class CreationController<T extends IProfilable> {
      * @param item The item contained in the cell that was clicked
      */
     private void showAndEdit (T item) {
-        this.mySubFormControllers = myMap.get(item);
-        this.myView.getFormView().setViews(getSubFormViews(mySubFormControllers));
+        for (ISubFormController<T> subFormController : getMySubFormControllers()) {
+            subFormController.populateViewsWithData(getMyCurrentItem());
+        }
+        // New Design
+        //this.mySubFormControllers = myMap.get(item);
+        //this.myView.getFormView().setViews(getSubFormViews(mySubFormControllers));
 
     }
 
@@ -239,6 +242,11 @@ public abstract class CreationController<T extends IProfilable> {
 
     protected DefinitionCollection<T> getMyDefinitionCollection () {
         return myDefinitionCollection;
+    }
+    protected void setMyDefinitionCollection (DefinitionCollection<T> col) {
+        this.myDefinitionCollection = col;
+        getMyObjectCreationView().getObjectListView().setMyItems(col.getItems());
+        //setMyTitle(col.getTitle());
     }
 
 }

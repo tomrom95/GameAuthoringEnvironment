@@ -100,7 +100,7 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     }
 
     @Override
-    public AttributeDefinition getDepeltedAttribute () {
+    public AttributeDefinition getDepletedAttribute () {
         return this.myAttributeChoices.getSelected();
     }
 

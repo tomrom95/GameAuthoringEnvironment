@@ -29,7 +29,7 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
             return new SmartAIMovementSubFormController();
         }
         else if (type.equals("STATIC")) {
-            return new StaticMoverSubFormController();
+            return new StaticMoverSFC();
 
         }
         else if (type.equals("CONSTANT")) {
@@ -37,7 +37,7 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
 
         }
         else if (type.equals("USERMOVER")) {
-            return new UserMoverSubFormController();
+            return new UserMoverSFC();
 
         }
         else if (type.equals("TRACKING")) {

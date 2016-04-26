@@ -3,6 +3,7 @@ package engine.definitions.moduledef;
 import java.util.List;
 import engine.IGame;
 import engine.Positionable;
+import engine.SpriteGroup;
 import engine.modules.IMovementModule;
 import engine.modules.TrackingMover;
 import engine.sprite.SpriteType;
@@ -13,7 +14,7 @@ import engine.sprite.SpriteType;
  */
 public class TrackingMoverDefinition extends MovementDefinition {
 
-    private List<SpriteType> myTargets;
+    private SpriteGroup myTargets;
     private IGame myGame;
     private double mySpeed;
 
@@ -26,11 +27,12 @@ public class TrackingMoverDefinition extends MovementDefinition {
         
     }
 
-    public void setTargets (List<SpriteType> targets) {
+    public void setTargets(SpriteGroup targets){
         myTargets = targets;
-    }
 
-    public List<SpriteType> getTargets () {
+    }
+    
+    public SpriteGroup getTargets () {
         return myTargets;
     }
 

@@ -61,6 +61,7 @@ public class AuthorshipData {
         myCreatedEventPackages = new DefinitionCollection<EventPackageDefinition>("Created Groups",
                                                                                   FXCollections
                                                                               .observableArrayList());
+        myCreatedMissiles = new DefinitionCollection<>("Missiles", FXCollections.observableArrayList());
     }
 
     /**

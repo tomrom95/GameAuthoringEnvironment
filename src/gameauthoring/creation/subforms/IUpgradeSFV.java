@@ -21,7 +21,7 @@ public interface IUpgradeSFV  extends ISubFormView{
 
     SpriteDefinition getNextUpgrade ();
 
-    AttributeDefinition getDepeltedAttribute ();
+    AttributeDefinition getDepletedAttribute ();
 
     String getMyCostKey ();
 }
