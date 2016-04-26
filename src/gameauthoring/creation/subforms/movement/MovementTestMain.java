@@ -19,10 +19,10 @@ public class MovementTestMain extends Application {
         IGame game = new Game(new GameGridConfigNonScaling(GamePlayer.INT_PREF_WIDTH,
                                                            GamePlayer.INT_PREF_HEIGHT));
         MovementSubFormController a = new MovementSubFormController(game);
-        FiringSFC fSFC = new FiringSFC(game);
+     //   FiringSFC fSFC = new FiringSFC(game);
         GridPane root = new GridPane();
         root.add(a.getSubFormView().draw(), 0, 0);
-        root.add(fSFC.getSubFormView().draw(), 0, 1);
+     //   root.add(fSFC.getSubFormView().draw(), 0, 1);
         s.setScene(new Scene(root, 500, 500));
         s.show();
     }

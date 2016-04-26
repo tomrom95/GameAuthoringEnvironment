@@ -33,13 +33,21 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
     public DynamicSubFormController (IGame game,
                                      DynamicSFCFactory<T> sfcFactory,
                                      List<String> subFormIDs) {
+        setMyView(new DynamicSubFormView(subFormIDs));
         setMyGame(game);
         setMySFCFactory(sfcFactory);
         setUpSubFormControllers(subFormIDs);
-        setMyCurrentSFC(0);//TODO: magic number
         setUpSubFormViews(mySubFormControllers);
+        setActions();
     }
 
+    private void setActions(){
+        for(int i = 0; i<myView.getMyButtons().size(); i++){
+            ISubFormController<T> sfc = mySubFormControllers.get(i);
+            myView.setButtonAction(myView.getMyButtons().get(i), e->setMyCurrentSFC(sfc));
+        }
+    }
+    
     /**
      * Creates the sub-SFCs that will be dynamically swapped in and out based on
      * which type the user selects
@@ -57,15 +65,6 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
         setMySubFormControllers(subFormControllers);
     }
 
-    /**
-     * Sets which sub-SFC should be currently active (only used for initialization right now)
-     * 
-     * TODO: make consistent with view
-     */
-    protected void setMyCurrentSFC (int index) {
-        setMyCurrentSubFormController(getMySubFormControllers().get(0));
-
-    }
 
     /**
      * Creates the list of sub-subformviews from the sub-subformcontrollers
@@ -85,10 +84,9 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
      * 
      * @param comboSelectionIndex The selected index
      */
-    protected void changeSelection (int comboSelectionIndex) {
-        myCurrentSubFormController = mySubFormControllers.get(comboSelectionIndex);
-        myView.changeSubView(comboSelectionIndex);
-
+    public void setMyCurrentSFC (ISubFormController<T> sfc) {
+        myCurrentSubFormController = sfc;
+        myView.addOrSetSFV(sfc.getSubFormView());
     }
 
     @Override
@@ -100,7 +98,9 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
 
     @Override
     public void updateItem (T item) {
-        myCurrentSubFormController.updateItem(item);
+        if(myCurrentSubFormController != null){
+            myCurrentSubFormController.updateItem(item);
+        }
 
     }
 

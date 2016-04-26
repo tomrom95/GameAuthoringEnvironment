@@ -12,6 +12,11 @@ import javafx.collections.ObservableList;
 
 
 /**
+ * NOT USED IN CURRENT IMPLEMENTATION
+ * TODO: remove
+ */
+
+/**
  * This serves to display firing subform view.
  * 
  * @author Jeremy Schreck
@@ -37,7 +42,7 @@ public class FiringSFV extends DynamicSubFormView {
                               List<String> options,
                               Consumer<SpriteDefinition> changeMissileAction,
                               ObservableList<SpriteDefinition> missiles) {
-        super(views, changeSelectionAction, options);
+        super(options);
         initMissileSelectionView(changeMissileAction, missiles);
 
     }
@@ -56,7 +61,7 @@ public class FiringSFV extends DynamicSubFormView {
                 new SingleChoiceEntryView<>("Missile", missiles, AuthoringView.DEFAULT_ENTRYVIEW);
 
         myMissileSelectionView.addComboItemListener(changeMissileAction);
-        getMyGridPane().add(myMissileSelectionView.draw(), 1, 0);
+      //  getMyGridPane().add(myMissileSelectionView.draw(), 1, 0);
 
     }
 
@@ -71,14 +76,14 @@ public class FiringSFV extends DynamicSubFormView {
 
     @Override
     protected void initView () {
-        setMyCurrentSubViewX(0);
-        setMyCurrentSubViewY(1);
+//        setMyCurrentSubViewX(0);
+//        setMyCurrentSubViewY(1);
         super.initView();
     }
-
-    @Override
-    protected String getSelectionKey () {
-        return myFireTypeKey;
-    }
+//
+//    @Override
+//    protected String getSelectionKey () {
+//        return myFireTypeKey;
+//    }
 
 }

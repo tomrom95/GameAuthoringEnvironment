@@ -2,6 +2,7 @@ package gameauthoring.creation.subforms;
 
 import gameauthoring.creation.entryviews.FormDataManager;
 import gameauthoring.creation.entryviews.IFormDataManager;
+import gameauthoring.util.BasicUIFactory;
 
 
 /**
@@ -13,6 +14,7 @@ import gameauthoring.creation.entryviews.IFormDataManager;
 public abstract class SubFormView implements ISubFormView {
 
     private IFormDataManager myData = new FormDataManager();
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
 
     /**
      * Implementation of getData() with Manager, think I like this one better. The same instance of
@@ -24,6 +26,10 @@ public abstract class SubFormView implements ISubFormView {
     @Override
     public IFormDataManager getData () {
         return myData;
+    }
+    
+    protected BasicUIFactory getMyUIFactory() {
+        return myUIFactory;
     }
 
     /**

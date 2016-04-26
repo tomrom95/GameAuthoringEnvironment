@@ -1,5 +1,6 @@
 package gameauthoring.util;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import engine.profile.IProfilable;
@@ -90,7 +91,12 @@ public class BasicUIFactory implements UIFactory {
         return newTab;
     }
 
-
+    
+    public Button createImageButton (Node imgview) {
+        Button newButton = new Button();
+        newButton.setGraphic(imgview);
+        return newButton;
+    }
     
     public Button createImageButton (Node imgview,
                                      EventHandler<ActionEvent> action) {
@@ -141,6 +147,12 @@ public class BasicUIFactory implements UIFactory {
             box.getChildren().addAll(content);
         }
         box.setAlignment(alignment);
+        return box;
+    }
+    
+    public VBox makeVBox (double spacing, Pos alignment, double width, double height, Node ... content) {
+        VBox box = makeVBox(spacing, alignment, content);
+        box.setMinSize(width, height);
         return box;
     }
 
