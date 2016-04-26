@@ -2,7 +2,6 @@ package engine;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.definitions.concrete.SpriteDefinition;
@@ -29,6 +28,9 @@ public class AuthorshipData {
         // level selector sprite would have all sprites plus spawners minus missiles
 
     private List<DefinitionCollection<SpriteDefinition>> myCreatedSprites;
+    
+    
+    
     private List<DefinitionCollection<SpriteDefinition>> myGroupSprites;
     private List<DefinitionCollection<SpriteDefinition>> myLevelSelectorSprites;
 
@@ -111,7 +113,7 @@ public class AuthorshipData {
     }
 
     public void addCreatedSprites (DefinitionCollection<SpriteDefinition> createdSprites) {
-        myCreatedSprites.add(createdSprites);
+        myCreatedSprites.add(createdSprites);        
     }
 
     public List<DefinitionCollection<SpriteDefinition>> getMyGroupSprites () {
