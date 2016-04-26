@@ -33,6 +33,7 @@ public class EffectSubFormView extends SubFormView {
     public EffectSubFormView (IDefinitionCollection<AttributeDefinition> myCreatedAttributes,
                               List<String> effectTypes) {
         
+        //TODO: extract new IProfileSFV implementation that just has a textfield for name so we can reuse this code
         myName = new TextField();
         myName.setPromptText("Enter name: ");
         
