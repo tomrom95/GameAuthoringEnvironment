@@ -3,6 +3,7 @@ package library;
 import java.util.ResourceBundle;
 import engine.IGame;
 import gameauthoring.tabs.AuthoringView;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -14,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import splash.LocaleManager;
 import splash.MainUserInterface;
 
@@ -64,6 +66,10 @@ public class GameLibraryView {
     }
 
     public void addGameToDisplay (Node gameDisp) {
+        FadeTransition fade = new FadeTransition(Duration.seconds(2), gameDisp);
+        fade.setFromValue(0);
+        fade.setToValue(1);
+        fade.play();
         myGameDisplay.getChildren().add(gameDisp);
     }
 
