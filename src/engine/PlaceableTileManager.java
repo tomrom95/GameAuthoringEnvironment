@@ -11,11 +11,12 @@ public class PlaceableTileManager implements IPlaceableTileManager {
     private int myRowSize;
     private int myColumnSize;
 
-    public PlaceableTileManager (ILevel level) {
+    public PlaceableTileManager (ILevel level, int row, int column) {
         myLevel = level;
+        initialize(row, column);
     }
 
-    public void set (int row, int column) {
+    public void initialize (int row, int column) {
         myPlaceableMap = new BitMap(row, column);
         myRowSize = row;
         myColumnSize = column;

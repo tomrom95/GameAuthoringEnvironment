@@ -25,6 +25,7 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
     private double myDefaultAngle = 0;
     private double myDefaultWaitTime = 0;
     private DirectionalFirerDefinition myFireDef;
+    private double myDefaultRange = 0;
 
     public DirectionalFireSFC (IGame game, FiringSFCmult sfc, DirectionalFirerDefinition fireDef) {
         super(sfc);
@@ -38,12 +39,13 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
 
     @Override
     public void initializeFields () {
-        populateViewsWithData(myDefaultAngle, myDefaultWaitTime);
+        populateViewsWithData(myDefaultAngle, myDefaultWaitTime, myDefaultRange);
     }
 
-    private void populateViewsWithData (double angle, double wait) {
+    private void populateViewsWithData (double angle, double wait, double range) {
         myFormData.set(myView.getMyAngleKey(), Double.toString(angle));
         myFormData.set(myView.getMyWaitTimeKey(), Double.toString(wait));
+        myFormData.set(myView.getMyRangeValueKey(), Double.toString(range));
     }
 
     @Override
@@ -59,11 +61,15 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
                     Math.toRadians(Double.valueOf(myFormData.getValueProperty(myView.getMyAngleKey()).get())); // tangent functions need radians
             Double waitTime =
                     Double.valueOf(myFormData.getValueProperty(myView.getMyWaitTimeKey()).get());
+            Double range = Double.valueOf(myFormData.getValueProperty(myView.getMyRangeValueKey()).get());
             myFireDef.setGame(myGame);
             myFireDef.setAngle(angle);
             myFireDef.setWaitTime(waitTime);
             myFireDef.setProjectileDefinition(myView.getMissileSelection());
-            
+
+            myFireDef.setRanged(myView.isRangedProperty().get());
+            myFireDef.setFireRange(range);
+
             if (!item.getModuleDefinitions().contains(myFireDef)) {
                 item.addModule(myFireDef);
             }
@@ -87,7 +93,8 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
         myFormData.getValueProperty(myView.getMyAngleKey()).set(Double.toString(Math.toDegrees(myFireDef.getAngle())));
         myFormData.getValueProperty(myView.getMyWaitTimeKey()).set(Double.toString(myFireDef.getWaitTime()));
         myView.setMissileSelection(myFireDef.getProjectileDefinition());
-        
+
+        //TODO ranged
     }
 
 }

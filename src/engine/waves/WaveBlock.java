@@ -38,6 +38,10 @@ public class WaveBlock {
 	    return myDefinition.create();
 	}
 	
+	public ISprite spawnInfinite(){
+	    return myDefinition.create();
+	}
+	
 	public boolean isComplete () {
 	    return myCount <= 0;
 	}

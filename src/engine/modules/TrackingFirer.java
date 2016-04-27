@@ -33,11 +33,11 @@ public class TrackingFirer extends Firer {
     private Positionable mySprite;
     private TimeDuration myTimeSinceFire;
 
-    public TrackingFirer (List<SpriteType> targets,
+    public TrackingFirer (IGame game, List<SpriteType> targets,
                           double waitTime,
                           SpriteDefinition projectile,
                           Positionable sprite) {
-    	super(sprite);
+    	super(game, sprite);
         myTargets = targets;
         myWaitTime = new Attribute(waitTime, AttributeType.FIRE_RATE);
         mySprite = sprite;

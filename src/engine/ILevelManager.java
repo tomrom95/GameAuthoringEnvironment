@@ -56,4 +56,10 @@ public interface ILevelManager extends IAdder, IEventInternalizer {
     void add (ISprite sprite);
 
     void add (ISprite sprite, Coordinate coordinate);
+    
+    /**
+     * 
+     */
+    void remove (ILevel level);
 }
+

@@ -1,5 +1,7 @@
 package gameauthoring.tabs;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import com.dooapp.xstreamfx.FXConverters;
@@ -8,6 +10,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.IGame;
 import gameauthoring.listdisplay.GameConditionView;
 import gameauthoring.util.BasicUIFactory;
+import gameauthoring.util.ErrorMessage;
 import gameauthoring.waves.WaveTabViewer;
 import gameplayer.GamePlayer;
 import javafx.event.ActionEvent;
@@ -25,7 +28,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import serialize.GameWriter;
 
 
 /**
@@ -109,8 +114,10 @@ public class AuthoringView implements IAuthoringView {
     private MenuBar createMenuBar () {
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
-        MenuItem saveItem = createMenuItems("Save your game as XML Files", e -> saveToXML());
+        MenuItem saveItem = createMenuItems("Save game", e -> saveToXML());
+        MenuItem launchItem = createMenuItems("Launch game", e -> launchGame());
         fileMenu.getItems().add(saveItem);
+        fileMenu.getItems().add(launchItem);
         menuBar.getMenus().add(fileMenu);
         return menuBar;
     }
@@ -144,16 +151,36 @@ public class AuthoringView implements IAuthoringView {
     }
 
     private void saveToXML () {
-        
+        File f = getFile();
+        myGame.createAndSortGlobals();
+        if (f != null) {
+            try {
+                new GameWriter().serialize(f, myGame);
+            }
+            catch (IOException e) {
+                ErrorMessage message = new ErrorMessage(e.getMessage());
+                message.showError();
+            }
+        }
+
+    }
+
+    private void launchGame () {
         XStream xstream = new XStream(new DomDriver());
         FXConverters.configure(xstream);
         xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
         myGame.createAndSortGlobals();
-
         String xml = xstream.toXML(myGame);
 
         IGame game = (IGame) xstream.fromXML(xml);
         GamePlayer player = new GamePlayer(game);
+    }
+
+    private File getFile () {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle(myLang.getString("SaveGame"));
+        fileChooser.setInitialDirectory(new File("resources/saved_games"));
+        return fileChooser.showSaveDialog(new Stage());
     }
 
     private TabPane createAllTabs () {

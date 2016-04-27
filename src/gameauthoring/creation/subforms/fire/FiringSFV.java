@@ -3,6 +3,7 @@ package gameauthoring.creation.subforms.fire;
 import java.util.List;
 import java.util.function.Consumer;
 import engine.definitions.concrete.SpriteDefinition;
+import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.DynamicSubFormView;
 import gameauthoring.creation.subforms.ISubFormView;
@@ -19,13 +20,15 @@ import javafx.collections.ObservableList;
 /**
  * This serves to display firing subform view.
  * 
- * @author Jeremy Schreck
+ * @author Jeremy Schreck Timko
  *
  */
 public class FiringSFV extends DynamicSubFormView {
 
     private String myFireTypeKey = "Fire Type: ";
+    private String myRangedKey = "Ranged: ";
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
+    private CheckEntryView isRangedSelectionView;
 
 
     /**
@@ -59,6 +62,8 @@ public class FiringSFV extends DynamicSubFormView {
 
         myMissileSelectionView =
                 new SingleChoiceEntryView<>("Missile", missiles, AuthoringView.DEFAULT_ENTRYVIEW);
+        isRangedSelectionView =
+                new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
 
         myMissileSelectionView.addComboItemListener(changeMissileAction);
       //  getMyGridPane().add(myMissileSelectionView.draw(), 1, 0);

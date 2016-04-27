@@ -6,7 +6,6 @@ import engine.rendering.GraphicFactory;
 import engine.rendering.ScaleFactory;
 import engine.rendering.UnscaledFactory;
 import gameauthoring.util.BasicUIFactory;
-import gameauthoring.util.UIFactory;
 import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -30,7 +29,6 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     private static final double PIC_SIZE = 30;
     private E myProfile;
-    
 
     @Override
     protected void updateItem (E item, boolean empty) {
@@ -47,7 +45,12 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     protected Node createSpriteCell (E profile) {
         HBox container = getHBox(profile);
+        setImageBind(profile);
         return container;
+    }
+
+    private void setImageBind (E profile) {
+        profile.getProfile().imageChanged().addListener(e -> setGraphic(createSpriteCell(profile)));
     }
 
     /**
@@ -100,6 +103,7 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
         Node node =
                 getProfilable().getProfile().getImage()
                         .getVisualRepresentation(new UnscaledFactory());
+        
         return new BasicUIFactory().getImageFromNode(node);
     }
 
