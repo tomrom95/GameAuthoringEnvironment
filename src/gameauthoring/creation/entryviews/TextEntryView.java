@@ -12,20 +12,19 @@ import javafx.scene.control.TextInputControl;
  */
 public class TextEntryView extends InputEntryView {
     private TextInputControl myTextInput;
-    
 
     public TextEntryView (String label, double width, double height, String cssClass) {
-        super(label,width,height,cssClass);
+        super(label, width, height, cssClass);
         myTextInput = new TextArea();
         super.setInputControl(myTextInput);
-        super.init(label, cssClass);
+        super.init();
     }
-    
-    public void setData(String data){
+
+    public void setData (String data) {
         myTextInput.setText(data);
     }
-    
-    public String getData(){
+
+    public String getData () {
         return myTextInput.getText();
     }
 

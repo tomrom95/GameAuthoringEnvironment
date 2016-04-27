@@ -10,14 +10,14 @@ import javafx.scene.control.TextInputControl;
  *
  */
 public class NumberEntryView extends InputEntryView {
+    
     private TextInputControl myTextInput;
     
-
     public NumberEntryView (String label, double width, double height, String cssClass) {
         super(label,width,height,cssClass);
         myTextInput = new NumberTextField();
         super.setInputControl(myTextInput);
-        super.init(label, cssClass);
+        super.init();
     }
     
     public void setData(double data){
@@ -30,6 +30,7 @@ public class NumberEntryView extends InputEntryView {
         }
         catch(NumberFormatException e){
             ErrorMessage err = new ErrorMessage("Input Must Be a Number!");
+            err.showError();
             return 0;
         }
     }

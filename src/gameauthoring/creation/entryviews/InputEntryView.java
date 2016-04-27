@@ -1,11 +1,7 @@
 package gameauthoring.creation.entryviews;
 
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 
 
 /**
@@ -18,7 +14,6 @@ import javafx.scene.layout.HBox;
  */
 public abstract class InputEntryView extends EntryView {
 
-    private HBox myContainer;
     private TextInputControl myTextInput;
     private double width;
     private double height;
@@ -27,17 +22,16 @@ public abstract class InputEntryView extends EntryView {
                            double width,
                            double height,
                            String cssClass) {
-        super(label);
+        super(label, cssClass);
         this.width = width;
         this.height = height;
     }
 
     @Override
-    protected void init (String label, String cssClass) {
+    protected void init () {
         myTextInput.setMinSize(width, height);
         myTextInput.setMaxSize(width, height);
-        myContainer = getMyFactory().makeHBox(20, Pos.CENTER, getLabel(), myTextInput);
-        myContainer.getStyleClass().add(cssClass);
+        getMyContainer().getChildren().add(myTextInput);
     }
 
     protected void setInputControl (TextInputControl text) {
@@ -46,7 +40,7 @@ public abstract class InputEntryView extends EntryView {
 
     @Override
     public Node draw () {
-        return myContainer;
+        return getMyContainer();
     }
 
 }

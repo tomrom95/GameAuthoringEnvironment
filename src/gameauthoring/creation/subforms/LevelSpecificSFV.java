@@ -13,10 +13,10 @@ import javafx.scene.Node;
 public class LevelSpecificSFV extends SubFormView implements ILevelSpecificSFV{
     
     private CheckEntryView myChoice;
-    private String myChoiceKey = "Associate Resource With Specific Levels: ";
+    private String myChoiceLabel = "Associate Resource With Specific Levels: ";
     
     public LevelSpecificSFV(){
-        myChoice = new CheckEntryView(myChoiceKey,AuthoringView.DEFAULT_ENTRYVIEW);        
+        myChoice = new CheckEntryView(myChoiceLabel,AuthoringView.DEFAULT_ENTRYVIEW);        
     }
 
     public void setLevelSpecific(boolean levelSpecific){

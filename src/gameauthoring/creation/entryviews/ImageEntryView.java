@@ -3,18 +3,12 @@ package gameauthoring.creation.entryviews;
 import java.io.File;
 import java.net.MalformedURLException;
 import gameauthoring.util.ErrorMessage;
-import gameauthoring.util.UIFactory;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import gameauthoring.util.BasicUIFactory;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
@@ -30,17 +24,14 @@ import javafx.stage.FileChooser.ExtensionFilter;
  *
  */
 public class ImageEntryView extends EntryView {
-    private GridPane myContainer;
-    private StringProperty myImageChoice = new SimpleStringProperty();
+
     private Button myChooseImage;
     private ImageView myImage;
     private String imagePath = "images/Square.png";
-    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private String buttonLabel = "Choose Image"; // TODO: Resource file
 
-    public ImageEntryView (String label, IFormDataManager data, String cssClass) {
-        super(label, data);
-        this.myImageChoice.bindBidirectional(getData().getValueProperty());
+    public ImageEntryView (String label, String cssClass) {
+        super(label, cssClass);
         initFileChooser(new FileChooser());
     }
 
@@ -49,49 +40,39 @@ public class ImageEntryView extends EntryView {
                            double width,
                            double height,
                            String cssClass) {
-        this(label, data, cssClass);
+        this(label, cssClass);
         initImageView(new SimpleDoubleProperty(width), new SimpleDoubleProperty(height));
-        init(label, cssClass);
+        init();
     }
 
     public ImageEntryView (String label,
-                           IFormDataManager data,                           
+                           IFormDataManager data,
                            DoubleProperty width,
-                           DoubleProperty height,String cssClass) {
-        this(label, data, cssClass);
+                           DoubleProperty height,
+                           String cssClass) {
+        this(label, cssClass);
         initImageView(width, height);
-        init(label, cssClass);
+        init();
 
     }
 
     @Override
-    protected void init (String label, String cssClass) {
-        this.myContainer = new GridPane();
-        myContainer.add(getLabel(), 0, 0);
-        myContainer.add(myChooseImage, 0, 1);
-        myContainer.add(myImage, 0, 2);
-        myContainer.getStyleClass().add(cssClass);
+    protected void init () {
+        getMyContainer().getChildren().addAll(myChooseImage, myImage);
     }
 
     private void initImageView (DoubleProperty width, DoubleProperty height) {
-        myImage = myUIFactory.makeImageView(imagePath, width, height);
-        myImageChoice.addListener(c -> updateImage());
+        myImage = getMyFactory().makeImageView(imagePath, width, height);
     }
 
-    private void updateImage () {
-        if (myImageChoice.get() != "") {
-            myImage.setImage(new Image(myImageChoice.get()));
-        }
-        else {
-            myImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(imagePath)));
-        }
+    public void updateImage (String url) {
+        myImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(url)));
     }
 
     private void initFileChooser (FileChooser imageChoice) {
-        imageChoice.setTitle("Image Choice");
         imageChoice.getExtensionFilters()
                 .add(new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
-        myChooseImage = myUIFactory.createButton(buttonLabel, e -> openImageChoice(imageChoice));
+        myChooseImage = getMyFactory().createButton(buttonLabel, e -> openImageChoice(imageChoice));
     }
 
     private void openImageChoice (FileChooser imageChoice) {
@@ -99,7 +80,7 @@ public class ImageEntryView extends EntryView {
         if (file != null) {
             try {
                 String fileName = file.toURI().toURL().toString();
-                myImageChoice.setValue(fileName);
+                updateImage(fileName);
             }
             catch (MalformedURLException e) {
                 ErrorMessage err = new ErrorMessage("BAD URL");
@@ -111,7 +92,7 @@ public class ImageEntryView extends EntryView {
 
     @Override
     public Node draw () {
-        return myContainer;
+        return getMyContainer();
     }
 
 }
