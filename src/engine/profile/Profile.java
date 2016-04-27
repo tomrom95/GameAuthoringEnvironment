@@ -1,10 +1,10 @@
 package engine.profile;
 
-import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import graphics.IGraphic;
 import graphics.ImageGraphic;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -24,6 +24,7 @@ public class Profile implements IProfile {
     private ImageGraphic myImage;
     private DoubleProperty myImageWidth;
     private DoubleProperty myImageHeight;
+    private BooleanProperty imageChange;
 
 
     public Profile () {
@@ -57,6 +58,7 @@ public class Profile implements IProfile {
         myImage = graphic;
         myImageWidth = graphic.getWidth();
         myImageHeight = graphic.getHeight();
+        imageChange = new SimpleBooleanProperty(false);
     }
 
     @Override
@@ -92,10 +94,16 @@ public class Profile implements IProfile {
     @Override
     public void setNew (String name, String desc, String url, double width, double height) {
         myImage = new ImageGraphic(width, height, url);
+        imageChange.set(!imageChange.get());
         myDescription.set(desc);
         myName.set(name);
         myImageWidth.set(width);
         myImageHeight.set(height);
+    }
+
+    @Override
+    public BooleanProperty imageChanged () {
+        return imageChange;
     }
 
 }
