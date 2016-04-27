@@ -13,15 +13,15 @@ public class Wave implements IWave {
 
     public Wave (List<WaveBlock> sprites) {
         myBlocks = sprites;
-        currentBlock = myBlocks.get(0);
-        myBlocks.remove(0);
+        currentBlock =  myBlocks.remove(0);
         sinceLastSpawn = new TimeDuration();
         sinceLastSpawn.setToZero();
     }
 
     @Override
     public boolean waveCompleted () {
-        return myBlocks.size() == 0 & currentBlock.getCount() == 0;
+        System.out.println("COUNT WITHIN BLOCK IS: "+currentBlock.getCount());
+        return myBlocks.size() == 0 && currentBlock.getCount() <= 0;
     }
 
     /*
@@ -37,6 +37,7 @@ public class Wave implements IWave {
             currentBlock = myBlocks.get(0);
             myBlocks.remove(0);
         }
+        
         return currentBlock.spawn();
 
     }
