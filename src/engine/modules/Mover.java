@@ -24,7 +24,7 @@ import util.TimeDuration;
  */
 public abstract class Mover extends DefaultAffectable implements IMovementModule {
 
-    private static final double MULTIPLIER = 30;
+    private static final double MULTIPLIER = 10;
     public static final double NO_MOTION = 0;
     public static final double RADS_TO_DEGREES = 180 / Math.PI;
     public static final double DEGREES_TO_RADS = Math.PI / 180;
