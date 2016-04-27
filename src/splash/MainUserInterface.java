@@ -1,10 +1,9 @@
 package splash;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Enumeration;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import facebookutil.JavaSocial;
+import facebookutil.SocialType;
 import gameauthoring.tabs.AuthoringView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,7 +23,7 @@ import library.GameLibrary;
 
 
 /**
- * This is the main user inteface class which contains two buttons "Create game" and
+ * This is the main user interface class which contains two buttons "Create game" and
  * "Load existing game".
  * 
  * @TODO: ResourceBundle for unprotected string
@@ -113,8 +112,6 @@ public class MainUserInterface {
         box.setAlignment(Pos.CENTER);
         box.getChildren()
                 .add(createButton(myLabels.getString("splashloginfb"), e -> loginWithFacebook()));
-        box.getChildren()
-                .add(createButton(myLabels.getString("splashloginlocal"), e -> loginLocally()));
         return box;
     }
 
@@ -134,10 +131,7 @@ public class MainUserInterface {
     }
 
     private void loginWithFacebook () {
-
+        JavaSocial.getInstance().loginUser(SocialType.FACEBOOK);
     }
 
-    private void loginLocally () {
-
-    }
 }

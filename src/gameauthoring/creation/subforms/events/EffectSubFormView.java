@@ -1,13 +1,13 @@
 package gameauthoring.creation.subforms.events;
 
 import java.util.List;
+import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.profile.ProfileDisplay;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.creation.subforms.SubFormView;
-import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,7 +30,7 @@ public class EffectSubFormView extends SubFormView {
     private String myTypeKey = "Effect type: ";
     private VBox myContainer;
 
-    public EffectSubFormView (IDefinitionCollection<AttributeDefinition> myCreatedAttributes,
+    public EffectSubFormView (AuthorshipData data,
                               List<String> effectTypes) {
         
         //TODO: extract new IProfileSFV implementation that just has a textfield for name so we can reuse this code
@@ -40,9 +40,10 @@ public class EffectSubFormView extends SubFormView {
         myEffectType = new SingleChoiceEntryView<ProfileDisplay> (myTypeKey,
                                                                   createEffectTypeList(effectTypes),
                                                                   AuthoringView.DEFAULT_ENTRYVIEW);
+        ObservableList<AttributeDefinition> definitions = createAttributeList (data);
         myAttribute =
                 new SingleChoiceEntryView<AttributeDefinition>(myAttributeKey,
-                                                               myCreatedAttributes.getItems(),
+                                                               definitions,
                                                                AuthoringView.DEFAULT_ENTRYVIEW);
         myValue =
                 new TextEntryView(myValueKey, this.getData(), 100, 30,
@@ -51,6 +52,13 @@ public class EffectSubFormView extends SubFormView {
                 new TextEntryView(myLengthKey, this.getData(), 100, 30,
                                   AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
+    }
+
+    private ObservableList<AttributeDefinition> createAttributeList (AuthorshipData data) {
+        ObservableList<AttributeDefinition> defs = FXCollections.observableArrayList();
+        defs.addAll(data.getMyCreatedAttributes().getItems());
+        defs.addAll(data.getMyCreatedGlobals().getItems());
+        return defs;
     }
 
     private ObservableList<ProfileDisplay> createEffectTypeList (List<String> effectTypes) {
