@@ -20,16 +20,10 @@ public class Wave implements IWave {
 
     @Override
     public boolean waveCompleted () {
-        System.out.println("COUNT WITHIN BLOCK IS: "+currentBlock.getCount());
         return myBlocks.size() == 0 && currentBlock.getCount() <= 0;
     }
 
-    /*
-     * the waveset will handle not spawning due to wave completion
-     * (non-Javadoc)
-     * 
-     * @see engine.waves.IWave#spawnSprite(util.TimeDuration)
-     */
+
 
     @Override
     public ISprite spawnSprite () {
