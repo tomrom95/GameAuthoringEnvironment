@@ -5,4 +5,6 @@ import gameauthoring.creation.subforms.ISubFormView;
 public interface IFiringSFV extends ISubFormView {
 
       String getMyRangedKey();
+      
+      String getMyRangeValueKey();
 }

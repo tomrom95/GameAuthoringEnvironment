@@ -28,6 +28,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     private String myWaitTimeKey = "Wait Time: ";
     private String myProjectileKey = "Projectile: ";
     private String myRangedKey = "Ranged: ";
+    private String myRangeValueKey = "Range: ";
     private IEntryView myAngle;
     private IEntryView myWaitTime; 
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
@@ -82,8 +83,13 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
 
     @Override
     public String getMyRangedKey () {
-        // TODO Auto-generated method stub
         return myRangedKey;
+    }
+
+    @Override
+    public String getMyRangeValueKey () {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
