@@ -46,7 +46,7 @@ import javafx.stage.Stage;
 public class AuthoringView implements IAuthoringView {
 
     private GameTabViewer myGameTabViewer;
-    private ObjectCreationTabViewer myCreationTabViewer;
+    private CreationTabViewer myCreationTabViewer;
     private SceneTabViewer mySceneTabViewer;
     private GameConditionView myConditionView;
     private WaveTabViewer myWaveTabView;
@@ -78,7 +78,7 @@ public class AuthoringView implements IAuthoringView {
     }
 
     @Override
-    public ObjectCreationTabViewer getCreationTabViewer () {
+    public CreationTabViewer getCreationTabViewer () {
         return myCreationTabViewer;
     }
 
@@ -100,7 +100,7 @@ public class AuthoringView implements IAuthoringView {
 
     private void initializeTabViewers () {
         myGameTabViewer = new GameTabViewer(getMyGame());
-        myCreationTabViewer = new ObjectCreationTabViewer(getMyGame());
+        myCreationTabViewer = new CreationTabViewer(getMyGame());
         myConditionView = new GameConditionView(getMyGame());
         mySceneTabViewer = new SceneTabViewer(getMyGame());
         myWaveTabView = new WaveTabViewer(getMyGame());

@@ -28,7 +28,7 @@ import javafx.scene.control.TabPane;
  * @author Jin An, Joe Lilien, Jeremy Schreck
  *
  */
-public class ObjectCreationTabViewer implements ITabViewer {
+public class CreationTabViewer implements ITabViewer {
 
     private TabPane myTabPane;
     private BasicUIFactory myUIFactory = new BasicUIFactory();
@@ -40,7 +40,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
     private List<CreationController<?>> myCCs;
     private List<ICreationView<?>> myCVs;
 
-    public ObjectCreationTabViewer (IGame iGame) {
+    public CreationTabViewer (IGame iGame) {
         myGame = iGame;
         initializeLists();
         init();
