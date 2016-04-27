@@ -10,19 +10,21 @@ import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.effects.Effect;
 import engine.effects.EffectFactory;
+import engine.profile.IProfile;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 
+
 public class EffectSubFormController implements ISubFormController<EventPackageDefinition> {
-    private static final String NAME = "Effect"; //TODO maybe put in resource file
+    private static final String FORMATTER = "%s %s by %s";
 
     private IGame myGame;
     private EffectSubFormView myView;
-    
+
     public EffectSubFormController (IGame game) {
         myGame = game;
-        myView = new EffectSubFormView(myGame.getAuthorshipData().getMyCreatedAttributes(),
-                                              getEffects());
+        myView = new EffectSubFormView(myGame.getAuthorshipData(),
+                                       getEffects());
     }
 
     private List<String> getEffects () {
@@ -33,21 +35,32 @@ public class EffectSubFormController implements ISubFormController<EventPackageD
     @Override
     public void updateItem (EventPackageDefinition item) {
         // Default profile instead of profileSFC
-        item.getProfile().getName().set(myView.getName());
-        item.getProfile().getDescription().set(myView.getEffectType());
-        
-        
+        updateProfile (item.getProfile());
+
         AttributeDefinition attrDef = myView.getAttribute();
         Attribute lengthAttr = new Attribute(new AttributeType("length"));
-        lengthAttr.setValue(Double.valueOf(myView.getData().getValueProperty(myView.getLengthKey()).get()));
+        lengthAttr.setValue(Double
+                .valueOf(myView.getData().getValueProperty(myView.getLengthKey()).get()));
         double val = Double.valueOf(myView.getData().getValueProperty(myView.getValueKey()).get());
+
         Effect effect = getEffect(myView.getEffectType(), lengthAttr, attrDef, val);
-        
-        //TODO: need to find and replace instead of adding on each save
+
+        // TODO: need to find and replace instead of adding on each save
         item.getMyEffectsList().add(effect);
     }
 
-    private Effect getEffect (String effectType, Attribute length, AttributeDefinition def, double val) {
+    private void updateProfile (IProfile profile) {
+        profile.getName().set(myView.getName());
+        profile.getDescription()
+            .set(String.format(FORMATTER, myView.getEffectType(),
+                               myView.getAttribute().getType(),
+                               myView.getData().getValueProperty(myView.getValueKey()).get()));
+    }
+
+    private Effect getEffect (String effectType,
+                              Attribute length,
+                              AttributeDefinition def,
+                              double val) {
         return new EffectFactory().getEffect(effectType, length, def, val);
     }
 

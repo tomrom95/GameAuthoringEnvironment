@@ -2,7 +2,6 @@ package engine;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import util.TimeDuration;
 
 
 /**
@@ -35,7 +34,7 @@ public class Check implements ICheck {
         }
 
     }
-    
+
     private void checkStatus () {
         for (IAttribute attribute : myManager.getAttributes()) {
             if (attribute.getType().equals(myType)) {

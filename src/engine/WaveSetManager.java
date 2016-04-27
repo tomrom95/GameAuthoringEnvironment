@@ -26,14 +26,12 @@ public class WaveSetManager implements IWaveSetManager {
     public void update (TimeDuration duration) {
         
         if (levelComplete()) {
-            System.out.println("LEVEL IS COMPLETE");
             stopSpawners();
         }
         else {
             stopSpawners();
             if (allCurrentWavesComplete()) {
                 timeSinceWaveCompletion.increase(duration);
-                System.out.println("about to enable spawners, level complete is: "+levelComplete());
                 enableSpawners();
             }
 
@@ -46,7 +44,6 @@ public class WaveSetManager implements IWaveSetManager {
         Iterator<IWaveSet> i = mySets.iterator();
         while (i.hasNext()) {
             if (!i.next().allWavesCompleted()) {
-                System.out.println("WAVES NOT ALL COMPLETE");
                 return false;
             }
         }
@@ -55,7 +52,6 @@ public class WaveSetManager implements IWaveSetManager {
 
     private void stopSpawners () {
         mySets.stream().forEach(p -> {
-            System.out.println("Current wave is completed: "+ p.getCurrentWave().waveCompleted());
             if (p.getCurrentWave().waveCompleted()) {
                 p.setStopWaves(true);
             }
