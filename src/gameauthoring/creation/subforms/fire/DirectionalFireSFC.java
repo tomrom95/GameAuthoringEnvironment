@@ -24,6 +24,7 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
     private IGame myGame;
     private double myDefaultAngle = 0;
     private double myDefaultWaitTime = 0;
+    private double myDefaultRange = 0;
     private DirectionalFirerDefinition myFireDef = new DirectionalFirerDefinition(myGame);
 
     public DirectionalFireSFC (IGame game, FiringSFCmult sfc) {
@@ -37,12 +38,13 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
 
     @Override
     public void initializeFields () {
-        populateViewsWithData(myDefaultAngle, myDefaultWaitTime);
+        populateViewsWithData(myDefaultAngle, myDefaultWaitTime, myDefaultRange);
     }
 
-    private void populateViewsWithData (double angle, double wait) {
+    private void populateViewsWithData (double angle, double wait, double range) {
         myFormData.set(myView.getMyAngleKey(), Double.toString(angle));
         myFormData.set(myView.getMyWaitTimeKey(), Double.toString(wait));
+        myFormData.set(myView.getMyRangeValueKey(), Double.toString(range));
     }
 
     @Override
@@ -59,10 +61,13 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
                            Math.PI / 180; // tangent functions need radians
             Double waitTime =
                     Double.valueOf(myFormData.getValueProperty(myView.getMyWaitTimeKey()).get());
+            Double range = Double.valueOf(myFormData.getValueProperty(myView.getMyRangeValueKey()).get());
             myFireDef.setGame(myGame);
             myFireDef.setAngle(angle);
             myFireDef.setWaitTime(waitTime);
             myFireDef.setProjectileDefinition(myView.getMissileSelection());
+            myFireDef.setRanged(myView.isRangedProperty().get());
+            myFireDef.setFireRange(range);
             if (!item.getModuleDefinitions().contains(myFireDef)) {
                 item.addModule(myFireDef);
             }

@@ -37,8 +37,9 @@ public class SpawningModule extends DefaultAffectable implements IModule {
         waves.stream().forEachOrdered(p -> myWaves.add(p.create()));
         myWaveSet.setWaveList(myWaves);
         myWaveSet.updateCurrentWave();
-
-        level.getWaveSetManager().addWaveSet(myWaveSet);
+        if(myWaveSet.getCurrentWave() != null){
+            level.getWaveSetManager().addWaveSet(myWaveSet);
+        }
 
     }
 

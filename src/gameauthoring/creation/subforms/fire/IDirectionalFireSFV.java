@@ -10,7 +10,7 @@ import gameauthoring.creation.subforms.ISubFormView;
  * @author Joe Lilien
  *
  */
-public interface IDirectionalFireSFV extends ISubFormView {
+public interface IDirectionalFireSFV extends IFiringSFV {
 
     String getMyProjectileKey ();
 
