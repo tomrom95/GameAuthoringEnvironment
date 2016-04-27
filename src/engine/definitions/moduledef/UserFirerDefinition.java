@@ -1,5 +1,6 @@
 package engine.definitions.moduledef;
 
+import engine.IGame;
 import engine.Positionable;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.modules.IModule;
@@ -13,10 +14,13 @@ public class UserFirerDefinition extends DirectionalFirerDefinition {
     private String fire;
     private double angleStep;
     
-
+    public UserFirerDefinition (IGame game) {
+        super(game);
+    }
+    
     @Override
     public UserFirer create (Positionable parent) {
-        UserFirer myFirer = new UserFirer( parent,
+        UserFirer myFirer = new UserFirer(getGame(), parent,
                 getProjectileDefinition(),
                 new Key(fire),
                 new Key(increase),

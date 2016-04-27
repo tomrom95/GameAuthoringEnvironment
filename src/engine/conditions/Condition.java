@@ -24,7 +24,7 @@ import util.TimeDuration;
 public abstract class Condition implements ICondition {
 
     IProfile myProfile = new Profile();
-    
+
     /**
      * By default, do nothing in response
      */
@@ -85,6 +85,8 @@ public abstract class Condition implements ICondition {
         globalPackage.getMyEvents()
                 .forEach(event -> game.getLevelManager().getCurrentLevel()
                         .getAttributeManager().registerEvent(event));
+        game.getLevelManager().getCurrentLevel().getNextLevelManager()
+                .internalizeGameEvents(globalPackage.getMyEvents());
     }
 
     /**
@@ -125,7 +127,7 @@ public abstract class Condition implements ICondition {
             doExecute.doIt();
         }
     }
-    
+
     @Override
     public IProfile getProfile () {
         return myProfile;

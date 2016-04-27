@@ -49,7 +49,6 @@ public class GamePlayer {
     }
 
     private void stylePane () {
-
         myStage.setScene(myScene);
         myStage.show();
     }
@@ -72,7 +71,6 @@ public class GamePlayer {
     }
 
     private double parseDouble (String input) {
-        // TODO include errors
         return Double.parseDouble(input);
     }
 

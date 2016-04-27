@@ -25,12 +25,13 @@ import util.TimeDuration;
  */
 public class UserFirer extends DirectionalFirer {
 
+    private static final double FULL_CIRCLE = 360;
     private Key myFireKey;
     private Key myIncreaseKey;
     private Key myDecreaseKey;
     private double myAngleChange;
 
-    public UserFirer (Positionable parent,
+    public UserFirer (IGame game, Positionable parent,
                       SpriteDefinition fireSprite,
                       Key fireKey,
                       Key increaseKey,
@@ -40,7 +41,7 @@ public class UserFirer extends DirectionalFirer {
                       double change
 
     ) {
-        super(fireSprite, parent, waitTime, angle);
+        super(game, fireSprite, parent, waitTime, angle);
         myFireKey = fireKey;
         myIncreaseKey = increaseKey;
         myDecreaseKey = decreaseKey;
@@ -54,19 +55,17 @@ public class UserFirer extends DirectionalFirer {
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
-        if (keyEvent.getType() == InputType.KEY_PRESSED &&
-            keyEvent.getKey().isEqual(myFireKey) | keyEvent.getKey()
-                    .equals(myDecreaseKey) | keyEvent.getKey().equals(myIncreaseKey)) {
+        if (keyEvent.getType() == InputType.KEY_PRESSED) {
             registerKeyPress(keyEvent.getKey());
         }
     }
 
     private void registerKeyPress (Key k) {
-        if(k.equals(myFireKey)){
+        if(k.isEqual(myFireKey)){
             fireSprite();
-        } else if (k.equals(myIncreaseKey)){
+        } else if (k.isEqual(myIncreaseKey)){
             increaseAngle();
-        } else if(k.equals(myDecreaseKey)){
+        } else if(k.isEqual(myDecreaseKey)){
             decreaseAngle();
         } else{
             //do nothing
@@ -75,15 +74,15 @@ public class UserFirer extends DirectionalFirer {
 
     private void increaseAngle () {
         setAngle(getAngle() + myAngleChange);
-        if(getAngle() >= 360){
-            setAngle(getAngle() - 360);
+        if(getAngle() >= FULL_CIRCLE){
+            setAngle(getAngle() - FULL_CIRCLE);
         }
     }
 
     private void decreaseAngle () {
         setAngle(getAngle() - myAngleChange);
         if(getAngle() < 0){
-            setAngle(360 - getAngle());
+            setAngle(FULL_CIRCLE - getAngle());
         }
     }
 

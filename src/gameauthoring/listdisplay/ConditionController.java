@@ -58,6 +58,7 @@ public abstract class ConditionController {
                 | IllegalArgumentException | InvocationTargetException | SecurityException e) {
             ErrorMessage error = new ErrorMessage(myLanguage.getString("ConditionViewFile"));
             error.showError();
+            e.printStackTrace();
             return new Pane();
         }
     }
