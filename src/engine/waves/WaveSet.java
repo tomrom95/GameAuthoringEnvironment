@@ -19,7 +19,6 @@ public class WaveSet implements IWaveSet {
     @Override
     public void updateCurrentWave () {
         if(myWaves.isEmpty()) {
-            System.out.println("STOP FOR THE LOVE OF GOD STOP");
             return;
         }
         currentWave = myWaves.get(0);
