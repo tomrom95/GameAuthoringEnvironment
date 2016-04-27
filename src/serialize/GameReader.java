@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import com.dooapp.xstreamfx.FXConverters;
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter.UnknownFieldException;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.IGame;
 
@@ -29,10 +30,10 @@ public class GameReader implements IGameReader {
             String xml = fileToXMLString(xmlFile);
             return (IGame) xstream.fromXML(xml);
         }
-        catch (IOException e) {
+        catch (IOException | UnknownFieldException e) {
             // TODO throw a checked error here to make front-end deal with an error if the file is
             // corrupted
-            throw new LoadErrorException();
+            throw new LoadErrorException("Could not deserialize file: " + xmlFile.getPath());
         }
     }
 
