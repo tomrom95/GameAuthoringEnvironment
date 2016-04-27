@@ -1,16 +1,12 @@
 package gameauthoring.creation.subforms.events;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.events.EventType;
 import engine.events.GameEvent;
 import engine.profile.ProfileDisplay;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
@@ -27,18 +23,13 @@ public class EventSFC implements ISubFormController<EventPackageDefinition> {
     }
 
     private ObservableList<ProfileDisplay> getEvents () {
-        List<ProfileDisplay> list = Collections.list(eventTypes.getKeys())
-                .stream()
-                .map(s -> new ProfileDisplay(s))
-                .collect(Collectors.toList());
-        return FXCollections.observableArrayList(list);
-
+        return new TypeFactory().getEffectTypes(eventTypes);
     }
 
     @Override
     public void updateItem (EventPackageDefinition item) {
-        GameEvent event = new GameEvent(new EventType(myView.getEventSelection()));
-        item.getMyEventsList().add(event);
+        myEvent.setEventType(new EventType(myView.getEventSelection()));
+        item.getMyEventsList().add(myEvent);
     }
 
     @Override

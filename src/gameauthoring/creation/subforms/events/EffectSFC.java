@@ -3,6 +3,7 @@ package gameauthoring.creation.subforms.events;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ResourceBundle;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IGame;
@@ -11,40 +12,37 @@ import engine.definitions.concrete.EventPackageDefinition;
 import engine.effects.Effect;
 import engine.effects.EffectFactory;
 import engine.effects.IEffect;
+import engine.profile.ProfileDisplay;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
+import javafx.collections.ObservableList;
 
 public class EffectSFC implements ISubFormController<EventPackageDefinition> {
-    private static final String NAME = "Effect"; //TODO maybe put in resource file
 
     private IGame myGame;
     private EffectSFV myView;
+    private Effect myEffect;
+    private TypeFactory myTypeFactory = new TypeFactory();
+    private String defaultAttributeType = "length";
+    private ResourceBundle myEffects = ResourceBundle.getBundle("defaults/effect_types");
     
-    public EffectSFC (IGame game) {
+    public EffectSFC (IGame game, Effect myEffect) {
         myGame = game;
         myView = new EffectSFV(myGame.getAuthorshipData().getMyCreatedAttributes(),
                                               getEffects());
+        this.myEffect = myEffect;
     }
 
-    private List<String> getEffects () {
-        // TODO auto populate
-        return new ArrayList<String>(Arrays.asList("Decrease", "Increase", "Proportion"));
+    private ObservableList<ProfileDisplay> getEffects () {
+        return myTypeFactory.getEffectTypes(myEffects);
     }
 
     @Override
     public void updateItem (EventPackageDefinition item) {
-        // Default profile instead of profileSFC
-        item.getProfile().getName().set(myView.getName());
-        item.getProfile().getDescription().set(myView.getEffectType());
-        
-        
         AttributeDefinition attrDef = myView.getAttribute();
-        Attribute lengthAttr = new Attribute(new AttributeType("length"));
-        lengthAttr.setValue(Double.valueOf(myView.getData().getValueProperty(myView.getLengthKey()).get()));
-        double val = Double.valueOf(myView.getData().getValueProperty(myView.getValueKey()).get());
+        Attribute lengthAttr = new Attribute(myView.getLength(),new AttributeType(defaultAttributeType));
+        double val = myView.getValue();
         Effect effect = getEffect(myView.getEffectType(), lengthAttr, attrDef, val);
-        
-        //TODO: need to find and replace instead of adding on each save
         item.getMyEffectsList().add(effect);
     }
 
@@ -63,20 +61,11 @@ public class EffectSFC implements ISubFormController<EventPackageDefinition> {
 
     @Override
     public void populateViewsWithData (EventPackageDefinition item) {
-        myView.setName(item.getProfile().getName().get());
-        
-        //TODO problem: we can't set event selection because we don't have ProfileDisplay object, just the string
-        myView.setEventSelection(item.getProfile().getDescription().get());  
-        
-        IEffect effect = item.getMyEffectsList().get(0); //TODO: can we just change eventpackage to have one effect or event?
-        
-        //TODO: need to change effect to store attribute definition
-        //myView.setAttribute(effect.getAttributeType())
-        //TODO: need to move some Effect methods to Ieffect
-        //myView.getData().getValueProperty(myView.getLengthKey()).set(Double.toString(effect.getEffectLengthAttribute().getValueProperty().get()));
-        //myView.getData().getValueProperty(myView.getValueKey()).set(effect.getAlteringValue());
-        
-        
+        String type = myTypeFactory.getEffectType(myEffect);
+        AttributeDefinition definition = myEffect.getAttributeDefinition();
+        double value = myEffect.getAlteringAttribute().getValueProperty().get();
+        double length = myEffect.getEffectLengthAttribute().getValueProperty().get();
+        myView.populateWithData(type, definition, value, length);
     }
 
 }
