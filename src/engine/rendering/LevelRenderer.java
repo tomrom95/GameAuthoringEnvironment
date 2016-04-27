@@ -63,4 +63,5 @@ public abstract class LevelRenderer implements IRenderer {
 
     protected abstract Image getImage (String url);
 
+    public abstract void redrawBackground ();
 }

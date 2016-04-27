@@ -38,17 +38,26 @@ public class SceneController {
 
     public void setBackground (String imageURL) {
         Image image = new Image(imageURL);
+        System.out.println(image.getWidth() + " " + image.getHeight());
+        System.out.println("lb " + getLevelBound(image.getWidth(), image.getHeight()).getWidth() +
+                           " " + getLevelBound(image.getWidth(), image.getHeight()).getHeight());
         ImageGraphic background = new ImageGraphic(image.getWidth(), image.getHeight(), imageURL);
         myLevel.setBounds(getLevelBound(image.getWidth(), image.getHeight()));
         myLevel.setBackgroundImage(background);
     }
 
     private LevelBound getLevelBound (double width, double height) {
-        if(width> MAX_WIDTH) {
-            width = MAX_WIDTH;
-        } 
-        if(height>MAX_HEIGHT) {
-            height = MAX_HEIGHT;
+        if (width > MAX_WIDTH || height > MAX_HEIGHT) {
+            double r = (1 - ((width - MAX_WIDTH) /width));
+            double r2 = (1 - ((height - MAX_HEIGHT) /height));
+            System.out.println(r + " " + r2);
+            if(r < r2) {
+                width = MAX_WIDTH;
+                height = height * r;
+            } else {
+                height = MAX_HEIGHT;
+                width = width * r2;
+            }
         }
         return new LevelBound(width, height);
     }
@@ -56,15 +65,15 @@ public class SceneController {
     public void addSprite (double x, double y, SpriteDefinition spriteDefinition) {
         myLevel.add(spriteDefinition.create(), new Coordinate(x, y));
     }
-    
-    public ILevel getLevel(){
+
+    public ILevel getLevel () {
         return myLevel;
     }
 
     public void addSpriteToLevel (SpriteDefinition sprite) {
         myLevel.getAddableSprites().add(sprite);
     }
-    
+
     public void removeSpriteFromLevel (SpriteDefinition sprite) {
         myLevel.getAddableSprites().remove(sprite);
     }

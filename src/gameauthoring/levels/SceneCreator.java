@@ -51,6 +51,7 @@ public class SceneCreator implements Glyph {
         HBox container = new HBox(10);
         container.getChildren().add(createLevelView());
         container.getChildren().add(createSpriteSelection());
+         
         return container;
     }
 

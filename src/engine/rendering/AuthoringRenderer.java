@@ -3,6 +3,7 @@ package engine.rendering;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 import java.util.stream.Collectors;
 import engine.Drawable;
 import engine.ILevel;
@@ -131,6 +132,12 @@ public class AuthoringRenderer extends LevelRenderer {
     @Override
     protected Image getImage (String url) {
         return new Image(url, MAX_WIDTH, MAX_HEIGHT, true, true);
+    }
+
+    @Override
+    public void redrawBackground () {
+        //nothing
+        
     }
 
 }
