@@ -24,7 +24,7 @@ public class SpawnerModuleDefinition extends ModuleDefinition {
     private IAdder myAdder;
     private List<WaveDefinition> myWaves;
 
-    public SpawnerModuleDefinition (IAdder adder, IGame game, double delay, List<WaveDefinition> waves) {
+    public SpawnerModuleDefinition (IAdder adder, IGame game, List<WaveDefinition> waves) {
         setGame(game);
         setAdder(adder);
         myWaves = waves;

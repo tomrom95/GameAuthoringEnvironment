@@ -35,6 +35,7 @@ public class WaveBlock {
 	
 	public ISprite spawn () {
 	    myCount--;
+	    System.out.println(getCount());
 	    return myDefinition.create();
 	}
 	

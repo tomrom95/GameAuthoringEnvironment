@@ -150,7 +150,7 @@ public class SpawnerView implements Glyph, Draggable {
     private void createSpawner () {
         try {
             SpawnerModuleDefinition spawnerDef =
-                    new SpawnerModuleDefinition(myLevel, myGame, getDelay(), myWaves.getItems());
+                    new SpawnerModuleDefinition(myLevel, myGame, myWaves.getItems());
             mySpawner = new SpawnerDefinition(myGame);
             mySpawner.setProfile(new Profile(DRAG_STRING, EMPTY, getImageURL()));
             mySpawner.setMySpawningModule(spawnerDef);
