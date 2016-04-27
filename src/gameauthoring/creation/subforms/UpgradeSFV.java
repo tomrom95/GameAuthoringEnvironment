@@ -22,6 +22,7 @@ import javafx.scene.layout.GridPane;
  */
 public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
 
+    //TODO: probably use CostSFV in here
     private String myUpgradeChoicesKey = "Next Level: ";
     private String myUpgradableKey = "Upgradable: ";
     private String myGlobalKey = "Deplete Global Resource: ";

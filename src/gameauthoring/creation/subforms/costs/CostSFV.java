@@ -6,8 +6,10 @@ import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+
 
 /**
  * Implementation of ICostSFV with HBox arrangement and combobox layout
@@ -15,15 +17,15 @@ import javafx.scene.layout.HBox;
  * @author Tommy
  *
  */
-public class CostSFV extends SubFormView{
+public class CostSFV extends SubFormView implements ICostSFV {
+
     private static final int SPACING = 5;
-    
     private String myAttributeChoicesKey = "Resource Required: ";
     private String myCostKey = "Amount to buy sprite: ";
     private SingleChoiceEntryView<AttributeDefinition> myAttributes;
     private NumberEntryView myCost;
     private HBox myContainer;
-    
+
     public CostSFV (AuthorshipData data) {
         myAttributes =
                 new SingleChoiceEntryView<AttributeDefinition>(myAttributeChoicesKey,
@@ -31,8 +33,7 @@ public class CostSFV extends SubFormView{
                                                                        .getItems(),
                                                                AuthoringView.DEFAULT_ENTRYVIEW);
         myCost =
-                new NumberEntryView(myCostKey, super.getData(), 60, 20,
-                                    AuthoringView.DEFAULT_ENTRYVIEW);
+                new NumberEntryView(myCostKey, 60, 20, AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
     }
 
@@ -43,22 +44,23 @@ public class CostSFV extends SubFormView{
 
     @Override
     protected void initView () {
-        myContainer = new HBox(SPACING);
-        myContainer.getChildren().add(myAttributes.draw());
-        myContainer.getChildren().add(myCost.draw());
+        getMyUIFactory().makeHBox(SPACING, Pos.CENTER, myAttributes.draw(), myCost.draw());
     }
-    
+
+    @Override
     public AttributeDefinition getSelectedAttribute () {
         return myAttributes.getSelected();
     }
-    
-    public void setSelectedAttribute (AttributeDefinition attributeDefinition) {
-        myAttributes.setSelected(attributeDefinition);
-    }
-    
-    public String getCostKey () {
-        return myCostKey;
+
+    @Override
+    public double getCost () {
+        return myCost.getData();
     }
 
+    @Override
+    public void populateWithData (AttributeDefinition attribute, double cost) {
+        myAttributes.setSelected(attribute);
+        myCost.setData(cost);
+    }
 
 }

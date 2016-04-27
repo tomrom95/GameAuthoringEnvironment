@@ -13,6 +13,7 @@ public interface ICostSFV  extends ISubFormView{
 
     AttributeDefinition getSelectedAttribute ();
 
-    String getCostKey ();
-
+    double getCost();
+    
+    void populateWithData(AttributeDefinition attribute, double cost);
 }

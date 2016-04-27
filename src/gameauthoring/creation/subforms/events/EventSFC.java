@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-import engine.IGame;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.events.EventType;
 import engine.events.GameEvent;
@@ -16,16 +15,15 @@ import javafx.collections.ObservableList;
 
 
 public class EventSFC implements ISubFormController<EventPackageDefinition> {
-    private static final String NAME = "Event"; //TODO maybe put in resource file
 
     private static final String PATH = "defaults/event_types";
     private ResourceBundle eventTypes = ResourceBundle.getBundle(PATH);
-    private EventSFV myView;
-    
-    
+    private IEventSFV myView;
+    private GameEvent myEvent;
 
-    public EventSFC () {
+    public EventSFC (GameEvent event) {
         myView = new EventSFV(getEvents());
+        myEvent = event;
     }
 
     private ObservableList<ProfileDisplay> getEvents () {
@@ -39,38 +37,23 @@ public class EventSFC implements ISubFormController<EventPackageDefinition> {
 
     @Override
     public void updateItem (EventPackageDefinition item) {
-        
-        // Default profile instead of profileSFC
-        item.getProfile().getName().set(myView.getName());
-        item.getProfile().getDescription().set(myView.getEventSelection());
-        
-        
         GameEvent event = new GameEvent(new EventType(myView.getEventSelection()));
-        
-        //TODO: need to find and replace instead of adding on each save
         item.getMyEventsList().add(event);
-       
-       
-     }
+    }
+
+    @Override
+    public void populateViewsWithData (EventPackageDefinition item) {
+        myView.setEventSelection(myEvent.getEventType().getType());
+    }
 
     @Override
     public void initializeFields () {
-        
+
     }
 
     @Override
     public ISubFormView getSubFormView () {
         return myView;
-    }
-
-    @Override
-    public void populateViewsWithData (EventPackageDefinition item) {
-        myView.setName(item.getProfile().getName().get());
-        
-        //TODO problem: we can't set event selection because we don't have ProfileDisplay object, just the string
-        myView.setEventSelection(item.getProfile().getDescription().get());
-        //myView.setEventSelection(item.getMyEventsList().get(0).getEventType().getType());
-        
     }
 
 }

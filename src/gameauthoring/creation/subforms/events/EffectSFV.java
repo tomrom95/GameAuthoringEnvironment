@@ -16,13 +16,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-
-public class EffectSFV extends SubFormView {
+/**
+ * Implementation of IEffectSFV using VBox arrangement, allows users to define an effect package
+ * 
+ * @author Tommy
+ * @author Joe Lilien
+ *
+ */
+public class EffectSFV extends SubFormView implements IEffectSFV{
 
     private SingleChoiceEntryView<AttributeDefinition> myAttribute;
     private SingleChoiceEntryView<ProfileDisplay> myEffectType;
-    private IEntryView myLength;
-    private IEntryView myValue;
+    private NumberEntryView myLength;
+    private NumberEntryView myValue;
     private TextField myName;
     private String myLengthKey = "For length in time: ";
     private String myValueKey = "By amount: ";
