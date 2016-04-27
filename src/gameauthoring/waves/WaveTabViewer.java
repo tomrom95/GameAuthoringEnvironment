@@ -86,6 +86,7 @@ public class WaveTabViewer implements Glyph {
     }
 
     public void transfer (List<WaveBlockDefinition> blocks) {
+        //TODO: set the value of the infinite box here
         myBlockList.setAll(blocks);
     }
 

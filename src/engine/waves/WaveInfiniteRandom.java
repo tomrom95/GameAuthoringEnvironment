@@ -14,6 +14,7 @@ public class WaveInfiniteRandom extends Wave implements IWave {
 
     public WaveInfiniteRandom (List<WaveBlock> sprites) {
         super(sprites);
+        getBlocks().add(getCurrentBlock());
         myWeightedIndices = createIndexArray();
 
     }

@@ -41,7 +41,7 @@ public class WaveView implements Glyph {
         if (!list.isEmpty()) {
 
             WaveDefinition waveDef = new WaveDefinition(new ArrayList<>(list));
-            
+            waveDef.setInfinite(infinite);
 
             waveDef.setProfile(new Profile(getName(string)));
             myGame.getAuthorshipData().addWave(waveDef);
