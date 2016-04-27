@@ -64,4 +64,8 @@ public interface IFormView extends Glyph {
      */
     void setViews(List<ISubFormView> subFormViews);
     
+    void showForm();
+    
+    void hideForm();
+    
 }

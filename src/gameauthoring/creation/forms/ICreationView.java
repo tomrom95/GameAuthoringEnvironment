@@ -19,7 +19,7 @@ import javafx.collections.ObservableList;
  *
  */
 
-public interface IObjectCreationView<E> extends Glyph {
+public interface ICreationView<E> extends Glyph {
 
     /**
      * Tell the view which method it should call to create a "new" item
@@ -41,7 +41,7 @@ public interface IObjectCreationView<E> extends Glyph {
      * 
      * @return The IObjectListView object
      */
-    IObjectListView<E> getObjectListView ();
+    ICreationListView<E> getCreationListView ();
 
     /**
      * Get the IFormView, which is the view containing the form to create a new object

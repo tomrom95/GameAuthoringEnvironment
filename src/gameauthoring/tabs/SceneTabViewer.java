@@ -34,7 +34,6 @@ public class SceneTabViewer implements ITabViewer {
     private TabPane myLevelTabs;
     private ILevelManager myLevelManager;
     private IConditionManager myConditionManager;
-    private List<DefinitionCollection<SpriteDefinition>> mySprites;
     private IGame myGame;
     private BasicUIFactory myUIFactory = new BasicUIFactory();
 
@@ -46,7 +45,6 @@ public class SceneTabViewer implements ITabViewer {
         myLevelManager = iGame.getLevelManager();
         myConditionManager = iGame.getConditionManager();
 
-        mySprites = iGame.getAuthorshipData().getMyCreatedSprites();
         myGame = iGame;
         init();
     }

@@ -2,7 +2,6 @@ package gameauthoring.creation.subforms.movement;
 
 import engine.definitions.concrete.KeyControlDefinition;
 import engine.definitions.concrete.SpriteDefinition;
-import engine.definitions.moduledef.ConstantMoverDefinition;
 import engine.definitions.moduledef.UserMoverDefinition;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
@@ -73,7 +72,6 @@ public class UserMoverSFC implements ISubFormControllerSprite {
 
     @Override
     public ISubFormView getSubFormView () {
-        // TODO Auto-generated method stub
         return myView;
     }
 

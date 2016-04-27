@@ -34,8 +34,19 @@ public class FormView implements IFormView {
         mySubFormViewer.getStyleClass().add("myFormView");
         mySubFormViewer.setMaxHeight(HEIGHT);
         myFormView.add(mySubFormViewer, 0, 1); 
+        hideForm();
         myFormView.add(createButtonHolder(), 0 , 0);
         setViews(mySubFormViews);            
+    }
+    
+    public void showForm(){
+        //myFormView.add(mySubFormViewer,  0,  1);
+        mySubFormViewer.setVisible(true);
+    }
+    @Override
+    public void hideForm () {
+        //myFormView.getChildren().remove(mySubFormViewer);
+        mySubFormViewer.setVisible(false);
     }
     
     private Node createButtonHolder () {
@@ -90,4 +101,6 @@ public class FormView implements IFormView {
     public Node draw () {
         return myFormView;
     }
+
+   
 }

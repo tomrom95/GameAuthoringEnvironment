@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
  * @author Jeremy Schreck
  *
  */
-public interface IObjectListView<E> extends Glyph {
+public interface ICreationListView<E> extends Glyph {
 
     /**
      * Tell the view which method it should call to edit a previously created item

@@ -44,7 +44,7 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
 
         myUpgradeChoices =
                 new SingleChoiceEntryView<SpriteDefinition>(myUpgradeChoicesKey, data
-                        .getMyCreatedSprites().get(1).getItems(),
+                        .getMyCreatedSprites("Enemies").getItems(),
                                                             AuthoringView.DEFAULT_ENTRYVIEW);
         myAttributeChoices =
                 new SingleChoiceEntryView<AttributeDefinition>(myAttributeChoicesKey,

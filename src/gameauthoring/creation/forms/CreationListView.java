@@ -1,11 +1,18 @@
 package gameauthoring.creation.forms;
 
+import java.awt.Color;
 import java.util.function.Consumer;
 import engine.profile.IProfilable;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Paint;
 
 
 /**
@@ -14,20 +21,21 @@ import javafx.scene.control.ListView;
  * @author Jin An, Jeremy Schreck
  *
  */
-public class ObjectListView<E extends IProfilable> implements IObjectListView<E> {
+public class CreationListView<E extends IProfilable> implements ICreationListView<E> {
 
     private ObservableList<E> myItems;
     private ListView<E> myListView;
     private static final double HEIGHT = 580; //TODO: move to common resource file
 
-    public ObjectListView (ObservableList<E> items) {
+    public CreationListView (ObservableList<E> items) {
         myItems = items;
         myListView = new ListView<E>();
         myListView.setItems(getMyItems());
         myListView.setCellFactory(c -> new ProfileCellView<E>());
         myListView.setMinHeight(HEIGHT);
         myListView.setMaxHeight(HEIGHT);
-
+        myListView.setPlaceholder(new Label("Created objects will show up here."));
+        
         // TODO: resource file and maybe constructor arguement later
         myListView.getStyleClass().add("myObjectListView");
     }

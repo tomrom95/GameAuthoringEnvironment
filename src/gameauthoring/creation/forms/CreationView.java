@@ -22,9 +22,9 @@ import javafx.scene.layout.GridPane;
  * @author Joe Lilien, Jeremy Schreck
  *
  */
-public class ObjectCreationView<E extends IProfilable> implements IObjectCreationView<E> {
+public class CreationView<E extends IProfilable> implements ICreationView<E> {
 
-    private IObjectListView<E> myObjectListView;
+    private ICreationListView<E> myCreationListView;
     private IFormView myFormView;
 
     private Button myNewButton = new Button("New");
@@ -45,9 +45,9 @@ public class ObjectCreationView<E extends IProfilable> implements IObjectCreatio
      * 
      * @param subFormViews The subformviews to create the FormView with
      */
-    public ObjectCreationView () {
+    public CreationView () {
         ObservableList<E> items = FXCollections.observableArrayList();
-        this.myObjectListView = new ObjectListView<E>(items);
+        this.myCreationListView = new CreationListView<E>(items);
 
     }
 
@@ -58,9 +58,9 @@ public class ObjectCreationView<E extends IProfilable> implements IObjectCreatio
         this.myFormView = new FormView(subFormViews);
 
         myCreationPane.setAlignment(Pos.TOP_LEFT);
-        GridPane.setValignment(myObjectListView.draw(), VPos.TOP);
+        GridPane.setValignment(myCreationListView.draw(), VPos.TOP);
         
-        myCreationPane.add(myObjectListView.draw(), 0, 0);
+        myCreationPane.add(myCreationListView.draw(), 0, 0);
         myCreationPane.add(myFormView.draw(), 1, 0);
         
         //myCreationPane.getStyleClass().add("myCreationView");
@@ -75,14 +75,12 @@ public class ObjectCreationView<E extends IProfilable> implements IObjectCreatio
     // Getters and Setters
 
     @Override
-    public IObjectListView<E> getObjectListView () {
-        // TODO Auto-generated method stub
-        return myObjectListView;
+    public ICreationListView<E> getCreationListView () {
+        return myCreationListView;
     }
 
     @Override
     public IFormView getFormView () {
-        // TODO Auto-generated method stub
         return myFormView;
     }
 
@@ -94,19 +92,19 @@ public class ObjectCreationView<E extends IProfilable> implements IObjectCreatio
     @Override
     public void setEditAction (Consumer<E> action) {
         // set listcell's edit button's setOnAction to call action
-        getObjectListView().setEditAction(action);
+        getCreationListView().setEditAction(action);
 
     }
 
     @Override
     public ObservableList<E> getItems () {
-        return getObjectListView().getMyItems();
+        return getCreationListView().getMyItems();
 
     }
 
     @Override
     public E getCurrentItem () {
-        return getObjectListView().getSelectedItem();
+        return getCreationListView().getSelectedItem();
     }
 
 }

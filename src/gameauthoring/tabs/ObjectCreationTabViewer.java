@@ -2,7 +2,7 @@ package gameauthoring.tabs;
 
 import gameauthoring.creation.factories.CreationControllerFactory;
 import gameauthoring.creation.forms.CreationController;
-import gameauthoring.creation.forms.IObjectCreationView;
+import gameauthoring.creation.forms.ICreationView;
 import gameauthoring.util.BasicUIFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,7 +38,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
     private IGame myGame;
 
     private List<CreationController<?>> myCCs;
-    private List<IObjectCreationView<?>> myCVs;
+    private List<ICreationView<?>> myCVs;
 
     public ObjectCreationTabViewer (IGame iGame) {
         myGame = iGame;
@@ -70,31 +70,31 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         CreationController<?> ccGlobal =
                 ccFactory.createCreationController(myControllerResources.getString("Globals"),
-                                                   myLang.getString("Globals"), myGlobalSFCs,
+                                                   "Globals", myGlobalSFCs,
                                                    myGame);
 
         CreationController<?> ccAttributes =
                 ccFactory.createCreationController(myControllerResources.getString("Attributes"),
-                                                   myLang.getString("Attributes"), myAttributeSFCs,
+                                                   "Attributes", myAttributeSFCs,
                                                    myGame);
         CreationController<?> ccMissiles =
                 ccFactory.createCreationController(myControllerResources.getString("Missiles"),
-                                                   myLang.getString("Missiles"), myMissileSFCs,
+                                                   "Missiles", myMissileSFCs,
                                                    myGame);
         CreationController<?> ccEnemies =
                 ccFactory.createCreationController(myControllerResources.getString("Enemies"),
-                                                   myLang.getString("Enemies"), myEnemySFCs,
+                                                   "Enemies", myEnemySFCs,
                                                    myGame);
         CreationController<?> ccDefenders =
                 ccFactory.createCreationController(myControllerResources.getString("Defenders"),
-                                                   myLang.getString("Defenders"), myDefenderSFCs,
+                                                   "Defenders", myDefenderSFCs,
                                                    myGame);
         CreationController<?> ccGroups =
                 ccFactory.createCreationController(myControllerResources.getString("Groups"),
-                                                   myLang.getString("Groups"), myGroupSFCs, myGame);
+                                                   "Groups", myGroupSFCs, myGame);
         CreationController<?> ccEvents =
                 ccFactory.createCreationController(myControllerResources.getString("Events"),
-                                                   myLang.getString("Events"), myEventSFCs, myGame);
+                                                   "Events", myEventSFCs, myGame);
      
 
         myCCs = new ArrayList<CreationController<?>>();
@@ -110,6 +110,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
         myCCs.add(ccEvents);
 
+        /*
         ccGlobal.init(myGlobalSFCs);
         ccAttributes.init(myAttributeSFCs);
         ccMissiles.init(myMissileSFCs);
@@ -119,6 +120,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
         ccGroups.init(myGroupSFCs);
 
         ccEvents.init(myEventSFCs);
+        */
 
     }
 
@@ -131,7 +133,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
     }
 
     private void generateCreationViewList () {
-        myCVs = new ArrayList<IObjectCreationView<?>>();
+        myCVs = new ArrayList<ICreationView<?>>();
         for (CreationController<?> cc : myCCs) {
             myCVs.add(cc.getMyObjectCreationView());
         }

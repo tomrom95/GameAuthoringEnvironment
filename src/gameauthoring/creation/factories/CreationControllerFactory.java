@@ -24,9 +24,9 @@ public class CreationControllerFactory {
     public CreationControllerFactory () {
     }
 
-    public CreationController<?> createCreationController(String className, String title, List<String> sfcs, IGame game){
+    public CreationController<?> createCreationController(String className, String key, List<String> sfcs, IGame game){
         try {
-            return (CreationController<?>) Reflection.createInstance(className, title, sfcs, game);
+            return (CreationController<?>) Reflection.createInstance(className, key, sfcs, game);
         } catch (ReflectionException e){
             System.out.println("reflection exception " + e.getMessage());
             //TODO handle exception

@@ -3,6 +3,8 @@ package gameauthoring.creation.subforms.movement;
 import engine.IGame;
 
 import gameauthoring.creation.factories.DynamicSFCFactory;
+import gameauthoring.creation.factories.Reflection;
+import gameauthoring.creation.factories.ReflectionException;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
@@ -49,9 +51,17 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
     }
 
     @Override
-    public ISubFormController<SpriteDefinition> createSubFormController (String type,
+    public ISubFormControllerSprite createSubFormController (String className,
                                                                          Object ... params) {
-        // TODO Auto-generated method stub
+        try {
+            return (ISubFormControllerSprite) Reflection.createInstance(className, params);
+
+        } catch (ReflectionException e){
+            
+        } catch (ClassCastException e) {
+            
+        }
+        
         return null;
     }
 
