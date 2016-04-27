@@ -30,7 +30,7 @@ public class TestFacebook extends Application{
 
     @Override
     public void start (Stage stage) {
-        mySocial = new JavaSocial();
+        mySocial = JavaSocial.getInstance();
         mySocial.loginUser(SocialType.FACEBOOK);
         addScores(mySocial);
         stage.setScene(testLogin());

@@ -10,9 +10,10 @@ import facebookutil.user.IUser;
  *
  */
 public class LocalProfile extends UserProfile{
+    private static final String LOCAL_ID = "local";
 
-    public LocalProfile (String userID) {
-        super(userID);
+    public LocalProfile () {
+        super(LOCAL_ID);
     }
 
     @Override
