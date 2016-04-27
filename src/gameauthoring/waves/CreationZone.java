@@ -2,7 +2,10 @@ package gameauthoring.waves;
 
 import gameauthoring.util.Glyph;
 import gameauthoring.util.UIFactory;
+import gameauthoring.creation.entryviews.CheckEntryView;
+import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.BasicUIFactory;
+import javafx.beans.property.BooleanProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -17,6 +20,9 @@ public class CreationZone implements Glyph {
     private UIFactory myFactory = new BasicUIFactory();
     private Button myActionButton;
     private Button mySaveButton;
+    private String myInfiniteKey = "Infinite Wave: ";
+    private CheckEntryView myInfiniteSelect;
+    
 
     public CreationZone () {
         init();
@@ -27,11 +33,15 @@ public class CreationZone implements Glyph {
         myActionButton = myFactory.createStyledButton("Add wave", "CustomButton");
         mySaveButton = myFactory.createStyledButton("Save", "CustomSave");
         mySaveButton.setVisible(false);
+        myInfiniteSelect = new CheckEntryView(myInfiniteKey, AuthoringView.DEFAULT_ENTRYVIEW);
         myPane.getChildren().add(myActionButton);
         myPane.getChildren().add(mySaveButton);
+        myPane.getChildren().add(myInfiniteSelect.draw());
+
 
     }
-
+ 
+    
     @Override
     public Node draw () {
         return myPane;
@@ -44,6 +54,8 @@ public class CreationZone implements Glyph {
     public void setSaveButtonAction (EventHandler<MouseEvent> event) {
         mySaveButton.setOnMouseClicked(event);        
     }
+    
+    
 
     public void enterEdit () {
        myActionButton.setText("Exit edit mode"); 
@@ -54,5 +66,10 @@ public class CreationZone implements Glyph {
         myActionButton.setText("Add wave");    
         mySaveButton.setVisible(false);
      }
+    
+    public BooleanProperty isInfiniteProperty () {
+        return myInfiniteSelect.isCheckedProperty();
+
+    }
 
 }

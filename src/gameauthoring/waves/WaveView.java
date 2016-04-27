@@ -19,7 +19,7 @@ import javafx.scene.input.MouseEvent;
 
 
 public class WaveView implements Glyph {
-    
+
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/default_names");
@@ -37,20 +37,23 @@ public class WaveView implements Glyph {
         return myWaveList;
     }
 
-    public void add (List<WaveBlockDefinition> list, String string) {
+    public void add (List<WaveBlockDefinition> list, String string, boolean infinite) {
         if (!list.isEmpty()) {
+
             WaveDefinition waveDef = new WaveDefinition(new ArrayList<>(list));
+            
+
             waveDef.setProfile(new Profile(getName(string)));
             myGame.getAuthorshipData().addWave(waveDef);
         }
     }
 
     private String getName (String string) {
-        
+
         if (string != null) {
             return string;
         }
-        
+
         return myBundle.getString("Wave");
     }
 
@@ -61,19 +64,18 @@ public class WaveView implements Glyph {
         myWaveList.setPrefWidth(Double.parseDouble(mySize.getString("WaveWidth")));
         myWaveList.setCellFactory(e -> new NameCellView<WaveDefinition>());
     }
-    
+
     private void setGame (IGame game) {
         myGame = game;
     }
 
     public void interpret (EventHandler<MouseEvent> event) {
-       myWaveList.setOnMouseClicked(event);
-        
+        myWaveList.setOnMouseClicked(event);
+
     }
 
     public WaveDefinition getSelected () {
-       return myWaveList.getSelectionModel().getSelectedItem();
+        return myWaveList.getSelectionModel().getSelectedItem();
     }
-
 
 }

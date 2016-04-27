@@ -80,7 +80,7 @@ public class WaveTabViewer implements Glyph {
                                                                 myLang.getString("WaveTitle"),
                                                                 myLang.getString("WaveNameInstr"));
         if (option.isPresent()) {
-            myWaveDisplay.add(myBlockList, option.get());
+            myWaveDisplay.add(myBlockList, option.get(), myCreationZone.isInfiniteProperty().get());
             myBlockList.clear();
         }
     }
