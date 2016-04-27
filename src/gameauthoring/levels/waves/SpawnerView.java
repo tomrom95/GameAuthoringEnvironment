@@ -10,6 +10,7 @@ import engine.definitions.spawnerdef.SpawnerModuleDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
 import engine.profile.Profile;
 import engine.rendering.AuthoringRenderer;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -26,6 +27,7 @@ import gameauthoring.util.Glyph;
 import gameauthoring.util.UIFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
@@ -59,6 +61,7 @@ public class SpawnerView implements Glyph, Draggable {
     private ILevel myLevel;
     private IGame myGame;
     private TextField myDelay;
+    private Button mySetButton;
     private AuthoringRenderer myRenderer;
 
     public SpawnerView (IGame game, ILevel level, AuthoringRenderer renderer) {
@@ -66,12 +69,11 @@ public class SpawnerView implements Glyph, Draggable {
         myLevel = level;
         myGame = game;
         myRenderer = renderer;
+        new SpawnerViewController(this, level);
     }
 
     private void init () {
         initWaves();
-        myDelay = myFactory.createTextField(myLang.getString("GapPrompt"),
-                                            Double.parseDouble(myBundle.getString("TextWidth")));
         myPane.getChildren().add(getLeft());
         myPane.getChildren().add(myWaves);
         myPane.getStyleClass().add(myStyle.getString("Bordered"));
@@ -96,8 +98,17 @@ public class SpawnerView implements Glyph, Draggable {
         VBox vbox = new VBox(Double.parseDouble(myBundle.getString("VSpacing")));
         vbox.setAlignment(Pos.TOP_CENTER);
         vbox.getChildren().add(getView());
-        vbox.getChildren().add(myDelay);
+        vbox.getChildren().add(getGap());
         vbox.getChildren().add(myFactory.createButton(myLang.getString("Clear"), e -> reset()));
+        return vbox;
+    }
+
+    private Node getGap () {
+        VBox vbox = new VBox();
+        myDelay = myFactory.createTextField(myLang.getString("GapPrompt"),
+                                            Double.parseDouble(myBundle.getString("TextWidth")));
+        mySetButton = myFactory.createButton(myLang.getString("Set"));
+        vbox.getChildren().addAll(myDelay, mySetButton);
         return vbox;
     }
 
@@ -175,6 +186,10 @@ public class SpawnerView implements Glyph, Draggable {
         myLevel.add(mySpawner.create(), new Coordinate(e.getX(), e.getY()));
         myRenderer.render();
         reset();
+    }
+    
+    public void setButtonAction (EventHandler<MouseEvent> event) {
+        mySetButton.setOnMouseClicked(event);
     }
 
 }
