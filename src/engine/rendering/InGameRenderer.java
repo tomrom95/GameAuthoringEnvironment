@@ -9,6 +9,12 @@ import engine.IGamePlayable;
 import gameplayer.SpriteDisplay;
 import gameplayer.SpriteDisplayController;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 
 
@@ -20,6 +26,9 @@ import javafx.scene.layout.Pane;
  */
 public class InGameRenderer extends LevelRenderer {
 
+    private static final double X_SCALE = 3;
+    private static final double Y_SCALE = 3;
+    
     private IGraphicFactory myFactory;
     private IGamePlayable myGame;
     private Map<Drawable, Node> myDrawNodeMap;
@@ -118,6 +127,19 @@ public class InGameRenderer extends LevelRenderer {
 
     private void add (Node node) {
         getPane().getChildren().add(node);
+    }
+
+    @Override
+    protected Image getImage (String url) {
+        return new Image(url, scaledWidth(), scaledHeight(), true, true);
+    }
+
+    private double scaledHeight () {
+        return myGame.getLevelBounds().getHeight() * Y_SCALE;
+    }
+    
+    private double scaledWidth () {
+        return myGame.getLevelBounds().getWidth() * X_SCALE;
     }
 
 }

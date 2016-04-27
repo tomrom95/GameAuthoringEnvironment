@@ -17,8 +17,6 @@ import util.Coordinate;
  * TODO fix scaling of window sizes
  */
 public abstract class LevelRenderer implements IRenderer {
-    private static final int MAX_HEIGHT = 400;
-    private static final int MAX_WIDTH = 1150;
 
     private Pane myPane;
 
@@ -52,7 +50,7 @@ public abstract class LevelRenderer implements IRenderer {
         if (url == null) {
             return;
         }
-        Image img = new Image(url, MAX_WIDTH, MAX_HEIGHT, true, true);
+        Image img = getImage(url);
         BackgroundImage background = new BackgroundImage(img,
                                                          BackgroundRepeat.NO_REPEAT,
                                                          BackgroundRepeat.NO_REPEAT,
@@ -62,5 +60,7 @@ public abstract class LevelRenderer implements IRenderer {
         myPane.setMinWidth(img.getWidth());
         myPane.setMinHeight(img.getHeight());
     }
+
+    protected abstract Image getImage (String url);
 
 }

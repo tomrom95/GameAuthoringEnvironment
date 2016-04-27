@@ -7,6 +7,7 @@ import graphics.ImageGraphic;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import util.Coordinate;
+import util.LevelBound;
 
 
 /**
@@ -20,6 +21,8 @@ import util.Coordinate;
  */
 public class SceneController {
 
+    private static final int MAX_HEIGHT = 400;
+    private static final int MAX_WIDTH = 1150;
     private ILevel myLevel;
 
     public SceneController (ILevel level) {
@@ -36,7 +39,18 @@ public class SceneController {
     public void setBackground (String imageURL) {
         Image image = new Image(imageURL);
         ImageGraphic background = new ImageGraphic(image.getWidth(), image.getHeight(), imageURL);
+        myLevel.setBounds(getLevelBound(image.getWidth(), image.getHeight()));
         myLevel.setBackgroundImage(background);
+    }
+
+    private LevelBound getLevelBound (double width, double height) {
+        if(width> MAX_WIDTH) {
+            width = MAX_WIDTH;
+        } 
+        if(height>MAX_HEIGHT) {
+            height = MAX_HEIGHT;
+        }
+        return new LevelBound(width, height);
     }
 
     public void addSprite (double x, double y, SpriteDefinition spriteDefinition) {

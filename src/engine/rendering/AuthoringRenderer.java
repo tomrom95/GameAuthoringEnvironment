@@ -9,12 +9,16 @@ import engine.ILevel;
 import engine.sprite.ISprite;
 import gameauthoring.levels.sprites.OnScreenSprite;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 
 public class AuthoringRenderer extends LevelRenderer {
 
+    private static final int MAX_HEIGHT = 400;
+    private static final int MAX_WIDTH = 1150;
+    
     private ILevel myLevel;
     private Map<ISprite, Node> mySpriteNodeMap;
     private GridRenderer myTileView;
@@ -122,6 +126,11 @@ public class AuthoringRenderer extends LevelRenderer {
 
     private void add (Node node) {
         getPane().getChildren().add(node);
+    }
+
+    @Override
+    protected Image getImage (String url) {
+        return new Image(url, MAX_WIDTH, MAX_HEIGHT, true, true);
     }
 
 }
