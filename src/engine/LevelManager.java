@@ -104,7 +104,6 @@ public class LevelManager implements ILevelManager {
     @Override
     public void createNewLevel (ILevel newLevel) {
         myLevelPropertyList.add(newLevel);
-        myCurrentLevel = newLevel;
     }
 
     @Override
@@ -120,6 +119,11 @@ public class LevelManager implements ILevelManager {
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
         myCurrentLevel.add(sprite, coordinate);
+    }
+    
+    @Override 
+    public void remove(ILevel level) {
+        myLevelPropertyList.remove(level);
     }
 
 }

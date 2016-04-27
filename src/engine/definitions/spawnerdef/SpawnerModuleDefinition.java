@@ -2,9 +2,9 @@ package engine.definitions.spawnerdef;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import engine.IAdder;
 import engine.IGame;
+import engine.ILevel;
 import engine.Positionable;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.ModuleDefinition;
@@ -20,37 +20,39 @@ import util.TimeDuration;
  */
 public class SpawnerModuleDefinition extends ModuleDefinition {
 
-    private IGame myGame;
+    private ILevel myLevel;
     private IAdder myAdder;
     private List<WaveDefinition> myWaves;
 
-    public SpawnerModuleDefinition (IAdder adder, IGame game, double delay, List<WaveDefinition> waves) {
-        setGame(game);
+    public SpawnerModuleDefinition (IAdder adder,
+                                    ILevel level,
+                                    double delay,
+                                    List<WaveDefinition> waves) {
+        setLevel(level);
         setAdder(adder);
         myWaves = waves;
     }
 
-    private void setGame(IGame game) {
-    	myGame = game;
-    	
-	}
+    private void setLevel (ILevel level) {
+        myLevel = level;
 
-	private void setAdder (IAdder adder) {
+    }
+
+    private void setAdder (IAdder adder) {
         myAdder = adder;
     }
 
+    public List<WaveDefinition> getWaveDefinitions () {
+        return myWaves;
+    }
 
-    public List<WaveDefinition> getWaveDefinitions(){
-    	return myWaves;
+    public void setWaveDefinitions (List<WaveDefinition> defs) {
+        myWaves = defs;
     }
-    
-    public void setWaveDefinitions(List<WaveDefinition> defs){
-    	myWaves = defs;
-    }
-    
+
     @Override
     public IModule create (Positionable parent) {
-    	return new SpawningModule(myAdder, myGame, parent, myWaves);
+        return new SpawningModule(myAdder, myLevel, parent, myWaves);
     }
 
 }

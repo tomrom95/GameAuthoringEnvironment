@@ -1,5 +1,6 @@
 package engine.definitions.moduledef;
 
+import engine.IGame;
 import engine.Positionable;
 import engine.modules.DirectionalFirer;
 
@@ -10,12 +11,20 @@ import engine.modules.DirectionalFirer;
  *
  */
 public class DirectionalFirerDefinition extends FirerDefinition {
+
     private double myWaitTime;
     private double myAngle;
+    private IGame myGame;
+    
+    public DirectionalFirerDefinition (IGame game) {
+        super(game);
+    }
 
     @Override
     public DirectionalFirer create (Positionable parent) {
-        DirectionalFirer myNewFirer =  new DirectionalFirer(getProjectileDefinition(), parent, myWaitTime, myAngle);
+        DirectionalFirer myNewFirer = new DirectionalFirer(myGame,
+                                                           getProjectileDefinition(), parent,
+                                                           myWaitTime, myAngle);
         setSuperVariables(myNewFirer);
         return myNewFirer;
     }

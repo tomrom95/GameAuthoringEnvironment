@@ -6,6 +6,7 @@ import java.util.List;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.Game;
+import engine.GameInformation;
 import engine.IAttribute;
 import engine.IEventPackage;
 import engine.IGame;
@@ -68,7 +69,7 @@ public class UpgradeTest extends Application {
     }
 
     private void makeGame () {
-        IGame game = new Game(new GameGridConfigNonScaling(GamePlayer.PREFWIDTH, GamePlayer.PREFHEIGHT));
+        IGame game = new Game(new GameInformation());
         myGame = game;
         createGlobalAtts(game);
         createSpriteDefs(game);

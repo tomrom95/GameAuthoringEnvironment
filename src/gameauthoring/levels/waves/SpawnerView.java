@@ -2,6 +2,7 @@ package gameauthoring.levels.waves;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import engine.IAdder;
 import engine.IGame;
 import engine.ILevel;
 import engine.definitions.spawnerdef.SpawnerDefinition;
@@ -150,7 +151,7 @@ public class SpawnerView implements Glyph, Draggable {
     private void createSpawner () {
         try {
             SpawnerModuleDefinition spawnerDef =
-                    new SpawnerModuleDefinition(myLevel, myGame, getDelay(), myWaves.getItems());
+                    new SpawnerModuleDefinition(getAdder(), myLevel, getDelay(), myWaves.getItems());
             mySpawner = new SpawnerDefinition(myGame);
             mySpawner.setProfile(new Profile(DRAG_STRING, EMPTY, getImageURL()));
             mySpawner.setMySpawningModule(spawnerDef);
@@ -158,6 +159,10 @@ public class SpawnerView implements Glyph, Draggable {
         catch (NumberFormatException e) {
             return;
         }
+    }
+
+    private IAdder getAdder () {
+        return myLevel;
     }
 
     @Override

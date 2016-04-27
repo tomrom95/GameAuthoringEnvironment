@@ -7,7 +7,7 @@ import javafx.beans.property.BooleanProperty;
  * @author RyanStPierre
  *
  */
-public interface ICheck extends Updateable {
+public interface ICheck {
 
     /**
      * Subtracts cost
