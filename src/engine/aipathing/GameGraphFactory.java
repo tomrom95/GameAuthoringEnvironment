@@ -26,7 +26,7 @@ public class GameGraphFactory implements INodeGraphFactory {
     private static final int INT_ONE = 1;
     private static final int INT_NEG_ONE = -1;
     private static final double ONE = 1d;
-    private static final int NODE_GAP = 300;
+    private static final int NODE_GAP = 200;
     private IBitMap myObstructionMap;
     private IGame myGame;
     
