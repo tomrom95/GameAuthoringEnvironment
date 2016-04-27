@@ -2,7 +2,6 @@ package engine;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import util.TimeDuration;
 
 
 /**
@@ -24,7 +23,6 @@ public class Check implements ICheck {
         myType = type;
         myCost = cost;
         myStatus = new SimpleBooleanProperty(false);
-        bindStatus();
     }
 
     public void alterAttribute () {
@@ -33,28 +31,25 @@ public class Check implements ICheck {
             if (attribute.getType().equals(myType)) {
                 attribute.setValue(attribute.getValueProperty().get() - myCost);
             }
-
         }
 
     }
 
-    @Override
-    public void update (TimeDuration duration) {
-        // Unnecessary now
-
-    }
-    
-    private void bindStatus () {
+    private void checkStatus () {
         for (IAttribute attribute : myManager.getAttributes()) {
             if (attribute.getType().equals(myType)) {
-                myStatus.bind(attribute.getValueProperty().greaterThanOrEqualTo(myCost));
+                if (attribute.getValueProperty().get() >= myCost) {                   
+                     myStatus.set(true);
+                     return;
+                }
             }
-        }
+        } 
+        myStatus.set(false);
     }
 
     @Override
     public BooleanProperty getStatus () {
-        System.out.println(myStatus);
+        checkStatus();
         return myStatus;
     }
 

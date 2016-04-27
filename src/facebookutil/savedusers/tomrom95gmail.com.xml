@@ -7,7 +7,7 @@
     <myBoard>
       <entry>
         <string>game1</string>
-        <int>1500</int>
+        <int>100000</int>
       </entry>
     </myBoard>
   </myScoreBoard>

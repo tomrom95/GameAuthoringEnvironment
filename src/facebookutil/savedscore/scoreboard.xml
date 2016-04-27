@@ -6,14 +6,43 @@
         <facebookutil.scores.Score>
           <myUser class="facebookutil.user.User">
             <myEmail>
-              <myName>fake</myName>
-              <myDomain>fake.com</myDomain>
+              <myName>tomrom95</myName>
+              <myDomain>gmail.com</myDomain>
             </myEmail>
             <myScoreBoard>
               <myBoard>
                 <entry>
                   <string>game1</string>
-                  <int>50</int>
+                  <int>1500</int>
+                </entry>
+              </myBoard>
+            </myScoreBoard>
+            <myProfiles>
+              <myProfiles>
+                <entry>
+                  <facebookutil.SocialType>FACEBOOK</facebookutil.SocialType>
+                  <facebookutil.user.profiles.FacebookProfile>
+                    <myID>10204226196654701</myID>
+                  </facebookutil.user.profiles.FacebookProfile>
+                </entry>
+              </myProfiles>
+              <myActiveProfile class="facebookutil.user.profiles.FacebookProfile" reference="../myProfiles/entry/facebookutil.user.profiles.FacebookProfile"/>
+            </myProfiles>
+          </myUser>
+          <myPoints>100000</myPoints>
+          <myDate>2016-04-26 21:32:43.117 UTC</myDate>
+        </facebookutil.scores.Score>
+        <facebookutil.scores.Score>
+          <myUser class="facebookutil.user.User">
+            <myEmail>
+              <myName>last</myName>
+              <myDomain>last.com</myDomain>
+            </myEmail>
+            <myScoreBoard>
+              <myBoard>
+                <entry>
+                  <string>game1</string>
+                  <int>3000</int>
                 </entry>
               </myBoard>
             </myScoreBoard>
@@ -21,7 +50,7 @@
               <myProfiles/>
             </myProfiles>
           </myUser>
-          <myPoints>50</myPoints>
+          <myPoints>3000</myPoints>
           <myDate>2016-04-26 17:18:30.191 UTC</myDate>
         </facebookutil.scores.Score>
         <facebookutil.scores.Score>
@@ -48,43 +77,14 @@
         <facebookutil.scores.Score>
           <myUser class="facebookutil.user.User">
             <myEmail>
-              <myName>tomrom95</myName>
-              <myDomain>gmail.com</myDomain>
+              <myName>fake</myName>
+              <myDomain>fake.com</myDomain>
             </myEmail>
             <myScoreBoard>
               <myBoard>
                 <entry>
                   <string>game1</string>
-                  <int>1500</int>
-                </entry>
-              </myBoard>
-            </myScoreBoard>
-            <myProfiles>
-              <myProfiles>
-                <entry>
-                  <facebookutil.SocialType>FACEBOOK</facebookutil.SocialType>
-                  <facebookutil.user.profiles.FacebookProfile>
-                    <myID>10204226196654701</myID>
-                  </facebookutil.user.profiles.FacebookProfile>
-                </entry>
-              </myProfiles>
-              <myActiveProfile class="facebookutil.user.profiles.FacebookProfile" reference="../myProfiles/entry/facebookutil.user.profiles.FacebookProfile"/>
-            </myProfiles>
-          </myUser>
-          <myPoints>1500</myPoints>
-          <myDate>2016-04-26 17:19:00.582 UTC</myDate>
-        </facebookutil.scores.Score>
-        <facebookutil.scores.Score>
-          <myUser class="facebookutil.user.User">
-            <myEmail>
-              <myName>last</myName>
-              <myDomain>last.com</myDomain>
-            </myEmail>
-            <myScoreBoard>
-              <myBoard>
-                <entry>
-                  <string>game1</string>
-                  <int>3000</int>
+                  <int>50</int>
                 </entry>
               </myBoard>
             </myScoreBoard>
@@ -92,7 +92,7 @@
               <myProfiles/>
             </myProfiles>
           </myUser>
-          <myPoints>3000</myPoints>
+          <myPoints>50</myPoints>
           <myDate>2016-04-26 17:18:30.191 UTC</myDate>
         </facebookutil.scores.Score>
       </list>

@@ -9,14 +9,12 @@ import javafx.collections.ObservableList;
 
 
 public abstract class AttributeEndView extends OnAttributeView {
-
-    private IGame myGame;
+    
     private EndOptions myEndOptions = new EndOptions();
 
     public AttributeEndView (IGame game, ILevel level, ObservableList<AttributeType> attributes) {
         super(game, level.getConditionsListProperty(),
               attributes);
-        myGame = game;
         initializeDisplay();
 
     }

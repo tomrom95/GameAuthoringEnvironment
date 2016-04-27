@@ -49,7 +49,7 @@ public class TestFacebook extends Application{
     private Scene testLogin () {
         VBox box = new VBox(5);
         createFields (box);
-        return new Scene(box, 1000, 1000);
+        return new Scene(box, 500, 500);
     }
 
     private void createFields (VBox box) {

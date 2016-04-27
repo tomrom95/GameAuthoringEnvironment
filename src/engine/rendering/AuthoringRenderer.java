@@ -31,7 +31,7 @@ public class AuthoringRenderer extends LevelRenderer {
         // this.draw(spriteNode, sprite);
     }
 
-    public void updateTile (){
+    public void updateNewTiles (){
         myTileView.render();
     }
     

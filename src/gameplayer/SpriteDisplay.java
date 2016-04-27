@@ -1,9 +1,13 @@
 package gameplayer;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
 import engine.Drawable;
 import engine.IAttribute;
 import engine.rendering.GraphicFactory;
 import engine.rendering.ScaleFactory;
+import gameauthoring.util.BasicUIFactory;
+import gameauthoring.util.UIFactory;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -21,20 +25,28 @@ import javafx.scene.layout.VBox;
 
 public class SpriteDisplay extends SizeableGlyph implements ISpriteDisplay {
 
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
     private VBox myPane = new VBox();
-    private GraphicFactory myFactory = new ScaleFactory(80, 80);
-    private Button myUpgradeButton = new Button("Upgrade");
+    private GraphicFactory myGraphicFactory;
+    private UIFactory myUIFactory = new BasicUIFactory();
+    private Button myUpgradeButton;
     private SpriteDisplayController myController;
 
     public SpriteDisplay () {
-        setSize();
+        init();
         myController = new SpriteDisplayController(this);
+    }
+
+    private void init () {
+        myUpgradeButton = myUIFactory.createButton(myLang.getString("Upgrade"));
+        myGraphicFactory = new ScaleFactory(parseString(getString("SpriteImageWidth")),
+                                            parseString(getString("SpriteImageHeight")));
+        setSize();
     }
 
     private void setSize () {
         myPane.setPrefWidth(parseString(getString("SpriteDisplayWidth")));
         myPane.setPrefHeight(parseString(getString("SpriteDisplayHeight")));
-
     }
 
     public Node draw () {
@@ -43,7 +55,7 @@ public class SpriteDisplay extends SizeableGlyph implements ISpriteDisplay {
 
     public void populate (Drawable drawn) {
         clear();
-        add(drawn.getDrawer().getVisualRepresentation(myFactory));
+        add(drawn.getDrawer().getVisualRepresentation(myGraphicFactory));
         drawn.getAttributes().forEach(a -> add(generateLabel(a)));
         add(myUpgradeButton);
     }
@@ -58,13 +70,14 @@ public class SpriteDisplay extends SizeableGlyph implements ISpriteDisplay {
     }
 
     private Node generateLabel (IAttribute attribute) {
-        return new Label(attribute.getType().getType() + " " + attribute.getValueProperty().get());
+        return myUIFactory.createLabel(attribute.getType().getType() + " " +
+                                       attribute.getValueProperty().get());
     }
-    
+
     public SpriteDisplayController getController () {
         return myController;
     }
-    
+
     public Button getUpgradeButton () {
         return myUpgradeButton;
     }
