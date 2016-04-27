@@ -31,6 +31,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import serialize.GameWriter;
+import splash.MainUserInterface;
 
 
 /**
@@ -57,6 +58,7 @@ public class AuthoringView implements IAuthoringView {
     private WaveTabViewer myWaveTabView;
     private BorderPane myLayout;
     private IGame myGame;
+    private Stage myStage;
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
     public static final String STYLESHEET = "custom.css";
@@ -94,6 +96,7 @@ public class AuthoringView implements IAuthoringView {
 
     @Override
     public void init (Stage s) {
+        myStage = s;
         initializeTabViewers();
         myLayout = new BorderPane();
         myLayout.setCenter(createContents());
@@ -114,8 +117,10 @@ public class AuthoringView implements IAuthoringView {
     private MenuBar createMenuBar () {
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
-        MenuItem saveItem = createMenuItems("Save game", e -> saveToXML());
-        MenuItem launchItem = createMenuItems("Launch game", e -> launchGame());
+        MenuItem goHome = createMenuItems("Go Home", e -> goHome());
+        MenuItem saveItem = createMenuItems("Save Game", e -> saveToXML());
+        MenuItem launchItem = createMenuItems("Launch Game", e -> launchGame());
+        fileMenu.getItems().add(goHome);
         fileMenu.getItems().add(saveItem);
         fileMenu.getItems().add(launchItem);
         menuBar.getMenus().add(fileMenu);
@@ -147,7 +152,7 @@ public class AuthoringView implements IAuthoringView {
     }
 
     private void goHome () {
-
+        new MainUserInterface().init(myStage);
     }
 
     private void saveToXML () {
