@@ -26,7 +26,6 @@ public class SpawnerModuleDefinition extends ModuleDefinition {
 
     public SpawnerModuleDefinition (IAdder adder,
                                     ILevel level,
-                                    double delay,
                                     List<WaveDefinition> waves) {
         setLevel(level);
         setAdder(adder);
