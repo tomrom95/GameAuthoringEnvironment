@@ -99,12 +99,12 @@ public abstract class CreationController<T extends IProfilable> {
      */
     private void setupConnections () {
         IFormView formView = getMyObjectCreationView().getFormView();
-        formView.setSaveAction(e -> saveItem());
-        formView.setDeleteAction(e -> deleteItem());
-        formView.setNewAction(e -> newItem());
+        formView.setSaveAction( () -> saveItem());
+        formView.setDeleteAction( () -> deleteItem());
+        formView.setNewAction( () -> newItem());
 
         ICreationView<T> creationView = getMyObjectCreationView();
-        creationView.setEditAction(e -> showAndEdit(e));
+        creationView.setEditAction( () -> showAndEdit());
     }
 
     /**
@@ -130,8 +130,8 @@ public abstract class CreationController<T extends IProfilable> {
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.updateItem(getMyCurrentItem());
         }
-        
-        this.getMyObjectCreationView().getCreationListView().refreshItems(); 
+
+        this.getMyObjectCreationView().getCreationListView().refreshItems();
     }
 
     /**
@@ -147,7 +147,7 @@ public abstract class CreationController<T extends IProfilable> {
 
         }
         else {
-            showAndEdit(getMyCurrentItem());
+            showAndEdit();
             getMyObjectCreationView().getFormView().showForm();
 
         }
@@ -159,12 +159,15 @@ public abstract class CreationController<T extends IProfilable> {
      */
     private void newItem () {
         T item = createBlankItem();
+        System.out.println(getMyCurrentItem());
         addItem(item);
+        System.out.println(getMyCurrentItem());
+
         getMyObjectCreationView().getCreationListView().setSelectedItem(item);
+        System.out.println(getMyCurrentItem());
 
         getMyObjectCreationView().getFormView().showForm();
-
-        showAndEdit(item);// or populateViewsWithDefaults, depending on where defaults are
+        // showAndEdit();// or populateViewsWithDefaults, depending on where defaults are
 
         // populateViewsWithDefaults();
     }
@@ -194,9 +197,11 @@ public abstract class CreationController<T extends IProfilable> {
      * 
      * @param item The item contained in the cell that was clicked
      */
-    private void showAndEdit (T item) {
-        for (ISubFormController<T> subFormController : getMySubFormControllers()) {
-            subFormController.populateViewsWithData(getMyCurrentItem());
+    private void showAndEdit () {
+        if (getMyCurrentItem() != null) {
+            for (ISubFormController<T> subFormController : getMySubFormControllers()) {
+                subFormController.populateViewsWithData(getMyCurrentItem());
+            }
         }
 
     }
@@ -253,7 +258,6 @@ public abstract class CreationController<T extends IProfilable> {
 
     protected void setMyDefinitionCollection (DefinitionCollection<T> col) {
         this.myDefinitionCollection = col;
-        System.out.println(col.getItems());
         getMyObjectCreationView().getCreationListView().setMyItems(col.getItems());
     }
 

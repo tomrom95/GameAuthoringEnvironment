@@ -1,18 +1,11 @@
 package gameauthoring.creation.forms;
 
-import java.awt.Color;
-import java.util.function.Consumer;
 import engine.profile.IProfilable;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Paint;
 
 
 /**
@@ -25,7 +18,7 @@ public class CreationListView<E extends IProfilable> implements ICreationListVie
 
     private ObservableList<E> myItems;
     private ListView<E> myListView;
-    private static final double HEIGHT = 580; //TODO: move to common resource file
+    private static final double HEIGHT = 580; // TODO: move to common resource file
 
     public CreationListView (ObservableList<E> items) {
         myItems = items;
@@ -35,7 +28,7 @@ public class CreationListView<E extends IProfilable> implements ICreationListVie
         myListView.setMinHeight(HEIGHT);
         myListView.setMaxHeight(HEIGHT);
         myListView.setPlaceholder(new Label("Created objects will show up here."));
-        
+
         // TODO: resource file and maybe constructor arguement later
         myListView.getStyleClass().add("myObjectListView");
     }
@@ -46,22 +39,10 @@ public class CreationListView<E extends IProfilable> implements ICreationListVie
     }
 
     @Override
-    public void setEditAction (Consumer<E> action) {
-        getMyListView().setOnMouseClicked(e -> handleEditCell(action));
+    public void setEditAction (Runnable action) {
+        getMyListView().getSelectionModel().selectedItemProperty()
+                .addListener( (observable, oldValue, newValue) -> action.run());
 
-    }
-
-    /**
-     * Event handler for cell selection. Passes the item in the listview to the
-     * given Consumer action
-     * 
-     * Note: can delete this if we want because selection is now hooked up automatically
-     * 
-     * @param action The consumer to which to pass the selected item
-     */
-    private void handleEditCell (Consumer<E> action) {
-        E item = getMyListView().getSelectionModel().getSelectedItem();
-        action.accept(item);
     }
 
     @Override

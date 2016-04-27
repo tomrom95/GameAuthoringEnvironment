@@ -1,14 +1,10 @@
 package gameauthoring.creation.forms;
 
 import java.util.List;
-import java.util.function.Consumer;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormView;
-import gameauthoring.shareddata.DefinitionCollection;
-import gameauthoring.shareddata.IDefinitionCollection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
@@ -85,12 +81,12 @@ public class CreationView<E extends IProfilable> implements ICreationView<E> {
     }
 
     @Override
-    public void setNewAction (Consumer<?> action) {
-        myNewButton.setOnAction(e -> action.accept(null));
+    public void setNewAction (Runnable action) {
+        myNewButton.setOnAction(e -> action.run());
     }
 
     @Override
-    public void setEditAction (Consumer<E> action) {
+    public void setEditAction (Runnable action) {
         // set listcell's edit button's setOnAction to call action
         getCreationListView().setEditAction(action);
 

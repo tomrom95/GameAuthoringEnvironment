@@ -1,6 +1,5 @@
 package gameauthoring.creation.forms;
 
-import java.util.function.Consumer;
 import gameauthoring.util.Glyph;
 import javafx.collections.ObservableList;
 
@@ -18,7 +17,7 @@ public interface ICreationListView<E> extends Glyph {
      * 
      * @param action The action to take when the user decides to edit a different item
      */
-    void setEditAction (Consumer<E> action);
+    void setEditAction (Runnable action);
 
     /**
      * Get the items in the list
