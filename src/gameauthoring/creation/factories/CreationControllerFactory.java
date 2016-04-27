@@ -1,7 +1,11 @@
 package gameauthoring.creation.factories;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import engine.IGame;
 import gameauthoring.creation.forms.CreationController;
 import gameauthoring.creation.forms.CreationControllerAttribute;
@@ -19,69 +23,55 @@ import gameauthoring.creation.forms.CreationControllerSprite;
  *
  */
 public class CreationControllerFactory {
-    
-    
-    public CreationControllerFactory () {
+
+    private IGame myGame;
+    private ResourceBundle myCreationClasses = ResourceBundle
+            .getBundle("defaults/create_creation_controller");
+    private ResourceBundle mySubforms = ResourceBundle.getBundle("defaults/subforms");
+
+    public CreationControllerFactory (IGame game) {
+        myGame = game;
     }
 
-    public CreationController<?> createCreationController(String className, String key, List<String> sfcs, IGame game){
+    public List<CreationController<?>> createCreationControllers () {
+        List<CreationController<?>> ccs = new ArrayList<>();
+        List<String> order = getPropertyValueAsList("Order", myCreationClasses);
+        for (String key : order) {
+            ccs.add(createCreationController(key));
+        }
+
+        return ccs;
+    }
+
+    public CreationController<?> createCreationController (String key) {
+        String className = myCreationClasses.getString(key);
+        List<String> sfcs = getSFCs(key);
+
         try {
-            return (CreationController<?>) Reflection.createInstance(className, key, sfcs, game);
-        } catch (ReflectionException e){
+            return (CreationController<?>) Reflection.createInstance(className, key, sfcs, myGame);
+        }
+        catch (ReflectionException e) {
             System.out.println("reflection exception " + e.getMessage());
-            //TODO handle exception
-        } catch (ClassCastException e) {
-            //TODO handle exception
+            // TODO handle exception
+        }
+        catch (ClassCastException e) {
+            // TODO handle exception
             System.out.println("class cast exception " + e.getMessage());
 
         }
         System.out.println(className);
         return null;
     }
-    public CreationController<?> createCreationController(String className){
-        try {
-            return (CreationController<?>) Reflection.createInstance(className, new ArrayList<>());
-        } catch (ReflectionException e){
-            System.out.println("reflection exception" + e.getMessage());
-            //TODO handle exception
-        } catch (ClassCastException e) {
-            //TODO handle exception
-            System.out.println("class cast exception" + e.getMessage());
 
-        }
-        System.out.println(className);
-        return null;
+    private List<String> getCommaSeparatedStringAsList(String value) {
+        return Arrays.asList(value.split(",")).stream()
+                .map(sfc -> sfc.trim()).collect(Collectors.toList());
     }
-    public CreationControllerSprite createSpriteCreationController (String title,
-                                                                    List<String> sfcs,
-                                                                    IGame myGame) {
-        if (title.equals("Missiles")) {
-            System.out.println("missile");
-            return new CreationControllerMissile(title, sfcs, myGame);
-        }
-        return new CreationControllerSprite(title, sfcs, myGame);
+    private List<String> getPropertyValueAsList(String key, ResourceBundle resource ){
+        return  getCommaSeparatedStringAsList(resource.getString(key));
+    }
+    private List<String> getSFCs (String tabName) {
+        return getPropertyValueAsList(tabName, mySubforms);
     }
 
-    public CreationControllerAttribute createAttributeCreationController (String title,
-                                                                          List<String> sfcs,
-                                                                          IGame myGame) {
-        return new CreationControllerAttribute(title, sfcs, myGame);
-    }
-
-    public CreationControllerGlobals createGlobalsCreationController (String title,
-                                                                      List<String> sfcs,
-                                                                      IGame myGame) {
-        return new CreationControllerGlobals(title, sfcs, myGame);
-    }
-
-    public CreationControllerEvent createEventCreationController (String title,
-                                                                  List<String> sfcs,
-                                                                  IGame myGame) {
-        return new CreationControllerEvent(title, sfcs, myGame);
-    }
-
-    public CreationControllerGroup createGroupCC (String title, List<String> sfcs, IGame myGame) {
-        return new CreationControllerGroup(title, sfcs, myGame);
-
-    }
 }

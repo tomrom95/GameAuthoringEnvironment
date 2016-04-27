@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import engine.AuthorshipData;
 import engine.Game;
 import engine.IGame;
@@ -31,8 +32,7 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private TabPane myTabPane;
     private BasicUIFactory myUIFactory = new BasicUIFactory();
-    private ResourceBundle myControllerResources = ResourceBundle
-            .getBundle("defaults/create_creation_controller");
+
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
 
     private IGame myGame;
@@ -47,81 +47,8 @@ public class ObjectCreationTabViewer implements ITabViewer {
     }
 
     private void initializeLists () {
-
-        List<String> myGlobalSFCs =
-                new ArrayList<String>(Arrays.asList("ProfileSFC", "LevelSpecific", "Attribute"));
-
-        List<String> myAttributeSFCs =
-                new ArrayList<String>(Arrays.asList("ProfileSFC", "Attribute"));
-
-        List<String> myMissileSFCs = new ArrayList<String>(Arrays.asList("ProfileSFC", "Movement"));
-        List<String> myEnemySFCs =
-                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Movement"));
-       List<String> myDefenderSFCs =
-
-                new ArrayList<String>(Arrays.asList("ProfileSFC", "SelectAttribute", "Upgrade",
-                                                    "Cost", "Movement", "FireMult"));
-        List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("ProfileSFC", "SelectSprite"));
-
-        List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
-
-        CreationControllerFactory ccFactory = new CreationControllerFactory();
-        // TODO: take sfcs out of cc constructors
-
-        CreationController<?> ccGlobal =
-                ccFactory.createCreationController(myControllerResources.getString("Globals"),
-                                                   "Globals", myGlobalSFCs,
-                                                   myGame);
-
-        CreationController<?> ccAttributes =
-                ccFactory.createCreationController(myControllerResources.getString("Attributes"),
-                                                   "Attributes", myAttributeSFCs,
-                                                   myGame);
-        CreationController<?> ccMissiles =
-                ccFactory.createCreationController(myControllerResources.getString("Missiles"),
-                                                   "Missiles", myMissileSFCs,
-                                                   myGame);
-        CreationController<?> ccEnemies =
-                ccFactory.createCreationController(myControllerResources.getString("Enemies"),
-                                                   "Enemies", myEnemySFCs,
-                                                   myGame);
-        CreationController<?> ccDefenders =
-                ccFactory.createCreationController(myControllerResources.getString("Defenders"),
-                                                   "Defenders", myDefenderSFCs,
-                                                   myGame);
-        CreationController<?> ccGroups =
-                ccFactory.createCreationController(myControllerResources.getString("Groups"),
-                                                   "Groups", myGroupSFCs, myGame);
-        CreationController<?> ccEvents =
-                ccFactory.createCreationController(myControllerResources.getString("Events"),
-                                                   "Events", myEventSFCs, myGame);
-     
-
-        myCCs = new ArrayList<CreationController<?>>();
-
-        myCCs.add(ccGlobal);
-        myCCs.add(ccAttributes);
-        myCCs.add(ccMissiles);
-
-        myCCs.add(ccEnemies);
-        myCCs.add(ccDefenders);
-
-        myCCs.add(ccGroups);
-
-        myCCs.add(ccEvents);
-
-        /*
-        ccGlobal.init(myGlobalSFCs);
-        ccAttributes.init(myAttributeSFCs);
-        ccMissiles.init(myMissileSFCs);
-
-        ccEnemies.init(myEnemySFCs);
-        ccDefenders.init(myDefenderSFCs);
-        ccGroups.init(myGroupSFCs);
-
-        ccEvents.init(myEventSFCs);
-        */
-
+        CreationControllerFactory ccFactory = new CreationControllerFactory(myGame);
+        myCCs = ccFactory.createCreationControllers();
     }
 
     @Override
@@ -141,7 +68,9 @@ public class ObjectCreationTabViewer implements ITabViewer {
 
     private void generateAllSubTabs () {
         for (int i = 0; i < myCCs.size(); i++) {
-            Tab tab = myUIFactory.createTabText(myCCs.get(i).getMyTitle(), false, myCVs.get(i).draw());
+            Tab tab =
+                    myUIFactory.createTabText(myCCs.get(i).getMyTitle(), false,
+                                              myCVs.get(i).draw());
             myTabPane.getTabs().add(tab);
         }
     }
