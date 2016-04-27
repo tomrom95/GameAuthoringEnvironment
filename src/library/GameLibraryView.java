@@ -1,5 +1,6 @@
 package library;
 
+import java.util.ResourceBundle;
 import engine.IGame;
 import gameauthoring.tabs.AuthoringView;
 import javafx.event.ActionEvent;
@@ -13,13 +14,18 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import splash.LocaleManager;
 import splash.MainUserInterface;
 
 
 public class GameLibraryView {
 
     private static final String CSS_FILE = "defaults/library.css";
-    
+    private static final ResourceBundle myBundle = ResourceBundle.getBundle("defaults/game_library");
+    private static final ResourceBundle myLang =
+            ResourceBundle.getBundle("languages/labels",
+                                     LocaleManager.getInstance().getCurrentLocaleProperty().get());
+
     private Stage myStage;
     private BorderPane myLayout = new BorderPane();
     private MenuItem myHomeItem;
@@ -36,16 +42,16 @@ public class GameLibraryView {
 
     private void createGameDisplay () {
         myGameDisplay = new FlowPane();
-        myGameDisplay.setVgap(60);
-        myGameDisplay.setHgap(100);
-        myGameDisplay.setId("gamedisplay");
+        myGameDisplay.setVgap(Double.parseDouble(myBundle.getString("Vgap")));
+        myGameDisplay.setHgap(Double.parseDouble(myBundle.getString("Hgap")));
+        myGameDisplay.setId(myBundle.getString("gamedisplayID"));
         myLayout.setCenter(myGameDisplay);
     }
 
     private void createMenuBar () {
         MenuBar menuBar = new MenuBar();
-        Menu menu = new Menu("File");
-        myHomeItem = new MenuItem("Go Home");
+        Menu menu = new Menu(myLang.getString("File"));
+        myHomeItem = new MenuItem(myLang.getString("GoHome"));
         myHomeItem.setOnAction(e -> new MainUserInterface().init(myStage));
 
         menu.getItems().add(myHomeItem);
@@ -65,7 +71,7 @@ public class GameLibraryView {
         myStage = s;
         Scene scene = new Scene(myLayout, AuthoringView.WIDTH, AuthoringView.HEIGHT);
         scene.getStylesheets().add(CSS_FILE);
-        s.setTitle("Game Library");
+        s.setTitle(myLang.getString("GameLibrary"));
         s.setScene(scene);
     }
 
