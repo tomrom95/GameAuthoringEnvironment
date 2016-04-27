@@ -46,7 +46,7 @@ public class TestPathing extends Application {
     private static final double PANE_HEIGHT = 800;
 
     // Sprite Parameters
-    private static final double SPRITE_MOVEMENT_SPEED = 3;
+    private static final double SPRITE_MOVEMENT_SPEED = 1;
     private static final double SPRITE_HEIGHT = 50;
     private static final double SPRITE_WIDTH = 50;
     private static final String SPRITE_IMAGE_URL = "/images/C.png";
@@ -61,8 +61,8 @@ public class TestPathing extends Application {
     private static final int ENEMY_INITIAL_Y = 100;
 
     // Other Parameters
-    private static final int SPRITE_INITIAL_X = 800;
-    private static final int SPRITE_INITIAL_Y = 300;
+    private static final int SPRITE_INITIAL_X = 900;
+    private static final int SPRITE_INITIAL_Y = 200;
 
     private static final String BACKGROUND_URL = "/images/pvz.jpg";
 

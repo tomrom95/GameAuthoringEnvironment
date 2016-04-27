@@ -72,12 +72,11 @@ public class GameGraphFactory implements INodeGraphFactory {
         }
         connectUnobstructedNodes(placedNodes, obstructionMap);
         //adding the goal and start nodes
-        IPathNode startNode = new PathNode(start);
-        IPathNode goalNode = new PathNode(goal);
+        //need to check if the nodes already exist in the graph
+        IPathNode startNode = toReturn.addIfCantGetFor(start);
+        IPathNode goalNode = toReturn.addIfCantGetFor(goal);
         connectWithAllInGraph(toReturn, startNode, obstructionMap);
         connectWithAllInGraph(toReturn, goalNode, obstructionMap);
-        toReturn.addNode(startNode);
-        toReturn.addNode(goalNode);
         return toReturn;
 
     }

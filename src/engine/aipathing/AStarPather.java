@@ -109,6 +109,7 @@ public class AStarPather implements INodeGraphPather {
             cur = parentMap.get(cur);
             toReturn.add(cur.getLocation());
         }
+        toReturn.remove(start);
         //toReturn.add(start.getLocation());
         Collections.reverse(toReturn);
         return toReturn;

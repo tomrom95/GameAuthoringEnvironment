@@ -127,4 +127,21 @@ public class NodeGraph implements INodeGraph {
         
     }
 
+    @Override
+    public IPathNode addIfCantGetFor (Coordinate pos) {
+        // TODO Auto-generated method stub
+        if(getNodes().contains(new PathNode(pos)))
+        {
+            return getNodes().stream()
+                    .filter(node -> node.getLocation().equals(pos))
+                    .reduce((a,b) -> a)
+                    .orElse(null);
+        }else{
+            IPathNode toReturn = new PathNode(pos);
+            addNode(toReturn);
+            return toReturn;
+        }
+        
+    }
+
 }

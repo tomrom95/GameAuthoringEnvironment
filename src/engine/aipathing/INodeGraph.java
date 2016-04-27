@@ -99,5 +99,15 @@ public interface INodeGraph {
      * Storing the created 2-d array of the nodes 
      */
     void setPlacedNodes (IPathNode [][] toStore);
+    
+    /**
+     * Will either return the existing node at the location,
+     * or will create one and add it, returning the created
+     * instance
+     * @param pos
+     * @return
+     */
+    IPathNode addIfCantGetFor(Coordinate pos);
+    
 
 }
