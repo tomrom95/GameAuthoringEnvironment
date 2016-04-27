@@ -1,8 +1,6 @@
 package gameauthoring.creation.subforms;
 
 import engine.definitions.concrete.AttributeDefinition;
-import gameauthoring.creation.entryviews.IFormDataManager;
-import gameauthoring.util.ErrorMessage;
 
 
 /**
@@ -18,33 +16,23 @@ public class MakeAttributeSFC implements ISubFormControllerAttribute {
     private double myInitialValue = 0;
 
     public MakeAttributeSFC () {
-        this.myView = new MakeAttributeSFV();
+        myView = new MakeAttributeSFV();
     }
 
     @Override
     public void initializeFields () {
-        myFormData.set(myView.getMyStartingValueKey(), String.valueOf(myInitialValue));
+        myView.populateWithData(myInitialValue);
     }
 
     @Override
     public void updateItem (AttributeDefinition item) {
-        try {
-            double startingValue =
-                    Double.parseDouble(myView.getData()
-                            .getValueProperty(myView.getMyStartingValueKey()).get());
-            item.setStartingValue(startingValue);
-        }
-        catch (NumberFormatException e) {
-            ErrorMessage err = new ErrorMessage("Max and Min Values must be Numbers");// TODO: resource file
-            err.showError();
-        }
+        double startingValue = myView.getStartingValue();
+        item.setStartingValue(startingValue);
     }
 
     @Override
     public void populateViewsWithData (AttributeDefinition item) {
-        myView.getData()
-                .getValueProperty(myView.getMyStartingValueKey())
-                .set(Double.toString(item.getStartingValue()));
+        myView.populateWithData(item.getStartingValue());
 
     }
 

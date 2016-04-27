@@ -17,15 +17,15 @@ public interface IUpgradeSFV  extends ISubFormView{
 
     BooleanProperty isGlobalProperty ();
 
-    void setIsUpgradable (boolean isSelected);
-
     SpriteDefinition getNextUpgrade ();
 
     AttributeDefinition getDepletedAttribute ();
 
-    String getMyCostKey ();
-
     void setDepletedAttribute (AttributeDefinition attributeDefinition);
 
     void setNextUpgrade (SpriteDefinition upgrade);
+
+    double getMyCost ();
+    
+    void populateWithData(SpriteDefinition nextUpgrade, AttributeDefinition depletedAttribute, double cost );
 }

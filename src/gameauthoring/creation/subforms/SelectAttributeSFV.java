@@ -5,19 +5,13 @@ import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.creation.entryviews.MultiChoiceEntryView;
 import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
-import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.DraggableAddCell;
-import gameauthoring.util.DraggableRemoveCell;
 import gameauthoring.util.DraggableRemoveCellImage;
-import gameauthoring.util.UIFactory;
 import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 
@@ -32,9 +26,8 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
     private String myAttributesKey = "Available Attributes: ";
     private String mySelectedKey = "Selected Attributes: ";
     private MultiChoiceEntryView<AttributeDefinition> myAttributeSelector;
-    private HBox myContainer;
-    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private MultiChoiceEntryView<AttributeDefinition> mySelectedView;
+    private HBox myContainer;
 
     public SelectAttributeSFV (IDefinitionCollection<AttributeDefinition> attributes) {
         myAttributeSelector =
@@ -74,7 +67,7 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
         myAttributeSelector.getListView()
                 .setCellFactory(c -> new DraggableAddCell<AttributeDefinition>(mySelectedView
                         .getListView()));
-        myContainer = myUIFactory.makeHBox(20, Pos.CENTER, myAttributeSelector.draw(), mySelectedView.draw());
+        myContainer = getMyUIFactory().makeHBox(20, Pos.CENTER, myAttributeSelector.draw(), mySelectedView.draw());
     }
 
 }

@@ -13,10 +13,8 @@ import gameauthoring.creation.entryviews.MultiChoiceEntryView;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
-import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.DraggableAddCell;
 import gameauthoring.util.DraggableRemoveCell;
-import gameauthoring.util.UIFactory;
 
 
 /**
@@ -31,7 +29,6 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
     private List<MultiChoiceEntryView<SpriteDefinition>> myViews;
     private List<DefinitionCollection<SpriteDefinition>> mySprites;
     private MultiChoiceEntryView<SpriteDefinition> mySelected;
-    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private String mySelectedLabel = "Sprites in Group: ";
 
     public SelectSpriteSFV (List<DefinitionCollection<SpriteDefinition>> sprites) {
@@ -45,19 +42,22 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
 
     @Override
     protected void initView () {
-        myAccordion = myUIFactory.makeAccordion(300);
+        myAccordion = getMyUIFactory().makeAccordion(300);
         for (IDefinitionCollection<SpriteDefinition> def : mySprites) {
             MultiChoiceEntryView<SpriteDefinition> myView =
                     new MultiChoiceEntryView<>(def.getTitle(), def.getItems(), 300, 400,
                                                AuthoringView.DEFAULT_ENTRYVIEW);
-            myView.getListView().setCellFactory(c->new DraggableAddCell<SpriteDefinition>(mySelected.getListView()));
+            myView.getListView()
+                    .setCellFactory(c -> new DraggableAddCell<SpriteDefinition>(mySelected
+                            .getListView()));
             myViews.add(myView);
             TitledPane tp = new TitledPane(def.getTitle(), myView.getListView());
             myAccordion.getPanes().add(tp);
         }
-        mySelected.getListView().setCellFactory(c->new DraggableRemoveCell<SpriteDefinition>(myAccordion));
+        mySelected.getListView()
+                .setCellFactory(c -> new DraggableRemoveCell<SpriteDefinition>(myAccordion));
         mySelected.getListView().setPlaceholder(new Label("Drag Sprites Here"));
-        myContainer = myUIFactory.makeHBox(10, Pos.CENTER, myAccordion, mySelected.draw());
+        myContainer = getMyUIFactory().makeHBox(10, Pos.CENTER, myAccordion, mySelected.draw());
     }
 
     /**
@@ -69,7 +69,7 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
     public List<SpriteDefinition> getChosen () {
         return mySelected.getListView().getItems();
     }
-    
+
     @Override
     public void setChosen (List<SpriteDefinition> chosenSprites) {
         mySelected.getListView().setItems(FXCollections.observableArrayList(chosenSprites));
@@ -79,7 +79,5 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
     public Node draw () {
         return myContainer;
     }
-
-   
 
 }

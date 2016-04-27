@@ -35,8 +35,7 @@ public class ImageEntryView extends EntryView {
         initFileChooser(new FileChooser());
     }
 
-    public ImageEntryView (String label,
-                           IFormDataManager data,
+    public ImageEntryView (String label, 
                            double width,
                            double height,
                            String cssClass) {
@@ -45,8 +44,7 @@ public class ImageEntryView extends EntryView {
         init();
     }
 
-    public ImageEntryView (String label,
-                           IFormDataManager data,
+    public ImageEntryView (String label, 
                            DoubleProperty width,
                            DoubleProperty height,
                            String cssClass) {
@@ -66,7 +64,12 @@ public class ImageEntryView extends EntryView {
     }
 
     public void updateImage (String url) {
-        myImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(url)));
+        imagePath = url;
+        myImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(imagePath)));
+    }
+    
+    public String getImageURL () {
+        return imagePath;
     }
 
     private void initFileChooser (FileChooser imageChoice) {

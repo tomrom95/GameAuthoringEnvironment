@@ -37,7 +37,6 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     private CheckEntryView isGlobalResource;
     private NumberEntryView myCost;
     private GridPane myPane;
-    private BasicUIFactory myUIFactory = new BasicUIFactory();
 
     public UpgradeSFV (AuthorshipData data, DefinitionCollection<SpriteDefinition> nextUpgrades) {
 
@@ -53,14 +52,9 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
                                                                data.getMyCreatedAttributes()
                                                                        .getItems(),
                                                                AuthoringView.DEFAULT_ENTRYVIEW);
-
-        isUpgradable =
-                new CheckEntryView(myUpgradableKey, AuthoringView.DEFAULT_ENTRYVIEW);
-
+        isUpgradable = new CheckEntryView(myUpgradableKey, AuthoringView.DEFAULT_ENTRYVIEW);
         isGlobalResource = new CheckEntryView(myGlobalKey, AuthoringView.DEFAULT_ENTRYVIEW);
-        myCost =
-                new NumberEntryView(myCostKey, super.getData(), 60, 20,
-                                    AuthoringView.DEFAULT_ENTRYVIEW);
+        myCost = new NumberEntryView(myCostKey, 60, 20, AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
         initBinding(data);
 
@@ -74,7 +68,7 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
         myPane.add(myAttributeChoices.draw(), 1, 1);
         myPane.add(myCost.draw(), 1, 2);
         myPane.add(myUpgradeChoices.draw(), 1, 0);
-        myContainer = myUIFactory.makeTitledPane(myUpgradableKey, myPane, false);
+        myContainer = getMyUIFactory().makeTitledPane(myUpgradableKey, myPane, false);
     }
 
     private void initBinding (AuthorshipData data) {
@@ -92,8 +86,6 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
             myAttributeChoices.setItems(data.getMyCreatedGlobals().getItems());
         }
         else {
-            // TODO: maybe this should be from mySprite.getAttributes() so that you can only pick
-            // attributes that the sprite has
             myAttributeChoices.setItems(data.getMyCreatedAttributes().getItems());
         }
     }

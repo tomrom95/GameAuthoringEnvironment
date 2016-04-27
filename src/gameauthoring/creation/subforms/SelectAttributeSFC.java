@@ -4,6 +4,7 @@ import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.shareddata.IDefinitionCollection;
 
+
 /**
  * Controller to deal with user attribute selection for a sprite definition
  * 
@@ -31,9 +32,9 @@ public class SelectAttributeSFC implements ISubFormControllerSprite {
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
         myView.setSelectedAttributes(item.getAttributes());
-        
+
     }
-    
+
     @Override
     public ISubFormView getSubFormView () {
         return myView;

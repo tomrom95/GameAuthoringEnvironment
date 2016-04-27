@@ -1,10 +1,8 @@
 package gameauthoring.creation.subforms;
 
-import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
 
 
 /**
@@ -16,11 +14,11 @@ import javafx.scene.layout.GridPane;
  */
 public class MakeAttributeSFV extends SubFormView implements IMakeAttributeSFV {
 
-    private String myStartingValueKey = "Starting Value: ";
-    private IEntryView myStartingValue;
+    private String myStartingValueLabel = "Starting Value: ";
+    private NumberEntryView myStartingValue;
 
     public MakeAttributeSFV () {
-        myStartingValue = new NumberEntryView(myStartingValueKey, 100, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myStartingValue = new NumberEntryView(myStartingValueLabel, 100, 30, AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
     }
 
@@ -29,10 +27,15 @@ public class MakeAttributeSFV extends SubFormView implements IMakeAttributeSFV {
     }
 
     @Override
-    public String getMyStartingValueKey () {
-        return myStartingValueKey;
+    public double getStartingValue() {
+        return myStartingValue.getData();
     }
-
+    
+    @Override
+    public void populateWithData(double value) {
+        myStartingValue.setData(value);
+    }
+    
     @Override
     public Node draw () {
         return myStartingValue.draw();
