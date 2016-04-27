@@ -4,6 +4,7 @@ import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.SpriteDefinition;
 import javafx.beans.property.BooleanProperty;
 
+
 /**
  * Defines necessary information methods to update an Upgrade Module Definition Properly
  * 
@@ -11,8 +12,8 @@ import javafx.beans.property.BooleanProperty;
  *
  */
 
-public interface IUpgradeSFV  extends ISubFormView{
-
+public interface IUpgradeSFV extends ISubFormView {
+    
     BooleanProperty isUpgradableProperty ();
 
     BooleanProperty isGlobalProperty ();
@@ -21,11 +22,10 @@ public interface IUpgradeSFV  extends ISubFormView{
 
     AttributeDefinition getDepletedAttribute ();
 
-    void setDepletedAttribute (AttributeDefinition attributeDefinition);
-
-    void setNextUpgrade (SpriteDefinition upgrade);
-
     double getMyCost ();
-    
-    void populateWithData(SpriteDefinition nextUpgrade, AttributeDefinition depletedAttribute, double cost );
+
+    void populateWithData (boolean isUpgradable,
+                           SpriteDefinition nextUpgrade,
+                           AttributeDefinition depletedAttribute,
+                           double cost);
 }

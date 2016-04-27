@@ -1,6 +1,5 @@
 package gameauthoring.creation.subforms;
 
-import java.util.List;
 import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.SpriteDefinition;
@@ -9,8 +8,6 @@ import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
-import gameauthoring.util.BasicUIFactory;
-import gameauthoring.util.UIFactory;
 import javafx.beans.property.BooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.control.TitledPane;
@@ -101,8 +98,8 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     }
 
     @Override
-    public String getMyCostKey () {
-        return this.myCostKey;
+    public double getMyCost () {
+        return myCost.getData();
     }
 
     @Override
@@ -121,18 +118,14 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     }
 
     @Override
-    public void setIsUpgradable (boolean isSelected) {
-        this.isUpgradableProperty().set(isSelected);
-    }
-
-    @Override
-    public void setDepletedAttribute (AttributeDefinition item) {
-        this.myAttributeChoices.setSelected(item);
-    }
-
-    @Override
-    public void setNextUpgrade (SpriteDefinition item) {
-        this.myUpgradeChoices.setSelected(item);
+    public void populateWithData (boolean isUpgradable,
+                                  SpriteDefinition nextUpgrade,
+                                  AttributeDefinition depletedAttribute,
+                                  double cost) {
+        this.isUpgradable.setSelected(isUpgradable);
+        myUpgradeChoices.setSelected(nextUpgrade);
+        myAttributeChoices.setSelected(depletedAttribute);
+        myCost.setData(cost);
     }
 
 }

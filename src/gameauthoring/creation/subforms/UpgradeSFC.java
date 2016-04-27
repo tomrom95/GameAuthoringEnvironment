@@ -1,10 +1,8 @@
 package gameauthoring.creation.subforms;
 
-import engine.AttributeType;
 import engine.IGame;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.SpriteDefinition;
-import engine.definitions.moduledef.ModuleDefinition;
 import engine.definitions.upgrades.GlobalUpgradeDefinition;
 import engine.definitions.upgrades.NullUpgradeDefinition;
 import engine.definitions.upgrades.SpriteUpgradeDefinition;
@@ -17,35 +15,24 @@ public class UpgradeSFC implements ISubFormControllerSprite {
 
     private IUpgradeSFV mySFV;
     private IGame myGame;
-    private UpgradeDefinition myGlobalUpgrade;
-    private UpgradeDefinition mySpriteUpgrade;
-    private double myInitialValue = 0;
 
     public UpgradeSFC (IGame game, DefinitionCollection<SpriteDefinition> nextUpgrade) {
-        mySFV = new UpgradeSFV(game.getAuthorshipData(),nextUpgrade);
-        this.myGame = game;
-        this.myGlobalUpgrade = new GlobalUpgradeDefinition();
-        this.mySpriteUpgrade = new SpriteUpgradeDefinition();
+        mySFV = new UpgradeSFV(game.getAuthorshipData(), nextUpgrade);
+        myGame = game;
     }
 
     @Override
     public void updateItem (SpriteDefinition item) {
         try {
             if (mySFV.isUpgradableProperty().get()) {
-                double cost =
-                        Double.parseDouble(mySFV.getData().getValueProperty(mySFV.getMyCostKey())
-                                .get());
-                AttributeType type = new AttributeType(mySFV.getDepletedAttribute().getType());
+                double cost = mySFV.getMyCost();
+                AttributeDefinition attribute = mySFV.getDepletedAttribute();
                 SpriteDefinition nextUpgrade = mySFV.getNextUpgrade();
                 if (mySFV.isGlobalProperty().get()) {
-                    myGlobalUpgrade.setParameters(myGame, nextUpgrade, type, cost);
-                    item.setUpgrade(myGlobalUpgrade);
-
+                    item.setUpgrade(new GlobalUpgradeDefinition(myGame, nextUpgrade, attribute, cost));
                 }
                 else {
-                    mySpriteUpgrade.setParameters(myGame, nextUpgrade, type, cost);
-                    item.setUpgrade(mySpriteUpgrade);
-
+                    item.setUpgrade(new SpriteUpgradeDefinition(myGame, nextUpgrade, attribute, cost));
                 }
             }
             else {
@@ -54,9 +41,7 @@ public class UpgradeSFC implements ISubFormControllerSprite {
         }
         catch (Exception e) {
             ErrorMessage err =
-                    new ErrorMessage("Please fill in all fields associated with Upgrade");// TODO
-                                                                                          // resource
-                                                                                          // file
+                    new ErrorMessage("Please fill in all fields associated with Upgrade");
             err.showError();
         }
     }
@@ -68,35 +53,13 @@ public class UpgradeSFC implements ISubFormControllerSprite {
 
     @Override
     public void initializeFields () {
-        mySFV.getData().set(mySFV.getMyCostKey(), String.valueOf(this.myInitialValue));
     }
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
         UpgradeDefinition upgrade = item.getUpgrade();
-        // TODO: fix bad code. just doing it now to see if populating works
-        if (upgrade instanceof NullUpgradeDefinition) {
-            mySFV.setIsUpgradable(false);
-        }
-        else {
-            mySFV.setIsUpgradable(true);
-            mySFV.getData().getValueProperty(mySFV.getMyCostKey())
-                    .set(Double.toString(upgrade.getCost()));
-
-            // TODO make upgrade definition contain attriubte definition instead of type for same reference
-            // mySFV.setDepletedAttribute(upgrade.getAttributeDefinition());
-            mySFV.setNextUpgrade(upgrade.getUpgrade());
-
-            if (upgrade instanceof GlobalUpgradeDefinition) {
-
-                mySFV.isGlobalProperty().set(true);
-
-            }
-            else if (upgrade instanceof SpriteUpgradeDefinition) {
-
-            }
-        }
-
+        mySFV.populateWithData(upgrade.isUpgradable(), upgrade.getUpgrade(), upgrade.getAttribute(),
+                               upgrade.getCost());
     }
 
 }
