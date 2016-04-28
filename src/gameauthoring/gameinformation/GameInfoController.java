@@ -1,8 +1,6 @@
 package gameauthoring.gameinformation;
 
 import engine.IGame;
-import gameauthoring.creation.entryviews.FormDataManager;
-import gameauthoring.creation.entryviews.IFormDataManager;
 
 
 /**

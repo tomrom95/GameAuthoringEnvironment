@@ -44,7 +44,7 @@ public class CostSFV extends SubFormView implements ICostSFV {
 
     @Override
     protected void initView () {
-        getMyUIFactory().makeHBox(SPACING, Pos.CENTER, myAttributes.draw(), myCost.draw());
+        myContainer = getMyUIFactory().makeHBox(SPACING, Pos.CENTER, myAttributes.draw(), myCost.draw());
     }
 
     @Override

@@ -18,7 +18,6 @@ import javafx.scene.layout.HBox;
  *
  */
 public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
-    private HBox myContainer;
     private ComboBox<E> myChoices;
 
     public SingleChoiceEntryView (String label, ObservableList<E> observableList, String cssClass) {
@@ -62,7 +61,7 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
 
     @Override
     public Node draw () {
-        return myContainer;
+        return getMyContainer();
     }
 
     public ObservableList<E> getItems () {

@@ -63,7 +63,8 @@ public class ObjectCreationTabViewer implements ITabViewer {
                                                     "Cost", "Movement", "FireMult"));
         List<String> myGroupSFCs = new ArrayList<>(Arrays.asList("ProfileSFC", "SelectSprite"));
 
-        List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
+      //  List<String> myEventSFCs = new ArrayList<String>(Arrays.asList("Events"));
+        List<String> myEventSFCs = new ArrayList<String>(Arrays.asList());
 
         CreationControllerFactory ccFactory = new CreationControllerFactory();
         // TODO: take sfcs out of cc constructors

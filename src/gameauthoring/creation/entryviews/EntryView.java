@@ -27,7 +27,7 @@ public abstract class EntryView implements IEntryView {
     private Label myLabel;
     private Pane myContainer;
     private BasicUIFactory myFactory = new BasicUIFactory();
-    private double containerSpacing = 20;
+    private double containerSpacing = 10;
 
     public EntryView (String label, String cssClass) {
         myLabel = new Label(label);
@@ -36,7 +36,7 @@ public abstract class EntryView implements IEntryView {
     }
     
     protected void initContainer (String cssClass) {
-        myContainer = myFactory.makeVBox(containerSpacing, Pos.CENTER, myLabel);
+        myContainer = myFactory.makeVBox(containerSpacing, Pos.TOP_LEFT, myLabel);
         myContainer.getStyleClass().add(cssClass);
     }
 

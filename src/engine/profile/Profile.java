@@ -24,22 +24,23 @@ public class Profile implements IProfile {
     private ImageGraphic myImage;
     private DoubleProperty myImageWidth;
     private DoubleProperty myImageHeight;
+    private static final double DEFAULT_SIZE = 100;
 
 
     public Profile () {
-        init("<NAME>", "<DESCRIPTION>", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+        init("<NAME>", "<DESCRIPTION>", new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
     }
 
     public Profile (String name) {
-        init(name, "", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+        init(name, "", new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
     }
 
     public Profile (String name, String description) {
-        init(name, description, new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+        init(name, description, new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
     }
 
     public Profile (String name, String description, String url) {
-        init(name, description, new ImageGraphic(0, 0, url));
+        init(name, description, new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, url));
     }
 
     public Profile (String name, String description, String url, double width, double height){
