@@ -32,8 +32,7 @@ public class UpgradeModule implements IModule {
     
     @Override
     public void update (TimeDuration duration) {
-        myCheck.update(duration);
-
+        //do nothing
     }
 
     @Override
@@ -72,7 +71,6 @@ public class UpgradeModule implements IModule {
     }
     
     public BooleanProperty isUgradeable () {
-        
         return myCheck.getStatus();
     }
 

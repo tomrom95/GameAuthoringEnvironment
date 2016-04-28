@@ -32,10 +32,10 @@ public class SpriteSFCFactory extends SubFormControllerFactory<SpriteDefinition>
             return new FiringSFCmult(getMyGame());
         }
         else if (type.equals("UpgradeDefender")) {
-            return new UpgradeSFC(getMyGame(),getMyGame().getAuthorshipData().getMyCreatedSprites().get(1));
+            return new UpgradeSFC(getMyGame(),getMyGame().getAuthorshipData().getMyCreatedSprites("Defenders"));
         }
         else if (type.equals("UpgradeEnemy")) {
-            return new UpgradeSFC(getMyGame(),getMyGame().getAuthorshipData().getMyCreatedSprites().get(0));
+            return new UpgradeSFC(getMyGame(),getMyGame().getAuthorshipData().getMyCreatedSprites("Enemies"));
         }
         else if (type.equals("UpgradeMissile")) {
             return new UpgradeSFC(getMyGame(),getMyGame().getAuthorshipData().getMyCreatedMissiles());

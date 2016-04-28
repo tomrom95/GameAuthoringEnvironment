@@ -11,23 +11,10 @@ import engine.profile.IProfile;
  * @author Joe Lilien
  * @author Jeremy Shreck
  *
- * @param <T>
+ * @param <T> The type of object - must be profilable
  */
 public class ProfileSFC<T extends IProfilable> implements ISubFormController<T> {
 
-    /**
-     * **Implementation still up for discussion
-     * 
-     * We could either have a third party XML reader associate all controllers and views or instead
-     * do it like this and just have a get view method so the FormView can just get a list of views.
-     * 
-     * Hidden Dependencies VS Flexibility
-     * 
-     * Maybe best solution is to interface or superclass ProfileSubFormView and just have it take
-     * any
-     * implementation of that in constructor, but still issues to work out (current Implementation)
-     * 
-     */
     private IProfileSFV myView;
     private String myDefaultName = "<Name>"; // TODO: move strings to resource file
     private String myDefaultDescription = "<Description>";

@@ -15,7 +15,6 @@ public abstract class SizeableGlyph implements Glyph {
     ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
 
     protected double parseString (String input) {
-        // TODO return error
         StringParser parser = new StringParser();
         return parser.parseDouble(input);
     }

@@ -15,7 +15,6 @@ public abstract class SubFormControllerFactory<T extends IProfilable> {
     private IGame myGame;
 
     public SubFormControllerFactory (IGame game) {
-
         myGame = game;
     }
 

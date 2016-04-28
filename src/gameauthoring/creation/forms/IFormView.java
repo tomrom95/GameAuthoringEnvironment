@@ -11,10 +11,6 @@ import gameauthoring.util.Glyph;
  * in the Creation Views. This would be general for
  * creating sprites, attributes, or interactions
  * 
- * 
- * Note: the Consumer methods can really me a method that has no return paramters
- * or arguments, but not sure if this exists
- * 
  * @author Tommy
  * @author Jin An
  * @author Jeremy Schreck
@@ -22,33 +18,27 @@ import gameauthoring.util.Glyph;
  *
  */
 public interface IFormView extends Glyph {
-    /**
-     * Has SpriteEditorController
-     * Has save button (e -> stc.editSprite(List<SubFormView>))
-     * Has delete button (e -> stc.deleteSprite())
-     * Has List<SubFormView>
-     */
 
     /**
      * Tells the view what method it should call upon save
      * 
      * @param action The method to call
      */
-    void setSaveAction (Consumer<?> action);
+    void setSaveAction (Runnable action);
 
     /**
      * Tells the view what method it should call upon delete
      * 
      * @param action The method to call
      */
-    void setDeleteAction (Consumer<?> action);
+    void setDeleteAction (Runnable action);
 
     /**
      * Tells the view what method it should call when user clicks new
      * 
      * @param action The method to call
      */
-    void setNewAction (Consumer<?> action);
+    void setNewAction (Runnable action);
 
     /**
      * Returns the list of subformviews in the form view
@@ -63,5 +53,15 @@ public interface IFormView extends Glyph {
      * @param subFormViews
      */
     void setViews(List<ISubFormView> subFormViews);
+    
+    /**
+     * Display the form to create an item
+     */
+    void showForm();
+    
+    /**
+     * Hide the form to create an item
+     */
+    void hideForm();
     
 }

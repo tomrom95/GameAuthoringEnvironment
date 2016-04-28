@@ -20,7 +20,8 @@ public class CostSFC implements ISubFormControllerSprite {
 
     @Override
     public void updateItem (SpriteDefinition item) {
-        double amount = myView.getCost();
+        if (!myView.costChecked()) return;
+        double amount = myView.getCost();        
         ICost cost = new Cost(myGame, myView.getSelectedAttribute(), amount);
         item.setCost(cost);
     }

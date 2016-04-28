@@ -16,4 +16,6 @@ public interface ICostSFV  extends ISubFormView{
     double getCost();
     
     void populateWithData(AttributeDefinition attribute, double cost);
+
+    boolean costChecked ();
 }

@@ -53,7 +53,7 @@ public class Level implements ILevel {
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
         myWaveSetManager = new WaveSetManager();
-        myPlaceableTileManager = new PlaceableTileManager(this);
+        myPlaceableTileManager = new PlaceableTileManager(this,700,400);
         myAddableSprites = FXCollections.observableArrayList();
     }
 
@@ -210,6 +210,6 @@ public class Level implements ILevel {
 
     @Override
     public void initializePlaceableTiles (int row, int column) {
-        myPlaceableTileManager.set(row, column);
+        myPlaceableTileManager.initialize(row, column);
     }
 }

@@ -1,6 +1,7 @@
 package engine.profile;
 
 import graphics.IGraphic;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
@@ -34,6 +35,8 @@ public interface IProfile {
      * @return The IGraphic
      */
     IGraphic getImage ();
+    
+    BooleanProperty imageChanged ();
 
     /**
      * Get the url of the ImageGraphic

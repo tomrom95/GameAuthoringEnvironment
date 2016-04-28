@@ -3,6 +3,7 @@ package facebookutil.user;
 import java.util.HashMap;
 import java.util.Map;
 import facebookutil.SocialType;
+import facebookutil.user.profiles.LocalProfile;
 import facebookutil.user.profiles.UserProfile;
 
 public class SocialMap {
@@ -12,6 +13,7 @@ public class SocialMap {
     
     public SocialMap () {
         myProfiles = new HashMap<SocialType, UserProfile>();
+        myActiveProfile = new LocalProfile();
     }
     
     public UserProfile getProfileByType (SocialType type){

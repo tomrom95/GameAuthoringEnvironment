@@ -1,11 +1,16 @@
 package gameauthoring.creation.subforms.fire;
 
+import engine.AuthorshipData;
 import engine.definitions.concrete.SpriteDefinition;
+import gameauthoring.creation.entryviews.CheckEntryView;
+import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.BasicUIFactory;
+import javafx.beans.property.BooleanProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -26,8 +31,13 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     private String myMissileKey = "Missile: ";
     private NumberEntryView myAngle;
     private NumberEntryView myWaitTime; 
+    private String myRangedKey = "Ranged: ";
+    private String myRangeValueKey = "Range: ";
+
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
     private RemoveOption myRemove;
+    private CheckEntryView isRangedSelectionView;
+    private NumberEntryView myRangeValue;
 
     public DirectionalFireSFV (IDefinitionCollection<SpriteDefinition> missiles, RemoveOption remove) {
         myRemove = remove;
@@ -35,7 +45,13 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         myWaitTime = new NumberEntryView(myWaitTimeKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
         myMissileSelectionView =
                 new SingleChoiceEntryView<>(myMissileKey, missiles.getItems(), AuthoringView.DEFAULT_ENTRYVIEW);
+//
+//        isRangedSelectionView =
+//                new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
+//        myRangeValue = new NumberEntryView(myRangeValueKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+//        
         initView();
+        initBinding();
     }
 
     @Override
@@ -46,7 +62,13 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     @Override
     protected void initView () {
         myPane = getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(), myWaitTime.draw(), myAngle.draw(), myRemove.draw());
+        //TODO: add range
         myPane.getStyleClass().add("firer");
+    }
+    
+    private void initBinding () {
+        myRangeValue.draw().visibleProperty().bind(isRangedProperty());
+       
     }
 
 
@@ -60,6 +82,8 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         return myWaitTime.getData();
     }
     
+   
+    
     @Override
     public SpriteDefinition getMissileSelection () {
         return myMissileSelectionView.getSelected();
@@ -70,6 +94,22 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         myMissileSelectionView.setSelected(missile);
         myAngle.setData(angle);
         myWaitTime.setData(waitTime);
+    }
+    
+    @Override
+    public String getMyRangedKey () {
+        return myRangedKey;
+    }
+
+    @Override
+    public String getMyRangeValueKey () {
+        return myRangeValueKey;
+    }
+
+    @Override
+    public BooleanProperty isRangedProperty () {
+        return this.isRangedSelectionView.isCheckedProperty();
+
     }
 
 }

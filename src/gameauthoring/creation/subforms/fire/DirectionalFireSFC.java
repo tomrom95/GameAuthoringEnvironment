@@ -23,6 +23,7 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
     private double myDefaultAngle = 0;
     private double myDefaultWaitTime = 0;
     private DirectionalFirerDefinition myFireDef;
+    private double myDefaultRange = 0;
 
     public DirectionalFireSFC (IGame game, FiringSFCmult sfc, DirectionalFirerDefinition fireDef) {
         super(sfc);
@@ -35,12 +36,13 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
 
     @Override
     public void initializeFields () {
-        populateViewsWithData(myDefaultAngle, myDefaultWaitTime);
+        populateViewsWithData(myDefaultAngle, myDefaultWaitTime, myDefaultRange);
     }
 
-    private void populateViewsWithData (double angle, double wait) {
+    private void populateViewsWithData (double angle, double wait, double range) {
         myView.populateWithData(null, myDefaultAngle, myDefaultWaitTime);
-    }
+        //TODO: deal with range stuff
+}
 
     @Override
     public ISubFormView getSubFormView () {
@@ -53,10 +55,17 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
         try {
             double angle = Math.toRadians(myView.getMyAngle()); // tangent functions need radians
             double waitTime = myView.getMyWaitTime();
+            //TODO: include range
+            //double range = myView.ge
             myFireDef.setGame(myGame);
             myFireDef.setAngle(angle);
             myFireDef.setWaitTime(waitTime);
             myFireDef.setProjectileDefinition(myView.getMissileSelection());
+
+
+//            myFireDef.setRanged(myView.isRangedProperty().get());
+//            myFireDef.setFireRange(range);
+
             if (!item.getModuleDefinitions().contains(myFireDef)) {
                 item.addModule(myFireDef);
             }
@@ -75,6 +84,7 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
+        //TODO: range
         myView.populateWithData(myFireDef.getProjectileDefinition(),myFireDef.getAngle(),myFireDef.getWaitTime());
 
     }

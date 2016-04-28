@@ -9,10 +9,10 @@ import engine.sprite.Sprite;
 import gameauthoring.creation.forms.CreationController;
 import gameauthoring.creation.forms.FormView;
 import gameauthoring.creation.forms.IFormView;
-import gameauthoring.creation.forms.IObjectCreationView;
-import gameauthoring.creation.forms.IObjectListView;
-import gameauthoring.creation.forms.ObjectCreationView;
-import gameauthoring.creation.forms.ObjectListView;
+import gameauthoring.creation.forms.ICreationView;
+import gameauthoring.creation.forms.ICreationListView;
+import gameauthoring.creation.forms.CreationView;
+import gameauthoring.creation.forms.CreationListView;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.ProfileSFC;
@@ -107,11 +107,11 @@ public class XMLParser {
             String creationViewName = "authoring.SpriteObjectCreationView";
             Class<?> creationViewClass = Class.forName(creationViewName);
             Constructor<?> creationViewCtor = creationViewClass.getDeclaredConstructor(List.class);
-            IObjectCreationView<?> creationView = (IObjectCreationView<?>) creationViewCtor.newInstance(subFormViews);
+            ICreationView<?> creationView = (ICreationView<?>) creationViewCtor.newInstance(subFormViews);
             
             String creationControllerName = "authoring.SpriteCreationController";
             Class<?> creationControllerClass = Class.forName(itemClassName);
-            Constructor<?> creationControllersCtor = creationControllerClass.getDeclaredConstructor(IObjectCreationView.class, ISubFormController.class);
+            Constructor<?> creationControllersCtor = creationControllerClass.getDeclaredConstructor(ICreationView.class, ISubFormController.class);
             //ICreationController<?> creationController = (ICreationController<?>) creationControllersCtor.newInstance(creationView, subFormControllers);
             
         //endfor 

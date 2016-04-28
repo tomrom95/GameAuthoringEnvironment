@@ -5,6 +5,7 @@ import engine.AuthorshipData;
 import engine.IGame;
 import gameauthoring.creation.factories.AttributeSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
+import gameauthoring.shareddata.DefinitionCollection;
 import engine.definitions.concrete.AttributeDefinition;
 
 
@@ -17,14 +18,8 @@ import engine.definitions.concrete.AttributeDefinition;
  */
 public class CreationControllerGlobals extends CreationController<AttributeDefinition> {
 
-    public CreationControllerGlobals (String title, List<String> subFormStrings, IGame myGame) {
-        super(title, subFormStrings, myGame);
-        // TODO Auto-generated constructor stub
-    }
-
-    @Override
-    protected void addToAuthorshipData (AuthorshipData authorshipData) {
-        authorshipData.setMyCreatedGlobals(getMyDefinitionCollection());
+    public CreationControllerGlobals (String key, List<String> subFormStrings, IGame myGame) {
+        super(key, subFormStrings, myGame);
     }
 
     @Override
@@ -35,6 +30,12 @@ public class CreationControllerGlobals extends CreationController<AttributeDefin
     @Override
     protected SubFormControllerFactory<AttributeDefinition> createSFCFactory (IGame game) {
         return new AttributeSFCFactory(game);
+    }
+
+    @Override
+    protected DefinitionCollection<AttributeDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
+        // TODO Auto-generated method stub
+        return authorshipData.getMyCreatedGlobals(getMyTitle());
     }
 
 }

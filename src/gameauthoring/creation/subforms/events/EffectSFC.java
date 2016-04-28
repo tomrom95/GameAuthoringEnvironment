@@ -13,11 +13,14 @@ import engine.effects.Effect;
 import engine.effects.EffectFactory;
 import engine.effects.IEffect;
 import engine.profile.ProfileDisplay;
+import engine.profile.IProfile;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 import javafx.collections.ObservableList;
 
 public class EffectSFC implements ISubFormController<EventPackageDefinition> {
+
+    private static final String FORMATTER = "%s %s by %s";
 
     private IGame myGame;
     private EffectSFV myView;
@@ -28,8 +31,7 @@ public class EffectSFC implements ISubFormController<EventPackageDefinition> {
     
     public EffectSFC (IGame game, Effect myEffect) {
         myGame = game;
-        myView = new EffectSFV(myGame.getAuthorshipData().getMyCreatedAttributes(),
-                                              getEffects());
+        myView = new EffectSFV(myGame.getAuthorshipData(), getEffects()); 
         this.myEffect = myEffect;
     }
 
@@ -43,10 +45,22 @@ public class EffectSFC implements ISubFormController<EventPackageDefinition> {
         Attribute lengthAttr = new Attribute(myView.getLength(),new AttributeType(defaultAttributeType));
         double val = myView.getValue();
         Effect effect = getEffect(myView.getEffectType(), lengthAttr, attrDef, val);
+
         item.getMyEffectsList().add(effect);
     }
 
-    private Effect getEffect (String effectType, Attribute length, AttributeDefinition def, double val) {
+//    private void updateProfile (IProfile profile) {
+//        profile.getName().set(myView.getName());
+//        profile.getDescription()
+//            .set(String.format(FORMATTER, myView.getEffectType(),
+//                               myView.getAttribute().getType(),
+//                               myView.getData().getValueProperty(myView.getValueKey()).get()));
+//    }
+
+    private Effect getEffect (String effectType,
+                              Attribute length,
+                              AttributeDefinition def,
+                              double val) {
         return new EffectFactory().getEffect(effectType, length, def, val);
     }
 

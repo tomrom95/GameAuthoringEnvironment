@@ -1,19 +1,15 @@
 package gameauthoring.creation.forms;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.*;
 import engine.AuthorshipData;
-import engine.Game;
 import engine.IGame;
-import engine.definitions.concrete.SpriteDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.factories.SubFormControllerFactory;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
-import gameauthoring.creation.subforms.ProfileSFC;
 import gameauthoring.shareddata.DefinitionCollection;
 import javafx.collections.ObservableList;
+import splash.LocaleManager;
 
 
 /**
@@ -25,15 +21,14 @@ import javafx.collections.ObservableList;
  * @param <T> The type of object to be created and stored -- ex: Sprite, Attribute, Group
  */
 public abstract class CreationController<T extends IProfilable> {
-    private IObjectCreationView<T> myView;
+    private ICreationView<T> myView;
     private List<? extends ISubFormController<T>> mySubFormControllers;
-    private String myTitle;
+    private String myKey;
     private SubFormControllerFactory<T> mySFCFactory;
     private DefinitionCollection<T> myDefinitionCollection;
+    private ResourceBundle myResources;
 
-    // New Design stuff
-    private List<String> mySubFormTemplate;
-    private Map<T, List<? extends ISubFormController<T>>> myMap;
+    private static String RESOURCE_PATH = "languages/labels";
 
     /**
      * Constructor
@@ -41,26 +36,41 @@ public abstract class CreationController<T extends IProfilable> {
      * Note: subFormStrings moved to init, but kept here for now in case we want to
      * change back
      * 
-     * @param title The creation controller's title
+     * @param key The creation controller's key which is used to get its title from a resource file
      * @param subFormStrings
      * @param authorshipData Data shared by various authorship elements (listsof created items)
      */
-    public CreationController (String title,
+    public CreationController (String key,
                                List<String> subFormStrings,
                                IGame myGame) {
 
-        myTitle = title;
-        myView = new ObjectCreationView<T>();
+        myResources =
+                ResourceBundle
+                        .getBundle(RESOURCE_PATH,
+                                   LocaleManager.getInstance().getCurrentLocaleProperty().get());
+        myKey = key;
+        myView = new CreationView<T>();
         setMySFCFactory(createSFCFactory(myGame));
-
-        myDefinitionCollection = new DefinitionCollection<>(getMyTitle(),
-                                                            getMyObjectCreationView().getItems());
-        mySubFormTemplate = subFormStrings;
-        myMap = new HashMap<T, List<? extends ISubFormController<T>>>();
-        addToAuthorshipData(myGame.getAuthorshipData());
+        setMyDefinitionCollection(getDefinitionCollectionFromAuthorshipData(myGame
+                .getAuthorshipData()));
+        init(subFormStrings);
 
     }
 
+    /**
+     * Gets the corresponding definition collection in authorship data to connect the creation
+     * controller
+     * 
+     * @return The definition collection
+     */
+    protected abstract DefinitionCollection<T> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData);
+
+    /**
+     * Subclasses specify which SFC factory to use to create the sub forms
+     * 
+     * @param game The current game object
+     * @return The SFC factory class to use to instantiate SFCs
+     */
     protected abstract SubFormControllerFactory<T> createSFCFactory (IGame game);
 
     /**
@@ -73,37 +83,28 @@ public abstract class CreationController<T extends IProfilable> {
      * Note: did this to erase dependency between AttributeCreationController
      * needing to be created before SelectAttribute subformcontroller
      * 
+     * Update: I think dependency is gone now that lists are lazily instantiated in AuthorshipData
+     * 
      * @param subFormStrings The strings from xml representing which subforms to create
      */
     public void init (List<String> subFormStrings) {
-        mySubFormControllers =
-                getMySFCFactory()
-                        .createSubFormControllers(subFormStrings);
+        mySubFormControllers = getMySFCFactory().createSubFormControllers(subFormStrings);
         List<ISubFormView> subFormViews = getSubFormViews(getMySubFormControllers());
         myView.init(subFormViews);
         setupConnections();
-        newItem();
-
     }
-
-    /**
-     * Hook up observable list of items to authorship data so other views can have access
-     * 
-     * @param authorshipData
-     */
-    protected abstract void addToAuthorshipData (AuthorshipData authorshipData);
 
     /**
      * Set up event handler connections
      */
     private void setupConnections () {
         IFormView formView = getMyObjectCreationView().getFormView();
-        formView.setSaveAction(e -> saveItem());
-        formView.setDeleteAction(e -> deleteItem());
-        formView.setNewAction(e -> newItem());
+        formView.setSaveAction( () -> saveItem());
+        formView.setDeleteAction( () -> deleteItem());
+        formView.setNewAction( () -> newItem());
 
-        IObjectCreationView<T> creationView = getMyObjectCreationView();
-        creationView.setEditAction(e -> showAndEdit(e));
+        ICreationView<T> creationView = getMyObjectCreationView();
+        creationView.setEditAction( () -> showAndEdit());
     }
 
     /**
@@ -115,7 +116,6 @@ public abstract class CreationController<T extends IProfilable> {
     private List<ISubFormView> getSubFormViews (List<? extends ISubFormController<T>> subFormControllers) {
         List<ISubFormView> subFormViews = new ArrayList<ISubFormView>();
 
-        // subFormViews.add(getMyProfileSubFormController().getSubFormView());
         for (ISubFormController<T> subFormController : subFormControllers) {
             subFormViews.add(subFormController.getSubFormView());
         }
@@ -127,11 +127,11 @@ public abstract class CreationController<T extends IProfilable> {
      * 
      */
     private void saveItem () {
-        // getMyProfileSubFormController().updateItem(getMyCurrentItem());
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
-            subFormController.updateItem(getMyCurrentItem()); // make more generic later
+            subFormController.updateItem(getMyCurrentItem());
         }
-        this.getMyObjectCreationView().getObjectListView().refreshItems();
+
+        this.getMyObjectCreationView().getCreationListView().refreshItems();
     }
 
     /**
@@ -141,7 +141,16 @@ public abstract class CreationController<T extends IProfilable> {
      */
     private void deleteItem () {
         getMyItems().remove(getMyCurrentItem());
-        showAndEdit(getMyCurrentItem());
+        if (getMyItems().isEmpty()) {
+            populateViewsWithDefaults();
+            getMyObjectCreationView().getFormView().hideForm();
+
+        }
+        else {
+            showAndEdit();
+            getMyObjectCreationView().getFormView().showForm();
+
+        }
     }
 
     /**
@@ -150,24 +159,23 @@ public abstract class CreationController<T extends IProfilable> {
      */
     private void newItem () {
         T item = createBlankItem();
+        System.out.println(getMyCurrentItem());
         addItem(item);
-        getMyObjectCreationView().getObjectListView().setSelectedItem(item);
-        showAndEdit(item);
+        System.out.println(getMyCurrentItem());
 
-        // New Design
-        // List<? extends ISubFormController<T>> SFCs =
-        // getMySFCFactory().createSubFormControllers(this.mySubFormTemplate);
-        // myMap.put(item, SFCs);
+        getMyObjectCreationView().getCreationListView().setSelectedItem(item);
+        System.out.println(getMyCurrentItem());
 
-        // showAndEdit(item);
+        getMyObjectCreationView().getFormView().showForm();
+        // showAndEdit();// or populateViewsWithDefaults, depending on where defaults are
 
-        // initializeSubFormViews();
+        // populateViewsWithDefaults();
     }
 
     /**
-     * Initializes the subformviews with default data
+     * Populates each subformview with default data
      */
-    private void initializeSubFormViews () {
+    private void populateViewsWithDefaults () {
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
             subFormController.initializeFields();
         }
@@ -189,15 +197,12 @@ public abstract class CreationController<T extends IProfilable> {
      * 
      * @param item The item contained in the cell that was clicked
      */
-    private void showAndEdit (T item) {
+    private void showAndEdit () {
         if (getMyCurrentItem() != null) {
             for (ISubFormController<T> subFormController : getMySubFormControllers()) {
                 subFormController.populateViewsWithData(getMyCurrentItem());
             }
         }
-        // New Design
-        // this.mySubFormControllers = myMap.get(item);
-        // this.myView.getFormView().setViews(getSubFormViews(mySubFormControllers));
 
     }
 
@@ -215,7 +220,7 @@ public abstract class CreationController<T extends IProfilable> {
         return getMyObjectCreationView().getItems();
     }
 
-    public IObjectCreationView<T> getMyObjectCreationView () {
+    public ICreationView<T> getMyObjectCreationView () {
         return myView;
     }
 
@@ -228,7 +233,11 @@ public abstract class CreationController<T extends IProfilable> {
     }
 
     public String getMyTitle () {
-        return myTitle;
+        return getMyResources().getString(getMyKey());
+    }
+
+    protected String getMyKey () {
+        return myKey;
     }
 
     public SubFormControllerFactory<T> getMySFCFactory () {
@@ -249,8 +258,11 @@ public abstract class CreationController<T extends IProfilable> {
 
     protected void setMyDefinitionCollection (DefinitionCollection<T> col) {
         this.myDefinitionCollection = col;
-        getMyObjectCreationView().getObjectListView().setMyItems(col.getItems());
-        // setMyTitle(col.getTitle());
+        getMyObjectCreationView().getCreationListView().setMyItems(col.getItems());
+    }
+
+    protected ResourceBundle getMyResources () {
+        return myResources;
     }
 
 }

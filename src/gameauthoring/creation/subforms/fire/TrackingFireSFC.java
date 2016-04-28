@@ -22,6 +22,7 @@ public class TrackingFireSFC extends RemovableSpriteSFC {
     private double myDefaultWaitTime = 0;
     private TrackingFirerDefinition myFireDef;
 
+
     public TrackingFireSFC (IGame game, FiringSFCmult sfc, TrackingFirerDefinition firingDef) {
         super(sfc);
         myFireDef = firingDef;

@@ -28,9 +28,8 @@ public class StaticMoverSFC implements ISubFormControllerSprite {
 
     @Override
     public void updateItem (SpriteDefinition item) {
-
+        
         StaticMovementDefintion myMovementDefinition = new StaticMovementDefintion();
-
         item.setMovementDefinition(myMovementDefinition);
 
     }

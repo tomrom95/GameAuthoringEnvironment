@@ -1,6 +1,7 @@
 package gameauthoring.creation.subforms.events;
 
 import java.util.List;
+import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.profile.ProfileDisplay;
 import gameauthoring.creation.entryviews.NumberEntryView;
@@ -35,14 +36,16 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
     private String myTypeKey = "Effect type: ";
     private HBox myContainer;
 
-    public EffectSFV (IDefinitionCollection<AttributeDefinition> myCreatedAttributes,
+    public EffectSFV (AuthorshipData data,
                       ObservableList<ProfileDisplay> effectTypes) {
         myEffectType = new SingleChoiceEntryView<ProfileDisplay>(myTypeKey,
                                                                  effectTypes,
                                                                  AuthoringView.DEFAULT_ENTRYVIEW);
+
+        ObservableList<AttributeDefinition> definitions = createAttributeList (data);
         myAttribute =
                 new SingleChoiceEntryView<AttributeDefinition>(myAttributeKey,
-                                                               myCreatedAttributes.getItems(),
+                                                               definitions,
                                                                AuthoringView.DEFAULT_ENTRYVIEW);
         myValue =
                 new NumberEntryView(myValueKey, 100, 30,
@@ -51,6 +54,14 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
                 new NumberEntryView(myLengthKey, 100, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
+    }
+
+
+    private ObservableList<AttributeDefinition> createAttributeList (AuthorshipData data) {
+        ObservableList<AttributeDefinition> defs = FXCollections.observableArrayList();
+        defs.addAll(data.getMyCreatedAttributes().getItems());
+        defs.addAll(data.getMyCreatedGlobals().getItems());
+        return defs;
     }
 
 

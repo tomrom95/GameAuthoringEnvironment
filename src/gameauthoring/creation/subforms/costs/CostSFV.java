@@ -8,7 +8,9 @@ import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.CheckBox;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -19,6 +21,8 @@ import javafx.scene.layout.HBox;
  */
 public class CostSFV extends SubFormView implements ICostSFV {
 
+
+    private static final String CHECK_STRING = "Cost Required?";
     private static final int SPACING = 5;
     private String myAttributeChoicesKey = "Resource Required: ";
     private String myCostKey = "Amount to buy sprite: ";
@@ -26,6 +30,8 @@ public class CostSFV extends SubFormView implements ICostSFV {
     private NumberEntryView myCost;
     private HBox myContainer;
 
+    private CheckBox myCheckBox;
+    
     public CostSFV (AuthorshipData data) {
         myAttributes =
                 new SingleChoiceEntryView<AttributeDefinition>(myAttributeChoicesKey,
@@ -34,6 +40,8 @@ public class CostSFV extends SubFormView implements ICostSFV {
                                                                AuthoringView.DEFAULT_ENTRYVIEW);
         myCost =
                 new NumberEntryView(myCostKey, 60, 20, AuthoringView.DEFAULT_ENTRYVIEW);
+
+        createCostCheck();
         initView();
     }
 
@@ -44,10 +52,22 @@ public class CostSFV extends SubFormView implements ICostSFV {
 
     @Override
     protected void initView () {
-        myContainer = getMyUIFactory().makeHBox(SPACING, Pos.CENTER, myAttributes.draw(), myCost.draw());
+        myContainer = getMyUIFactory().makeHBox(SPACING, Pos.CENTER,myCheckBox,drawFields());
     }
 
-    @Override
+    
+    private Node drawFields () {
+        VBox box = new VBox(SPACING);
+        box.getChildren().addAll(myAttributes.draw(),
+                                 myCost.draw());
+        box.visibleProperty().bind(myCheckBox.selectedProperty());
+        return box;
+    }
+
+    private void createCostCheck () {
+        myCheckBox = new CheckBox(CHECK_STRING);
+    }
+
     public AttributeDefinition getSelectedAttribute () {
         return myAttributes.getSelected();
     }
@@ -55,6 +75,11 @@ public class CostSFV extends SubFormView implements ICostSFV {
     @Override
     public double getCost () {
         return myCost.getData();
+    }
+    
+    @Override
+    public boolean costChecked () {
+        return myCheckBox.selectedProperty().get();
     }
 
     @Override

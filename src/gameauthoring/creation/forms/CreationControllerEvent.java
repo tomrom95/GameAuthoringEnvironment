@@ -3,9 +3,9 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
-
 import gameauthoring.creation.factories.EventsSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
+import gameauthoring.shareddata.DefinitionCollection;
 import engine.definitions.concrete.EventPackageDefinition;
 
 
@@ -17,17 +17,10 @@ import engine.definitions.concrete.EventPackageDefinition;
  */
 public class CreationControllerEvent extends CreationController<EventPackageDefinition> {
 
-    public CreationControllerEvent (String title,
+    public CreationControllerEvent (String key,
                                     List<String> sfcs,
                                     IGame myGame) {
-        super(title, sfcs, myGame);
-    }
-
-    @Override
-    protected void addToAuthorshipData (AuthorshipData authorshipData) {
-        //authorshipData.setMyCreatedEvents(getMyDefinitionCollection());
-        setMyDefinitionCollection(authorshipData.getMyCreatedEventPackages());
-
+        super(key, sfcs, myGame);
     }
 
     @Override
@@ -38,6 +31,11 @@ public class CreationControllerEvent extends CreationController<EventPackageDefi
     @Override
     protected SubFormControllerFactory<EventPackageDefinition> createSFCFactory (IGame game) {
         return new EventsSFCFactory(game);
+    }
+
+    @Override
+    protected DefinitionCollection<EventPackageDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
+        return authorshipData.getMyCreatedEventPackages(getMyTitle());
     }
 
 }
