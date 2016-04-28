@@ -8,7 +8,7 @@ import gameauthoring.creation.subforms.UpgradeSFC;
 import gameauthoring.creation.subforms.costs.CostSFC;
 import gameauthoring.creation.subforms.fire.FiringSFC;
 import gameauthoring.creation.subforms.fire.FiringSFCmult;
-import gameauthoring.creation.subforms.movement.MovementSubFormController;
+import gameauthoring.creation.subforms.movement.MovementSFC;
 
 
 public class SpriteSFCFactory extends SubFormControllerFactory<SpriteDefinition> {
@@ -21,7 +21,7 @@ public class SpriteSFCFactory extends SubFormControllerFactory<SpriteDefinition>
     protected ISubFormController<SpriteDefinition> createSubFormController (String type) {
 
         if (type.equals("Movement")) {
-            return new MovementSubFormController(getMyGame());
+            return new MovementSFC(getMyGame());
         }
 
         else if (type.equals("SelectAttribute")) {

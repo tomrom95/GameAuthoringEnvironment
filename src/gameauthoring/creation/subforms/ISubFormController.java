@@ -24,6 +24,13 @@ public interface ISubFormController<T extends IProfilable> {
     void updateItem (T item);
 
     /**
+     * Fill in the UI based on the given item
+     * 
+     * @param item The item to display
+     */
+    void populateViewsWithData (T item);
+    
+    /**
      * Initialize the view with default values for the item
      */
     void initializeFields ();

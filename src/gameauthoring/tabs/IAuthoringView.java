@@ -15,7 +15,7 @@ public interface IAuthoringView {
 
     GameTabViewer getGameTabViewer ();
 
-    ObjectCreationTabViewer getCreationTabViewer ();
+    CreationTabViewer getCreationTabViewer ();
 
     SceneTabViewer getLevelTabViewer ();
 

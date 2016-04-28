@@ -32,6 +32,13 @@ public class Bounds {
         myWidth = width;
         myHeight = height;
     }
+    
+    public Bounds (double width, double height) {
+        myX = 0;
+        myY = 0;
+        myWidth = width;
+        myHeight = height;
+    }
 
     public boolean collide (Bounds other) {
         if (other.getLeft() > getRight() || getLeft() > other.getRight()) {
@@ -58,6 +65,14 @@ public class Bounds {
 
     public double getRight () {
         return myX + myWidth;
+    }
+    
+    public double getHeight () {
+        return myHeight;
+    }
+    
+    public double getWidth (){
+        return myWidth;
     }
 
 

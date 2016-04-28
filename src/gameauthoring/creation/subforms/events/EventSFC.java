@@ -15,17 +15,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
-public class EventSubFormController implements ISubFormController<EventPackageDefinition> {
+public class EventSFC implements ISubFormController<EventPackageDefinition> {
     private static final String NAME = "Event"; //TODO maybe put in resource file
 
     private static final String PATH = "defaults/event_types";
     private ResourceBundle eventTypes = ResourceBundle.getBundle(PATH);
-    private EventSubFormView myView;
+    private EventSFV myView;
     
     
 
-    public EventSubFormController () {
-        myView = new EventSubFormView(getEvents());
+    public EventSFC () {
+        myView = new EventSFV(getEvents());
     }
 
     private ObservableList<ProfileDisplay> getEvents () {
@@ -49,7 +49,9 @@ public class EventSubFormController implements ISubFormController<EventPackageDe
         
         //TODO: need to find and replace instead of adding on each save
         item.getMyEventsList().add(event);
-    }
+       
+       
+     }
 
     @Override
     public void initializeFields () {
@@ -59,6 +61,16 @@ public class EventSubFormController implements ISubFormController<EventPackageDe
     @Override
     public ISubFormView getSubFormView () {
         return myView;
+    }
+
+    @Override
+    public void populateViewsWithData (EventPackageDefinition item) {
+        myView.setName(item.getProfile().getName().get());
+        
+        //TODO problem: we can't set event selection because we don't have ProfileDisplay object, just the string
+        myView.setEventSelection(item.getProfile().getDescription().get());
+        //myView.setEventSelection(item.getMyEventsList().get(0).getEventType().getType());
+        
     }
 
 }

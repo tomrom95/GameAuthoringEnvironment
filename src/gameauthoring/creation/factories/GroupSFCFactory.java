@@ -15,7 +15,7 @@ public class GroupSFCFactory extends SubFormControllerFactory<SpriteGroup>{
     @Override
     protected ISubFormController<SpriteGroup> createSubFormController (String type) {
         if (type.equals("SelectSprite")) {
-            return new SelectSpriteSFC(getMyAuthorshipData().getMyGroupSprites());
+            return new SelectSpriteSFC(getMyAuthorshipData());
         }        
         return null;
     }

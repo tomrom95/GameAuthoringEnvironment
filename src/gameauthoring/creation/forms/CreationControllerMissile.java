@@ -3,24 +3,22 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
+import engine.definitions.concrete.SpriteDefinition;
+import gameauthoring.shareddata.DefinitionCollection;
 
 
 public class CreationControllerMissile extends CreationControllerSprite {
 
-    public CreationControllerMissile (String title,
+    public CreationControllerMissile (String key,
                                       List<String> subFormStrings,
                                       IGame myGame) {
-        super(title, subFormStrings, myGame);
+        super(key, subFormStrings, myGame);
 
     }
 
     @Override
-    protected void addToAuthorshipData (AuthorshipData authorshipData) {
-        authorshipData.setMyCreatedMissiles(getMyDefinitionCollection());
-        authorshipData.addGroupSprites(getMyDefinitionCollection());
-        
-        //uncomment if missiles should be included in created sprites
-        //authorshipData.addCreatedSprites(getMyDefinitionCollection()); 
+    protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
+        return authorshipData.getMyCreatedMissiles(getMyTitle());
     }
 
 }

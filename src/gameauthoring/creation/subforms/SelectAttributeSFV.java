@@ -58,6 +58,11 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
     public List<AttributeDefinition> getSelectedAttributes () {
         return mySelectedView.getListView().getItems();
     }
+    
+    @Override
+    public void setSelectedAttributes (List<AttributeDefinition> items) {
+        mySelectedView.getListView().setItems(FXCollections.observableArrayList(items));
+    }
 
     @Override
     protected void initView () {

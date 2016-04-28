@@ -61,7 +61,7 @@ public class BlockAuthorshipView implements Glyph {
     }
 
     private void factoryGenerate (IGame game) {
-        mySpriteChoices = myFactory.createCombo(game.getAuthorshipData().getAllCreatedSprites());
+        mySpriteChoices = myFactory.createCombo(game.getAuthorshipData().getAllCreatedSpritesAsList());
         mySpriteChoices.setOnMouseClicked(e -> repopulate(game));
         mySpriteChoices.setMinWidth(Double.parseDouble(mySize.getString("ComboWidth")));
         myCount = myFactory.createTextField(Double.parseDouble(mySize.getString("TextWidth")));
@@ -70,7 +70,7 @@ public class BlockAuthorshipView implements Glyph {
 
     private void repopulate (IGame game) {
         mySpriteChoices.getItems().clear();
-        mySpriteChoices.getItems().addAll(game.getAuthorshipData().getAllCreatedSprites());
+        mySpriteChoices.getItems().addAll(game.getAuthorshipData().getAllCreatedSpritesAsList());
     }
 
     private void createSlider () {

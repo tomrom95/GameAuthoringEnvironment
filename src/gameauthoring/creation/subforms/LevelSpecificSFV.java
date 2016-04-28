@@ -19,6 +19,9 @@ public class LevelSpecificSFV extends SubFormView implements ILevelSpecificSFV{
         myChoice = new CheckEntryView(myChoiceKey,AuthoringView.DEFAULT_ENTRYVIEW);        
     }
 
+    public void setLevelSpecific(boolean levelSpecific){
+        myChoice.isCheckedProperty().set(levelSpecific);
+    }
     @Override
     public boolean isLevelSpecific(){
         return myChoice.isCheckedProperty().get();

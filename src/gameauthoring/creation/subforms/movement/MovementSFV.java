@@ -17,9 +17,9 @@ import javafx.scene.layout.HBox;
  * @author Jin An, Jeremy Schreck
  *
  */
-public class MovementSubFormView extends DynamicSubFormView {
+public class MovementSFV extends DynamicSubFormView {
 
-    public MovementSubFormView (List<String> options) {
+    public MovementSFV (List<String> options) {
         super(options);
         // TODO Auto-generated constructor stub
     }

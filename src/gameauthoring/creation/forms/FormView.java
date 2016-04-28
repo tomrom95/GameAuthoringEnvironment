@@ -1,9 +1,7 @@
 package gameauthoring.creation.forms;
 
 import java.util.*;
-import java.util.function.Consumer;
 import gameauthoring.creation.subforms.ISubFormView;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -13,7 +11,7 @@ import javafx.scene.layout.VBox;
 
 /**
  * 
- * @author Joe Lilien
+ * @author Joe Lilien, Jeremy Schreck
  *
  */
 public class FormView implements IFormView {
@@ -34,8 +32,24 @@ public class FormView implements IFormView {
         mySubFormViewer.getStyleClass().add("myFormView");
         mySubFormViewer.setMaxHeight(HEIGHT);
         myFormView.add(mySubFormViewer, 0, 1); 
+        hideForm();
         myFormView.add(createButtonHolder(), 0 , 0);
         setViews(mySubFormViews);            
+    }
+    
+    public void showForm(){
+        //myFormView.add(mySubFormViewer,  0,  1);
+        mySubFormViewer.setVisible(true);
+        mySaveButton.setDisable(false);
+        myDeleteButton.setDisable(false);
+
+    }
+    @Override
+    public void hideForm () {
+        //myFormView.getChildren().remove(mySubFormViewer);
+        mySubFormViewer.setVisible(false);
+        mySaveButton.setDisable(true);
+        myDeleteButton.setDisable(true);
     }
     
     private Node createButtonHolder () {
@@ -61,24 +75,24 @@ public class FormView implements IFormView {
      * Define save action for button
      */
     @Override
-    public void setSaveAction (Consumer<?> action) {
-        mySaveButton.setOnAction(e->action.accept(null)); //Not sure what the input should be here
+    public void setSaveAction (Runnable action) {
+        mySaveButton.setOnAction(e->action.run()); 
     }
 
     /**
      * Define delete action for button
      */
     @Override
-    public void setDeleteAction (Consumer<?> action) {
-        myDeleteButton.setOnAction(e->action.accept(null)); //Not sure what the input should be here
+    public void setDeleteAction (Runnable action) {
+        myDeleteButton.setOnAction(e->action.run());
     }
 
     /**
      * Define new action for button
      */
     @Override
-    public void setNewAction(Consumer<?> action){
-        myNewButton.setOnAction(e->action.accept(null));
+    public void setNewAction(Runnable action){
+        myNewButton.setOnAction(e->action.run());
     }
     
     @Override
@@ -90,4 +104,6 @@ public class FormView implements IFormView {
     public Node draw () {
         return myFormView;
     }
+
+   
 }

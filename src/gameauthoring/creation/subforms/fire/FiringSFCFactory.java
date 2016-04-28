@@ -3,6 +3,10 @@ package gameauthoring.creation.subforms.fire;
 import engine.IGame;
 import gameauthoring.creation.factories.DynamicSFCFactory;
 import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.DirectionalFirerDefinition;
+import engine.definitions.moduledef.FirerDefinition;
+import engine.definitions.moduledef.TrackingFirerDefinition;
+import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 
 /**
@@ -32,10 +36,10 @@ public class FiringSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
     @Override
     public RemovableSpriteSFC createSubFormController (String type) {
         if (type.equals("DIRECTIONAL")) {
-            return new DirectionalFireSFC(getMyGame(), getMyFiringSFC());
+            return new DirectionalFireSFC(getMyGame(), getMyFiringSFC(), new DirectionalFirerDefinition(getMyGame()));
         }
         else if (type.equals("TRACKING")) {
-            return new TrackingFireSFC(getMyGame(), getMyFiringSFC());
+            return new TrackingFireSFC(getMyGame(), getMyFiringSFC(), new TrackingFirerDefinition(getMyGame()));
         }
         return null;
     }
@@ -43,4 +47,17 @@ public class FiringSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
     private FiringSFCmult getMyFiringSFC () {
         return myFiringSFC;
     }
+
+    @Override
+    public RemovableSpriteSFC createSubFormController (String type, Object ... params) {
+        if (type.equals("DIRECTIONAL")) {
+            return new DirectionalFireSFC(getMyGame(), getMyFiringSFC(), (DirectionalFirerDefinition) params[0]);
+        }
+        else if (type.equals("TRACKING")) {
+            return new TrackingFireSFC(getMyGame(), getMyFiringSFC(),  (TrackingFirerDefinition) params[0]);
+        }
+        return null;
+    }
+    
+    
 }

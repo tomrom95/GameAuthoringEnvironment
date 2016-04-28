@@ -28,4 +28,10 @@ public class UserFireSFC implements ISubFormControllerSprite {
         return null;
     }
 
+    @Override
+    public void populateViewsWithData (SpriteDefinition item) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

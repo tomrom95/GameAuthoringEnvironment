@@ -12,7 +12,7 @@ import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
-public class UserMoverSubFormView extends SubFormView {
+public class UserMoverSFV extends SubFormView {
     
     private GridPane myPane = new GridPane();
 
@@ -30,7 +30,7 @@ public class UserMoverSubFormView extends SubFormView {
 
 
     
-    public UserMoverSubFormView () {
+    public UserMoverSFV () {
         initView();
     }
 

@@ -7,7 +7,7 @@ import gameauthoring.shareddata.IDefinitionCollection;
 /**
  * Controller to deal with user attribute selection for a sprite definition
  * 
- * @author Joe Lilien
+ * @author Joe Lilien, Jeremy Schreck
  *
  */
 public class SelectAttributeSFC implements ISubFormControllerSprite {
@@ -24,13 +24,19 @@ public class SelectAttributeSFC implements ISubFormControllerSprite {
     }
 
     @Override
-    public ISubFormView getSubFormView () {
-        return myView;
+    public void initializeFields () {
+
     }
 
     @Override
-    public void initializeFields () {
-
+    public void populateViewsWithData (SpriteDefinition item) {
+        myView.setSelectedAttributes(item.getAttributes());
+        
+    }
+    
+    @Override
+    public ISubFormView getSubFormView () {
+        return myView;
     }
 
 }

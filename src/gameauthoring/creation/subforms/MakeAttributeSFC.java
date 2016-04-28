@@ -37,9 +37,17 @@ public class MakeAttributeSFC implements ISubFormControllerAttribute {
             item.setStartingValue(startingValue);
         }
         catch (NumberFormatException e) {
-            ErrorMessage err = new ErrorMessage("Max and Min Values must be Numbers");//TODO: resource file
+            ErrorMessage err = new ErrorMessage("Max and Min Values must be Numbers");// TODO: resource file
             err.showError();
         }
+    }
+
+    @Override
+    public void populateViewsWithData (AttributeDefinition item) {
+        myView.getData()
+                .getValueProperty(myView.getMyStartingValueKey())
+                .set(Double.toString(item.getStartingValue()));
+
     }
 
     @Override

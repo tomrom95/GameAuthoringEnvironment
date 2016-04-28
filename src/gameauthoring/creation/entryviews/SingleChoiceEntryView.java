@@ -74,4 +74,8 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
         return myContainer;
     }
 
+    public ObservableList<E> getItems () {
+        return myChoices.getItems();
+    }
+
 }

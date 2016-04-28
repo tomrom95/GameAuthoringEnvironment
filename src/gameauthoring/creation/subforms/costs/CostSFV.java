@@ -69,6 +69,10 @@ public class CostSFV extends SubFormView{
         return myAttributes.getSelected();
     }
     
+    public void setSelectedAttribute (AttributeDefinition attributeDefinition) {
+        myAttributes.setSelected(attributeDefinition);
+    }
+    
     public String getCostKey () {
         return myCostKey;
     }
@@ -76,5 +80,6 @@ public class CostSFV extends SubFormView{
     public boolean costChecked () {
         return myCheckBox.selectedProperty().get();
     }
+
 
 }

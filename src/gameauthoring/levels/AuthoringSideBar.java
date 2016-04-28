@@ -23,8 +23,7 @@ public class AuthoringSideBar extends SideBarDisplay {
     }
 
     protected void fillAccordion (Accordion accordion) {
-        // TODO change to getMyLevelSelectorSprites() if we choose to have separate lists for level selector, created sprites, and group sprites
-        myGame.getAuthorshipData().getMyCreatedSprites().stream().forEach(c -> {
+        myGame.getAuthorshipData().getMyCreatedSpritesMap().values().stream().forEach(c -> {
             TitledPane toAdd = createAccordionPane(c);
             accordion.getPanes().add(toAdd);
             accordion.expandedPaneProperty().set(toAdd);
