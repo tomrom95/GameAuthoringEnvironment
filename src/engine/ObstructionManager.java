@@ -4,8 +4,13 @@ import engine.sprite.ISprite;
 import util.AutoTrueBitMap;
 import util.BitMap;
 import util.Bounds;
+import util.CachingEdgeBitMap;
+import util.Coordinate;
 import util.IBitMap;
+import util.IEdgeBitMap;
 import util.TimeDuration;
+
+import java.util.List;
 
 /**
  * This class will loop through the sprites each in the current running level each
@@ -17,7 +22,7 @@ import util.TimeDuration;
 public class ObstructionManager implements IObstructionManager {
     private static final boolean POSITION_OBSTRUCTED = true;
     private IGame myGame;
-    private IBitMap myCurrentObstructionMap;
+    private IEdgeBitMap myCurrentObstructionMap;
 
     ObstructionManager (IGame game) {
         myGame = game;
@@ -30,16 +35,23 @@ public class ObstructionManager implements IObstructionManager {
     }
     
     @Override
-    public IBitMap getObstructionMap () {
+    public IEdgeBitMap getObstructionMap () {
         return myCurrentObstructionMap;
     }
 
-    private IBitMap parseCurrentGameForObstructions (IGame game) {
-        IBitMap obstructionMap = getBitMapSizedForCurrentGame(game);
+    private IEdgeBitMap parseCurrentGameForObstructions (IGame game) {
+        IEdgeBitMap obstructionMap = getBitMapSizedForCurrentGame(game);
         game.getLevelManager().getCurrentLevel().getSprites().stream()
                 .forEach(sprite -> ifObstructsMarkSprite(obstructionMap, sprite));
         return obstructionMap;
     }
+    
+    private void calculateEdges(IEdgeBitMap map, IGame game){
+        
+        //TODO
+        return;
+    }
+    
 
     private void ifObstructsMarkSprite (IBitMap map, ISprite sprite) {
         if (sprite.doesObstruct()) {
@@ -64,10 +76,10 @@ public class ObstructionManager implements IObstructionManager {
         return myGame;
     }
 
-    private IBitMap getBitMapSizedForCurrentGame (IGame game) {
+    private IEdgeBitMap getBitMapSizedForCurrentGame (IGame game) {
         int gameWidth = game.getGameGridConfig().getGridWidth();
         int gameHeight = game.getGameGridConfig().getGridHeight();
-        return new AutoTrueBitMap(gameWidth, gameHeight);
+        return new CachingEdgeBitMap(gameWidth, gameHeight);
     }
 
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 import engine.IGame;
 import util.Coordinate;
 import util.IBitMap;
+import util.IEdgeBitMap;
 
 /**
  * Implementation of A* search based off of the pseudo-code provided
@@ -29,7 +30,7 @@ public class AStarPather implements INodeGraphPather {
     }
     
     @Override
-    public List<Coordinate> findPathFor (IBitMap obstructionMap,
+    public List<Coordinate> findPathFor (IEdgeBitMap obstructionMap,
                                          Coordinate start,
                                          Coordinate goal) {
         INodeGraphFactory graphFactory = new GameGraphFactory(obstructionMap, getGame());
@@ -109,8 +110,6 @@ public class AStarPather implements INodeGraphPather {
             cur = parentMap.get(cur);
             toReturn.add(cur.getLocation());
         }
-        toReturn.remove(start);
-        //toReturn.add(start.getLocation());
         Collections.reverse(toReturn);
         return toReturn;
     }

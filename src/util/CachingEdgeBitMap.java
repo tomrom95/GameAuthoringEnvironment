@@ -64,7 +64,7 @@ public class CachingEdgeBitMap implements IEdgeBitMap {
 
     @Override
     public boolean valueOf (ArrayPosition pos) {
-        return getTrueSet().contains(pos);
+        return !inBounds(pos) ? true : getTrueSet().contains(pos);
     }
 
     @Override

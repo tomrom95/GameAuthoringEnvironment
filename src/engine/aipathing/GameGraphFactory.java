@@ -2,8 +2,10 @@ package engine.aipathing;
 
 import util.Coordinate;
 import util.IBitMap;
+import util.IEdgeBitMap;
 import util.ArrayPosition;
 import util.AutoTrueBitMap;
+import util.CachingEdgeBitMap;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -27,11 +29,11 @@ public class GameGraphFactory implements INodeGraphFactory {
     private static final int INT_NEG_ONE = -1;
     private static final double ONE = 1d;
     private static final int NODE_GAP = 200;
-    private IBitMap myObstructionMap;
+    private IEdgeBitMap myObstructionMap;
     private IGame myGame;
     
-    GameGraphFactory (IBitMap obstructionMap, IGame game) {
-        myObstructionMap = new AutoTrueBitMap(obstructionMap);
+    GameGraphFactory (IEdgeBitMap obstructionMap, IGame game) {
+        myObstructionMap = new CachingEdgeBitMap(obstructionMap);
         myGame = game;
     }
 
@@ -51,7 +53,7 @@ public class GameGraphFactory implements INodeGraphFactory {
 
     }
 
-    private INodeGraph fillNodeGraph (IBitMap obstructionMap,
+    private INodeGraph fillNodeGraph (IEdgeBitMap obstructionMap,
                                       int gap,
                                       Coordinate start,
                                       Coordinate goal) {
@@ -101,7 +103,7 @@ public class GameGraphFactory implements INodeGraphFactory {
      */
     private void addEdgeNodes (INodeGraph graph,
                                           List<List<ArrayPosition>> edges,
-                                          IBitMap obstructionMap,
+                                          IEdgeBitMap obstructionMap,
                                           int gap,
                                           IPathNode[][] placedNodes) {
         List<IPathNode> addedNodes = new ArrayList<>();
@@ -137,7 +139,7 @@ public class GameGraphFactory implements INodeGraphFactory {
     private IPathNode attemptGapNodeAdd (INodeGraph graph,
                                     ArrayPosition pos1,
                                     ArrayPosition pos2,
-                                    IBitMap obstructionMap,
+                                    IEdgeBitMap obstructionMap,
                                     int gap,
                                     IPathNode[][] placedNodes) {
         if (PathNodeGeometry.distance(pos1, pos2) <= gap) {
@@ -167,7 +169,7 @@ public class GameGraphFactory implements INodeGraphFactory {
 
     private void connectWithAllInGraph (INodeGraph graph,
                                         IPathNode toConnect,
-                                        IBitMap obstructionMap) {
+                                        IEdgeBitMap obstructionMap) {
         graph.getNodes()
             .stream()
             .filter(node -> !node.equals(toConnect))
@@ -179,7 +181,7 @@ public class GameGraphFactory implements INodeGraphFactory {
     }
 
     
-    private List<List<ArrayPosition>> findAllEdges (IBitMap obstructionMap) {
+    private List<List<ArrayPosition>> findAllEdges (IEdgeBitMap obstructionMap) {
         List<List<ArrayPosition>> edgeList = new ArrayList<>();
         //need to make the code below faster by refactoring the bitmap class
         //to store a list of only the true locations, so that we can avoid iterating
@@ -199,7 +201,7 @@ public class GameGraphFactory implements INodeGraphFactory {
         return edgeList;
     }
 
-    private List<ArrayPosition> edgeBorder (IBitMap obstructionMap) {
+    private List<ArrayPosition> edgeBorder (IEdgeBitMap obstructionMap) {
         List<ArrayPosition> border = new ArrayList<>();
         for (int i = -1; i <= obstructionMap.getHeight(); i++) {
             border.add(new ArrayPosition(-1, i));
@@ -227,7 +229,7 @@ public class GameGraphFactory implements INodeGraphFactory {
      * @param checkedMap a new instance of BitMap with all false of the same size as obstructionMap
      * @param pos
      */
-    private void removeObstructionMask (IBitMap obstructionMap,
+    private void removeObstructionMask (IEdgeBitMap obstructionMap,
                                         IBitMap checkedMap,
                                         ArrayPosition pos) {
         if (obstructionMap.valueOf(pos)) {
@@ -252,7 +254,7 @@ public class GameGraphFactory implements INodeGraphFactory {
      * @param inEdge
      * @return
      */
-    private List<ArrayPosition> recursiveEdgeHelper (IBitMap obstructionMap,
+    private List<ArrayPosition> recursiveEdgeHelper (IEdgeBitMap obstructionMap,
                                                      ArrayPosition pos,
                                                      List<ArrayPosition> inEdge) {
         if (isEdge(obstructionMap, pos)) {
@@ -278,7 +280,7 @@ public class GameGraphFactory implements INodeGraphFactory {
      * @param pos to check if it is an edge
      * @return  True if one of the non-diagonally adjacent squares is not obstructed
      */
-    private boolean isEdge (IBitMap obstructionMap, ArrayPosition pos) {
+    private boolean isEdge (IEdgeBitMap obstructionMap, ArrayPosition pos) {
         boolean selfObstructed = obstructionMap.valueOf(pos);
         boolean edgeTop = !obstructionMap.valueOf(pos.getX(), pos.getY() - INT_ONE);
         boolean edgeBot = !obstructionMap.valueOf(pos.getX(), pos.getY() + INT_ONE);
@@ -287,7 +289,7 @@ public class GameGraphFactory implements INodeGraphFactory {
         return (edgeTop || edgeBot || edgeRight || edgeLeft) && selfObstructed;
     }
 
-    private void connectUnobstructedNodes (IPathNode[][] nodes, IBitMap obstructionMap) {
+    private void connectUnobstructedNodes (IPathNode[][] nodes, IEdgeBitMap obstructionMap) {
         int width = nodes.length;
         int height = width > 0 ? nodes[0].length : 0;
         ArrayPosition pos = new ArrayPosition();
@@ -410,7 +412,7 @@ public class GameGraphFactory implements INodeGraphFactory {
      */
     private boolean connectIfNotObstructed (IPathNode first,
                                          IPathNode second,
-                                         IBitMap obstructionMap) {
+                                         IEdgeBitMap obstructionMap) {
         boolean toReturn = false;
         List<Coordinate> pixelLine =
                 PathNodeGeometry.lineRounder(PathNodeGeometry.lineBetween(first, second));
@@ -421,7 +423,7 @@ public class GameGraphFactory implements INodeGraphFactory {
         return toReturn;
     }
 
-    private boolean lineObstructed (List<Coordinate> line, IBitMap obstructionMap) {
+    private boolean lineObstructed (List<Coordinate> line, IEdgeBitMap obstructionMap) {
         if (line.size() < 1) {
             return false;
         }
@@ -461,7 +463,7 @@ public class GameGraphFactory implements INodeGraphFactory {
      */
     private boolean checkSquare (Coordinate first,
                                  Coordinate second,
-                                 IBitMap obstructionMap,
+                                 IEdgeBitMap obstructionMap,
                                  boolean currentValue) {
         boolean toReturn = currentValue;
         if (isDiagNeigh(first, second)) {
@@ -479,7 +481,7 @@ public class GameGraphFactory implements INodeGraphFactory {
 
 
 
-    private IBitMap getObstructionMap () {
+    private IEdgeBitMap getObstructionMap () {
         return myObstructionMap;
     }
 
