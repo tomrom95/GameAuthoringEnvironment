@@ -1,5 +1,6 @@
 package gameauthoring.creation.entryviews;
 
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputControl;
 
@@ -26,6 +27,10 @@ public class TextEntryView extends InputEntryView {
 
     public String getData () {
         return myTextInput.getText();
+    }
+    
+    public void bindData (StringProperty text) {
+        myTextInput.textProperty().bindBidirectional(text);
     }
 
 }

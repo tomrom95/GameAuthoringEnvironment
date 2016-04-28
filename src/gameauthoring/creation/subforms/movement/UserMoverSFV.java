@@ -1,32 +1,25 @@
 package gameauthoring.creation.subforms.movement;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import gameauthoring.creation.entryviews.CharacterEntryView;
-import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
-import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
-public class UserMoverSFV extends SubFormView {
+public class UserMoverSFV extends SubFormView implements IUserMoverSFV{
     
     private GridPane myPane = new GridPane();
-
     private String mySpeedKey = "Speed: ";
     private String myUpKey = "Up Key: ";
     private String myDownKey = "Down Key: ";
     private String myRightKey = "Right Key: ";
     private String myLeftKey = "Left Key:  ";
-    private IEntryView mySpeed = new NumberEntryView(mySpeedKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myUp = new CharacterEntryView(myUpKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myDown = new CharacterEntryView(myDownKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myRight = new CharacterEntryView(myRightKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private IEntryView myLeft = new CharacterEntryView(myLeftKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-    private List<IEntryView> myEntryViews = new ArrayList<IEntryView>(Arrays.asList(mySpeed, myLeft, myRight, myUp, myDown));
+    private NumberEntryView mySpeed = new NumberEntryView(mySpeedKey,  40, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private CharacterEntryView myUp = new CharacterEntryView(myUpKey,  40, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private CharacterEntryView myDown = new CharacterEntryView(myDownKey,  40, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private CharacterEntryView myRight = new CharacterEntryView(myRightKey,  40, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+    private CharacterEntryView myLeft = new CharacterEntryView(myLeftKey,  40, 30, AuthoringView.DEFAULT_ENTRYVIEW);
 
 
     
@@ -49,23 +42,39 @@ public class UserMoverSFV extends SubFormView {
         myPane.add(myRight.draw(), 1, 1);
     }
     
-    public String getSpeedKey(){
-        return mySpeedKey;
+    @Override
+    public double getSpeed(){
+        return mySpeed.getData();
     }
     
+    @Override
     public String getUpKey(){
-        return myUpKey;
+        return myUp.getData();
     }
    
+    
+    @Override
     public String getDownKey(){
-        return myDownKey;
-    }
-    public String getLeftKey(){
-        return myLeftKey;
+        return myDown.getData();
     }
     
+    @Override
+    public String getLeftKey(){
+        return myLeft.getData();
+    }
+    
+    @Override
     public String getRightKey(){
-        return myRightKey;
+        return myRight.getData();
+    }
+    
+    @Override
+    public void populateWithData(double speed, String up, String down, String left, String right) {
+        mySpeed.setData(speed);
+        myUp.setData(up);
+        myDown.setData(down);
+        myLeft.setData(left);
+        myRight.setData(right);
     }
 
 }

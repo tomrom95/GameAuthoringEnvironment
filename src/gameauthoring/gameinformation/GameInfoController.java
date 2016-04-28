@@ -17,24 +17,18 @@ public class GameInfoController {
 
     private GameInfoView myView;
     private IGame myGame;
-    private IFormDataManager myFormData;
 
     public GameInfoController (IGame game) {
         myView = new GameInfoView();
         myGame = game;
-        myFormData = myView.getData();
         initialize();
     }
 
     private void initialize () {
-        myFormData.getValueProperty(myView.getMyAuthorKey())
-                .bindBidirectional(myGame.getGameInformation().getAuthorProperty());
-        myFormData.getValueProperty(myView.getMyDateCreatedKey())
-                .bindBidirectional(myGame.getGameInformation().getDateCreatedProperty());
-        myFormData.getValueProperty(myView.getMyNameKey())
-                .bindBidirectional(myGame.getGameInformation().getNameProperty());
-        myFormData.getValueProperty(myView.getMySplashScreenKey())
-                .bindBidirectional(myGame.getGameInformation().getSplashScreenURLProperty());
+       myView.getMyAuthor().bindData(myGame.getGameInformation().getAuthorProperty());
+       myView.getMyDateCreated().bindData(myGame.getGameInformation().getDateCreatedProperty());
+       myView.getMyName().bindData(myGame.getGameInformation().getNameProperty());
+       myView.getMySplashScreen().bindData(myGame.getGameInformation().getSplashScreenURLProperty());
     }
 
     public GameInfoView getGameInfoView () {

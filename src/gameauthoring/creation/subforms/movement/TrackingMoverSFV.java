@@ -2,34 +2,33 @@ package gameauthoring.creation.subforms.movement;
 
 
 import engine.SpriteGroup;
-import gameauthoring.creation.entryviews.IEntryView;
+import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
-import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
-public class TrackingMoverSFV extends SubFormView {
+public class TrackingMoverSFV extends SubFormView implements ITrackingMoverSFV{
     
-    private GridPane myPane = new GridPane();
-    
+    private HBox myPane;    
     private String mySpeedKey = "Speed: ";
-    private String myTargetsKey = "Targets: ";
-    
-    private IEntryView mySpeed; 
+    private String myTargetsKey = "Targets: ";    
+    private NumberEntryView mySpeed; 
     private SingleChoiceEntryView<SpriteGroup> myTargets;
 
     public TrackingMoverSFV(DefinitionCollection<SpriteGroup> groupsList) {
         myTargets = new SingleChoiceEntryView<SpriteGroup>(myTargetsKey, groupsList.getItems(), AuthoringView.DEFAULT_ENTRYVIEW);
-        mySpeed = new TextEntryView(mySpeedKey, this.getData(), 150, 30,AuthoringView.DEFAULT_ENTRYVIEW);    
+        mySpeed = new NumberEntryView(mySpeedKey, 150, 30,AuthoringView.DEFAULT_ENTRYVIEW);    
         initView();
 
     }    
     
-    public SingleChoiceEntryView<SpriteGroup> getTargetsCoice(){
-        return myTargets;
+    @Override
+    public SpriteGroup getTargetsCoice(){
+        return myTargets.getSelected();
     }
 
     
@@ -40,17 +39,19 @@ public class TrackingMoverSFV extends SubFormView {
 
     @Override
     protected void initView(){
-        myPane.setGridLinesVisible(true);
-        myPane.add(mySpeed.draw(), 0, 0);
-        myPane.add(myTargets.draw(), 0, 1);
+        myPane = getMyUIFactory().makeHBox(20, Pos.CENTER, mySpeed.draw(), myTargets.draw());
     }
     
-    public String getSpeedKey(){
-        return mySpeedKey;
+    @Override
+    public void populateWithData(double speed, SpriteGroup targets) {
+        mySpeed.setData(speed);
+        myTargets.setSelected(targets);
     }
     
-    public String getTargetsKey(){
-        return myTargetsKey;
+    @Override
+    public double getSpeed(){
+        return mySpeed.getData();
     }
+    
     
 }

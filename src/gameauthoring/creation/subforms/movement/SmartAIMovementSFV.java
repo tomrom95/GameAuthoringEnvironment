@@ -11,11 +11,4 @@ public class SmartAIMovementSFV implements ISubFormView {
         // TODO Auto-generated method stub
         return null;
     }
-
-    @Override
-    public IFormDataManager getData () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }

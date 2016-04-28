@@ -9,12 +9,9 @@ import gameauthoring.creation.subforms.ISubFormView;
 public class SmartAIMovementSFC implements ISubFormControllerSprite {
 
     private SmartAIMovementSFV myView;
-    private IFormDataManager myFormData;
 
     public SmartAIMovementSFC () {
         myView = new SmartAIMovementSFV();
-        this.myFormData = myView.getData();
-
     }
 
     @Override

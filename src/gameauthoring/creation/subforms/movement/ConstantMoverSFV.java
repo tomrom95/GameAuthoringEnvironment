@@ -1,6 +1,5 @@
 package gameauthoring.creation.subforms.movement;
 
-import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
@@ -22,15 +21,15 @@ public class ConstantMoverSFV extends SubFormView implements IConstantMoverSFV {
     private HBox myPane;
     private String mySpeedKey = "Speed: ";
     private String myOrientationKey = "Initial Orientation: ";
-    private IEntryView mySpeed;
-    private IEntryView myOrientation;
+    private NumberEntryView mySpeed;
+    private NumberEntryView myOrientation;
 
     public ConstantMoverSFV () {
         mySpeed =
-                new NumberEntryView(mySpeedKey, this.getData(), 150, 30,
+                new NumberEntryView(mySpeedKey, 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myOrientation =
-                new NumberEntryView(myOrientationKey, this.getData(), 150, 30,
+                new NumberEntryView(myOrientationKey, 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
     }
@@ -47,13 +46,19 @@ public class ConstantMoverSFV extends SubFormView implements IConstantMoverSFV {
     }
 
     @Override
-    public String getMySpeedKey () {
-        return mySpeedKey;
+    public double getMySpeed () {
+        return mySpeed.getData();
     }
 
     @Override
-    public String getMyOrientationKey () {
-        return myOrientationKey;
+    public double getMyOrientation () {
+        return myOrientation.getData();
+    }
+    
+    @Override
+    public void populateWithData(double orientation, double speed) {
+        myOrientation.setData(orientation);
+        mySpeed.setData(speed);
     }
 
 }

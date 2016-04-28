@@ -23,16 +23,15 @@ import gameauthoring.util.Glyph;
 public class GameInfoView implements Glyph {
 
     private GridPane myLayout;
-    private IFormDataManager myData = new FormDataManager();
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
     private String myNameKey = myLang.getString("NameOfGame");
     private String myAuthorKey = myLang.getString("Author");
     private String myDateCreatedKey = myLang.getString("Date");
     private String mySplashScreenKey = myLang.getString("SplashScreen");
-    private IEntryView myName;
-    private IEntryView myAuthor;
-    private IEntryView myDateCreated;
-    private IEntryView mySplashScreen;
+    private TextEntryView myName;
+    private TextEntryView myAuthor;
+    private TextEntryView myDateCreated;
+    private ImageEntryView mySplashScreen;
     private static final int HORIZONTAL_GAP = 150;
 
     public GameInfoView () {
@@ -45,12 +44,12 @@ public class GameInfoView implements Glyph {
         initView();
         return myLayout;
     }
-
+    
     private void createEntryViews () {
-        myName = new TextEntryView(myNameKey, myData, 200, 60, "titleScreen");
-        myAuthor = new TextEntryView(myAuthorKey, myData, 200, 60, "titleScreen");
-        myDateCreated = new TextEntryView(myDateCreatedKey, myData, 200, 60, "titleScreen");
-        mySplashScreen = new ImageEntryView(mySplashScreenKey, myData, 200, 300,
+        myName = new TextEntryView(myNameKey,  200, 60, "titleScreen");
+        myAuthor = new TextEntryView(myAuthorKey,  200, 60, "titleScreen");
+        myDateCreated = new TextEntryView(myDateCreatedKey,  200, 60, "titleScreen");
+        mySplashScreen = new ImageEntryView(mySplashScreenKey,  200, 300,
                                             AuthoringView.DEFAULT_ENTRYVIEW);
     }
 
@@ -62,23 +61,19 @@ public class GameInfoView implements Glyph {
         myLayout.setHgap(HORIZONTAL_GAP);
     }
 
-    public IFormDataManager getData () {
-        return myData;
+    public TextEntryView getMyName () {
+        return myName;
     }
 
-    public String getMyNameKey () {
-        return myNameKey;
+    public TextEntryView getMyAuthor () {
+        return myAuthor;
     }
 
-    public String getMyAuthorKey () {
-        return myAuthorKey;
+    public TextEntryView getMyDateCreated() {
+        return myDateCreated;
     }
 
-    public String getMyDateCreatedKey () {
-        return myDateCreatedKey;
-    }
-
-    public String getMySplashScreenKey () {
-        return mySplashScreenKey;
+    public ImageEntryView getMySplashScreen () {
+        return mySplashScreen;
     }
 }
