@@ -2,14 +2,9 @@ package gameauthoring.levels.sprites;
 
 import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
-import engine.rendering.UnscaledFactory;
-import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.levels.SceneController;
 import gameauthoring.util.DraggableCell;
-import gameauthoring.util.UIFactory;
-import gameauthoring.util.BasicUIFactory;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;

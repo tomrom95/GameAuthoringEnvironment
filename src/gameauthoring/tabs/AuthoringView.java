@@ -148,7 +148,7 @@ public class AuthoringView implements IAuthoringView {
     private MenuBar createMenuBar () {
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu(myLabel.getString("File"));
-        MenuItem goHome = createMenuItems(myLabel.getString("Home"), e -> goHome());
+        MenuItem goHome = createMenuItems(myLabel.getString("GoHome"), e -> goHome());
         MenuItem saveItem = createMenuItems(myLabel.getString("Save"), e -> saveToXML());
         MenuItem launchItem = createMenuItems(myLabel.getString("Launch"), e -> launchGame());
         fileMenu.getItems().add(goHome);
