@@ -65,13 +65,21 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
      * 
      * @return
      */
+    @Override
     public List<SpriteDefinition> getChosen () {
         return mySelected.getListView().getItems();
+    }
+    
+    @Override
+    public void setChosen (List<SpriteDefinition> chosenSprites) {
+        mySelected.getListView().setItems(FXCollections.observableArrayList(chosenSprites));
     }
 
     @Override
     public Node draw () {
         return myContainer;
     }
+
+   
 
 }

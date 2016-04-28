@@ -50,7 +50,7 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
     }
 
     private void setImageBind (E profile) {
-        profile.getProfile().imageChanged().addListener(e -> setGraphic(createSpriteCell(profile)));
+        profile.getProfile().imageChanged().addListener(e -> updateItem(profile, false));
     }
 
     /**

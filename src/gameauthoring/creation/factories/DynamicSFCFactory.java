@@ -1,6 +1,7 @@
 package gameauthoring.creation.factories;
 
 import engine.IGame;
+import engine.definitions.moduledef.FirerDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 
@@ -33,6 +34,9 @@ public abstract class DynamicSFCFactory<T extends IProfilable> {
      * @return The ISubFormControllerSprite that the factory creates
      */
     public abstract ISubFormController<T> createSubFormController (String type);
+    
+    public abstract ISubFormController<T> createSubFormController (String type, Object ... params );
+
 
     // Getters and Setters
     protected IGame getMyGame () {
