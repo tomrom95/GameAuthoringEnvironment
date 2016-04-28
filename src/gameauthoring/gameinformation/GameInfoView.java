@@ -1,6 +1,5 @@
 package gameauthoring.gameinformation;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 import splash.LocaleManager;
 import javafx.scene.Node;
