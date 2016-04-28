@@ -131,8 +131,6 @@ public class AuthoringRenderer extends LevelRenderer {
 
     private void resize (Drawable sprite, Node node) {
         draw(node, sprite);
-        node.scaleXProperty().set(getScale().getScale());
-        node.scaleYProperty().set(getScale().getScale());
     }
 
     @Override

@@ -9,8 +9,8 @@ import engine.interactionevents.MouseIOEvent;
 import engine.rendering.IGameGridConfig;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
+import util.Bounds;
 import util.Coordinate;
-import util.LevelBound;
 import util.TimeDuration;
 
 
@@ -161,7 +161,7 @@ public class Game implements IGame {
     }
 
     @Override
-    public LevelBound getLevelBounds () {
+    public Bounds getLevelBounds () {
         return getLevelManager().getCurrentLevel().getBounds();
     }
 }

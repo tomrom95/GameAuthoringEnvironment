@@ -1,6 +1,7 @@
 package gameauthoring.levels;
 
 import engine.IGame;
+import engine.ILevel;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.creation.cellviews.ProfileCellView;
@@ -13,13 +14,16 @@ import javafx.scene.control.TitledPane;
 import util.ScaleRatio;
 
 public class AuthoringSideBar extends SideBarDisplay {
+    
+    private IGame myGame;
 
-    public AuthoringSideBar (IGame game, LevelRenderer renderer, ScaleRatio scale) {
-        super(game, renderer, scale);
+    public AuthoringSideBar (IGame game, ILevel level, LevelRenderer renderer, ScaleRatio scale) {
+        super(level, renderer, scale);
+        myGame = game;
     }
 
     protected void fillAccordion (Accordion accordion) {
-        getGame().getAuthorshipData().getMyCreatedSpritesMap().values().stream().forEach(c -> {
+        myGame.getAuthorshipData().getMyCreatedSpritesMap().values().stream().forEach(c -> {
             TitledPane toAdd = createAccordionPane(c);
             accordion.getPanes().add(toAdd);
             accordion.expandedPaneProperty().set(toAdd);
@@ -37,8 +41,8 @@ public class AuthoringSideBar extends SideBarDisplay {
     }
 
     @Override
-    protected SceneController createController (IGame game, ScaleRatio ratio) {
-        return new SceneController(game.getLevelManager().getCurrentLevel(), ratio);
+    protected SceneController createController (ILevel level, ScaleRatio ratio) {
+        return new SceneController(level, ratio);
     }
 
 }

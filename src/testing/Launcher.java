@@ -172,7 +172,7 @@ public class Launcher extends Application {
         myGame =
                 new Game(new GameInformation());
         myGame.getLevelManager().getLevels().add(firstLevel);
-        userFirer();
+//        userFirer();
 //        addSpritesToGame(myGame);
 //        addConditionsToTest(myGame);
         GamePlayer gp = new GamePlayer(myGame);
