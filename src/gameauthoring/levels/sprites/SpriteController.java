@@ -42,9 +42,13 @@ public class SpriteController {
      * @param y
      */
     public void moveSprite(ISprite sprite, double x, double y){
-        sprite.setLocation(new Coordinate(x, y));
+        sprite.setLocation(new Coordinate(scale(x), scale(y)));
     }
     
+    private double scale (double input) {
+        return input/myScale.getScale();
+    }
+
     /**
      * Starts making a new path beginning with a start point
      * @param sprite
