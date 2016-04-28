@@ -1,6 +1,6 @@
 package gameplayer;
 
-import engine.IGame;
+import engine.ILevel;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.creation.cellviews.ProfileCellView;
@@ -23,19 +23,19 @@ import util.ScaleRatio;
  *
  */
 public abstract class SideBarDisplay extends SizeableGlyph {
-
-    private IGame myGame;
+    
+    private ILevel myLevel;
     private LevelRenderer levelView;
     private SceneController myController;
     private Accordion myAccordion;
 
-    public SideBarDisplay (IGame game, LevelRenderer renderer, ScaleRatio ratio) {
-        myGame = game;
+    public SideBarDisplay (ILevel level, LevelRenderer renderer, ScaleRatio ratio) {
         levelView = renderer;
-        myController = createController(game, ratio);
+        myLevel = level;
+        myController = createController(level, ratio);
     }
 
-    protected abstract SceneController createController (IGame game, ScaleRatio ratio);
+    protected abstract SceneController createController (ILevel level, ScaleRatio ratio);
 
     @Override
     public Node draw () {
@@ -67,9 +67,9 @@ public abstract class SideBarDisplay extends SizeableGlyph {
         list.setCellFactory(c -> getSpriteCellView());
         return list;
     }
-                                                                   
-    protected IGame getGame () {
-        return myGame;
+    
+    protected ILevel getLevel () {
+        return myLevel;
     }
     
     protected LevelRenderer getLevelView () {

@@ -102,7 +102,7 @@ public class SceneCreator implements Glyph {
      * @return
      */
     private Node createSpriteSelection () {
-        mySideBar = new AuthoringSideBar(gameModel, myRenderer, myScale);
+        mySideBar = new AuthoringSideBar(gameModel, myLevel, myRenderer, myScale);
         return mySideBar.draw();
     }
 
