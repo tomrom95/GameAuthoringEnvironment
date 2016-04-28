@@ -25,6 +25,14 @@ public class AuthorshipData {
     
     private Map<String, DefinitionCollection<SpriteDefinition>> myCreatedSprites;
     
+    private static String MISSILES_TITLE_KEY = "Missiles";
+    private static String WAVES_TITLE_KEY = "Waves";
+    private static String GLOBALS_TITLE_KEY = "Globals";
+    private static String ATTRIBUTES_TITLE_KEY = "Attributes";
+    private static String GROUPS_TITLE_KEY = "Groups";
+    private static String EVENTPACKAGES_TITLE_KEY = "EventPackages";
+
+    
     private DefinitionCollection<SpriteDefinition> myCreatedMissiles;
     private DefinitionCollection<WaveDefinition> myCreatedWaves;
     private DefinitionCollection<AttributeDefinition> myCreatedGlobals;
@@ -60,79 +68,39 @@ public class AuthorshipData {
         return myCreatedSprites;
     }
     
-    //TODO: language title thing
     public DefinitionCollection<SpriteDefinition> getMyCreatedSprites(String key) {
-        if(!myCreatedSprites.containsKey(key)) myCreatedSprites.put(key, new DefinitionCollection<>("Sprites", FXCollections.observableArrayList()));
+        if(!myCreatedSprites.containsKey(key)) myCreatedSprites.put(key, new DefinitionCollection<>(key, FXCollections.observableArrayList()));
         return myCreatedSprites.get(key);
     }
     
     public DefinitionCollection<SpriteDefinition> getMyCreatedMissiles () {
-        if(myCreatedMissiles == null) myCreatedMissiles = new DefinitionCollection<>("Missiles", FXCollections.observableArrayList());
+        if(myCreatedMissiles == null) myCreatedMissiles = new DefinitionCollection<>(AuthorshipData.MISSILES_TITLE_KEY, FXCollections.observableArrayList());
         return myCreatedMissiles;
     }
 
     public DefinitionCollection<AttributeDefinition> getMyCreatedGlobals () {
-        if(myCreatedGlobals == null) myCreatedGlobals = new DefinitionCollection<>("Global Attributes", FXCollections.observableArrayList());
+        if(myCreatedGlobals == null) myCreatedGlobals = new DefinitionCollection<>(AuthorshipData.GLOBALS_TITLE_KEY, FXCollections.observableArrayList());
         return myCreatedGlobals;
     }
 
     public DefinitionCollection<AttributeDefinition> getMyCreatedAttributes () {
-        if(myCreatedAttributes == null) myCreatedAttributes = new DefinitionCollection<>("Character Attributes", FXCollections.observableArrayList());
+        if(myCreatedAttributes == null) myCreatedAttributes = new DefinitionCollection<>(AuthorshipData.ATTRIBUTES_TITLE_KEY, FXCollections.observableArrayList());
         return myCreatedAttributes;
     }
 
     public DefinitionCollection<EventPackageDefinition> getMyCreatedEventPackages () {
-        if(myCreatedEventPackages == null) myCreatedEventPackages = new DefinitionCollection<>("Event Packages", FXCollections.observableArrayList());
+        if(myCreatedEventPackages == null) myCreatedEventPackages = new DefinitionCollection<>(AuthorshipData.EVENTPACKAGES_TITLE_KEY, FXCollections.observableArrayList());
         return myCreatedEventPackages;
     }
 
     public DefinitionCollection<SpriteGroup> getMyCreatedGroups () {
-        if(myCreatedGroups == null) myCreatedGroups = new DefinitionCollection<>("Groups", FXCollections.observableArrayList());
+        if(myCreatedGroups == null) myCreatedGroups = new DefinitionCollection<>(AuthorshipData.GROUPS_TITLE_KEY, FXCollections.observableArrayList());
         return myCreatedGroups;
     }
 
     public DefinitionCollection<WaveDefinition> getCreatedWaves () {
-        if(myCreatedWaves == null) myCreatedWaves = new DefinitionCollection<>("Waves", FXCollections.observableArrayList());
+        if(myCreatedWaves == null) myCreatedWaves = new DefinitionCollection<>(AuthorshipData.WAVES_TITLE_KEY, FXCollections.observableArrayList());
         return myCreatedWaves;
-    }
-    public DefinitionCollection<SpriteDefinition> getMyCreatedSprites(String key, String title) {
-        if(!myCreatedSprites.containsKey(key)) myCreatedSprites.put(key, new DefinitionCollection<>(title, FXCollections.observableArrayList()));
-        return myCreatedSprites.get(key);
-    }
-    
-    public DefinitionCollection<SpriteDefinition> getMyCreatedMissiles (String title) {
-        if(myCreatedMissiles == null) myCreatedMissiles = new DefinitionCollection<>(title, FXCollections.observableArrayList());
-        return myCreatedMissiles;
-    }
-
-    public DefinitionCollection<AttributeDefinition> getMyCreatedGlobals (String title) {
-        if(myCreatedGlobals == null) myCreatedGlobals = new DefinitionCollection<>(title, FXCollections.observableArrayList());
-        return myCreatedGlobals;
-    }
-
-    public DefinitionCollection<AttributeDefinition> getMyCreatedAttributes (String title) {
-        if(myCreatedAttributes == null) myCreatedAttributes = new DefinitionCollection<>(title, FXCollections.observableArrayList());
-        return myCreatedAttributes;
-    }
-
-    public DefinitionCollection<EventPackageDefinition> getMyCreatedEventPackages (String title) {
-        if(myCreatedEventPackages == null) myCreatedEventPackages = new DefinitionCollection<>(title, FXCollections.observableArrayList());
-        return myCreatedEventPackages;
-    }
-
-    public DefinitionCollection<SpriteGroup> getMyCreatedGroups (String title) {
-        if(myCreatedGroups == null) myCreatedGroups = new DefinitionCollection<>(title, FXCollections.observableArrayList());
-        return myCreatedGroups;
-    }
-
-    public DefinitionCollection<WaveDefinition> getCreatedWaves (String title) {
-        if(myCreatedWaves == null) myCreatedWaves = new DefinitionCollection<>(title, FXCollections.observableArrayList());
-        return myCreatedWaves;
-    }
-
-    public void addWave (WaveDefinition waveDef) {
-        myCreatedWaves.addItem(waveDef);
-
     }
 
 }

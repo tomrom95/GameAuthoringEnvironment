@@ -34,8 +34,7 @@ public class CreationControllerGlobals extends CreationController<AttributeDefin
 
     @Override
     protected DefinitionCollection<AttributeDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
-        // TODO Auto-generated method stub
-        return authorshipData.getMyCreatedGlobals(getMyTitle());
+        return authorshipData.getMyCreatedGlobals();
     }
 
 }
