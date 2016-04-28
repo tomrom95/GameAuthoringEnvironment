@@ -2,6 +2,7 @@ package gameauthoring.levels.waves;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.IGame;
 import engine.definitions.spawnerdef.WaveDefinition;
 import gameauthoring.creation.cellviews.NameCellView;
@@ -17,7 +18,7 @@ import javafx.scene.control.ListView;
  */
 public class WaveOptionView implements Glyph{
 
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/spawner_view");
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     

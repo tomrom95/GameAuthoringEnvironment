@@ -3,6 +3,7 @@ package gameauthoring.listdisplay;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import splash.LocaleManager;
 import gameauthoring.util.ErrorMessage;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -17,7 +18,7 @@ public abstract class ConditionController {
     private static final double X_OFFSET = 1/4;
     
     private ResourceBundle myLanguage =
-            ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+            ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ConditionView myView;
 
     public ConditionController (ConditionView conditionView) {
