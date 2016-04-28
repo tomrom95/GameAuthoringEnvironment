@@ -1,6 +1,7 @@
 package gameplayer;
 
 import engine.IGame;
+import engine.ILevel;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.creation.cellviews.ProfileCellView;
@@ -25,13 +26,12 @@ public class PlayerSideBar extends SideBarDisplay {
     private static final String PANE_TITLE = "Towers";
     
     public PlayerSideBar (IGame game, LevelRenderer renderer, ScaleRatio ratio) {
-        super(game, renderer, ratio);
+        super(game.getLevelManager().getCurrentLevel(), renderer, ratio);
     }
 
     @Override
     protected void fillAccordion (Accordion accordion) {
-        accordion.getPanes().add(createAccordionPane(this.getGame().getLevelManager()
-                .getCurrentLevel().getAddableSprites()));
+        accordion.getPanes().add(createAccordionPane(this.getLevel().getAddableSprites()));
     }
 
     protected TitledPane createAccordionPane (ObservableList<SpriteDefinition> spriteList) {
@@ -46,7 +46,7 @@ public class PlayerSideBar extends SideBarDisplay {
     }
 
     @Override
-    protected SceneController createController (IGame game, ScaleRatio ratio) {
-        return new GameSceneController(game.getLevelManager().getCurrentLevel(), ratio);
+    protected SceneController createController (ILevel myLevel, ScaleRatio ratio) {
+        return new GameSceneController(getLevel(), ratio);
     }
 }
