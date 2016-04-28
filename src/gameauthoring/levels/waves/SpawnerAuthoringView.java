@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 import util.ScaleRatio;
 
 
@@ -25,7 +26,7 @@ import util.ScaleRatio;
 
 public class SpawnerAuthoringView implements Glyph {
 
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     private VBox myPane = new VBox();
     private UIFactory myFactory = new BasicUIFactory();

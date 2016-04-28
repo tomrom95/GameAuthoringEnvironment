@@ -1,6 +1,5 @@
 package gameauthoring.levels.waves;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 import engine.IAdder;
 import engine.IGame;
@@ -10,7 +9,6 @@ import engine.definitions.spawnerdef.SpawnerModuleDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
 import engine.profile.Profile;
 import engine.rendering.AuthoringRenderer;
-import engine.sprite.ISprite;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -31,9 +29,9 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 import util.Coordinate;
 import util.ScaleRatio;
 import util.StringParser;
@@ -52,7 +50,8 @@ public class SpawnerView implements Glyph, Draggable {
     private static final String EMPTY = "";
     private static final double SIZE = 80;
 
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager
+            .getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/spawner_view");
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
 
@@ -96,7 +95,7 @@ public class SpawnerView implements Glyph, Draggable {
     private void setSize () {
         double width = Double.parseDouble(myBundle.getString("ListWidth"));
         myWaves.setMinWidth(width);
-        myWaves.setMaxWidth(width);   
+        myWaves.setMaxWidth(width);
     }
 
     private Node getLeft () {
@@ -193,10 +192,10 @@ public class SpawnerView implements Glyph, Draggable {
         myRenderer.render();
         reset();
     }
-    
+
     private Coordinate getCoordinate (double x, double y) {
-        Coordinate c =  new Coordinate (myScale.invert(x), myScale.invert(y));
-        return c; 
+        Coordinate c = new Coordinate(myScale.invert(x), myScale.invert(y));
+        return c;
     }
 
     public void setButtonAction (EventHandler<MouseEvent> event) {
