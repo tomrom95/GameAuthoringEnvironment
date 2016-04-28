@@ -46,7 +46,7 @@ public class SpriteController {
     }
     
     private double inverseScale (double input) {
-        return input/myScale.getScale();
+        return myScale.invert(input);
     }
 
     /**
@@ -63,7 +63,7 @@ public class SpriteController {
     }
     
     private double scale (double input) {
-        return input * myScale.getScale();
+        return myScale.scale(input);
     }
 
     /**

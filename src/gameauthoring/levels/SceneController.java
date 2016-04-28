@@ -43,8 +43,8 @@ public class SceneController {
         Image image = new Image(imageURL);
         initScale(image.getWidth(), image.getHeight());
         ImageGraphic background =
-                new ImageGraphic(image.getWidth() * myRatio.getScale(),
-                                 image.getHeight() * myRatio.getScale(), imageURL);
+                new ImageGraphic(myRatio.scale(image.getWidth()),
+                                 myRatio.scale(image.getHeight()), imageURL);
         myLevel.setBounds(new Bounds(image.getWidth(), image.getHeight()));
         myLevel.setBackgroundImage(background);
     }
@@ -70,7 +70,7 @@ public class SceneController {
 
     public void addSprite (double x, double y, SpriteDefinition spriteDefinition) {
         myLevel.add(spriteDefinition.create(),
-                    new Coordinate(x / myRatio.getScale(), y / myRatio.getScale()));
+                    new Coordinate(myRatio.invert(x), myRatio.invert(y)));
     }
 
     public ILevel getLevel () {

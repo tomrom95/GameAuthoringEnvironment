@@ -195,7 +195,7 @@ public class SpawnerView implements Glyph, Draggable {
     }
     
     private Coordinate getCoordinate (double x, double y) {
-        Coordinate c =  new Coordinate (x/myScale.getScale(), y/ myScale.getScale());
+        Coordinate c =  new Coordinate (myScale.invert(x), myScale.invert(y));
         return c; 
     }
 

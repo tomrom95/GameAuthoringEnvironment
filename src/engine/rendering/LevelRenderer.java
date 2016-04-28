@@ -43,9 +43,8 @@ public abstract class LevelRenderer implements IRenderer {
 
     protected void draw (Node node, Drawable sprite) {
         Coordinate location = sprite.getLocation();
-        node.relocate( location.getX() *
-                        getScale().getScale() - sprite.getDrawer().getGraphic().getHeight().get() / 2,
-                        location.getY()  * getScale().getScale() - sprite.getDrawer().getGraphic().getHeight().get() / 2);
+        node.relocate(getScale().scale(location.getX()) - sprite.getDrawer().getGraphic().getHeight().get() / 2,
+                        getScale().scale(location.getY()) - sprite.getDrawer().getGraphic().getHeight().get() / 2);
         node.setScaleX(getScale().getScale());
         node.setScaleY(getScale().getScale());
         node.setVisible(sprite.getDrawer().isVisible());

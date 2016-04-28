@@ -104,13 +104,10 @@ public class PathCreator {
                      .stream()
                      .filter(elem -> (elem instanceof MoveTo) )
                      .map(elem -> (MoveTo) elem)
-                     .map(elem -> new Coordinate(inverseScale(elem.getX()), inverseScale(elem.getY())))
+                     .map(elem -> new Coordinate(myScale.invert(elem.getX()), myScale.invert(elem.getY())))
                      .collect(Collectors.toList());
     }
-    
-    private double inverseScale (double input) {
-        return input/myScale.getScale();
-    }
+   
 
     public boolean isCreatingPath () {
         return makingPath;
