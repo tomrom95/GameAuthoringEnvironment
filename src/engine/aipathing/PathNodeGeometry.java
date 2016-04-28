@@ -21,6 +21,9 @@ public class PathNodeGeometry {
         // utility class so private constructor
     }
 
+    public static List<Coordinate> roundedLineBetween (Coordinate start, Coordinate end) {
+        return lineRounder(lineBetween(start, end));
+    }
 
     public static List<Coordinate> lineRounder (List<Coordinate> lineToRound) {
         List<Coordinate> toReturn = new ArrayList<>();
@@ -51,9 +54,8 @@ public class PathNodeGeometry {
         double curY = start.getY();
         BiFunction<Double, Double, Boolean> comparatorX = comparatorForDelta(deltaX);
         BiFunction<Double, Double, Boolean> comparatorY = comparatorForDelta(deltaY);
-        while ( (comparatorX.apply(curX, end.getX()) || comparatorY.apply(curY, end.getY())) &&
-               bothAreNotZero(deltaX, deltaY)
-               ) {
+        while ((comparatorX.apply(curX, end.getX()) || comparatorY.apply(curY, end.getY())) &&
+               bothAreNotZero(deltaX, deltaY)) {
             toReturn.add(new Coordinate(curX, curY));
             curX += deltaX;
             curY += deltaY;
@@ -61,16 +63,14 @@ public class PathNodeGeometry {
         toReturn.add(end);
         return toReturn;
     }
-    
-    private static boolean bothAreNotZero(double first, double second){
+
+    private static boolean bothAreNotZero (double first, double second) {
         return (first != 0d) && (second != 0d);
     }
-    
-    private static BiFunction<Double, Double, Boolean> comparatorForDelta(double delta){
-        return delta > 0 ? (first, second) -> first <= second: (first, second) -> first >= second;
+
+    private static BiFunction<Double, Double, Boolean> comparatorForDelta (double delta) {
+        return delta > 0 ? (first, second) -> first <= second : (first, second) -> first >= second;
     }
-    
-    
 
     /**
      * See {@link #lineBetween(Coordinate, Coordinate)}
@@ -98,7 +98,7 @@ public class PathNodeGeometry {
         double deltaY = y2 - y1;
         return Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
     }
-    
+
     public static ArrayPosition midPoint (ArrayPosition pos1, ArrayPosition pos2) {
         return new ArrayPosition((pos1.getX() + pos2.getX()) / INT_TWO,
                                  (pos1.getY() + pos2.getY()) / INT_TWO);
