@@ -13,19 +13,20 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import util.ScaleRatio;
 
 
 public class AuthoringRenderer extends LevelRenderer {
 
     private static final int MAX_HEIGHT = 400;
     private static final int MAX_WIDTH = 1150;
-    
+
     private ILevel myLevel;
     private Map<ISprite, Node> mySpriteNodeMap;
     private GridRenderer myTileView;
-    
-    public AuthoringRenderer (ILevel level, Pane pane, GridPane gridPane) {
-        super(pane);
+
+    public AuthoringRenderer (ILevel level, Pane pane, GridPane gridPane, ScaleRatio scale) {
+        super(pane, scale);
         myLevel = level;
         mySpriteNodeMap = new HashMap<>();
         myTileView = new GridRenderer(level, gridPane);
@@ -36,19 +37,14 @@ public class AuthoringRenderer extends LevelRenderer {
         // this.draw(spriteNode, sprite);
     }
 
-    public void updateNewTiles (){
+    public void updateNewTiles () {
         myTileView.render();
     }
-    
+
     @Override
     public void render () {
         drawBackground(getBackgroundURL());
-        updateNewBackgroundSize();
         drawSprites();
-    }
-
-    private void updateNewBackgroundSize () {
-        myLevel.setBackgroundImageSize(getPane().getMinWidth(),getPane().getMinHeight());        
     }
 
     @Override
@@ -111,17 +107,19 @@ public class AuthoringRenderer extends LevelRenderer {
         }
         else {
             Node node = createOnScreenSprite(sprite);
+            node.scaleXProperty().set(getScale().getScale());
+            node.scaleYProperty().set(getScale().getScale());
             mySpriteNodeMap.put(sprite, node);
             add(node);
             return node;
         }
     }
-    
-    public GridRenderer getGrids(){
+
+    public GridRenderer getGrids () {
         return myTileView;
     }
-    
-    public ILevel getLevel(){
+
+    public ILevel getLevel () {
         return myLevel;
     }
 
@@ -130,14 +128,26 @@ public class AuthoringRenderer extends LevelRenderer {
     }
 
     @Override
-    protected Image getImage (String url) {
-        return new Image(url, MAX_WIDTH, MAX_HEIGHT, true, true);
+    public void redrawBackground () {
+        for (Drawable sprite: mySpriteNodeMap.keySet()) {
+            resize(sprite, mySpriteNodeMap.get(sprite));
+        }
+    }
+
+    private void resize (Drawable sprite, Node node) {
+        draw(node, sprite);
+        node.scaleXProperty().set(getScale().getScale());
+        node.scaleYProperty().set(getScale().getScale());
     }
 
     @Override
-    public void redrawBackground () {
-        //nothing
-        
+    protected double scaledHeight () {
+        return myLevel.getBounds().getHeight() * getScale().getScale();
+    }
+
+    @Override
+    protected double scaledWidth () {
+        return myLevel.getBounds().getWidth() * getScale().getScale();
     }
 
 }

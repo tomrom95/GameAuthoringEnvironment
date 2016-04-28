@@ -8,6 +8,10 @@ public class ScaleRatio {
         myRatio = 1;
     }
     
+    public ScaleRatio (double scale) {
+        myRatio = scale;
+    }
+    
     
     public double getScale () {
         return myRatio;

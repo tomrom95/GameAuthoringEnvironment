@@ -13,6 +13,8 @@ import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.ErrorMessage;
 import gameauthoring.waves.WaveTabViewer;
 import gameplayer.GamePlayer;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -101,6 +103,33 @@ public class AuthoringView implements IAuthoringView {
         Scene scene = new Scene(myLayout, WIDTH, HEIGHT);
         scene.getStylesheets().add(DEFAULT_RESOURCE_PACKAGE + STYLESHEET);
         s.setScene(scene);
+        initListeners(s);
+        rescale(s.getWidth(), s.getHeight());
+    }
+
+    private void initListeners (Stage stage) {
+        stage.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed (ObservableValue<? extends Number> observableValue,
+                                 Number oldSceneWidth,
+                                 Number newSceneWidth) {
+                rescale(newSceneWidth.doubleValue(), stage.getHeight());
+            }
+        });
+
+        stage.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed (ObservableValue<? extends Number> observableValue,
+                                 Number oldSceneHeight,
+                                 Number newSceneHeight) {
+                rescale(stage.getWidth(), newSceneHeight.doubleValue());
+            }
+        });
+
+    }
+    
+    private void rescale(double width, double height) {
+       mySceneTabViewer.rescale(width, height);
     }
 
     private void initializeTabViewers () {

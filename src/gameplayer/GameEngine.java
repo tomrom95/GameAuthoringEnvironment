@@ -101,7 +101,6 @@ public class GameEngine implements IGameEngine {
     public void rescale (double width, double height) {
         double xScale = rescaleX(width);
         double yScale = rescaleY(height);
-        System.out.println("XScale " + xScale + " yScale: " + yScale);
         double min = Math.min(xScale, yScale);
         myScale.setScale(min);
         myRenderer.redrawBackground();
@@ -112,8 +111,6 @@ public class GameEngine implements IGameEngine {
         double userdisplay = myDisplay.getWidth();
         double left = room - sidebar - userdisplay;
         double g = myGame.getLevelManager().getCurrentLevel().getBounds().getWidth();
-        System.out.println("Width left" + left);
-        System.out.println("width" + g);
         return left/g;
     }
 
@@ -121,8 +118,6 @@ public class GameEngine implements IGameEngine {
         double toolbar = myTools.getHeight();
         double left = room - toolbar;
         double g = myGame.getLevelManager().getCurrentLevel().getBounds().getHeight();
-        System.out.println("Height left" + left);
-        System.out.println("height" + g);
         return left/g;
     }
 

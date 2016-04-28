@@ -10,6 +10,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import util.Coordinate;
+import util.ScaleRatio;
 
 
 /**
@@ -19,8 +20,10 @@ import util.Coordinate;
 public abstract class LevelRenderer implements IRenderer {
 
     private Pane myPane;
+    private ScaleRatio myScale;
 
-    public LevelRenderer (Pane pane) {
+    public LevelRenderer (Pane pane, ScaleRatio scale) {
+        myScale = scale;
         myPane = pane;
     }
 
@@ -40,8 +43,10 @@ public abstract class LevelRenderer implements IRenderer {
 
     protected void draw (Node node, Drawable sprite) {
         Coordinate location = sprite.getLocation();
-        node.relocate(location.getX() - sprite.getDrawer().getGraphic().getWidth().get() / 2,
-                      location.getY() - sprite.getDrawer().getGraphic().getHeight().get() / 2);
+        node.relocate((location.getX() - sprite.getDrawer().getGraphic().getWidth().get() / 2) *
+                        getScale().getScale(),
+                        (location.getY() - sprite.getDrawer().getGraphic().getHeight().get() / 2) *
+                                             getScale().getScale());
         node.setVisible(sprite.getDrawer().isVisible());
         node.setRotate(sprite.getOrientation());
     }
@@ -61,7 +66,17 @@ public abstract class LevelRenderer implements IRenderer {
         myPane.setMinHeight(img.getHeight());
     }
 
-    protected abstract Image getImage (String url);
-
     public abstract void redrawBackground ();
+    
+    protected ScaleRatio getScale() {
+        return myScale;
+    }
+    
+    protected Image getImage (String url) {
+        return new Image(url, scaledWidth(), scaledHeight(), true, true);
+    }
+
+    protected abstract double scaledHeight ();
+
+    protected abstract double scaledWidth ();
 }

@@ -33,19 +33,17 @@ public class InGameRenderer extends LevelRenderer {
     private Map<Drawable, Node> myDrawNodeMap;
     private SpriteDisplayController mySpriteDisplay;
     private boolean myFirstTime;
-    private ScaleRatio myScale;
 
     public InGameRenderer (IGamePlayable game,
                            Pane pane,
                            SpriteDisplayController spriteDisplay,
                            ScaleRatio scale) {
-        super(pane);
+        super(pane, scale);
         myFactory = new UnscaledFactory();
         myGame = game;
         myDrawNodeMap = new HashMap<>();
         myFirstTime = true;
         mySpriteDisplay = spriteDisplay;
-        myScale = scale;
     }
 
     @Override
@@ -123,60 +121,40 @@ public class InGameRenderer extends LevelRenderer {
         }
         else {
             Node node = drawn.getDrawer().getVisualRepresentation(myFactory);
-            node.scaleXProperty().set(myScale.getScale());
-            node.scaleYProperty().set(myScale.getScale());
+            node.scaleXProperty().set(getScale().getScale());
+            node.scaleYProperty().set(getScale().getScale());
             node.setOnMouseClicked(e -> mySpriteDisplay.populate(drawn));
             myDrawNodeMap.put(drawn, node);
             add(node);
             return node;
         }
     }
-
-    @Override
-    protected void draw (Node node, Drawable sprite) {
-        Coordinate location = sprite.getLocation();
-        node.relocate((location.getX() - sprite.getDrawer().getGraphic().getWidth().get() / 2) *
-                      myScale.getScale(),
-                      (location.getY() - sprite.getDrawer().getGraphic().getHeight().get() / 2) *
-                                           myScale.getScale());
-        node.setVisible(sprite.getDrawer().isVisible());
-        node.setRotate(sprite.getOrientation());
-    }
-
+    
     private void add (Node node) {
         getPane().getChildren().add(node);
     }
 
     @Override
-    protected Image getImage (String url) {
-        return new Image(url, scaledWidth(), scaledHeight(), true, true);
-    }
-
-    private double scaledHeight () {
-        return myGame.getLevelBounds().getHeight() * myScale.getScale();
-    }
-
-    private double scaledWidth () {
-        return myGame.getLevelBounds().getWidth() * myScale.getScale();
-    }
-
-    @Override
     public void redrawBackground () {
         myFirstTime = true;
-        System.out.println("redraw");
         for (Drawable drawable: myDrawNodeMap.keySet()) {
-            System.out.println("Map has something");
             resize(drawable, myDrawNodeMap.get(drawable));
         }
-       // myDrawNodeMap.keySet().stream().map(key -> resize(key, myDrawNodeMap.get(key)));
     }
 
     private Node resize (Drawable draw, Node node) {
         draw(node,draw);
-        System.out.println(myScale.getScale());
-        node.scaleXProperty().set(myScale.getScale());
-        node.scaleYProperty().set(myScale.getScale());
+        node.scaleXProperty().set(getScale().getScale());
+        node.scaleYProperty().set(getScale().getScale());
         return node;
+    }
+   
+    protected double scaledHeight () {
+        return myGame.getLevelBounds().getHeight() * getScale().getScale();
+    }
+
+    protected double scaledWidth () {
+        return myGame.getLevelBounds().getWidth() * getScale().getScale();
     }
 
 }

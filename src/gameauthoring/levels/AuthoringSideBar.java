@@ -14,8 +14,8 @@ import util.ScaleRatio;
 
 public class AuthoringSideBar extends SideBarDisplay {
 
-    public AuthoringSideBar (IGame game, LevelRenderer renderer) {
-        super(game, renderer, new ScaleRatio());
+    public AuthoringSideBar (IGame game, LevelRenderer renderer, ScaleRatio scale) {
+        super(game, renderer, scale);
     }
 
     protected void fillAccordion (Accordion accordion) {
@@ -39,7 +39,7 @@ public class AuthoringSideBar extends SideBarDisplay {
 
     @Override
     protected SceneController createController (IGame game, ScaleRatio ratio) {
-        return new SceneController(game.getLevelManager().getCurrentLevel());
+        return new SceneController(game.getLevelManager().getCurrentLevel(), ratio);
     }
 
 }

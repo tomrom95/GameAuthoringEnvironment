@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import util.Coordinate;
 import util.LevelBound;
+import util.ScaleRatio;
 
 
 /**
@@ -24,9 +25,11 @@ public class SceneController {
     private static final int MAX_HEIGHT = 400;
     private static final int MAX_WIDTH = 1150;
     private ILevel myLevel;
-
-    public SceneController (ILevel level) {
+    private ScaleRatio myRatio;
+    
+    public SceneController (ILevel level, ScaleRatio ratio) {
         myLevel = level;
+        myRatio = ratio;
     }
 
     public void uploadNewBackground () {
@@ -38,11 +41,8 @@ public class SceneController {
 
     public void setBackground (String imageURL) {
         Image image = new Image(imageURL);
-        System.out.println(image.getWidth() + " " + image.getHeight());
-        System.out.println("lb " + getLevelBound(image.getWidth(), image.getHeight()).getWidth() +
-                           " " + getLevelBound(image.getWidth(), image.getHeight()).getHeight());
         ImageGraphic background = new ImageGraphic(image.getWidth(), image.getHeight(), imageURL);
-        myLevel.setBounds(getLevelBound(image.getWidth(), image.getHeight()));
+        myLevel.setBounds(new LevelBound(image.getWidth(), image.getHeight()));
         myLevel.setBackgroundImage(background);
     }
 
@@ -63,7 +63,7 @@ public class SceneController {
     }
 
     public void addSprite (double x, double y, SpriteDefinition spriteDefinition) {
-        myLevel.add(spriteDefinition.create(), new Coordinate(x, y));
+        myLevel.add(spriteDefinition.create(), new Coordinate(x/myRatio.getScale(), y/myRatio.getScale()));
     }
 
     public ILevel getLevel () {
@@ -80,5 +80,9 @@ public class SceneController {
 
     public boolean isSpriteInLevel (SpriteDefinition profilable) {
         return myLevel.getAddableSprites().contains(profilable);
+    }
+    
+    protected ScaleRatio getRatio () {
+        return myRatio;
     }
 }
