@@ -59,7 +59,6 @@ public class CreationControllerFactory {
             System.out.println("class cast exception " + e.getMessage());
 
         }
-        System.out.println(className);
         return null;
     }
 
