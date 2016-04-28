@@ -135,12 +135,12 @@ public class AuthoringRenderer extends LevelRenderer {
 
     @Override
     protected double scaledHeight () {
-        return myLevel.getBounds().getHeight() * getScale().getScale();
+        return getScale().scale(myLevel.getBounds().getHeight());
     }
 
     @Override
     protected double scaledWidth () {
-        return myLevel.getBounds().getWidth() * getScale().getScale();
+        return getScale().scale(myLevel.getBounds().getWidth());
     }
 
 }

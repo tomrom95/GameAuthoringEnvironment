@@ -42,9 +42,13 @@ public class SpriteController {
      * @param y
      */
     public void moveSprite(ISprite sprite, double x, double y){
-        sprite.setLocation(new Coordinate(x, y));
+        sprite.setLocation(new Coordinate(inverseScale(x), inverseScale(y)));
     }
     
+    private double inverseScale (double input) {
+        return myScale.invert(input);
+    }
+
     /**
      * Starts making a new path beginning with a start point
      * @param sprite
@@ -52,11 +56,16 @@ public class SpriteController {
      * @param container
      */
     public void createNewPath(ISprite sprite, Coordinate startPoint, Pane container){
+        startPoint = new Coordinate(scale(startPoint.getX()), scale(startPoint.getY()));
         pathCreator.newPath(startPoint, container, myScale);
         container.setOnMouseClicked(e -> pathCreator.addToPath(e, container));
         container.setOnKeyPressed(e -> handleKeyPress(e, container, sprite));
     }
     
+    private double scale (double input) {
+        return myScale.scale(input);
+    }
+
     /**
      * Handles ending of path creation using the escape key
      * @param e

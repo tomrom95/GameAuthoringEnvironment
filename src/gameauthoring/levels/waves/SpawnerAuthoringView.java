@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import util.ScaleRatio;
 
 
 /**
@@ -31,9 +32,9 @@ public class SpawnerAuthoringView implements Glyph {
     private WaveOptionView myWaveOptions;
     private SpawnerView mySpawner;
 
-    public SpawnerAuthoringView (IGame game, ILevel level, AuthoringRenderer renderer) {
+    public SpawnerAuthoringView (IGame game, ILevel level, AuthoringRenderer renderer, ScaleRatio scale) {
         myWaveOptions = new WaveOptionView(game);
-        mySpawner = new SpawnerView(game, level, renderer);
+        mySpawner = new SpawnerView(game, level, renderer, scale);
         initPane();
         new SpawnerAuthoringController(mySpawner, myWaveOptions);
     }

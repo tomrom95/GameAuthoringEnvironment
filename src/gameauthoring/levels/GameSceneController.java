@@ -13,7 +13,7 @@ public class GameSceneController extends SceneController {
     
     @Override
     public void addSprite (double x, double y, SpriteDefinition spriteDefinition) {
-        getLevel().add(spriteDefinition.create(), new Coordinate(x/getRatio().getScale(), y/getRatio().getScale()));
+        getLevel().add(spriteDefinition.create(), new Coordinate(getRatio().invert(x), getRatio().invert(y)));
     }
 
 }
