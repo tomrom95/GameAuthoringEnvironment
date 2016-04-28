@@ -21,6 +21,16 @@ public class CachingEdgeBitMap implements IEdgeBitMap {
             ArrayPosition pos = trues.next();
             this.set(pos, true);
         }
+        // now need to copy the edges
+        List<List<Coordinate>> newEdges = new ArrayList<>();
+        for (List<Coordinate> edge : map.getEdges()) {
+            List<Coordinate> copy = new ArrayList<>();
+            for (Coordinate coord : edge) {
+                copy.add(new Coordinate(coord.getX(), coord.getY()));
+            }
+            newEdges.add(copy);
+        }
+        setEdges(newEdges);
     }
 
     public CachingEdgeBitMap () {

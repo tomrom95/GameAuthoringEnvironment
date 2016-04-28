@@ -3,14 +3,17 @@ package engine;
 import engine.sprite.ISprite;
 import util.AutoTrueBitMap;
 import util.BitMap;
+import util.BoundEdge;
 import util.Bounds;
 import util.CachingEdgeBitMap;
 import util.Coordinate;
 import util.IBitMap;
+import util.IBoundEdge;
 import util.IEdgeBitMap;
 import util.TimeDuration;
-
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This class will loop through the sprites each in the current running level each
@@ -43,12 +46,28 @@ public class ObstructionManager implements IObstructionManager {
         IEdgeBitMap obstructionMap = getBitMapSizedForCurrentGame(game);
         game.getLevelManager().getCurrentLevel().getSprites().stream()
                 .forEach(sprite -> ifObstructsMarkSprite(obstructionMap, sprite));
+        calculateEdges(obstructionMap, game);
         return obstructionMap;
     }
-    
-    private void calculateEdges(IEdgeBitMap map, IGame game){
-        
-        //TODO
+
+    private void calculateEdges (IEdgeBitMap map, IGame game) {
+        List<Bounds> allBounds = game.getLevelManager().getCurrentLevel().getSprites()
+                .stream()
+                .map(sprite -> sprite.getBounds())
+                .collect(Collectors.toList());
+        List<IBoundEdge> boundEdges = new ArrayList<>();
+        while (!allBounds.isEmpty()) {
+            IBoundEdge toAdd = new BoundEdge();
+            boundEdges.add(toAdd);
+            List<Bounds> toRemove = new ArrayList<>();
+            for (Bounds bnd : allBounds) {
+                toAdd.addBoundToEdge(bnd);
+                toRemove.add(bnd);
+            }
+            allBounds.removeAll(toRemove);
+        }
+        map.setEdges(boundEdges.stream().map(boundEdge -> boundEdge.getEdge())
+                .collect(Collectors.toList()));
         return;
     }
     
