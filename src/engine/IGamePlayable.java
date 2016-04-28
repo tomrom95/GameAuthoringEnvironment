@@ -3,8 +3,8 @@ package engine;
 import java.util.List;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
+import util.Bounds;
 import util.Coordinate;
-import util.LevelBound;
 
 
 /**
@@ -47,6 +47,6 @@ public interface IGamePlayable extends Updateable, IAdder, IEventInternalizer {
     /**
      * @return the virtual pixel bound of the level
      */
-    LevelBound getLevelBounds ();
+    Bounds getLevelBounds ();
 
 }

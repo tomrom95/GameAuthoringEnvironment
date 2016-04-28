@@ -6,8 +6,8 @@ import engine.definitions.concrete.SpriteDefinition;
 import graphics.ImageGraphic;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
+import util.Bounds;
 import util.Coordinate;
-import util.LevelBound;
 import util.ScaleRatio;
 
 
@@ -45,7 +45,7 @@ public class SceneController {
         ImageGraphic background =
                 new ImageGraphic(image.getWidth() * myRatio.getScale(),
                                  image.getHeight() * myRatio.getScale(), imageURL);
-        myLevel.setBounds(new LevelBound(image.getWidth(), image.getHeight()));
+        myLevel.setBounds(new Bounds(image.getWidth(), image.getHeight()));
         myLevel.setBackgroundImage(background);
     }
 

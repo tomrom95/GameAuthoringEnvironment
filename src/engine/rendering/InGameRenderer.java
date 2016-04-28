@@ -113,8 +113,6 @@ public class InGameRenderer extends LevelRenderer {
         }
         else {
             Node node = drawn.getDrawer().getVisualRepresentation(myFactory);
-            node.scaleXProperty().set(getScale().getScale());
-            node.scaleYProperty().set(getScale().getScale());
             node.setOnMouseClicked(e -> mySpriteDisplay.populate(drawn));
             myDrawNodeMap.put(drawn, node);
             add(node);
@@ -136,8 +134,6 @@ public class InGameRenderer extends LevelRenderer {
 
     private Node resize (Drawable draw, Node node) {
         draw(node,draw);
-        node.scaleXProperty().set(getScale().getScale());
-        node.scaleYProperty().set(getScale().getScale());
         return node;
     }
    
