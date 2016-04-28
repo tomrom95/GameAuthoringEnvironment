@@ -4,7 +4,6 @@ import util.Bounds;
 import util.Tile;
 import engine.ILevel;
 import engine.sprite.ISprite;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;

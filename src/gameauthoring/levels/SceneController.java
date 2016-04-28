@@ -26,7 +26,7 @@ public class SceneController {
     private static final int MAX_WIDTH = 1150;
     private ILevel myLevel;
     private ScaleRatio myRatio;
-    
+
     public SceneController (ILevel level, ScaleRatio ratio) {
         myLevel = level;
         myRatio = ratio;
@@ -41,29 +41,36 @@ public class SceneController {
 
     public void setBackground (String imageURL) {
         Image image = new Image(imageURL);
-        ImageGraphic background = new ImageGraphic(image.getWidth(), image.getHeight(), imageURL);
+        initScale(image.getWidth(), image.getHeight());
+        ImageGraphic background =
+                new ImageGraphic(image.getWidth() * myRatio.getScale(),
+                                 image.getHeight() * myRatio.getScale(), imageURL);
         myLevel.setBounds(new LevelBound(image.getWidth(), image.getHeight()));
         myLevel.setBackgroundImage(background);
     }
 
-    private LevelBound getLevelBound (double width, double height) {
+    /**
+     * Sets the initial scale of the image  
+     * @param width
+     * @param height
+     */
+    private void initScale (double width, double height) {
         if (width > MAX_WIDTH || height > MAX_HEIGHT) {
-            double r = (1 - ((width - MAX_WIDTH) /width));
-            double r2 = (1 - ((height - MAX_HEIGHT) /height));
-            System.out.println(r + " " + r2);
-            if(r < r2) {
-                width = MAX_WIDTH;
-                height = height * r;
-            } else {
-                height = MAX_HEIGHT;
-                width = width * r2;
+            double r = (1 - ((width - MAX_WIDTH) / width));
+            double r2 = (1 - ((height - MAX_HEIGHT) / height));
+            if (r < r2) {
+                myRatio.setScale(r);
+            }
+            else {
+                myRatio.setScale(r2);
             }
         }
-        return new LevelBound(width, height);
+        
     }
 
     public void addSprite (double x, double y, SpriteDefinition spriteDefinition) {
-        myLevel.add(spriteDefinition.create(), new Coordinate(x/myRatio.getScale(), y/myRatio.getScale()));
+        myLevel.add(spriteDefinition.create(),
+                    new Coordinate(x / myRatio.getScale(), y / myRatio.getScale()));
     }
 
     public ILevel getLevel () {
@@ -81,7 +88,7 @@ public class SceneController {
     public boolean isSpriteInLevel (SpriteDefinition profilable) {
         return myLevel.getAddableSprites().contains(profilable);
     }
-    
+
     protected ScaleRatio getRatio () {
         return myRatio;
     }

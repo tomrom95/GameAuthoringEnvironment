@@ -6,17 +6,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import engine.Drawable;
 import engine.IGamePlayable;
-import gameplayer.SpriteDisplay;
 import gameplayer.SpriteDisplayController;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
-import util.Coordinate;
 import util.ScaleRatio;
 
 
