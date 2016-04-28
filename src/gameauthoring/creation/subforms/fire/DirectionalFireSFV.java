@@ -1,6 +1,7 @@
 package gameauthoring.creation.subforms.fire;
 
-import engine.AuthorshipData;
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.IEntryView;
@@ -26,11 +27,12 @@ import javafx.scene.layout.HBox;
 public class DirectionalFireSFV extends SubFormView implements IDirectionalFireSFV{
 
     private HBox myPane;
-    private String myAngleKey = "Angle: ";
-    private String myWaitTimeKey = "Wait Time: ";
-    private String myProjectileKey = "Projectile: ";
-    private String myRangedKey = "Ranged: ";
-    private String myRangeValueKey = "Range: ";
+    private ResourceBundle myLabel;
+    private String myAngleKey;
+    private String myWaitTimeKey;
+    private String myProjectileKey;
+    private String myRangedKey;
+    private String myRangeValueKey;
     private IEntryView myAngle;
     private IEntryView myWaitTime; 
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
@@ -40,6 +42,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     private NumberEntryView myRangeValue;
 
     public DirectionalFireSFV (IDefinitionCollection<SpriteDefinition> missiles, RemoveOption remove) {
+        setResourceBundleAndKey();
         myRemove = remove;
         myAngle = new NumberEntryView(myAngleKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
         myWaitTime = new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
@@ -51,6 +54,16 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         
         initView();
         initBinding();
+    }
+
+    private void setResourceBundleAndKey () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                                           .getInstance().getCurrentLocaleProperty().get());
+        myAngleKey = myLabel.getString("AngleKey");
+        myWaitTimeKey = myLabel.getString("WaitTimeKey");
+        myProjectileKey = myLabel.getString("ProjectileKey");
+        myRangedKey = myLabel.getString("RangedKey");
+        myRangeValueKey = myLabel.getString("RangeValueKey");
     }
 
     @Override
