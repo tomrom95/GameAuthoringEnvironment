@@ -4,10 +4,13 @@ import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.creation.cellviews.ProfileCellView;
+import gameauthoring.levels.GameSceneController;
+import gameauthoring.levels.SceneController;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
+import util.ScaleRatio;
 
 
 /**
@@ -20,9 +23,9 @@ import javafx.scene.control.TitledPane;
  */
 public class PlayerSideBar extends SideBarDisplay {
     private static final String PANE_TITLE = "Towers";
-
-    public PlayerSideBar (IGame game, LevelRenderer renderer) {
-        super(game, renderer);
+    
+    public PlayerSideBar (IGame game, LevelRenderer renderer, ScaleRatio ratio) {
+        super(game, renderer, ratio);
     }
 
     @Override
@@ -38,6 +41,12 @@ public class PlayerSideBar extends SideBarDisplay {
     }
 
     protected ProfileCellView<SpriteDefinition> getSpriteCellView () {
+        System.out.println(getLevelView());
         return new PlayerSideBarCell(getLevelView(), getController());
+    }
+
+    @Override
+    protected SceneController createController (IGame game, ScaleRatio ratio) {
+        return new GameSceneController(game.getLevelManager().getCurrentLevel(), ratio);
     }
 }

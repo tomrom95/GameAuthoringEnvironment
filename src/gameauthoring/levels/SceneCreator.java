@@ -1,5 +1,6 @@
 package gameauthoring.levels;
 
+import util.ScaleRatio;
 import util.Tile;
 import engine.IGame;
 import engine.ILevel;
@@ -38,11 +39,14 @@ public class SceneCreator implements Glyph {
     private ILevel myLevel;
     private SceneController myController;
     private boolean myPlaceableEnable;
+    private ScaleRatio myScale;
+    private AuthoringSideBar mySideBar;
 
-    public SceneCreator (IGame model, ILevel level) {
+    public SceneCreator (IGame model, ILevel level, ScaleRatio scale) {
         gameModel = model;
         myLevel = level;
-        myController = new SceneController(myLevel);
+        myScale = scale;
+        myController = new SceneController(myLevel, scale);
         myPlaceableEnable = false;
         myView = createContainer();
     }
@@ -51,6 +55,7 @@ public class SceneCreator implements Glyph {
         HBox container = new HBox(10);
         container.getChildren().add(createLevelView());
         container.getChildren().add(createSpriteSelection());
+         
         return container;
     }
 
@@ -99,7 +104,8 @@ public class SceneCreator implements Glyph {
      * @return
      */
     private Node createSpriteSelection () {
-        return new AuthoringSideBar(gameModel, myRenderer).draw();
+        mySideBar = new AuthoringSideBar(gameModel, myRenderer, myScale);
+        return mySideBar.draw();
     }
 
     /**
@@ -120,7 +126,7 @@ public class SceneCreator implements Glyph {
         myController.setBackground(DEFAULT_BACKGROUND);
 
         myLevel.setBackgroundImageSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-        myRenderer = new AuthoringRenderer(myLevel, levelPane, gridPane);
+        myRenderer = new AuthoringRenderer(myLevel, levelPane, gridPane, myScale);
         myRenderer.render();
         levelPane.setOnMouseClicked(e -> handleMouseClick(e, root));
         return root;
@@ -134,7 +140,7 @@ public class SceneCreator implements Glyph {
     private void handleMouseClick (MouseEvent e, Pane pane) {
         if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
             myController.uploadNewBackground();
-            myRenderer.render();
+            render();
             myRenderer.updateNewTiles();
             pane.getChildren().clear();
             pane.getChildren().addAll(myRenderer.getGrids().getPane(), myRenderer.getPane(),
@@ -144,5 +150,15 @@ public class SceneCreator implements Glyph {
 
     public AuthoringRenderer getRenderer () {
         return myRenderer;
+    }
+
+    public void render () {
+        myRenderer.render();
+        myRenderer.redrawBackground();
+        
+    }
+
+    public double getAccordionWith () {
+        return mySideBar.getWidth();
     }
 }

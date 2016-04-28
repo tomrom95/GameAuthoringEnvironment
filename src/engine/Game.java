@@ -10,6 +10,7 @@ import engine.rendering.IGameGridConfig;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import util.Coordinate;
+import util.LevelBound;
 import util.TimeDuration;
 
 
@@ -157,5 +158,10 @@ public class Game implements IGame {
                 getAttributeManager().getAttributes().add(a.create());
             }
         }
+    }
+
+    @Override
+    public LevelBound getLevelBounds () {
+        return getLevelManager().getCurrentLevel().getBounds();
     }
 }

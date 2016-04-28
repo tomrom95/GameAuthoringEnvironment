@@ -9,7 +9,15 @@ import engine.IGamePlayable;
 import gameplayer.SpriteDisplay;
 import gameplayer.SpriteDisplayController;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
+import util.Coordinate;
+import util.ScaleRatio;
 
 
 /**
@@ -26,8 +34,11 @@ public class InGameRenderer extends LevelRenderer {
     private SpriteDisplayController mySpriteDisplay;
     private boolean myFirstTime;
 
-    public InGameRenderer (IGamePlayable game, Pane pane, SpriteDisplayController spriteDisplay) {
-        super(pane);
+    public InGameRenderer (IGamePlayable game,
+                           Pane pane,
+                           SpriteDisplayController spriteDisplay,
+                           ScaleRatio scale) {
+        super(pane, scale);
         myFactory = new UnscaledFactory();
         myGame = game;
         myDrawNodeMap = new HashMap<>();
@@ -59,8 +70,9 @@ public class InGameRenderer extends LevelRenderer {
     }
 
     private void updateExistingNodeLocations () {
-        myDrawNodeMap.keySet().stream().forEach(drawable -> this.draw( myDrawNodeMap.get(drawable), drawable));
-                //.relocate(drawable.getLocation().getX(), drawable.getLocation().getY()));
+        myDrawNodeMap.keySet().stream()
+                .forEach(drawable -> this.draw(myDrawNodeMap.get(drawable), drawable));
+        // .relocate(drawable.getLocation().getX(), drawable.getLocation().getY()));
     }
 
     /**
@@ -109,15 +121,40 @@ public class InGameRenderer extends LevelRenderer {
         }
         else {
             Node node = drawn.getDrawer().getVisualRepresentation(myFactory);
+            node.scaleXProperty().set(getScale().getScale());
+            node.scaleYProperty().set(getScale().getScale());
             node.setOnMouseClicked(e -> mySpriteDisplay.populate(drawn));
             myDrawNodeMap.put(drawn, node);
             add(node);
             return node;
         }
     }
-
+    
     private void add (Node node) {
         getPane().getChildren().add(node);
+    }
+
+    @Override
+    public void redrawBackground () {
+        myFirstTime = true;
+        for (Drawable drawable: myDrawNodeMap.keySet()) {
+            resize(drawable, myDrawNodeMap.get(drawable));
+        }
+    }
+
+    private Node resize (Drawable draw, Node node) {
+        draw(node,draw);
+        node.scaleXProperty().set(getScale().getScale());
+        node.scaleYProperty().set(getScale().getScale());
+        return node;
+    }
+   
+    protected double scaledHeight () {
+        return myGame.getLevelBounds().getHeight() * getScale().getScale();
+    }
+
+    protected double scaledWidth () {
+        return myGame.getLevelBounds().getWidth() * getScale().getScale();
     }
 
 }
