@@ -27,7 +27,7 @@ public class LevelEditorView implements Glyph {
     private IGame myGame;
     private ILevel myLevel;
     private SceneCreator myScene;
-    private SpawnerAuthoringView mySpawningView; 
+    private SpawnerAuthoringView mySpawningView;
     private AuthoringLevelConditions myLevelConditions;
     private ScaleRatio myScale = new ScaleRatio();
 
@@ -41,7 +41,7 @@ public class LevelEditorView implements Glyph {
     public Node draw () {
         myLayout = new BorderPane();
         myScene = new SceneCreator(myGame, myLevel, myScale);
-        mySpawningView = new SpawnerAuthoringView(myGame, myLevel, myScene.getRenderer());
+        mySpawningView = new SpawnerAuthoringView(myGame, myLevel, myScene.getRenderer(), myScale);
         myLayout.setRight(mySpawningView.draw());
         myLayout.setCenter(myScene.draw());
         myLayout.setBottom(createBottomForms());
@@ -70,13 +70,13 @@ public class LevelEditorView implements Glyph {
     private double getYScale (double height) {
         double remainingHeight = height - myLevelConditions.getHeight() - 100;
         double levelBound = myLevel.getBounds().getHeight();
-        return remainingHeight/levelBound;
+        return remainingHeight / levelBound;
     }
 
     private double getXScale (double width) {
-       
+
         double remainingWidth = width - mySpawningView.getWidth() - myScene.getAccordionWith();
         double levelBound = myLevel.getBounds().getWidth();
-        return remainingWidth/levelBound;
+        return remainingWidth / levelBound;
     }
 }

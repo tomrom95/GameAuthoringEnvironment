@@ -1,5 +1,7 @@
 package gameauthoring.creation.subforms.fire;
 
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;
@@ -23,31 +25,45 @@ import javafx.scene.layout.HBox;
 public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
     private HBox myPane;
-    private String myWaitTimeKey = "Wait Time: ";
-    private String myTargetsKey = "Targets: ";
-    private String myMissileKey = "Missile: ";
+    private ResourceBundle myLabel;
+    private String myWaitTimeKey;
+    private String myTargetsKey;
+    private String myMissileKey;
     private NumberEntryView myWaitTime;
     private SingleChoiceEntryView<SpriteGroup> myTargets;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
     private RemoveOption myRemove;
 
     public TrackingFireSFV (AuthorshipData data, RemoveOption remove) {
+        setResourceBundleAndKey();
         myRemove = remove;
         myWaitTime =
                 new NumberEntryView(myWaitTimeKey, 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myTargets =
-                new SingleChoiceEntryView<SpriteGroup>(myTargetsKey, data.getMyCreatedGroups().getItems(),
+                new SingleChoiceEntryView<SpriteGroup>(myTargetsKey, data.getMyCreatedGroups()
+                        .getItems(),
                                                        AuthoringView.DEFAULT_ENTRYVIEW);
         myMissileSelectionView =
-                new SingleChoiceEntryView<>(myMissileKey, data.getMyCreatedMissiles().getItems(), AuthoringView.DEFAULT_ENTRYVIEW);
+                new SingleChoiceEntryView<>(myMissileKey, data.getMyCreatedMissiles().getItems(),
+                                            AuthoringView.DEFAULT_ENTRYVIEW);
+
         initView();
 
     }
-    
+
+    private void setResourceBundleAndKey () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                .getInstance().getCurrentLocaleProperty().get());
+        myWaitTimeKey = myLabel.getString("WaitTimeKey");
+        myTargetsKey = myLabel.getString("TargetsKey");
+    }
+
     @Override
     protected void initView () {
-        myPane = getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(), myWaitTime.draw(), myTargets.draw(), myRemove.draw());
+        myPane =
+                getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(),
+                                          myWaitTime.draw(), myTargets.draw(), myRemove.draw());
         myPane.getStyleClass().add("firer");
     }
 
@@ -60,7 +76,6 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     public Node draw () {
         return myPane;
     }
-
 
     @Override
     public double getWaitTime () {

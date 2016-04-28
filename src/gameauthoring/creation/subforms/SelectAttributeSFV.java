@@ -1,6 +1,8 @@
 package gameauthoring.creation.subforms;
 
 import java.util.List;
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.creation.entryviews.MultiChoiceEntryView;
 import gameauthoring.shareddata.IDefinitionCollection;
@@ -23,13 +25,15 @@ import javafx.scene.layout.HBox;
  */
 public class SelectAttributeSFV extends SubFormView implements ISelectAttributeSFV {
 
-    private String myAttributesKey = "Available Attributes: ";
-    private String mySelectedKey = "Selected Attributes: ";
+    private ResourceBundle myLabel;
+    private String myAttributesKey;
+    private String mySelectedKey;
     private MultiChoiceEntryView<AttributeDefinition> myAttributeSelector;
     private MultiChoiceEntryView<AttributeDefinition> mySelectedView;
     private HBox myContainer;
 
     public SelectAttributeSFV (IDefinitionCollection<AttributeDefinition> attributes) {
+        setResoureBunldeAndKey();
         myAttributeSelector =
                 new MultiChoiceEntryView<AttributeDefinition>(myAttributesKey,
                                                               attributes.getItems(), 150, 200,
@@ -40,6 +44,13 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
                                                               300, 200,
                                                               AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
+    }
+
+    private void setResoureBunldeAndKey () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                                           .getInstance().getCurrentLocaleProperty().get());
+        myAttributesKey = myLabel.getString("AttributesKey");
+        mySelectedKey = myLabel.getString("SelectedAttributesKey");
     }
 
     @Override
@@ -59,7 +70,7 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
 
     @Override
     protected void initView () {
-        mySelectedView.getListView().setPlaceholder(new Label("Drag Desired Attributes Here"));
+        mySelectedView.getListView().setPlaceholder(new Label(myLabel.getString("DragAttributeLabel")));
         mySelectedView.getListView().setOrientation(Orientation.HORIZONTAL);
         mySelectedView.getListView()
                 .setCellFactory(c -> new DraggableRemoveCellImage<AttributeDefinition>(myAttributeSelector

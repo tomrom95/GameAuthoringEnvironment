@@ -1,5 +1,7 @@
 package gameauthoring.creation.subforms.events;
 
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.profile.ProfileDisplay;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
@@ -12,12 +14,20 @@ import javafx.scene.Node;
 public class EventSFV extends SubFormView implements IEventSFV {
 
     private SingleChoiceEntryView<ProfileDisplay> myEvents;
-    private String myEventKey = "Event type: ";
-
+    private ResourceBundle myLabel;
+    private String myEventKey;
+    
     public EventSFV (ObservableList<ProfileDisplay> events) {
+        setResourceBundleAndKey();
         myEvents = new SingleChoiceEntryView<ProfileDisplay>(myEventKey,
                                                              events,
                                                              AuthoringView.DEFAULT_ENTRYVIEW);
+    }
+    
+    private void setResourceBundleAndKey () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                .getInstance().getCurrentLocaleProperty().get());
+        myEventKey = myLabel.getString("EventKey");
     }
 
     @Override
@@ -38,7 +48,9 @@ public class EventSFV extends SubFormView implements IEventSFV {
 
     @Override
     protected void initView () {
-
     }
+
+
+    
 
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
 import java.util.*;
+import splash.LocaleManager;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.MultiChoiceEntryView;
 import gameauthoring.shareddata.DefinitionCollection;
@@ -26,16 +27,20 @@ import gameauthoring.util.DraggableRemoveCell;
 public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
     private Accordion myAccordion;
     private HBox myContainer;
+    private ResourceBundle myLabel;
     private List<MultiChoiceEntryView<SpriteDefinition>> myViews;
     private List<DefinitionCollection<SpriteDefinition>> mySprites;
     private MultiChoiceEntryView<SpriteDefinition> mySelected;
-    private String mySelectedLabel = "Sprites in Group: ";
+
 
     public SelectSpriteSFV (List<DefinitionCollection<SpriteDefinition>> sprites) {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                .getInstance().getCurrentLocaleProperty().get());
         myViews = new ArrayList<>();
         mySprites = sprites;
         mySelected =
-                new MultiChoiceEntryView<>(mySelectedLabel, FXCollections.observableArrayList(),
+                new MultiChoiceEntryView<>(myLabel.getString("SelectedSpriteLabel"),
+                                           FXCollections.observableArrayList(),
                                            200, 400, AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
     }

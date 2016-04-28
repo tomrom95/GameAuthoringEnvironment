@@ -41,7 +41,7 @@ public class TrackingMoverSFC implements ISubFormControllerSprite {
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
         TrackingMoverDefinition movDef = (TrackingMoverDefinition) item.getMovementDefinition();
-        myView.populateWithData(movDef.getSpeed(), movDef.getTargets());              
+        myView.populateWithData(movDef.getSpeed(), movDef.getTargets());
     }
 
 }

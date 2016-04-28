@@ -40,11 +40,7 @@ public class AttributeDefinition implements IProfilable {
     public String getType () {
         return myProfile.getName().get();
     }
-    
-    public AttributeType getAttributeType () {
-        return new AttributeType(getType());
-    }
-
+   
     public double getStartingValue () {
         return myStartingValue;
     }
@@ -65,10 +61,6 @@ public class AttributeDefinition implements IProfilable {
 
     public boolean isLevelSpecific () {
         return isLevelSpecific;
-    }
-    
-    public AttributeType getAttributeType () {
-        return new AttributeType(getType());
     }
 
     public void setIsLevelSpecific (boolean level) {

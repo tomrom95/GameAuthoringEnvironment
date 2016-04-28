@@ -1,14 +1,15 @@
 package gameauthoring.creation.subforms.fire;
 
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.function.Consumer;
+import splash.LocaleManager;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.DynamicSubFormView;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.tabs.AuthoringView;
-import gameauthoring.util.UIFactory;
 import javafx.collections.ObservableList;
 
 
@@ -26,7 +27,8 @@ import javafx.collections.ObservableList;
 public class FiringSFV extends DynamicSubFormView {
 
     private String myFireTypeKey = "Fire Type: ";
-    private String myRangedKey = "Ranged: ";
+    private String myRangedKey;
+    private ResourceBundle myLabel;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
     private CheckEntryView isRangedSelectionView;
 
@@ -46,8 +48,15 @@ public class FiringSFV extends DynamicSubFormView {
                               Consumer<SpriteDefinition> changeMissileAction,
                               ObservableList<SpriteDefinition> missiles) {
         super(options);
+        setResourceBundleAndKey();
         initMissileSelectionView(changeMissileAction, missiles);
 
+    }
+
+    private void setResourceBundleAndKey () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                                           .getInstance().getCurrentLocaleProperty().get());
+        myRangedKey = myLabel.getString("RangedKey");
     }
 
     /**

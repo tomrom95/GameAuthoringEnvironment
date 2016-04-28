@@ -6,17 +6,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import engine.Drawable;
 import engine.IGamePlayable;
-import gameplayer.SpriteDisplay;
 import gameplayer.SpriteDisplayController;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
-import util.Coordinate;
 import util.ScaleRatio;
 
 
@@ -121,8 +113,6 @@ public class InGameRenderer extends LevelRenderer {
         }
         else {
             Node node = drawn.getDrawer().getVisualRepresentation(myFactory);
-            node.scaleXProperty().set(getScale().getScale());
-            node.scaleYProperty().set(getScale().getScale());
             node.setOnMouseClicked(e -> mySpriteDisplay.populate(drawn));
             myDrawNodeMap.put(drawn, node);
             add(node);
@@ -144,17 +134,15 @@ public class InGameRenderer extends LevelRenderer {
 
     private Node resize (Drawable draw, Node node) {
         draw(node,draw);
-        node.scaleXProperty().set(getScale().getScale());
-        node.scaleYProperty().set(getScale().getScale());
         return node;
     }
    
     protected double scaledHeight () {
-        return myGame.getLevelBounds().getHeight() * getScale().getScale();
+        return getScale().scale(myGame.getLevelBounds().getHeight()); 
     }
 
     protected double scaledWidth () {
-        return myGame.getLevelBounds().getWidth() * getScale().getScale();
+        return getScale().scale(myGame.getLevelBounds().getWidth());
     }
 
 }

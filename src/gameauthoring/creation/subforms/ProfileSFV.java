@@ -1,5 +1,8 @@
 package gameauthoring.creation.subforms;
 
+import java.util.ResourceBundle;
+import splash.LocaleManager;
+import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.ImageEntryView;
 import gameauthoring.creation.entryviews.SliderEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
@@ -18,11 +21,12 @@ import javafx.scene.layout.HBox;
 public class ProfileSFV extends SubFormView implements IProfileSFV {
 
     private GridPane myPane = new GridPane();
-    private String myNameKey = "Name: "; // TODO: resource file
-    private String myDescriptionKey = "Description: ";
-    private String myImageKey = "Image: ";
-    private String myImageWidthKey = "Width: ";
-    private String myImageHeightKey = "Height: ";
+    private ResourceBundle myLabel;
+    private String myNameKey;
+    private String myDescriptionKey;
+    private String myImageKey;
+    private String myImageWidthKey;
+    private String myImageHeightKey;
     private TextEntryView myName;
     private ImageEntryView myImage;
     private TextEntryView myDescription;
@@ -30,6 +34,12 @@ public class ProfileSFV extends SubFormView implements IProfileSFV {
     private SliderEntryView myImageHeight;
 
     public ProfileSFV () {
+        setResourceBundleAndKey();
+        createEntryViews();
+        initView();
+    }
+
+    private void createEntryViews () {
         myName =
                 new TextEntryView(myNameKey, 250, 40, AuthoringView.DEFAULT_ENTRYVIEW);
         myDescription =
@@ -42,7 +52,16 @@ public class ProfileSFV extends SubFormView implements IProfileSFV {
                 new ImageEntryView(myImageKey, myImageWidth.getValueProperty(),
                                    myImageHeight.getValueProperty(),
                                    AuthoringView.DEFAULT_ENTRYVIEW);
-        initView();
+    }
+
+    private void setResourceBundleAndKey () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                                           .getInstance().getCurrentLocaleProperty().get());
+        myNameKey = myLabel.getString("NameKey");
+        myDescriptionKey = myLabel.getString("DescriptionKey");
+        myImageKey = myLabel.getString("ImageKey");
+        myImageWidthKey = myLabel.getString("ImageWidthKey");
+        myImageHeightKey = myLabel.getString("ImageHeightKey");
     }
 
     @Override

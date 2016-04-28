@@ -2,7 +2,6 @@ package gameauthoring.tabs;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import com.dooapp.xstreamfx.FXConverters;
 import com.thoughtworks.xstream.XStream;
@@ -19,20 +18,17 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import serialize.GameWriter;
+import splash.LocaleManager;
 import splash.MainUserInterface;
 
 
@@ -42,10 +38,6 @@ import splash.MainUserInterface;
  * game as XML. It contains "game information", "create objects", and "build scene" tabs. These are
  * divided in order for the users to easily create their own game.
  * 
- * TODO: Support multiple languages
- * TODO: Create gamewriter class and save it as XML
- * TODO: Implement go Home button
- * TODO: Implement saveToXML method
  * 
  * @author Jin An
  *
@@ -69,12 +61,22 @@ public class AuthoringView implements IAuthoringView {
     private BasicUIFactory myUIFactory = new BasicUIFactory();
     public static final String HOME = "Home";
     public static final String SAVE = "Save";
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
-    private ResourceBundle myImages = ResourceBundle.getBundle("defaults/authoringmenus");
+    private ResourceBundle myLabel;
+    private ResourceBundle myImages = ResourceBundle.getBundle("defaults/authoringmenus"); // TODO:
+                                                                                           // ResourceBundle
+                                                                                           // default
+                                                                                           // for
+                                                                                           // images
 
     public AuthoringView () {
+        setResourceBundle();
         GameFactory gameFactory = new GameFactory();
         myGame = gameFactory.createGame();
+    }
+
+    private void setResourceBundle () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance()
+                .getCurrentLocaleProperty().get());
     }
 
     public AuthoringView (IGame game) {
@@ -130,9 +132,9 @@ public class AuthoringView implements IAuthoringView {
         });
 
     }
-    
-    private void rescale(double width, double height) {
-       mySceneTabViewer.rescale(width, height);
+
+    private void rescale (double width, double height) {
+        mySceneTabViewer.rescale(width, height);
     }
 
     private void initializeTabViewers () {
@@ -145,10 +147,10 @@ public class AuthoringView implements IAuthoringView {
 
     private MenuBar createMenuBar () {
         MenuBar menuBar = new MenuBar();
-        Menu fileMenu = new Menu("File");
-        MenuItem goHome = createMenuItems("Go Home", e -> goHome());
-        MenuItem saveItem = createMenuItems("Save Game", e -> saveToXML());
-        MenuItem launchItem = createMenuItems("Launch Game", e -> launchGame());
+        Menu fileMenu = new Menu(myLabel.getString("File"));
+        MenuItem goHome = createMenuItems(myLabel.getString("Home"), e -> goHome());
+        MenuItem saveItem = createMenuItems(myLabel.getString("Save"), e -> saveToXML());
+        MenuItem launchItem = createMenuItems(myLabel.getString("Launch"), e -> launchGame());
         fileMenu.getItems().add(goHome);
         fileMenu.getItems().add(saveItem);
         fileMenu.getItems().add(launchItem);
@@ -161,17 +163,6 @@ public class AuthoringView implements IAuthoringView {
         newMenuItem.setOnAction(action);
         return newMenuItem;
     }
-    // private Node createStatusBar () {
-    // Image home = new Image(myImages.getString(HOME), 40, 40, true, true);
-    // Image save = new Image(myImages.getString(SAVE), 40, 40, true, true);
-    // ImageView homeView = new ImageView(home);
-    // ImageView saveView = new ImageView(save);
-    // Button homeButton = myUIFactory.createImageButton(HOME, homeView, e -> goHome());
-    // Button saveButton = myUIFactory.createImageButton(SAVE, saveView, e -> saveToXML());
-    //
-    // HBox statusBar = new HBox(10, homeButton, saveButton);
-    // return statusBar;
-    // }
 
     private Node createContents () {
         TabPane tabPane = createAllTabs();
@@ -212,7 +203,7 @@ public class AuthoringView implements IAuthoringView {
 
     private File getFile () {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle(myLang.getString("SaveGame"));
+        fileChooser.setTitle(myLabel.getString("SaveGame"));
         fileChooser.setInitialDirectory(new File("resources/saved_games"));
         return fileChooser.showSaveDialog(new Stage());
     }
@@ -221,27 +212,32 @@ public class AuthoringView implements IAuthoringView {
         TabPane tabpane = new TabPane();
         tabpane.getStyleClass().add("authoringTabs");
         Tab gameTab =
-                myUIFactory.createTabGraphic(
-                                             myUIFactory.makeImageDisplay("images/game.png",
-                                                                          "GAME"),
-                                             false, myGameTabViewer.draw());
+                myUIFactory
+                        .createTabGraphic(
+                                          myUIFactory.makeImageDisplay("images/game.png",
+                                                                       myLabel.getString("Game")),
+                                          false, myGameTabViewer.draw());
         Tab creationTab =
-                myUIFactory.createTabGraphic(myUIFactory.makeImageDisplay("images/tools.png",
-                                                                          "OBJECT CREATOR"),
-                                             false, myCreationTabViewer.draw());
+                myUIFactory
+                        .createTabGraphic(myUIFactory.makeImageDisplay("images/tools.png",
+                                                                       myLabel.getString("CreateObjects")),
+                                          false, myCreationTabViewer.draw());
         Tab conditionTab =
-                myUIFactory.createTabGraphic(myUIFactory.makeImageDisplay("images/collision.png",
-                                                                          "CONDITIONS"),
-                                             false, myConditionView.draw());
+                myUIFactory
+                        .createTabGraphic(myUIFactory.makeImageDisplay("images/collision.png",
+                                                                       myLabel.getString("Conditions")),
+                                          false, myConditionView.draw());
         Tab waveTab =
-                myUIFactory.createTabGraphic(
-                                             myUIFactory.makeImageDisplay("images/waves.png",
-                                                                          "WAVES"),
-                                             false, myWaveTabView.draw());
+                myUIFactory
+                        .createTabGraphic(
+                                          myUIFactory.makeImageDisplay("images/waves.png",
+                                                                       myLabel.getString("Waves")),
+                                          false, myWaveTabView.draw());
         Tab sceneTab =
-                myUIFactory.createTabGraphic(myUIFactory.makeImageDisplay("images/scene.png",
-                                                                          "SCENE BUILDER"),
-                                             false, mySceneTabViewer.draw());
+                myUIFactory
+                        .createTabGraphic(myUIFactory.makeImageDisplay("images/scene.png",
+                                                                       myLabel.getString("BuildScenes")),
+                                          false, mySceneTabViewer.draw());
         tabpane.getTabs().addAll(gameTab, creationTab, conditionTab, waveTab, sceneTab);
 
         return tabpane;

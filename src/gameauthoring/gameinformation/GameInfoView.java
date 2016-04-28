@@ -1,6 +1,5 @@
 package gameauthoring.gameinformation;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 import splash.LocaleManager;
 import javafx.scene.Node;
@@ -29,11 +28,12 @@ public class GameInfoView implements Glyph {
     private String myNameKey = myLang.getString("NameOfGame");
     private String myAuthorKey = myLang.getString("Author");
     private String myDateCreatedKey = myLang.getString("Date");
-    private String mySplashScreenKey = myLang.getString("SplashScreen");
+    private String mySplashScreenKey = myLang.getString("GameIcon");
     private TextEntryView myName;
     private TextEntryView myAuthor;
     private TextEntryView myDateCreated;
     private ImageEntryView mySplashScreen;
+
     private static final int HORIZONTAL_GAP = 150;
 
     public GameInfoView () {

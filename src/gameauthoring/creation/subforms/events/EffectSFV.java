@@ -1,13 +1,13 @@
 package gameauthoring.creation.subforms.events;
 
-import java.util.List;
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.profile.ProfileDisplay;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
-import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.ProfileDisplayIterator;
 import javafx.collections.FXCollections;
@@ -30,19 +30,21 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
     private SingleChoiceEntryView<ProfileDisplay> myEffectType;
     private NumberEntryView myLength;
     private NumberEntryView myValue;
-    private String myLengthKey = "For length in time: ";
-    private String myValueKey = "By amount: ";
-    private String myAttributeKey = "Affect Attribute ";
-    private String myTypeKey = "Effect type: ";
+    private ResourceBundle myLabel;
+    private String myLengthKey;
+    private String myValueKey;
+    private String myAttributeKey;
+    private String myTypeKey;
     private HBox myContainer;
 
     public EffectSFV (AuthorshipData data,
                       ObservableList<ProfileDisplay> effectTypes) {
+        setResourceBundleAndKey();
         myEffectType = new SingleChoiceEntryView<ProfileDisplay>(myTypeKey,
                                                                  effectTypes,
                                                                  AuthoringView.DEFAULT_ENTRYVIEW);
 
-        ObservableList<AttributeDefinition> definitions = createAttributeList (data);
+        ObservableList<AttributeDefinition> definitions = createAttributeList(data);
         myAttribute =
                 new SingleChoiceEntryView<AttributeDefinition>(myAttributeKey,
                                                                definitions,
@@ -56,6 +58,14 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
         initView();
     }
 
+    private void setResourceBundleAndKey () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                .getInstance().getCurrentLocaleProperty().get());
+        myLengthKey = myLabel.getString("LengthKey");
+        myValueKey = myLabel.getString("ValueKey");
+        myAttributeKey = myLabel.getString("AttributeKey");
+        myTypeKey = myLabel.getString("TypeKey");
+    }
 
     private ObservableList<AttributeDefinition> createAttributeList (AuthorshipData data) {
         ObservableList<AttributeDefinition> defs = FXCollections.observableArrayList();
@@ -63,7 +73,6 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
         defs.addAll(data.getMyCreatedGlobals().getItems());
         return defs;
     }
-
 
     @Override
     protected void initView () {
@@ -82,7 +91,6 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
         return myEffectType.getSelected().getProfile().getName().get();
     }
 
-
     @Override
     public double getValue () {
         return myValue.getData();
@@ -92,10 +100,14 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
     public double getLength () {
         return myLength.getData();
     }
-    
+
     @Override
-    public void populateWithData(String type, AttributeDefinition attrbute, double value, double length) {
-        myEffectType.setSelected(new ProfileDisplayIterator().matchStringtoProfile(myEffectType.getItems(), type));
+    public void populateWithData (String type,
+                                  AttributeDefinition attrbute,
+                                  double value,
+                                  double length) {
+        myEffectType.setSelected(new ProfileDisplayIterator()
+                .matchStringtoProfile(myEffectType.getItems(), type));
         myAttribute.setSelected(attrbute);
         myValue.setData(value);
         myLength.setData(length);

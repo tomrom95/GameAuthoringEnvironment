@@ -1,9 +1,10 @@
 package gameauthoring.creation.subforms.movement;
 
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import gameauthoring.creation.subforms.SubFormView;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 
 
 /**
@@ -15,15 +16,19 @@ import javafx.scene.layout.GridPane;
  *
  */
 public class StaticMoverSFV extends SubFormView {
-    private Label myLabel = new Label("STATIC SPRITE");
-    
+    private Label myStaticMoverLabel;
+    private ResourceBundle myLabel;
+
     public StaticMoverSFV () {
-        myLabel.getStyleClass().add("staticLabel");
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                .getInstance().getCurrentLocaleProperty().get());
+        myStaticMoverLabel = new Label(myLabel.getString("StaticSprite"));
+        myStaticMoverLabel.getStyleClass().add("staticLabel");
     }
 
     @Override
     public Node draw () {
-        return myLabel;
+        return myStaticMoverLabel;
     }
 
     @Override

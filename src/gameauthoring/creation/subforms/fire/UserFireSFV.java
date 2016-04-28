@@ -1,5 +1,7 @@
 package gameauthoring.creation.subforms.fire;
 
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
@@ -12,12 +14,13 @@ import javafx.scene.layout.GridPane;
 public class UserFireSFV extends SubFormView {
 
     private GridPane myPane;
-    private String myAngleKey = "Angle: ";
-    private String myWaitTimeKey = "Wait Time: ";
-    private String myIncreaseKey = "Increase Angle Key: ";
-    private String myDecreaseKey = "Decrease Angle Key: ";
-    private String myFireKey = "Fire Missile Key: ";
-    private String myAngleStepKey = "Angle Step Increment: ";
+    private ResourceBundle myLabel;
+    private String myAngleKey;
+    private String myWaitTimeKey;
+    private String myIncreaseKey;
+    private String myDecreaseKey;
+    private String myFireKey;
+    private String myAngleStepKey;
     private IEntryView myAngle;
     private IEntryView myWaitTime;
     private IEntryView myIncrease;
@@ -26,6 +29,12 @@ public class UserFireSFV extends SubFormView {
     private IEntryView myAngleStep;
 
     public UserFireSFV () {
+        setResourceBundleAndKey();
+        createEntryViews();
+        initView();
+    }
+
+    private void createEntryViews () {
         myAngle =
                 new NumberEntryView(myAngleKey, 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
@@ -40,7 +49,18 @@ public class UserFireSFV extends SubFormView {
         
         myAngleStep = new NumberEntryView(myAngleStepKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
         
-        initView();
+    }
+
+    private void setResourceBundleAndKey () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                                           .getInstance().getCurrentLocaleProperty().get());
+        myAngleKey = myLabel.getString("AngleKey");
+        myWaitTimeKey = myLabel.getString("WaitTimeKey");
+        myIncreaseKey = myLabel.getString("IncreaseKey");
+        myDecreaseKey = myLabel.getString("DecreaseKey");
+        myFireKey = myLabel.getString("FireKey");
+        myAngleStepKey = myLabel.getString("AngleStepKey");
+        
     }
 
     @Override

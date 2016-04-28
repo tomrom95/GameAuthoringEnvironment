@@ -1,5 +1,8 @@
 package gameauthoring.creation.subforms.movement;
 
+import java.util.ResourceBundle;
+import splash.LocaleManager;
+import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
@@ -19,19 +22,32 @@ import javafx.scene.layout.HBox;
 public class ConstantMoverSFV extends SubFormView implements IConstantMoverSFV {
 
     private HBox myPane;
-    private String mySpeedKey = "Speed: ";
-    private String myOrientationKey = "Initial Orientation: ";
+    private ResourceBundle myLabel;
+    private String mySpeedKey;
+    private String myOrientationKey;
     private NumberEntryView mySpeed;
     private NumberEntryView myOrientation;
 
     public ConstantMoverSFV () {
+        setResourceBundleAndKey();
+        createEntryViews();
+        initView();
+    }
+
+    private void createEntryViews () {
         mySpeed =
                 new NumberEntryView(mySpeedKey, 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myOrientation =
                 new NumberEntryView(myOrientationKey, 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
-        initView();
+    }
+
+    private void setResourceBundleAndKey () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                .getInstance().getCurrentLocaleProperty().get());
+        mySpeedKey = myLabel.getString("SpeedKey");
+        myOrientationKey = myLabel.getString("OrientationKey");
     }
 
     @Override
@@ -54,9 +70,9 @@ public class ConstantMoverSFV extends SubFormView implements IConstantMoverSFV {
     public double getMyOrientation () {
         return myOrientation.getData();
     }
-    
+
     @Override
-    public void populateWithData(double orientation, double speed) {
+    public void populateWithData (double orientation, double speed) {
         myOrientation.setData(orientation);
         mySpeed.setData(speed);
     }

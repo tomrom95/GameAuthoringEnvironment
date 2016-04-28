@@ -2,6 +2,8 @@ package gameauthoring.creation.entryviews;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import gameauthoring.util.ErrorMessage;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -30,14 +32,17 @@ public class ImageEntryView extends EntryView {
     private Button myChooseImage;
     private ImageView myImage;
     private StringProperty imagePath = new SimpleStringProperty("images/Square.png");
-    private String buttonLabel = "Choose Image"; // TODO: Resource file
+    private ResourceBundle myLabel = ResourceBundle.getBundle("languages/labels",
+                                                              LocaleManager.getInstance()
+                                                                      .getCurrentLocaleProperty()
+                                                                      .get());
 
     public ImageEntryView (String label, String cssClass) {
         super(label, cssClass);
         initFileChooser(new FileChooser());
     }
 
-    public ImageEntryView (String label, 
+    public ImageEntryView (String label,
                            double width,
                            double height,
                            String cssClass) {
@@ -46,7 +51,7 @@ public class ImageEntryView extends EntryView {
         init();
     }
 
-    public ImageEntryView (String label, 
+    public ImageEntryView (String label,
                            DoubleProperty width,
                            DoubleProperty height,
                            String cssClass) {
@@ -67,17 +72,22 @@ public class ImageEntryView extends EntryView {
 
     public void updateImage (String url) {
         imagePath.set(url);
-        myImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(imagePath.get())));
+        myImage.setImage(new Image(getClass().getClassLoader()
+                .getResourceAsStream(imagePath.get())));
     }
-    
+
     public String getImageURL () {
         return imagePath.get();
     }
 
     private void initFileChooser (FileChooser imageChoice) {
+        imageChoice.setTitle(myLabel.getString("Image"));
         imageChoice.getExtensionFilters()
-                .add(new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
-        myChooseImage = getMyFactory().createButton(buttonLabel, e -> openImageChoice(imageChoice));
+                .add(new ExtensionFilter(myLabel.getString("ImageFile"), "*.png", "*.jpg",
+                                         "*.gif")); // TODO: Default resourcebundle
+        myChooseImage =
+                getMyFactory().createButton(myLabel.getString("Image"),
+                                            e -> openImageChoice(imageChoice));
     }
 
     private void openImageChoice (FileChooser imageChoice) {
@@ -88,13 +98,13 @@ public class ImageEntryView extends EntryView {
                 updateImage(fileName);
             }
             catch (MalformedURLException e) {
-                ErrorMessage err = new ErrorMessage("BAD URL");
+                ErrorMessage err = new ErrorMessage(myLabel.getString("BadURL"));
                 err.showError();
             }
 
         }
     }
-    
+
     public void bindData (StringProperty url) {
         imagePath.bindBidirectional(url);
     }

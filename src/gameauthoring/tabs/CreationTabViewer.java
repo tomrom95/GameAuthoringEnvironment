@@ -5,13 +5,7 @@ import gameauthoring.creation.forms.CreationController;
 import gameauthoring.creation.forms.ICreationView;
 import gameauthoring.util.BasicUIFactory;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import engine.AuthorshipData;
-import engine.Game;
 import engine.IGame;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
@@ -32,9 +26,6 @@ public class CreationTabViewer implements ITabViewer {
 
     private TabPane myTabPane;
     private BasicUIFactory myUIFactory = new BasicUIFactory();
-
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
-
     private IGame myGame;
 
     private List<CreationController<?>> myCCs;
