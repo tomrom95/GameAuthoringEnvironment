@@ -98,12 +98,12 @@ public abstract class CreationController<T extends IProfilable> {
      * Set up event handler connections
      */
     private void setupConnections () {
-        IFormView formView = getMyObjectCreationView().getFormView();
+        IFormView formView = getMyCreationView().getFormView();
         formView.setSaveAction( () -> saveItem());
         formView.setDeleteAction( () -> deleteItem());
         formView.setNewAction( () -> newItem());
 
-        ICreationView<T> creationView = getMyObjectCreationView();
+        ICreationView<T> creationView = getMyCreationView();
         creationView.setEditAction( () -> showAndEdit());
     }
 
@@ -131,7 +131,7 @@ public abstract class CreationController<T extends IProfilable> {
             subFormController.updateItem(getMyCurrentItem());
         }
 
-        this.getMyObjectCreationView().getCreationListView().refreshItems();
+        this.getMyCreationView().getCreationListView().refreshItems();
     }
 
     /**
@@ -143,12 +143,11 @@ public abstract class CreationController<T extends IProfilable> {
         getMyItems().remove(getMyCurrentItem());
         if (getMyItems().isEmpty()) {
             populateViewsWithDefaults();
-            getMyObjectCreationView().getFormView().hideForm();
-
+            getMyCreationView().getFormView().hideForm();
         }
         else {
             showAndEdit();
-            getMyObjectCreationView().getFormView().showForm();
+            getMyCreationView().getFormView().showForm();
 
         }
     }
@@ -159,17 +158,10 @@ public abstract class CreationController<T extends IProfilable> {
      */
     private void newItem () {
         T item = createBlankItem();
-        System.out.println(getMyCurrentItem());
         addItem(item);
-        System.out.println(getMyCurrentItem());
-
-        getMyObjectCreationView().getCreationListView().setSelectedItem(item);
-        System.out.println(getMyCurrentItem());
-
-        getMyObjectCreationView().getFormView().showForm();
-        // showAndEdit();// or populateViewsWithDefaults, depending on where defaults are
-
-        // populateViewsWithDefaults();
+        getMyCreationView().getCreationListView().setSelectedItem(item);
+        getMyCreationView().getFormView().showForm();
+        // showAndEdit();// or populateViewsWithDefaults(), depending on where defaults are
     }
 
     /**
@@ -189,11 +181,7 @@ public abstract class CreationController<T extends IProfilable> {
     protected abstract T createBlankItem ();
 
     /**
-     * Method called when user clicks a cell in the list view
-     * 
-     * Note: The item parameter is no longer completely necessary, as we are always
-     * using getMyCurrentItem(), which is always set to the listview's current
-     * selected item
+     * Method called when user clicks a cell in the list view to edit that item
      * 
      * @param item The item contained in the cell that was clicked
      */
@@ -217,10 +205,10 @@ public abstract class CreationController<T extends IProfilable> {
 
     // Getters and setters
     private ObservableList<T> getMyItems () {
-        return getMyObjectCreationView().getItems();
+        return getMyCreationView().getItems();
     }
 
-    public ICreationView<T> getMyObjectCreationView () {
+    public ICreationView<T> getMyCreationView () {
         return myView;
     }
 
@@ -258,7 +246,7 @@ public abstract class CreationController<T extends IProfilable> {
 
     protected void setMyDefinitionCollection (DefinitionCollection<T> col) {
         this.myDefinitionCollection = col;
-        getMyObjectCreationView().getCreationListView().setMyItems(col.getItems());
+        getMyCreationView().getCreationListView().setMyItems(col.getItems());
     }
 
     protected ResourceBundle getMyResources () {

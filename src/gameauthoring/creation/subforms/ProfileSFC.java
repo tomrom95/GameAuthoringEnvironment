@@ -52,8 +52,8 @@ public class ProfileSFC<T extends IProfilable> implements ISubFormController<T> 
 
     @Override
     public void populateViewsWithData (T item) {
-       IProfile profile = item.getProfile();
-       populateViewsWithData(profile.getName().get(), profile.getDescription().get(), profile.getImageURL());
+        IProfile profile = item.getProfile();
+        populateViewsWithData(profile.getName().get(), profile.getDescription().get(), profile.getImageURL());
     }
     
     @Override
