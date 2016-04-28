@@ -20,7 +20,7 @@ public interface IScreenEventFactory {
      * @param event to convert
      * @return an effect that represents the given mouse event
      */
-    MouseIOEvent interpretEvent (MouseEvent event);
+    MouseIOEvent interpretEvent (MouseEvent event, double xscale, double yscale);
 
     /**
      * @param event to convert

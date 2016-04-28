@@ -31,10 +31,6 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
         super(key, subFormStrings, myGame);
     }
 
-    public void init (List<String> sfcs) {
-        super.init(sfcs);
-    }
-
     @Override
     protected SpriteDefinition createBlankItem () {
         return new SpriteDefinition();

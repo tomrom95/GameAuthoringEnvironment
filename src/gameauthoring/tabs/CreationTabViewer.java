@@ -62,7 +62,7 @@ public class CreationTabViewer implements ITabViewer {
     private void generateCreationViewList () {
         myCVs = new ArrayList<ICreationView<?>>();
         for (CreationController<?> cc : myCCs) {
-            myCVs.add(cc.getMyObjectCreationView());
+            myCVs.add(cc.getMyCreationView());
         }
     }
 

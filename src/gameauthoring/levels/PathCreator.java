@@ -8,6 +8,7 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import util.Coordinate;
+import util.ScaleRatio;
 
 
 /**
@@ -21,6 +22,7 @@ public class PathCreator {
     
     private boolean makingPath = false;
     private Path myPath;
+    private ScaleRatio myScale;
 
     /**
      * Begin a new path with a start point and a pane that the
@@ -28,12 +30,12 @@ public class PathCreator {
      * @param startPoint
      * @param container
      */
-    public void newPath (Coordinate startPoint, Pane container) {
+    public void newPath (Coordinate startPoint, Pane container, ScaleRatio scale) {
         if(makingPath) return;
+        myScale = scale;
         container.getChildren().remove(myPath);
         makingPath = true;
-        container.requestFocus();
-        
+        container.requestFocus(); 
         myPath = new Path();
         container.getChildren().add(myPath);
         addToPath(startPoint, container);
@@ -102,10 +104,14 @@ public class PathCreator {
                      .stream()
                      .filter(elem -> (elem instanceof MoveTo) )
                      .map(elem -> (MoveTo) elem)
-                     .map(elem -> new Coordinate(elem.getX(), elem.getY()))
+                     .map(elem -> new Coordinate(scale(elem.getX()), scale(elem.getY())))
                      .collect(Collectors.toList());
     }
     
+    private double scale (double num) {
+       return num * myScale.getScale();
+    }
+
     public boolean isCreatingPath () {
         return makingPath;
     }

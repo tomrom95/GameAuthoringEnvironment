@@ -51,4 +51,8 @@ public class SpawnerAuthoringView implements Glyph {
         return myPane;
     }
 
+    public double getWidth () {
+        return myPane.getWidth();
+    }
+
 }

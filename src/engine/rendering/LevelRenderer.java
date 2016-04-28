@@ -10,6 +10,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import util.Coordinate;
+import util.ScaleRatio;
 
 
 /**
@@ -17,12 +18,12 @@ import util.Coordinate;
  * TODO fix scaling of window sizes
  */
 public abstract class LevelRenderer implements IRenderer {
-    private static final int MAX_HEIGHT = 400;
-    private static final int MAX_WIDTH = 1150;
 
     private Pane myPane;
+    private ScaleRatio myScale;
 
-    public LevelRenderer (Pane pane) {
+    public LevelRenderer (Pane pane, ScaleRatio scale) {
+        myScale = scale;
         myPane = pane;
     }
 
@@ -42,8 +43,10 @@ public abstract class LevelRenderer implements IRenderer {
 
     protected void draw (Node node, Drawable sprite) {
         Coordinate location = sprite.getLocation();
-        node.relocate(location.getX() - sprite.getDrawer().getGraphic().getWidth().get() / 2,
-                      location.getY() - sprite.getDrawer().getGraphic().getHeight().get() / 2);
+        node.relocate((location.getX() - sprite.getDrawer().getGraphic().getWidth().get() / 2) *
+                        getScale().getScale(),
+                        (location.getY() - sprite.getDrawer().getGraphic().getHeight().get() / 2) *
+                                             getScale().getScale());
         node.setVisible(sprite.getDrawer().isVisible());
         node.setRotate(sprite.getOrientation());
     }
@@ -52,7 +55,7 @@ public abstract class LevelRenderer implements IRenderer {
         if (url == null) {
             return;
         }
-        Image img = new Image(url, MAX_WIDTH, MAX_HEIGHT, true, true);
+        Image img = getImage(url);
         BackgroundImage background = new BackgroundImage(img,
                                                          BackgroundRepeat.NO_REPEAT,
                                                          BackgroundRepeat.NO_REPEAT,
@@ -63,4 +66,17 @@ public abstract class LevelRenderer implements IRenderer {
         myPane.setMinHeight(img.getHeight());
     }
 
+    public abstract void redrawBackground ();
+    
+    protected ScaleRatio getScale() {
+        return myScale;
+    }
+    
+    protected Image getImage (String url) {
+        return new Image(url, scaledWidth(), scaledHeight(), true, true);
+    }
+
+    protected abstract double scaledHeight ();
+
+    protected abstract double scaledWidth ();
 }

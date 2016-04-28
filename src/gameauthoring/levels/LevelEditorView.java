@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import util.ScaleRatio;
 
 
 /**
@@ -25,8 +26,10 @@ public class LevelEditorView implements Glyph {
     private BorderPane myLayout;
     private IGame myGame;
     private ILevel myLevel;
-
+    private SceneCreator myScene;
+    private SpawnerAuthoringView mySpawningView; 
     private AuthoringLevelConditions myLevelConditions;
+    private ScaleRatio myScale = new ScaleRatio();
 
     public LevelEditorView (IGame gameModel, ILevel level) {
         myGame = gameModel;
@@ -37,9 +40,10 @@ public class LevelEditorView implements Glyph {
     @Override
     public Node draw () {
         myLayout = new BorderPane();
-        SceneCreator scene = new SceneCreator(myGame, myLevel);
-        myLayout.setRight(new SpawnerAuthoringView(myGame, myLevel, scene.getRenderer()).draw());
-        myLayout.setCenter(scene.draw());
+        myScene = new SceneCreator(myGame, myLevel, myScale);
+        mySpawningView = new SpawnerAuthoringView(myGame, myLevel, myScene.getRenderer());
+        myLayout.setRight(mySpawningView.draw());
+        myLayout.setCenter(myScene.draw());
         myLayout.setBottom(createBottomForms());
         return myLayout;
     }
@@ -54,5 +58,25 @@ public class LevelEditorView implements Glyph {
 
     private Node createWinLoseForm () {
         return myLevelConditions.draw();
+    }
+
+    public void rescale (double width, double height) {
+        double xScale = getXScale(width);
+        double yScale = getYScale(height);
+        myScale.setScale(Math.min(xScale, yScale));
+        myScene.render();
+    }
+
+    private double getYScale (double height) {
+        double remainingHeight = height - myLevelConditions.getHeight() - 100;
+        double levelBound = myLevel.getBounds().getHeight();
+        return remainingHeight/levelBound;
+    }
+
+    private double getXScale (double width) {
+       
+        double remainingWidth = width - mySpawningView.getWidth() - myScene.getAccordionWith();
+        double levelBound = myLevel.getBounds().getWidth();
+        return remainingWidth/levelBound;
     }
 }

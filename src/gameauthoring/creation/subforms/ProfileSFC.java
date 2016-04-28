@@ -49,6 +49,7 @@ public class ProfileSFC<T extends IProfilable> implements ISubFormController<T> 
         myView.populateWithData(profile.getName().get(), profile.getDescription().get(),
                                 profile.getImageURL(), profile.getImageWidth().get(),
                                 profile.getImageHeight().get());
+
     }
 
     @Override

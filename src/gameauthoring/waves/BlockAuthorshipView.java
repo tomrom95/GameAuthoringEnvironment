@@ -67,7 +67,7 @@ public class BlockAuthorshipView implements Glyph {
         myCount = myFactory.createTextField(Double.parseDouble(mySize.getString("TextWidth")));
         createSlider();
     }
-    
+
     private void repopulate (IGame game) {
         mySpriteChoices.getItems().clear();
         mySpriteChoices.getItems().addAll(game.getAuthorshipData().getAllCreatedSpritesAsList());
@@ -94,7 +94,7 @@ public class BlockAuthorshipView implements Glyph {
         VBox vbox = new VBox(Double.parseDouble(mySize.getString("Cushion")));
         vbox.getChildren().addAll(myFactory.createSubTitleLabel(string), node);
         vbox.setAlignment(Pos.TOP_RIGHT);
-        return vbox;        
+        return vbox;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package gameauthoring.tabs;
 
 import engine.profile.Profile;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import engine.Game;
@@ -33,9 +34,9 @@ public class SceneTabViewer implements ITabViewer {
 
     private TabPane myLevelTabs;
     private ILevelManager myLevelManager;
-    private IConditionManager myConditionManager;
     private IGame myGame;
     private BasicUIFactory myUIFactory = new BasicUIFactory();
+    private List<LevelEditorView> myViews;
 
     public SceneTabViewer () {
         init();
@@ -43,17 +44,13 @@ public class SceneTabViewer implements ITabViewer {
 
     public SceneTabViewer (IGame iGame) {
         myLevelManager = iGame.getLevelManager();
-        myConditionManager = iGame.getConditionManager();
-
         myGame = iGame;
         init();
     }
 
     @Override
     public void init () {
-        LevelEditorView view =
-                new LevelEditorView(myGame, myGame.getLevelManager().getCurrentLevel());
-
+        myViews = new ArrayList<>();
         myLevelTabs = new TabPane();
         myLevelTabs.getStyleClass().add("subTab");
         Tab createLevelTab = createButtonTab();
@@ -95,11 +92,26 @@ public class SceneTabViewer implements ITabViewer {
         myLevelManager.createNewLevel(newLevel);
         LevelEditorView view =
                 new LevelEditorView(myGame, newLevel);
+        myViews.add(view);
         Tab newLevelTab =
                 myUIFactory.createTabText(name, true, view.draw());
-        newLevelTab.setOnClosed(e -> myLevelManager.remove(newLevel));
+        newLevelTab.setOnClosed(e -> remove(newLevel, view));
         myLevelTabs.getTabs().add(newLevelTab);
         myLevelTabs.getSelectionModel().select(newLevelTab);
+    }
+
+    /**
+     * Removes level and view upon tab being closed
+     * @param newLevel
+     * @param view
+     */
+    private void remove (ILevel newLevel, LevelEditorView view) {
+        myLevelManager.remove(newLevel);
+        myViews.remove(view);
+    }
+
+    public void rescale (double width, double height) {
+        myViews.stream().forEach(view -> view.rescale(width, height));
     }
 
 }

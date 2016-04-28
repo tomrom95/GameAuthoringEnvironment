@@ -9,6 +9,7 @@ import engine.waves.IWaveSet;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
 import util.Coordinate;
+import util.LevelBound;
 import util.Tile;
 
 
@@ -114,5 +115,12 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
     void add (ISprite sprite, Coordinate coordinate);
 
     void add (ISprite sprite);
+
+    /**
+     * @return the level bounds 
+     */
+    LevelBound getBounds ();
+    
+    void setBounds (LevelBound bound);
 
 }

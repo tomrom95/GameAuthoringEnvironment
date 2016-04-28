@@ -40,11 +40,16 @@ public class FormView implements IFormView {
     public void showForm(){
         //myFormView.add(mySubFormViewer,  0,  1);
         mySubFormViewer.setVisible(true);
+        mySaveButton.setDisable(false);
+        myDeleteButton.setDisable(false);
+
     }
     @Override
     public void hideForm () {
         //myFormView.getChildren().remove(mySubFormViewer);
         mySubFormViewer.setVisible(false);
+        mySaveButton.setDisable(true);
+        myDeleteButton.setDisable(true);
     }
     
     private Node createButtonHolder () {
