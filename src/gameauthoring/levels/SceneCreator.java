@@ -16,8 +16,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
 
 
 /**
@@ -104,7 +102,7 @@ public class SceneCreator implements Glyph {
      * @return
      */
     private Node createSpriteSelection () {
-        mySideBar = new AuthoringSideBar(gameModel, myRenderer, myScale);
+        mySideBar = new AuthoringSideBar(gameModel, myLevel, myRenderer, myScale);
         return mySideBar.draw();
     }
 
