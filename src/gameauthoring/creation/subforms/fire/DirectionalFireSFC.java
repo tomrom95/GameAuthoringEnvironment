@@ -4,7 +4,6 @@ import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.DirectionalFirerDefinition;
 import engine.definitions.moduledef.FirerDefinition;
-import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.util.ErrorMessage;
 
@@ -20,7 +19,6 @@ import gameauthoring.util.ErrorMessage;
 public class DirectionalFireSFC extends RemovableSpriteSFC {
 
     private IDirectionalFireSFV myView;
-    private IFormDataManager myFormData;
     private IGame myGame;
     private double myDefaultAngle = 0;
     private double myDefaultWaitTime = 0;
@@ -32,7 +30,6 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
         myView =
                 new DirectionalFireSFV(game.getAuthorshipData().getMyCreatedMissiles(),
                                        getRemoveMenu());
-        myFormData = myView.getData();
         myGame = game;
     }
 
@@ -42,8 +39,7 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
     }
 
     private void populateViewsWithData (double angle, double wait) {
-        myFormData.set(myView.getMyAngleKey(), Double.toString(angle));
-        myFormData.set(myView.getMyWaitTimeKey(), Double.toString(wait));
+        myView.populateWithData(null, myDefaultAngle, myDefaultWaitTime);
     }
 
     @Override
@@ -55,19 +51,15 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
     public void updateItem (SpriteDefinition item) {
         setMySpriteDefinition(item);
         try {
-            Double angle =
-                    Math.toRadians(Double.valueOf(myFormData.getValueProperty(myView.getMyAngleKey()).get())); // tangent functions need radians
-            Double waitTime =
-                    Double.valueOf(myFormData.getValueProperty(myView.getMyWaitTimeKey()).get());
+            double angle = Math.toRadians(myView.getMyAngle()); // tangent functions need radians
+            double waitTime = myView.getMyWaitTime();
             myFireDef.setGame(myGame);
             myFireDef.setAngle(angle);
             myFireDef.setWaitTime(waitTime);
             myFireDef.setProjectileDefinition(myView.getMissileSelection());
-            
             if (!item.getModuleDefinitions().contains(myFireDef)) {
                 item.addModule(myFireDef);
             }
-            
         }
         catch (Exception e) {
             ErrorMessage err =
@@ -76,7 +68,6 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
         }
     }
 
-
     @Override
     public FirerDefinition getFirerDefinition () {
         return myFireDef;
@@ -84,10 +75,8 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-        myFormData.getValueProperty(myView.getMyAngleKey()).set(Double.toString(Math.toDegrees(myFireDef.getAngle())));
-        myFormData.getValueProperty(myView.getMyWaitTimeKey()).set(Double.toString(myFireDef.getWaitTime()));
-        myView.setMissileSelection(myFireDef.getProjectileDefinition());
-        
+        myView.populateWithData(myFireDef.getProjectileDefinition(),myFireDef.getAngle(),myFireDef.getWaitTime());
+
     }
 
 }

@@ -27,18 +27,18 @@ public class UserFireSFV extends SubFormView {
 
     public UserFireSFV () {
         myAngle =
-                new NumberEntryView(myAngleKey, this.getData(), 150, 30,
+                new NumberEntryView(myAngleKey, 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myWaitTime =
-                new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30,
+                new NumberEntryView(myWaitTimeKey, 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
-        myIncrease = new TextEntryView(myIncreaseKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myIncrease = new TextEntryView(myIncreaseKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
         
-        myDecrease = new TextEntryView(myDecreaseKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myDecrease = new TextEntryView(myDecreaseKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
         
-        myFire = new TextEntryView(myFireKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myFire = new TextEntryView(myFireKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
         
-        myAngleStep = new NumberEntryView(myAngleStepKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myAngleStep = new NumberEntryView(myAngleStepKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
         
         initView();
     }

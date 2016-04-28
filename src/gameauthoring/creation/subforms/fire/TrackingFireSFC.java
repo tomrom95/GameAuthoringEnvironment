@@ -20,7 +20,6 @@ import gameauthoring.creation.subforms.ISubFormView;
 public class TrackingFireSFC extends RemovableSpriteSFC {
 
     private ITrackingFireSFV myView;
-    private IFormDataManager myFormData;
     private IGame myGame;
     private double myDefaultWaitTime = 0;
     private TrackingFirerDefinition myFireDef;
@@ -29,7 +28,6 @@ public class TrackingFireSFC extends RemovableSpriteSFC {
         super(sfc);
         myFireDef = firingDef;
         myView = new TrackingFireSFV(game.getAuthorshipData(), getRemoveMenu());
-        myFormData = myView.getData();
         myGame = game;
     }
 
@@ -39,25 +37,20 @@ public class TrackingFireSFC extends RemovableSpriteSFC {
     }
 
     private void populateViewsWithData (double wait) {
-        myFormData.set(myView.getWaitTimeKey(), Double.toString(wait));
+        //TODO: maybe complete this
     }
 
     @Override
     public void updateItem (SpriteDefinition item) {
         setMySpriteDefinition(item);
         myFireDef.setGame(myGame);
-        Double waitTime =
-                Double.valueOf(myFormData.getValueProperty(myView.getWaitTimeKey()).get());
+        double waitTime = myView.getWaitTime();
         myFireDef.setWaitTime(waitTime);
         myFireDef.setTargets(myView.getTargetsCoice());
         myFireDef.setProjectileDefinition(myView.getSelectedMissile());
-
-        
-        if (!item.getModuleDefinitions().contains(myFireDef)) {
-         
+        if (!item.getModuleDefinitions().contains(myFireDef)) {         
            item.addModule(myFireDef);
-        }
-         
+        }        
     }
 
     @Override
@@ -72,12 +65,7 @@ public class TrackingFireSFC extends RemovableSpriteSFC {
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-
-        myFormData.getValueProperty(myView.getWaitTimeKey())
-                .set(Double.toString(myFireDef.getWaitTime()));
-        myView.setTargetsChoice(myFireDef.getTargets());
-        myView.setSelectedMissile(myFireDef.getProjectileDefinition());
-
+        myView.populateWithData(myFireDef.getProjectileDefinition(), myFireDef.getTargets(), myFireDef.getWaitTime());
     }
 
 }

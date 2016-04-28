@@ -12,14 +12,13 @@ import gameauthoring.creation.subforms.ISubFormView;
  */
 public interface IDirectionalFireSFV extends ISubFormView {
 
-    String getMyProjectileKey ();
-
-    String getMyAngleKey ();
-
-    String getMyWaitTimeKey ();
 
     SpriteDefinition getMissileSelection ();
 
-    void setMissileSelection (SpriteDefinition projectileDefinition);
+    double getMyAngle ();
+
+    double getMyWaitTime ();
+
+    void populateWithData (SpriteDefinition missile, double angle, double waitTime);
 
 }
