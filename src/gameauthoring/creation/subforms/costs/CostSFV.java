@@ -21,34 +21,32 @@ import javafx.scene.layout.VBox;
  *
  */
 public class CostSFV extends SubFormView {
-//    private static final String CHECK_STRING = "Cost Required?";
     private static final int SPACING = 5;
-//
-//    private String myAttributeChoicesKey = "Resource Required: ";
-//    private String myCostKey = "Amount to buy sprite: ";
     private SingleChoiceEntryView<AttributeDefinition> myAttributes;
     private NumberEntryView myCost;
     private HBox myContainer;
+    private String myCostKey;
     private CheckBox myCheckBox;
     private ResourceBundle myLabel;
 
     public CostSFV (AuthorshipData data) {
-        setResourceBundle();
+        setResourceBundleAndKey();
         myAttributes =
                 new SingleChoiceEntryView<AttributeDefinition>(myLabel.getString("ResourceChoice"),
                                                                data.getMyCreatedGlobals()
                                                                        .getItems(),
                                                                AuthoringView.DEFAULT_ENTRYVIEW);
         myCost =
-                new NumberEntryView(myLabel.getString("CostKey"), super.getData(), 60, 20,
+                new NumberEntryView(myCostKey, super.getData(), 60, 20,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         createCostCheck();
         initView();
     }
 
-    private void setResourceBundle () {
+    private void setResourceBundleAndKey () {
         myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
                 .getInstance().getCurrentLocaleProperty().get());
+        myCostKey = myLabel.getString("CostKey");
     }
 
     @Override
@@ -84,7 +82,7 @@ public class CostSFV extends SubFormView {
     }
 
     public String getCostKey () {
-        return myLabel.getString("CostKey");
+        return myCostKey;
     }
 
     public boolean costChecked () {
