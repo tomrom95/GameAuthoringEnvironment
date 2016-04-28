@@ -2,6 +2,8 @@ package gameauthoring.creation.entryviews;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import gameauthoring.util.ErrorMessage;
 import gameauthoring.util.UIFactory;
 import javafx.beans.property.DoubleProperty;
@@ -36,12 +38,17 @@ public class ImageEntryView extends EntryView {
     private ImageView myImage;
     private String imagePath = "images/Square.png";
     private BasicUIFactory myUIFactory = new BasicUIFactory();
-    private String buttonLabel = "Choose Image"; // TODO: Resource file
+    private ResourceBundle myLabel;
 
     public ImageEntryView (String label, IFormDataManager data, String cssClass) {
         super(label, data);
         this.myImageChoice.bindBidirectional(getData().getValueProperty());
+        setResourceBundle();
         initFileChooser(new FileChooser());
+    }
+
+    private void setResourceBundle () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());  
     }
 
     public ImageEntryView (String label,
@@ -88,10 +95,11 @@ public class ImageEntryView extends EntryView {
     }
 
     private void initFileChooser (FileChooser imageChoice) {
-        imageChoice.setTitle("Image Choice");
+        imageChoice.setTitle(myLabel.getString("Image"));
         imageChoice.getExtensionFilters()
-                .add(new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
-        myChooseImage = myUIFactory.createButton(buttonLabel, e -> openImageChoice(imageChoice));
+                .add(new ExtensionFilter(myLabel.getString("ImageFile"), "*.png", "*.jpg", "*.gif")); //TODO: Default resourcebundle
+        myChooseImage = myUIFactory.createButton(myLabel.getString("Image"), e -> openImageChoice(imageChoice));
+        
     }
 
     private void openImageChoice (FileChooser imageChoice) {
@@ -102,7 +110,7 @@ public class ImageEntryView extends EntryView {
                 myImageChoice.setValue(fileName);
             }
             catch (MalformedURLException e) {
-                ErrorMessage err = new ErrorMessage("BAD URL");
+                ErrorMessage err = new ErrorMessage(myLabel.getString("BadURL"));
                 err.showError();
             }
 

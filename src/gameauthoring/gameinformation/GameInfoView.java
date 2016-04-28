@@ -29,7 +29,7 @@ public class GameInfoView implements Glyph {
     private String myNameKey = myLang.getString("NameOfGame");
     private String myAuthorKey = myLang.getString("Author");
     private String myDateCreatedKey = myLang.getString("Date");
-    private String mySplashScreenKey = myLang.getString("SplashScreen");
+    private String mySplashScreenKey = myLang.getString("GameIcon");
     private IEntryView myName;
     private IEntryView myAuthor;
     private IEntryView myDateCreated;
