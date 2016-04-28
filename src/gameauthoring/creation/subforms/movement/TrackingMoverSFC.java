@@ -1,12 +1,8 @@
 package gameauthoring.creation.subforms.movement;
 
-import java.util.List;
 import engine.IGame;
-import engine.SpriteGroup;
-import java.util.ArrayList;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.TrackingMoverDefinition;
-import engine.sprite.SpriteType;
 import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;

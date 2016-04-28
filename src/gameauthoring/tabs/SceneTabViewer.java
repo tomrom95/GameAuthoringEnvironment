@@ -4,6 +4,8 @@ import engine.profile.Profile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.IGame;
 import engine.ILevel;
 import engine.ILevelManager;
@@ -31,6 +33,8 @@ public class SceneTabViewer implements ITabViewer {
     private IGame myGame;
     private BasicUIFactory myUIFactory = new BasicUIFactory();
     private List<LevelEditorView> myViews;
+    private ResourceBundle myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+            .getInstance().getCurrentLocaleProperty().get());
 
     public SceneTabViewer () {
         init();
@@ -49,7 +53,7 @@ public class SceneTabViewer implements ITabViewer {
         myLevelTabs.getStyleClass().add("subTab");
         Tab createLevelTab = createButtonTab();
         myLevelTabs.getTabs().addAll(createLevelTab);
-        addNewLevel("Start", myLevelManager.getCurrentLevel());
+        addNewLevel(myLabel.getString("Start"), myLevelManager.getCurrentLevel());
     }
 
     @Override
@@ -74,14 +78,17 @@ public class SceneTabViewer implements ITabViewer {
     }
 
     private void addNewNamedLevel () {
-        Optional<String> name = new BasicUIFactory().getTextDialog("Enter", "Level Adder", "Level Name: ");
+        Optional<String> name =
+                new BasicUIFactory().getTextDialog(myLabel.getString("Enter"),
+                                                   myLabel.getString("LevelAdder"),
+                                                   myLabel.getString("LevelName"));
         if (name.isPresent()) {
             addNewLevel(name.get(), new Level());
         }
     }
 
     private void addNewLevel (String name, ILevel newLevel) {
-       
+
         newLevel.setProfile(new Profile(name));
         myLevelManager.createNewLevel(newLevel);
         LevelEditorView view =
@@ -96,6 +103,7 @@ public class SceneTabViewer implements ITabViewer {
 
     /**
      * Removes level and view upon tab being closed
+     * 
      * @param newLevel
      * @param view
      */

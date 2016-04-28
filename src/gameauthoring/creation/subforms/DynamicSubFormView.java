@@ -1,19 +1,7 @@
 package gameauthoring.creation.subforms;
 
 import java.util.List;
-import java.util.ResourceBundle;
 import gameauthoring.creation.subforms.ISubFormView;
-import gameauthoring.creation.subforms.SubFormView;
-import gameauthoring.tabs.AuthoringView;
-import gameauthoring.util.BasicUIFactory;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 
 
 /**
@@ -25,7 +13,6 @@ import javafx.scene.layout.HBox;
  */
 public class DynamicSubFormView extends ClickAndFillView {
 
-    
     /**
      * Constructor
      * 
@@ -46,6 +33,5 @@ public class DynamicSubFormView extends ClickAndFillView {
         getMyPaneContent().getChildren().clear();
         getMyPaneContent().getChildren().add(sfv.draw());
     }
-
 
 }
