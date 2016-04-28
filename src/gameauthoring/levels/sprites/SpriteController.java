@@ -7,6 +7,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import util.Coordinate;
+import util.ScaleRatio;
 
 /**
  * Controller for onscreen sprites. Handles actions like
@@ -18,9 +19,11 @@ public class SpriteController {
     
     private ILevel myLevel;
     private PathCreator pathCreator;
+    private ScaleRatio myScale;
     
-    public SpriteController(ILevel level) {
+    public SpriteController(ILevel level, ScaleRatio scale) {
         myLevel = level;
+        myScale = scale;
         pathCreator = new PathCreator();
     }
     
@@ -49,7 +52,7 @@ public class SpriteController {
      * @param container
      */
     public void createNewPath(ISprite sprite, Coordinate startPoint, Pane container){
-        pathCreator.newPath(startPoint, container);
+        pathCreator.newPath(startPoint, container, myScale);
         container.setOnMouseClicked(e -> pathCreator.addToPath(e, container));
         container.setOnKeyPressed(e -> handleKeyPress(e, container, sprite));
     }

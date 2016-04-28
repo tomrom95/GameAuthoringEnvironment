@@ -3,23 +3,18 @@ package engine.rendering;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Observable;
 import java.util.stream.Collectors;
 import engine.Drawable;
 import engine.ILevel;
 import engine.sprite.ISprite;
 import gameauthoring.levels.sprites.OnScreenSprite;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import util.ScaleRatio;
 
 
 public class AuthoringRenderer extends LevelRenderer {
-
-    private static final int MAX_HEIGHT = 400;
-    private static final int MAX_WIDTH = 1150;
 
     private ILevel myLevel;
     private Map<ISprite, Node> mySpriteNodeMap;
@@ -33,7 +28,7 @@ public class AuthoringRenderer extends LevelRenderer {
     }
 
     private Node createOnScreenSprite (ISprite sprite) {
-        return (new OnScreenSprite(this, myLevel, sprite)).draw();
+        return (new OnScreenSprite(this, myLevel, sprite, getScale())).draw();
         // this.draw(spriteNode, sprite);
     }
 
