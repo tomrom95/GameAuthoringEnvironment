@@ -13,6 +13,8 @@ import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.ErrorMessage;
 import gameauthoring.waves.WaveTabViewer;
 import gameplayer.GamePlayer;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -31,6 +33,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import serialize.GameWriter;
+import splash.MainUserInterface;
 
 
 /**
@@ -57,6 +60,7 @@ public class AuthoringView implements IAuthoringView {
     private WaveTabViewer myWaveTabView;
     private BorderPane myLayout;
     private IGame myGame;
+    private Stage myStage;
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
     public static final String STYLESHEET = "custom.css";
@@ -94,6 +98,7 @@ public class AuthoringView implements IAuthoringView {
 
     @Override
     public void init (Stage s) {
+        myStage = s;
         initializeTabViewers();
         myLayout = new BorderPane();
         myLayout.setCenter(createContents());
@@ -101,6 +106,33 @@ public class AuthoringView implements IAuthoringView {
         Scene scene = new Scene(myLayout, WIDTH, HEIGHT);
         scene.getStylesheets().add(DEFAULT_RESOURCE_PACKAGE + STYLESHEET);
         s.setScene(scene);
+        initListeners(s);
+        rescale(s.getWidth(), s.getHeight());
+    }
+
+    private void initListeners (Stage stage) {
+        stage.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed (ObservableValue<? extends Number> observableValue,
+                                 Number oldSceneWidth,
+                                 Number newSceneWidth) {
+                rescale(newSceneWidth.doubleValue(), stage.getHeight());
+            }
+        });
+
+        stage.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed (ObservableValue<? extends Number> observableValue,
+                                 Number oldSceneHeight,
+                                 Number newSceneHeight) {
+                rescale(stage.getWidth(), newSceneHeight.doubleValue());
+            }
+        });
+
+    }
+    
+    private void rescale(double width, double height) {
+       mySceneTabViewer.rescale(width, height);
     }
 
     private void initializeTabViewers () {
@@ -114,8 +146,10 @@ public class AuthoringView implements IAuthoringView {
     private MenuBar createMenuBar () {
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
-        MenuItem saveItem = createMenuItems("Save game", e -> saveToXML());
-        MenuItem launchItem = createMenuItems("Launch game", e -> launchGame());
+        MenuItem goHome = createMenuItems("Go Home", e -> goHome());
+        MenuItem saveItem = createMenuItems("Save Game", e -> saveToXML());
+        MenuItem launchItem = createMenuItems("Launch Game", e -> launchGame());
+        fileMenu.getItems().add(goHome);
         fileMenu.getItems().add(saveItem);
         fileMenu.getItems().add(launchItem);
         menuBar.getMenus().add(fileMenu);
@@ -147,7 +181,7 @@ public class AuthoringView implements IAuthoringView {
     }
 
     private void goHome () {
-
+        new MainUserInterface().init(myStage);
     }
 
     private void saveToXML () {

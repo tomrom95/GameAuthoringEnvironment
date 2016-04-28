@@ -10,11 +10,12 @@ import gameplayer.SideBarDisplay;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
+import util.ScaleRatio;
 
 public class AuthoringSideBar extends SideBarDisplay {
 
-    public AuthoringSideBar (IGame game, LevelRenderer renderer) {
-        super(game, renderer);
+    public AuthoringSideBar (IGame game, LevelRenderer renderer, ScaleRatio scale) {
+        super(game, renderer, scale);
     }
 
     protected void fillAccordion (Accordion accordion) {
@@ -33,6 +34,11 @@ public class AuthoringSideBar extends SideBarDisplay {
 
     protected ProfileCellView<SpriteDefinition> getSpriteCellView () {
         return new DragCheckSpriteCell(getLevelView(), getController());
+    }
+
+    @Override
+    protected SceneController createController (IGame game, ScaleRatio ratio) {
+        return new SceneController(game.getLevelManager().getCurrentLevel(), ratio);
     }
 
 }

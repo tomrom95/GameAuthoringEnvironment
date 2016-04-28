@@ -114,4 +114,8 @@ public class GamePlayerTools {
         return myTools;
     }
 
+    public double getHeight () {
+       return myTools.getHeight();
+    }
+
 }

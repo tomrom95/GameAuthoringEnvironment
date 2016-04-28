@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
+import util.ScaleRatio;
 
 
 /**
@@ -26,18 +27,21 @@ public abstract class SideBarDisplay extends SizeableGlyph {
     private IGame myGame;
     private LevelRenderer levelView;
     private SceneController myController;
+    private Accordion myAccordion;
 
-    public SideBarDisplay (IGame game, LevelRenderer renderer) {
+    public SideBarDisplay (IGame game, LevelRenderer renderer, ScaleRatio ratio) {
         myGame = game;
-        myController = new SceneController(game.getLevelManager().getCurrentLevel());
         levelView = renderer;
+        myController = createController(game, ratio);
     }
+
+    protected abstract SceneController createController (IGame game, ScaleRatio ratio);
 
     @Override
     public Node draw () {
-        Accordion accordion = createAccordion();
-        fillAccordion(accordion);
-        return accordion;
+        myAccordion = createAccordion();
+        fillAccordion(myAccordion);
+        return myAccordion;
     }
 
     private Accordion createAccordion () {
@@ -74,5 +78,9 @@ public abstract class SideBarDisplay extends SizeableGlyph {
     
     protected SceneController getController () {
         return myController;
+    }
+
+    public double getWidth () {
+        return myAccordion.getWidth();
     }
 }

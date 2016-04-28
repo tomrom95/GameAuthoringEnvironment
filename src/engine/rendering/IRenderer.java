@@ -1,5 +1,7 @@
 package engine.rendering;
 
+import java.util.Observer;
+
 /**
  * This interface represents an object that can handle the rendering a game and all of its
  * appropriate visuals
