@@ -53,5 +53,24 @@ public class Wave implements IWave {
         }
 
     }
-
+    
+    protected TimeDuration getTimeSinceSpawn(){
+        return sinceLastSpawn;
+    }
+    
+    protected void setTimeSinceSpawn(TimeDuration t){
+        sinceLastSpawn = t;
+    }
+    
+    protected List<WaveBlock> getBlocks(){
+        return myBlocks;
+    }
+    
+    protected WaveBlock getCurrentBlock(){
+        return currentBlock;
+    }
+    
+    protected void setCurrentBlock(WaveBlock b){
+        currentBlock = b;
+    }
 }

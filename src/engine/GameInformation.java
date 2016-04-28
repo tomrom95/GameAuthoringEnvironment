@@ -18,6 +18,10 @@ import javafx.beans.property.StringProperty;
 
 public class GameInformation implements IGameInformation {
 
+    
+    private static final int DEF_IMAGE_WIDTH = 200;
+    private static final int DEF_IMAGE_HEIGHT = 300;
+    private static final String DEF_IMAGE_LOCATION = "/images/tower.png";
     private StringProperty myTitle;
     private StringProperty myAuthor;
     private StringProperty myDateCreated;
@@ -27,7 +31,7 @@ public class GameInformation implements IGameInformation {
         myTitle = new SimpleStringProperty();
         myAuthor = new SimpleStringProperty();
         myDateCreated = new SimpleStringProperty();
-        mySplashScreen = new ImageGraphic(0, 0, "/images/blank.jpg");
+        mySplashScreen = new ImageGraphic(DEF_IMAGE_WIDTH, DEF_IMAGE_HEIGHT, DEF_IMAGE_LOCATION);
     }
 
     @Override
