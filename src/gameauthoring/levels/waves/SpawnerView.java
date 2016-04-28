@@ -10,6 +10,7 @@ import engine.definitions.spawnerdef.SpawnerModuleDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
 import engine.profile.Profile;
 import engine.rendering.AuthoringRenderer;
+import engine.sprite.ISprite;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -34,6 +35,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import util.Coordinate;
+import util.ScaleRatio;
 import util.StringParser;
 
 
@@ -48,6 +50,7 @@ public class SpawnerView implements Glyph, Draggable {
 
     private static final String DRAG_STRING = "Spawner";
     private static final String EMPTY = "";
+    private static final double SIZE = 80;
 
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/spawner_view");
@@ -63,9 +66,11 @@ public class SpawnerView implements Glyph, Draggable {
     private TextField myDelay;
     private Button mySetButton;
     private AuthoringRenderer myRenderer;
+    private ScaleRatio myScale;
 
-    public SpawnerView (IGame game, ILevel level, AuthoringRenderer renderer) {
+    public SpawnerView (IGame game, ILevel level, AuthoringRenderer renderer, ScaleRatio scale) {
         init();
+        myScale = scale;
         myLevel = level;
         myGame = game;
         myRenderer = renderer;
@@ -164,7 +169,7 @@ public class SpawnerView implements Glyph, Draggable {
             SpawnerModuleDefinition spawnerDef =
                     new SpawnerModuleDefinition(getAdder(), myLevel, myWaves.getItems());
             mySpawner = new SpawnerDefinition(myGame);
-            mySpawner.setProfile(new Profile(DRAG_STRING, EMPTY, getImageURL()));
+            mySpawner.setProfile(new Profile(DRAG_STRING, EMPTY, getImageURL(), SIZE, SIZE));
             mySpawner.setMySpawningModule(spawnerDef);
             myLevel.getAddableSprites().add(mySpawner);
         }
@@ -184,11 +189,16 @@ public class SpawnerView implements Glyph, Draggable {
 
     @Override
     public void setOnDragDropped (DragEvent e) {
-        myLevel.add(mySpawner.create(), new Coordinate(e.getX(), e.getY()));
+        myLevel.add(mySpawner.create(), getCoordinate(e.getX(), e.getY()));
         myRenderer.render();
         reset();
     }
     
+    private Coordinate getCoordinate (double x, double y) {
+        Coordinate c =  new Coordinate (myScale.invert(x), myScale.invert(y));
+        return c; 
+    }
+
     public void setButtonAction (EventHandler<MouseEvent> event) {
         mySetButton.setOnMouseClicked(event);
     }

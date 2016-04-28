@@ -138,11 +138,11 @@ public class InGameRenderer extends LevelRenderer {
     }
    
     protected double scaledHeight () {
-        return myGame.getLevelBounds().getHeight() * getScale().getScale();
+        return getScale().scale(myGame.getLevelBounds().getHeight()); 
     }
 
     protected double scaledWidth () {
-        return myGame.getLevelBounds().getWidth() * getScale().getScale();
+        return getScale().scale(myGame.getLevelBounds().getWidth());
     }
 
 }
