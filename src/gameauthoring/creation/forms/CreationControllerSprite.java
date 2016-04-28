@@ -19,13 +19,8 @@ import gameauthoring.shareddata.DefinitionCollection;
  *
  */
 public class CreationControllerSprite extends CreationController<SpriteDefinition> {
-
-<<<<<<< HEAD
     
-    public CreationControllerSprite (String title,
-=======
     public CreationControllerSprite (String key,
->>>>>>> 37973e5f53a9f73aff0400fc106b5a47af428f8a
                                      List<String> subFormStrings,
                                      IGame myGame) {
         super(key, subFormStrings, myGame);
@@ -37,31 +32,8 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
     }
 
     @Override
-<<<<<<< HEAD
-    protected void addToAuthorshipData (AuthorshipData authorshipData) {
-        //authorshipData.addCreatedSprites(getMyDefinitionCollection());
-        //TODO need to make createdSprites a map so I can get Enemies and Defenders separately        
-        // other option is to make subclasses of creationcontroller sprite for each one
-        
-        //TODO: super hacky fix for now
-//        if(getMyTitle().equals(myLang.getString("Enemies"))){
-//            setMyDefinitionCollection(authorshipData.getMyCreatedSprites().get(0));
-//        }
-//        else if(getMyTitle().equals(myLang.getString("Defenders"))){
-//            setMyDefinitionCollection(authorshipData.getMyCreatedSprites().get(1));
-//        }
-        
-        setMyDefinitionCollection(authorshipData.getMyCreatedSprites().get(0));
-
-        
-        authorshipData.addGroupSprites(getMyDefinitionCollection());
-        
-        //uncomment if we want a different list for level selector sprites than created sprites
-        //authorshipData.addLevelSelectorSprites(getMyDefinitionCollection());
-=======
     protected SubFormControllerFactory<SpriteDefinition> createSFCFactory (IGame game) {
         return new SpriteSFCFactory(game);
->>>>>>> 37973e5f53a9f73aff0400fc106b5a47af428f8a
     }
 
     @Override
