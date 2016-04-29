@@ -19,12 +19,16 @@ public abstract class SubFormView implements ISubFormView {
     private BasicUIFactory myUIFactory = new BasicUIFactory();
     private String myTitle;
     private String myStyleClass = "SFVclass";
+    
 
     
     private ResourceBundle myLabels =
             ResourceBundle
                     .getBundle("languages/labels",
                                LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    private ResourceBundle myNumbers = ResourceBundle
+            .getBundle("defaults/numbers",
+                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
 
 
     protected String getMyTitle () {
@@ -47,6 +51,9 @@ public abstract class SubFormView implements ISubFormView {
         return myLabels;
     }
     
+    protected ResourceBundle getMyNumbers(){
+        return myNumbers;
+    }
     protected BasicUIFactory getMyUIFactory () {
         return myUIFactory;
     }
