@@ -13,23 +13,17 @@ public class Wave implements IWave {
 
     public Wave (List<WaveBlock> sprites) {
         myBlocks = sprites;
-        currentBlock = myBlocks.get(0);
-        myBlocks.remove(0);
+        currentBlock =  myBlocks.remove(0);
         sinceLastSpawn = new TimeDuration();
         sinceLastSpawn.setToZero();
     }
 
     @Override
     public boolean waveCompleted () {
-        return myBlocks.size() == 0 & currentBlock.getCount() == 0;
+        return myBlocks.size() == 0 && currentBlock.getCount() <= 0;
     }
 
-    /*
-     * the waveset will handle not spawning due to wave completion
-     * (non-Javadoc)
-     * 
-     * @see engine.waves.IWave#spawnSprite(util.TimeDuration)
-     */
+
 
     @Override
     public ISprite spawnSprite () {
@@ -37,6 +31,7 @@ public class Wave implements IWave {
             currentBlock = myBlocks.get(0);
             myBlocks.remove(0);
         }
+        
         return currentBlock.spawn();
 
     }
@@ -58,5 +53,24 @@ public class Wave implements IWave {
         }
 
     }
-
+    
+    protected TimeDuration getTimeSinceSpawn(){
+        return sinceLastSpawn;
+    }
+    
+    protected void setTimeSinceSpawn(TimeDuration t){
+        sinceLastSpawn = t;
+    }
+    
+    protected List<WaveBlock> getBlocks(){
+        return myBlocks;
+    }
+    
+    protected WaveBlock getCurrentBlock(){
+        return currentBlock;
+    }
+    
+    protected void setCurrentBlock(WaveBlock b){
+        currentBlock = b;
+    }
 }

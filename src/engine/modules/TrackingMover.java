@@ -8,6 +8,7 @@ import engine.AttributeType;
 import engine.IAttribute;
 import engine.IGame;
 import engine.Positionable;
+import engine.SpriteGroup;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
@@ -31,12 +32,12 @@ public class TrackingMover extends Mover {
 
     public TrackingMover (double speed,
                           IGame game,
-                          List<SpriteType> attackGroup,
+                          SpriteGroup spriteGroup,
                           Positionable sprite) {
         super(sprite);
         myGame = game;
         mySpeed = new Attribute(speed, AttributeType.SPEED);
-        myEnemyList = attackGroup;
+        myEnemyList = spriteGroup.getSpriteTypes();
         mySprite = sprite;
         myTracker = new EnemyTracker();
     }

@@ -6,10 +6,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import engine.Drawable;
 import engine.IGamePlayable;
-import gameplayer.SpriteDisplay;
 import gameplayer.SpriteDisplayController;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import util.ScaleRatio;
 
 
 /**
@@ -26,8 +26,11 @@ public class InGameRenderer extends LevelRenderer {
     private SpriteDisplayController mySpriteDisplay;
     private boolean myFirstTime;
 
-    public InGameRenderer (IGamePlayable game, Pane pane, SpriteDisplayController spriteDisplay) {
-        super(pane);
+    public InGameRenderer (IGamePlayable game,
+                           Pane pane,
+                           SpriteDisplayController spriteDisplay,
+                           ScaleRatio scale) {
+        super(pane, scale);
         myFactory = new UnscaledFactory();
         myGame = game;
         myDrawNodeMap = new HashMap<>();
@@ -59,8 +62,9 @@ public class InGameRenderer extends LevelRenderer {
     }
 
     private void updateExistingNodeLocations () {
-        myDrawNodeMap.keySet().stream().forEach(drawable -> this.draw( myDrawNodeMap.get(drawable), drawable));
-                //.relocate(drawable.getLocation().getX(), drawable.getLocation().getY()));
+        myDrawNodeMap.keySet().stream()
+                .forEach(drawable -> this.draw(myDrawNodeMap.get(drawable), drawable));
+        // .relocate(drawable.getLocation().getX(), drawable.getLocation().getY()));
     }
 
     /**
@@ -115,9 +119,30 @@ public class InGameRenderer extends LevelRenderer {
             return node;
         }
     }
-
+    
     private void add (Node node) {
         getPane().getChildren().add(node);
+    }
+
+    @Override
+    public void redrawBackground () {
+        myFirstTime = true;
+        for (Drawable drawable: myDrawNodeMap.keySet()) {
+            resize(drawable, myDrawNodeMap.get(drawable));
+        }
+    }
+
+    private Node resize (Drawable draw, Node node) {
+        draw(node,draw);
+        return node;
+    }
+   
+    protected double scaledHeight () {
+        return getScale().scale(myGame.getLevelBounds().getHeight()); 
+    }
+
+    protected double scaledWidth () {
+        return getScale().scale(myGame.getLevelBounds().getWidth());
     }
 
 }

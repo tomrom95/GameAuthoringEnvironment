@@ -12,6 +12,7 @@ import javafx.animation.Timeline;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import util.ScaleRatio;
 import util.TimeDuration;
 
 
@@ -32,23 +33,31 @@ public class GameEngine implements IGameEngine {
     private LevelRenderer myRenderer;
     private IOInterpeter myIOIntercepter;
     private SideBarDisplay mySideBar;
+    private GamePlayerTools myTools;
     private Timeline myTimeline = new Timeline();
+    private ScaleRatio myScale = new ScaleRatio();
 
     public GameEngine (IGame game, BorderPane gamePane, Pane levelPane, IOInterpeter ioInterpreter) {
         myGame = game;
         myDisplay = new UserDisplay(myGame);
-        myRenderer = new InGameRenderer(game, levelPane, myDisplay.getSpriteDisplay());
+        myRenderer = new InGameRenderer(game, levelPane, myDisplay.getSpriteDisplay(), myScale);
         myIOIntercepter = ioInterpreter;
-        mySideBar = new PlayerSideBar(myGame, myRenderer);
+        myIOIntercepter.setScale(myScale);
+        initDisplays();
         createLevelView(gamePane);
         initializeTimeline();
+    }
+    
+    private void initDisplays(){
+        mySideBar = new PlayerSideBar(myGame, myRenderer, myScale);
+        myTools = new GamePlayerTools(this);
     }
 
     private void createLevelView (BorderPane gamePane) {
         gamePane.setCenter(myRenderer.getPane());
         gamePane.setRight(mySideBar.draw());
         gamePane.setLeft(myDisplay.draw());
-        gamePane.setTop(new GamePlayerTools(this).draw());
+        gamePane.setTop(myTools.draw());
     }
 
     private void initializeTimeline () {
@@ -80,13 +89,36 @@ public class GameEngine implements IGameEngine {
     public IGame getGame () {
         return myGame;
     }
-
+    
     private IRenderer getRenderer () {
         return myRenderer;
     }
 
     private Timeline getTimeline () {
         return myTimeline;
+    }
+
+    public void rescale (double width, double height) {
+        double xScale = rescaleX(width);
+        double yScale = rescaleY(height);
+        double min = Math.min(xScale, yScale);
+        myScale.setScale(min);
+        myRenderer.redrawBackground();
+    }
+    
+    private double rescaleX (double room) {
+        double sidebar = mySideBar.getWidth();
+        double userdisplay = myDisplay.getWidth();
+        double left = room - sidebar - userdisplay;
+        double g = myGame.getLevelManager().getCurrentLevel().getBounds().getWidth();
+        return left/g;
+    }
+
+    private double rescaleY (double room) {
+        double toolbar = myTools.getHeight();
+        double left = room - toolbar;
+        double g = myGame.getLevelManager().getCurrentLevel().getBounds().getHeight();
+        return left/g;
     }
 
 }

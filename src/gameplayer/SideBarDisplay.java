@@ -1,6 +1,7 @@
 package gameplayer;
 
-import engine.IGame;
+import java.util.ResourceBundle;
+import engine.ILevel;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.creation.cellviews.ProfileCellView;
@@ -11,6 +12,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
+import splash.LocaleManager;
+import util.ScaleRatio;
 
 
 /**
@@ -22,22 +25,27 @@ import javafx.scene.control.TitledPane;
  *
  */
 public abstract class SideBarDisplay extends SizeableGlyph {
-
-    private IGame myGame;
+    
+    private ILevel myLevel;
     private LevelRenderer levelView;
     private SceneController myController;
+    private Accordion myAccordion;
+    private ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", LocaleManager
+                                                             .getInstance().getCurrentLocaleProperty().get());
 
-    public SideBarDisplay (IGame game, LevelRenderer renderer) {
-        myGame = game;
-        myController = new SceneController(game.getLevelManager().getCurrentLevel());
+    public SideBarDisplay (ILevel level, LevelRenderer renderer, ScaleRatio ratio) {
         levelView = renderer;
+        myLevel = level;
+        myController = createController(level, ratio);
     }
+
+    protected abstract SceneController createController (ILevel level, ScaleRatio ratio);
 
     @Override
     public Node draw () {
-        Accordion accordion = createAccordion();
-        fillAccordion(accordion);
-        return accordion;
+        myAccordion = createAccordion();
+        fillAccordion(myAccordion);
+        return myAccordion;
     }
 
     private Accordion createAccordion () {
@@ -53,7 +61,7 @@ public abstract class SideBarDisplay extends SizeableGlyph {
     
     protected TitledPane createAccordionPane (DefinitionCollection<SpriteDefinition> collection) {
         ListView<SpriteDefinition> spriteList = createSpriteList(collection.getItems());
-        TitledPane pane = new TitledPane(collection.getTitle(), spriteList);
+        TitledPane pane = new TitledPane(getMyLabels().getString(collection.getTitleKey()), spriteList);
         return pane;
     }
 
@@ -63,9 +71,9 @@ public abstract class SideBarDisplay extends SizeableGlyph {
         list.setCellFactory(c -> getSpriteCellView());
         return list;
     }
-                                                                   
-    protected IGame getGame () {
-        return myGame;
+    
+    protected ILevel getLevel () {
+        return myLevel;
     }
     
     protected LevelRenderer getLevelView () {
@@ -74,5 +82,13 @@ public abstract class SideBarDisplay extends SizeableGlyph {
     
     protected SceneController getController () {
         return myController;
+    }
+
+    public double getWidth () {
+        return myAccordion.getWidth();
+    }
+    
+    protected ResourceBundle getMyLabels() {
+        return myLabels;
     }
 }

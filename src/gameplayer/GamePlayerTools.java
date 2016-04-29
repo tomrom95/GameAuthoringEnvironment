@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
 import gameauthoring.tabs.AuthoringView;
+import gameplayer.facebook.FacebookMenu;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
@@ -96,6 +97,11 @@ public class GamePlayerTools {
         myEngine.pause();
     }
     
+    public void postToFacebook () {
+        FacebookMenu menu = new FacebookMenu(myEngine.getGame());
+        menu.popUp();
+    }
+    
     public void launchAuthoring () {
         pause();
         AuthoringView aView = new AuthoringView(myEngine.getGame());
@@ -106,6 +112,10 @@ public class GamePlayerTools {
 
     public Node draw () {
         return myTools;
+    }
+
+    public double getHeight () {
+       return myTools.getHeight();
     }
 
 }

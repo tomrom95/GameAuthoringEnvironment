@@ -30,8 +30,8 @@ public class SpriteGroup implements ISpriteGroup, IProfilable {
         myProfile = new Profile();
     }
 
-    public SpriteGroup (List<SpriteDefinition> spriteTypes) {
-        setSpriteDefinitions(spriteTypes);
+    public SpriteGroup (List<SpriteDefinition> spriteDefs) {
+        setSpriteDefinitions(spriteDefs);
         myProfile = new Profile();
     }
 

@@ -16,12 +16,19 @@ public class LevelSpecificSFC implements ISubFormControllerAttribute{
     }
 
     @Override
-    public void initializeFields () {        
+    public void populateViewsWithData (AttributeDefinition item) {
+        myView.setLevelSpecific(item.getIsLevelSpecific());
+    }
+    
+    @Override
+    public void initializeFields (AttributeDefinition item) {        
     }
 
     @Override
     public ISubFormView getSubFormView () {
         return myView;
     }
+
+   
 
 }

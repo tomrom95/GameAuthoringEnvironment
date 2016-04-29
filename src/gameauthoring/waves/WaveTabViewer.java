@@ -80,12 +80,16 @@ public class WaveTabViewer implements Glyph {
                                                                 myLang.getString("WaveTitle"),
                                                                 myLang.getString("WaveNameInstr"));
         if (option.isPresent()) {
-            myWaveDisplay.add(myBlockList, option.get());
+            myWaveDisplay.add(myBlockList, option.get(), myCreationZone.isInfiniteProperty().get());
             myBlockList.clear();
         }
+        
+        myCreationZone.setInfiniteCheckBox(false);
     }
 
-    public void transfer (List<WaveBlockDefinition> blocks) {
+    public void transfer (List<WaveBlockDefinition> blocks, boolean b) {
+        //TODO: set the value of the infinite box here
+        myCreationZone.setInfiniteCheckBox(b);
         myBlockList.setAll(blocks);
     }
 
@@ -103,7 +107,9 @@ public class WaveTabViewer implements Glyph {
     }
 
     public void save () {
+        myWaveDisplay.getSelected().setInfinite(myCreationZone.isInfiniteProperty().get());
         myWaveDisplay.getSelected().setListSprites(new ArrayList<>(myBlockList));
+
     }
 
     public void exitEdit () {

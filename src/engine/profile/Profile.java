@@ -1,10 +1,10 @@
 package engine.profile;
 
-import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import graphics.IGraphic;
 import graphics.ImageGraphic;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -24,22 +24,24 @@ public class Profile implements IProfile {
     private ImageGraphic myImage;
     private DoubleProperty myImageWidth;
     private DoubleProperty myImageHeight;
+    private static final double DEFAULT_SIZE = 100;
+    private BooleanProperty imageChange;
 
 
     public Profile () {
-        init("<NAME>", "<DESCRIPTION>", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+        init("<Name>", "<Description>", new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
     }
 
     public Profile (String name) {
-        init(name, "", new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+        init(name, "", new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
     }
 
     public Profile (String name, String description) {
-        init(name, description, new ImageGraphic(0, 0, DEFAULT_IMAGE_NAME));
+        init(name, description, new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
     }
 
     public Profile (String name, String description, String url) {
-        init(name, description, new ImageGraphic(0, 0, url));
+        init(name, description, new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, url));
     }
 
     public Profile (String name, String description, String url, double width, double height){
@@ -57,6 +59,7 @@ public class Profile implements IProfile {
         myImage = graphic;
         myImageWidth = graphic.getWidth();
         myImageHeight = graphic.getHeight();
+        imageChange = new SimpleBooleanProperty(false);
     }
 
     @Override
@@ -92,10 +95,16 @@ public class Profile implements IProfile {
     @Override
     public void setNew (String name, String desc, String url, double width, double height) {
         myImage = new ImageGraphic(width, height, url);
+        imageChange.set(!imageChange.get());
         myDescription.set(desc);
         myName.set(name);
         myImageWidth.set(width);
         myImageHeight.set(height);
+    }
+
+    @Override
+    public BooleanProperty imageChanged () {
+        return imageChange;
     }
 
 }

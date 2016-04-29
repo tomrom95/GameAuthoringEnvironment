@@ -12,11 +12,11 @@ import javafx.collections.ObservableList;
 public interface IDefinitionCollection<E> {
 
     /**
-     * The title of the collection
+     * The key which is used to get the title of the collection from a resource file
      * 
-     * @return The title
+     * @return The title key
      */
-    String getTitle ();
+    String getTitleKey ();
 
     /**
      * Get the items stored in this holder

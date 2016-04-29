@@ -42,4 +42,6 @@ public interface IEffect extends Updateable {
      * @return a copy of this effect
      */
     IEffect makeCopy ();
+    
+    
 }

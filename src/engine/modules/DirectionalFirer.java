@@ -65,7 +65,6 @@ public class DirectionalFirer extends Firer {
     }
     
     protected void fire(){
-        System.out.println("here");
         myTimeSinceFire.setToZero();
         ISprite bullet = myProjectile.create();
         bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),

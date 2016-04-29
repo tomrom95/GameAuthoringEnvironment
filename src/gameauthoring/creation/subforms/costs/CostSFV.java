@@ -1,13 +1,19 @@
 package gameauthoring.creation.subforms.costs;
 
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
+import engine.definitions.costs.ICost;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
+
 
 /**
  * Implementation of ICostSFV with HBox arrangement and combobox layout
@@ -15,45 +21,76 @@ import javafx.scene.layout.HBox;
  * @author Tommy
  *
  */
-public class CostSFV extends SubFormView{
+public class CostSFV extends SubFormView implements ICostSFV {
+
+
     private static final int SPACING = 5;
-    
-    private String myAttributeChoicesKey = "Resource Required: ";
-    private String myCostKey = "Amount to buy sprite: ";
+    private String myAttributeChoicesKey;
+    private String myCostKey;
     private SingleChoiceEntryView<AttributeDefinition> myAttributes;
     private NumberEntryView myCost;
     private HBox myContainer;
-    
+    private ResourceBundle myLabel;
+    private TitledPane myTitledPane;
+
     public CostSFV (AuthorshipData data) {
+        setResourceBundleAndKey();
+
         myAttributes =
                 new SingleChoiceEntryView<AttributeDefinition>(myAttributeChoicesKey,
                                                                data.getMyCreatedGlobals()
                                                                        .getItems(),
                                                                AuthoringView.DEFAULT_ENTRYVIEW);
         myCost =
-                new NumberEntryView(myCostKey, super.getData(), 60, 20,
-                                    AuthoringView.DEFAULT_ENTRYVIEW);
+                new NumberEntryView(myCostKey, 60, 20, AuthoringView.DEFAULT_ENTRYVIEW);
+
         initView();
+    }
+
+    private void setResourceBundleAndKey () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                .getInstance().getCurrentLocaleProperty().get());
+        myAttributeChoicesKey = myLabel.getString("ResourceChoice");
+        myCostKey = myLabel.getString("CostKey");
     }
 
     @Override
     public Node draw () {
-        return myContainer;
+        return myTitledPane;
     }
 
     @Override
     protected void initView () {
-        myContainer = new HBox(SPACING);
-        myContainer.getChildren().add(myAttributes.draw());
-        myContainer.getChildren().add(myCost.draw());
+        myContainer = getMyUIFactory().makeHBox(SPACING, Pos.CENTER, drawFields());
+        myTitledPane = getMyUIFactory().makeCheckBoxTitledPane(myLabel.getString("CostCheck"), myContainer, false);
+        
     }
-    
+
+    private Node drawFields () {
+        HBox box = new HBox(SPACING);
+        box.getChildren().addAll(myAttributes.draw(),
+                                 myCost.draw());
+        return box;
+    }
+
     public AttributeDefinition getSelectedAttribute () {
         return myAttributes.getSelected();
     }
+
+    @Override
+    public double getCost () {
+        return myCost.getData();
+    }
     
-    public String getCostKey () {
-        return myCostKey;
+    @Override
+    public boolean costChecked () {
+        return myTitledPane.isExpanded();
     }
 
+    @Override
+    public void populateWithData (boolean hasCost, AttributeDefinition attribute, double cost) {
+        this.myTitledPane.setExpanded(false);
+        myAttributes.setSelected(attribute);
+        myCost.setData(cost);
+    }
 }

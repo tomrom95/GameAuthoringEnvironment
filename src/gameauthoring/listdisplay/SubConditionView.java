@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.conditions.ICondition;
 import engine.profile.IProfilable;
 import engine.profile.Profile;
@@ -29,7 +30,7 @@ public abstract class SubConditionView {
 
     protected static final double CUSHION = 10;
     private static final String DEFAULT_IMAGE = "/images/C.png";
-    private ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle mySize = ResourceBundle.getBundle("defaults/subcondition");
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
 
