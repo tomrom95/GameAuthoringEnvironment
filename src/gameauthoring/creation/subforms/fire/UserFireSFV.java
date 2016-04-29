@@ -183,5 +183,10 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
         myFire.setData(fire);
 
     }
+    
+    @Override
+    public SpriteDefinition getMissileSelection () {
+        return myMissileSelectionView.getSelected();
+    }
 
 }

@@ -98,7 +98,7 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     }
 
     @Override
-    public SpriteDefinition getSelectedMissile () {
+    public SpriteDefinition getMissileSelection () {
         return myMissileSelectionView.getSelected();
     }
 

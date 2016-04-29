@@ -20,7 +20,7 @@ public class UserFireSFC extends RemovableFireSFC {
     private double myDefaultAngle = 0;
     private double myDefaultWaitTime = 0;
     private double myDefaultRange = 0;
-    private boolean myDefaultRanged = false;
+    private boolean myDefaultIsRanged = false;
     private double myDefaultAngleStep = 0;
     private String myDefaultIncrease = "I";
     private String myDefaultDecrease = "D";
@@ -51,6 +51,13 @@ public class UserFireSFC extends RemovableFireSFC {
         myFireDef.setRanged(myView.getMyIsRanged());
         myFireDef.setFireRange(myView.getMyRange());
         myFireDef.setProjectileDefinition(myView.getMissileSelection());
+        myFireDef.setDecrease(myView.getMyDecrease());
+        myFireDef.setIncrease(myView.getMyIncrease());
+        myFireDef.setFire(myView.getMyFire());
+        myFireDef.setWaitTime(myView.getMyWaitTime());
+        
+        item.addModule(myFireDef);
+
     }
     
     private void init (IGame game, UserFirerDefinition userFirerDefinition) {
@@ -62,7 +69,7 @@ public class UserFireSFC extends RemovableFireSFC {
 
     @Override
     public void initializeFields (SpriteDefinition item) {
-
+        myView.populateWithData(null, myDefaultWaitTime, myDefaultRange, myDefaultIsRanged, myDefaultAngle, myDefaultAngleStep, myDefaultIncrease, myDefaultDecrease, myDefaultFire);
     }
 
     @Override
@@ -72,8 +79,7 @@ public class UserFireSFC extends RemovableFireSFC {
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-        // TODO Auto-generated method stub
-        
+        myView.populateWithData(myFireDef.getProjectileDefinition(), myFireDef.getWaitTime(), myFireDef.getFireRange(), myFireDef.getRanged(), myFireDef.getAngle() * 180 / Math.PI, myFireDef.getAngleStep(), myFireDef.getIncrease(), myFireDef.getDecrease(), myFireDef.getFire());
     }
 
     @Override
