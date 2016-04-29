@@ -50,13 +50,13 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
         myAccordion = getMyUIFactory().makeAccordion(300);
         for (IDefinitionCollection<SpriteDefinition> def : mySprites) {
             MultiChoiceEntryView<SpriteDefinition> myView =
-                    new MultiChoiceEntryView<>(def.getTitle(), def.getItems(), 300, 400,
+                    new MultiChoiceEntryView<>(getMyLabels().getString(def.getTitleKey()), def.getItems(), 300, 400,
                                                AuthoringView.DEFAULT_ENTRYVIEW);
             myView.getListView()
                     .setCellFactory(c -> new DraggableAddCell<SpriteDefinition>(mySelected
                             .getListView()));
             myViews.add(myView);
-            TitledPane tp = new TitledPane(def.getTitle(), myView.getListView());
+            TitledPane tp = new TitledPane(getMyLabels().getString(def.getTitleKey()), myView.getListView());
             myAccordion.getPanes().add(tp);
         }
         mySelected.getListView()
@@ -83,6 +83,10 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
     @Override
     public Node draw () {
         return myContainer;
+    }
+    
+    private ResourceBundle getMyLabels() {
+        return myLabel;
     }
 
 }

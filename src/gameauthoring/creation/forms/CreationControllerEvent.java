@@ -35,7 +35,7 @@ public class CreationControllerEvent extends CreationController<EventPackageDefi
 
     @Override
     protected DefinitionCollection<EventPackageDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
-        return authorshipData.getMyCreatedEventPackages(getMyTitle());
+        return authorshipData.getMyCreatedEventPackages();
     }
 
 }

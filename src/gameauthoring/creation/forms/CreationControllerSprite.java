@@ -38,7 +38,7 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
 
     @Override
     protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
-        return authorshipData.getMyCreatedSprites(getMyKey(), getMyTitle());
+        return authorshipData.getMyCreatedSprites(getMyKey());
     }
 
 }

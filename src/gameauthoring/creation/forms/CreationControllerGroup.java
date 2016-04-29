@@ -29,7 +29,7 @@ public class CreationControllerGroup extends CreationController<SpriteGroup> {
 
     @Override
     protected DefinitionCollection<SpriteGroup> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
-        return authorshipData.getMyCreatedGroups(getMyTitle());
+        return authorshipData.getMyCreatedGroups();
     }
 
 }
