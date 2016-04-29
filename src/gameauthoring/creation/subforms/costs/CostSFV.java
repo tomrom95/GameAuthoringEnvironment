@@ -4,16 +4,15 @@ import java.util.ResourceBundle;
 import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
+import engine.definitions.costs.ICost;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 
 /**
@@ -31,7 +30,6 @@ public class CostSFV extends SubFormView implements ICostSFV {
     private SingleChoiceEntryView<AttributeDefinition> myAttributes;
     private NumberEntryView myCost;
     private HBox myContainer;
-    private CheckBox myCheckBox;
     private ResourceBundle myLabel;
     private TitledPane myTitledPane;
 
@@ -85,13 +83,13 @@ public class CostSFV extends SubFormView implements ICostSFV {
     }
     
     @Override
-
     public boolean costChecked () {
         return myTitledPane.isExpanded();
     }
 
     @Override
-    public void populateWithData (AttributeDefinition attribute, double cost) {
+    public void populateWithData (boolean hasCost, AttributeDefinition attribute, double cost) {
+        this.myTitledPane.setExpanded(false);
         myAttributes.setSelected(attribute);
         myCost.setData(cost);
     }

@@ -13,7 +13,6 @@ public class EffectChoiceSFC extends MultiOptionSFC<EventPackageDefinition>{
 
     public EffectChoiceSFC (IGame game) {
         super(game);
-       // setMySFCFactory(new EventSFCFactory(game)); //TODO: change this 
         setMyOptions(BundleOperations.getPropertyValueAsList(effectKey, getMyOptionsFile()));
         setMyView(new EffectChoiceSFV(getMyOptions()));
         setActions();       
@@ -29,6 +28,6 @@ public class EffectChoiceSFC extends MultiOptionSFC<EventPackageDefinition>{
         item.getMyEffectsList().clear();
     }
 
-    
+     
 
 }

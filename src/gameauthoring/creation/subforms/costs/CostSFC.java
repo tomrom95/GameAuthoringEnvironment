@@ -20,7 +20,9 @@ public class CostSFC implements ISubFormControllerSprite {
 
     @Override
     public void updateItem (SpriteDefinition item) {
-        if (!myView.costChecked()) return;
+        if (!myView.costChecked()) {
+            item.setCost(null);
+        }
         double amount = myView.getCost();        
         ICost cost = new Cost(myGame, myView.getSelectedAttribute(), amount);
         item.setCost(cost);
@@ -38,7 +40,7 @@ public class CostSFC implements ISubFormControllerSprite {
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
         ICost cost = item.getCost();
-        myView.populateWithData(cost.getAttributeDefinition(), cost.getCostAmount());
+        myView.populateWithData(cost == null, cost.getAttributeDefinition(), cost.getCostAmount());
     }
 
 }

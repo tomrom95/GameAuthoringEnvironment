@@ -2,7 +2,6 @@ package gameauthoring.creation.subforms;
 
 import java.util.ResourceBundle;
 import splash.LocaleManager;
-import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.ImageEntryView;
 import gameauthoring.creation.entryviews.SliderEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;

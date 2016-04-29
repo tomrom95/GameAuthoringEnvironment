@@ -12,7 +12,6 @@ public class EventChoiceSFC extends MultiOptionSFC<EventPackageDefinition>{
 
     public EventChoiceSFC (IGame game) {
         super(game);
-        //setMySFCFactory(new EventSFCFactory(game)); //TODO: change this 
         setMyOptions(BundleOperations.getPropertyValueAsList(eventKey, getMyOptionsFile()));
         setMyView(new EventChoiceSFV(getMyOptions()));
         setActions();       

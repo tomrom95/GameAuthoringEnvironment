@@ -3,7 +3,6 @@ package gameauthoring.creation.subforms.events;
 import java.util.List;
 import gameauthoring.creation.subforms.ClickAndFillView;
 import gameauthoring.creation.subforms.ISubFormView;
-import javafx.scene.control.Label;
 
 
 public class EventChoiceSFV extends ClickAndFillView {
