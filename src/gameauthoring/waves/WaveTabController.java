@@ -25,12 +25,15 @@ public class WaveTabController {
     private void exitMode () {
         myCreationZone.exitEdit();
         myView.exitEdit();
-        myCreationZone.setButtonAction(e -> myView.createWave());    
+        
+        myCreationZone.setButtonAction(e -> myView.createWave()); 
+        myCreationZone.setInfiniteCheckBox(false);
+
     }
 
     private void transfer () {
         if(myView.getWaveSelection()!=null) {
-            myView.transfer(getList(myView.getWaveSelection()));
+            myView.transfer(getList(myView.getWaveSelection()), myView.getWaveSelection().getInfinite());
             editMode();
         }
     }
@@ -41,6 +44,7 @@ public class WaveTabController {
     }
 
     private List<WaveBlockDefinition> getList (WaveDefinition waveSelection) {
+        
         return new ArrayList<>(waveSelection.getWaveBlocks());
     }
     

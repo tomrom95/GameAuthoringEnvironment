@@ -60,5 +60,9 @@ public class WaveDefinition implements IDefinition, IProfilable {
     public void setInfinite(boolean b){
         myInfinite = b;
     }
+    
+    public boolean getInfinite(){
+        return myInfinite;
+    }
 
 }
