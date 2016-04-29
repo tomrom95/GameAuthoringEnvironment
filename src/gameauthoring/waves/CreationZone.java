@@ -63,6 +63,7 @@ public class CreationZone implements Glyph {
     }
     
     public void exitEdit () {
+        setInfiniteCheckBox(false);
         myActionButton.setText("Add wave");    
         mySaveButton.setVisible(false);
      }
@@ -70,6 +71,9 @@ public class CreationZone implements Glyph {
     public BooleanProperty isInfiniteProperty () {
         return myInfiniteSelect.isCheckedProperty();
 
+    }
+    public void setInfiniteCheckBox(boolean b){
+        myInfiniteSelect.setSelected(b);
     }
 
 }
