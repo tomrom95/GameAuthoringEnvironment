@@ -82,7 +82,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     }
 
     private void initBinding () {
-        myRangeValue.draw().visibleProperty().bind(isRangedProperty());
+        myRangeValue.draw().visibleProperty().bind(myIsRanged.isCheckedProperty());
 
     }
 
@@ -114,11 +114,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         myIsRanged.setSelected(isRanged);
     }
 
-    @Override
-    public BooleanProperty isRangedProperty () {
-        return this.myIsRanged.isCheckedProperty();
-
-    }
+   
 
     @Override
     public double getMyRange () {

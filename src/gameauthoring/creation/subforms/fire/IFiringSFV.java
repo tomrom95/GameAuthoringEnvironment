@@ -20,5 +20,4 @@ public interface IFiringSFV extends ISubFormView {
       
       double getMyWaitTime ();
       
-      BooleanProperty isRangedProperty ();
 }

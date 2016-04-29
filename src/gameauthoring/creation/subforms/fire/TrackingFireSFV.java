@@ -59,8 +59,9 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
                                             AuthoringView.DEFAULT_ENTRYVIEW);
         myIsRanged =
                 new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
-        myRangeValue = new NumberEntryView(myRangeValueKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-        
+        myRangeValue =
+                new NumberEntryView(myRangeValueKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+
         initView();
         initBinding();
 
@@ -79,7 +80,8 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     protected void initView () {
         myPane =
                 getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                          myWaitTime.draw(), myTargets.draw(), myRemove.draw(), myRangeValue.draw(), myIsRanged.draw());
+                                          myWaitTime.draw(), myTargets.draw(), myRemove.draw(),
+                                          myRangeValue.draw(), myIsRanged.draw());
         myPane.getStyleClass().add("firer");
     }
 
@@ -93,7 +95,6 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         return myPane;
     }
 
-
     public double getMyWaitTime () {
         return myWaitTime.getData();
     }
@@ -104,22 +105,23 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     }
 
     @Override
-    public void populateWithData (SpriteDefinition missile, SpriteGroup target, double waitTime, double range, boolean isRanged) {
+    public void populateWithData (SpriteDefinition missile,
+                                  SpriteGroup target,
+                                  double waitTime,
+                                  double range,
+                                  boolean isRanged) {
         myMissileSelectionView.setSelected(missile);
         myTargets.setSelected(target);
         myWaitTime.setData(waitTime);
         myRangeValue.setData(range);
         myIsRanged.setSelected(isRanged);
     }
+
     public void setTargetsChoice (SpriteGroup targets) {
         this.myTargets.setSelected(targets);
     }
 
-
-    @Override
-    public BooleanProperty isRangedProperty () {
-        return myIsRanged.isCheckedProperty();
-    }
+  
 
     @Override
     public double getMyRange () {
@@ -131,10 +133,9 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         return myIsRanged.isCheckedProperty().get();
     }
 
-    
     private void initBinding () {
-        myRangeValue.draw().visibleProperty().bind(isRangedProperty());
-       
+        myRangeValue.draw().visibleProperty().bind(myIsRanged.isCheckedProperty());
+
     }
 
 }
