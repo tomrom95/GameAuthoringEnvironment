@@ -1,8 +1,6 @@
 package gameauthoring.creation.forms;
 
 import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
 import engine.AuthorshipData;
 import engine.IGame;
 

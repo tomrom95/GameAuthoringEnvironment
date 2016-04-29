@@ -4,7 +4,6 @@ import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.FirerDefinition;
 import engine.definitions.moduledef.UserFirerDefinition;
-import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 
 public class UserFireSFC extends RemovableFireSFC {
@@ -27,7 +26,7 @@ public class UserFireSFC extends RemovableFireSFC {
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (SpriteDefinition item) {
         // TODO Auto-generated method stub
 
     }

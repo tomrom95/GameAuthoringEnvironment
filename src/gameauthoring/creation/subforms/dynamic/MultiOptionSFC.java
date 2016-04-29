@@ -1,30 +1,39 @@
-package gameauthoring.creation.subforms;
+package gameauthoring.creation.subforms.dynamic;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import engine.definitions.concrete.EventPackageDefinition;
-import engine.effects.IEffect;
+import engine.IGame;
 import engine.profile.IProfilable;
+import gameauthoring.creation.factories.MultiOptionFactory;
+import gameauthoring.creation.subforms.ClickAndFillView;
+import gameauthoring.creation.subforms.ISubFormController;
+import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.fire.RemovableSFC;
 
 public abstract class MultiOptionSFC <T extends IProfilable> implements ISubFormController<T>{
     
     private ClickAndFillView myView;
     private List<RemovableSFC<T>> mySFCs = new ArrayList<>();
-    private ResourceBundle myClassPaths = ResourceBundle.getBundle("defaults/sfc_classpath");
     private ResourceBundle myOptionsFile = ResourceBundle.getBundle("defaults/dynamic_sfc_contents");
     private MultiOptionFactory<T> mySFCFactory;
-   
+    private IGame myGame;
+    private ResourceBundle myDefClasspaths = ResourceBundle.getBundle("defaults/sfc_classpath");
+
 
     private List<String> myOptions;
+    
+    public MultiOptionSFC (IGame game){
+        myGame = game;
+        setMySFCFactory(new MultiOptionFactory<T>(game));
+    }
     
     
     protected void setActions () {
         for (int i = 0; i < getMyView().getMyButtons().size(); i++) {
             String sfcID = getMyOptions().get(i);
             getMyView().setButtonAction(getMyView().getMyButtons().get(i),
-                                   e -> addSFC(mySFCFactory.createSubFormController(getMyClassPaths().getString(sfcID))));
+                                   e -> addSFC(mySFCFactory.createSubFormController(getMyDefClasspaths().getString(sfcID), getMyGame(), this)));
         }
     }
     
@@ -53,7 +62,7 @@ public abstract class MultiOptionSFC <T extends IProfilable> implements ISubForm
     }
     
     @Override
-    public void initializeFields () {
+    public void initializeFields (T item) {
         getMyView().showDefaultMessage();
     }
     
@@ -73,14 +82,17 @@ public abstract class MultiOptionSFC <T extends IProfilable> implements ISubForm
         List<? extends Object> objects = getList(item);
         for (Object object : objects) {
             RemovableSFC<T> sfc =
-                    getMySFCFactory().createSubFormController(object.getClass().getName(),
+                    getMySFCFactory().createSubFormController(object.getClass().getName(), getMyGame(), this,
                                                               object);
             sfc.populateViewsWithData(item);
             addSFC(sfc);
         }
+    }    
+    
+    protected IGame getMyGame () {
+        return myGame;
     }
 
-    
     protected List<RemovableSFC<T>> getMySFCs () {
         return mySFCs;
     }
@@ -91,10 +103,6 @@ public abstract class MultiOptionSFC <T extends IProfilable> implements ISubForm
 
     protected void setMyOptions (List<String> options) {
         myOptions = options;
-    }
-
-    protected ResourceBundle getMyClassPaths () {
-        return myClassPaths;
     }
 
     protected ResourceBundle getMyOptionsFile () {
@@ -115,6 +123,11 @@ public abstract class MultiOptionSFC <T extends IProfilable> implements ISubForm
 
     protected void setMySFCFactory (MultiOptionFactory<T> mySFCFactory) {
         this.mySFCFactory = mySFCFactory;
+    }
+
+
+    public ResourceBundle getMyDefClasspaths () {
+        return myDefClasspaths;
     }
 
 }

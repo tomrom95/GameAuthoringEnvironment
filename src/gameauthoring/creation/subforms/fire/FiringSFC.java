@@ -3,9 +3,7 @@ package gameauthoring.creation.subforms.fire;
 import java.util.*;
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
-import engine.definitions.moduledef.ModuleDefinition;
-import gameauthoring.creation.subforms.ISubFormView;
-import gameauthoring.creation.subforms.MultiOptionSFC;
+import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
 import util.BundleOperations;
 
 
@@ -16,12 +14,14 @@ import util.BundleOperations;
  * @author Joe Lilien
  *
  */
+
 public class FiringSFC extends MultiOptionSFC<SpriteDefinition> {
 
     private String firingKey = "FIRING";
 
     public FiringSFC (IGame game) {
-        setMySFCFactory(new FiringSFCFactory(game, this));
+        super(game);
+        //setMySFCFactory(new FiringSFCFactory(game));
         setMyOptions(BundleOperations.getPropertyValueAsList(firingKey, getMyOptionsFile()));
         setMyView(new FiringSFV(getMyOptions()));
         setActions();
@@ -36,6 +36,7 @@ public class FiringSFC extends MultiOptionSFC<SpriteDefinition> {
     protected void resetContents (SpriteDefinition item) {
         item.getModuleDefinitions().clear();
     }
+
 
 
 

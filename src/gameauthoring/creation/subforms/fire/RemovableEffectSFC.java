@@ -1,10 +1,7 @@
 package gameauthoring.creation.subforms.fire;
 
 import engine.definitions.concrete.EventPackageDefinition;
-import engine.definitions.moduledef.ModuleDefinition;
-import engine.effects.IEffect;
-import gameauthoring.creation.subforms.ISubFormView;
-import gameauthoring.creation.subforms.MultiOptionSFC;
+import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
 
 public abstract class RemovableEffectSFC extends RemovableSFC<EventPackageDefinition>{
 

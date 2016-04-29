@@ -25,7 +25,7 @@ public class SelectAttributeSFC implements ISubFormControllerSprite {
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (SpriteDefinition item) {
 
     }
 

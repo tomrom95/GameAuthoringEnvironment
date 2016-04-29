@@ -13,11 +13,11 @@ public class GroupSFCFactory extends SubFormControllerFactory<SpriteGroup>{
     }
 
     @Override
-    protected ISubFormController<SpriteGroup> createSubFormController (String type) {
+    protected ISubFormController<SpriteGroup> createSubFormController (String type, Object ... params) {
         if (type.equals("SelectSprite")) {
             return new SelectSpriteSFC(getMyAuthorshipData());
         }        
-        return null;
+        throw new ReflectionException("Can't create group subformcontroller of type " + type);
     }
 
 }

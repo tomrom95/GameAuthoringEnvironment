@@ -120,7 +120,6 @@ public abstract class CreationController<T extends IProfilable> {
     private void deleteItem () {
         getMyItems().remove(getMyCurrentItem());
         if (getMyItems().isEmpty()) {
-            populateViewsWithDefaults();
             getMyCreationView().getFormView().hideForm();
         }
         else {
@@ -138,6 +137,7 @@ public abstract class CreationController<T extends IProfilable> {
         T item = createBlankItem();
         addItem(item);
         getMyCreationView().getCreationListView().setSelectedItem(item);
+        populateViewsWithDefaults();
         getMyCreationView().getFormView().showForm();
         // showAndEdit();// or 
         populateViewsWithDefaults();//, depending on where defaults are
@@ -148,9 +148,8 @@ public abstract class CreationController<T extends IProfilable> {
      */
     private void populateViewsWithDefaults () {
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
-            subFormController.initializeFields();
+            subFormController.initializeFields(getMyCurrentItem());
         }
-        saveItem();
     }
 
     /**

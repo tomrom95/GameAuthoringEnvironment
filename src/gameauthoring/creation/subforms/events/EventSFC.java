@@ -1,11 +1,11 @@
 package gameauthoring.creation.subforms.events;
 
 import java.util.ResourceBundle;
+import engine.IGame;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.events.EventType;
 import engine.events.GameEvent;
 import engine.profile.ProfileDisplay;
-import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.fire.RemovableEventSFC;
 import javafx.collections.ObservableList;
@@ -18,8 +18,17 @@ public class EventSFC extends RemovableEventSFC {
     private IEventSFV myView;
     private GameEvent myEvent;
 
-    public EventSFC (GameEvent event, EventChoiceSFC sfc) {
+    public EventSFC (IGame game, EventChoiceSFC sfc) {
         super(sfc);
+        init(game, new GameEvent(null));
+       
+    }
+    public EventSFC (IGame game, EventChoiceSFC sfc, GameEvent event) {
+        super(sfc);
+        init(game, event);
+    }
+    private void init(IGame game, GameEvent event) {
+     
         myView = new EventSFV(getEvents(), getRemoveMenu());
         myEvent = event;
     }
@@ -40,7 +49,7 @@ public class EventSFC extends RemovableEventSFC {
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (EventPackageDefinition item) {
 
     }
 

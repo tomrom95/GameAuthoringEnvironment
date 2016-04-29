@@ -3,6 +3,7 @@ package gameauthoring.creation.entryviews;
 import java.util.function.Consumer;
 import engine.profile.IProfilable;
 import gameauthoring.creation.cellviews.NameCellView;
+import gameauthoring.creation.cellviews.ProfileCellView;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;

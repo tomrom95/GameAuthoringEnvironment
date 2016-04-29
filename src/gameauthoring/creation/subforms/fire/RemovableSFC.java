@@ -1,14 +1,8 @@
 package gameauthoring.creation.subforms.fire;
 
-import engine.definitions.concrete.SpriteDefinition;
-import engine.definitions.moduledef.FirerDefinition;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
-import gameauthoring.creation.subforms.ISubFormControllerSprite;
-import gameauthoring.creation.subforms.MultiOptionSFC;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
-
+import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
 
 /**
  * 

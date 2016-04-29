@@ -20,7 +20,7 @@ public class MakeAttributeSFC implements ISubFormControllerAttribute {
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (AttributeDefinition item) {
         myView.populateWithData(myInitialValue);
     }
 

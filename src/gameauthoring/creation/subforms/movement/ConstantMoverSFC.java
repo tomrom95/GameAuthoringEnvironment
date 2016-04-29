@@ -2,7 +2,6 @@ package gameauthoring.creation.subforms.movement;
 
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.ConstantMoverDefinition;
-import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 
@@ -26,7 +25,7 @@ public class ConstantMoverSFC implements ISubFormControllerSprite {
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (SpriteDefinition item) {
         populateViewsWithData(myDefaultSpeed, myDefaultOrientation);
     }
 

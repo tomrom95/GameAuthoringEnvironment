@@ -103,4 +103,8 @@ public class AuthorshipData {
         return myCreatedWaves;
     }
 
+    public void addWave (WaveDefinition item) {
+        getCreatedWaves().addItem(item);
+    }
+
 }

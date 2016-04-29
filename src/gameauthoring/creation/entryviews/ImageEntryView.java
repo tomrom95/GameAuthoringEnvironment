@@ -72,8 +72,8 @@ public class ImageEntryView extends EntryView {
 
     public void updateImage (String url) {
         imagePath.set(url);
-        myImage.setImage(new Image(getClass().getClassLoader()
-                .getResourceAsStream(imagePath.get())));
+        System.out.println(url);
+        myImage.setImage(new Image(imagePath.get()));
     }
 
     public String getImageURL () {

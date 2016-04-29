@@ -22,21 +22,29 @@ public class TrackingFireSFC extends RemovableFireSFC {
     private double myDefaultWaitTime = 0;
     private TrackingFirerDefinition myFireDef;
 
+    public TrackingFireSFC (IGame game, FiringSFC sfc) {
+        super(sfc);
+        init(game, new TrackingFirerDefinition(game));
+    }
 
     public TrackingFireSFC (IGame game, FiringSFC sfc, TrackingFirerDefinition firingDef) {
         super(sfc);
-        myFireDef = firingDef;
+        init(game, firingDef);
+    }
+
+    private void init (IGame game, TrackingFirerDefinition fireDef) {
+        myFireDef = fireDef;
         myView = new TrackingFireSFV(game.getAuthorshipData(), getRemoveMenu());
         myGame = game;
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (SpriteDefinition item) {
         populateViewsWithData(myDefaultWaitTime);
     }
 
     private void populateViewsWithData (double wait) {
-        //TODO: maybe complete this
+        // TODO: maybe complete this
     }
 
     @Override
@@ -47,6 +55,7 @@ public class TrackingFireSFC extends RemovableFireSFC {
         myFireDef.setWaitTime(waitTime);
         myFireDef.setTargets(myView.getTargetsCoice());
         myFireDef.setProjectileDefinition(myView.getSelectedMissile());
+
         item.addModule(myFireDef);
     }
 
@@ -62,7 +71,8 @@ public class TrackingFireSFC extends RemovableFireSFC {
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-        myView.populateWithData(myFireDef.getProjectileDefinition(), myFireDef.getTargets(), myFireDef.getWaitTime());
+        myView.populateWithData(myFireDef.getProjectileDefinition(), myFireDef.getTargets(),
+                                myFireDef.getWaitTime());
     }
 
 }

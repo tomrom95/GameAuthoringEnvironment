@@ -8,10 +8,8 @@ import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.effects.Effect;
 import engine.effects.EffectFactory;
-import engine.effects.IEffect;
+import engine.effects.IncreaseEffect;
 import engine.profile.ProfileDisplay;
-import engine.profile.IProfile;
-import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.fire.RemovableEffectSFC;
 import javafx.collections.ObservableList;
@@ -27,6 +25,15 @@ public class EffectSFC extends RemovableEffectSFC {
     
     public EffectSFC (IGame game, EffectChoiceSFC sfc) {
         super(sfc);
+        init(game, new IncreaseEffect(null, null, null));
+       
+    }
+    public EffectSFC (IGame game, EffectChoiceSFC sfc, Effect effect) {
+        super(sfc);
+        init(game, effect);
+       
+    }
+    private void init(IGame game, Effect effect){
         myGame = game;
         myView = new EffectSFV(myGame.getAuthorshipData(), getEffects(), getRemoveMenu()); 
     }
@@ -52,7 +59,7 @@ public class EffectSFC extends RemovableEffectSFC {
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (EventPackageDefinition item) {
     }
 
     @Override

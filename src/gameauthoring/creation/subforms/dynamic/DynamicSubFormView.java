@@ -1,6 +1,7 @@
-package gameauthoring.creation.subforms;
+package gameauthoring.creation.subforms.dynamic;
 
 import java.util.List;
+import gameauthoring.creation.subforms.ClickAndFillView;
 import gameauthoring.creation.subforms.ISubFormView;
 import javafx.scene.control.Label;
 

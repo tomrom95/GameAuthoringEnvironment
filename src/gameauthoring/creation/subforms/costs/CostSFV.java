@@ -4,15 +4,15 @@ import java.util.ResourceBundle;
 import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
+import engine.definitions.costs.ICost;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 
 /**
@@ -24,18 +24,18 @@ import javafx.scene.layout.VBox;
 public class CostSFV extends SubFormView implements ICostSFV {
 
 
-    private static final String CHECK_STRING = "Cost Required?";
     private static final int SPACING = 5;
     private String myAttributeChoicesKey;
     private String myCostKey;
     private SingleChoiceEntryView<AttributeDefinition> myAttributes;
     private NumberEntryView myCost;
     private HBox myContainer;
-    private CheckBox myCheckBox;
     private ResourceBundle myLabel;
+    private TitledPane myTitledPane;
 
     public CostSFV (AuthorshipData data) {
         setResourceBundleAndKey();
+
         myAttributes =
                 new SingleChoiceEntryView<AttributeDefinition>(myAttributeChoicesKey,
                                                                data.getMyCreatedGlobals()
@@ -44,7 +44,6 @@ public class CostSFV extends SubFormView implements ICostSFV {
         myCost =
                 new NumberEntryView(myCostKey, 60, 20, AuthoringView.DEFAULT_ENTRYVIEW);
 
-        createCostCheck();
         initView();
     }
 
@@ -57,24 +56,21 @@ public class CostSFV extends SubFormView implements ICostSFV {
 
     @Override
     public Node draw () {
-        return myContainer;
+        return myTitledPane;
     }
 
     @Override
     protected void initView () {
-        myContainer = getMyUIFactory().makeHBox(SPACING, Pos.CENTER,myCheckBox,drawFields());
+        myContainer = getMyUIFactory().makeHBox(SPACING, Pos.CENTER, drawFields());
+        myTitledPane = getMyUIFactory().makeCheckBoxTitledPane(myLabel.getString("CostCheck"), myContainer, false);
+        
     }
 
     private Node drawFields () {
-        VBox box = new VBox(SPACING);
+        HBox box = new HBox(SPACING);
         box.getChildren().addAll(myAttributes.draw(),
                                  myCost.draw());
-        box.visibleProperty().bind(myCheckBox.selectedProperty());
         return box;
-    }
-
-    private void createCostCheck () {
-        myCheckBox = new CheckBox(myLabel.getString("CostCheck"));
     }
 
     public AttributeDefinition getSelectedAttribute () {
@@ -87,13 +83,13 @@ public class CostSFV extends SubFormView implements ICostSFV {
     }
     
     @Override
-
     public boolean costChecked () {
-        return myCheckBox.selectedProperty().get();
+        return myTitledPane.isExpanded();
     }
 
     @Override
-    public void populateWithData (AttributeDefinition attribute, double cost) {
+    public void populateWithData (boolean hasCost, AttributeDefinition attribute, double cost) {
+        this.myTitledPane.setExpanded(false);
         myAttributes.setSelected(attribute);
         myCost.setData(cost);
     }
