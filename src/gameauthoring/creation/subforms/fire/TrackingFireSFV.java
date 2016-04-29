@@ -78,8 +78,8 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     protected void initView () {
         myPane =
                 getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                          myWaitTime.draw(), myTargets.draw(), myRemove.draw(),
-                                          myRangeValue.draw(), myIsRanged.draw());
+                                          myWaitTime.draw(), myTargets.draw(),
+                                          myRangeValue.draw(), myIsRanged.draw(), myRemove.draw());
         myPane.getStyleClass().add("firer");
     }
 
