@@ -35,14 +35,13 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     private String myTargetsKey;
     private String myRangedKey;
     private String myRangeValueKey;
-//    private IEntryView myWaitTime;
     private String myMissileKey;
     private NumberEntryView myWaitTime;
     private SingleChoiceEntryView<SpriteGroup> myTargets;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
     private BasicUIFactory myUIFactory = new BasicUIFactory();
     private RemoveOption myRemove;
-    private CheckEntryView isRangedSelectionView;
+    private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
 
     public TrackingFireSFV (AuthorshipData data, RemoveOption remove) {
@@ -58,12 +57,12 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         myMissileSelectionView =
                 new SingleChoiceEntryView<>(myMissileKey, data.getMyCreatedMissiles().getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
-        isRangedSelectionView =
+        myIsRanged =
                 new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
-//        myRangeValue = new NumberEntryView(myRangeValueKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myRangeValue = new NumberEntryView(myRangeValueKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
         
         initView();
-//        initBinding();
+        initBinding();
 
     }
 
@@ -72,13 +71,15 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
                 .getInstance().getCurrentLocaleProperty().get());
         myWaitTimeKey = myLabel.getString("WaitTimeKey");
         myTargetsKey = myLabel.getString("TargetsKey");
+        myRangedKey = myLabel.getString("RangedKey");
+        myRangeValueKey = myLabel.getString("RangeValueKey");
     }
 
     @Override
     protected void initView () {
         myPane =
                 getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                          myWaitTime.draw(), myTargets.draw(), myRemove.draw());
+                                          myWaitTime.draw(), myTargets.draw(), myRemove.draw(), myRangeValue.draw(), myIsRanged.draw());
         myPane.getStyleClass().add("firer");
     }
 
@@ -92,10 +93,7 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         return myPane;
     }
 
-//    @Override
-//    public String getWaitTimeKey () {
-//        return myWaitTimeKey;
-//    }
+
     public double getWaitTime () {
         return myWaitTime.getData();
     }
@@ -106,19 +104,17 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     }
 
     @Override
-    public void populateWithData (SpriteDefinition missile, SpriteGroup target, double waitTime) {
+    public void populateWithData (SpriteDefinition missile, SpriteGroup target, double waitTime, double range, boolean isRanged) {
         myMissileSelectionView.setSelected(missile);
         myTargets.setSelected(target);
-//        myWaitTime.setData(waitTime);
+        myWaitTime.setData(waitTime);
+        myRangeValue.setData(range);
+        myIsRanged.setSelected(isRanged);
     }
     public void setTargetsChoice (SpriteGroup targets) {
         this.myTargets.setSelected(targets);
     }
 
-//    @Override
-//    public void setSelectedMissile (SpriteDefinition missile) {
-//        this.myMissileSelectionView.setSelected(missile);
-//    }
 
     @Override
     public String getMyRangedKey () {
@@ -132,34 +128,23 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
     @Override
     public BooleanProperty isRangedProperty () {
-        return isRangedSelectionView.isCheckedProperty();
+        return myIsRanged.isCheckedProperty();
     }
 
     @Override
     public double getMyRange () {
-        // TODO Auto-generated method stub
-        return 0;
+        return myRangeValue.getData();
     }
 
     @Override
     public boolean getMyIsRanged () {
-        // TODO Auto-generated method stub
-        return false;
+        return myIsRanged.isCheckedProperty().get();
     }
 
-    @Override
-    public void populateWithData (SpriteDefinition missile,
-                                  SpriteGroup target,
-                                  double waitTime,
-                                  double range,
-                                  boolean isRanged) {
-        // TODO Auto-generated method stub
-        
-    }
     
-//    private void initBinding () {
-//        myRangeValue.draw().visibleProperty().bind(isRangedProperty());
-//       
-//    }
+    private void initBinding () {
+        myRangeValue.draw().visibleProperty().bind(isRangedProperty());
+       
+    }
 
 }
