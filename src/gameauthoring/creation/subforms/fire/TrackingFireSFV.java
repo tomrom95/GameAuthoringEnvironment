@@ -36,6 +36,8 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     private String myRangedKey;
     private String myRangeValueKey;
     private IEntryView myWaitTime;
+    private String myMissileKey;
+    private NumberEntryView myWaitTime;
     private SingleChoiceEntryView<SpriteGroup> myTargets;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
     private BasicUIFactory myUIFactory = new BasicUIFactory();
@@ -47,14 +49,14 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         setResourceBundleAndKey();
         myRemove = remove;
         myWaitTime =
-                new NumberEntryView(myWaitTimeKey, this.getData(), 150, 30,
+                new NumberEntryView(myWaitTimeKey, 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myTargets =
                 new SingleChoiceEntryView<SpriteGroup>(myTargetsKey, data.getMyCreatedGroups()
                         .getItems(),
                                                        AuthoringView.DEFAULT_ENTRYVIEW);
         myMissileSelectionView =
-                new SingleChoiceEntryView<>("Missile", data.getMyCreatedMissiles().getItems(),
+                new SingleChoiceEntryView<>(myMissileKey, data.getMyCreatedMissiles().getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
         isRangedSelectionView =
                 new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
@@ -75,8 +77,8 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     @Override
     protected void initView () {
         myPane =
-                myUIFactory.makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                     myWaitTime.draw(), myTargets.draw(), myRemove.draw());
+                getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(),
+                                          myWaitTime.draw(), myTargets.draw(), myRemove.draw());
         myPane.getStyleClass().add("firer");
     }
 
@@ -93,6 +95,8 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     @Override
     public String getWaitTimeKey () {
         return myWaitTimeKey;
+    public double getWaitTime () {
+        return myWaitTime.getData();
     }
 
     @Override
@@ -101,6 +105,10 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     }
 
     @Override
+    public void populateWithData (SpriteDefinition missile, SpriteGroup target, double waitTime) {
+        myMissileSelectionView.setSelected(missile);
+        myTargets.setSelected(target);
+        myWaitTime.setData(waitTime);
     public void setTargetsChoice (SpriteGroup targets) {
         this.myTargets.setSelected(targets);
     }

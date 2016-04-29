@@ -2,6 +2,7 @@ package engine.effects;
 
 import engine.AttributeType;
 import engine.IAttribute;
+import engine.definitions.concrete.AttributeDefinition;
 
 
 /**
@@ -12,7 +13,7 @@ import engine.IAttribute;
  */
 public class IncreaseEffect extends Effect {
 
-    public IncreaseEffect (AttributeType type, IAttribute effectLength, double increaseAmount) {
+    public IncreaseEffect (AttributeDefinition type, IAttribute effectLength, double increaseAmount) {
         super(type, effectLength, increaseAmount);
     }
 
@@ -30,7 +31,7 @@ public class IncreaseEffect extends Effect {
 
     @Override
     public IEffect makeCopy () {
-        return new IncreaseEffect(getAttributeType(),
+        return new IncreaseEffect(getAttributeDefinition(),
                                   getEffectLengthAttribute().makeCopy(),
                                   getAlteringValue());
     }

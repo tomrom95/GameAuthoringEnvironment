@@ -44,7 +44,7 @@ public class CreationControllerAttribute extends CreationController<AttributeDef
 
     @Override
     protected DefinitionCollection<AttributeDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
-        return authorshipData.getMyCreatedAttributes(getMyTitle());
+        return authorshipData.getMyCreatedAttributes();
 
     }
 

@@ -1,7 +1,6 @@
 package gameauthoring.creation.forms;
 
 import java.util.List;
-import java.util.function.Consumer;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.util.Glyph;
 

@@ -1,7 +1,5 @@
 package gameauthoring.creation.subforms.movement;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.ConstantMoverDefinition;
@@ -9,7 +7,8 @@ import engine.definitions.moduledef.MovementDefinition;
 import engine.definitions.moduledef.StaticMovementDefintion;
 import engine.definitions.moduledef.TrackingMoverDefinition;
 import engine.definitions.moduledef.UserMoverDefinition;
-import gameauthoring.creation.subforms.DynamicSubFormController;
+import gameauthoring.creation.factories.MovementSFCFactory;
+import gameauthoring.creation.subforms.dynamic.DynamicSubFormController;
 
 /**
  * A MovementSFC is a SubFormController in charge of assigning a movement module to a SpriteDefinition
@@ -18,18 +17,17 @@ import gameauthoring.creation.subforms.DynamicSubFormController;
  *
  */
 public class MovementSFC extends DynamicSubFormController<SpriteDefinition> {
+    private static String MY_MOVEMENT_KEY= "Movement";
 
     /**
      * Constructs a MovementSFC with the given game object, a MovementSFCFactory
      * and a list of strings specifying which movement options to display
      * 
-     * TODO: get strings from xml and use reflection in factory classes
      * 
      * @param game The current game object
      */
     public MovementSFC (IGame game) {
-        super(game, new MovementSFCFactory(game),
-              new ArrayList<String>(Arrays.asList("STATIC", "CONSTANT", "USERMOVER", "TRACKING")));
+        super(game, new MovementSFCFactory(game), MY_MOVEMENT_KEY);
         
     }
     

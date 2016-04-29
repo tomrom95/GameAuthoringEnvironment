@@ -1,5 +1,6 @@
 package util;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -30,5 +31,12 @@ public class BundleOperations {
         return FXCollections.observableArrayList(bundle.keySet());
     }
 
+    public static List<String> getCommaSeparatedStringAsList(String value) {
+        return Arrays.asList(value.split(",")).stream()
+                .map(sfc -> sfc.trim()).collect(Collectors.toList());
+    }
+    public static List<String> getPropertyValueAsList(String key, ResourceBundle bundle ){
+        return  BundleOperations.getCommaSeparatedStringAsList(bundle.getString(key));
+    }
 
 }

@@ -120,7 +120,7 @@
 
 .root {
     -fx-base: lightgray;
-    -fx-background: aliceblue;
+    -fx-background: lightcyan;
 }
 
   
@@ -173,7 +173,7 @@
   
   
 .subTab > .tab-header-area > .tab-header-background {  
-    -fx-background-color: aliceblue;  
+    -fx-background-color: lightcyan;  
     -fx-border-color: #a3a7a8;  
     -fx-border-width: 0 0 1 0;  
     -fx-background-insets: 0;  
@@ -207,17 +207,15 @@
 .creationButton {
 	-fx-cursor: hand;
     -fx-text-fill: white;
-	-fx-background-color:
-        linear-gradient(grey, lightgray),
-        radial-gradient(center 50% -40%, radius 200%, grey 45%, slategrey 50%);
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
+	-fx-background-color: darkcyan;
+    -fx-border-radius: 1;
+    -fx-background-radius: 1;
     -fx-padding: 5;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: grey;
 }
 
 
@@ -225,7 +223,7 @@
 	-fx-text-fill: red;
     -fx-font-weight: bold;
     -fx-font-size: 35;
-    -fx-font-family: "Futura";
+    -fx-font-family: "Helvetica";
 }
 
 
@@ -234,14 +232,61 @@
     -fx-text-fill: grey;
     -fx-font-weight: bold;
     -fx-font-size: 12;
+    -fx-font-family: "Helvetica";
+}
+
+.multi_choice {
+	-fx-padding: 0 0 10 0;
+	-fx-background-radius: 5.0; 
+	-fx-background-color: darkcyan;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
     -fx-font-family: "Futura";
 }
 
-
 .myObjectListView {
 	-fx-min-width: 450;
-	-fx-background-color: aliceblue;
 	-fx-padding: 0 0 10 0;
+	-fx-background-radius: 5.0; 
+	-fx-background-color: darkcyan;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+    -fx-font-family: "Futura";
+}
+.mySFV {
+	-fx-background-radius: 5.0; 
+	-fx-background-color: lightcyan;
+	-fx-border-color: darkcyan;
+    -fx-border-width: 5px;
+    -fx-padding: 10;
+}
+
+.single_choice {
+	-fx-background-color: darkgrey;
+	-fx-border-radius: 1;
+    -fx-background-radius: 1;
+    -fx-padding: 5;
+}
+.myObjectListView .list-cell {
+	-fx-font-family: "Helvetica";
+    -fx-font-weight: bold;
+}
+
+.myObjectListView .list-cell:odd { 
+	-fx-background-color: mediumaquamarine ;
+}
+
+.myObjectListView .list-cell:even { 
+	-fx-background-color: lightskyblue ;
+}
+
+.myObjectListView .list-cell:selected { 
+	-fx-background-color: darkcyan ;
+	-fx-text-fill: lightgrey;
 }
 
 .myFormView {

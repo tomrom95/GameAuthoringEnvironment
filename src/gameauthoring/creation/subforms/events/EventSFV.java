@@ -5,72 +5,61 @@ import splash.LocaleManager;
 import engine.profile.ProfileDisplay;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
+import gameauthoring.creation.subforms.fire.RemoveOption;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.ProfileDisplayIterator;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 
-public class EventSFV extends SubFormView {
+public class EventSFV extends SubFormView implements IEventSFV {
 
     private SingleChoiceEntryView<ProfileDisplay> myEvents;
     private ResourceBundle myLabel;
     private String myEventKey;
-    private TextField myName;
+    private HBox myContainer;
+    private RemoveOption myRemove;
 
-    public EventSFV (ObservableList<ProfileDisplay> events) {
+    
+    public EventSFV (ObservableList<ProfileDisplay> events, RemoveOption remove) {
         setResourceBundleAndKey();
+        myRemove = remove;
         myEvents = new SingleChoiceEntryView<ProfileDisplay>(myEventKey,
                                                              events,
                                                              AuthoringView.DEFAULT_ENTRYVIEW);
+        initView();
     }
-
+    
     private void setResourceBundleAndKey () {
         myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
                 .getInstance().getCurrentLocaleProperty().get());
         myEventKey = myLabel.getString("EventKey");
     }
 
+    @Override
     public String getEventSelection () {
         return myEvents.getSelected().getProfile().getName().get();
     }
 
     @Override
+    public void setEventSelection (String eventType) {
+        myEvents.setSelected(new ProfileDisplayIterator().matchStringtoProfile(myEvents.getItems(),
+                                                                               eventType));
+    }
+
+    @Override
     public Node draw () {
-        HBox hbox = new HBox(10);
-        VBox vbox = new VBox(8);
-        myName = new TextField();
-        vbox.getChildren().add(new Label(myLabel.getString("EventName")));
-        vbox.getChildren().add(myName);
-        myName.setPromptText(myLabel.getString("EnterText"));
-        hbox.getChildren().add(vbox);
-        hbox.getChildren().add(myEvents.draw());
-        return hbox;
+        return myContainer;
     }
 
     @Override
     protected void initView () {
-
+        myContainer = getMyUIFactory().makeHBox(20, Pos.CENTER, myEvents.draw(),myRemove.draw());
     }
 
-    public String getName () {
-        return myName.getText();
-    }
 
-    public void setEventSelection (String eventType) {
-        // TODO this is a hacky fix
-        for (ProfileDisplay pd : myEvents.getItems()) {
-            if (pd.getProfile().getName().get().equals(eventType)) {
-                myEvents.setSelected(pd);
-            }
-        }
-    }
-
-    public void setName (String name) {
-        myName.setText(name);
-    }
+    
 
 }

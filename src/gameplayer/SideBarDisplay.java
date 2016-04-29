@@ -1,5 +1,6 @@
 package gameplayer;
 
+import java.util.ResourceBundle;
 import engine.ILevel;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
@@ -11,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
+import splash.LocaleManager;
 import util.ScaleRatio;
 
 
@@ -28,6 +30,8 @@ public abstract class SideBarDisplay extends SizeableGlyph {
     private LevelRenderer levelView;
     private SceneController myController;
     private Accordion myAccordion;
+    private ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", LocaleManager
+                                                             .getInstance().getCurrentLocaleProperty().get());
 
     public SideBarDisplay (ILevel level, LevelRenderer renderer, ScaleRatio ratio) {
         levelView = renderer;
@@ -57,7 +61,7 @@ public abstract class SideBarDisplay extends SizeableGlyph {
     
     protected TitledPane createAccordionPane (DefinitionCollection<SpriteDefinition> collection) {
         ListView<SpriteDefinition> spriteList = createSpriteList(collection.getItems());
-        TitledPane pane = new TitledPane(collection.getTitle(), spriteList);
+        TitledPane pane = new TitledPane(getMyLabels().getString(collection.getTitleKey()), spriteList);
         return pane;
     }
 
@@ -82,5 +86,9 @@ public abstract class SideBarDisplay extends SizeableGlyph {
 
     public double getWidth () {
         return myAccordion.getWidth();
+    }
+    
+    protected ResourceBundle getMyLabels() {
+        return myLabels;
     }
 }

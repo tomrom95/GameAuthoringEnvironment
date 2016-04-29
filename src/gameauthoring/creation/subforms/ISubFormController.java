@@ -33,7 +33,7 @@ public interface ISubFormController<T extends IProfilable> {
     /**
      * Initialize the view with default values for the item
      */
-    void initializeFields ();
+    void initializeFields (T item);
 
     /**
      * 

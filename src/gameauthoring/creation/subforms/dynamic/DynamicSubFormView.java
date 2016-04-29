@@ -1,7 +1,9 @@
-package gameauthoring.creation.subforms;
+package gameauthoring.creation.subforms.dynamic;
 
 import java.util.List;
+import gameauthoring.creation.subforms.ClickAndFillView;
 import gameauthoring.creation.subforms.ISubFormView;
+import javafx.scene.control.Label;
 
 
 /**
@@ -22,16 +24,21 @@ public class DynamicSubFormView extends ClickAndFillView {
      * @param action The method to call when user selects a different sub-subview
      * @param options A list of strings containing the titles of each sub-subview
      */
-    public DynamicSubFormView (List<String> options) {
-        super(options);
+    public DynamicSubFormView (List<String> options, String titleKey) {
+        super(options, titleKey);
         initView();
 
     }
 
     @Override
-    protected void addOrSetSFV (ISubFormView sfv) {
+    public void addOrSetSFV (ISubFormView sfv) {
         getMyPaneContent().getChildren().clear();
         getMyPaneContent().getChildren().add(sfv.draw());
+    }
+
+    @Override
+    public void showDefaultMessage () {
+        getMyPaneContent().getChildren().add(new Label("DEFAULT MESSAGE"));
     }
 
 }

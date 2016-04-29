@@ -13,12 +13,7 @@ import gameauthoring.util.Glyph;
  */
 public interface ISubFormView extends Glyph {
 
-    /**
-     * Get the data entered in the SubFormView
-     * 
-     * @return An IFormDataManager object that holds the data
-     */
-    IFormDataManager getData ();
+    //TODO: should things be added or this deleted??
     
     
 

@@ -7,7 +7,6 @@ import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.creation.entryviews.MultiChoiceEntryView;
 import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
-import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.DraggableAddCell;
 import gameauthoring.util.DraggableRemoveCellImage;
 import javafx.collections.FXCollections;
@@ -26,15 +25,16 @@ import javafx.scene.layout.HBox;
  */
 public class SelectAttributeSFV extends SubFormView implements ISelectAttributeSFV {
 
+    private static final String MY_TITLE_KEY = "SelectAttribute";
     private ResourceBundle myLabel;
     private String myAttributesKey;
     private String mySelectedKey;
     private MultiChoiceEntryView<AttributeDefinition> myAttributeSelector;
-    private HBox myContainer;
-    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private MultiChoiceEntryView<AttributeDefinition> mySelectedView;
+    private HBox myContainer;
 
     public SelectAttributeSFV (IDefinitionCollection<AttributeDefinition> attributes) {
+        setMyTitle(MY_TITLE_KEY);
         setResoureBunldeAndKey();
         myAttributeSelector =
                 new MultiChoiceEntryView<AttributeDefinition>(myAttributesKey,
@@ -57,7 +57,7 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
 
     @Override
     public Node draw () {
-        return myContainer;
+        return this.defaultDisplayWithNode(myContainer);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
         myAttributeSelector.getListView()
                 .setCellFactory(c -> new DraggableAddCell<AttributeDefinition>(mySelectedView
                         .getListView()));
-        myContainer = myUIFactory.makeHBox(20, Pos.CENTER, myAttributeSelector.draw(), mySelectedView.draw());
+        myContainer = getMyUIFactory().makeHBox(20, Pos.CENTER, myAttributeSelector.draw(), mySelectedView.draw());
     }
 
 }

@@ -26,7 +26,7 @@ public class EventPackageDefinition implements IProfilable {
 
     public EventPackageDefinition () {
         // TODO add to resource file
-        myProfile = new Profile("Event", "Basic Event", "images/Square.png");
+        myProfile = new Profile("Event", "Basic Event", "images/collision.png");
         myEffectsList = new ArrayList<>();
         myEventsList = new ArrayList<>();
     }

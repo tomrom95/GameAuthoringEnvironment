@@ -6,10 +6,8 @@ import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.levels.sprites.DragCheckSpriteCell;
-import gameauthoring.shareddata.DefinitionCollection;
 import gameplayer.SideBarDisplay;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
 import util.ScaleRatio;
 
@@ -30,12 +28,6 @@ public class AuthoringSideBar extends SideBarDisplay {
         });
     }
 
-    protected TitledPane createAccordionPane (DefinitionCollection<SpriteDefinition> collection) {
-        ListView<SpriteDefinition> spriteList = createSpriteList(collection.getItems());
-        TitledPane pane = new TitledPane(collection.getTitle(), spriteList);
-        return pane;
-    }
-
     protected ProfileCellView<SpriteDefinition> getSpriteCellView () {
         return new DragCheckSpriteCell(getLevelView(), getController());
     }
@@ -45,4 +37,5 @@ public class AuthoringSideBar extends SideBarDisplay {
         return new SceneController(level, ratio);
     }
 
+    
 }
