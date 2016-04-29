@@ -17,7 +17,8 @@ import splash.LocaleManager;
  * 
  * @author Jeremy Schreck, Joe Lilien
  *
- * @param <T> The type of object to be created and stored -- ex: SpriteDefinition, AttributeDefinition, Group
+ * @param <T> The type of object to be created and stored -- ex: SpriteDefinition,
+ *        AttributeDefinition, Group
  */
 public abstract class CreationController<T extends IProfilable> {
     private ICreationView<T> myView;
@@ -25,12 +26,13 @@ public abstract class CreationController<T extends IProfilable> {
     private String myKey;
     private SubFormControllerFactory<T> mySFCFactory;
     private DefinitionCollection<T> myDefinitionCollection;
-    private ResourceBundle myResources;
-
-    private static String RESOURCE_PATH = "languages/labels";
+    private ResourceBundle myResources = ResourceBundle.getBundle("languages/labels",
+                                                                  LocaleManager.getInstance()
+                                                                          .getCurrentLocaleProperty()
+                                                                          .get());
 
     /**
-     * Constructs a CreationController 
+     * Constructs a CreationController
      * 
      * @param key The creation controller's key which is used to get its title from a resource file
      * @param subFormStrings Strings specifying which subforms to create
@@ -40,14 +42,11 @@ public abstract class CreationController<T extends IProfilable> {
                                List<String> subFormStrings,
                                IGame game) {
 
-        myResources =
-                ResourceBundle
-                        .getBundle(RESOURCE_PATH,
-                                   LocaleManager.getInstance().getCurrentLocaleProperty().get());
         myKey = key;
         myView = new CreationView<T>();
         setMySFCFactory(createSFCFactory(game));
-        setMyDefinitionCollection(getDefinitionCollectionFromAuthorshipData(game.getAuthorshipData()));
+        setMyDefinitionCollection(getDefinitionCollectionFromAuthorshipData(game
+                .getAuthorshipData()));
         setMySubFormControllers(getMySFCFactory().createSubFormControllers(subFormStrings));
         List<ISubFormView> subFormViews = getSubFormViews(getMySubFormControllers());
         myView.init(subFormViews);
@@ -70,7 +69,6 @@ public abstract class CreationController<T extends IProfilable> {
      * @return The SFC factory class to use to instantiate SubFormControllers
      */
     protected abstract SubFormControllerFactory<T> createSFCFactory (IGame game);
-
 
     /**
      * Set up event handler connections
@@ -139,8 +137,8 @@ public abstract class CreationController<T extends IProfilable> {
         getMyCreationView().getCreationListView().setSelectedItem(item);
         populateViewsWithDefaults();
         getMyCreationView().getFormView().showForm();
-        // showAndEdit();// or 
-        populateViewsWithDefaults();//, depending on where defaults are
+        // showAndEdit();// or
+        populateViewsWithDefaults();// , depending on where defaults are
     }
 
     /**

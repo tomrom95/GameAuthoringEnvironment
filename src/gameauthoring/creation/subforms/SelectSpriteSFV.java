@@ -25,21 +25,20 @@ import gameauthoring.util.DraggableRemoveCell;
  *
  */
 public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
+    private static final String MY_TITLE_KEY = "SelectSprite";
     private Accordion myAccordion;
     private HBox myContainer;
-    private ResourceBundle myLabel;
     private List<MultiChoiceEntryView<SpriteDefinition>> myViews;
     private List<DefinitionCollection<SpriteDefinition>> mySprites;
     private MultiChoiceEntryView<SpriteDefinition> mySelected;
 
 
     public SelectSpriteSFV (List<DefinitionCollection<SpriteDefinition>> sprites) {
-        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
-                .getInstance().getCurrentLocaleProperty().get());
+        setMyTitle(MY_TITLE_KEY);
         myViews = new ArrayList<>();
         mySprites = sprites;
         mySelected =
-                new MultiChoiceEntryView<>(myLabel.getString("SelectedSpriteLabel"),
+                new MultiChoiceEntryView<>(getMyLabels().getString("SelectedSpriteLabel"),
                                            FXCollections.observableArrayList(),
                                            200, 400, AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
@@ -82,11 +81,8 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
 
     @Override
     public Node draw () {
-        return myContainer;
+        return this.defaultDisplayWithNode(myContainer);
     }
-    
-    private ResourceBundle getMyLabels() {
-        return myLabel;
-    }
+   
 
 }

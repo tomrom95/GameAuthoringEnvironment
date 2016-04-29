@@ -30,7 +30,8 @@ public abstract class ClickAndFillView extends SubFormView {
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager
             .getInstance().getCurrentLocaleProperty().get());
 
-    public ClickAndFillView (List<String> options) {
+    public ClickAndFillView (List<String> options, String titleKey) {
+        setMyTitle(titleKey);
         initButtonHolder(options);
     }
 
@@ -99,7 +100,7 @@ public abstract class ClickAndFillView extends SubFormView {
 
     @Override
     public Node draw () {
-        return myContainer;
+        return this.defaultDisplayWithNode(myContainer);
     }
 
     protected void setDefaultHelpMessage (String message) {

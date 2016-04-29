@@ -24,8 +24,8 @@ public class DynamicSubFormView extends ClickAndFillView {
      * @param action The method to call when user selects a different sub-subview
      * @param options A list of strings containing the titles of each sub-subview
      */
-    public DynamicSubFormView (List<String> options) {
-        super(options);
+    public DynamicSubFormView (List<String> options, String titleKey) {
+        super(options, titleKey);
         initView();
 
     }

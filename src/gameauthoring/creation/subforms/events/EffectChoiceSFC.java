@@ -9,12 +9,12 @@ import util.BundleOperations;
 
 public class EffectChoiceSFC extends MultiOptionSFC<EventPackageDefinition>{
     
-    private String effectKey = "EFFECTS";
+    private static String EFFECT_KEY = "Effects";
 
     public EffectChoiceSFC (IGame game) {
         super(game);
-        setMyOptions(BundleOperations.getPropertyValueAsList(effectKey, getMyOptionsFile()));
-        setMyView(new EffectChoiceSFV(getMyOptions()));
+        setMyOptions(BundleOperations.getPropertyValueAsList(EFFECT_KEY, getMyOptionsFile()));
+        setMyView(new EffectChoiceSFV(getMyOptions(), EFFECT_KEY));
         setActions();       
     }
 
