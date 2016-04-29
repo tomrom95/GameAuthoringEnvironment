@@ -46,7 +46,7 @@ public class DirectionalFireSFC extends RemovableFireSFC {
     }
     
     @Override
-    public void initializeFields (SpriteDefinition item) {
+    public void initializeFields () {
         populateViewsWithData(myDefaultAngle, myDefaultWaitTime, myDefaultRange, myDefaultRanged);
     }
 

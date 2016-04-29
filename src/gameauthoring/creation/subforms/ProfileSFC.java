@@ -27,11 +27,9 @@ public class ProfileSFC<T extends IProfilable> implements ISubFormController<T> 
     }
 
     @Override
-    public void initializeFields (T item) {
+    public void initializeFields () {
         myView.populateWithData(myDefaultName, myDefaultDescription, myDefaultImage, myDefaultWidth,
-                                myDefaultHeight);
-        updateItem(item);
-        
+                                myDefaultHeight);        
     }
 
     @Override

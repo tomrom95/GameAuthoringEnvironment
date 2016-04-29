@@ -25,7 +25,7 @@ public class ConstantMoverSFC implements ISubFormControllerSprite {
     }
 
     @Override
-    public void initializeFields (SpriteDefinition item) {
+    public void initializeFields () {
         populateViewsWithData(myDefaultSpeed, myDefaultOrientation);
     }
 

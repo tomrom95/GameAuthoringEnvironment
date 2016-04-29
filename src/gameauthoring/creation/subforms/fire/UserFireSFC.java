@@ -26,7 +26,7 @@ public class UserFireSFC extends RemovableFireSFC {
     }
 
     @Override
-    public void initializeFields (SpriteDefinition item) {
+    public void initializeFields () {
         // TODO Auto-generated method stub
 
     }

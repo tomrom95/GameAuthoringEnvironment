@@ -46,6 +46,7 @@ public class TrackingMoverSFV extends SubFormView implements ITrackingMoverSFV {
 
     @Override
     public Node draw () {
+        getMyUIFactory().addStyling(myPane, "Mover");
         return myPane;
     }
 
