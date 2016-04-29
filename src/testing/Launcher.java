@@ -5,21 +5,26 @@ import java.util.List;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.Game;
+import engine.GameInformation;
 import engine.ISpriteGroup;
 import engine.Level;
 import engine.LevelManager;
+import engine.Positionable;
 import engine.SpriteGroup;
 import engine.conditions.OnCollisionCondition;
 import engine.conditions.OnSpriteAttributeCondition;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.KeyControlDefinition;
 import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.ConstantMoverDefinition;
 import engine.definitions.moduledef.MovementDefinition;
 import engine.definitions.moduledef.StaticMovementDefintion;
 import engine.definitions.moduledef.UserMoverDefinition;
 import engine.events.EventPackage;
 import engine.events.EventType;
 import engine.events.GameEvent;
+import engine.modules.IModule;
+import engine.modules.UserFirer;
 import engine.profile.Profile;
 import engine.rendering.GameGridConfigNonScaling;
 import engine.sprite.ISprite;
@@ -29,6 +34,7 @@ import gameplayer.GamePlayer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import util.Coordinate;
+import util.Key;
 import graphics.ImageGraphic;
 
 
@@ -161,14 +167,46 @@ public class Launcher extends Application {
         LevelManager lm = new LevelManager();
         lm.createNewLevel(firstLevel);
 
+//        myGame =
+//                new Game(new GameGridConfigNonScaling((int)GamePlayer.PREFWIDTH, (int)GamePlayer.PREFHEIGHT));
         myGame =
-                new Game(new GameGridConfigNonScaling((int)GamePlayer.PREFWIDTH, (int)GamePlayer.PREFHEIGHT));
+                new Game(new GameInformation());
         myGame.getLevelManager().getLevels().add(firstLevel);
-        addSpritesToGame(myGame);
-        addConditionsToTest(myGame);
+        userFirer();
+//        addSpritesToGame(myGame);
+//        addConditionsToTest(myGame);
         GamePlayer gp = new GamePlayer(myGame);
         gp.play();
 
+    }
+
+    private void userFirer () {
+        SpriteDefinition enemyDefinition = new SpriteDefinition();
+        enemyDefinition.setMovementDefinition(getStationaryDefintion());
+        enemyDefinition.setProfile(enemySpriteProfile());
+        enemyDefinition.setLocation(new Coordinate(40, 40));
+        ISprite sprite = enemyDefinition.create();
+        sprite.getModules().add(getUserFirer(sprite));
+        myGame.add(sprite);
+    }
+
+    private IModule getUserFirer (ISprite sprite) {
+        UserFirer fire = new UserFirer(myGame, sprite, getMissileDef(), new Key("S"), new Key("A"), new Key("D"),
+                                       1, 40, 10);
+        return fire;
+    }
+
+    private SpriteDefinition getMissileDef () {
+        SpriteDefinition missileDef = new SpriteDefinition();
+        missileDef.setMovementDefinition(getDirectionalMovement());
+        missileDef.setProfile(enemySpriteProfile());
+        return missileDef;
+    }
+
+    private MovementDefinition getDirectionalMovement () {
+        MovementDefinition directional = new ConstantMoverDefinition();
+        directional.setSpeed(5);
+        return directional;
     }
 
     private void addUserControlledSprite (Game game, int numToAdd) {
@@ -211,7 +249,10 @@ public class Launcher extends Application {
     private AttributeDefinition createHealthAttributeDefinition () {
         AttributeDefinition myDef = new AttributeDefinition();
         myDef.setProfile(healthAttyProfile());
+<<<<<<< HEAD
         //myDef.setType(healthAttyProfile().getName().get());
+=======
+>>>>>>> 44bc847719cfbd93169eb3d812991e480ec5f22e
         myDef.setStartingValue(HEALTH_START_VAL);
         return myDef;
     }

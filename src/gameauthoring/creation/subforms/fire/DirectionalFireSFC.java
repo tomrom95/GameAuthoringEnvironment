@@ -24,7 +24,7 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
     private IGame myGame;
     private double myDefaultAngle = 0;
     private double myDefaultWaitTime = 0;
-    private DirectionalFirerDefinition myFireDef = new DirectionalFirerDefinition();
+    private DirectionalFirerDefinition myFireDef = new DirectionalFirerDefinition(myGame);
 
     public DirectionalFireSFC (IGame game, FiringSFCmult sfc) {
         super(sfc);

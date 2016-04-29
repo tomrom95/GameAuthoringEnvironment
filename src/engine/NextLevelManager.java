@@ -50,10 +50,10 @@ public class NextLevelManager implements INextLevelManager {
     }
 
     private void checkAndRespondGameEvent (GameEvent event) {
-        if (event.equals(EventType.WIN)) {
+        if (event.getEventType().equals(EventType.WIN)) {
             setNextLevel(myWinLevel);
         }
-        if (event.equals(EventType.LOSE)) {
+        if (event.getEventType().equals(EventType.LOSE)) {
             setNextLevel(myLoseLevel);
         }
     }

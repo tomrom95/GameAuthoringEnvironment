@@ -16,9 +16,8 @@ public class GlobalEndView extends AttributeEndView {
 
     public GlobalEndView (IGame game, ILevel level) {
         super(game, level, FXCollections
-                        .observableArrayList(game.getAttributeManager().getAttributes()
-                        .stream()
-                        .map(atty -> atty.getType()).collect(Collectors.toList())));
+              .observableArrayList(game.getAuthorshipData().getMyCreatedGlobals().getItems().stream()
+                                   .map(atty -> atty.getAttributeType()).collect(Collectors.toList())));
     }
    
     @Override
