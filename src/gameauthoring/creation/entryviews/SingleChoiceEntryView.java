@@ -3,6 +3,7 @@ package gameauthoring.creation.entryviews;
 import java.util.function.Consumer;
 import engine.profile.IProfilable;
 import gameauthoring.creation.cellviews.NameCellView;
+import gameauthoring.creation.cellviews.ProfileCellView;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
@@ -23,7 +24,7 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
     public SingleChoiceEntryView (String label, ObservableList<E> observableList, String cssClass) {
         super(label,cssClass);
         this.myChoices = new ComboBox<E>(observableList);
-        myChoices.setCellFactory(c -> new NameCellView<E>());
+        myChoices.setCellFactory(c -> new ProfileCellView<E>());
         myChoices.setButtonCell(new NameCellView<E>());
         init();
     }
