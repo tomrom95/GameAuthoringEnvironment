@@ -117,16 +117,6 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
 
     @Override
-    public String getMyRangedKey () {
-        return myRangedKey;
-    }
-
-    @Override
-    public String getMyRangeValueKey () {
-        return myRangeValueKey;
-    }
-
-    @Override
     public BooleanProperty isRangedProperty () {
         return myIsRanged.isCheckedProperty();
     }

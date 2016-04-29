@@ -13,10 +13,6 @@ import javafx.beans.property.BooleanProperty;
 //TODO: get rid of unecessary methods when done
 //TODO: move waittime into this interface
 public interface IFiringSFV extends ISubFormView {
-
-      String getMyRangedKey();
-      
-      String getMyRangeValueKey();
       
       double getMyRange();
       
