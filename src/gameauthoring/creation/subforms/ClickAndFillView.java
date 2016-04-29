@@ -10,6 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 import java.util.*;
 
 public abstract class ClickAndFillView extends SubFormView{
@@ -22,7 +23,11 @@ public abstract class ClickAndFillView extends SubFormView{
     private ResourceBundle myProperties =
             ResourceBundle.getBundle("defaults/click_and_fill_images");
     
-    public ResourceBundle getMyProperties () {
+    //TODO: add to language files and use this
+    private ResourceBundle myLang =  ResourceBundle.getBundle("languages/labels", LocaleManager
+                                                                       .getInstance().getCurrentLocaleProperty().get());
+    
+    private ResourceBundle getMyProperties () {
         return myProperties;
     }
 

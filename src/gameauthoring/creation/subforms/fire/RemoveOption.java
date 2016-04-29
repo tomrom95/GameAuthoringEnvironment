@@ -23,13 +23,14 @@ public class RemoveOption implements Glyph{
 
     private Button removeMenu;
     private BasicUIFactory myUIFactory = new BasicUIFactory();
+    private String imagePath = "images/close.png";
     
     public RemoveOption(EventHandler<ActionEvent> e){
         initRemove(e);
     }
 
     private void initRemove (EventHandler<ActionEvent> e) {
-        removeMenu = myUIFactory.createImageButton(myUIFactory.makeImageView(("images/close.png"), 20, 20), e);
+        removeMenu = myUIFactory.createImageButton(myUIFactory.makeImageView((imagePath), 20, 20), e);
     }
     
    

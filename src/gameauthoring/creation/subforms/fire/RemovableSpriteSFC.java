@@ -18,7 +18,7 @@ public abstract class RemovableSpriteSFC implements ISubFormControllerSprite {
     private SpriteDefinition mySpriteDefinition;
     private RemoveOption myView;
 
-    public RemovableSpriteSFC (FiringSFCmult sfc) {
+    public RemovableSpriteSFC (FiringSFC sfc) {
         myView = new RemoveOption(e->sfc.removeSFC(this));
     }
 

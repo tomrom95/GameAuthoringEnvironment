@@ -50,11 +50,11 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         //
         // isRangedSelectionView =
         // new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
-        // myRangeValue = new NumberEntryView(myRangeValueKey, this.getData(), 150, 30,
+         //myRangeValue = new NumberEntryView(myRangeValueKey, this.getData(), 150, 30,
         // AuthoringView.DEFAULT_ENTRYVIEW);
         //
         initView();
-        initBinding();
+        //initBinding();
     }
 
     private void setResourceBundleAndKey () {
