@@ -16,8 +16,6 @@ public interface ITrackingFireSFV  extends IFiringSFV{
 
     SpriteGroup getTargetsCoice ();
 
-    double getWaitTime ();
-
     void populateWithData (SpriteDefinition missile, SpriteGroup target, double waitTime, double range, boolean isRanged);
 
 }

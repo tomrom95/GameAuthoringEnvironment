@@ -94,7 +94,7 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     }
 
 
-    public double getWaitTime () {
+    public double getMyWaitTime () {
         return myWaitTime.getData();
     }
 

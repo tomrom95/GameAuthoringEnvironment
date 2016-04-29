@@ -54,7 +54,7 @@ public class TrackingFireSFC extends RemovableFireSFC {
     public void updateItem (SpriteDefinition item) {
         setMySpriteDefinition(item);
         myFireDef.setGame(myGame);
-        double waitTime = myView.getWaitTime();
+        double waitTime = myView.getMyWaitTime();
         myFireDef.setWaitTime(waitTime);
         myFireDef.setTargets(myView.getTargetsCoice());
         myFireDef.setProjectileDefinition(myView.getSelectedMissile());
