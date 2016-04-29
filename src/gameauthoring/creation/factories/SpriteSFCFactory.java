@@ -7,7 +7,7 @@ import gameauthoring.creation.subforms.SelectAttributeSFC;
 import gameauthoring.creation.subforms.UpgradeSFC;
 import gameauthoring.creation.subforms.costs.CostSFC;
 import gameauthoring.creation.subforms.fire.FiringSFC;
-import gameauthoring.creation.subforms.fire.FiringSFCmult;
+import gameauthoring.creation.subforms.fire.FiringSFC;
 import gameauthoring.creation.subforms.movement.MovementSFC;
 
 
@@ -29,7 +29,7 @@ public class SpriteSFCFactory extends SubFormControllerFactory<SpriteDefinition>
                     .getMyCreatedAttributes());
         }
         else if (type.equals("FireMult")) {
-            return new FiringSFCmult(getMyGame());
+            return new FiringSFC(getMyGame());
         }
         else if (type.equals("UpgradeDefender")) {
             return new UpgradeSFC(getMyGame(),getMyGame().getAuthorshipData().getMyCreatedSprites("Defenders"));

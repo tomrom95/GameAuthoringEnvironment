@@ -25,7 +25,7 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
     private DirectionalFirerDefinition myFireDef;
     private double myDefaultRange = 0;
 
-    public DirectionalFireSFC (IGame game, FiringSFCmult sfc, DirectionalFirerDefinition fireDef) {
+    public DirectionalFireSFC (IGame game, FiringSFC sfc, DirectionalFirerDefinition fireDef) {
         super(sfc);
         myFireDef = fireDef;
         myView =

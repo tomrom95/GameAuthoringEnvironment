@@ -1,86 +1,95 @@
 package gameauthoring.creation.subforms.fire;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import engine.IGame;
-
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.DirectionalFirerDefinition;
-import engine.definitions.moduledef.FirerDefinition;
 import engine.definitions.moduledef.ModuleDefinition;
 import engine.definitions.moduledef.TrackingFirerDefinition;
 import engine.definitions.moduledef.UserFirerDefinition;
 import gameauthoring.creation.factories.DynamicSFCFactory;
-import gameauthoring.creation.subforms.DynamicSubFormController;
-import gameauthoring.creation.subforms.movement.StaticMoverSFC;
+import gameauthoring.creation.subforms.DynamicSubFormView;
+import gameauthoring.creation.subforms.ISubFormController;
+import gameauthoring.creation.subforms.ISubFormControllerSprite;
+import gameauthoring.creation.subforms.ISubFormView;
+
 
 /**
- * NOT USED WITH CURRENT IMPLEMENTATION
- */
-/**
- * This is the sfc for selecting firing modules for a SpriteDefinition
+ * Allows User to add or remove multiple firing module definitions to a sprite definition, contains
+ * a list of more specific SFC's that allow for specification of actual module details
  * 
- * @author Jeremy Schreck
+ * @author Joe Lilien
  *
  */
+public class FiringSFC implements ISubFormControllerSprite {
+    private FiringSFV myView;
+    private List<RemovableSpriteSFC> mySFCs;
+    private FiringSFCFactory mySFCFactory;
+    private ResourceBundle myClassPaths = ResourceBundle.getBundle("defaults/class_path_def");
 
-public class FiringSFC extends DynamicSubFormController<SpriteDefinition> {
+    // TODO: move to resource file
+    private List<String> options = new ArrayList<>(Arrays.asList("TRACKINGFIRER", "DIRECTIONALFIRER"));
 
-    public FiringSFC (IGame game,
-                      DynamicSFCFactory<SpriteDefinition> sfcFactory,
-                      List<String> subFormIDs) {
-        super(game, sfcFactory, subFormIDs);
-        // TODO Auto-generated constructor stub
-        
+    public FiringSFC (IGame game) {
+        mySFCFactory = new FiringSFCFactory(game, this);
+        myView = new FiringSFV(options);
+        mySFCs = new ArrayList<>();
+        setActions();
     }
 
-    private SpriteDefinition myMissile;
-
-    /**
-     * Constructor
-     * 
-     * @param game The current game object
-     */
-//    public FiringSFC (IGame game) {
-//        super(game, new FiringSFCFactory(game, null),
-//              new ArrayList<String>(Arrays.asList("DirectionalFire", "TrackingFire")));
-//        List<String> options = new ArrayList<>(Arrays.asList("Directional", "Tracking"));
-//        setMyView(
-//                  new FiringSFV(getMySubFormViews(), e -> changeSelection(e), options,
-//                                        e -> changeMissile(e),
-//                                        game.getAuthorshipData().getMyCreatedMissiles()
-//                                                .getItems()));
-//    }
-//
-//    @Override
-//    protected void setUpSubFormControllers (List<String> subFormIDs) {
-//        setMySFCFactory(new FiringSFCFactory(getMyGame(), this));
-//        super.setUpSubFormControllers(subFormIDs);
-//
-//    }
-
-    /**
-     * The method handler called when the user changes which missile is selected
-     * 
-     * @param missile
-     */
-    private void changeMissile (SpriteDefinition missile) {
-        myMissile = missile;
-
+    private void setActions () {
+        for (int i = 0; i < myView.getMyButtons().size(); i++) {
+            String sfcID = options.get(i);
+            myView.setButtonAction(myView.getMyButtons().get(i),
+                                   e -> addSFC(mySFCFactory.createSubFormController(myClassPaths.getString(sfcID))));
+        }
     }
 
-    public SpriteDefinition getMyMissile () {
-        return myMissile;
+    public void addSFC (RemovableSpriteSFC sfc) {
+        mySFCs.add(sfc);
+        myView.addOrSetSFV(sfc.getSubFormView());
+    }
+
+    private void clearSFCs () {
+        mySFCs.clear();
+        myView.clearSFVs();
+    }
+
+    public void removeSFC (RemovableSpriteSFC sfc) {
+        mySFCs.remove(sfc);
+        myView.removeSFV(sfc.getSubFormView());
+        sfc.removeModule(sfc.getFirerDefinition());
     }
 
     @Override
-    protected void changeCurrentSFCBasedOnData (SpriteDefinition item) {
-        // TODO Auto-generated method stub
-        
+    public void updateItem (SpriteDefinition item) {
+        mySFCs.forEach(e -> e.updateItem(item));
     }
 
-   
+    @Override
+    public void initializeFields () {
 
+    }
+
+    @Override
+    public ISubFormView getSubFormView () {
+        return myView;
+    }
+
+    @Override
+    public void populateViewsWithData (SpriteDefinition item) {
+        this.clearSFCs();
+        // TODO: change to list<FiringDefinition>
+        List<ModuleDefinition> firingDefs = item.getModuleDefinitions();
+        for (ModuleDefinition firingDef : firingDefs) {
+            RemovableSpriteSFC sfc =
+                    mySFCFactory.createSubFormController(firingDef.getClass().getName(),
+                                                         firingDef);
+            sfc.populateViewsWithData(item);
+            this.addSFC(sfc);
+
+        }
+
+    }
 
 }
