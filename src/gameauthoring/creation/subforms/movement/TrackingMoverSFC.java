@@ -19,7 +19,7 @@ public class TrackingMoverSFC implements ISubFormControllerSprite {
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (SpriteDefinition item) {
         myView.populateWithData(myDefaultSpeed, null);
     }
 

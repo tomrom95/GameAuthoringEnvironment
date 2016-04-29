@@ -90,9 +90,9 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (T item) {
         for (ISubFormController<T> subFormController : mySubFormControllers) {
-            subFormController.initializeFields();
+            subFormController.initializeFields(item);
         }
     }
 

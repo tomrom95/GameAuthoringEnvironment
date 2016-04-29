@@ -27,7 +27,7 @@ public class CostSFC implements ISubFormControllerSprite {
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (SpriteDefinition item) {
     }
 
     @Override

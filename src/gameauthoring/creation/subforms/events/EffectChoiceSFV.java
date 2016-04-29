@@ -1,4 +1,4 @@
-package gameauthoring.creation.subforms.fire;
+package gameauthoring.creation.subforms.events;
 
 import java.util.List;
 import gameauthoring.creation.subforms.ClickAndFillView;
@@ -6,16 +6,9 @@ import gameauthoring.creation.subforms.ISubFormView;
 import javafx.scene.control.Label;
 
 
+public class EffectChoiceSFV extends ClickAndFillView {
 
-/**
- * Implementation of IFiringSFVmult with button display
- * 
- * @author Joe Lilien
- *
- */
-public class FiringSFV extends ClickAndFillView {
-
-    public FiringSFV (List<String> options) {
+    public EffectChoiceSFV (List<String> options) {
         super(options);
         initView();
     }
@@ -27,9 +20,7 @@ public class FiringSFV extends ClickAndFillView {
 
     @Override
     public void showDefaultMessage () {
-        getMyPaneContent().getChildren().add(new Label("ADD HERE"));//TODO: resource lang file
+        getMyPaneContent().getChildren().add(new Label("insert message from file here"));
     }
-    
-   
 
 }

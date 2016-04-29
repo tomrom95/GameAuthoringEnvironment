@@ -28,7 +28,7 @@ public class UserMoverSFC implements ISubFormControllerSprite {
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (SpriteDefinition item) {
         populateViewsWithData(myDefaultSpeed, myDefaultUpKey, myDefaultDownKey,
                               myDefaultLeftKey, myDefaultRightKey);
     }

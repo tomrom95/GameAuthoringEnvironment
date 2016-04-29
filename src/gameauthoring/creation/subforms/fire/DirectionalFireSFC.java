@@ -16,7 +16,7 @@ import gameauthoring.util.ErrorMessage;
  *
  */
 
-public class DirectionalFireSFC extends RemovableSpriteSFC {
+public class DirectionalFireSFC extends RemovableFireSFC {
 
     private IDirectionalFireSFV myView;
     private IGame myGame;
@@ -25,17 +25,27 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
     private DirectionalFirerDefinition myFireDef;
     private double myDefaultRange = 0;
 
+    public DirectionalFireSFC (IGame game, FiringSFC sfc) {
+        super(sfc);
+        init(game, new DirectionalFirerDefinition(game));
+    }
+    
     public DirectionalFireSFC (IGame game, FiringSFC sfc, DirectionalFirerDefinition fireDef) {
         super(sfc);
+        init(game, fireDef);
+      
+    }
+
+    private void init(IGame game, DirectionalFirerDefinition fireDef){
+        myGame = game;
         myFireDef = fireDef;
         myView =
                 new DirectionalFireSFV(game.getAuthorshipData().getMyCreatedMissiles(),
                                        getRemoveMenu());
-        myGame = game;
     }
-
+    
     @Override
-    public void initializeFields () {
+    public void initializeFields (SpriteDefinition item) {
         populateViewsWithData(myDefaultAngle, myDefaultWaitTime, myDefaultRange);
     }
 
@@ -78,7 +88,7 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
     }
 
     @Override
-    public FirerDefinition getFirerDefinition () {
+    public FirerDefinition getModuleDefinition () {
         return myFireDef;
     }
 

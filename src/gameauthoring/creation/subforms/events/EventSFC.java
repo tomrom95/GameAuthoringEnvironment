@@ -1,6 +1,7 @@
 package gameauthoring.creation.subforms.events;
 
 import java.util.ResourceBundle;
+import engine.IGame;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.events.EventType;
 import engine.events.GameEvent;
@@ -17,7 +18,7 @@ public class EventSFC implements ISubFormController<EventPackageDefinition> {
     private IEventSFV myView;
     private GameEvent myEvent;
 
-    public EventSFC (GameEvent event) {
+    public EventSFC (IGame game, EventChoiceSFC sfc, GameEvent event) {
         myView = new EventSFV(getEvents());
         myEvent = event;
     }
@@ -29,7 +30,9 @@ public class EventSFC implements ISubFormController<EventPackageDefinition> {
     @Override
     public void updateItem (EventPackageDefinition item) {
         myEvent.setEventType(new EventType(myView.getEventSelection()));
-        item.getMyEventsList().add(myEvent);
+        if(!item.getMyEventsList().contains(myEvent)){
+            item.getMyEventsList().add(myEvent);
+        }
     }
 
     @Override
@@ -38,7 +41,7 @@ public class EventSFC implements ISubFormController<EventPackageDefinition> {
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (EventPackageDefinition item) {
 
     }
 

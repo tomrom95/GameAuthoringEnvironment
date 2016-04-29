@@ -1,15 +1,11 @@
 package gameauthoring.creation.subforms.fire;
 
-import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.Glyph;
-import gameauthoring.util.UIFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 
 
 /**
