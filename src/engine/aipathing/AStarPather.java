@@ -9,6 +9,7 @@ import engine.IGame;
 import util.Coordinate;
 import util.IBitMap;
 import util.IEdgeBitMap;
+import util.ISampledBitMap;
 
 /**
  * Implementation of A* search based off of the pseudo-code provided
@@ -30,7 +31,7 @@ public class AStarPather implements INodeGraphPather {
     }
     
     @Override
-    public List<Coordinate> findPathFor (IEdgeBitMap obstructionMap,
+    public List<Coordinate> findPathFor (ISampledBitMap obstructionMap,
                                          Coordinate start,
                                          Coordinate goal) {
         INodeGraphFactory graphFactory = new GameGraphFactory(obstructionMap, getGame());

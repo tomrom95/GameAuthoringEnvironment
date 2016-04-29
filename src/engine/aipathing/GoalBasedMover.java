@@ -11,8 +11,7 @@ import engine.interactionevents.MouseIOEvent;
 import engine.modules.Mover;
 import engine.sprite.ISprite;
 import util.Coordinate;
-import util.IBitMap;
-import util.IEdgeBitMap;
+import util.ISampledBitMap;
 import util.TimeDuration;
 
 
@@ -144,7 +143,7 @@ public class GoalBasedMover extends Mover {
         // do nothing
     }
 
-    private IEdgeBitMap obstructionMap () {
+    private ISampledBitMap obstructionMap () {
         return getGame().getObstructionManager().getObstructionMap();
     }
 

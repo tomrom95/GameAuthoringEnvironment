@@ -24,6 +24,8 @@ import java.util.stream.Collectors;
  */
 public class ObstructionManager implements IObstructionManager {
     private static final boolean POSITION_OBSTRUCTED = true;
+    private static final int SAMPLE_RESOLUTION = 10;
+    
     private IGame myGame;
     private ISampledBitMap myCurrentObstructionMap;
 
@@ -119,7 +121,7 @@ public class ObstructionManager implements IObstructionManager {
     private ISampledBitMap getBitMapSizedForCurrentGame (IGame game) {
         int gameWidth = game.getGameGridConfig().getGridWidth();
         int gameHeight = game.getGameGridConfig().getGridHeight();
-        return new SampledBitMap(gameWidth, gameHeight);
+        return new SampledBitMap(gameWidth / SAMPLE_RESOLUTION, gameHeight/ SAMPLE_RESOLUTION, gameWidth, gameHeight);
     }
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import util.Coordinate;
 import util.IBitMap;
 import util.IEdgeBitMap;
+import util.ISampledBitMap;
 
 
 public interface INodeGraphPather {
@@ -17,6 +18,6 @@ public interface INodeGraphPather {
      * @param goal
      * @return
      */
-    List<Coordinate> findPathFor (IEdgeBitMap obstructionMap, Coordinate start, Coordinate goal);
+    List<Coordinate> findPathFor (ISampledBitMap obstructionMap, Coordinate start, Coordinate goal);
 
 }
