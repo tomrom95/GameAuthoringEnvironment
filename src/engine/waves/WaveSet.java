@@ -37,7 +37,6 @@ public class WaveSet implements IWaveSet {
 
     @Override
     public boolean allWavesCompleted () {
-        System.out.println(myWaves + " current waves: "+currentWave);
         return (myWaves.size() == 0) & currentWave.waveCompleted();
 
     }
