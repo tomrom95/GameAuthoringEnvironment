@@ -41,6 +41,8 @@ public class TrackingFireSFC extends RemovableSpriteSFC {
 
     private void populateViewsWithData (double wait) {
         myFormData.set(myView.getWaitTimeKey(), Double.toString(wait));
+        myFormData.set(myView.getMyRangeValueKey(), Double.toString(range));
+
     }
 
     @Override

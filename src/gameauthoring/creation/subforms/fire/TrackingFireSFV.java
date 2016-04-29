@@ -24,6 +24,7 @@ import javafx.scene.layout.HBox;
  * 
  * @author Dhrumil
  * @author Joe Lilien
+ * @author josephtimko1
  *
  */
 public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
@@ -111,19 +112,16 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
     @Override
     public String getMyRangedKey () {
-        // TODO Auto-generated method stub
         return myRangedKey;
     }
 
     @Override
     public String getMyRangeValueKey () {
-        // TODO Auto-generated method stub
         return myRangeValueKey;
     }
 
     @Override
     public BooleanProperty isRangedProperty () {
-        // TODO Auto-generated method stub
         return isRangedSelectionView.isCheckedProperty();
     }
     
