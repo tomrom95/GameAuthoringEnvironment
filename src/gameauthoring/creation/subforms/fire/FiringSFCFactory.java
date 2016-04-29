@@ -10,6 +10,7 @@ import engine.definitions.moduledef.TrackingFirerDefinition;
 import engine.definitions.moduledef.UserFirerDefinition;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
+import gameauthoring.creation.subforms.MultiOptionFactory;
 
 /**
  * 
@@ -20,7 +21,7 @@ import gameauthoring.creation.subforms.ISubFormControllerSprite;
  * @author Joe Lilien
  *
  */
-public class FiringSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
+public class FiringSFCFactory extends MultiOptionFactory<SpriteDefinition> {
 
     private FiringSFC myFiringSFC;
 
@@ -36,7 +37,7 @@ public class FiringSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
     }
 
     @Override
-    public RemovableSpriteSFC createSubFormController (String type) {
+    public RemovableSFC createSubFormController (String type) {
         if (type.equals(DirectionalFirerDefinition.class.getName())) {
             return new DirectionalFireSFC(getMyGame(), getMyFiringSFC(), new DirectionalFirerDefinition(getMyGame()));
         }
@@ -50,7 +51,7 @@ public class FiringSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
     }
 
     @Override
-    public RemovableSpriteSFC createSubFormController (String type, Object ... params) {
+    public RemovableSFC createSubFormController (String type, Object ... params) {
         
         if (type.equals(DirectionalFirerDefinition.class.getName())) {
             return new DirectionalFireSFC(getMyGame(), getMyFiringSFC(), (DirectionalFirerDefinition) params[0]);

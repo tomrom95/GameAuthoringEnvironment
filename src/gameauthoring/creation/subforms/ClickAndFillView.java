@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -71,7 +72,7 @@ public abstract class ClickAndFillView extends SubFormView{
         myContainer.add(myPane, 0, 1);        
     }
     
-    protected abstract void addOrSetSFV (ISubFormView subFormView);
+    public abstract void addOrSetSFV (ISubFormView subFormView);
     
     public void removeSFV (ISubFormView subFormView) {
         myPaneContent.getChildren().remove(subFormView.draw());
@@ -93,4 +94,6 @@ public abstract class ClickAndFillView extends SubFormView{
     public Node draw(){
         return myContainer;
     }
+
+    public abstract void showDefaultMessage ();
 }

@@ -16,7 +16,7 @@ import gameauthoring.util.ErrorMessage;
  *
  */
 
-public class DirectionalFireSFC extends RemovableSpriteSFC {
+public class DirectionalFireSFC extends RemovableFireSFC {
 
     private IDirectionalFireSFV myView;
     private IGame myGame;
@@ -78,7 +78,7 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
     }
 
     @Override
-    public FirerDefinition getFirerDefinition () {
+    public FirerDefinition getModuleDefinition () {
         return myFireDef;
     }
 

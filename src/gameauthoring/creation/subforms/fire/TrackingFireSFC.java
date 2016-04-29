@@ -15,7 +15,7 @@ import gameauthoring.creation.subforms.ISubFormView;
  *
  */
 
-public class TrackingFireSFC extends RemovableSpriteSFC {
+public class TrackingFireSFC extends RemovableFireSFC {
 
     private ITrackingFireSFV myView;
     private IGame myGame;
@@ -58,7 +58,7 @@ public class TrackingFireSFC extends RemovableSpriteSFC {
     }
 
     @Override
-    public FirerDefinition getFirerDefinition () {
+    public FirerDefinition getModuleDefinition () {
         return myFireDef;
     }
 

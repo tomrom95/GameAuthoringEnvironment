@@ -10,6 +10,7 @@ import gameauthoring.util.UIFactory;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -30,8 +31,13 @@ public class FiringSFV extends ClickAndFillView {
     }
 
     @Override
-    protected void addOrSetSFV (ISubFormView subFormView) {
+    public void addOrSetSFV (ISubFormView subFormView) {
         super.getMyPaneContent().getChildren().add(subFormView.draw());
+    }
+
+    @Override
+    public void showDefaultMessage () {
+        getMyPaneContent().getChildren().add(new Label("ADD HERE"));//TODO: resource lang file
     }
     
    
