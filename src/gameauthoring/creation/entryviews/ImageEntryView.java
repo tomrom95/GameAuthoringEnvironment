@@ -31,6 +31,7 @@ public class ImageEntryView extends EntryView {
 
     private Button myChooseImage;
     private ImageView myImage;
+    private String styleClass = "CreationButton";
     private StringProperty imagePath = new SimpleStringProperty("images/Square.png");
     private ResourceBundle myLabel = ResourceBundle.getBundle("languages/labels",
                                                               LocaleManager.getInstance()
@@ -87,6 +88,7 @@ public class ImageEntryView extends EntryView {
         myChooseImage =
                 getMyFactory().createButton(myLabel.getString("Image"),
                                             e -> openImageChoice(imageChoice));
+        getMyFactory().addStyling(myChooseImage, styleClass);
     }
 
     private void openImageChoice (FileChooser imageChoice) {
