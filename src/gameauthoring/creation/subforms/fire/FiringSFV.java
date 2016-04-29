@@ -25,21 +25,18 @@ import javafx.scene.layout.VBox;
  */
 public class FiringSFV extends ClickAndFillView {
 
+    private String defaultHelpMessage = "help";
+
     public FiringSFV (List<String> options) {
         super(options);
         initView();
+        setDefaultHelpMessage(defaultHelpMessage );
+        showDefaultMessage();
     }
 
     @Override
     public void addOrSetSFV (ISubFormView subFormView) {
         super.getMyPaneContent().getChildren().add(subFormView.draw());
     }
-
-    @Override
-    public void showDefaultMessage () {
-        getMyPaneContent().getChildren().add(new Label("ADD HERE"));//TODO: resource lang file
-    }
     
-   
-
 }

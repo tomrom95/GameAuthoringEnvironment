@@ -7,10 +7,14 @@ import javafx.scene.control.Label;
 
 
 public class EffectChoiceSFV extends ClickAndFillView {
+    
+    private String defaultHelpMessage = "add default message to languages";
 
     public EffectChoiceSFV (List<String> options) {
-        super(options);
+        super(options);        
         initView();
+        setDefaultHelpMessage(defaultHelpMessage);
+        showDefaultMessage();
     }
 
     @Override
@@ -18,9 +22,5 @@ public class EffectChoiceSFV extends ClickAndFillView {
         super.getMyPaneContent().getChildren().add(subFormView.draw());
     }
 
-    @Override
-    public void showDefaultMessage () {
-        getMyPaneContent().getChildren().add(new Label("insert message from file here"));
-    }
 
 }

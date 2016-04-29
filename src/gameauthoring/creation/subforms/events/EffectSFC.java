@@ -1,8 +1,5 @@
 package gameauthoring.creation.subforms.events;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 import engine.Attribute;
 import engine.AttributeType;
