@@ -3,7 +3,7 @@ package gameauthoring.creation.subforms.fire;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.definitions.moduledef.ModuleDefinition;
 import gameauthoring.creation.subforms.ISubFormView;
-import gameauthoring.creation.subforms.MultiOptionSFC;
+import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
 
 public abstract class RemovableEventSFC extends RemovableSFC<EventPackageDefinition>{
 

@@ -7,7 +7,6 @@ import gameauthoring.creation.subforms.SelectAttributeSFC;
 import gameauthoring.creation.subforms.UpgradeSFC;
 import gameauthoring.creation.subforms.costs.CostSFC;
 import gameauthoring.creation.subforms.fire.FiringSFC;
-import gameauthoring.creation.subforms.fire.FiringSFC;
 import gameauthoring.creation.subforms.movement.MovementSFC;
 
 

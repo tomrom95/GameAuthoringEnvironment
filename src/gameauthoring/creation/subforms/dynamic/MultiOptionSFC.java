@@ -1,10 +1,14 @@
-package gameauthoring.creation.subforms;
+package gameauthoring.creation.subforms.dynamic;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import engine.IGame;
 import engine.profile.IProfilable;
+import gameauthoring.creation.factories.MultiOptionFactory;
+import gameauthoring.creation.subforms.ClickAndFillView;
+import gameauthoring.creation.subforms.ISubFormController;
+import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.fire.RemovableSFC;
 
 public abstract class MultiOptionSFC <T extends IProfilable> implements ISubFormController<T>{

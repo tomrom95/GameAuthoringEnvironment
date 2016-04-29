@@ -4,8 +4,7 @@ import java.util.List;
 import engine.IGame;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.effects.IEffect;
-import gameauthoring.creation.subforms.MultiOptionSFC;
-
+import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
 import util.BundleOperations;
 
 public class EffectChoiceSFC extends MultiOptionSFC<EventPackageDefinition>{

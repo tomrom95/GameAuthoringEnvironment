@@ -1,13 +1,10 @@
-package gameauthoring.creation.subforms;
+package gameauthoring.creation.factories;
 
 import java.util.ResourceBundle;
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.FirerDefinition;
 import engine.profile.IProfilable;
-import gameauthoring.creation.factories.Reflection;
-import gameauthoring.creation.factories.ReflectionException;
-import gameauthoring.creation.factories.SubFormControllerFactory;
 import gameauthoring.creation.subforms.fire.FiringSFC;
 import gameauthoring.creation.subforms.fire.RemovableSFC;
 import gameauthoring.util.ErrorMessage;
@@ -20,7 +17,7 @@ public class MultiOptionFactory<T extends IProfilable>  extends SubFormControlle
     }
 
     @Override
-    protected RemovableSFC<T> createSubFormController (String className,
+    public RemovableSFC<T> createSubFormController (String className,
                                                                          Object ... params) {
 
         try {

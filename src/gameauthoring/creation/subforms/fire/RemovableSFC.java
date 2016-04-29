@@ -2,7 +2,7 @@ package gameauthoring.creation.subforms.fire;
 
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
-import gameauthoring.creation.subforms.MultiOptionSFC;
+import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
 
 /**
  * 

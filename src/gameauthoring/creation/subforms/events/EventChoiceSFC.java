@@ -3,7 +3,7 @@ package gameauthoring.creation.subforms.events;
 import java.util.List;
 import engine.IGame;
 import engine.definitions.concrete.EventPackageDefinition;
-import gameauthoring.creation.subforms.MultiOptionSFC;
+import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
 import util.BundleOperations;
 
 public class EventChoiceSFC extends MultiOptionSFC<EventPackageDefinition>{

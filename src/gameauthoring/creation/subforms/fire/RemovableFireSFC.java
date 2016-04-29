@@ -2,7 +2,7 @@ package gameauthoring.creation.subforms.fire;
 
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.ModuleDefinition;
-import gameauthoring.creation.subforms.MultiOptionSFC;
+import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
 
 public abstract class RemovableFireSFC extends RemovableSFC<SpriteDefinition>{
 

@@ -1,11 +1,13 @@
-package gameauthoring.creation.subforms.movement;
+package gameauthoring.creation.factories;
 
 import engine.IGame;
-
-import gameauthoring.creation.factories.DynamicSFCFactory;
-import gameauthoring.creation.factories.ReflectionException;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
+import gameauthoring.creation.subforms.movement.ConstantMoverSFC;
+import gameauthoring.creation.subforms.movement.SmartAIMovementSFC;
+import gameauthoring.creation.subforms.movement.StaticMoverSFC;
+import gameauthoring.creation.subforms.movement.TrackingMoverSFC;
+import gameauthoring.creation.subforms.movement.UserMoverSFC;
 
 
 /**

@@ -3,7 +3,7 @@ package gameauthoring.creation.subforms.fire;
 import java.util.*;
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
-import gameauthoring.creation.subforms.MultiOptionSFC;
+import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
 import util.BundleOperations;
 
 
