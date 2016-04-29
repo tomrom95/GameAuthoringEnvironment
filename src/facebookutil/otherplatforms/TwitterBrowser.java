@@ -1,4 +1,4 @@
-package facebookutil.test;
+package facebookutil.otherplatforms;
 
 import java.awt.Dimension;
 import java.util.ResourceBundle;
@@ -95,6 +95,5 @@ public class TwitterBrowser {
         System.out.println();
         System.out.println("That's it man! Go and build something awesome with ScribeJava! :)");
     }
-    
-    
+
 }
