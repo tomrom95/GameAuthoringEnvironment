@@ -15,8 +15,7 @@ public interface IDirectionalFireSFV extends IFiringSFV {
 
     double getMyAngle ();
 
-    double getMyWaitTime ();
 
-    void populateWithData (SpriteDefinition missile, double angle, double waitTime);
+    void populateWithData (SpriteDefinition missile, double angle, double waitTime, double range, boolean isRanged);
 
 }

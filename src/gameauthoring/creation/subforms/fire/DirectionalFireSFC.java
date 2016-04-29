@@ -24,6 +24,7 @@ public class DirectionalFireSFC extends RemovableFireSFC {
     private double myDefaultWaitTime = 0;
     private DirectionalFirerDefinition myFireDef;
     private double myDefaultRange = 0;
+    private boolean myDefaultRanged = false;
 
     public DirectionalFireSFC (IGame game, FiringSFC sfc) {
         super(sfc);
@@ -46,12 +47,12 @@ public class DirectionalFireSFC extends RemovableFireSFC {
     
     @Override
     public void initializeFields (SpriteDefinition item) {
-        populateViewsWithData(myDefaultAngle, myDefaultWaitTime, myDefaultRange);
+        populateViewsWithData(myDefaultAngle, myDefaultWaitTime, myDefaultRange, myDefaultRanged);
     }
 
-    private void populateViewsWithData (double angle, double wait, double range) {
-        myView.populateWithData(null, myDefaultAngle, myDefaultWaitTime);
-        //TODO: deal with range stuff
+    //TODO: What is this method, why does it pass in variables, seems redundant/not make sense - Timko
+    private void populateViewsWithData (double angle, double wait, double range, boolean isRanged) {
+        myView.populateWithData(null, myDefaultAngle, myDefaultWaitTime, myDefaultRange, myDefaultRanged);
 }
 
     @Override
@@ -65,16 +66,14 @@ public class DirectionalFireSFC extends RemovableFireSFC {
         try {
             double angle = Math.toRadians(myView.getMyAngle()); // tangent functions need radians
             double waitTime = myView.getMyWaitTime();
-            //TODO: include range
-            //double range = myView.ge
+            double range = myView.getMyRange();
+            boolean isRanged = myView.getMyIsRanged();
             myFireDef.setGame(myGame);
             myFireDef.setAngle(angle);
             myFireDef.setWaitTime(waitTime);
             myFireDef.setProjectileDefinition(myView.getMissileSelection());
-
-
-//            myFireDef.setRanged(myView.isRangedProperty().get());
-//            myFireDef.setFireRange(range);
+            myFireDef.setRanged(isRanged);
+            myFireDef.setFireRange(range);
 
             item.addModule(myFireDef);
         }
@@ -92,8 +91,7 @@ public class DirectionalFireSFC extends RemovableFireSFC {
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-        //TODO: range
-        myView.populateWithData(myFireDef.getProjectileDefinition(),myFireDef.getAngle(),myFireDef.getWaitTime());
+        myView.populateWithData(myFireDef.getProjectileDefinition(),myFireDef.getAngle() * 180 / Math.PI,myFireDef.getWaitTime(), myFireDef.getFireRange(), myFireDef.getRanged());
 
     }
 

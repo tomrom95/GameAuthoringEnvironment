@@ -5,10 +5,14 @@ import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;
+import gameauthoring.creation.entryviews.CheckEntryView;
+import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.BasicUIFactory;
+import javafx.beans.property.BooleanProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -20,6 +24,7 @@ import javafx.scene.layout.HBox;
  * 
  * @author Dhrumil
  * @author Joe Lilien
+ * @author josephtimko1
  *
  */
 public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
@@ -28,11 +33,16 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     private ResourceBundle myLabel;
     private String myWaitTimeKey;
     private String myTargetsKey;
+    private String myRangedKey;
+    private String myRangeValueKey;
     private String myMissileKey;
     private NumberEntryView myWaitTime;
     private SingleChoiceEntryView<SpriteGroup> myTargets;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private RemoveOption myRemove;
+    private CheckEntryView myIsRanged;
+    private NumberEntryView myRangeValue;
 
     public TrackingFireSFV (AuthorshipData data, RemoveOption remove) {
         setResourceBundleAndKey();
@@ -47,8 +57,13 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         myMissileSelectionView =
                 new SingleChoiceEntryView<>(myMissileKey, data.getMyCreatedMissiles().getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
+        myIsRanged =
+                new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
+        myRangeValue =
+                new NumberEntryView(myRangeValueKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
 
         initView();
+        initBinding();
 
     }
 
@@ -57,13 +72,16 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
                 .getInstance().getCurrentLocaleProperty().get());
         myWaitTimeKey = myLabel.getString("WaitTimeKey");
         myTargetsKey = myLabel.getString("TargetsKey");
+        myRangedKey = myLabel.getString("RangedKey");
+        myRangeValueKey = myLabel.getString("RangeValueKey");
     }
 
     @Override
     protected void initView () {
         myPane =
                 getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                          myWaitTime.draw(), myTargets.draw(), myRemove.draw());
+                                          myWaitTime.draw(), myTargets.draw(), myRemove.draw(),
+                                          myRangeValue.draw(), myIsRanged.draw());
         myPane.getStyleClass().add("firer");
     }
 
@@ -77,8 +95,7 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         return myPane;
     }
 
-    @Override
-    public double getWaitTime () {
+    public double getMyWaitTime () {
         return myWaitTime.getData();
     }
 
@@ -88,10 +105,37 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     }
 
     @Override
-    public void populateWithData (SpriteDefinition missile, SpriteGroup target, double waitTime) {
+    public void populateWithData (SpriteDefinition missile,
+                                  SpriteGroup target,
+                                  double waitTime,
+                                  double range,
+                                  boolean isRanged) {
         myMissileSelectionView.setSelected(missile);
         myTargets.setSelected(target);
         myWaitTime.setData(waitTime);
+        myRangeValue.setData(range);
+        myIsRanged.setSelected(isRanged);
+    }
+
+    public void setTargetsChoice (SpriteGroup targets) {
+        this.myTargets.setSelected(targets);
+    }
+
+  
+
+    @Override
+    public double getMyRange () {
+        return myRangeValue.getData();
+    }
+
+    @Override
+    public boolean getMyIsRanged () {
+        return myIsRanged.isCheckedProperty().get();
+    }
+
+    private void initBinding () {
+        myRangeValue.draw().visibleProperty().bind(myIsRanged.isCheckedProperty());
+
     }
 
 }
