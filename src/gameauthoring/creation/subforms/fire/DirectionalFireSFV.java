@@ -35,7 +35,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     private NumberEntryView myWaitTime;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
     private RemoveOption myRemove;
-    private CheckEntryView isRangedSelectionView;
+    private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
 
     public DirectionalFireSFV (IDefinitionCollection<SpriteDefinition> missiles,
@@ -48,7 +48,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
                 new SingleChoiceEntryView<>(myProjectileKey, missiles.getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
 
-        isRangedSelectionView =
+        myIsRanged =
                 new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
         myRangeValue =
                 new NumberEntryView(myRangeValueKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
@@ -76,7 +76,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     protected void initView () {
         myPane =
                 getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                          myWaitTime.draw(), myAngle.draw(), myRemove.draw());
+                                          myWaitTime.draw(), myAngle.draw(), myRemove.draw(), myRangeValue.draw(), myIsRanged.draw());
         // TODO: add range
         myPane.getStyleClass().add("firer");
     }
@@ -107,7 +107,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         myAngle.setData(angle);
         myWaitTime.setData(waitTime);
         myRangeValue.setData(range);
-        isRangedSelectionView.setSelected(isRanged);
+        myIsRanged.setSelected(isRanged);
     }
 
     @Override
@@ -122,7 +122,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
 
     @Override
     public BooleanProperty isRangedProperty () {
-        return this.isRangedSelectionView.isCheckedProperty();
+        return this.myIsRanged.isCheckedProperty();
 
     }
 
@@ -133,7 +133,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
 
     @Override
     public boolean getMyIsRanged () {
-        return isRangedSelectionView.isCheckedProperty().get();
+        return myIsRanged.isCheckedProperty().get();
     }
 
   
