@@ -2,6 +2,7 @@ package engine.effects;
 
 import engine.AttributeType;
 import engine.IAttribute;
+import engine.definitions.concrete.AttributeDefinition;
 
 
 /**
@@ -12,7 +13,7 @@ import engine.IAttribute;
  */
 public class ProportionEffect extends Effect {
 
-    public ProportionEffect (AttributeType type, IAttribute effectLength, double proportion) {
+    public ProportionEffect (AttributeDefinition type, IAttribute effectLength, double proportion) {
         super(type, effectLength, proportion);
     }
 
@@ -30,7 +31,7 @@ public class ProportionEffect extends Effect {
 
     @Override
     public IEffect makeCopy () {
-        return new ProportionEffect(getAttributeType(),
+        return new ProportionEffect(getAttributeDefinition(),
                                     getEffectLengthAttribute().makeCopy(),
                                     getAlteringValue());
     }

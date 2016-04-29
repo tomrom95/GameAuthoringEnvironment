@@ -1,12 +1,8 @@
 package gameauthoring.creation.subforms.movement;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 import splash.LocaleManager;
 import gameauthoring.creation.entryviews.CharacterEntryView;
-import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
@@ -14,7 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
 
-public class UserMoverSFV extends SubFormView {
+public class UserMoverSFV extends SubFormView implements IUserMoverSFV {
 
     private GridPane myPane = new GridPane();
     private ResourceBundle myLabel;
@@ -23,15 +19,11 @@ public class UserMoverSFV extends SubFormView {
     private String myDownKey;
     private String myRightKey;
     private String myLeftKey;
-    private IEntryView mySpeed;
-    private IEntryView myUp;
-    private IEntryView myDown;
-    private IEntryView myRight;
-    private IEntryView myLeft;
-    private List<IEntryView> myEntryViews = new ArrayList<IEntryView>(Arrays.asList(mySpeed,
-                                                                                    myLeft,
-                                                                                    myRight, myUp,
-                                                                                    myDown));
+    private NumberEntryView mySpeed;
+    private CharacterEntryView myUp;
+    private CharacterEntryView myDown;
+    private CharacterEntryView myRight;
+    private CharacterEntryView myLeft;
 
     public UserMoverSFV () {
         setResourceBundleAndKey();
@@ -41,19 +33,19 @@ public class UserMoverSFV extends SubFormView {
 
     private void createEntryViews () {
         mySpeed =
-                new NumberEntryView(mySpeedKey, this.getData(), 150, 30,
+                new NumberEntryView(mySpeedKey, 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myUp =
-                new CharacterEntryView(myUpKey, this.getData(), 150, 30,
+                new CharacterEntryView(myUpKey, 150, 30,
                                        AuthoringView.DEFAULT_ENTRYVIEW);
         myDown =
-                new CharacterEntryView(myDownKey, this.getData(), 150, 30,
+                new CharacterEntryView(myDownKey, 150, 30,
                                        AuthoringView.DEFAULT_ENTRYVIEW);
         myRight =
-                new CharacterEntryView(myRightKey, this.getData(), 150, 30,
+                new CharacterEntryView(myRightKey, 150, 30,
                                        AuthoringView.DEFAULT_ENTRYVIEW);
         myLeft =
-                new CharacterEntryView(myLeftKey, this.getData(), 150, 30,
+                new CharacterEntryView(myLeftKey, 150, 30,
                                        AuthoringView.DEFAULT_ENTRYVIEW);
 
     }
@@ -83,24 +75,39 @@ public class UserMoverSFV extends SubFormView {
         myPane.add(myRight.draw(), 1, 1);
     }
 
-    public String getSpeedKey () {
-        return mySpeedKey;
+    @Override
+    public double getSpeed () {
+        return mySpeed.getData();
     }
 
+    @Override
     public String getUpKey () {
-        return myUpKey;
+        return myUp.getData();
     }
 
+    @Override
     public String getDownKey () {
-        return myDownKey;
+        return myDown.getData();
     }
 
+    @Override
     public String getLeftKey () {
-        return myLeftKey;
+        return myLeft.getData();
     }
 
+    @Override
     public String getRightKey () {
-        return myRightKey;
+        return myRight.getData();
+    }
+
+    @Override
+    public void populateWithData (double speed, String up, String down, String left, String right) {
+        mySpeed.setData(speed);
+        myUp.setData(up);
+        myDown.setData(down);
+        myLeft.setData(left);
+        myRight.setData(right);
+
     }
 
 }

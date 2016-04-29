@@ -12,14 +12,12 @@ import gameauthoring.creation.subforms.ISubFormView;
  */
 public interface ITrackingFireSFV  extends ISubFormView{
 
-    String getWaitTimeKey ();
-
     SpriteDefinition getSelectedMissile ();
 
     SpriteGroup getTargetsCoice ();
 
-    void setTargetsChoice (SpriteGroup targets);
+    double getWaitTime ();
 
-    void setSelectedMissile (SpriteDefinition projectileDefinition);
+    void populateWithData (SpriteDefinition missile, SpriteGroup target, double waitTime);
 
 }

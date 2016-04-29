@@ -4,8 +4,10 @@ import gameauthoring.creation.subforms.ISubFormView;
 
 public interface IConstantMoverSFV extends ISubFormView {
 
-    String getMySpeedKey ();
+    double getMySpeed ();
 
-    String getMyOrientationKey ();
+    double getMyOrientation ();
+
+    void populateWithData (double orientation, double speed);
 
 }

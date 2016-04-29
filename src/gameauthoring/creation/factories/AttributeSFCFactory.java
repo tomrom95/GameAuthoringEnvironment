@@ -14,14 +14,16 @@ public class AttributeSFCFactory extends SubFormControllerFactory<AttributeDefin
     }
 
     @Override
-    protected ISubFormController<AttributeDefinition> createSubFormController (String type) {
+    protected ISubFormController<AttributeDefinition> createSubFormController (String type, Object ... params) {
         if (type.equals("Attribute")) {
             return new MakeAttributeSFC();
         }
         else if (type.equals("LevelSpecific")){
             return new LevelSpecificSFC();
         }
-        return null;
+        throw new ReflectionException("Can't create attribute subformcontroller of type " + type);
     }
+
+   
 
 }

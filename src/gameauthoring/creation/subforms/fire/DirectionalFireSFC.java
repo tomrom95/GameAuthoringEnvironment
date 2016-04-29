@@ -4,7 +4,6 @@ import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.DirectionalFirerDefinition;
 import engine.definitions.moduledef.FirerDefinition;
-import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.util.ErrorMessage;
 
@@ -17,36 +16,43 @@ import gameauthoring.util.ErrorMessage;
  *
  */
 
-public class DirectionalFireSFC extends RemovableSpriteSFC {
+public class DirectionalFireSFC extends RemovableFireSFC {
 
     private IDirectionalFireSFV myView;
-    private IFormDataManager myFormData;
     private IGame myGame;
     private double myDefaultAngle = 0;
     private double myDefaultWaitTime = 0;
     private DirectionalFirerDefinition myFireDef;
     private double myDefaultRange = 0;
 
-    public DirectionalFireSFC (IGame game, FiringSFCmult sfc, DirectionalFirerDefinition fireDef) {
+    public DirectionalFireSFC (IGame game, FiringSFC sfc) {
         super(sfc);
+        init(game, new DirectionalFirerDefinition(game));
+    }
+    
+    public DirectionalFireSFC (IGame game, FiringSFC sfc, DirectionalFirerDefinition fireDef) {
+        super(sfc);
+        init(game, fireDef);
+      
+    }
+
+    private void init(IGame game, DirectionalFirerDefinition fireDef){
+        myGame = game;
         myFireDef = fireDef;
         myView =
                 new DirectionalFireSFV(game.getAuthorshipData().getMyCreatedMissiles(),
                                        getRemoveMenu());
-        myFormData = myView.getData();
-        myGame = game;
     }
-
+    
     @Override
-    public void initializeFields () {
+    public void initializeFields (SpriteDefinition item) {
         populateViewsWithData(myDefaultAngle, myDefaultWaitTime, myDefaultRange);
     }
 
     private void populateViewsWithData (double angle, double wait, double range) {
-        myFormData.set(myView.getMyAngleKey(), Double.toString(angle));
-        myFormData.set(myView.getMyWaitTimeKey(), Double.toString(wait));
-        myFormData.set(myView.getMyRangeValueKey(), Double.toString(range));
-    }
+        myView.populateWithData(null, myDefaultAngle, myDefaultWaitTime);
+        //TODO: deal with range stuff
+}
 
     @Override
     public ISubFormView getSubFormView () {
@@ -57,23 +63,20 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
     public void updateItem (SpriteDefinition item) {
         setMySpriteDefinition(item);
         try {
-            Double angle =
-                    Math.toRadians(Double.valueOf(myFormData.getValueProperty(myView.getMyAngleKey()).get())); // tangent functions need radians
-            Double waitTime =
-                    Double.valueOf(myFormData.getValueProperty(myView.getMyWaitTimeKey()).get());
-            Double range = Double.valueOf(myFormData.getValueProperty(myView.getMyRangeValueKey()).get());
+            double angle = Math.toRadians(myView.getMyAngle()); // tangent functions need radians
+            double waitTime = myView.getMyWaitTime();
+            //TODO: include range
+            //double range = myView.ge
             myFireDef.setGame(myGame);
             myFireDef.setAngle(angle);
             myFireDef.setWaitTime(waitTime);
             myFireDef.setProjectileDefinition(myView.getMissileSelection());
 
-            myFireDef.setRanged(myView.isRangedProperty().get());
-            myFireDef.setFireRange(range);
 
-            if (!item.getModuleDefinitions().contains(myFireDef)) {
-                item.addModule(myFireDef);
-            }
-            
+//            myFireDef.setRanged(myView.isRangedProperty().get());
+//            myFireDef.setFireRange(range);
+
+            item.addModule(myFireDef);
         }
         catch (Exception e) {
             ErrorMessage err =
@@ -82,19 +85,16 @@ public class DirectionalFireSFC extends RemovableSpriteSFC {
         }
     }
 
-
     @Override
-    public FirerDefinition getFirerDefinition () {
+    public FirerDefinition getModuleDefinition () {
         return myFireDef;
     }
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-        myFormData.getValueProperty(myView.getMyAngleKey()).set(Double.toString(Math.toDegrees(myFireDef.getAngle())));
-        myFormData.getValueProperty(myView.getMyWaitTimeKey()).set(Double.toString(myFireDef.getWaitTime()));
-        myView.setMissileSelection(myFireDef.getProjectileDefinition());
+        //TODO: range
+        myView.populateWithData(myFireDef.getProjectileDefinition(),myFireDef.getAngle(),myFireDef.getWaitTime());
 
-        //TODO ranged
     }
 
 }

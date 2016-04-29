@@ -1,7 +1,6 @@
 package gameauthoring.creation.subforms.movement;
 
 import engine.definitions.concrete.SpriteDefinition;
-import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 
@@ -9,12 +8,9 @@ import gameauthoring.creation.subforms.ISubFormView;
 public class SmartAIMovementSFC implements ISubFormControllerSprite {
 
     private SmartAIMovementSFV myView;
-    private IFormDataManager myFormData;
 
     public SmartAIMovementSFC () {
         myView = new SmartAIMovementSFV();
-        this.myFormData = myView.getData();
-
     }
 
     @Override
@@ -30,7 +26,7 @@ public class SmartAIMovementSFC implements ISubFormControllerSprite {
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (SpriteDefinition item) {
         // TODO Auto-generated method stub
 
     }

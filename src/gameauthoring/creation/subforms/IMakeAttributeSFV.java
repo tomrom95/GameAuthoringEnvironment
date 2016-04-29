@@ -10,6 +10,8 @@ package gameauthoring.creation.subforms;
  */
 public interface IMakeAttributeSFV extends ISubFormView{
 
-    String getMyStartingValueKey ();
+    double getStartingValue ();
+
+    void populateWithData (double value);
 
 }

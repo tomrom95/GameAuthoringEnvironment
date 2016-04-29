@@ -7,6 +7,7 @@ import engine.profile.IProfilable;
 import engine.rendering.ScaleFactory;
 import gameauthoring.creation.cellviews.NameCellView;
 import graphics.IGraphic;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ObservableList;
@@ -17,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -30,7 +32,10 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.HBoxBuilder;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 
 /**
@@ -203,6 +208,19 @@ public class BasicUIFactory implements UIFactory {
         pane.setExpanded(isExpanded);
         return pane;
     }
+    public TitledPane makeCheckBoxTitledPane (String title, Node content, boolean isExpanded) {
+        TitledPane pane = new TitledPane(title, content);
+        CheckBox checkBox = new CheckBox();
+        checkBox.setSelected(false);
+                                                            
+        pane.setGraphic(checkBox);
+        pane.expandedProperty().bindBidirectional(checkBox.selectedProperty());
+        //Node arrow = pane.lookup(".arrow");
+        //arrow.setVisible(false);
+        pane.setExpanded(isExpanded);
+        return pane;
+    }
+
 
     public void modifyListView (ListView<?> listView,
                                 double width,

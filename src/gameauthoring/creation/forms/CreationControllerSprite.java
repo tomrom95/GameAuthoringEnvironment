@@ -17,7 +17,7 @@ import gameauthoring.shareddata.DefinitionCollection;
  *
  */
 public class CreationControllerSprite extends CreationController<SpriteDefinition> {
-
+    
     public CreationControllerSprite (String key,
                                      List<String> subFormStrings,
                                      IGame myGame) {
@@ -36,7 +36,7 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
 
     @Override
     protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
-        return authorshipData.getMyCreatedSprites(getMyKey(), getMyTitle());
+        return authorshipData.getMyCreatedSprites(getMyKey());
     }
 
 }

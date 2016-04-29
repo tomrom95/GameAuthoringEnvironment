@@ -3,7 +3,6 @@ package gameauthoring.creation.subforms.movement;
 import engine.definitions.concrete.KeyControlDefinition;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.UserMoverDefinition;
-import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 
@@ -18,7 +17,6 @@ import gameauthoring.creation.subforms.ISubFormView;
 public class UserMoverSFC implements ISubFormControllerSprite {
 
     private UserMoverSFV myView;
-    private IFormDataManager myFormData;
     private double myDefaultSpeed = 0;
     private String myDefaultUpKey = "W";
     private String myDefaultDownKey = "S";
@@ -27,11 +25,10 @@ public class UserMoverSFC implements ISubFormControllerSprite {
 
     public UserMoverSFC () {
         this.myView = new UserMoverSFV();
-        this.myFormData = myView.getData();
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (SpriteDefinition item) {
         populateViewsWithData(myDefaultSpeed, myDefaultUpKey, myDefaultDownKey,
                               myDefaultLeftKey, myDefaultRightKey);
     }
@@ -41,31 +38,21 @@ public class UserMoverSFC implements ISubFormControllerSprite {
                                         String down,
                                         String left,
                                         String right) {
-        myFormData.set(myView.getSpeedKey(),
-                       Double.toString(speed));
-        myFormData.set(myView.getUpKey(), up);
-        myFormData.set(myView.getDownKey(), down);
-        myFormData.set(myView.getLeftKey(), left);
-        myFormData.set(myView.getRightKey(), right);
+        myView.populateWithData(speed, up, down, left, right);
 
     }
 
     @Override
     public void updateItem (SpriteDefinition item) {
-
         UserMoverDefinition myUMD = new UserMoverDefinition();
-        Double mySpeedDouble =
-                Double.valueOf(myFormData.getValueProperty(myView.getSpeedKey()).get());
+        double mySpeedDouble = myView.getSpeed();
         myUMD.setSpeed(mySpeedDouble);
-
         KeyControlDefinition myKeyControlDef = new KeyControlDefinition();
-        myKeyControlDef.setUp(myFormData.getValueProperty(myView.getUpKey()).get());
-        myKeyControlDef.setDown(myFormData.getValueProperty(myView.getDownKey()).get());
-        myKeyControlDef.setLeft(myFormData.getValueProperty(myView.getLeftKey()).get());
-        myKeyControlDef.setRight(myFormData.getValueProperty(myView.getRightKey()).get());
-
+        myKeyControlDef.setUp(myView.getUpKey());
+        myKeyControlDef.setDown(myView.getDownKey());
+        myKeyControlDef.setLeft(myView.getLeftKey());
+        myKeyControlDef.setRight(myView.getRightKey());
         myUMD.setKeyControlDefintion(myKeyControlDef);
-
         item.setMovementDefinition(myUMD);
 
     }
@@ -80,9 +67,8 @@ public class UserMoverSFC implements ISubFormControllerSprite {
         UserMoverDefinition movDef =
                 (UserMoverDefinition) item.getMovementDefinition();
         KeyControlDefinition keyControlDef = movDef.getKeyControlDefintion();
-        
-        populateViewsWithData(movDef.getSpeed(), keyControlDef.getUp(), keyControlDef.getDown(), keyControlDef.getLeft(), keyControlDef.getRight());
-        
+        myView.populateWithData(movDef.getSpeed(), keyControlDef.getUp(), keyControlDef.getDown(),
+                                keyControlDef.getLeft(), keyControlDef.getRight());
     }
 
 }

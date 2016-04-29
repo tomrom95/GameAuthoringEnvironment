@@ -1,19 +1,11 @@
 package gameauthoring.creation.factories;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 import engine.IGame;
 import gameauthoring.creation.forms.CreationController;
-import gameauthoring.creation.forms.CreationControllerAttribute;
-import gameauthoring.creation.forms.CreationControllerEvent;
-import gameauthoring.creation.forms.CreationControllerGlobals;
-import gameauthoring.creation.forms.CreationControllerGroup;
-import gameauthoring.creation.forms.CreationControllerMissile;
-import gameauthoring.creation.forms.CreationControllerSprite;
+import util.BundleOperations;
 
 
 /**
@@ -35,7 +27,7 @@ public class CreationControllerFactory {
 
     public List<CreationController<?>> createCreationControllers () {
         List<CreationController<?>> ccs = new ArrayList<>();
-        List<String> order = getPropertyValueAsList("Order", myCreationClasses);
+        List<String> order = BundleOperations.getPropertyValueAsList("Order", myCreationClasses);
         for (String key : order) {
             ccs.add(createCreationController(key));
         }
@@ -51,27 +43,19 @@ public class CreationControllerFactory {
             return (CreationController<?>) Reflection.createInstance(className, key, sfcs, myGame);
         }
         catch (ReflectionException e) {
-            System.out.println("reflection exception " + e.getMessage());
+            System.out.println("reflection exception " + e.getMessage() + key + sfcs);
             // TODO handle exception
         }
         catch (ClassCastException e) {
             // TODO handle exception
-            System.out.println("class cast exception " + e.getMessage());
+            System.out.println("class cast exception " + e.getMessage() + key + sfcs);
 
         }
-        System.out.println(className);
         return null;
     }
 
-    private List<String> getCommaSeparatedStringAsList(String value) {
-        return Arrays.asList(value.split(",")).stream()
-                .map(sfc -> sfc.trim()).collect(Collectors.toList());
-    }
-    private List<String> getPropertyValueAsList(String key, ResourceBundle resource ){
-        return  getCommaSeparatedStringAsList(resource.getString(key));
-    }
     private List<String> getSFCs (String tabName) {
-        return getPropertyValueAsList(tabName, mySubforms);
+        return BundleOperations.getPropertyValueAsList(tabName, mySubforms);
     }
 
 }

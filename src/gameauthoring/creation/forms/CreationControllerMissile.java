@@ -18,7 +18,7 @@ public class CreationControllerMissile extends CreationControllerSprite {
 
     @Override
     protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
-        return authorshipData.getMyCreatedMissiles(getMyTitle());
+        return authorshipData.getMyCreatedMissiles();
     }
 
 }

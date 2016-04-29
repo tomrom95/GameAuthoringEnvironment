@@ -7,7 +7,6 @@ import gameauthoring.creation.subforms.SelectAttributeSFC;
 import gameauthoring.creation.subforms.UpgradeSFC;
 import gameauthoring.creation.subforms.costs.CostSFC;
 import gameauthoring.creation.subforms.fire.FiringSFC;
-import gameauthoring.creation.subforms.fire.FiringSFCmult;
 import gameauthoring.creation.subforms.movement.MovementSFC;
 
 
@@ -18,7 +17,7 @@ public class SpriteSFCFactory extends SubFormControllerFactory<SpriteDefinition>
     }
 
     @Override
-    protected ISubFormController<SpriteDefinition> createSubFormController (String type) {
+    protected ISubFormController<SpriteDefinition> createSubFormController (String type, Object ... params) throws ReflectionException {
 
         if (type.equals("Movement")) {
             return new MovementSFC(getMyGame());
@@ -28,18 +27,26 @@ public class SpriteSFCFactory extends SubFormControllerFactory<SpriteDefinition>
             return new SelectAttributeSFC(getMyAuthorshipData()
                     .getMyCreatedAttributes());
         }
-        else if (type.equals("FireMult")) {
-            return new FiringSFCmult(getMyGame());
+        else if (type.equals("Firing")) {
+            return new FiringSFC(getMyGame());
         }
-        else if (type.equals("Upgrade")) {
-            return new UpgradeSFC(getMyGame());
-        } else if (type.equals("Cost")) {
+        else if (type.equals("UpgradeDefender")) {
+            return new UpgradeSFC(getMyGame(),getMyGame().getAuthorshipData().getMyCreatedSprites("Defenders"));
+        }
+        else if (type.equals("UpgradeEnemy")) {
+            return new UpgradeSFC(getMyGame(),getMyGame().getAuthorshipData().getMyCreatedSprites("Enemies"));
+        }
+        else if (type.equals("UpgradeMissile")) {
+            return new UpgradeSFC(getMyGame(),getMyGame().getAuthorshipData().getMyCreatedMissiles());
+        }
+        else if (type.equals("Cost")) {
             return new CostSFC(getMyGame());
         }
 
         System.out.println("null");
 
-        return null;
+        throw new ReflectionException("Can't create sprite subformcontroller of type " + type);
     }
+
 
 }

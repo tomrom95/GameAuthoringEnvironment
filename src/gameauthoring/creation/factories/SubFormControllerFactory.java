@@ -7,6 +7,7 @@ import engine.IGame;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ProfileSFC;
+import gameauthoring.util.ErrorMessage;
 
 
 
@@ -24,14 +25,32 @@ public abstract class SubFormControllerFactory<T extends IProfilable> {
             if(subFormString.equals("ProfileSFC")){
                 list.add(createProfileSFC());
             }else{
-                list.add(createSubFormController(subFormString));
+                list.add(createSFCAndHandleErrors(subFormString));
             }
         }
         return list;
 
     }
-   
-    protected abstract ISubFormController<T> createSubFormController (String type);
+    
+    /**
+     * Method for creating an SFC based on a string ID for that SFC
+     * 
+     * @param type A string indicating which SFC to instantiate
+     * @param params Optional params for the sfc's constructor
+     * @return The ISubFormController that the factory creates
+     * @throws ReflectionException
+     * @throws ClassCastException
+     */
+    protected abstract ISubFormController<T> createSubFormController (String type, Object ... params) throws ReflectionException, ClassCastException;
+
+    private ISubFormController<T> createSFCAndHandleErrors(String type){
+        try {
+            return createSubFormController(type);
+        } catch (ReflectionException | ClassCastException e) {
+            new ErrorMessage(String.format("Error creating subform of type %s.\n Check properties files.", type)).showError();
+            throw e;
+        }
+    }
 
     protected IGame getMyGame () {
         return myGame;

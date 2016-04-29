@@ -1,59 +1,64 @@
 package gameauthoring.creation.subforms.events;
 
-import java.util.List;
 import java.util.ResourceBundle;
 import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.profile.ProfileDisplay;
-import gameauthoring.creation.entryviews.IEntryView;
+import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
-import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.creation.subforms.SubFormView;
+import gameauthoring.creation.subforms.fire.RemoveOption;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.ProfileDisplayIterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 
-public class EffectSFV extends SubFormView {
+/**
+ * Implementation of IEffectSFV using HBox arrangement, allows users to define an effect package
+ * 
+ * @author Tommy
+ * @author Joe Lilien
+ *
+ */
+public class EffectSFV extends SubFormView implements IEffectSFV {
 
     private SingleChoiceEntryView<AttributeDefinition> myAttribute;
     private SingleChoiceEntryView<ProfileDisplay> myEffectType;
-    private IEntryView myLength;
-    private IEntryView myValue;
-    private TextField myName;
+    private NumberEntryView myLength;
+    private NumberEntryView myValue;
     private ResourceBundle myLabel;
     private String myLengthKey;
     private String myValueKey;
     private String myAttributeKey;
     private String myTypeKey;
-    private VBox myContainer;
+    private HBox myContainer;
+    private RemoveOption myRemove;
 
-    public EffectSFV (AuthorshipData data, List<String> effectTypes) {
+
+    public EffectSFV (AuthorshipData data,
+                      ObservableList<ProfileDisplay> effectTypes, RemoveOption remove) {
         setResourceBundleAndKey();
-        // TODO: extract new IProfileSFV implementation that just has a textfield for name so we can
-        // reuse this code
-        myName = new TextField();
-        myName.setPromptText(myLabel.getString("EnterName"));
-
+        myRemove = remove;
         myEffectType = new SingleChoiceEntryView<ProfileDisplay>(myTypeKey,
-                                                                 createEffectTypeList(effectTypes),
+                                                                 effectTypes,
                                                                  AuthoringView.DEFAULT_ENTRYVIEW);
+
         ObservableList<AttributeDefinition> definitions = createAttributeList(data);
         myAttribute =
                 new SingleChoiceEntryView<AttributeDefinition>(myAttributeKey,
                                                                definitions,
                                                                AuthoringView.DEFAULT_ENTRYVIEW);
         myValue =
-                new TextEntryView(myValueKey, this.getData(), 100, 30,
-                                  AuthoringView.DEFAULT_ENTRYVIEW);
+                new NumberEntryView(myValueKey, 100, 30,
+                                    AuthoringView.DEFAULT_ENTRYVIEW);
         myLength =
-                new TextEntryView(myLengthKey, this.getData(), 100, 30,
-                                  AuthoringView.DEFAULT_ENTRYVIEW);
+                new NumberEntryView(myLengthKey, 100, 30,
+                                    AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
     }
 
@@ -73,62 +78,48 @@ public class EffectSFV extends SubFormView {
         return defs;
     }
 
-    private ObservableList<ProfileDisplay> createEffectTypeList (List<String> effectTypes) {
-        ObservableList<ProfileDisplay> types = FXCollections.observableArrayList();
-        effectTypes.stream()
-                .forEach(e -> types.add(new ProfileDisplay(e)));
-        return types;
+    @Override
+    protected void initView () {
+        myContainer =
+                getMyUIFactory().makeHBox(10, Pos.CENTER, myEffectType.draw(), myAttribute.draw(),
+                                          myValue.draw(), myLength.draw(), myRemove.draw());
     }
 
     @Override
-    protected void initView () {
-        myContainer = new VBox(4);
-        HBox hbox = new HBox(10);
-        myName.setMaxWidth(150);
-        myContainer.getChildren().add(myName);
-        hbox.getChildren().add(myEffectType.draw());
-        hbox.getChildren().add(myAttribute.draw());
-        hbox.getChildren().add(myValue.draw());
-        hbox.getChildren().add(myLength.draw());
-        myContainer.getChildren().add(hbox);
-    }
-
     public AttributeDefinition getAttribute () {
         return myAttribute.getSelected();
     }
 
+    @Override
     public String getEffectType () {
         return myEffectType.getSelected().getProfile().getName().get();
     }
 
-    public String getName () {
-        return myName.getText();
+    @Override
+    public double getValue () {
+        return myValue.getData();
     }
 
-    public String getValueKey () {
-        return myValueKey;
+    @Override
+    public double getLength () {
+        return myLength.getData();
     }
 
-    public String getLengthKey () {
-        return myLengthKey;
+    @Override
+    public void populateWithData (String type,
+                                  AttributeDefinition attrbute,
+                                  double value,
+                                  double length) {
+        myEffectType.setSelected(new ProfileDisplayIterator()
+                .matchStringtoProfile(myEffectType.getItems(), type));
+        myAttribute.setSelected(attrbute);
+        myValue.setData(value);
+        myLength.setData(length);
     }
 
     @Override
     public Node draw () {
         return myContainer;
-    }
-
-    public void setName (String name) {
-        myName.setText(name);
-    }
-
-    public void setEventSelection (String effectType) {
-        // TODO this is a hacky fix
-        for (ProfileDisplay pd : myEffectType.getItems()) {
-            if (pd.getProfile().getName().get().equals(effectType)) {
-                myEffectType.setSelected(pd);
-            }
-        }
     }
 
 }

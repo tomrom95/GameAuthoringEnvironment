@@ -1,61 +1,56 @@
 package gameauthoring.creation.subforms.events;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 import engine.IGame;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.events.EventType;
 import engine.events.GameEvent;
 import engine.profile.ProfileDisplay;
-import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
-import javafx.collections.FXCollections;
+import gameauthoring.creation.subforms.fire.RemovableEventSFC;
 import javafx.collections.ObservableList;
 
 
-public class EventSFC implements ISubFormController<EventPackageDefinition> {
-    private static final String NAME = "Event"; //TODO maybe put in resource file
+public class EventSFC extends RemovableEventSFC {
 
     private static final String PATH = "defaults/event_types";
     private ResourceBundle eventTypes = ResourceBundle.getBundle(PATH);
-    private EventSFV myView;
-    
-    
+    private IEventSFV myView;
+    private GameEvent myEvent;
 
-    public EventSFC () {
-        myView = new EventSFV(getEvents());
+    public EventSFC (IGame game, EventChoiceSFC sfc) {
+        super(sfc);
+        init(game, new GameEvent(null));
+       
+    }
+    public EventSFC (IGame game, EventChoiceSFC sfc, GameEvent event) {
+        super(sfc);
+        init(game, event);
+    }
+    private void init(IGame game, GameEvent event) {
+     
+        myView = new EventSFV(getEvents(), getRemoveMenu());
+        myEvent = event;
     }
 
     private ObservableList<ProfileDisplay> getEvents () {
-        List<ProfileDisplay> list = Collections.list(eventTypes.getKeys())
-                .stream()
-                .map(s -> new ProfileDisplay(s))
-                .collect(Collectors.toList());
-        return FXCollections.observableArrayList(list);
-
+        return new TypeFactory().getEffectTypes(eventTypes);
     }
 
     @Override
     public void updateItem (EventPackageDefinition item) {
-        
-        // Default profile instead of profileSFC
-        item.getProfile().getName().set(myView.getName());
-        item.getProfile().getDescription().set(myView.getEventSelection());
-        
-        
-        GameEvent event = new GameEvent(new EventType(myView.getEventSelection()));
-        
-        //TODO: need to find and replace instead of adding on each save
-        item.getMyEventsList().add(event);
-       
-       
-     }
+        myEvent = new GameEvent(new EventType(myView.getEventSelection()));
+        item.getMyEventsList().add(myEvent);
+    }
 
     @Override
-    public void initializeFields () {
-        
+    public void populateViewsWithData (EventPackageDefinition item) {
+        myView.setEventSelection(myEvent.getEventType().getType());
+    }
+
+    @Override
+    public void initializeFields (EventPackageDefinition item) {
+
     }
 
     @Override
@@ -64,13 +59,8 @@ public class EventSFC implements ISubFormController<EventPackageDefinition> {
     }
 
     @Override
-    public void populateViewsWithData (EventPackageDefinition item) {
-        myView.setName(item.getProfile().getName().get());
-        
-        //TODO problem: we can't set event selection because we don't have ProfileDisplay object, just the string
-        myView.setEventSelection(item.getProfile().getDescription().get());
-        //myView.setEventSelection(item.getMyEventsList().get(0).getEventType().getType());
-        
+    public GameEvent getModuleDefinition () {
+        return myEvent;
     }
 
 }

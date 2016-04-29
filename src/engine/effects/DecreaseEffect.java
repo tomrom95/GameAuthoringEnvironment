@@ -2,6 +2,7 @@ package engine.effects;
 
 import engine.AttributeType;
 import engine.IAttribute;
+import engine.definitions.concrete.AttributeDefinition;
 
 
 /**
@@ -15,7 +16,7 @@ public class DecreaseEffect extends Effect {
 
     // TODO should this also have constructors that allow specification of just primitive double
     // effectLength?
-    public DecreaseEffect (AttributeType type, IAttribute effectLength, double decreaseAmount) {
+    public DecreaseEffect (AttributeDefinition type, IAttribute effectLength, double decreaseAmount) {
         super(type, effectLength, decreaseAmount);
     }
 
@@ -34,7 +35,7 @@ public class DecreaseEffect extends Effect {
 
     @Override
     public IEffect makeCopy () {
-        return new DecreaseEffect(getAttributeType(),
+        return new DecreaseEffect(getAttributeDefinition(),
                                   getEffectLengthAttribute().makeCopy(),
                                   getAlteringValue());
     }

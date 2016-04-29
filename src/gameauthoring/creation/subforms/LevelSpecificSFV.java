@@ -15,7 +15,7 @@ import javafx.scene.Node;
  */
 public class LevelSpecificSFV extends SubFormView implements ILevelSpecificSFV {
 
-    private CheckEntryView myChoice;
+    private CheckEntryView myChoice;   
     private ResourceBundle myLabel;
     private String myChoiceKey;
 

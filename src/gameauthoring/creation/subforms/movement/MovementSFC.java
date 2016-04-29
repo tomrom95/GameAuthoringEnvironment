@@ -9,7 +9,8 @@ import engine.definitions.moduledef.MovementDefinition;
 import engine.definitions.moduledef.StaticMovementDefintion;
 import engine.definitions.moduledef.TrackingMoverDefinition;
 import engine.definitions.moduledef.UserMoverDefinition;
-import gameauthoring.creation.subforms.DynamicSubFormController;
+import gameauthoring.creation.factories.MovementSFCFactory;
+import gameauthoring.creation.subforms.dynamic.DynamicSubFormController;
 
 /**
  * A MovementSFC is a SubFormController in charge of assigning a movement module to a SpriteDefinition

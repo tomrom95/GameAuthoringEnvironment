@@ -2,7 +2,6 @@ package gameauthoring.creation.subforms.movement;
 
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.ConstantMoverDefinition;
-import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 
@@ -18,37 +17,29 @@ import gameauthoring.creation.subforms.ISubFormView;
 public class ConstantMoverSFC implements ISubFormControllerSprite {
 
     private IConstantMoverSFV myView;
-    private IFormDataManager myFormData;
     private double myDefaultSpeed = 0;
     private double myDefaultOrientation = 0;
 
     public ConstantMoverSFC () {
         myView = new ConstantMoverSFV();
-        myFormData = myView.getData();
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (SpriteDefinition item) {
         populateViewsWithData(myDefaultSpeed, myDefaultOrientation);
     }
 
     private void populateViewsWithData (double speed, double orientation) {
-        myFormData.set(myView.getMySpeedKey(),
-                       Double.toString(speed));
-        myFormData.set(myView.getMyOrientationKey(),
-                       Double.toString(orientation));
-        
+        myView.populateWithData(orientation, speed);
+
 
     }
 
     @Override
     public void updateItem (SpriteDefinition item) {
         ConstantMoverDefinition myMovementDefinition = new ConstantMoverDefinition();
-        Double speed =
-                Double.valueOf(myFormData.getValueProperty(myView.getMySpeedKey()).get());
-
-        Double orientation =
-                Double.valueOf(myFormData.getValueProperty(myView.getMyOrientationKey()).get());
+        Double speed = myView.getMySpeed();
+        Double orientation = myView.getMyOrientation();
         myMovementDefinition.setSpeed(speed);
         myMovementDefinition.setOrientaiton(orientation);
         item.setMovementDefinition(myMovementDefinition);
@@ -63,12 +54,7 @@ public class ConstantMoverSFC implements ISubFormControllerSprite {
     public void populateViewsWithData (SpriteDefinition item) {
         ConstantMoverDefinition movementDefinition =
                 (ConstantMoverDefinition) item.getMovementDefinition();
-
-        myFormData.set(myView.getMySpeedKey(),
-                       Double.toString(movementDefinition.getSpeed()));
-        myFormData.set(myView.getMyOrientationKey(),
-                       Double.toString(movementDefinition.getOrientation()));
-        
+        myView.populateWithData(movementDefinition.getOrientation(), movementDefinition.getSpeed());        
     }
 
 }

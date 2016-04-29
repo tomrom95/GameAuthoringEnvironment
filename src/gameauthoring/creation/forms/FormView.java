@@ -67,7 +67,7 @@ public class FormView implements IFormView {
     
     private List<Node> getSFVNodes(List<ISubFormView> subFormViews){
         List<Node> nodes = new ArrayList<>();
-        subFormViews.forEach(e->nodes.add(e.draw()));       
+        subFormViews.forEach(e-> nodes.add(e.draw()));       
         return nodes;
     }
     

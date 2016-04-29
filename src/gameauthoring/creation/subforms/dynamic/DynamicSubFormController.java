@@ -1,10 +1,12 @@
-package gameauthoring.creation.subforms;
+package gameauthoring.creation.subforms.dynamic;
 
 import java.util.ArrayList;
 import java.util.List;
 import engine.IGame;
 import engine.profile.IProfilable;
 import gameauthoring.creation.factories.DynamicSFCFactory;
+import gameauthoring.creation.subforms.ISubFormController;
+import gameauthoring.creation.subforms.ISubFormView;
 
 
 /**
@@ -90,9 +92,9 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
     }
 
     @Override
-    public void initializeFields () {
+    public void initializeFields (T item) {
         for (ISubFormController<T> subFormController : mySubFormControllers) {
-            subFormController.initializeFields();
+            subFormController.initializeFields(item);
         }
     }
 

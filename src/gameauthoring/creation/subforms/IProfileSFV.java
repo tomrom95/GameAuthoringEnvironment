@@ -9,18 +9,21 @@ package gameauthoring.creation.subforms;
  */
 public interface IProfileSFV  extends ISubFormView{
 
-    String getMyNameKey ();
-
-
-    String getMyDescriptionKey ();
-
-
-    String getMyImageKey ();
-
 
     double getMyImageWidth ();
 
 
     double getMyImageHeight ();
+
+
+    String getName ();
+
+
+    String getDescription ();
+
+
+    String getImage ();
+    
+    void populateWithData (String name, String description, String imageURL, double width, double height);
     
 }
