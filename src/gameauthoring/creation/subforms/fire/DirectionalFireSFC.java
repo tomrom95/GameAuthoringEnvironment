@@ -91,8 +91,7 @@ public class DirectionalFireSFC extends RemovableFireSFC {
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-        //TODO: range
-        myView.populateWithData(myFireDef.getProjectileDefinition(),myFireDef.getAngle(),myFireDef.getWaitTime(), myFireDef.getFireRange(), myFireDef.getRanged());
+        myView.populateWithData(myFireDef.getProjectileDefinition(),myFireDef.getAngle() * 180 / Math.PI,myFireDef.getWaitTime(), myFireDef.getFireRange(), myFireDef.getRanged());
 
     }
 
