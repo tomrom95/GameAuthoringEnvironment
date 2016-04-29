@@ -103,7 +103,7 @@ public abstract class ClickAndFillView extends SubFormView {
     }
 
     protected void setDefaultHelpMessage (String message) {
-        defaultHelpMessage.setText(message);
+        defaultHelpMessage = new Label(message);
     }
 
     public void showDefaultMessage () {
