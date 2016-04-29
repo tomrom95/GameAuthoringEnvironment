@@ -215,8 +215,7 @@ public class BasicUIFactory implements UIFactory {
                                                             
         pane.setGraphic(checkBox);
         pane.expandedProperty().bindBidirectional(checkBox.selectedProperty());
-        Node arrow = pane.lookup(".arrow");
-        System.out.println("arrow " + arrow);
+        //Node arrow = pane.lookup(".arrow");
         //arrow.setVisible(false);
         pane.setExpanded(isExpanded);
         return pane;
