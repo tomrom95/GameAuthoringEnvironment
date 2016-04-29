@@ -49,8 +49,8 @@ import splash.MainUserInterface;
 
 public class AuthoringView implements IAuthoringView {
 
-    private List<ITabViewer> myTabViewList;
-    private TabViewFactory<?> myTabFactory;
+
+    private TabViewFactory<ITabViewer> myTabFactory;
     
     private GameTabViewer myGameTabViewer;
     private CreationTabViewer myCreationTabViewer;
@@ -73,7 +73,7 @@ public class AuthoringView implements IAuthoringView {
         setResourceBundle();
         GameFactory gameFactory = new GameFactory();
         myGame = gameFactory.createGame();
-        myTabFactory = new TabViewFactory(myGame);
+        myTabFactory = new TabViewFactory<ITabViewer>(myGame);
     }
 
     private void setResourceBundle () {

@@ -1,6 +1,6 @@
 Order = Game,CreateObjects,Conditions,Waves,BuildScenes
 Game = gameauthoring.tabs.GameTabView
 CreateObjects = gameauthoring.tabs.CreationTabView
-Conditions = CONDITIONS
+Conditions = gameauthoring.listdisplay.GameConditionView
 Waves = gameauthoring.waves.WaveTabViewer
 BuildScenes = gameauthoring.tabs.SceneTabView
