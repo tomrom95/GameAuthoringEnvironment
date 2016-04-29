@@ -6,7 +6,6 @@ import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 
-
 /**
  * This class creates the controller to handle, manage, and interact with user data involving
  * constant movement modules
@@ -38,6 +37,7 @@ public class ConstantMoverSFC implements ISubFormControllerSprite {
                        Double.toString(speed));
         myFormData.set(myView.getMyOrientationKey(),
                        Double.toString(orientation));
+        
 
     }
 
@@ -57,6 +57,18 @@ public class ConstantMoverSFC implements ISubFormControllerSprite {
     @Override
     public ISubFormView getSubFormView () {
         return myView;
+    }
+
+    @Override
+    public void populateViewsWithData (SpriteDefinition item) {
+        ConstantMoverDefinition movementDefinition =
+                (ConstantMoverDefinition) item.getMovementDefinition();
+
+        myFormData.set(myView.getMySpeedKey(),
+                       Double.toString(movementDefinition.getSpeed()));
+        myFormData.set(myView.getMyOrientationKey(),
+                       Double.toString(movementDefinition.getOrientation()));
+        
     }
 
 }

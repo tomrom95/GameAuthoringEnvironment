@@ -2,6 +2,7 @@ package gameplayer;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.Drawable;
 import engine.IAttribute;
 import engine.rendering.GraphicFactory;
@@ -25,7 +26,7 @@ import javafx.scene.layout.VBox;
 
 public class SpriteDisplay extends SizeableGlyph implements ISpriteDisplay {
 
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private VBox myPane = new VBox();
     private GraphicFactory myGraphicFactory;
     private UIFactory myUIFactory = new BasicUIFactory();

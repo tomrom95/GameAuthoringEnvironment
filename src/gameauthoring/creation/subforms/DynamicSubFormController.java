@@ -103,6 +103,24 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
         }
 
     }
+    
+    @Override
+    public void populateViewsWithData (T item) {
+        
+        changeCurrentSFCBasedOnData(item);
+        
+        if(myCurrentSubFormController != null){
+            myCurrentSubFormController.populateViewsWithData(item);
+        }
+
+    }
+    
+    /**
+     * Subclasses must determine which sub-sub form to populate with data
+     * 
+     * @param item The newly selected item that needs to be displayed
+     */
+    protected abstract void changeCurrentSFCBasedOnData(T item);
 
     @Override
     public ISubFormView getSubFormView () {

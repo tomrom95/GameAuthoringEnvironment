@@ -1,5 +1,7 @@
 package gameauthoring.creation.subforms;
 
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.SpriteDefinition;
@@ -8,7 +10,6 @@ import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.BasicUIFactory;
-import gameauthoring.util.UIFactory;
 import javafx.beans.property.BooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.control.TitledPane;
@@ -23,11 +24,12 @@ import javafx.scene.layout.GridPane;
  */
 public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     
-    private String myUpgradeChoicesKey = "Next Level Defender: ";
-    private String myUpgradableKey = "Upgradable: ";
-    private String myGlobalKey = "Deplete Global Resource: ";
-    private String myAttributeChoicesKey = "Depelted Resource: ";
-    private String myCostKey = "Cost: ";
+    private ResourceBundle myLabel;
+    private String myUpgradeChoicesKey;
+    private String myUpgradableKey;
+    private String myGlobalKey;
+    private String myAttributeChoicesKey;
+    private String myCostKey;
     private TitledPane myContainer;
     private SingleChoiceEntryView<SpriteDefinition> myUpgradeChoices;
     private SingleChoiceEntryView<AttributeDefinition> myAttributeChoices;
@@ -39,12 +41,13 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
 
     public UpgradeSFV (AuthorshipData data) {
 
+        setResourceBundleAndKey();
         // TODO: change list of sprite DefinitionCollections in authorship data to map most likely,
         // or separate them, should decide on that to avoid magic number like this
 
         myUpgradeChoices =
                 new SingleChoiceEntryView<SpriteDefinition>(myUpgradeChoicesKey, data
-                        .getMyCreatedSprites().get(1).getItems(),
+                        .getMyCreatedSprites("Enemies").getItems(),
                                                             AuthoringView.DEFAULT_ENTRYVIEW);
         myAttributeChoices =
                 new SingleChoiceEntryView<AttributeDefinition>(myAttributeChoicesKey,
@@ -62,6 +65,16 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
         initView();
         initBinding(data);
 
+    }
+
+    private void setResourceBundleAndKey () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                                           .getInstance().getCurrentLocaleProperty().get());
+        myUpgradeChoicesKey = myLabel.getString("UpgradeChoicesKey");
+        myUpgradableKey = myLabel.getString("UpgradableKey");
+        myGlobalKey = myLabel.getString("GlobalKey");
+        myAttributeChoicesKey = myLabel.getString("AttributeChoicesKey");
+        myCostKey = myLabel.getString("CostKey");        
     }
 
     @Override
@@ -90,6 +103,7 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
             myAttributeChoices.setItems(data.getMyCreatedGlobals().getItems());
         }
         else {
+            //TODO: maybe this should be from mySprite.getAttributes() so that you can only pick attributes that the sprite has
             myAttributeChoices.setItems(data.getMyCreatedAttributes().getItems());
         }
     }
@@ -100,7 +114,7 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     }
 
     @Override
-    public AttributeDefinition getDepeltedAttribute () {
+    public AttributeDefinition getDepletedAttribute () {
         return this.myAttributeChoices.getSelected();
     }
 
@@ -127,6 +141,16 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     @Override
     public void setIsUpgradable (boolean isSelected) {
         this.isUpgradableProperty().set(isSelected);
+    }
+
+    @Override
+    public void setDepletedAttribute (AttributeDefinition item) {
+        this.myAttributeChoices.setSelected(item);
+    }
+
+    @Override
+    public void setNextUpgrade (SpriteDefinition item) {
+        this.myUpgradeChoices.setSelected(item);
     }
 
 

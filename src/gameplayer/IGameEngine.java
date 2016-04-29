@@ -1,6 +1,7 @@
 package gameplayer;
 
 import engine.IGame;
+import engine.rendering.IRenderer;
 
 /**
  * This interface represents a game engine that can be used to run a game. It defines the necessary
@@ -30,5 +31,7 @@ public interface IGameEngine {
      * @return the game the engine is running
      */
     IGame getGame ();
+
+    void rescale (double width, double height);
 
 }

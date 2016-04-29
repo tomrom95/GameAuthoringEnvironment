@@ -1,6 +1,8 @@
 package gameauthoring.creation.subforms.events;
 
 import java.util.List;
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.profile.ProfileDisplay;
@@ -17,30 +19,31 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
-public class EffectSubFormView extends SubFormView {
+public class EffectSFV extends SubFormView {
 
     private SingleChoiceEntryView<AttributeDefinition> myAttribute;
     private SingleChoiceEntryView<ProfileDisplay> myEffectType;
     private IEntryView myLength;
     private IEntryView myValue;
     private TextField myName;
-    private String myLengthKey = "For length in time: ";
-    private String myValueKey = "By amount: ";
-    private String myAttributeKey = "Affect Attribute ";
-    private String myTypeKey = "Effect type: ";
+    private ResourceBundle myLabel;
+    private String myLengthKey;
+    private String myValueKey;
+    private String myAttributeKey;
+    private String myTypeKey;
     private VBox myContainer;
 
-    public EffectSubFormView (AuthorshipData data,
-                              List<String> effectTypes) {
-        
-        //TODO: extract new IProfileSFV implementation that just has a textfield for name so we can reuse this code
+    public EffectSFV (AuthorshipData data, List<String> effectTypes) {
+        setResourceBundleAndKey();
+        // TODO: extract new IProfileSFV implementation that just has a textfield for name so we can
+        // reuse this code
         myName = new TextField();
-        myName.setPromptText("Enter name: ");
-        
-        myEffectType = new SingleChoiceEntryView<ProfileDisplay> (myTypeKey,
-                                                                  createEffectTypeList(effectTypes),
-                                                                  AuthoringView.DEFAULT_ENTRYVIEW);
-        ObservableList<AttributeDefinition> definitions = createAttributeList (data);
+        myName.setPromptText(myLabel.getString("EnterName"));
+
+        myEffectType = new SingleChoiceEntryView<ProfileDisplay>(myTypeKey,
+                                                                 createEffectTypeList(effectTypes),
+                                                                 AuthoringView.DEFAULT_ENTRYVIEW);
+        ObservableList<AttributeDefinition> definitions = createAttributeList(data);
         myAttribute =
                 new SingleChoiceEntryView<AttributeDefinition>(myAttributeKey,
                                                                definitions,
@@ -54,6 +57,15 @@ public class EffectSubFormView extends SubFormView {
         initView();
     }
 
+    private void setResourceBundleAndKey () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                .getInstance().getCurrentLocaleProperty().get());
+        myLengthKey = myLabel.getString("LengthKey");
+        myValueKey = myLabel.getString("ValueKey");
+        myAttributeKey = myLabel.getString("AttributeKey");
+        myTypeKey = myLabel.getString("TypeKey");
+    }
+
     private ObservableList<AttributeDefinition> createAttributeList (AuthorshipData data) {
         ObservableList<AttributeDefinition> defs = FXCollections.observableArrayList();
         defs.addAll(data.getMyCreatedAttributes().getItems());
@@ -64,7 +76,7 @@ public class EffectSubFormView extends SubFormView {
     private ObservableList<ProfileDisplay> createEffectTypeList (List<String> effectTypes) {
         ObservableList<ProfileDisplay> types = FXCollections.observableArrayList();
         effectTypes.stream()
-                   .forEach(e -> types.add(new ProfileDisplay(e)));
+                .forEach(e -> types.add(new ProfileDisplay(e)));
         return types;
     }
 
@@ -84,19 +96,19 @@ public class EffectSubFormView extends SubFormView {
     public AttributeDefinition getAttribute () {
         return myAttribute.getSelected();
     }
-    
+
     public String getEffectType () {
         return myEffectType.getSelected().getProfile().getName().get();
     }
-    
+
     public String getName () {
         return myName.getText();
     }
-    
+
     public String getValueKey () {
         return myValueKey;
     }
-    
+
     public String getLengthKey () {
         return myLengthKey;
     }
@@ -104,6 +116,19 @@ public class EffectSubFormView extends SubFormView {
     @Override
     public Node draw () {
         return myContainer;
+    }
+
+    public void setName (String name) {
+        myName.setText(name);
+    }
+
+    public void setEventSelection (String effectType) {
+        // TODO this is a hacky fix
+        for (ProfileDisplay pd : myEffectType.getItems()) {
+            if (pd.getProfile().getName().get().equals(effectType)) {
+                myEffectType.setSelected(pd);
+            }
+        }
     }
 
 }

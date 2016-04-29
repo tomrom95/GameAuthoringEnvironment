@@ -1,5 +1,6 @@
 package gameauthoring.creation.subforms;
 
+import engine.AuthorshipData;
 import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
@@ -9,8 +10,11 @@ public class SelectSpriteSFC implements ISubFormControllerGroup{
     
     private ISelectSpriteSFV myView;
 
-    public SelectSpriteSFC (List<DefinitionCollection<SpriteDefinition>> sprites) {
-        myView = new SelectSpriteSFV(sprites);
+    public SelectSpriteSFC (AuthorshipData authorshipData) {
+        List<DefinitionCollection<SpriteDefinition>> groupableSprites = new ArrayList<>();
+        groupableSprites.addAll(authorshipData.getMyCreatedSpritesMap().values());
+        groupableSprites.add(authorshipData.getMyCreatedMissiles());
+        myView = new SelectSpriteSFV(groupableSprites);
     }
 
     @Override
@@ -27,6 +31,11 @@ public class SelectSpriteSFC implements ISubFormControllerGroup{
     @Override
     public void initializeFields () {
         // No initialization needed
+    }
+
+    @Override
+    public void populateViewsWithData (SpriteGroup item) {
+        myView.setChosen(item.getSpriteDefinitions());
     }
 
 }

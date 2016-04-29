@@ -1,6 +1,5 @@
 package gameauthoring.creation.subforms.costs;
 
-import engine.AttributeType;
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.costs.Cost;
@@ -24,8 +23,7 @@ public class CostSFC implements ISubFormControllerSprite{
         if (!myView.costChecked()) return;
         
         double amount = Double.valueOf(myView.getData().getValueProperty(myView.getCostKey()).get());
-        AttributeType type = new AttributeType(myView.getSelectedAttribute().getType());
-        ICost cost = new Cost(myGame, type, amount);
+        ICost cost = new Cost(myGame, myView.getSelectedAttribute(), amount);
         item.setCost(cost);
     }
 
@@ -37,6 +35,14 @@ public class CostSFC implements ISubFormControllerSprite{
     @Override
     public ISubFormView getSubFormView () {
         return myView;
+    }
+
+    @Override
+    public void populateViewsWithData (SpriteDefinition item) {
+        ICost cost = item.getCost();
+        myView.setSelectedAttribute(cost.getAttributeDefinition());
+        myView.getData().getValueProperty(myView.getCostKey()).set(Double.toString(cost.getCostAmount()));
+        
     }
 
 }

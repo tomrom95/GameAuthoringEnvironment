@@ -29,6 +29,7 @@ import library.GameLibraryController;
  * @TODO: ResourceBundle for unprotected string
  * @TODO: Load Game method
  * @author Jin An
+ * @author David Maydew
  *
  */
 public class MainUserInterface {
@@ -36,6 +37,7 @@ public class MainUserInterface {
     private static final String SPACING_KEY = "spacing";
     private static final String SPLASHTITLEKEY = "splashtitle";
     private static final String LABELS_PATH = "languages/labels";
+    private static final String CSS_FILE = "defaults/launch.css";
     private final ResourceBundle mySpecs = ResourceBundle.getBundle("defaults/splashscreen");
     private ResourceBundle myLabels;
     private Stage myStage;
@@ -85,6 +87,7 @@ public class MainUserInterface {
     public void init (Stage s) {
         myStage = s;
         Scene scene = new Scene(myLayout, AuthoringView.WIDTH, AuthoringView.HEIGHT);
+        scene.getStylesheets().add(CSS_FILE);
         setTitle();
         s.setScene(scene);
         s.show();
@@ -110,8 +113,10 @@ public class MainUserInterface {
     private Node createLogin () {
         HBox box = new HBox(Integer.parseInt(mySpecs.getString(SPACING_KEY)));
         box.setAlignment(Pos.CENTER);
+        Button fbButton = createButton(myLabels.getString("splashloginfb"), e -> loginWithFacebook());
+        fbButton.setId(mySpecs.getString("fbbutton"));
         box.getChildren()
-                .add(createButton(myLabels.getString("splashloginfb"), e -> loginWithFacebook()));
+                .add(fbButton);
         return box;
     }
 

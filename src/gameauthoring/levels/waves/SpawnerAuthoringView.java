@@ -12,6 +12,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import splash.LocaleManager;
+import util.ScaleRatio;
 
 
 /**
@@ -24,16 +26,16 @@ import javafx.scene.layout.VBox;
 
 public class SpawnerAuthoringView implements Glyph {
 
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     private VBox myPane = new VBox();
     private UIFactory myFactory = new BasicUIFactory();
     private WaveOptionView myWaveOptions;
     private SpawnerView mySpawner;
 
-    public SpawnerAuthoringView (IGame game, ILevel level, AuthoringRenderer renderer) {
+    public SpawnerAuthoringView (IGame game, ILevel level, AuthoringRenderer renderer, ScaleRatio scale) {
         myWaveOptions = new WaveOptionView(game);
-        mySpawner = new SpawnerView(game, level, renderer);
+        mySpawner = new SpawnerView(game, level, renderer, scale);
         initPane();
         new SpawnerAuthoringController(mySpawner, myWaveOptions);
     }
@@ -49,6 +51,10 @@ public class SpawnerAuthoringView implements Glyph {
     @Override
     public Node draw () {
         return myPane;
+    }
+
+    public double getWidth () {
+        return myPane.getWidth();
     }
 
 }

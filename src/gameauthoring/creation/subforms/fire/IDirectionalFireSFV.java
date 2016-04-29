@@ -20,4 +20,6 @@ public interface IDirectionalFireSFV extends IFiringSFV {
 
     SpriteDefinition getMissileSelection ();
 
+    void setMissileSelection (SpriteDefinition projectileDefinition);
+
 }

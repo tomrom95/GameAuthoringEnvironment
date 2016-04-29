@@ -56,4 +56,5 @@ public interface IGame extends IGamePlayable {
      * 
      */
     void createAndSortGlobals ();
+
 }

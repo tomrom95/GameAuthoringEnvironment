@@ -1,5 +1,7 @@
 package gameauthoring.levels.sprites;
 
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.levels.SceneController;
@@ -11,7 +13,9 @@ import javafx.scene.layout.HBox;
 
 
 public class DragCheckSpriteCell extends DraggableSpriteCell implements Checkable {
-    private static final String CHECK_STRING = "Placeable in level?";
+
+    private ResourceBundle myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+            .getInstance().getCurrentLocaleProperty().get());
 
     public DragCheckSpriteCell (LevelRenderer target, SceneController controller) {
         super(target, controller);
@@ -41,7 +45,7 @@ public class DragCheckSpriteCell extends DraggableSpriteCell implements Checkabl
     }
 
     private void addToolTip (CheckBox checkBox) {
-        Tooltip tooltip = new Tooltip(CHECK_STRING);
+        Tooltip tooltip = new Tooltip(myLabel.getString("PlaceableLevel"));
         checkBox.setOnMouseEntered(e -> {
             Point2D point = getCheckBoxPoint(checkBox);
             tooltip.show(checkBox, point.getX(), point.getY());

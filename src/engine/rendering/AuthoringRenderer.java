@@ -11,6 +11,7 @@ import gameauthoring.levels.sprites.OnScreenSprite;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import util.ScaleRatio;
 
 
 public class AuthoringRenderer extends LevelRenderer {
@@ -18,32 +19,27 @@ public class AuthoringRenderer extends LevelRenderer {
     private ILevel myLevel;
     private Map<ISprite, Node> mySpriteNodeMap;
     private GridRenderer myTileView;
-    
-    public AuthoringRenderer (ILevel level, Pane pane, GridPane gridPane) {
-        super(pane);
+
+    public AuthoringRenderer (ILevel level, Pane pane, GridPane gridPane, ScaleRatio scale) {
+        super(pane, scale);
         myLevel = level;
         mySpriteNodeMap = new HashMap<>();
         myTileView = new GridRenderer(level, gridPane);
     }
 
     private Node createOnScreenSprite (ISprite sprite) {
-        return (new OnScreenSprite(this, myLevel, sprite)).draw();
+        return (new OnScreenSprite(this, myLevel, sprite, getScale())).draw();
         // this.draw(spriteNode, sprite);
     }
 
-    public void updateNewTiles (){
+    public void updateNewTiles () {
         myTileView.render();
     }
-    
+
     @Override
     public void render () {
         drawBackground(getBackgroundURL());
-        updateNewBackgroundSize();
         drawSprites();
-    }
-
-    private void updateNewBackgroundSize () {
-        myLevel.setBackgroundImageSize(getPane().getMinWidth(),getPane().getMinHeight());        
     }
 
     @Override
@@ -106,22 +102,45 @@ public class AuthoringRenderer extends LevelRenderer {
         }
         else {
             Node node = createOnScreenSprite(sprite);
+            node.scaleXProperty().set(getScale().getScale());
+            node.scaleYProperty().set(getScale().getScale());
             mySpriteNodeMap.put(sprite, node);
             add(node);
             return node;
         }
     }
-    
-    public GridRenderer getGrids(){
+
+    public GridRenderer getGrids () {
         return myTileView;
     }
-    
-    public ILevel getLevel(){
+
+    public ILevel getLevel () {
         return myLevel;
     }
 
     private void add (Node node) {
         getPane().getChildren().add(node);
+    }
+
+    @Override
+    public void redrawBackground () {
+        for (Drawable sprite: mySpriteNodeMap.keySet()) {
+            resize(sprite, mySpriteNodeMap.get(sprite));
+        }
+    }
+
+    private void resize (Drawable sprite, Node node) {
+        draw(node, sprite);
+    }
+
+    @Override
+    protected double scaledHeight () {
+        return getScale().scale(myLevel.getBounds().getHeight());
+    }
+
+    @Override
+    protected double scaledWidth () {
+        return getScale().scale(myLevel.getBounds().getWidth());
     }
 
 }

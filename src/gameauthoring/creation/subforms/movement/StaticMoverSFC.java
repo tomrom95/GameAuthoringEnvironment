@@ -18,25 +18,25 @@ import gameauthoring.creation.subforms.ISubFormView;
  *
  */
 
-public class StaticMoverSubFormController implements ISubFormControllerSprite {
+public class StaticMoverSFC implements ISubFormControllerSprite {
 
-    private StaticMoverSubFormView myView;
+    private StaticMoverSFV myView;
 
-    public StaticMoverSubFormController () {
-        myView = new StaticMoverSubFormView();
+    public StaticMoverSFC () {
+        myView = new StaticMoverSFV();
     }
 
     @Override
     public void updateItem (SpriteDefinition item) {
-
+        
         StaticMovementDefintion myMovementDefinition = new StaticMovementDefintion();
-
         item.setMovementDefinition(myMovementDefinition);
 
     }
 
+    @Override
     public void populateViewsWithData (SpriteDefinition item) {
-
+        
     }
 
     @Override

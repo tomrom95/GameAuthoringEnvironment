@@ -15,6 +15,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
+import util.ScaleRatio;
 
 
 /**
@@ -31,10 +32,13 @@ public class OnScreenSprite implements Draggable, Glyph {
     private ISprite mySprite;
     private SpriteController myController;
 
-    public OnScreenSprite (AuthoringRenderer renderer, ILevel level, ISprite sprite) {
+    public OnScreenSprite (AuthoringRenderer renderer,
+                           ILevel level,
+                           ISprite sprite,
+                           ScaleRatio scale) {
         levelView = renderer;
         mySprite = sprite;
-        myController = new SpriteController(level);
+        myController = new SpriteController(level, scale);
     }
 
     @Override

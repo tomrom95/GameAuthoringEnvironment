@@ -18,4 +18,8 @@ public interface ITrackingFireSFV  extends ISubFormView{
 
     SpriteGroup getTargetsCoice ();
 
+    void setTargetsChoice (SpriteGroup targets);
+
+    void setSelectedMissile (SpriteDefinition projectileDefinition);
+
 }

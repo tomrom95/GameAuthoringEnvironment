@@ -9,6 +9,7 @@ import engine.interactionevents.ScreenEventFactory;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import util.ScaleRatio;
 
 
 /**
@@ -27,6 +28,7 @@ public class IOInterpeter {
     private IScreenEventFactory myEventFactory;
     private List<KeyIOEvent> myQueuedKeyEvents;
     private List<MouseIOEvent> myQueuedMouseEvents;
+    private ScaleRatio myScale = new ScaleRatio();
 
     public IOInterpeter (Scene scene, Pane pane) {
         myEventFactory = new ScreenEventFactory();
@@ -37,7 +39,7 @@ public class IOInterpeter {
 
     private void setUpListener (Scene scene, Pane pane) {
         pane.requestFocus();
-        pane.setOnMouseClicked(e -> queue(myEventFactory.interpretEvent(e)));
+        pane.setOnMouseClicked(e -> queue(myEventFactory.interpretEvent(e, myScale.getScale(), myScale.getScale())));
         scene.addEventFilter(KeyEvent.KEY_RELEASED, e -> queue(myEventFactory.interpretEvent(e)));
         scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> queue(myEventFactory.interpretEvent(e)));
     }
@@ -60,6 +62,11 @@ public class IOInterpeter {
         List<KeyIOEvent> copy = new ArrayList<>(myQueuedKeyEvents);
         myQueuedKeyEvents.clear();
         return copy;
+    }
+
+    public void setScale (ScaleRatio scale) {
+        myScale = scale;
+        
     }
 
 }

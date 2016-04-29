@@ -1,8 +1,6 @@
 package gameauthoring.creation.forms;
 
 import java.util.List;
-import java.util.function.Consumer;
-import engine.definitions.concrete.IDefinition;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.util.Glyph;
 import javafx.collections.ObservableList;
@@ -11,29 +9,25 @@ import javafx.collections.ObservableList;
 /**
  * Interface for a view object that lays out an IFormView and an IObjectListView
  * 
- * Note: setters might not be necessary (they will probably be passed in to constructor
- * instead), but for now I include them to specify what an IObjectCreationView
- * will be structured
- * 
  * @author Jeremy Schreck
  *
  */
 
-public interface IObjectCreationView<E> extends Glyph {
+public interface ICreationView<E> extends Glyph {
 
     /**
      * Tell the view which method it should call to create a "new" item
      * 
-     * @param action The action to take when the user decides to create a new ite,
+     * @param action The action to take when the user decides to create a new item
      */
-    void setNewAction (Consumer<?> action);
+    void setNewAction (Runnable action);
 
     /**
      * Tell the view which method it should call to edit a previously created item
      * 
      * @param action The action to take when the user decides to edit a different item
      */
-    void setEditAction (Consumer<E> action);
+    void setEditAction (Runnable action);
 
     /**
      * Get the IObjectListView, which is the view containing the list of objects
@@ -41,7 +35,7 @@ public interface IObjectCreationView<E> extends Glyph {
      * 
      * @return The IObjectListView object
      */
-    IObjectListView<E> getObjectListView ();
+    ICreationListView<E> getCreationListView ();
 
     /**
      * Get the IFormView, which is the view containing the form to create a new object
