@@ -20,7 +20,7 @@ public class EventSFC extends RemovableEventSFC {
 
     public EventSFC (GameEvent event, EventChoiceSFC sfc) {
         super(sfc);
-        myView = new EventSFV(getEvents());
+        myView = new EventSFV(getEvents(), getRemoveMenu());
         myEvent = event;
     }
 

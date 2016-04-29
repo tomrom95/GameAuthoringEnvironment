@@ -31,7 +31,7 @@ public class EffectSFC extends RemovableEffectSFC {
     public EffectSFC (IGame game, EffectChoiceSFC sfc) {
         super(sfc);
         myGame = game;
-        myView = new EffectSFV(myGame.getAuthorshipData(), getEffects()); 
+        myView = new EffectSFV(myGame.getAuthorshipData(), getEffects(), getRemoveMenu()); 
     }
 
     private ObservableList<ProfileDisplay> getEffects () {

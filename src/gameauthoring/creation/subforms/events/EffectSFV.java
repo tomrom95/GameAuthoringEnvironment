@@ -8,6 +8,7 @@ import engine.profile.ProfileDisplay;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
+import gameauthoring.creation.subforms.fire.RemoveOption;
 import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.ProfileDisplayIterator;
 import javafx.collections.FXCollections;
@@ -36,10 +37,13 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
     private String myAttributeKey;
     private String myTypeKey;
     private HBox myContainer;
+    private RemoveOption myRemove;
+
 
     public EffectSFV (AuthorshipData data,
-                      ObservableList<ProfileDisplay> effectTypes) {
+                      ObservableList<ProfileDisplay> effectTypes, RemoveOption remove) {
         setResourceBundleAndKey();
+        myRemove = remove;
         myEffectType = new SingleChoiceEntryView<ProfileDisplay>(myTypeKey,
                                                                  effectTypes,
                                                                  AuthoringView.DEFAULT_ENTRYVIEW);
@@ -78,7 +82,7 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
     protected void initView () {
         myContainer =
                 getMyUIFactory().makeHBox(10, Pos.CENTER, myEffectType.draw(), myAttribute.draw(),
-                                          myValue.draw(), myLength.draw());
+                                          myValue.draw(), myLength.draw(), myRemove.draw());
     }
 
     @Override
