@@ -41,7 +41,7 @@ public class PlayerSideBar extends SideBarDisplay {
     }
 
     protected ProfileCellView<SpriteDefinition> getSpriteCellView () {
-        System.out.println(getLevelView());
+        //System.out.println(getLevelView());
         return new PlayerSideBarCell(getLevelView(), getController());
     }
 

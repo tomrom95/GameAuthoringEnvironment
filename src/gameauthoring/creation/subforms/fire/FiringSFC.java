@@ -17,13 +17,13 @@ import util.BundleOperations;
 
 public class FiringSFC extends MultiOptionSFC<SpriteDefinition> {
 
-    private String firingKey = "FIRING";
+    private static String FIRING_KEY = "Firing";
 
     public FiringSFC (IGame game) {
         super(game);
         //setMySFCFactory(new FiringSFCFactory(game));
-        setMyOptions(BundleOperations.getPropertyValueAsList(firingKey, getMyOptionsFile()));
-        setMyView(new FiringSFV(getMyOptions()));
+        setMyOptions(BundleOperations.getPropertyValueAsList(FIRING_KEY, getMyOptionsFile()));
+        setMyView(new FiringSFV(getMyOptions(), FIRING_KEY));
         setActions();
     }
 

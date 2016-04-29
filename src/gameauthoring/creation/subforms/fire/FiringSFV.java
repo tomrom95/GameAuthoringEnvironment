@@ -15,8 +15,8 @@ public class FiringSFV extends ClickAndFillView {
 
     private String defaultHelpMessage = "help";
 
-    public FiringSFV (List<String> options) {
-        super(options);
+    public FiringSFV (List<String> options, String titleKey) {
+        super(options, titleKey);
         initView();
         setDefaultHelpMessage(defaultHelpMessage );
         showDefaultMessage();

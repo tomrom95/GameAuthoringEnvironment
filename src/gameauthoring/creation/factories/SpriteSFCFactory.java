@@ -43,7 +43,6 @@ public class SpriteSFCFactory extends SubFormControllerFactory<SpriteDefinition>
             return new CostSFC(getMyGame());
         }
 
-        System.out.println("null");
 
         throw new ReflectionException("Can't create sprite subformcontroller of type " + type);
     }

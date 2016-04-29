@@ -46,7 +46,7 @@ public class AttributeCell implements Glyph {
      */
     private void addValue (HBox container) {
         Text value = new Text();
-        System.out.println(myAttribute.getValueProperty().get());
+        //System.out.println(myAttribute.getValueProperty().get());
         value.textProperty().bind(Bindings.convert(myAttribute.getValueProperty()));
         container.getChildren().add(value);
     }
