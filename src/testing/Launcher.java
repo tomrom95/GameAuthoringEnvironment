@@ -249,6 +249,10 @@ public class Launcher extends Application {
     private AttributeDefinition createHealthAttributeDefinition () {
         AttributeDefinition myDef = new AttributeDefinition();
         myDef.setProfile(healthAttyProfile());
+<<<<<<< HEAD
+        //myDef.setType(healthAttyProfile().getName().get());
+=======
+>>>>>>> 44bc847719cfbd93169eb3d812991e480ec5f22e
         myDef.setStartingValue(HEALTH_START_VAL);
         return myDef;
     }

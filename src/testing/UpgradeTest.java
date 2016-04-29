@@ -69,7 +69,11 @@ public class UpgradeTest extends Application {
     }
 
     private void makeGame () {
+<<<<<<< HEAD
+        IGame game = new Game(new GameGridConfigNonScaling((int) GamePlayer.PREFWIDTH, (int) GamePlayer.PREFHEIGHT));
+=======
         IGame game = new Game(new GameInformation());
+>>>>>>> 44bc847719cfbd93169eb3d812991e480ec5f22e
         myGame = game;
         createGlobalAtts(game);
         createSpriteDefs(game);
