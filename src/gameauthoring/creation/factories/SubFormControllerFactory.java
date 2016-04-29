@@ -31,15 +31,23 @@ public abstract class SubFormControllerFactory<T extends IProfilable> {
         return list;
 
     }
-   
-    protected abstract ISubFormController<T> createSubFormController (String type) throws ReflectionException, ClassCastException;
+    
+    /**
+     * Method for creating an SFC based on a string ID for that SFC
+     * 
+     * @param type A string indicating which SFC to instantiate
+     * @param params Optional params for the sfc's constructor
+     * @return The ISubFormController that the factory creates
+     * @throws ReflectionException
+     * @throws ClassCastException
+     */
+    protected abstract ISubFormController<T> createSubFormController (String type, Object ... params) throws ReflectionException, ClassCastException;
 
     private ISubFormController<T> createSFCAndHandleErrors(String type){
         try {
             return createSubFormController(type);
         } catch (ReflectionException | ClassCastException e) {
-            System.out.println("SFC error %s" + type);
-            new ErrorMessage(String.format("SFC error %s,",type)).showError();
+            new ErrorMessage(String.format("Error creating subform of type %s.\n Check properties files.", type)).showError();
             throw e;
         }
     }

@@ -13,11 +13,12 @@ public class EventsSFCFactory extends SubFormControllerFactory<EventPackageDefin
     }
 
     @Override
-    protected ISubFormController<EventPackageDefinition> createSubFormController (String type) {
+    protected ISubFormController<EventPackageDefinition> createSubFormController (String type, Object ... params) {
         if (type.equals("Events")) {
             return new EventsSFC(getMyGame());
         }
-        return null;
+        throw new ReflectionException("Can't create EventPackage subformcontroller of type " + type);
+
     }
 
 }

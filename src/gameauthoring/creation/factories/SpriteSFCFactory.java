@@ -18,7 +18,7 @@ public class SpriteSFCFactory extends SubFormControllerFactory<SpriteDefinition>
     }
 
     @Override
-    protected ISubFormController<SpriteDefinition> createSubFormController (String type) {
+    protected ISubFormController<SpriteDefinition> createSubFormController (String type, Object ... params) throws ReflectionException {
 
         if (type.equals("Movement")) {
             return new MovementSFC(getMyGame());
@@ -46,7 +46,8 @@ public class SpriteSFCFactory extends SubFormControllerFactory<SpriteDefinition>
 
         System.out.println("null");
 
-        return null;
+        throw new ReflectionException("Can't create sprite subformcontroller of type " + type);
     }
+
 
 }

@@ -3,10 +3,8 @@ package gameauthoring.creation.subforms.movement;
 import engine.IGame;
 
 import gameauthoring.creation.factories.DynamicSFCFactory;
-import gameauthoring.creation.factories.Reflection;
 import gameauthoring.creation.factories.ReflectionException;
 import engine.definitions.concrete.SpriteDefinition;
-import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 
 
@@ -25,7 +23,7 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
     }
 
     @Override
-    public ISubFormControllerSprite createSubFormController (String type) {
+    public ISubFormControllerSprite createSubFormController (String type, Object ... params) {
         if (type.equals("SMARTAIMOVER")) {
 
             return new SmartAIMovementSFC();
@@ -46,23 +44,8 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
             return new TrackingMoverSFC(getMyGame());
 
         }
+        throw new ReflectionException("Can't create movement sub-subformcontroller of type " + type);
 
-        return null;
-    }
-
-    @Override
-    public ISubFormControllerSprite createSubFormController (String className,
-                                                                         Object ... params) {
-        try {
-            return (ISubFormControllerSprite) Reflection.createInstance(className, params);
-
-        } catch (ReflectionException e){
-            
-        } catch (ClassCastException e) {
-            
-        }
-        
-        return null;
     }
 
 }
