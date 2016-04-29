@@ -5,12 +5,14 @@ import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;
+import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.BasicUIFactory;
+import javafx.beans.property.BooleanProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -30,11 +32,15 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     private ResourceBundle myLabel;
     private String myWaitTimeKey;
     private String myTargetsKey;
+    private String myRangedKey;
+    private String myRangeValueKey;
     private IEntryView myWaitTime;
     private SingleChoiceEntryView<SpriteGroup> myTargets;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
     private BasicUIFactory myUIFactory = new BasicUIFactory();
     private RemoveOption myRemove;
+    private CheckEntryView isRangedSelectionView;
+    private NumberEntryView myRangeValue;
 
     public TrackingFireSFV (AuthorshipData data, RemoveOption remove) {
         setResourceBundleAndKey();
@@ -49,7 +55,12 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         myMissileSelectionView =
                 new SingleChoiceEntryView<>("Missile", data.getMyCreatedMissiles().getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
+        isRangedSelectionView =
+                new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
+        myRangeValue = new NumberEntryView(myRangeValueKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        
         initView();
+        initBinding();
 
     }
 
@@ -96,6 +107,29 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     @Override
     public void setSelectedMissile (SpriteDefinition missile) {
         this.myMissileSelectionView.setSelected(missile);
+    }
+
+    @Override
+    public String getMyRangedKey () {
+        // TODO Auto-generated method stub
+        return myRangedKey;
+    }
+
+    @Override
+    public String getMyRangeValueKey () {
+        // TODO Auto-generated method stub
+        return myRangeValueKey;
+    }
+
+    @Override
+    public BooleanProperty isRangedProperty () {
+        // TODO Auto-generated method stub
+        return isRangedSelectionView.isCheckedProperty();
+    }
+    
+    private void initBinding () {
+        myRangeValue.draw().visibleProperty().bind(isRangedProperty());
+       
     }
 
 }

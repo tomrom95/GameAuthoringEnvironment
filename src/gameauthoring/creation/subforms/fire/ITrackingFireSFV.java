@@ -10,7 +10,7 @@ import gameauthoring.creation.subforms.ISubFormView;
  * @author Joe Lilien
  *
  */
-public interface ITrackingFireSFV  extends ISubFormView{
+public interface ITrackingFireSFV  extends IFiringSFV{
 
     String getWaitTimeKey ();
 
