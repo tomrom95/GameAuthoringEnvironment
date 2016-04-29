@@ -112,6 +112,7 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
 
     @Override
     public Node draw () {
+        getMyUIFactory().addStyling(myContainer, getStyleClass());
         return myContainer;
     }
 

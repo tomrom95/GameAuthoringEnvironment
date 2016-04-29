@@ -18,7 +18,7 @@ public class CreationListView<E extends IProfilable> implements ICreationListVie
 
     private ObservableList<E> myItems;
     private ListView<E> myListView;
-    private static final double HEIGHT = 580; // TODO: move to common resource file
+    private static final double HEIGHT = 548; // TODO: move to common resource file
 
     public CreationListView (ObservableList<E> items) {
         myItems = items;

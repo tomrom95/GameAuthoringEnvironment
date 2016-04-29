@@ -3,9 +3,11 @@ package gameauthoring.creation.forms;
 import java.util.*;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.util.BasicUIFactory;
+import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -21,7 +23,7 @@ public class FormView implements IFormView {
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager
                                                              .getInstance().getCurrentLocaleProperty().get());
     private String buttonClass = "CreationButton";
-    private VBox mySubFormContainer = new VBox();
+    private FlowPane mySubFormContainer = new FlowPane(Orientation.VERTICAL);
     private BasicUIFactory myFactory = new BasicUIFactory();
     private ScrollPane mySubFormViewer = new ScrollPane(mySubFormContainer);
     private GridPane myFormView = new GridPane();
@@ -31,15 +33,16 @@ public class FormView implements IFormView {
     private Button myNewButton = myFactory.createStyledButton("New", buttonClass);
     private List<Node> myButtons = new ArrayList<Node>(Arrays.asList(mySaveButton,myDeleteButton, myNewButton));
     private List<ISubFormView> mySubFormViews;
-    private static final double HEIGHT = 500; //TODO: move to common resource file    
+    private static final double HEIGHT = 525; //TODO: move to common resource file    
 
     
 
     
 
-    public FormView(List<ISubFormView> subFormViews){        
+    public FormView(List<ISubFormView> subFormViews){   
+        mySubFormContainer.setPrefWrapLength(HEIGHT);
         mySubFormViews = subFormViews;
-        mySubFormViewer.getStyleClass().add("myFormView");
+        myFactory.addStyling(mySubFormViewer, "FormView");
         mySubFormViewer.setMaxHeight(HEIGHT);
         myFormView.add(mySubFormViewer, 0, 1); 
         hideForm();

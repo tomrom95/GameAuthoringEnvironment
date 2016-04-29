@@ -5,6 +5,7 @@ import splash.LocaleManager;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
+import javafx.scene.layout.HBox;
 
 
 /**
@@ -37,7 +38,9 @@ public class LevelSpecificSFV extends SubFormView implements ILevelSpecificSFV {
 
     @Override
     public Node draw () {
-        return myChoice.draw();
+        HBox box = new HBox(myChoice.draw());
+        getMyUIFactory().addStyling(box, getStyleClass());
+        return box;
     }
 
     @Override

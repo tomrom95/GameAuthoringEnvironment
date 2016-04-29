@@ -3,6 +3,7 @@ package gameauthoring.creation.subforms;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
+import javafx.scene.layout.HBox;
 
 
 /**
@@ -38,6 +39,8 @@ public class MakeAttributeSFV extends SubFormView implements IMakeAttributeSFV {
     
     @Override
     public Node draw () {
-        return myStartingValue.draw();
+        HBox box = new HBox(myStartingValue.draw());
+        getMyUIFactory().addStyling(box, getStyleClass());
+        return box;
     }
 }

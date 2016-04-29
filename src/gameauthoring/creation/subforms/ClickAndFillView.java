@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -24,12 +25,12 @@ public abstract class ClickAndFillView extends SubFormView {
     private List<Button> myButtons = new ArrayList<>();
     private ResourceBundle myProperties =
             ResourceBundle.getBundle("defaults/click_and_fill_images");
-    private Label defaultHelpMessage;
+    private String cssButtonClass = "DynamicButton";
+    private String cssScrollClass = "DynamicScroll";
 
     // TODO: add to language files and use this
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager
             .getInstance().getCurrentLocaleProperty().get());
-    private ResourceBundle styleClasses = ResourceBundle.getBundle("defaults/styling_class");
 
     public ClickAndFillView (List<String> options, String titleKey) {
         setMyTitle(titleKey);
@@ -61,12 +62,16 @@ public abstract class ClickAndFillView extends SubFormView {
         initAndAddButtons(buttonHolder, options);
     }
 
+    protected ScrollPane getMyPane () {
+        return myPane;
+    }
+    
     private void initAndAddButtons (HBox buttonHolder, List<String> options) {
         for (String s : options) {
             Button button =
                     getMyUIFactory().createImageButton(getMyUIFactory()
                             .makeImageDisplay(getMyProperties().getString(s), s));
-            button.getStyleClass().add(styleClasses .getString("CreationButton"));
+            getMyUIFactory().addStyling(button, cssButtonClass);
             getMyButtons().add(button);
         }
         buttonHolder.getChildren().addAll(getMyButtons());
@@ -75,8 +80,9 @@ public abstract class ClickAndFillView extends SubFormView {
     @Override
     protected void initView () {
         myContainer = new GridPane();
-        myPaneContent = myUIFactory.makeVBox(10, Pos.CENTER, 525, 300, (Node[]) null);
+        myPaneContent = myUIFactory.makeVBox(10, Pos.CENTER, 510, 300, (Node[]) null);
         myPane = myUIFactory.makeScrollPane(myPaneContent, 525, 300); // TODO: magic number
+        myUIFactory.addStyling(myPane, cssScrollClass);
         myContainer.add(buttonHolder, 0, 0);
         myContainer.add(myPane, 0, 1);
     }
@@ -89,7 +95,6 @@ public abstract class ClickAndFillView extends SubFormView {
 
     public void clearSFVs () {
         myPaneContent.getChildren().clear();
-        showDefaultMessage();
     }
 
     public VBox getMyPaneContent () {
@@ -102,17 +107,8 @@ public abstract class ClickAndFillView extends SubFormView {
 
     @Override
     public Node draw () {
-        return this.defaultDisplayWithNode(myContainer);
+        return defaultDisplayWithNode(myContainer);
     }
 
-    protected void setDefaultHelpMessage (String message) {
-        defaultHelpMessage = new Label(message);
-    }
-
-    public void showDefaultMessage () {
-        if (!myPaneContent.getChildren().contains(defaultHelpMessage)) {
-            myPaneContent.getChildren().add(defaultHelpMessage);
-        }
-    }
 
 }

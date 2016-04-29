@@ -206,10 +206,24 @@
 
 .creationButton {
 	-fx-cursor: hand;
-    -fx-text-fill: white;
-	-fx-background-color: darkcyan;
+    -fx-text-fill: #2381E9;
+    -fx-font-weight: bold;
+    -fx-font-family: "Helvetica";
+	-fx-background-color: lightgrey;
     -fx-border-radius: 1;
     -fx-background-radius: 1;
+    -fx-padding: 5;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
+
+.dynamicButton {
+	-fx-background-color:  
+		linear-gradient(grey, lightgray),  
+		radial-gradient(center 50% -40%, radius 200%, darkcyan 45%, cadetblue 50%);  
+	-fx-border-radius: 5;  
+	-fx-background-radius: 5;  
+	-fx-cursor: hand;
+    -fx-text-fill: white;	
     -fx-padding: 5;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
 }
@@ -229,25 +243,42 @@
 
 .entryViewLabel
 {
-    -fx-text-fill: grey;
+    -fx-text-fill: black;
     -fx-font-weight: bold;
     -fx-font-size: 12;
     -fx-font-family: "Helvetica";
 }
 
+.dynamicScrollPane {
+	-fx-hbar-policy: never;
+	-fx-vbar-policy: as_needed;
+	-fx-pannable: true;
+	-fx-base: darkcyan;
+}
+
+.sfv_label {
+	-fx-text-fill: darkcyan;
+	-fx-font-familly: "Helvetica";
+	-fx-font-weight: bold;
+	-fx-font-size: 32
+	
+
+}
 .multi_choice {
 	-fx-padding: 0 0 10 0;
 	-fx-background-radius: 5.0; 
-	-fx-background-color: darkcyan;
+	-fx-background-color: mediumaquamarine;
     -fx-padding: 10;
     -fx-spacing: 8;
     -fx-font-weight: bold;
     -fx-font-size: 12;
-    -fx-font-family: "Futura";
+    -fx-font-family: "Helvetica";
+    -fx-pannable: true;
+    
 }
 
 .myObjectListView {
-	-fx-min-width: 450;
+	-fx-min-width: 200;
 	-fx-padding: 0 0 10 0;
 	-fx-background-radius: 5.0; 
 	-fx-background-color: darkcyan;
@@ -259,10 +290,14 @@
 }
 .mySFV {
 	-fx-background-radius: 5.0; 
+	-fx-base: mediumaquamarine;
 	-fx-background-color: lightcyan;
 	-fx-border-color: darkcyan;
     -fx-border-width: 5px;
     -fx-padding: 10;
+    -fx-min-width: 535;
+    -fx-max-width: 535; 
+    -fx-font-weight: bold;
 }
 
 .single_choice {
@@ -291,6 +326,10 @@
 
 .myFormView {
 	-fx-min-width: 550;
+	-fx-base: darkcyan;
+	-fx-pannable: true;
+	-fx-hbar-policy: as_needed;
+	-fx-vbar-policy: never;
 }
 
 .firer {
@@ -317,8 +356,17 @@
 	-fx-vgap: 10;	
 	-fx-font-size: 20;
 	
+	
 }
 
+.title_label {
+
+	-fx-text-fill: navy;
+	-fx-font-familly: "Helvetica";
+	-fx-font-weight: bold;
+	-fx-font-size: 36;
+	
+}
 .defaultTextEntry {
 	-fx-padding: 10 10 10 10;
 	-fx-hgap: 20;
@@ -328,10 +376,6 @@
 
 .nameTextEntry {
 	-fx-max-width: 20
-}
-
-.label {
-	-fx-text-fill: black
 }
 
 .cond_pane {
