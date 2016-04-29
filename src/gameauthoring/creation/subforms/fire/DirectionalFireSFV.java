@@ -47,14 +47,14 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         myMissileSelectionView =
                 new SingleChoiceEntryView<>(myProjectileKey, missiles.getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
-        //
-        // isRangedSelectionView =
-        // new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
-//         myRangeValue = new NumberEntryView(myRangeValueKey, this.getData(), 150, 30,
-//         AuthoringView.DEFAULT_ENTRYVIEW);
-        //
+
+        isRangedSelectionView =
+                new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
+        myRangeValue =
+                new NumberEntryView(myRangeValueKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+
         initView();
-        //initBinding();
+        initBinding();
     }
 
     private void setResourceBundleAndKey () {
@@ -102,10 +102,12 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     }
 
     @Override
-    public void populateWithData (SpriteDefinition missile, double angle, double waitTime) {
+    public void populateWithData (SpriteDefinition missile, double angle, double waitTime, double range, boolean isRanged) {
         myMissileSelectionView.setSelected(missile);
         myAngle.setData(angle);
         myWaitTime.setData(waitTime);
+        myRangeValue.setData(range);
+        isRangedSelectionView.setSelected(isRanged);
     }
 
     @Override
@@ -123,5 +125,17 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         return this.isRangedSelectionView.isCheckedProperty();
 
     }
+
+    @Override
+    public double getMyRange () {
+        return myRangeValue.getData();
+    }
+
+    @Override
+    public boolean getMyIsRanged () {
+        return isRangedSelectionView.isCheckedProperty().get();
+    }
+
+  
 
 }
