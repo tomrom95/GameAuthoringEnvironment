@@ -5,10 +5,13 @@ import splash.LocaleManager;
 import engine.profile.ProfileDisplay;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
+import gameauthoring.creation.subforms.fire.RemoveOption;
 import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.ProfileDisplayIterator;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.layout.HBox;
 
 
 public class EventSFV extends SubFormView implements IEventSFV {
@@ -16,12 +19,17 @@ public class EventSFV extends SubFormView implements IEventSFV {
     private SingleChoiceEntryView<ProfileDisplay> myEvents;
     private ResourceBundle myLabel;
     private String myEventKey;
+    private HBox myContainer;
+    private RemoveOption myRemove;
+
     
-    public EventSFV (ObservableList<ProfileDisplay> events) {
+    public EventSFV (ObservableList<ProfileDisplay> events, RemoveOption remove) {
         setResourceBundleAndKey();
+        myRemove = remove;
         myEvents = new SingleChoiceEntryView<ProfileDisplay>(myEventKey,
                                                              events,
                                                              AuthoringView.DEFAULT_ENTRYVIEW);
+        initView();
     }
     
     private void setResourceBundleAndKey () {
@@ -43,11 +51,12 @@ public class EventSFV extends SubFormView implements IEventSFV {
 
     @Override
     public Node draw () {
-        return myEvents.draw();
+        return myContainer;
     }
 
     @Override
     protected void initView () {
+        myContainer = getMyUIFactory().makeHBox(20, Pos.CENTER, myEvents.draw(),myRemove.draw());
     }
 
 

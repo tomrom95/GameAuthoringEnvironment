@@ -28,7 +28,8 @@ public class EventSFC extends RemovableEventSFC {
         init(game, event);
     }
     private void init(IGame game, GameEvent event) {
-        myView = new EventSFV(getEvents());
+     
+        myView = new EventSFV(getEvents(), getRemoveMenu());
         myEvent = event;
     }
 
