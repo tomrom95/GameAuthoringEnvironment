@@ -31,7 +31,8 @@ public abstract class ClickAndFillView extends SubFormView {
             .getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle styleClasses = ResourceBundle.getBundle("defaults/styling_class");
 
-    public ClickAndFillView (List<String> options) {
+    public ClickAndFillView (List<String> options, String titleKey) {
+        setMyTitle(titleKey);
         initButtonHolder(options);
     }
 
@@ -101,7 +102,7 @@ public abstract class ClickAndFillView extends SubFormView {
 
     @Override
     public Node draw () {
-        return myContainer;
+        return this.defaultDisplayWithNode(myContainer);
     }
 
     protected void setDefaultHelpMessage (String message) {

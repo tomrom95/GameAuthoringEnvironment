@@ -9,6 +9,7 @@ import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -31,8 +32,10 @@ public class ProfileSFV extends SubFormView implements IProfileSFV {
     private TextEntryView myDescription;
     private SliderEntryView myImageWidth;
     private SliderEntryView myImageHeight;
+    private String MY_TITLE_KEY = "Profile";
 
     public ProfileSFV () {
+        setMyTitle(MY_TITLE_KEY);
         setResourceBundleAndKey();
         createEntryViews();
         initView();
@@ -69,12 +72,12 @@ public class ProfileSFV extends SubFormView implements IProfileSFV {
         myPane.add(myDescription.draw(), 0, 1);
         myPane.add(myImage.draw(), 1, 0, 1, 3);
         myPane.add(new HBox(myImageWidth.draw(), myImageHeight.draw()), 0, 2);
-        getMyUIFactory().addStyling(myPane, getStyleClass());
+        
     }
 
     @Override
     public Node draw () {
-        return myPane;
+        return this.defaultDisplayWithNode(myPane);
     }
 
     @Override

@@ -8,12 +8,12 @@ import util.BundleOperations;
 
 public class EventChoiceSFC extends MultiOptionSFC<EventPackageDefinition>{
     
-    private String eventKey = "EVENTS";
+    private static String EVENT_KEY = "Events";
 
     public EventChoiceSFC (IGame game) {
         super(game);
-        setMyOptions(BundleOperations.getPropertyValueAsList(eventKey, getMyOptionsFile()));
-        setMyView(new EventChoiceSFV(getMyOptions()));
+        setMyOptions(BundleOperations.getPropertyValueAsList(EVENT_KEY, getMyOptionsFile()));
+        setMyView(new EventChoiceSFV(getMyOptions(), EVENT_KEY));
         setActions();       
     }
  

@@ -22,7 +22,7 @@ public abstract class SubFormControllerFactory<T extends IProfilable> {
     public List<ISubFormController<T>> createSubFormControllers (List<String> subFormStrings) {
         List<ISubFormController<T>> list = new ArrayList<>();
         for (String subFormString : subFormStrings) {
-            if(subFormString.equals("ProfileSFC")){
+            if(subFormString.equals("Profile")){
                 list.add(createProfileSFC());
             }else{
                 list.add(createSFCAndHandleErrors(subFormString));

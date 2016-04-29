@@ -9,8 +9,8 @@ public class EffectChoiceSFV extends ClickAndFillView {
     
     private String defaultHelpMessage = "add default message to languages";
 
-    public EffectChoiceSFV (List<String> options) {
-        super(options);        
+    public EffectChoiceSFV (List<String> options, String titleKey) {
+        super(options, titleKey);        
         initView();
         setDefaultHelpMessage(defaultHelpMessage);
         showDefaultMessage();

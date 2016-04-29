@@ -25,6 +25,7 @@ import javafx.scene.layout.HBox;
  */
 public class SelectAttributeSFV extends SubFormView implements ISelectAttributeSFV {
 
+    private static final String MY_TITLE_KEY = "SelectAttribute";
     private ResourceBundle myLabel;
     private String myAttributesKey;
     private String mySelectedKey;
@@ -33,6 +34,7 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
     private HBox myContainer;
 
     public SelectAttributeSFV (IDefinitionCollection<AttributeDefinition> attributes) {
+        setMyTitle(MY_TITLE_KEY);
         setResoureBunldeAndKey();
         myAttributeSelector =
                 new MultiChoiceEntryView<AttributeDefinition>(myAttributesKey,
@@ -55,7 +57,7 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
 
     @Override
     public Node draw () {
-        return myContainer;
+        return this.defaultDisplayWithNode(myContainer);
     }
 
     @Override

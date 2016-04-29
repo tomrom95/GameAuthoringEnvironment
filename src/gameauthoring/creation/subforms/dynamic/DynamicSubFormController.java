@@ -2,11 +2,13 @@ package gameauthoring.creation.subforms.dynamic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import engine.IGame;
 import engine.profile.IProfilable;
 import gameauthoring.creation.factories.DynamicSFCFactory;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
+import util.BundleOperations;
 
 
 /**
@@ -23,6 +25,7 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
     private ISubFormController<T> myCurrentSubFormController;
     private IGame myGame;
     private DynamicSFCFactory<T> mySFCFactory;
+    private ResourceBundle myOptionsBundle = ResourceBundle.getBundle("defaults/dynamic_sfc_contents");
 
     /**
      * Constructor
@@ -34,11 +37,12 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
      */
     public DynamicSubFormController (IGame game,
                                      DynamicSFCFactory<T> sfcFactory,
-                                     List<String> subFormIDs) {
-        setMyView(new DynamicSubFormView(subFormIDs));
+                                     String subFormIdBundleKey) {
+        List<String> subformIDs = BundleOperations.getPropertyValueAsList(subFormIdBundleKey, getMyOptionsBundle());
+        setMyView(new DynamicSubFormView(subformIDs, subFormIdBundleKey));
         setMyGame(game);
         setMySFCFactory(sfcFactory);
-        setUpSubFormControllers(subFormIDs);
+        setUpSubFormControllers(subformIDs);
         setUpSubFormViews(mySubFormControllers);
         setActions();
     }
@@ -166,6 +170,10 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
 
     private DynamicSFCFactory<T> getMySFCFactory () {
         return mySFCFactory;
+    }
+    
+    protected ResourceBundle getMyOptionsBundle () {
+        return myOptionsBundle;
     }
 
 }
