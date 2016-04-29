@@ -1,5 +1,6 @@
 package gameauthoring.creation.factories;
 
+import engine.IGame;
 import gameauthoring.tabs.ITabViewer;
 
 /**
@@ -11,4 +12,11 @@ import gameauthoring.tabs.ITabViewer;
  */
 public class TabViewFactory<T extends ITabViewer> {
 
+    private IGame myGame;
+
+    public TabViewFactory (IGame game) {
+        myGame = game;
+    }
+    
+    
 }
