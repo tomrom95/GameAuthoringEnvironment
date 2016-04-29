@@ -8,7 +8,8 @@ import util.CachingEdgeBitMap;
 import util.Coordinate;
 import util.IBitMap;
 import util.IBoundEdge;
-import util.IEdgeBitMap;
+import util.ISampledBitMap;
+import util.SampledBitMap;
 import util.TimeDuration;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
 public class ObstructionManager implements IObstructionManager {
     private static final boolean POSITION_OBSTRUCTED = true;
     private IGame myGame;
-    private IEdgeBitMap myCurrentObstructionMap;
+    private ISampledBitMap myCurrentObstructionMap;
 
     ObstructionManager (IGame game) {
         myGame = game;
@@ -37,21 +38,21 @@ public class ObstructionManager implements IObstructionManager {
     }
     
     @Override
-    public IEdgeBitMap getObstructionMap () {
+    public ISampledBitMap getObstructionMap () {
         return myCurrentObstructionMap;
         //return new CachingEdgeBitMap(getObstructionMap());
     }
 
-    private IEdgeBitMap parseCurrentGameForObstructions (IGame game) {
-        IEdgeBitMap obstructionMap = getBitMapSizedForCurrentGame(game);
+    private ISampledBitMap parseCurrentGameForObstructions (IGame game) {
+        ISampledBitMap obstructionMap = getBitMapSizedForCurrentGame(game);
         game.getLevelManager().getCurrentLevel().getSprites()
                     .stream()
                     .forEach(sprite -> ifObstructsMarkSprite(obstructionMap, sprite));
-        calculateEdges(obstructionMap, game);
+        //calculateEdges(obstructionMap, game);
         return obstructionMap;
     }
 
-    private void calculateEdges (IEdgeBitMap map, IGame game) {
+    private void calculateEdges (ISampledBitMap map, IGame game) {
         List<Bounds> allBounds = game.getLevelManager().getCurrentLevel().getSprites()
                 .stream()
                 .filter(sprite -> sprite.doesObstruct())
@@ -68,41 +69,42 @@ public class ObstructionManager implements IObstructionManager {
             }
             allBounds.removeAll(toRemove);
         }
-        map.setEdges(boundEdges.stream().map(boundEdge -> boundEdge.getEdge())
-                .collect(Collectors.toList()));
-        edgeBorder(map);
+//        map.setEdges(boundEdges.stream().map(boundEdge -> boundEdge.getEdge())
+//                .collect(Collectors.toList()));
+//        edgeBorder(map);
         return;
     }
 
-    private void edgeBorder (IEdgeBitMap obstructionMap) {
+    private void edgeBorder (ISampledBitMap obstructionMap) {
         List<Coordinate> border = new ArrayList<>();
-        int gap = GameGraphFactory.NODE_GAP;
-        for (int i = -1; i <= obstructionMap.getHeight()/gap; i++) {
-            border.add(new Coordinate(-1, i*gap));
-            border.add(new Coordinate(obstructionMap.getWidth(), i*gap));
+        int xGap = obstructionMap.widthScale();
+        int yGap = obstructionMap.heightScale();
+        for (int i = -1; i <= obstructionMap.getHeight(); i++) {
+            border.add(new Coordinate(-1, i*yGap));
+            border.add(new Coordinate(obstructionMap.getWidth(), i*yGap));
         }
-        for (int i = -1; i <= obstructionMap.getWidth()/gap; i++) {
-            border.add(new Coordinate(i*gap, -1));
-            border.add(new Coordinate(i*gap, obstructionMap.getHeight()));
+        for (int i = -1; i <= obstructionMap.getWidth(); i++) {
+            border.add(new Coordinate(i*xGap, -1));
+            border.add(new Coordinate(i*xGap, obstructionMap.getHeight()));
         }
         
-        obstructionMap.getEdges().add(border);
+        //obstructionMap.getEdges().add(border);
         return;
     }
     
 
-    private void ifObstructsMarkSprite (IBitMap map, ISprite sprite) {
+    private void ifObstructsMarkSprite (ISampledBitMap map, ISprite sprite) {
         if (sprite.doesObstruct()) {
             markSpriteOnMap(map, sprite);
         }
     }
 
-    private void markSpriteOnMap (IBitMap map, ISprite sprite) {
+    private void markSpriteOnMap (ISampledBitMap map, ISprite sprite) {
         Bounds bound = sprite.getBounds();
-        int leftX = (int) Math.round(bound.getLeft());
-        int rightX = (int) Math.round(bound.getRight());
-        int topY = (int) Math.round(bound.getTop());
-        int botY = (int) Math.round(bound.getBottom());
+        int leftX = (int) Math.round(bound.getLeft()) / map.widthScale();
+        int rightX = (int) Math.round(bound.getRight())/ map.widthScale();
+        int topY = (int) Math.round(bound.getTop())/ map.heightScale();
+        int botY = (int) Math.round(bound.getBottom())/ map.heightScale();
         for (int i = leftX; i <= rightX; i++) {
             for (int j = topY; j <= botY; j++) {
                 map.set(i, j, POSITION_OBSTRUCTED);
@@ -114,10 +116,10 @@ public class ObstructionManager implements IObstructionManager {
         return myGame;
     }
 
-    private IEdgeBitMap getBitMapSizedForCurrentGame (IGame game) {
+    private ISampledBitMap getBitMapSizedForCurrentGame (IGame game) {
         int gameWidth = game.getGameGridConfig().getGridWidth();
         int gameHeight = game.getGameGridConfig().getGridHeight();
-        return new CachingEdgeBitMap(gameWidth, gameHeight);
+        return new SampledBitMap(gameWidth, gameHeight);
     }
 
 }

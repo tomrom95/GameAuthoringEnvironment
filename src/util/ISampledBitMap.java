@@ -16,6 +16,20 @@ public interface ISampledBitMap extends IBitMap {
     double trueWidth ();
     
     /**
+     * Returns the number of horizontal virtual 
+     * pixels per horizontal array location
+     * @return
+     */
+    int widthScale ();
+    
+    /**
+     * Returns the number of vertical virtual 
+     * pixels per vertical array location
+     * @return
+     */
+    int heightScale ();
+    
+    /**
      * The actual height of the game in virtual pixels
      * @return
      */
@@ -24,14 +38,21 @@ public interface ISampledBitMap extends IBitMap {
     /**
      * Will account for the virtual pixel sampling resolution
      * and return the bit value
+     * 
      * @param virtualX
      * @param virtualY
      * @return
      */
-    boolean translatedValueOf(double virtualX, double virtualY);
-    
-    
-    
+    boolean translatedValueOf (double virtualX, double virtualY);
+
+    /**
+     * Convenience method, see {@link ISampledBitMap#translatedValueOf(double, double)}
+     * 
+     * @param coord
+     * @return
+     */
+    boolean translatedValueOf (Coordinate coord);
+
     /**
      * Will account for the virtual pixel sampling resolution before
      * setting the bit value

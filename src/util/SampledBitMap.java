@@ -47,4 +47,21 @@ public class SampledBitMap extends SetBitMap implements ISampledBitMap  {
         set((int) virtualX / getWidth(), (int) virtualY / getHeight(), toSet);
     }
 
+    @Override
+    public boolean translatedValueOf (Coordinate coord) {
+        return translatedValueOf(coord.getX(), coord.getY());
+    }
+
+    @Override
+    public int widthScale () {
+        int toReturn = (int) (trueHeight() / getHeight());
+        return toReturn > 0 ? toReturn : 1;
+    }
+
+    @Override
+    public int heightScale () {
+        int toReturn = (int) (trueWidth() / getWidth());
+        return toReturn > 0 ? toReturn : 1;
+    }
+
 }

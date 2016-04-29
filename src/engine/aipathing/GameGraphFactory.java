@@ -2,7 +2,9 @@ package engine.aipathing;
 
 import util.Coordinate;
 import util.IBitMap;
-import util.IEdgeBitMap;
+import util.ISampledBitMap;
+import util.SampledBitMap;
+import util.ISampledBitMap;
 import util.ArrayPosition;
 import util.AutoTrueBitMap;
 import util.CachingEdgeBitMap;
@@ -15,11 +17,10 @@ import java.util.stream.Collectors;
 import engine.IGame;
 
 /**
- * Class responsible for turning IGame objects
- * into INodeGraphs which can be used by our AI pathing
- * classes
  * 
- * Adding the start and goal nodes as a part of the graph
+ * This class will directly translate the input sampled bit maps
+ * in to a NodeGraph representing the travserable space. 
+ * 
  * @author jonathanim
  *
  */
@@ -28,20 +29,22 @@ public class GameGraphFactory implements INodeGraphFactory {
     private static final int INT_ONE = 1;
     private static final int INT_NEG_ONE = -1;
     private static final double ONE = 1d;
-    public static final int NODE_GAP = 200;
-    private IEdgeBitMap myObstructionMap;
+
+    
+    
+    private ISampledBitMap myObstructionMap;
     private IGame myGame;
     
-    GameGraphFactory (IEdgeBitMap obstructionMap, IGame game) {
-        myObstructionMap = new CachingEdgeBitMap(obstructionMap);
+    GameGraphFactory (ISampledBitMap obstructionMap, IGame game) {
+        myObstructionMap = obstructionMap;
         myGame = game;
     }
 
     @Override
     public INodeGraph getConstructedGraph (Coordinate start, Coordinate goal) {
-        INodeGraph toReturn = fillNodeGraph(getObstructionMap(), NODE_GAP, start, goal);
-        addEdgeNodes(toReturn, convertToArrayPosition(getObstructionMap().getEdges()),
-                     getObstructionMap(), NODE_GAP, toReturn.getPlacedNodes());
+        INodeGraph toReturn = fillNodeGraph(getObstructionMap(), start, goal);
+        //addEdgeNodes(toReturn, convertToArrayPosition(getObstructionMap().getEdges()),
+        //             getObstructionMap(), NODE_GAP, toReturn.getPlacedNodes());
         return toReturn;
 
     }
@@ -58,18 +61,19 @@ public class GameGraphFactory implements INodeGraphFactory {
                 return toReturn;
             }
 
-    private INodeGraph fillNodeGraph (IEdgeBitMap obstructionMap,
-                                      int gap,
+    private INodeGraph fillNodeGraph (ISampledBitMap obstructionMap,
                                       Coordinate start,
                                       Coordinate goal) {
-        int numHorizontalNodes = obstructionMap.getWidth() / gap;
-        int numHeightNodes = obstructionMap.getHeight() / gap;
+        int numHorizontalNodes = obstructionMap.getWidth();
+        int numHeightNodes = obstructionMap.getHeight();
+        int xGap = (int) (obstructionMap.trueWidth() / obstructionMap.getWidth());
+        int yGap = (int) (obstructionMap.trueHeight() / obstructionMap.getHeight());
         IPathNode[][] placedNodes = new PathNode[numHorizontalNodes][numHeightNodes];
         INodeGraph toReturn = new NodeGraph(placedNodes);
         // place the standard grid less obstructed areas
         for (int i = 0; i < numHorizontalNodes; i++) {
             for (int j = 0; j < numHeightNodes; j++) {
-                ArrayPosition pixelLocation = pixelForArrayLoc(i, j, gap);
+                ArrayPosition pixelLocation = pixelForArrayLoc(i, j, xGap, yGap);
                 if (!obstructionMap.valueOf(pixelLocation)) {
                     IPathNode toAdd = new PathNode(new Coordinate(pixelLocation));
                     toReturn.addNode(toAdd);
@@ -88,77 +92,77 @@ public class GameGraphFactory implements INodeGraphFactory {
 
     }
 
-    private ArrayPosition pixelForArrayLoc (int widthAccess, int heightAccess, int gap) {
-        return new ArrayPosition(widthAccess * gap + (gap / INT_TWO),
-                                 heightAccess * gap + (gap / INT_TWO));
+    private ArrayPosition pixelForArrayLoc (int widthAccess, int heightAccess, int xGap, int yGap) {
+        return new ArrayPosition(widthAccess * xGap + (xGap / INT_TWO),
+                                 heightAccess * yGap + (yGap / INT_TWO));
     }
 
 
     
-    /**
-     * Adding nodes to the graph and connecting them in order to selectively sample
-     * wherever edges are closer to each other than the sampling resolution selected
-     * in regards to obstructability and traversability
-     * @param graph
-     * @param edges
-     * @param obstructionMap
-     * @param gap
-     * @param placedNodes
-     * @return
-     */
-    private void addEdgeNodes (INodeGraph graph,
-                                          List<List<ArrayPosition>> edges,
-                                          IEdgeBitMap obstructionMap,
-                                          int gap,
-                                          IPathNode[][] placedNodes) {
-        List<IPathNode> addedNodes = new ArrayList<>();
-        for (List<ArrayPosition> edge1 : edges) {
-            for (List<ArrayPosition> edge2 : edges) {
-                if (!edge1.equals(edge2)) {
-                    for (ArrayPosition pos1 : edge1) {
-                        for (ArrayPosition pos2 : edge2) {
-                            if (!pos1.equals(pos2)) {
-                                addToListIfNotNull(addedNodes, attemptGapNodeAdd(graph, pos1, pos2, obstructionMap, gap,
-                                                  placedNodes));
-                           }
-                       }
-                   }
-                }
-            }
-        }
-        for(IPathNode iter : addedNodes){
-            connectWithAllInGraph(graph, iter, obstructionMap);
-        }
-
-        // if getting weird results check to see if re-comparing already compared edges is 
-        //causing problems
-        return;
-    }
+//    /**
+//     * Adding nodes to the graph and connecting them in order to selectively sample
+//     * wherever edges are closer to each other than the sampling resolution selected
+//     * in regards to obstructability and traversability
+//     * @param graph
+//     * @param edges
+//     * @param obstructionMap
+//     * @param gap
+//     * @param placedNodes
+//     * @return
+//     */
+//    private void addEdgeNodes (INodeGraph graph,
+//                                          List<List<ArrayPosition>> edges,
+//                                          ISampledBitMap obstructionMap,
+//                                          int gap,
+//                                          IPathNode[][] placedNodes) {
+//        List<IPathNode> addedNodes = new ArrayList<>();
+//        for (List<ArrayPosition> edge1 : edges) {
+//            for (List<ArrayPosition> edge2 : edges) {
+//                if (!edge1.equals(edge2)) {
+//                    for (ArrayPosition pos1 : edge1) {
+//                        for (ArrayPosition pos2 : edge2) {
+//                            if (!pos1.equals(pos2)) {
+//                                addToListIfNotNull(addedNodes, attemptGapNodeAdd(graph, pos1, pos2, obstructionMap, gap,
+//                                                  placedNodes));
+//                           }
+//                       }
+//                   }
+//                }
+//            }
+//        }
+//        for(IPathNode iter : addedNodes){
+//            connectWithAllInGraph(graph, iter, obstructionMap);
+//        }
+//
+//        // if getting weird results check to see if re-comparing already compared edges is 
+//        //causing problems
+//        return;
+//    }
     
-    private <T> void addToListIfNotNull (List<T> list, T obj) {
-        if (obj != null) {
-            list.add(obj);
-        }
-    }
+//    private <T> void addToListIfNotNull (List<T> list, T obj) {
+//        if (obj != null) {
+//            list.add(obj);
+//        }
+//    }
 
-    private IPathNode attemptGapNodeAdd (INodeGraph graph,
-                                    ArrayPosition pos1,
-                                    ArrayPosition pos2,
-                                    IEdgeBitMap obstructionMap,
-                                    int gap,
-                                    IPathNode[][] placedNodes) {
-        if (PathNodeGeometry.distance(pos1, pos2) <= gap) {
-            ArrayPosition pixelMidPoint = PathNodeGeometry.midPoint(pos1, pos2);
-            if(!obstructionMap.valueOf(pixelMidPoint)){
-                IPathNode proposed = new PathNode(pixelMidPoint);
-                if (!graph.containsNode(proposed)) {
-                    addNodeToGraph(graph, proposed);
-                    return proposed;
-                }
-            }
-        }
-        return null;
-    }
+//    private IPathNode attemptGapNodeAdd (INodeGraph graph,
+//                                    ArrayPosition pos1,
+//                                    ArrayPosition pos2,
+//                                    ISampledBitMap obstructionMap,
+//                                    int gap,
+//                                    IPathNode[][] placedNodes) {
+//        if (PathNodeGeometry.distance(pos1, pos2) <= gap) {
+//            ArrayPosition pixelMidPoint = PathNodeGeometry.midPoint(pos1, pos2);
+//            if(!obstructionMap.valueOf(pixelMidPoint)){
+//                IPathNode proposed = new PathNode(pixelMidPoint);
+//                if (!graph.containsNode(proposed)) {
+//                    addNodeToGraph(graph, proposed);
+//                    return proposed;
+//                }
+//            }
+//        }
+//        return null;
+//    }
     
     /**
      * Without overwriting the existing nodes
@@ -174,16 +178,16 @@ public class GameGraphFactory implements INodeGraphFactory {
 
     private void connectWithAllInGraph (INodeGraph graph,
                                         IPathNode toConnect,
-                                        IEdgeBitMap obstructionMap) {
+                                        ISampledBitMap obstructionMap) {
         graph.getNodes()
             .stream()
             .filter(node -> !node.equals(toConnect))
             .forEach(node -> connectIfNotObstructed(toConnect, node, obstructionMap));
     }
 
-    private ArrayPosition convertPixelToGraphPosition (ArrayPosition pos, int gap) {
-        return new ArrayPosition((pos.getX() / gap), (pos.getY() / gap));
-    }
+//    private ArrayPosition convertPixelToGraphPosition (ArrayPosition pos, int gap) {
+//        return new ArrayPosition((pos.getX() / gap), (pos.getY() / gap));
+//    }
 
 
 
@@ -191,23 +195,23 @@ public class GameGraphFactory implements INodeGraphFactory {
     
 
     
-    /**
-     * Obstruction edges are all the positions that are themselves obstructed, but
-     * have adjacent neighbors that are themselves not obstructed
-     * @param obstructionMap
-     * @param pos to check if it is an edge
-     * @return  True if one of the non-diagonally adjacent squares is not obstructed
-     */
-    private boolean isEdge (IEdgeBitMap obstructionMap, ArrayPosition pos) {
-        boolean selfObstructed = obstructionMap.valueOf(pos);
-        boolean edgeTop = !obstructionMap.valueOf(pos.getX(), pos.getY() - INT_ONE);
-        boolean edgeBot = !obstructionMap.valueOf(pos.getX(), pos.getY() + INT_ONE);
-        boolean edgeRight = !obstructionMap.valueOf(pos.getX() + INT_ONE, pos.getY());
-        boolean edgeLeft = !obstructionMap.valueOf(pos.getX() - INT_ONE, pos.getY());
-        return (edgeTop || edgeBot || edgeRight || edgeLeft) && selfObstructed;
-    }
+//    /**
+//     * Obstruction edges are all the positions that are themselves obstructed, but
+//     * have adjacent neighbors that are themselves not obstructed
+//     * @param obstructionMap
+//     * @param pos to check if it is an edge
+//     * @return  True if one of the non-diagonally adjacent squares is not obstructed
+//     */
+//    private boolean isEdge (ISampledBitMap obstructionMap, ArrayPosition pos) {
+//        boolean selfObstructed = obstructionMap.valueOf(pos);
+//        boolean edgeTop = !obstructionMap.valueOf(pos.getX(), pos.getY() - INT_ONE);
+//        boolean edgeBot = !obstructionMap.valueOf(pos.getX(), pos.getY() + INT_ONE);
+//        boolean edgeRight = !obstructionMap.valueOf(pos.getX() + INT_ONE, pos.getY());
+//        boolean edgeLeft = !obstructionMap.valueOf(pos.getX() - INT_ONE, pos.getY());
+//        return (edgeTop || edgeBot || edgeRight || edgeLeft) && selfObstructed;
+//    }
 
-    private void connectUnobstructedNodes (IPathNode[][] nodes, IEdgeBitMap obstructionMap) {
+    private void connectUnobstructedNodes (IPathNode[][] nodes, ISampledBitMap obstructionMap) {
         int width = nodes.length;
         int height = width > 0 ? nodes[0].length : 0;
         ArrayPosition pos = new ArrayPosition();
@@ -295,21 +299,21 @@ public class GameGraphFactory implements INodeGraphFactory {
                 && (pos.getY() >= 0);
     }
 
-    /**
-     * Will connect partially connected nodes
-     * 
-     * @param first Node to check
-     * @param second Node to check
-     * @return True if at least one node holds reference of the other, false if not
-     */
-    private boolean ifConnected (IPathNode first, IPathNode second) {
-        boolean connected = false;
-        if (first.getNeighbors().contains(second) || second.getNeighbors().contains(first)) {
-            connected = true;
-            makeNeighbors(first, second);
-        }
-        return connected;
-    }
+//    /**
+//     * Will connect partially connected nodes
+//     * 
+//     * @param first Node to check
+//     * @param second Node to check
+//     * @return True if at least one node holds reference of the other, false if not
+//     */
+//    private boolean ifConnected (IPathNode first, IPathNode second) {
+//        boolean connected = false;
+//        if (first.getNeighbors().contains(second) || second.getNeighbors().contains(first)) {
+//            connected = true;
+//            makeNeighbors(first, second);
+//        }
+//        return connected;
+//    }
 
     private void makeNeighbors (IPathNode first, IPathNode second) {
         if (!first.getNeighbors().contains(second)) {
@@ -330,7 +334,7 @@ public class GameGraphFactory implements INodeGraphFactory {
      */
     private boolean connectIfNotObstructed (IPathNode first,
                                          IPathNode second,
-                                         IEdgeBitMap obstructionMap) {
+                                         ISampledBitMap obstructionMap) {
         boolean toReturn = false;
         List<Coordinate> pixelLine =
                 PathNodeGeometry.lineRounder(PathNodeGeometry.lineBetween(first, second));
@@ -341,7 +345,7 @@ public class GameGraphFactory implements INodeGraphFactory {
         return toReturn;
     }
 
-    private boolean lineObstructed (List<Coordinate> line, IEdgeBitMap obstructionMap) {
+    private boolean lineObstructed (List<Coordinate> line, ISampledBitMap obstructionMap) {
         if (line.size() < 1) {
             return false;
         }
@@ -350,8 +354,8 @@ public class GameGraphFactory implements INodeGraphFactory {
         for (Coordinate coor : line) {
             isObstructed =
                     isObstructed 
-                    || obstructionMap.valueOf(last) 
-                    || obstructionMap.valueOf(coor);
+                    || obstructionMap.translatedValueOf(last) 
+                    || obstructionMap.translatedValueOf(coor);
             isObstructed = checkSquare(last, coor, obstructionMap, isObstructed);
             last = coor;
         }
@@ -381,7 +385,7 @@ public class GameGraphFactory implements INodeGraphFactory {
      */
     private boolean checkSquare (Coordinate first,
                                  Coordinate second,
-                                 IEdgeBitMap obstructionMap,
+                                 ISampledBitMap obstructionMap,
                                  boolean currentValue) {
         boolean toReturn = currentValue;
         if (isDiagNeigh(first, second)) {
@@ -391,15 +395,15 @@ public class GameGraphFactory implements INodeGraphFactory {
             Coordinate leftOffset = new Coordinate(left.getX(), left.getY() + yOffset);
             Coordinate rightOffset = new Coordinate(right.getX(), right.getY() - yOffset);
             toReturn = toReturn
-                    || obstructionMap.valueOf(leftOffset)
-                    || obstructionMap.valueOf(rightOffset);
+                    || obstructionMap.translatedValueOf(leftOffset)
+                    || obstructionMap.translatedValueOf(rightOffset);
         }
         return toReturn;
     }
 
 
 
-    private IEdgeBitMap getObstructionMap () {
+    private ISampledBitMap getObstructionMap () {
         return myObstructionMap;
     }
 
