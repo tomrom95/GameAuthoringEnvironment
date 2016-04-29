@@ -1,4 +1,0 @@
-Order = Creation,Game,Scene
-Creation = gameauthoring.tabs.CreationTabView
-Game = gameauthoring.tabs.GameTabView
-Scene = gameauthoring.tabs.SceneTabView
