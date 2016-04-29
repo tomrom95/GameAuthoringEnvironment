@@ -20,6 +20,8 @@ public class TrackingFireSFC extends RemovableFireSFC {
     private ITrackingFireSFV myView;
     private IGame myGame;
     private double myDefaultWaitTime = 0;
+    private double myDefaultRange = 0;
+    private boolean myDefaultIsRanged = false;
     private TrackingFirerDefinition myFireDef;
 
     public TrackingFireSFC (IGame game, FiringSFC sfc) {
@@ -40,12 +42,11 @@ public class TrackingFireSFC extends RemovableFireSFC {
 
     @Override
     public void initializeFields (SpriteDefinition item) {
-        populateViewsWithData(myDefaultWaitTime);
+        populateViewsWithData(myDefaultWaitTime, myDefaultRange, myDefaultIsRanged);
     }
 
-    private void populateViewsWithData (double wait) {
-        //myFormData.set(myView.getWaitTimeKey(), Double.toString(wait));
-        //myFormData.set(myView.getMyRangeValueKey(), Double.toString(range));
+    private void populateViewsWithData (double wait, double range, boolean isRanged) {
+        myView.populateWithData(null, null, myDefaultWaitTime, myDefaultRange, myDefaultIsRanged);
 
     }
 
@@ -57,7 +58,9 @@ public class TrackingFireSFC extends RemovableFireSFC {
         myFireDef.setWaitTime(waitTime);
         myFireDef.setTargets(myView.getTargetsCoice());
         myFireDef.setProjectileDefinition(myView.getSelectedMissile());
-
+        myFireDef.setRanged(myView.getMyIsRanged());
+        myFireDef.setFireRange(myView.getMyRange());
+        
         item.addModule(myFireDef);
     }
 
@@ -74,7 +77,7 @@ public class TrackingFireSFC extends RemovableFireSFC {
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
         myView.populateWithData(myFireDef.getProjectileDefinition(), myFireDef.getTargets(),
-                                myFireDef.getWaitTime());
+                                myFireDef.getWaitTime(), myFireDef.getFireRange(), myFireDef.getRanged());
     }
 
 }

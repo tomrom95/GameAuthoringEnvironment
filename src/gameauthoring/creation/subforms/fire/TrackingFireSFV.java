@@ -134,6 +134,28 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     public BooleanProperty isRangedProperty () {
         return isRangedSelectionView.isCheckedProperty();
     }
+
+    @Override
+    public double getMyRange () {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public boolean getMyIsRanged () {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public void populateWithData (SpriteDefinition missile,
+                                  SpriteGroup target,
+                                  double waitTime,
+                                  double range,
+                                  boolean isRanged) {
+        // TODO Auto-generated method stub
+        
+    }
     
 //    private void initBinding () {
 //        myRangeValue.draw().visibleProperty().bind(isRangedProperty());

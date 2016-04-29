@@ -77,7 +77,6 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         myPane =
                 getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(),
                                           myWaitTime.draw(), myAngle.draw(), myRemove.draw(), myRangeValue.draw(), myIsRanged.draw());
-        // TODO: add range
         myPane.getStyleClass().add("firer");
     }
 
