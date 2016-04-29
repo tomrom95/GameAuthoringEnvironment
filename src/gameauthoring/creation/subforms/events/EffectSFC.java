@@ -16,9 +16,10 @@ import engine.profile.ProfileDisplay;
 import engine.profile.IProfile;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
+import gameauthoring.creation.subforms.fire.RemovableEffectSFC;
 import javafx.collections.ObservableList;
 
-public class EffectSFC implements ISubFormController<EventPackageDefinition> {
+public class EffectSFC extends RemovableEffectSFC {
 
     private IGame myGame;
     private EffectSFV myView;
@@ -27,10 +28,10 @@ public class EffectSFC implements ISubFormController<EventPackageDefinition> {
     private String defaultAttributeType = "length";
     private ResourceBundle myEffects = ResourceBundle.getBundle("defaults/effect_types");
     
-    public EffectSFC (IGame game, Effect myEffect) {
+    public EffectSFC (IGame game, EffectChoiceSFC sfc) {
+        super(sfc);
         myGame = game;
         myView = new EffectSFV(myGame.getAuthorshipData(), getEffects()); 
-        this.myEffect = myEffect;
     }
 
     private ObservableList<ProfileDisplay> getEffects () {
@@ -42,10 +43,8 @@ public class EffectSFC implements ISubFormController<EventPackageDefinition> {
         AttributeDefinition attrDef = myView.getAttribute();
         Attribute lengthAttr = new Attribute(myView.getLength(),new AttributeType(defaultAttributeType));
         double val = myView.getValue();
-        Effect effect = getEffect(myView.getEffectType(), lengthAttr, attrDef, val);
-        if(!item.getMyEffectsList().contains(effect)){
-            item.getMyEffectsList().add(effect);
-        }
+        myEffect = getEffect(myView.getEffectType(), lengthAttr, attrDef, val);
+            item.getMyEffectsList().add(myEffect);
     }
 
     private Effect getEffect (String effectType,
@@ -71,6 +70,11 @@ public class EffectSFC implements ISubFormController<EventPackageDefinition> {
         double value = myEffect.getAlteringAttribute().getValueProperty().get();
         double length = myEffect.getEffectLengthAttribute().getValueProperty().get();
         myView.populateWithData(type, definition, value, length);
+    }
+
+    @Override
+    public Effect getModuleDefinition () {
+        return myEffect;
     }
 
 }

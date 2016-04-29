@@ -29,6 +29,11 @@ public class EffectChoiceSFC extends MultiOptionSFC<EventPackageDefinition>{
         return item.getMyEffectsList();
     }
 
+    @Override
+    protected void resetContents (EventPackageDefinition item) {
+        item.getMyEffectsList().clear();
+    }
+
     
 
 }

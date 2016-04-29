@@ -47,9 +47,7 @@ public class TrackingFireSFC extends RemovableFireSFC {
         myFireDef.setWaitTime(waitTime);
         myFireDef.setTargets(myView.getTargetsCoice());
         myFireDef.setProjectileDefinition(myView.getSelectedMissile());
-        if (!item.getModuleDefinitions().contains(myFireDef)) {         
-           item.addModule(myFireDef);
-        }        
+        item.addModule(myFireDef);
     }
 
     @Override
