@@ -4,6 +4,7 @@ import java.util.*;
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.DirectionalFirerDefinition;
+import engine.definitions.moduledef.FirerDefinition;
 import engine.definitions.moduledef.ModuleDefinition;
 import engine.definitions.moduledef.TrackingFirerDefinition;
 import engine.definitions.moduledef.UserFirerDefinition;
@@ -26,9 +27,11 @@ public class FiringSFCmult implements ISubFormControllerSprite {
     private List<RemovableSpriteSFC> mySFCs;
     private FiringSFCFactory mySFCFactory;
     private List<String> options = new ArrayList<>(Arrays.asList("TRACKING", "DIRECTIONAL"));
+    private IGame myGame;
 
     public FiringSFCmult (IGame game) {
-        mySFCFactory = new FiringSFCFactory(game, this);
+        myGame = game;
+        mySFCFactory = new FiringSFCFactory();
         myView = new FiringSFVmult(options);
         mySFCs = new ArrayList<>();
         setActions();
@@ -38,16 +41,18 @@ public class FiringSFCmult implements ISubFormControllerSprite {
         for (int i = 0; i < myView.getMyButtons().size(); i++) {
             String sfcID = options.get(i);
             myView.setButtonAction(myView.getMyButtons().get(i),
-                                   e -> addSFC(mySFCFactory.createSubFormController(sfcID)));
+                                   e -> addSFC(mySFCFactory
+                                           .createSubFormController(sfcID, getMyGame(), this)));
         }
     }
 
     public void addSFC (RemovableSpriteSFC sfc) {
         mySFCs.add(sfc);
-        //sfc.initializeFields();
+        // sfc.initializeFields();
         myView.addOrSetSFV(sfc.getSubFormView());
     }
-    private void clearSFCs(){
+
+    private void clearSFCs () {
         mySFCs = new ArrayList<>();
         myView.clearSFVs();
     }
@@ -77,29 +82,21 @@ public class FiringSFCmult implements ISubFormControllerSprite {
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
         this.clearSFCs();
-        
+
         // TODO: change to list<FiringDefinition>
         List<ModuleDefinition> firingDefs = item.getModuleDefinitions();
 
         System.out.println(firingDefs.toString());
         for (ModuleDefinition firingDef : firingDefs) {
-            if (firingDef instanceof DirectionalFirerDefinition) {
-                RemovableSpriteSFC sfc = mySFCFactory.createSubFormController("DIRECTIONAL", firingDef);
-                sfc.populateViewsWithData(item);
-                this.addSFC(sfc);
-            }
-            else if (firingDef instanceof TrackingFirerDefinition) {
-                RemovableSpriteSFC sfc = mySFCFactory.createSubFormController("TRACKING", firingDef);
-                sfc.populateViewsWithData(item);
-                this.addSFC(sfc);
-            }
-            else if (firingDef instanceof UserFirerDefinition) {
-                RemovableSpriteSFC sfc = mySFCFactory.createSubFormController("USER", firingDef);
-                sfc.populateViewsWithData(item);
-                this.addSFC(sfc);
-            }
+            RemovableSpriteSFC sfc = mySFCFactory.createSubFormController(getMyGame(), this, (FirerDefinition) firingDef);
+            sfc.populateViewsWithData(item);
+            this.addSFC(sfc);
         }
 
+    }
+
+    private IGame getMyGame () {
+        return myGame;
     }
 
 }

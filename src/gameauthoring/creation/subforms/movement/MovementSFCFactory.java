@@ -26,15 +26,15 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
 
     @Override
     public ISubFormControllerSprite createSubFormController (String type) {
-        if (type.equals("SMARTAI")) {
+        if (type.equals("SMARTAIMOVER")) {
 
             return new SmartAIMovementSFC();
         }
-        else if (type.equals("STATIC")) {
+        else if (type.equals("STATICMOVER")) {
             return new StaticMoverSFC();
 
         }
-        else if (type.equals("CONSTANT")) {
+        else if (type.equals("CONSTANTMOVER")) {
             return new ConstantMoverSFC();
 
         }
@@ -42,7 +42,7 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
             return new UserMoverSFC();
 
         }
-        else if (type.equals("TRACKING")) {
+        else if (type.equals("TRACKINGMOVER")) {
             return new TrackingMoverSFC(getMyGame());
 
         }

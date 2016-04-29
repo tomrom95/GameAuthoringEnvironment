@@ -1,13 +1,11 @@
 package gameauthoring.creation.subforms.fire;
 
+import java.util.ResourceBundle;
 import engine.IGame;
-import gameauthoring.creation.factories.DynamicSFCFactory;
-import engine.definitions.concrete.SpriteDefinition;
-import engine.definitions.moduledef.DirectionalFirerDefinition;
+import gameauthoring.creation.factories.Reflection;
+import gameauthoring.creation.factories.ReflectionException;
 import engine.definitions.moduledef.FirerDefinition;
-import engine.definitions.moduledef.TrackingFirerDefinition;
-import gameauthoring.creation.subforms.ISubFormController;
-import gameauthoring.creation.subforms.ISubFormControllerSprite;
+import gameauthoring.util.ErrorMessage;
 
 /**
  * 
@@ -18,21 +16,66 @@ import gameauthoring.creation.subforms.ISubFormControllerSprite;
  * @author Joe Lilien
  *
  */
-public class FiringSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
+public class FiringSFCFactory {
 
-    private FiringSFCmult myFiringSFC;
+    private ResourceBundle myResources = ResourceBundle.getBundle("firingDefSFCMap");
 
     /**
      * Constructor 
-     * 
-     * @param game The current game object
-     * @param firingSFC A reference to the Firing SFC that controls the sub-firing SFCs
      */
-    public FiringSFCFactory (IGame game, FiringSFCmult myFiringSFC) {
-        super(game);
-        this.myFiringSFC = myFiringSFC;
+    public FiringSFCFactory () {
+    }
+    
+    public RemovableSpriteSFC createSubFormController (String definitionClassName, IGame game, FiringSFCmult firingSFC) {
+        
+        FirerDefinition firingDef;
+        try{
+            firingDef = (FirerDefinition) Reflection.createInstance(definitionClassName, game);
+        } catch  (ReflectionException | ClassCastException e ){
+            throw e;
+        } 
+        
+        return this.createSubFormController(getMyResources().getString(definitionClassName), game, firingSFC, firingDef);
+        /*
+        if (type.equals("DIRECTIONAL")) {
+            return new DirectionalFireSFC(getMyGame(), getMyFiringSFC(), new DirectionalFirerDefinition(getMyGame()));
+        }
+        else if (type.equals("TRACKING")) {
+            return new TrackingFireSFC(getMyGame(), getMyFiringSFC(), new TrackingFirerDefinition(getMyGame()));
+        }
+        */
+        
+    }
+    
+    public RemovableSpriteSFC createSubFormController (IGame game, FiringSFCmult firingSFC, FirerDefinition firerDef) {
+      
+        return this.createSubFormController(getMyResources().getString(firerDef.getClass().getName()), game, firingSFC, firerDef);
+       
+        
     }
 
+ 
+
+    public RemovableSpriteSFC createSubFormController (String definitionClassName, Object ... params) {
+        
+        try{
+            return (RemovableSpriteSFC) Reflection.createInstance(getMyResources().getString(definitionClassName),  params);
+        } catch (ReflectionException | ClassCastException e ){
+            //TODO should this be error message or just throw error?
+            String errorMsg = "Check your properties files. Unable to create firing subformcontroller with className " + definitionClassName + " and params " + params;
+            ErrorMessage errorMessage = new ErrorMessage(errorMsg);
+            errorMessage.showError();
+            throw e;
+        }
+       
+    }
+    
+    private ResourceBundle getMyResources() {
+        return myResources;
+    }
+    
+    
+/*
     @Override
     public RemovableSpriteSFC createSubFormController (String type) {
         if (type.equals("DIRECTIONAL")) {
@@ -58,6 +101,7 @@ public class FiringSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
         }
         return null;
     }
+    */
     
     
 }
