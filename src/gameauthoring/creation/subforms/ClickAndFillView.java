@@ -80,6 +80,7 @@ public abstract class ClickAndFillView extends SubFormView{
     
     public void clearSFVs() {
         myPaneContent.getChildren().clear();
+        showDefaultMessage();
     }
     
     public VBox getMyPaneContent(){

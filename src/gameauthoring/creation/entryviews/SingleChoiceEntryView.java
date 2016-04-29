@@ -24,7 +24,7 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
     public SingleChoiceEntryView (String label, ObservableList<E> observableList, String cssClass) {
         super(label,cssClass);
         this.myChoices = new ComboBox<E>(observableList);
-        myChoices.setCellFactory(c -> new ProfileCellView<E>());
+        myChoices.setCellFactory(c -> new NameCellView<E>());
         myChoices.setButtonCell(new NameCellView<E>());
         init();
     }

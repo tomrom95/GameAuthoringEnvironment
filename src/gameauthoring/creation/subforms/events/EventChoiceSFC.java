@@ -23,6 +23,11 @@ public class EventChoiceSFC extends MultiOptionSFC<EventPackageDefinition>{
         return item.getMyEventsList();
     }
 
+    @Override
+    protected void resetContents (EventPackageDefinition item) {
+        item.getMyEventsList().clear();
+    }
+
 
     
 

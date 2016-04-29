@@ -32,6 +32,11 @@ public class FiringSFC extends MultiOptionSFC<SpriteDefinition> {
         return item.getModuleDefinitions();
     }
 
+    @Override
+    protected void resetContents (SpriteDefinition item) {
+        item.getModuleDefinitions().clear();
+    }
+
 
 
 

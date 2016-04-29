@@ -76,9 +76,7 @@ public class DirectionalFireSFC extends RemovableFireSFC {
 //            myFireDef.setRanged(myView.isRangedProperty().get());
 //            myFireDef.setFireRange(range);
 
-            if (!item.getModuleDefinitions().contains(myFireDef)) {
-                item.addModule(myFireDef);
-            }
+            item.addModule(myFireDef);
         }
         catch (Exception e) {
             ErrorMessage err =

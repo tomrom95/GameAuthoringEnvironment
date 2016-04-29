@@ -45,9 +45,13 @@ public abstract class MultiOptionSFC <T extends IProfilable> implements ISubForm
     
     @Override
     public void updateItem (T item) {
+        resetContents(item);
         mySFCs.forEach(e -> e.updateItem(item));
     }
     
+    protected abstract void resetContents (T item);
+ 
+
     @Override
     public ISubFormView getSubFormView () {
         return getMyView();
@@ -61,7 +65,9 @@ public abstract class MultiOptionSFC <T extends IProfilable> implements ISubForm
     public void removeSFC (RemovableSFC<T> sfc) {
         mySFCs.remove(sfc);
         getMyView().removeSFV(sfc.getSubFormView());
-        sfc.removeModule(sfc.getModuleDefinition());
+        if(sfc.getModuleDefinition()!=null){
+            sfc.removeModule(sfc.getModuleDefinition());
+        }
     }
     
     protected abstract List<? extends Object> getList(T item);

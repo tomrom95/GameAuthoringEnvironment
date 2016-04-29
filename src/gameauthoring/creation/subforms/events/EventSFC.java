@@ -6,19 +6,28 @@ import engine.definitions.concrete.EventPackageDefinition;
 import engine.events.EventType;
 import engine.events.GameEvent;
 import engine.profile.ProfileDisplay;
-import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
+import gameauthoring.creation.subforms.fire.RemovableEventSFC;
 import javafx.collections.ObservableList;
 
 
-public class EventSFC implements ISubFormController<EventPackageDefinition> {
+public class EventSFC extends RemovableEventSFC {
 
     private static final String PATH = "defaults/event_types";
     private ResourceBundle eventTypes = ResourceBundle.getBundle(PATH);
     private IEventSFV myView;
     private GameEvent myEvent;
 
+    public EventSFC (IGame game, EventChoiceSFC sfc) {
+        super(sfc);
+        init(game, new GameEvent(null));
+       
+    }
     public EventSFC (IGame game, EventChoiceSFC sfc, GameEvent event) {
+        super(sfc);
+        init(game, event);
+    }
+    private void init(IGame game, GameEvent event) {
         myView = new EventSFV(getEvents());
         myEvent = event;
     }
@@ -29,10 +38,8 @@ public class EventSFC implements ISubFormController<EventPackageDefinition> {
 
     @Override
     public void updateItem (EventPackageDefinition item) {
-        myEvent.setEventType(new EventType(myView.getEventSelection()));
-        if(!item.getMyEventsList().contains(myEvent)){
-            item.getMyEventsList().add(myEvent);
-        }
+        myEvent = new GameEvent(new EventType(myView.getEventSelection()));
+        item.getMyEventsList().add(myEvent);
     }
 
     @Override
@@ -48,6 +55,11 @@ public class EventSFC implements ISubFormController<EventPackageDefinition> {
     @Override
     public ISubFormView getSubFormView () {
         return myView;
+    }
+
+    @Override
+    public GameEvent getModuleDefinition () {
+        return myEvent;
     }
 
 }
