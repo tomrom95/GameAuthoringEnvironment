@@ -1,5 +1,6 @@
-package facebookutil.test;
+package facebookutil.otherplatforms;
 
+import facebookutil.test.BrowserView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
