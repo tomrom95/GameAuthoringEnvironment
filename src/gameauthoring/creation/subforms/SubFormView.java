@@ -15,6 +15,7 @@ public abstract class SubFormView implements ISubFormView {
 
     private BasicUIFactory myUIFactory = new BasicUIFactory();
     private String myTitle;
+    private String myStyleClass = "SFVclass";
     
     //TODO: work this in
 //    public SubFormView(String title){
@@ -38,5 +39,9 @@ public abstract class SubFormView implements ISubFormView {
      * Initializes arrangement and actual appearence of SFV
      */
     protected abstract void initView ();
+    
+    protected String getStyleClass() {
+        return myStyleClass;
+    }
 
 }

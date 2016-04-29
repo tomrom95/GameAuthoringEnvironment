@@ -69,6 +69,7 @@ public class ProfileSFV extends SubFormView implements IProfileSFV {
         myPane.add(myDescription.draw(), 0, 1);
         myPane.add(myImage.draw(), 1, 0, 1, 3);
         myPane.add(new HBox(myImageWidth.draw(), myImageHeight.draw()), 0, 2);
+        getMyUIFactory().addStyling(myPane, getStyleClass());
     }
 
     @Override

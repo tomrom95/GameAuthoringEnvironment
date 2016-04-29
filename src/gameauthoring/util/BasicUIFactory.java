@@ -304,7 +304,7 @@ public class BasicUIFactory implements UIFactory {
         return label;
     }
     
-    protected void addStyling(Node node, String key) {
+    public void addStyling(Node node, String key) {
         node.getStyleClass().add(myStyle.getString(key));
     }
 

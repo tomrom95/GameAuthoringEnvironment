@@ -20,12 +20,14 @@ import javafx.scene.layout.HBox;
  */
 public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
     private ComboBox<E> myChoices;
+    private String comboBoxStyle = "SingleChoice";
 
     public SingleChoiceEntryView (String label, ObservableList<E> observableList, String cssClass) {
         super(label,cssClass);
         this.myChoices = new ComboBox<E>(observableList);
         myChoices.setCellFactory(c -> new NameCellView<E>());
         myChoices.setButtonCell(new NameCellView<E>());
+        getMyFactory().addStyling(myChoices, comboBoxStyle);
         init();
     }
 

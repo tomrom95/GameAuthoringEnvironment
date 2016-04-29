@@ -20,6 +20,7 @@ import javafx.scene.control.SelectionMode;
 public class MultiChoiceEntryView<E extends IProfilable> extends EntryView {
 
     private ListView<E> myChoices;
+    private String listViewStyle = "MultiChoiceView";
 
     public MultiChoiceEntryView (String label,
                                  ObservableList<E> observableList,
@@ -28,6 +29,7 @@ public class MultiChoiceEntryView<E extends IProfilable> extends EntryView {
                                  String cssClass) {
         super(label, cssClass);
         myChoices = new ListView<E>(observableList);
+        getMyFactory().addStyling(myChoices, listViewStyle);
         myChoices.setMinSize(width, height);
         myChoices.setMaxSize(width, height);
         init();
