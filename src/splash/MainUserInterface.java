@@ -29,6 +29,7 @@ import library.GameLibraryController;
  * @TODO: ResourceBundle for unprotected string
  * @TODO: Load Game method
  * @author Jin An
+ * @author David Maydew
  *
  */
 public class MainUserInterface {
@@ -113,7 +114,7 @@ public class MainUserInterface {
         HBox box = new HBox(Integer.parseInt(mySpecs.getString(SPACING_KEY)));
         box.setAlignment(Pos.CENTER);
         Button fbButton = createButton(myLabels.getString("splashloginfb"), e -> loginWithFacebook());
-        fbButton.setId("fbbutton");
+        fbButton.setId(mySpecs.getString("fbbutton"));
         box.getChildren()
                 .add(fbButton);
         return box;
