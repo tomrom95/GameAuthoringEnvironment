@@ -12,6 +12,8 @@ import gameauthoring.creation.subforms.DynamicSubFormView;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
+import gameauthoring.creation.subforms.MultiOptionSFC;
+import util.BundleOperations;
 
 
 /**
@@ -21,14 +23,13 @@ import gameauthoring.creation.subforms.ISubFormView;
  * @author Joe Lilien
  *
  */
-public class FiringSFC implements ISubFormControllerSprite {
+public class FiringSFC extends MultiOptionSFC<SpriteDefinition>{
     private FiringSFV myView;
     private List<RemovableSpriteSFC> mySFCs;
     private FiringSFCFactory mySFCFactory;
-    private ResourceBundle myClassPaths = ResourceBundle.getBundle("defaults/class_path_def");
-
-    // TODO: move to resource file
-    private List<String> options = new ArrayList<>(Arrays.asList("TRACKINGFIRER", "DIRECTIONALFIRER"));
+    private ResourceBundle myClassPaths = ResourceBundle.getBundle("defaults/sfc_classpath");
+    private ResourceBundle myOptionsFile = ResourceBundle.getBundle("defaults/dynamic_sfc_contents");
+    private List<String> options = BundleOperations.getPropertyValueAsList("FIRING", myOptionsFile);
 
     public FiringSFC (IGame game) {
         mySFCFactory = new FiringSFCFactory(game, this);
