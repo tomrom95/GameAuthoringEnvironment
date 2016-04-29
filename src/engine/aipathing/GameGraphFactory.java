@@ -74,14 +74,14 @@ public class GameGraphFactory implements INodeGraphFactory {
         for (int i = 0; i < numHorizontalNodes; i++) {
             for (int j = 0; j < numHeightNodes; j++) {
                 ArrayPosition pixelLocation = pixelForArrayLoc(i, j, xGap, yGap);
-                if (!obstructionMap.valueOf(pixelLocation)) {
+                if (!obstructionMap.valueOf(i,j)) {
                     IPathNode toAdd = new PathNode(new Coordinate(pixelLocation));
                     toReturn.addNode(toAdd);
                     placedNodes[i][j] = toAdd;
                 }
             }
         }
-        connectUnobstructedNodes(placedNodes, obstructionMap);
+        connectNeighboringGridNodes(placedNodes, obstructionMap);
         //adding the goal and start nodes
         //need to check if the nodes already exist in the graph
         IPathNode startNode = toReturn.addIfCantGetFor(start);
@@ -93,8 +93,8 @@ public class GameGraphFactory implements INodeGraphFactory {
     }
 
     private ArrayPosition pixelForArrayLoc (int widthAccess, int heightAccess, int xGap, int yGap) {
-        return new ArrayPosition(widthAccess * xGap + (xGap / INT_TWO),
-                                 heightAccess * yGap + (yGap / INT_TWO));
+        return new ArrayPosition(widthAccess * xGap, //+ (xGap / INT_TWO),
+                                 heightAccess * yGap); //+ (yGap / INT_TWO));
     }
 
 
@@ -211,7 +211,7 @@ public class GameGraphFactory implements INodeGraphFactory {
 //        return (edgeTop || edgeBot || edgeRight || edgeLeft) && selfObstructed;
 //    }
 
-    private void connectUnobstructedNodes (IPathNode[][] nodes, ISampledBitMap obstructionMap) {
+    private void connectNeighboringGridNodes (IPathNode[][] nodes, ISampledBitMap obstructionMap) {
         int width = nodes.length;
         int height = width > 0 ? nodes[0].length : 0;
         ArrayPosition pos = new ArrayPosition();
@@ -223,9 +223,12 @@ public class GameGraphFactory implements INodeGraphFactory {
                     List<ArrayPosition> toCheck = nodesToCheck(nodes, pos);
                     for (ArrayPosition potNeigh : toCheck) {
                         if (inBoundsAndNotNull(nodes, potNeigh)) {
-                            connectIfNotObstructed(nodes[potNeigh.getX()][potNeigh.getY()],
-                                                   nodes[pos.getX()][pos.getY()],
-                                                   obstructionMap);
+                            makeNeighbors(nodes[potNeigh.getX()][potNeigh.getY()],
+                                          nodes[pos.getX()][pos.getY()]);
+                            
+//                            connectIfNotObstructed(nodes[potNeigh.getX()][potNeigh.getY()],
+//                                                   nodes[pos.getX()][pos.getY()],
+//                                                   obstructionMap);
                         }
                     }
                 }
@@ -337,12 +340,28 @@ public class GameGraphFactory implements INodeGraphFactory {
                                          ISampledBitMap obstructionMap) {
         boolean toReturn = false;
         List<Coordinate> pixelLine =
-                PathNodeGeometry.lineRounder(PathNodeGeometry.lineBetween(first, second));
+                PathNodeGeometry.lineRounder(PathNodeGeometry.lineBetween(first, second, obstructionMap));
+        removeFirstPoint(pixelLine);
+        
         if (!lineObstructed(pixelLine, obstructionMap)) {
             makeNeighbors(first, second);
             toReturn = true;
         }
         return toReturn;
+    }
+    
+    /**
+     * Avoid comparison of where you are
+     * @param toPrune
+     */
+    private void removeFirstPoint (List<Coordinate> toPrune){
+        if (!(toPrune.size() > 0)) {
+            return;
+        }
+        Coordinate first = toPrune.get(0);
+        while (toPrune.contains(first)) {
+            toPrune.remove(first);
+        }
     }
 
     private boolean lineObstructed (List<Coordinate> line, ISampledBitMap obstructionMap) {
@@ -354,9 +373,9 @@ public class GameGraphFactory implements INodeGraphFactory {
         for (Coordinate coor : line) {
             isObstructed =
                     isObstructed 
-                    || obstructionMap.translatedValueOf(last) 
-                    || obstructionMap.translatedValueOf(coor);
-            isObstructed = checkSquare(last, coor, obstructionMap, isObstructed);
+                    || obstructionMap.valueOf(last) 
+                    || obstructionMap.valueOf(coor);
+            //isObstructed = checkSquare(last, coor, obstructionMap, isObstructed);
             last = coor;
         }
         return isObstructed;

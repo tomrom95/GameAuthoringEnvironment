@@ -38,6 +38,7 @@ public class SpriteDefinition implements IProfilable {
     private List<AttributeDefinition> myAttributes;
     private IProfile myProfile;
     private ICost myCost;
+    private boolean myObstructability;
 
     public SpriteDefinition () {
         // TODO Set a default from resource file. THis is just for view testing
@@ -57,7 +58,12 @@ public class SpriteDefinition implements IProfilable {
         IGraphicModule graphicModule = createGraphicModule();
         sprite.initialize(mover, graphicModule, createUpgrade(sprite), createModules(sprite),
                           createAttributes(), createCoordinate());
+        sprite.setObstruction(myObstructability);
         return sprite;
+    }
+    
+    public void setObstructability (boolean toSet){
+        myObstructability = toSet;
     }
     
     protected UpgradeModule createUpgrade (ISprite parent) {

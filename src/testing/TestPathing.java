@@ -24,10 +24,13 @@ import engine.events.GameEvent;
 import engine.profile.Profile;
 import engine.rendering.GameGridConfigNonScaling;
 import engine.sprite.ISprite;
+import gameauthoring.shareddata.DefinitionCollection;
 import engine.effects.DecreaseEffect;
 import engine.effects.IEffect;
 import gameplayer.GamePlayer;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import util.Coordinate;
 import graphics.ImageGraphic;
@@ -57,12 +60,12 @@ public class TestPathing extends Application {
     private static final String ENEMY_IMAGE_URL = "/images/photo.png";
     private static final String ENEMY_SPRITE_DESCR = "An enemy sprite";
     private static final String ENEMY_SPRITE_TYPE = "EnemySprite";
-    private static final int ENEMY_INITIAL_X = 100;
+    private static final int ENEMY_INITIAL_X = 0;
     private static final int ENEMY_INITIAL_Y = 100;
 
     // Other Parameters
-    private static final int SPRITE_INITIAL_X = 900;
-    private static final int SPRITE_INITIAL_Y = 200;
+    private static final double SPRITE_INITIAL_X = 600.98393d;
+    private static final double SPRITE_INITIAL_Y = 150.19507858d;
 
     private static final String BACKGROUND_URL = "/images/pvz.jpg";
 
@@ -152,8 +155,13 @@ public class TestPathing extends Application {
         ISprite test = createEnemySpriteDefinition(ENEMY_INITIAL_X, ENEMY_INITIAL_Y).create();
         test.getStatusModule().setIsGoal(true);
         
-        for(int i = 0; i < 5; i ++){
-            ISprite wall = createEnemySpriteDefinition(ENEMY_INITIAL_X + 100, ENEMY_INITIAL_Y + i * 40).create();
+//        for(int i = 0; i < 1; i ++){
+//            ISprite wall = createEnemySpriteDefinition(400, i*50).create();
+//            wall.setObstruction(true);
+//            game.bufferedAdd(wall);
+//        }
+        for(int i = 4; i < 8; i ++){
+            ISprite wall = createEnemySpriteDefinition(400, i*55).create();
             wall.setObstruction(true);
             game.bufferedAdd(wall);
         }
@@ -178,6 +186,13 @@ public class TestPathing extends Application {
                 new Game(new GameGridConfigNonScaling((int)GamePlayer.PREFWIDTH, (int)GamePlayer.PREFHEIGHT));
 //                new Game(new GameGridConfigNonScaling(50, 50));
         myGame.getLevelManager().getLevels().add(firstLevel);
+        SpriteDefinition myUser = createUserSpriteDefinition(SPRITE_INITIAL_X, SPRITE_INITIAL_Y);
+        myUser.setObstructability(false);
+        ObservableList<SpriteDefinition> list = FXCollections.observableArrayList();
+        list.add(myUser);
+        DefinitionCollection<SpriteDefinition> sdef = new DefinitionCollection<>("sdf", list);
+        myGame.getAuthorshipData().addCreatedSprites(sdef);
+        myGame.getAuthorshipData().getMyLevelSelectorSprites().add(sdef);
         addSpritesToGame(myGame);
         addConditionsToTest(myGame);
         GamePlayer gp = new GamePlayer(myGame);
@@ -213,7 +228,7 @@ public class TestPathing extends Application {
                            new ImageGraphic(SPRITE_HEIGHT, SPRITE_WIDTH, ENEMY_IMAGE_URL));
     }
 
-    private SpriteDefinition createUserSpriteDefinition (int xloc, int yloc) {
+    private SpriteDefinition createUserSpriteDefinition (double xloc, double yloc) {
         SpriteDefinition mySpriteDefinition = new SpriteDefinition();
         mySpriteDefinition.setMovementDefinition(getAIPather()); //TODO
         mySpriteDefinition.setProfile(userSpriteProfile());

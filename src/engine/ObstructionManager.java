@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  */
 public class ObstructionManager implements IObstructionManager {
     private static final boolean POSITION_OBSTRUCTED = true;
-    private static final int SAMPLE_RESOLUTION = 10;
+    private static final int SAMPLE_RESOLUTION = 100;
     
     private IGame myGame;
     private ISampledBitMap myCurrentObstructionMap;
@@ -36,12 +36,13 @@ public class ObstructionManager implements IObstructionManager {
 
     @Override
     public void update (TimeDuration duration) {
-        myCurrentObstructionMap = parseCurrentGameForObstructions(getGame());
+       // myCurrentObstructionMap = parseCurrentGameForObstructions(getGame());
+        //boolean[][] map = getObstructionMap().getBitMap();
     }
     
     @Override
     public ISampledBitMap getObstructionMap () {
-        return myCurrentObstructionMap;
+        return  parseCurrentGameForObstructions(getGame());
         //return new CachingEdgeBitMap(getObstructionMap());
     }
 
@@ -103,10 +104,10 @@ public class ObstructionManager implements IObstructionManager {
 
     private void markSpriteOnMap (ISampledBitMap map, ISprite sprite) {
         Bounds bound = sprite.getBounds();
-        int leftX = (int) Math.round(bound.getLeft()) / map.widthScale();
-        int rightX = (int) Math.round(bound.getRight())/ map.widthScale();
-        int topY = (int) Math.round(bound.getTop())/ map.heightScale();
-        int botY = (int) Math.round(bound.getBottom())/ map.heightScale();
+        int leftX = (int) Math.floor(bound.getLeft()) / map.widthScale();
+        int rightX = (int) Math.floor(bound.getRight())/ map.widthScale();
+        int topY = (int) Math.floor(bound.getTop())/ map.heightScale();
+        int botY = (int) Math.floor(bound.getBottom())/ map.heightScale();
         for (int i = leftX; i <= rightX; i++) {
             for (int j = topY; j <= botY; j++) {
                 map.set(i, j, POSITION_OBSTRUCTED);
@@ -119,8 +120,10 @@ public class ObstructionManager implements IObstructionManager {
     }
 
     private ISampledBitMap getBitMapSizedForCurrentGame (IGame game) {
-        int gameWidth = game.getGameGridConfig().getGridWidth();
-        int gameHeight = game.getGameGridConfig().getGridHeight();
+        int gameWidth = (int) 1200;
+                //game.getLevelManager().getCurrentLevel().getBackgroundImageWidth();
+        int gameHeight = (int) 800;
+                //game.getLevelManager().getCurrentLevel().getBackgroundImageHeight();
         return new SampledBitMap(gameWidth / SAMPLE_RESOLUTION, gameHeight/ SAMPLE_RESOLUTION, gameWidth, gameHeight);
     }
 

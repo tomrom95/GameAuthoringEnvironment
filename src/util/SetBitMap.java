@@ -47,7 +47,7 @@ public class SetBitMap implements IBitMap {
 
     @Override
     public boolean valueOf (int row, int column) {
-        return getTrueSet().contains(posForInt(row, column));
+        return valueOf(posForInt(row, column));
     }
 
     @Override
@@ -68,7 +68,7 @@ public class SetBitMap implements IBitMap {
 
     @Override
     public void set (ArrayPosition pos, boolean value) {
-        if (value) {
+        if (value && inBounds(pos)) {
             getTrueSet().add(pos);
         }
         else {
@@ -130,7 +130,7 @@ public class SetBitMap implements IBitMap {
 
     @Override
     public boolean inBounds (int x, int y) {
-        return (x >= 0) && (x < getWidth()) && (y >= 0) && (y < getHeight());
+        return (x >= 0) && (x <= getWidth()) && (y >= 0) && (y <= getHeight());
     }
 
     @Override

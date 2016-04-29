@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.BiFunction;
 import util.ArrayPosition;
 import util.Coordinate;
+import util.ISampledBitMap;
 
 
 /**
@@ -28,7 +29,7 @@ public class PathNodeGeometry {
     public static List<Coordinate> lineRounder (List<Coordinate> lineToRound) {
         List<Coordinate> toReturn = new ArrayList<>();
         for (Coordinate coord : lineToRound) {
-            toReturn.add(new Coordinate(Math.round(coord.getX()), Math.round(coord.getY())));
+            toReturn.add(new Coordinate(Math.floor(coord.getX()), Math.floor(coord.getY())));
         }
         return toReturn;
     }
@@ -82,6 +83,16 @@ public class PathNodeGeometry {
     public static List<Coordinate> lineBetween (IPathNode first, IPathNode second) {
         Coordinate start = first.getLocation();
         Coordinate end = second.getLocation();
+        return lineBetween(start, end);
+    }
+
+    public static List<Coordinate> lineBetween (IPathNode first,
+                                                IPathNode second,
+                                                ISampledBitMap normalizer) {
+        Coordinate start = new Coordinate(first.getLocation().getX() / normalizer.widthScale(),
+                                          first.getLocation().getY() / normalizer.heightScale());
+        Coordinate end = new Coordinate(second.getLocation().getX() / normalizer.widthScale(),
+                                        second.getLocation().getY() / normalizer.heightScale());
         return lineBetween(start, end);
     }
 
