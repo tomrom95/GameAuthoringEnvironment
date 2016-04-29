@@ -81,10 +81,6 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     }
 
     private void initBinding (AuthorshipData data) {
-        myUpgradeChoices.draw().visibleProperty().bind(isUpgradableProperty());
-        myAttributeChoices.draw().visibleProperty().bind(isUpgradableProperty());
-        isGlobalResource.draw().visibleProperty().bind(isUpgradableProperty());
-        myCost.draw().visibleProperty().bind(isUpgradableProperty());
         isGlobalResource.isCheckedProperty()
                 .addListener(c -> updateAttributeChoices(data,
                                                          isGlobalResource.isCheckedProperty()));
