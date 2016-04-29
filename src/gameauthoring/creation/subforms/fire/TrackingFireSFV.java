@@ -6,13 +6,10 @@ import engine.AuthorshipData;
 import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.CheckEntryView;
-import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
-import gameauthoring.util.BasicUIFactory;
-import javafx.beans.property.BooleanProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -35,11 +32,10 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     private String myTargetsKey;
     private String myRangedKey;
     private String myRangeValueKey;
-    private String myMissileKey;
+    private String myProjectileKey;
     private NumberEntryView myWaitTime;
     private SingleChoiceEntryView<SpriteGroup> myTargets;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
-    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private RemoveOption myRemove;
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
@@ -55,7 +51,7 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
                         .getItems(),
                                                        AuthoringView.DEFAULT_ENTRYVIEW);
         myMissileSelectionView =
-                new SingleChoiceEntryView<>(myMissileKey, data.getMyCreatedMissiles().getItems(),
+                new SingleChoiceEntryView<>(myProjectileKey, data.getMyCreatedMissiles().getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
         myIsRanged =
                 new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
@@ -74,6 +70,8 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         myTargetsKey = myLabel.getString("TargetsKey");
         myRangedKey = myLabel.getString("RangedKey");
         myRangeValueKey = myLabel.getString("RangeValueKey");
+        myProjectileKey = myLabel.getString("ProjectileKey");
+
     }
 
     @Override

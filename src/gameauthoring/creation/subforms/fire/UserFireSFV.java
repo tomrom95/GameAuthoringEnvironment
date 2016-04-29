@@ -1,20 +1,25 @@
 package gameauthoring.creation.subforms.fire;
 
 import java.util.ResourceBundle;
+import engine.AuthorshipData;
+import engine.definitions.concrete.SpriteDefinition;
 import splash.LocaleManager;
-import gameauthoring.creation.entryviews.IEntryView;
+import gameauthoring.creation.entryviews.CharacterEntryView;
+import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
-import gameauthoring.creation.entryviews.TextEntryView;
+import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
-import javafx.beans.property.BooleanProperty;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 
 public class UserFireSFV extends SubFormView implements IUserFireSFV {
 
-    private GridPane myPane;
+    private HBox myPane;
+    private GridPane controlPane;
     private ResourceBundle myLabel;
     private String myAngleKey;
     private String myWaitTimeKey;
@@ -22,33 +27,54 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
     private String myDecreaseKey;
     private String myFireKey;
     private String myAngleStepKey;
-    private IEntryView myAngle;
-    private IEntryView myWaitTime;
-    private IEntryView myIncrease;
-    private IEntryView myDecrease;
-    private IEntryView myFire;
-    private IEntryView myAngleStep;
+    private String myRangedKey;
+    private String myRangeValueKey;
+    private String myProjectileKey;
+    private NumberEntryView myAngle;
+    private NumberEntryView myWaitTime;
+    private CharacterEntryView myIncrease;
+    private CharacterEntryView myDecrease;
+    private CharacterEntryView myFire;
+    private NumberEntryView myAngleStep;
+    private CheckEntryView myIsRanged;
+    private NumberEntryView myRangeValue;
+    private RemoveOption myRemove;
+    private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
 
-    public UserFireSFV () {
+    public UserFireSFV (AuthorshipData data, RemoveOption remove) {
         setResourceBundleAndKey();
-        createEntryViews();
+        myRemove = remove;
+        createEntryViews(data);
         initView();
     }
 
-    private void createEntryViews () {
+    private void createEntryViews (AuthorshipData data) {
+
+        myMissileSelectionView =
+                new SingleChoiceEntryView<>(myProjectileKey, data.getMyCreatedMissiles().getItems(),
+                                            AuthoringView.DEFAULT_ENTRYVIEW);
+
         myAngle =
                 new NumberEntryView(myAngleKey, 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myWaitTime =
                 new NumberEntryView(myWaitTimeKey, 150, 30,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
-        myIncrease = new TextEntryView(myIncreaseKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myIncrease =
+                new CharacterEntryView(myIncreaseKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
 
-        myDecrease = new TextEntryView(myDecreaseKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myDecrease =
+                new CharacterEntryView(myDecreaseKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
 
-        myFire = new TextEntryView(myFireKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myFire = new CharacterEntryView(myFireKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
 
         myAngleStep = new NumberEntryView(myAngleStepKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+
+        myIsRanged =
+                new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
+        myRangeValue =
+                new NumberEntryView(myRangeValueKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        initBinding();
 
     }
 
@@ -61,43 +87,101 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
         myDecreaseKey = myLabel.getString("DecreaseKey");
         myFireKey = myLabel.getString("FireKey");
         myAngleStepKey = myLabel.getString("AngleStepKey");
+        myRangedKey = myLabel.getString("RangedKey");
+        myRangeValueKey = myLabel.getString("RangeValueKey");
+        myProjectileKey = myLabel.getString("ProjectileKey");
 
     }
 
     @Override
     public Node draw () {
-        return myPane;
+        // return myPane;
+        return controlPane;
     }
 
     @Override
     protected void initView () {
-        myPane = new GridPane();
-        myPane.setGridLinesVisible(true);
-        myPane.add(myAngle.draw(), 0, 0);
-        myPane.add(myWaitTime.draw(), 0, 1);
-        myPane.add(myAngleStep.draw(), 0, 2);
-        myPane.add(myIncrease.draw(), 1, 0);
-        myPane.add(myDecrease.draw(), 1, 1);
-        myPane.add(myFire.draw(), 1, 2);
+        controlPane.setGridLinesVisible(true);
+        controlPane.add(myIncrease.draw(), 0, 0);
+        controlPane.add(myDecrease.draw(), 0, 1);
+        controlPane.add(myFire.draw(), 1, 0);
+
+        myPane =
+                getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(),
+                                          myAngle.draw(), myAngleStep.draw(),
+                                          myWaitTime.draw(),
+                                          myRangeValue.draw(), myIsRanged.draw(), myRemove.draw());
+
+        myPane.getStyleClass().add("firer");
+        controlPane.add(myPane, 2, 0);
 
     }
 
     @Override
     public double getMyRange () {
-        // TODO Auto-generated method stub
-        return 0;
+        return myRangeValue.getData();
     }
 
     @Override
     public boolean getMyIsRanged () {
-        // TODO Auto-generated method stub
-        return false;
+        return myIsRanged.isCheckedProperty().get();
     }
 
     @Override
     public double getMyWaitTime () {
-        // TODO Auto-generated method stub
-        return 0;
+        return myWaitTime.getData();
+    }
+
+    private void initBinding () {
+        myRangeValue.draw().visibleProperty().bind(myIsRanged.isCheckedProperty());
+
+    }
+
+    @Override
+    public String getMyIncrease () {
+        return myIncrease.getData();
+    }
+
+    @Override
+    public String getMyDecrease () {
+        return myDecrease.getData();
+    }
+
+    @Override
+    public String getMyFire () {
+        return myFire.getData();
+    }
+
+    @Override
+    public double getMyAngle () {
+        return myAngle.getData();
+    }
+
+    @Override
+    public double getMyAngleStep () {
+        return myAngleStep.getData();
+    }
+
+    @Override
+    public void populateWithData (SpriteDefinition missile,
+                                  double waitTime,
+                                  double range,
+                                  boolean isRanged,
+                                  double angle,
+                                  double anglestep,
+                                  String increase,
+                                  String decrease,
+                                  String fire) {
+        myMissileSelectionView.setSelected(missile);
+        myWaitTime.setData(waitTime);
+        myRangeValue.setData(range);
+        myIsRanged.setSelected(isRanged);
+        myAngle.setData(angle);
+        myAngleStep.setData(anglestep);
+        myIncrease.setData(increase);
+        myDecrease.setData(decrease);
+        myFire.setData(fire);
+
     }
 
 }
