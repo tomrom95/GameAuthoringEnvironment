@@ -35,7 +35,7 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     private String myTargetsKey;
     private String myRangedKey;
     private String myRangeValueKey;
-    private IEntryView myWaitTime;
+//    private IEntryView myWaitTime;
     private String myMissileKey;
     private NumberEntryView myWaitTime;
     private SingleChoiceEntryView<SpriteGroup> myTargets;
@@ -60,10 +60,10 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
                                             AuthoringView.DEFAULT_ENTRYVIEW);
         isRangedSelectionView =
                 new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
-        myRangeValue = new NumberEntryView(myRangeValueKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+//        myRangeValue = new NumberEntryView(myRangeValueKey, this.getData(), 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
         
         initView();
-        initBinding();
+//        initBinding();
 
     }
 
@@ -92,9 +92,10 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         return myPane;
     }
 
-    @Override
-    public String getWaitTimeKey () {
-        return myWaitTimeKey;
+//    @Override
+//    public String getWaitTimeKey () {
+//        return myWaitTimeKey;
+//    }
     public double getWaitTime () {
         return myWaitTime.getData();
     }
@@ -108,15 +109,16 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     public void populateWithData (SpriteDefinition missile, SpriteGroup target, double waitTime) {
         myMissileSelectionView.setSelected(missile);
         myTargets.setSelected(target);
-        myWaitTime.setData(waitTime);
+//        myWaitTime.setData(waitTime);
+    }
     public void setTargetsChoice (SpriteGroup targets) {
         this.myTargets.setSelected(targets);
     }
 
-    @Override
-    public void setSelectedMissile (SpriteDefinition missile) {
-        this.myMissileSelectionView.setSelected(missile);
-    }
+//    @Override
+//    public void setSelectedMissile (SpriteDefinition missile) {
+//        this.myMissileSelectionView.setSelected(missile);
+//    }
 
     @Override
     public String getMyRangedKey () {
@@ -133,9 +135,9 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         return isRangedSelectionView.isCheckedProperty();
     }
     
-    private void initBinding () {
-        myRangeValue.draw().visibleProperty().bind(isRangedProperty());
-       
-    }
+//    private void initBinding () {
+//        myRangeValue.draw().visibleProperty().bind(isRangedProperty());
+//       
+//    }
 
 }

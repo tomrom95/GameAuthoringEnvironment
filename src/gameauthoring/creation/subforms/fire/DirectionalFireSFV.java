@@ -19,7 +19,7 @@ import javafx.scene.layout.HBox;
  * View representing a subform that creates the information required to build a directional mover
  * module
  * 
- * @author Dhrumil
+ * @author Dhrumil Timko
  *
  */
 public class DirectionalFireSFV extends SubFormView implements IDirectionalFireSFV {
@@ -50,8 +50,8 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         //
         // isRangedSelectionView =
         // new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
-         //myRangeValue = new NumberEntryView(myRangeValueKey, this.getData(), 150, 30,
-        // AuthoringView.DEFAULT_ENTRYVIEW);
+//         myRangeValue = new NumberEntryView(myRangeValueKey, this.getData(), 150, 30,
+//         AuthoringView.DEFAULT_ENTRYVIEW);
         //
         initView();
         //initBinding();
