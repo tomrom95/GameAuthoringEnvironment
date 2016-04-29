@@ -1,6 +1,8 @@
 package engine;
 
+import engine.aipathing.GameGraphFactory;
 import engine.sprite.ISprite;
+import util.ArrayPosition;
 import util.AutoTrueBitMap;
 import util.BitMap;
 import util.BoundEdge;
@@ -40,12 +42,14 @@ public class ObstructionManager implements IObstructionManager {
     @Override
     public IEdgeBitMap getObstructionMap () {
         return myCurrentObstructionMap;
+        //return new CachingEdgeBitMap(getObstructionMap());
     }
 
     private IEdgeBitMap parseCurrentGameForObstructions (IGame game) {
         IEdgeBitMap obstructionMap = getBitMapSizedForCurrentGame(game);
-        game.getLevelManager().getCurrentLevel().getSprites().stream()
-                .forEach(sprite -> ifObstructsMarkSprite(obstructionMap, sprite));
+        game.getLevelManager().getCurrentLevel().getSprites()
+                    .stream()
+                    .forEach(sprite -> ifObstructsMarkSprite(obstructionMap, sprite));
         calculateEdges(obstructionMap, game);
         return obstructionMap;
     }
@@ -53,6 +57,7 @@ public class ObstructionManager implements IObstructionManager {
     private void calculateEdges (IEdgeBitMap map, IGame game) {
         List<Bounds> allBounds = game.getLevelManager().getCurrentLevel().getSprites()
                 .stream()
+                .filter(sprite -> sprite.doesObstruct())
                 .map(sprite -> sprite.getBounds())
                 .collect(Collectors.toList());
         List<IBoundEdge> boundEdges = new ArrayList<>();
@@ -68,6 +73,23 @@ public class ObstructionManager implements IObstructionManager {
         }
         map.setEdges(boundEdges.stream().map(boundEdge -> boundEdge.getEdge())
                 .collect(Collectors.toList()));
+        edgeBorder(map);
+        return;
+    }
+
+    private void edgeBorder (IEdgeBitMap obstructionMap) {
+        List<Coordinate> border = new ArrayList<>();
+        int gap = GameGraphFactory.NODE_GAP;
+        for (int i = -1; i <= obstructionMap.getHeight()/gap; i++) {
+            border.add(new Coordinate(-1, i*gap));
+            border.add(new Coordinate(obstructionMap.getWidth(), i*gap));
+        }
+        for (int i = -1; i <= obstructionMap.getWidth()/gap; i++) {
+            border.add(new Coordinate(i*gap, -1));
+            border.add(new Coordinate(i*gap, obstructionMap.getHeight()));
+        }
+        
+        obstructionMap.getEdges().add(border);
         return;
     }
     

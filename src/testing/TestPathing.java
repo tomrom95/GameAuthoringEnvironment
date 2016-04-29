@@ -151,6 +151,15 @@ public class TestPathing extends Application {
     private void addSpritesToGame (Game game) {
         ISprite test = createEnemySpriteDefinition(ENEMY_INITIAL_X, ENEMY_INITIAL_Y).create();
         test.getStatusModule().setIsGoal(true);
+        
+        for(int i = 0; i < 5; i ++){
+            ISprite wall = createEnemySpriteDefinition(ENEMY_INITIAL_X + 100, ENEMY_INITIAL_Y + i * 40).create();
+            wall.setObstruction(true);
+            game.bufferedAdd(wall);
+        }
+        
+        
+        
         ISprite myUser = createUserSpriteDefinition(SPRITE_INITIAL_X, SPRITE_INITIAL_Y).create();
         myUser.setObstruction(false);
         game.bufferedAdd(test);

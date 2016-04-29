@@ -28,7 +28,7 @@ public class GameGraphFactory implements INodeGraphFactory {
     private static final int INT_ONE = 1;
     private static final int INT_NEG_ONE = -1;
     private static final double ONE = 1d;
-    private static final int NODE_GAP = 200;
+    public static final int NODE_GAP = 200;
     private IEdgeBitMap myObstructionMap;
     private IGame myGame;
     
@@ -39,19 +39,24 @@ public class GameGraphFactory implements INodeGraphFactory {
 
     @Override
     public INodeGraph getConstructedGraph (Coordinate start, Coordinate goal) {
-        //need to move the find all edges call into the fillNodeGraph after
-        //the other obstruction checks potentially because it is desctructive on the
-        // bitmap, copying is too expensive
-        //also may need to rework the bitmap to calculate whether or not something is
-        //obstructed on demand, store the bound objects and then perform dynamic checks
-        //for each requested location
-        //TODO
-        INodeGraph toReturn = fillNodeGraph(getObstructionMap(), NODE_GAP,  start, goal);
-        List<List<ArrayPosition>> edges = findAllEdges(getObstructionMap());
-        addEdgeNodes(toReturn, edges, getObstructionMap(), NODE_GAP, toReturn.getPlacedNodes());
+        INodeGraph toReturn = fillNodeGraph(getObstructionMap(), NODE_GAP, start, goal);
+        addEdgeNodes(toReturn, convertToArrayPosition(getObstructionMap().getEdges()),
+                     getObstructionMap(), NODE_GAP, toReturn.getPlacedNodes());
         return toReturn;
 
     }
+    
+        private List<List<ArrayPosition>> convertToArrayPosition (List<List<Coordinate>> list) {
+                List<List<ArrayPosition>> toReturn = new ArrayList<>();
+                for (List<Coordinate> toConvert : list) {
+                    List<ArrayPosition> converted = new ArrayList<>();
+                    for (Coordinate coord : toConvert) {
+                        converted.add(new ArrayPosition(coord));
+                    }
+                    toReturn.add(converted);
+                }
+                return toReturn;
+            }
 
     private INodeGraph fillNodeGraph (IEdgeBitMap obstructionMap,
                                       int gap,
@@ -180,98 +185,11 @@ public class GameGraphFactory implements INodeGraphFactory {
         return new ArrayPosition((pos.getX() / gap), (pos.getY() / gap));
     }
 
-    
-    private List<List<ArrayPosition>> findAllEdges (IEdgeBitMap obstructionMap) {
-        List<List<ArrayPosition>> edgeList = new ArrayList<>();
-        //need to make the code below faster by refactoring the bitmap class
-        //to store a list of only the true locations, so that we can avoid iterating
-        // over all the positions, far too slow for pixel by pixel representation 
-//        IBitMap obMapCopy = obstructionMap;
-//        Iterator<ArrayPosition> iter = obMapCopy.positionIterator();
-//        while (iter.hasNext()) {
-//            ArrayPosition pos = iter.next();
-//            if (isEdge(obMapCopy, pos)) {
-//                edgeList.add(recursiveEdgeHelper(obMapCopy, pos, new ArrayList<>()));
-//                removeObstructionMask(obMapCopy, new AutoTrueBitMap(obMapCopy.getWidth(),
-//                                                                    obMapCopy.getHeight()),
-//                                      pos);
-//            }
-//        }
-        edgeList.add(edgeBorder(obstructionMap));
-        return edgeList;
-    }
 
-    private List<ArrayPosition> edgeBorder (IEdgeBitMap obstructionMap) {
-        List<ArrayPosition> border = new ArrayList<>();
-        for (int i = -1; i <= obstructionMap.getHeight(); i++) {
-            border.add(new ArrayPosition(-1, i));
-            border.add(new ArrayPosition(obstructionMap.getWidth(), i));
-        }
-        for (int i = -1; i <= obstructionMap.getWidth(); i++) {
-            border.add(new ArrayPosition(i, -1));
-            border.add(new ArrayPosition(i, obstructionMap.getHeight()));
-        }
-        return border;
-    }
+
 
     
-    private <T> void addIfNotContained (List<T> list, T obj) {
-        if (!list.contains(obj)) {
-            list.add(obj);
-        }
-    }
-    
-    
-    /**
-     * This method will clear all the bits that are considered part of the same contiguous
-     * obstruction
-     * @param obstructionMap
-     * @param checkedMap a new instance of BitMap with all false of the same size as obstructionMap
-     * @param pos
-     */
-    private void removeObstructionMask (IEdgeBitMap obstructionMap,
-                                        IBitMap checkedMap,
-                                        ArrayPosition pos) {
-        if (obstructionMap.valueOf(pos)) {
-            obstructionMap.set(pos, false);
-            checkedMap.set(pos, true);
-            List<ArrayPosition> toCheck = surroundingPositions(pos);
-            toCheck = toCheck.stream()
-                    .filter(iterPos -> obstructionMap.inBounds(iterPos))
-                    .filter(iterPos -> !checkedMap.valueOf(iterPos))
-                    .collect(Collectors.toList());
-            toCheck.stream().forEach(iterPos -> checkedMap.set(iterPos, true));
-            toCheck.stream()
-                .forEach(iterPos-> removeObstructionMask(obstructionMap, checkedMap, iterPos));
-        }
-        
-    }
-    
-    /**
-     * Finds the edges
-     * @param obstructionMap
-     * @param pos
-     * @param inEdge
-     * @return
-     */
-    private List<ArrayPosition> recursiveEdgeHelper (IEdgeBitMap obstructionMap,
-                                                     ArrayPosition pos,
-                                                     List<ArrayPosition> inEdge) {
-        if (isEdge(obstructionMap, pos)) {
-            if (!inEdge.contains(pos)) {
-                inEdge.add(pos);
-                List<ArrayPosition> toCheck = surroundingPositions(pos);
-                for (ArrayPosition check : toCheck) {
-                    if (obstructionMap.inBounds(check)) {
-                        if (!inEdge.contains(check)) {
-                            recursiveEdgeHelper(obstructionMap, check, inEdge);
-                        }
-                    }
-                }
-            }
-        }
-        return inEdge;
-    }
+
     
     /**
      * Obstruction edges are all the positions that are themselves obstructed, but

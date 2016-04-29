@@ -24,8 +24,6 @@ import util.TimeDuration;
  *
  */
 public class GoalBasedMover extends Mover {
-    private static final double MY_MIN_MOVE = 0.1d;
-    private int temp;
     
     private INodeGraphPather myPather;
     private IGame myGame;
@@ -49,21 +47,11 @@ public class GoalBasedMover extends Mover {
     @Override
     public void update (TimeDuration duration) {
         Coordinate goal = findNearestGoal();
-        List<Coordinate> goalPath = myPather.findPathFor(obstructionMap(), getLocation(), goal);
-//        System.out.println("Location: " + getLocation().getX() + "," + getLocation().getY());
-//        for(Coordinate c : goalPath){
-//            System.out.print("(" + c.getX() + "," + c.getY() + ") ");
-//        }
-//        System.out.println();
-        
+        List<Coordinate> goalPath = myPather.findPathFor(obstructionMap(), getLocation(), goal);        
         Coordinate targetCoordinate =
                 furthestReachablePoint(getLocation(), goalPath,
                                        distance(getSpeed(), durationToDouble(duration)));
         getParent().setLocation(targetCoordinate);
-        temp++;
-        if(temp > 1200){
-            System.out.print("");
-        }
         getParent().setOrientation(myRotationStrategy.angleFromCoordinates(getLocation(),
                                                                            targetCoordinate));
     }
@@ -79,8 +67,6 @@ public class GoalBasedMover extends Mover {
                 curLoc = next;
             }
             else {
-                //TODO need to check to see if the distance remaining is just a little bit
-                // if so then just jump to the next node
                 return linearInterp(curLoc, next, distanceTravelable - distanceTravelled);
             }
 
@@ -105,16 +91,12 @@ public class GoalBasedMover extends Mover {
         if (deltaX == 0 && deltaY == 0) {
             return start;
         }
-//        if (Coordinate.distance(start, end) < MY_MIN_MOVE) {
-//            return end;
-//        }
         double normalizeDistanceConstant =
                 Math.sqrt(Math.pow(distance, 2) / (Math.pow(deltaX, 2) + Math.pow(deltaY, 2)));
         double proposedX = start.getX() + deltaX * normalizeDistanceConstant;
         double proposedY = start.getY() + deltaY * normalizeDistanceConstant;
 
-        Coordinate test = new Coordinate(proposedX, proposedY);
-        return test;
+        return new Coordinate(proposedX, proposedY);
     }
 
     /**
