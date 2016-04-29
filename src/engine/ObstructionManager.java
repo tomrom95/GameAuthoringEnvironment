@@ -2,9 +2,6 @@ package engine;
 
 import engine.aipathing.GameGraphFactory;
 import engine.sprite.ISprite;
-import util.ArrayPosition;
-import util.AutoTrueBitMap;
-import util.BitMap;
 import util.BoundEdge;
 import util.Bounds;
 import util.CachingEdgeBitMap;
