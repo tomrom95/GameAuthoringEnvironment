@@ -91,7 +91,7 @@ public class TestFire {
     }
 
     private void createDirectionalFirer () {
-        myDirectionalFirer = new DirectionalFirerDefinition();
+        myDirectionalFirer = new DirectionalFirerDefinition(myGame);
         myDirectionalFirer.setProjectileDefinition(myProjectile);
         myDirectionalFirer.setWaitTime(1000);
         myDirectionalFirer.setGame(myGame);
@@ -104,7 +104,7 @@ public class TestFire {
     }
 
     private void createTrackingFirer () {
-        myTrackingFirer = new TrackingFirerDefinition();
+        myTrackingFirer = new TrackingFirerDefinition(myGame);
         myTrackingFirer.setGame(myGame);
         myTrackingFirer.setProjectileDefinition(myProjectile);
         myTrackingFirer.setWaitTime(100);
@@ -115,7 +115,7 @@ public class TestFire {
     }
     
     public void createUserFirer () {
-        myUserFirer = new UserFirerDefinition();
+        myUserFirer = new UserFirerDefinition(myGame);
         myUserFirer.setProjectileDefinition(myProjectile);
         myUserFirer.setWaitTime(1000);
         myUserFirer.setGame(myGame);
