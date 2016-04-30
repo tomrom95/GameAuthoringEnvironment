@@ -33,6 +33,7 @@ public class GameInfoView implements Glyph {
     private TextEntryView myAuthor;
     private TextEntryView myDateCreated;
     private ImageEntryView mySplashScreen;
+    private String labelCssClass = "TitleLabel";
 
     private static final int HORIZONTAL_GAP = 150;
 
@@ -48,9 +49,9 @@ public class GameInfoView implements Glyph {
     }
     
     private void createEntryViews () {
-        myName = new TextEntryView(myNameKey,  200, 60, "titleScreen");
-        myAuthor = new TextEntryView(myAuthorKey,  200, 60, "titleScreen");
-        myDateCreated = new TextEntryView(myDateCreatedKey,  200, 60, "titleScreen");
+        myName = new TextEntryView(myNameKey,  200, 60, "titleScreen", labelCssClass );
+        myAuthor = new TextEntryView(myAuthorKey,  200, 60, "titleScreen", labelCssClass);
+        myDateCreated = new TextEntryView(myDateCreatedKey,  200, 60, "titleScreen", labelCssClass);
         mySplashScreen = new ImageEntryView(mySplashScreenKey,  200, 300,
                                             AuthoringView.DEFAULT_ENTRYVIEW);
     }

@@ -146,7 +146,7 @@ public abstract class CreationController<T extends IProfilable> {
      */
     private void populateViewsWithDefaults () {
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
-            subFormController.initializeFields(getMyCurrentItem());
+            subFormController.initializeFields();
         }
     }
 

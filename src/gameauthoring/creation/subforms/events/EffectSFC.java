@@ -12,7 +12,9 @@ import engine.effects.IncreaseEffect;
 import engine.profile.ProfileDisplay;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.fire.RemovableEffectSFC;
+import gameauthoring.util.ErrorMessage;
 import javafx.collections.ObservableList;
+
 
 public class EffectSFC extends RemovableEffectSFC {
 
@@ -22,20 +24,24 @@ public class EffectSFC extends RemovableEffectSFC {
     private TypeFactory myTypeFactory = new TypeFactory();
     private String defaultAttributeType = "length";
     private ResourceBundle myEffects = ResourceBundle.getBundle("defaults/effect_types");
-    
+    private double defaultLength = 0;
+    private double defaultValue = 0;
+
     public EffectSFC (IGame game, EffectChoiceSFC sfc) {
         super(sfc);
         init(game, new IncreaseEffect(null, null, null));
-       
+
     }
+
     public EffectSFC (IGame game, EffectChoiceSFC sfc, Effect effect) {
         super(sfc);
         init(game, effect);
-       
+
     }
-    private void init(IGame game, Effect effect){
+
+    private void init (IGame game, Effect effect) {
         myGame = game;
-        myView = new EffectSFV(myGame.getAuthorshipData(), getEffects(), getRemoveMenu()); 
+        myView = new EffectSFV(myGame.getAuthorshipData(), getEffects(), getRemoveMenu());
     }
 
     private ObservableList<ProfileDisplay> getEffects () {
@@ -44,11 +50,19 @@ public class EffectSFC extends RemovableEffectSFC {
 
     @Override
     public void updateItem (EventPackageDefinition item) {
-        AttributeDefinition attrDef = myView.getAttribute();
-        Attribute lengthAttr = new Attribute(myView.getLength(),new AttributeType(defaultAttributeType));
-        double val = myView.getValue();
-        myEffect = getEffect(myView.getEffectType(), lengthAttr, attrDef, val);
+        try {
+            AttributeDefinition attrDef = myView.getAttribute();
+            Attribute lengthAttr =
+                    new Attribute(myView.getLength(), new AttributeType(defaultAttributeType));
+            double val = myView.getValue();
+            myEffect = getEffect(myView.getEffectType(), lengthAttr, attrDef, val);
             item.getMyEffectsList().add(myEffect);
+        }
+        catch (NullPointerException e) {
+            ErrorMessage err =
+                    new ErrorMessage("Please Complete All Fields Associated with Effect");
+            err.showError();
+        }
     }
 
     private Effect getEffect (String effectType,
@@ -59,7 +73,8 @@ public class EffectSFC extends RemovableEffectSFC {
     }
 
     @Override
-    public void initializeFields (EventPackageDefinition item) {
+    public void initializeFields () {
+        myView.populateWithData(null, null, defaultValue, defaultLength);
     }
 
     @Override

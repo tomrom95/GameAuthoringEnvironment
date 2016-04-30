@@ -38,12 +38,12 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
         setResoureBunldeAndKey();
         myAttributeSelector =
                 new MultiChoiceEntryView<AttributeDefinition>(myAttributesKey,
-                                                              attributes.getItems(), 150, 200,
+                                                              attributes.getItems(), 170, 220,
                                                               AuthoringView.DEFAULT_ENTRYVIEW);
         mySelectedView =
                 new MultiChoiceEntryView<AttributeDefinition>(mySelectedKey,
                                                               FXCollections.observableArrayList(),
-                                                              300, 200,
+                                                              300, 220,
                                                               AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
     }

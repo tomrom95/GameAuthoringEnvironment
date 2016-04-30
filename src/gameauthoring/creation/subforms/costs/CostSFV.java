@@ -56,6 +56,7 @@ public class CostSFV extends SubFormView implements ICostSFV {
 
     @Override
     public Node draw () {
+        getMyUIFactory().addStyling(myTitledPane, getStyleClass());
         return myTitledPane;
     }
 

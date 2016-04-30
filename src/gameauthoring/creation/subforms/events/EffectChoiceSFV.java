@@ -12,8 +12,6 @@ public class EffectChoiceSFV extends ClickAndFillView {
     public EffectChoiceSFV (List<String> options, String titleKey) {
         super(options, titleKey);        
         initView();
-        setDefaultHelpMessage(defaultHelpMessage);
-        showDefaultMessage();
     }
 
     @Override

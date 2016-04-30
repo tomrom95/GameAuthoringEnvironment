@@ -15,5 +15,7 @@ public interface ICost {
     void buySprite ();
     
     BooleanProperty canPlace ();
+    
+    boolean hasCost();
 
 }
