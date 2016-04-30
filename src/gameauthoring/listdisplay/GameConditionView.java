@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -26,6 +27,7 @@ import util.BundleOperations;
 
 public class GameConditionView extends ConditionView {
 
+    
     private static final String PATH = "defaults/game_condition_view";
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/game_cond_view");
 
@@ -97,5 +99,4 @@ public class GameConditionView extends ConditionView {
     public void setCenter (Node specific) {
         add(specific, 1, 2, 1, 1);
     }
-
 }

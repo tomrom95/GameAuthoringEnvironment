@@ -64,6 +64,7 @@ public class LevelEditorView implements Glyph {
         double xScale = getXScale(width);
         double yScale = getYScale(height);
         myScale.setScale(Math.min(xScale, yScale));
+        myLevelConditions.scale(width);
         myScene.render();
     }
 
@@ -79,4 +80,6 @@ public class LevelEditorView implements Glyph {
         double levelBound = myLevel.getBounds().getWidth();
         return remainingWidth / levelBound;
     }
+    
+    
 }

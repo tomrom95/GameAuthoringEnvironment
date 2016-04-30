@@ -7,6 +7,7 @@ import com.dooapp.xstreamfx.FXConverters;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.IGame;
+import gameauthoring.listdisplay.ConditionView;
 import gameauthoring.listdisplay.GameConditionView;
 import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.ErrorMessage;
@@ -48,7 +49,7 @@ public class AuthoringView implements IAuthoringView {
     private GameTabViewer myGameTabViewer;
     private CreationTabViewer myCreationTabViewer;
     private SceneTabViewer mySceneTabViewer;
-    private GameConditionView myConditionView;
+    private ConditionView myConditionView;
     private WaveTabViewer myWaveTabView;
     private BorderPane myLayout;
     private IGame myGame;
@@ -135,6 +136,8 @@ public class AuthoringView implements IAuthoringView {
 
     private void rescale (double width, double height) {
         mySceneTabViewer.rescale(width, height);
+        myWaveTabView.rescale(width, height);
+        myConditionView.rescale(width, height);
     }
 
     private void initializeTabViewers () {

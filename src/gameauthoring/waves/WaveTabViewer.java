@@ -15,6 +15,7 @@ import gameauthoring.util.BasicUIFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -35,6 +36,8 @@ import javafx.scene.layout.HBox;
 
 public class WaveTabViewer implements Glyph {
 
+    public static final int WIDTH = 1200;
+    public static final int HEIGHT = 700;
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/wave_tab_size");
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
@@ -114,6 +117,13 @@ public class WaveTabViewer implements Glyph {
 
     public void exitEdit () {
         myBlockList.clear();
+    }
+
+    public void rescale (double width, double height) {
+        myPane.setAlignment(Pos.CENTER);
+        myPane.setScaleX(width/WIDTH);
+        myPane.setScaleY(height/(HEIGHT - 15));
+        
     }
 
 }
