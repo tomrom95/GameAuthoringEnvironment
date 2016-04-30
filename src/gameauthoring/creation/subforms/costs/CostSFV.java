@@ -39,8 +39,10 @@ public class CostSFV extends SubFormView implements ICostSFV {
                                                                data.getMyCreatedGlobals()
                                                                        .getItems(),
                                                                AuthoringView.DEFAULT_ENTRYVIEW);
+        double width = getParser().parseDouble(getMyNumbers().getString("UpgradeWidth"));
+        double height = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
         myCost =
-                new NumberEntryView(myCostKey, 60, 20, AuthoringView.DEFAULT_ENTRYVIEW);
+                new NumberEntryView(myCostKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
 
         initView();
     }

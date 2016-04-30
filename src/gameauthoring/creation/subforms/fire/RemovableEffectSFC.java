@@ -3,13 +3,12 @@ package gameauthoring.creation.subforms.fire;
 import engine.definitions.concrete.EventPackageDefinition;
 import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
 
-public abstract class RemovableEffectSFC extends RemovableSFC<EventPackageDefinition>{
 
-    
+public abstract class RemovableEffectSFC extends RemovableSFC<EventPackageDefinition> {
+
     public RemovableEffectSFC (MultiOptionSFC<EventPackageDefinition> sfc) {
         super(sfc);
     }
-
 
     @Override
     public void removeModule (Object myMod) {
@@ -19,6 +18,5 @@ public abstract class RemovableEffectSFC extends RemovableSFC<EventPackageDefini
             }
         }
     }
-
 
 }

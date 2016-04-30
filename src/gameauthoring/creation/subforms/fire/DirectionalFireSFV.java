@@ -2,7 +2,6 @@ package gameauthoring.creation.subforms.fire;
 
 import java.util.ResourceBundle;
 import splash.LocaleManager;
-import util.StringParser;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
@@ -79,7 +78,8 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
 
     @Override
     protected void initView () {
-        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacingDirectional"));
+        double spacing =
+                getParser().parseDouble(getMyNumbers().getString("HBoxSpacingDirectional"));
         HBox paramsBox =
                 getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
                                           myWaitTime.draw());

@@ -11,6 +11,7 @@ import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.fire.RemovableSFC;
 import splash.LocaleManager;
+import util.StringParser;
 
 
 public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormController<T> {
@@ -23,7 +24,8 @@ public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormC
     private IGame myGame;
     private ResourceBundle myDefClasspaths = ResourceBundle.getBundle("defaults/sfc_classpath");
     private ResourceBundle myLabels;
-
+    private StringParser myParser;
+    private ResourceBundle myNumbers;
     private List<String> myOptions;
 
     public MultiOptionSFC (IGame game) {
@@ -32,6 +34,9 @@ public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormC
                 ResourceBundle
                         .getBundle("languages/labels",
                                    LocaleManager.getInstance().getCurrentLocaleProperty().get());
+        myNumbers =  ResourceBundle
+                .getBundle("defaults/numbers");
+        myParser = new StringParser();
         setMySFCFactory(new MultiOptionFactory<T>(game));
     }
 
@@ -141,5 +146,12 @@ public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormC
     protected ResourceBundle getMyLabels () {
         return myLabels;
     }
-
+    
+    protected ResourceBundle getMyNumbers(){
+        return myNumbers;
+    }
+    
+    protected StringParser getParser() {
+        return myParser;
+    }
 }

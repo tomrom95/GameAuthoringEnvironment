@@ -5,6 +5,7 @@ import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
 import splash.LocaleManager;
+import util.StringParser;
 
 
 /**
@@ -18,12 +19,17 @@ public abstract class RemovableSFC<T extends IProfilable> implements ISubFormCon
     private T myDefinition;
     private RemoveOption myView;
     private ResourceBundle myLabels;
+    private ResourceBundle myNumbers;
+    private StringParser myParser;
 
     public RemovableSFC (MultiOptionSFC<T> sfc) {
         myLabels =
                 ResourceBundle
                         .getBundle("languages/labels",
                                    LocaleManager.getInstance().getCurrentLocaleProperty().get());
+        myNumbers = ResourceBundle
+                .getBundle("defaults/numbers");
+        myParser = new StringParser();
         myView = new RemoveOption(e -> sfc.removeSFC(this));
     }
 
@@ -45,6 +51,14 @@ public abstract class RemovableSFC<T extends IProfilable> implements ISubFormCon
 
     protected ResourceBundle getMyLabels () {
         return myLabels;
+    }
+
+    protected ResourceBundle getMyNumbers () {
+        return myNumbers;
+    }
+
+    protected StringParser getParser () {
+        return myParser;
     }
 
 }

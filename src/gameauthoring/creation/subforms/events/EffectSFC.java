@@ -30,8 +30,8 @@ public class EffectSFC extends RemovableEffectSFC {
     private TypeFactory myTypeFactory = new TypeFactory();
     private String myDefaultAttributeType = "length";
     private ResourceBundle myEffects = ResourceBundle.getBundle("defaults/effect_types");
-    private double myDefaultLength = 0;
-    private double myDefaultValue = 0;
+    private double myDefaultLength;
+    private double myDefaultValue;
 
     public EffectSFC (IGame game, EffectChoiceSFC sfc) {
         super(sfc);
