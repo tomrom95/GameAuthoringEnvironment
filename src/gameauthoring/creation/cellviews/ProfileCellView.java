@@ -1,5 +1,6 @@
 package gameauthoring.creation.cellviews;
 
+import java.util.ResourceBundle;
 import engine.profile.IProfilable;
 import engine.profile.IProfile;
 import engine.rendering.GraphicFactory;
@@ -15,6 +16,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import splash.LocaleManager;
+import util.StringParser;
 
 
 /**
@@ -30,8 +33,11 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     private static final double PIC_SIZE = 30;
     private E myProfile;
+    private ResourceBundle myNumbers = ResourceBundle
+            .getBundle("defaults/numbers",
+                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ChangeListener<Boolean> imageListener;
-
+    private StringParser myParser = new StringParser();
 
     @Override
     protected void updateItem (E item, boolean empty) {
@@ -62,13 +68,14 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     /**
      * For subclasses to alter the HBox not the node
+     * 
      * @param profile
      * @return
      */
     protected HBox getHBox (E profile) {
-        HBox container = new HBox(10);
+        HBox container = new HBox(myParser.parseDouble(myNumbers.getString("HBoxStandardSize")));
         container.setAlignment(Pos.CENTER_LEFT);
-        container.getChildren().add(createImageProfile(profile.getProfile(),PIC_SIZE));
+        container.getChildren().add(createImageProfile(profile.getProfile(), PIC_SIZE));
         container.getChildren().add(createTextProfile(profile.getProfile()));
         return container;
     }
@@ -98,7 +105,7 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
     protected E getProfilable () {
         return myProfile;
     }
-    
+
     /**
      * Helper to get a the correct image from the sprite
      * 
@@ -108,7 +115,7 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
         Node node =
                 getProfilable().getProfile().getImage()
                         .getVisualRepresentation(new UnscaledFactory());
-        
+
         return new BasicUIFactory().getImageFromNode(node);
     }
 

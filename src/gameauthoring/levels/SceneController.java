@@ -69,7 +69,6 @@ public class SceneController {
     }
 
     public void addSprite (double x, double y, SpriteDefinition spriteDefinition) {
-        //System.out.println(myLevel);
         myLevel.add(spriteDefinition.create(),
                     new Coordinate(myRatio.invert(x), myRatio.invert(y)));
     }

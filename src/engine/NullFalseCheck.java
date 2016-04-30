@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 public class NullFalseCheck implements ICheck {
 
     public NullFalseCheck () {
-        System.out.println("made");
     }
    
     @Override

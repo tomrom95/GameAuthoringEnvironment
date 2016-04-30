@@ -2,6 +2,7 @@ package gameauthoring.creation.entryviews;
 
 import javafx.scene.control.TextField;
 
+
 /**
  * TextField that only accepts numbers
  * 
@@ -27,6 +28,6 @@ public class NumberTextField extends TextField {
 
     private boolean validate (String text) {
         return text.matches("-?((\\d*)|(\\d+\\.\\d*))");
-        // TODO:  tried this, some issues 
+        // TODO: tried this, some issues
     }
 }
