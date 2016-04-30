@@ -23,8 +23,7 @@ public class FormDataManager implements IFormDataManager {
     private Map<String, ObservableList<StringProperty>> myStorage =
             new HashMap<String, ObservableList<StringProperty>>();
     private ResourceBundle myErrors = ResourceBundle
-            .getBundle("defaults/errors",
-                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
+            .getBundle("defaults/errors");
     private final String myErrorKey = "NoKey";
 
     @Override

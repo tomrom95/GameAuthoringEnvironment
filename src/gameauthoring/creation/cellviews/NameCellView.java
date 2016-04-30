@@ -1,5 +1,6 @@
 package gameauthoring.creation.cellviews;
 
+import java.util.ResourceBundle;
 import engine.profile.IProfilable;
 import engine.profile.IProfile;
 import javafx.beans.property.StringProperty;
@@ -9,6 +10,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import util.StringParser;
 
 
 /**
@@ -24,6 +26,9 @@ import javafx.scene.text.Text;
 public class NameCellView<E extends IProfilable> extends ListCell<E> {
 
     private E myProfile;
+    private ResourceBundle myNumbers = ResourceBundle
+            .getBundle("defaults/numbers");
+    private StringParser myParser = new StringParser();
 
     @Override
     protected void updateItem (E item, boolean empty) {
@@ -39,7 +44,8 @@ public class NameCellView<E extends IProfilable> extends ListCell<E> {
     }
 
     protected Node createSpriteCell (E profile) {
-        HBox container = new HBox(10);
+        double size = myParser.parseDouble(myNumbers.getString("HBoxStandardSize"));
+        HBox container = new HBox(size);
         container.setAlignment(Pos.CENTER_LEFT);
         container.getChildren().add(createTextProfile(profile.getProfile()));
         return container;
