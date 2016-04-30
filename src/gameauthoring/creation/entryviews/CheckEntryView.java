@@ -18,8 +18,7 @@ import util.StringParser;
 public class CheckEntryView extends EntryView {
     private CheckBox myCheckBox;
     private ResourceBundle myNumbers = ResourceBundle
-            .getBundle("defaults/numbers",
-                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
+            .getBundle("defaults/numbers");
     private StringParser myParser = new StringParser();
 
     public CheckEntryView (String label, String cssClass) {

@@ -16,8 +16,7 @@ public class NumberEntryView extends InputEntryView {
 
     private TextInputControl myTextInput;
     private ResourceBundle myErrors = ResourceBundle
-            .getBundle("defaults/errors",
-                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
+            .getBundle("defaults/errors");
 
     public NumberEntryView (String label, double width, double height, String cssClass) {
         super(label, width, height, cssClass);

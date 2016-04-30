@@ -31,8 +31,7 @@ public abstract class EntryView implements IEntryView {
     private Pane myContainer;
     private BasicUIFactory myFactory = new BasicUIFactory();
     private ResourceBundle myNumbers = ResourceBundle
-            .getBundle("defaults/numbers",
-                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
+            .getBundle("defaults/numbers");
     private StringParser myParser = new StringParser();
 
     public EntryView (String label, String cssClass) {
