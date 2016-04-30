@@ -20,12 +20,15 @@ public class TextEntryView extends InputEntryView {
         super.setInputControl(myTextInput);
         super.init();
     }
-    
-    public TextEntryView (String label, double width, double height, String cssClass, String cssLabel) {
-        this(label,width,height,cssClass);
+
+    public TextEntryView (String label,
+                          double width,
+                          double height,
+                          String cssClass,
+                          String cssLabel) {
+        this(label, width, height, cssClass);
         getMyFactory().addStyling(getLabel(), cssLabel);
     }
-
 
     public void setData (String data) {
         myTextInput.setText(data);
@@ -34,10 +37,9 @@ public class TextEntryView extends InputEntryView {
     public String getData () {
         return myTextInput.getText();
     }
-    
+
     public void bindData (StringProperty text) {
         myTextInput.textProperty().bindBidirectional(text);
     }
-    
 
 }

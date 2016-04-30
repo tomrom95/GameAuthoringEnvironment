@@ -2,17 +2,13 @@ package engine.modules;
 
 import java.util.ArrayList;
 import java.util.List;
-import engine.Attribute;
-import engine.AttributeType;
+
 import engine.IAttribute;
 import engine.IGame;
 import engine.Positionable;
 import engine.definitions.concrete.SpriteDefinition;
-import engine.effects.IEffect;
 import engine.interactionevents.InputType;
 import engine.interactionevents.KeyIOEvent;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import util.Key;
 import util.TimeDuration;
 

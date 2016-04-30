@@ -10,7 +10,6 @@ public class AttributeSFCFactory extends SubFormControllerFactory<AttributeDefin
 
     public AttributeSFCFactory (IGame game) {
         super(game);
-        // TODO Auto-generated constructor stub
     }
 
     @Override

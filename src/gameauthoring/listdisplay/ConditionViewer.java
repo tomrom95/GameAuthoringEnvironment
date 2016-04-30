@@ -5,6 +5,7 @@ import engine.conditions.ICondition;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -49,5 +50,6 @@ public abstract class ConditionViewer extends ListDisplay<ICondition> {
     public String getStyle (String style) {
         return myStyle.getString(style);
     }
+
 
 }

@@ -79,4 +79,6 @@ public class LevelEditorView implements Glyph {
         double levelBound = myLevel.getBounds().getWidth();
         return remainingWidth / levelBound;
     }
+    
+    
 }

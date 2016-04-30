@@ -64,6 +64,7 @@ public class UserFireSFC extends RemovableFireSFC {
        myGame = game;
        myFireDef = userFirerDefinition;
        myView = new UserFireSFV(game.getAuthorshipData(), getRemoveMenu());
+       initializeFields();
         
     }
 
@@ -86,5 +87,6 @@ public class UserFireSFC extends RemovableFireSFC {
     public FirerDefinition getModuleDefinition () {
         return myFireDef;
     }
+
 
 }

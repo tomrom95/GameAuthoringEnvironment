@@ -15,6 +15,7 @@ public class CreationControllerGroup extends CreationController<SpriteGroup> {
                                     List<String> sfcs,
                                     IGame myGame) {
         super(key, sfcs, myGame);
+        getMyCreationView().getFormView().showForm();
     }
 
     @Override

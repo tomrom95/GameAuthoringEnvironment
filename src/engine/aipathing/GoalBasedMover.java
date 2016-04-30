@@ -47,7 +47,7 @@ public class GoalBasedMover extends Mover {
         List<Coordinate> goalPath = myPather.findPathFor(obstructionMap(), getLocation(), goal);
         Coordinate targetCoordinate =
                 furthestReachablePoint(getLocation(), goalPath,
-                                       distance(getSpeed(), durationToDouble(duration)));
+                                       distance(getSpeed(), duration.getMillis()));
         getParent().setLocation(targetCoordinate);
         getParent().setOrientation(myRotationStrategy.angleFromCoordinates(getLocation(),
                                                                            targetCoordinate));

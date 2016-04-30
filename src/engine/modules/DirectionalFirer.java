@@ -46,8 +46,7 @@ public class DirectionalFirer extends Firer {
 
     @Override
     public void update (TimeDuration duration) {
-        // updateTimeMap(duration);
-        // removeSpritesBeyondRange();
+   
         super.update(duration);
         fire(duration);
     }
@@ -73,7 +72,7 @@ public class DirectionalFirer extends Firer {
          * this angle should have been intaken from the authoring and should still be in
          * degrees
          */
-        bullet.getMovementStrategy().setOrientation(myAngle);
+        bullet.getMovementStrategy().setOrientationFromTracker(myAngle);
 
         getGame().bufferedAdd(bullet);
         getFiredSprites().add(bullet);
