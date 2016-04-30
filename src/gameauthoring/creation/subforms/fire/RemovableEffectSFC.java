@@ -5,9 +5,9 @@ import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
 
 public abstract class RemovableEffectSFC extends RemovableSFC<EventPackageDefinition>{
 
+    
     public RemovableEffectSFC (MultiOptionSFC<EventPackageDefinition> sfc) {
         super(sfc);
-        // TODO Auto-generated constructor stub
     }
 
 

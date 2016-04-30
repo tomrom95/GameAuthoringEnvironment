@@ -6,9 +6,9 @@ import engine.definitions.concrete.EventPackageDefinition;
 import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
 import util.BundleOperations;
 
-public class EventChoiceSFC extends MultiOptionSFC<EventPackageDefinition>{
+public class EventChoiceSFC extends MultiOptionSFC<EventPackageDefinition> {
     
-    private static String EVENT_KEY = "Events";
+    private static final String EVENT_KEY = "Events";
 
     public EventChoiceSFC (IGame game) {
         super(game);

@@ -10,6 +10,7 @@ import gameauthoring.creation.subforms.ClickAndFillView;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.fire.RemovableSFC;
+import splash.LocaleManager;
 
 
 public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormController<T> {
@@ -21,11 +22,16 @@ public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormC
     private MultiOptionFactory<T> mySFCFactory;
     private IGame myGame;
     private ResourceBundle myDefClasspaths = ResourceBundle.getBundle("defaults/sfc_classpath");
+    private ResourceBundle myLabels;
 
     private List<String> myOptions;
 
     public MultiOptionSFC (IGame game) {
         myGame = game;
+        myLabels =
+                ResourceBundle
+                        .getBundle("languages/labels",
+                                   LocaleManager.getInstance().getCurrentLocaleProperty().get());
         setMySFCFactory(new MultiOptionFactory<T>(game));
     }
 
@@ -130,6 +136,10 @@ public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormC
 
     public ResourceBundle getMyDefClasspaths () {
         return myDefClasspaths;
+    }
+
+    protected ResourceBundle getMyLabels () {
+        return myLabels;
     }
 
 }

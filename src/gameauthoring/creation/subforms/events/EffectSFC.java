@@ -68,7 +68,7 @@ public class EffectSFC extends RemovableEffectSFC {
         }
         catch (NullPointerException e) {
             ErrorMessage err =
-                    new ErrorMessage("Please Complete All Fields Associated with Effect");
+                    new ErrorMessage(getMyLabels().getString("IncompleteEffect"));
             err.showError();
         }
     }
