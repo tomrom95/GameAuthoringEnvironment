@@ -13,7 +13,7 @@ import gameauthoring.creation.subforms.ISubFormView;
 public interface ITrackingFireSFV  extends IFiringSFV{
 
 
-    SpriteGroup getTargetsCoice ();
+    SpriteGroup getTargetsChoice ();
 
     void populateWithData (SpriteDefinition missile, SpriteGroup target, double waitTime, double range, boolean isRanged);
 

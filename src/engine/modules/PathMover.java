@@ -16,21 +16,22 @@ import util.TimeDuration;
  * This class provides an implementation of Mover that serves as a module that moves sprites based
  * on a specified coordinate path.
  *
+ *@author  Ryan josephtimko1
  *
  */
 public class PathMover extends Mover {
 
     public static final int PIXEL_RANGE = 5;
 
-    private IAttribute mySpeed;
     private int myNextDestination;
-
+    private EnemyTracker pathTracker;
     public PathMover (double speed,
                       List<Coordinate> points,
                       Positionable positionable) {
         super(positionable);
-        mySpeed = new Attribute(speed, AttributeType.SPEED);
+        setSpeed(speed);
         setPath(points);
+        pathTracker = new EnemyTracker();
         myNextDestination = 0;
     }
 
@@ -44,7 +45,9 @@ public class PathMover extends Mover {
             incrementIndex();
         }
         else {
-            adjustVectors();
+            
+            adjustVectors(getPath().get(myNextDestination));
+          
             move(duration);
         }
     }
@@ -80,39 +83,11 @@ public class PathMover extends Mover {
      * Computes and adjusts the xpos and ypos vectors each time fame to specify the next location of
      * the sprite
      */
-    private void adjustVectors () {
-
-        double xDiff = xDifference();
-        double yDiff = yDifference();
-        double constant =
-                Math.sqrt(square(getSpeed()) /
-                          (square(xDiff) + square(yDiff)));
-        if (!isZero(constant)) {
-            setXVelocity(xDiff * constant);
-            setYVelocity(yDiff * constant);
-        }
-        else {
-            setXVelocity(NO_MOTION);
-            setYVelocity(NO_MOTION);
-        }
+    private void adjustVectors (Coordinate c) {
+        setOrientationFromTracker(pathTracker.calculateAbsoluteOrientationToEnemy(getParent().getLocation(), c));
 
     }
 
-    private boolean isZero (double val) {
-        return Math.abs(val) < 2 * Double.MIN_VALUE;
-    }
-
-    private void setXVelocity (double vel) {
-        getXVel().getValueProperty().set(vel);
-    }
-
-    private void setYVelocity (double vel) {
-        getYVel().getValueProperty().set(vel);
-    }
-
-    private double square (double input) {
-        return input * input;
-    }
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {

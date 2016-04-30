@@ -31,6 +31,11 @@ public class AttributeDefinition implements IProfilable {
         myStartingValue = 0;
         myProfile = new Profile();
     }
+    
+    public AttributeDefinition(IProfile profile) {
+        myStartingValue = 0;
+        myProfile = profile;
+    }
 
     public IAttribute create () {
         

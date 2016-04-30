@@ -89,7 +89,7 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     }
 
     @Override
-    public SpriteGroup getTargetsCoice () {
+    public SpriteGroup getTargetsChoice () {
         return myTargets.getSelected();
     }
 

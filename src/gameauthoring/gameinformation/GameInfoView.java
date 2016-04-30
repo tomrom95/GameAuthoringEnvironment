@@ -52,7 +52,7 @@ public class GameInfoView implements Glyph {
         myName = new TextEntryView(myNameKey,  200, 60, "titleScreen", labelCssClass );
         myAuthor = new TextEntryView(myAuthorKey,  200, 60, "titleScreen", labelCssClass);
         myDateCreated = new TextEntryView(myDateCreatedKey,  200, 60, "titleScreen", labelCssClass);
-        mySplashScreen = new ImageEntryView(mySplashScreenKey,  200, 300,
+        mySplashScreen = new ImageEntryView(mySplashScreenKey,  480, 480,
                                             AuthoringView.DEFAULT_ENTRYVIEW);
     }
 
