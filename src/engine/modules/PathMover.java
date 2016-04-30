@@ -40,16 +40,13 @@ public class PathMover extends Mover {
             return;
         }
         if (overshootNext(duration)) {
-            System.out.println(getPath().size());
             move(getPath().get(myNextDestination));
             incrementIndex();
         }
         else {
             
             adjustVectors(getPath().get(myNextDestination));
-            System.out.println("Next Destination Index = " +myNextDestination);
-            //TODO : this should be a thing
-//            incrementIndex();
+          
             move(duration);
         }
     }
@@ -86,43 +83,10 @@ public class PathMover extends Mover {
      * the sprite
      */
     private void adjustVectors (Coordinate c) {
-
-        
         setOrientationFromTracker(pathTracker.calculateAbsoluteOrientationToEnemy(getParent().getLocation(), c));
-        
-//        double xDiff = xDifference();
-//        double yDiff = yDifference();
-//        setOrientation(Math.tan(yDiff/xDiff));
-//        double constant =
-//                Math.sqrt(square(getSpeed()) /
-//                          (square(xDiff) + square(yDiff)));
-//        if (!isZero(constant)) {
-//            setXVelocity(xDiff * constant);
-//            setYVelocity(yDiff * constant);
-//        }
-//        else {
-//            System.out.println("IT IS CALLING TO SET MOVER TO NO MOTION");
-//            setXVelocity(NO_MOTION);
-//            setYVelocity(NO_MOTION);
-//        }
 
     }
 
-    private boolean isZero (double val) {
-        return Math.abs(val) < 2 * Double.MIN_VALUE;
-    }
-
-    private void setXVelocity (double vel) {
-        getXVel().getValueProperty().set(vel);
-    }
-
-    private void setYVelocity (double vel) {
-        getYVel().getValueProperty().set(vel);
-    }
-
-    private double square (double input) {
-        return input * input;
-    }
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
