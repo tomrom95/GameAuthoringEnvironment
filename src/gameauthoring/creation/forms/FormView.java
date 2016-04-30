@@ -28,9 +28,9 @@ public class FormView implements IFormView {
     private ScrollPane mySubFormViewer = new ScrollPane(mySubFormContainer);
     private GridPane myFormView = new GridPane();
     //TODO: add buttons to languages    
-    private Button mySaveButton = myFactory.createStyledButton("Save", buttonClass);
-    private Button myDeleteButton = myFactory.createStyledButton("Delete", buttonClass);
-    private Button myNewButton = myFactory.createStyledButton("New", buttonClass);
+    private Button mySaveButton = myFactory.createStyledButton(myLang.getString("SaveForm"), buttonClass);
+    private Button myDeleteButton = myFactory.createStyledButton(myLang.getString("DeleteForm"), buttonClass);
+    private Button myNewButton = myFactory.createStyledButton(myLang.getString("NewForm"), buttonClass);
     private List<Node> myButtons = new ArrayList<Node>(Arrays.asList(mySaveButton,myDeleteButton, myNewButton));
     private List<ISubFormView> mySubFormViews;
     private static final double HEIGHT = 528; //TODO: move to common resource file    
