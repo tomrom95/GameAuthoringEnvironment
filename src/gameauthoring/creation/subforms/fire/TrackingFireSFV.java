@@ -40,7 +40,8 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     private RemoveOption myRemove;
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
-
+    private double spacing = 20;
+    
     public TrackingFireSFV (AuthorshipData data, RemoveOption remove) {
         setResourceBundleAndKey();
         myRemove = remove;
@@ -76,8 +77,8 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
     @Override
     protected void initView () {
-        HBox box = new HBox(myRemove.draw(),myMissileSelectionView.draw(),myWaitTime.draw(),myTargets.draw());
-        HBox boxTwo =  new HBox(myIsRanged.draw(),myRangeValue.draw());
+        HBox box = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(),myMissileSelectionView.draw(),myWaitTime.draw(),myTargets.draw());
+        HBox boxTwo =  getMyUIFactory().makeHBox(spacing, Pos.CENTER, myIsRanged.draw(),myRangeValue.draw());
         myPane =
                 getMyUIFactory().makeVBox(20, Pos.CENTER, box, boxTwo);
         getMyUIFactory().addStyling(myPane, "Firer");
