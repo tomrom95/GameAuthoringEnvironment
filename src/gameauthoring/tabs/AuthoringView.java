@@ -197,18 +197,20 @@ public class AuthoringView implements IAuthoringView {
 
     private void loadGame () {
         try {
-            IGame loadedGame = new GameReader().readFile(getFile());
-            AuthoringView aView = new AuthoringView(loadedGame);
-            Stage authoringStage = new Stage();
-            aView.init(authoringStage);
-            authoringStage.show();
+            if (getFile() != null) {
+                IGame loadedGame = new GameReader().readFile(getFile());
+                AuthoringView aView = new AuthoringView(loadedGame);
+                Stage authoringStage = new Stage();
+                aView.init(authoringStage);
+                authoringStage.show();
+            }
         }
         catch (LoadErrorException e) {
             ErrorMessage message = new ErrorMessage(e.getMessage());
             message.showError();
         }
     }
-    
+
     private void launchGame () {
         XStream xstream = new XStream(new DomDriver());
         FXConverters.configure(xstream);
@@ -226,7 +228,7 @@ public class AuthoringView implements IAuthoringView {
         fileChooser.setInitialDirectory(new File("resources/saved_games"));
         return fileChooser.showSaveDialog(new Stage());
     }
-    
+
     private File getFile () {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle(myLabel.getString("Load"));

@@ -3,7 +3,7 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
-
+import engine.SpriteGroup;
 import gameauthoring.creation.factories.SpriteSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
 import engine.definitions.concrete.SpriteDefinition;
@@ -38,5 +38,13 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
     protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
         return authorshipData.getMyCreatedSprites(getMyKey());
     }
+    
+    @Override
+    protected SpriteDefinition newItem () {
+        SpriteDefinition item = super.newItem();
+        getMyData().getMyCreatedGroups().addItem(new SpriteGroup(item,item.getProfile()));
+        return item;
+    }
+    
 
 }

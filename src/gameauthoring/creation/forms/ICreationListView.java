@@ -47,9 +47,5 @@ public interface ICreationListView<E> extends Glyph {
      */
     void setSelectedItem (E item);
     
-    /**
-     * Re-render the items in the listview
-     */
-    void refreshItems();
 
 }

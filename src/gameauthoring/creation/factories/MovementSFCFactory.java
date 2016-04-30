@@ -2,6 +2,13 @@ package gameauthoring.creation.factories;
 
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.ConstantMoverDefinition;
+import engine.definitions.moduledef.MovementDefinition;
+import engine.definitions.moduledef.PathMoverDefinition;
+import engine.definitions.moduledef.StaticMovementDefintion;
+import engine.definitions.moduledef.TrackingMoverDefinition;
+import engine.definitions.moduledef.UserMoverDefinition;
+import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.movement.ConstantMoverSFC;
 import gameauthoring.creation.subforms.movement.PathMoverSFC;
@@ -51,6 +58,26 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
         }
         throw new ReflectionException("Can't create movement sub-subformcontroller of type " + type);
 
+    }
+
+    public ISubFormController<SpriteDefinition> getSFCFromDefinition (MovementDefinition movDef) {
+        if (movDef instanceof StaticMovementDefintion){
+            return(new StaticMoverSFC());
+            
+        }else if (movDef instanceof ConstantMoverDefinition){
+            return(new ConstantMoverSFC());
+            
+        }else if (movDef instanceof UserMoverDefinition){
+            return(new UserMoverSFC());
+            
+        }else if (movDef instanceof TrackingMoverDefinition){
+            return(new TrackingMoverSFC(getMyGame()));
+            
+        }else if (movDef instanceof PathMoverDefinition){
+            return(new PathMoverSFC());
+            
+        }
+        throw new ReflectionException("No Defined SFC to Match Given Definition");
     }
 
 }
