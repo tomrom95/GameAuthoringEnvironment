@@ -1,9 +1,11 @@
 package engine.rendering;
 
 import util.Bounds;
+import util.ScaleRatio;
 import util.Tile;
 import engine.ILevel;
 import engine.sprite.ISprite;
+import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -24,10 +26,12 @@ public class GridRenderer implements IRenderer {
     private int myNumBlockRow;
     private int myNumBlockCol;
     public final int BLOCK_SIZE = 25;
+    private ScaleRatio myScale;
 
-    public GridRenderer (ILevel level, GridPane pane) {
+    public GridRenderer (ILevel level, GridPane pane, ScaleRatio scale) {
         myPane = pane;
         myLevel = level;
+        myScale = scale;
         init();
     }
 
@@ -38,24 +42,25 @@ public class GridRenderer implements IRenderer {
     }
 
     private void calculateTileArraySize () {
-        myNumBlockRow = (int) (myLevel.getBackgroundImageHeight() / BLOCK_SIZE);
-        myNumBlockCol = (int) (myLevel.getBackgroundImageWidth() / BLOCK_SIZE);
+        myNumBlockRow = (int) (myScale.scale(myLevel.getBounds().getHeight()) / BLOCK_SIZE);
+        myNumBlockCol = (int) (myScale.scale(myLevel.getBounds().getWidth()) / BLOCK_SIZE);
+      
+       
     }
 
     private void initializeGridLines () {
-        GridPane newPane = new GridPane();
-        newPane.setGridLinesVisible(true);
-        newPane.setMaxSize(myLevel.getBackgroundImageWidth(),myLevel.getBackgroundImageHeight());
+        myPane.setGridLinesVisible(true);
+        myPane.setMaxSize(myScale.scale(myLevel.getBounds().getWidth()), myScale.scale(myLevel.getBounds().getHeight()));
         for (int i = 0; i < myNumBlockRow; i++) {
             for (int j = 0; j < myNumBlockCol; j++) {
-                Tile tile = new Tile(new Rectangle(BLOCK_SIZE, BLOCK_SIZE), i, j);
+                Tile tile = new Tile(new Rectangle(BLOCK_SIZE,BLOCK_SIZE), i, j);
                 tile.getTile().setFill(Color.TRANSPARENT);
                 tile.getTile().setOnMouseClicked(e -> handleMouseClick(tile));
                 myBlocks[i][j] = tile;
-                newPane.add(tile.getTile(), j, i);
+                myPane.add(tile.getTile(), j, i);
             }
         }
-        myPane = newPane;
+       
     }
 
     private void handleMouseClick (Tile tile) {

@@ -138,9 +138,9 @@ public class SceneCreator implements Glyph {
     private void handleMouseClick (MouseEvent e, Pane pane) {
         if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
             myController.uploadNewBackground();
+            pane.getChildren().clear();
             render();
             myRenderer.updateNewTiles();
-            pane.getChildren().clear();
             pane.getChildren().addAll(myRenderer.getGrids().getPane(), myRenderer.getPane(),
                                       placeableButton(pane));
         }
@@ -151,8 +151,10 @@ public class SceneCreator implements Glyph {
     }
 
     public void render () {
+        myRenderer.updateNewTiles();
         myRenderer.render();
         myRenderer.redrawBackground();
+        
         
     }
 
