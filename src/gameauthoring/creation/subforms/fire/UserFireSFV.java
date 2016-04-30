@@ -4,6 +4,7 @@ import java.util.ResourceBundle;
 import engine.AuthorshipData;
 import engine.definitions.concrete.SpriteDefinition;
 import splash.LocaleManager;
+import util.StringParser;
 import gameauthoring.creation.entryviews.CharacterEntryView;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
@@ -40,6 +41,8 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
     private NumberEntryView myRangeValue;
     private RemoveOption myRemove;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
+    private StringParser s;
+
 
     public UserFireSFV (AuthorshipData data, RemoveOption remove) {
         setResourceBundleAndKey();
@@ -49,31 +52,34 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
     }
 
     private void createEntryViews (AuthorshipData data) {
+        s = new StringParser();
+        double width = s.parseDouble(getMyNumbers().getString("Width"));
+        double height = s.parseDouble(getMyNumbers().getString("Height"));
 
         myMissileSelectionView =
                 new SingleChoiceEntryView<>(myProjectileKey, data.getMyCreatedMissiles().getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
 
         myAngle =
-                new NumberEntryView(myAngleKey, 150, 30,
+                new NumberEntryView(myAngleKey, width, height,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myWaitTime =
-                new NumberEntryView(myWaitTimeKey, 150, 30,
+                new NumberEntryView(myWaitTimeKey, width, height,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myIncrease =
-                new CharacterEntryView(myIncreaseKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+                new CharacterEntryView(myIncreaseKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
 
         myDecrease =
-                new CharacterEntryView(myDecreaseKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+                new CharacterEntryView(myDecreaseKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
 
-        myFire = new CharacterEntryView(myFireKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myFire = new CharacterEntryView(myFireKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
 
-        myAngleStep = new NumberEntryView(myAngleStepKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myAngleStep = new NumberEntryView(myAngleStepKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
 
         myIsRanged =
                 new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
         myRangeValue =
-                new NumberEntryView(myRangeValueKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+                new NumberEntryView(myRangeValueKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
         initBinding();
 
     }

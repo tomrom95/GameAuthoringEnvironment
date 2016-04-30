@@ -27,7 +27,7 @@ public class UserFireSFC extends RemovableFireSFC {
     private String myDefaultFire = "F";
 
 
-    public UserFireSFC (FiringSFC sfc, IGame game) {
+    public UserFireSFC (IGame game, FiringSFC sfc) {
         super(sfc);
         init(game, new UserFirerDefinition(game));
 
