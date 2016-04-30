@@ -158,14 +158,12 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     @Override
     public void setSpeed (double newSpeed) {
         mySpeed.setValue(newSpeed * MULTIPLIER);
-        System.out.println("MY SPEED = "+ mySpeed.getValueProperty().get());
         setXVel(Math.cos(myOrientation.getValueProperty().get()) * newSpeed);
         setYVel(Math.sin(myOrientation.getValueProperty().get()) * newSpeed);
     }
 
     @Override
     public void setPath (List<Coordinate> path) {
-        System.out.println("PATH SETTING CALLED " + path.size());
         myPath = path;
     }
 

@@ -33,8 +33,7 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
     private static final double PIC_SIZE = 30;
     private E myProfile;
     private ResourceBundle myNumbers = ResourceBundle
-            .getBundle("defaults/numbers",
-                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
+            .getBundle("defaults/numbers");
     private StringParser myParser = new StringParser();
 
     @Override
