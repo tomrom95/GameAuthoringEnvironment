@@ -1,7 +1,9 @@
 package gameauthoring.creation.factories;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import engine.IGame;
 import gameauthoring.tabs.ITabViewer;
@@ -29,24 +31,35 @@ public class TabViewFactory<T extends ITabViewer> {
     private ResourceBundle myTabs;
     private ResourceBundle myTabViewers;
     private BasicUIFactory myUIFactory;
+    private Map<String, ITabViewer> myTabViewerMap;
 
     public TabViewFactory (IGame game) {
         myGame = game;
         myImages = ResourceBundle.getBundle(IMAGES);
         myTabs = ResourceBundle.getBundle(TAB_NAMES);
         myTabViewers = ResourceBundle.getBundle(TAB_VIEWER_NAMES, LocaleManager.getInstance()
-                                                .getCurrentLocaleProperty().get());
+                .getCurrentLocaleProperty().get());
         myUIFactory = new BasicUIFactory();
     }
 
     /**
-     * Reflectively generates the appropriate tab viewer
-     * @param tabViewerName name of tab viewer
-     * @return tab viewer
+     * Reflectively generates the appropriate tab viewers
+     * 
+     * @return list of tab viewers
      */
-    private ITabViewer createTabViewer (String tabViewerName) {
+    public List<ITabViewer> createTabViewers () {
+        List<ITabViewer> tabViewerList = new ArrayList<>();
+        List<String> tabViewerNames = getTabViewerNames();
+        myTabViewerMap = new HashMap<>();
 
-        return (ITabViewer) Reflection.createInstance(tabViewerName, myGame);
+        for (String tabName : tabViewerNames) {
+            ITabViewer tabView =
+                    (ITabViewer) Reflection.createInstance(myTabViewers.getString(tabName), myGame);
+            tabViewerList.add(tabView);
+            myTabViewerMap.put(tabName, tabView);
+        }
+
+        return tabViewerList;
 
     }
 
@@ -57,18 +70,20 @@ public class TabViewFactory<T extends ITabViewer> {
      */
     public List<Tab> createTabs () {
         List<Tab> tabList = new ArrayList<>();
-        List<String> tabViewerNames =
-                BundleOperations.getPropertyValueAsList("Order", myTabViewers);
 
-        for (String tabName : tabViewerNames) {
-            tabList.add(myUIFactory
-                    .createTabGraphic(myUIFactory.makeImageDisplay(myImages.getString(tabName),
-                                                                   myTabs.getString(tabName)),
-                                      false, createTabViewer(myTabViewers.getString(tabName))
-                                              .draw()));
-        }
+        getTabViewerNames().stream().forEach(tabName -> tabList.add(myUIFactory
+                .createTabGraphic(myUIFactory.makeImageDisplay(myImages.getString(tabName),
+                                                               myTabs.getString(tabName)),
+                                  false, myTabViewerMap.get(tabName)
+                                          .draw())));
 
         return tabList;
+    }
+
+    private List<String> getTabViewerNames () {
+        List<String> tabViewerNames =
+                BundleOperations.getPropertyValueAsList("Order", myTabViewers);
+        return tabViewerNames;
     }
 
 }

@@ -87,6 +87,4 @@ public class UserFireSFC extends RemovableFireSFC {
         return myFireDef;
     }
 
-
-
 }

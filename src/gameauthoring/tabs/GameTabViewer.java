@@ -38,4 +38,10 @@ public class GameTabViewer implements ITabViewer {
     public Node draw () {
         return myController.getGameInfoView().draw();
     }
+
+    @Override
+    public void rescale (double width, double height) {
+        // TODO Auto-generated method stub
+        
+    }
 }

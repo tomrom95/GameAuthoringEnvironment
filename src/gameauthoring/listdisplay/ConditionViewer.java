@@ -10,13 +10,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
-public abstract class ConditionView extends ListDisplay<ICondition> {
+public abstract class ConditionViewer extends ListDisplay<ICondition> {
 
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     private Pane myEditor = new Pane();
     private ListView<String> myOptions;
     
-    public ConditionView (ObservableList<ICondition> list) {
+    public ConditionViewer (ObservableList<ICondition> list) {
         super(list);
         myOptions = new ListView<>(getList());
        
