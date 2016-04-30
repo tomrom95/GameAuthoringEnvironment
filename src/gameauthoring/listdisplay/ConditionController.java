@@ -19,9 +19,9 @@ public abstract class ConditionController {
     
     private ResourceBundle myLanguage =
             ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
-    private ConditionView myView;
+    private ConditionViewer myView;
 
-    public ConditionController (ConditionView conditionView) {
+    public ConditionController (ConditionViewer conditionView) {
         myView = conditionView;
         setActions();
 

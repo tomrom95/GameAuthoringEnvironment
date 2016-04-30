@@ -1,5 +1,6 @@
 package facebookutil.actions;
 
+import facebookutil.applications.App;
 import facebookutil.user.profiles.UserProfile;
 
 
@@ -10,6 +11,6 @@ import facebookutil.user.profiles.UserProfile;
  */
 public interface Challenge extends SocialAction {
 
-    public void createChallenge (UserProfile source, UserProfile target, String message);
+    public void createChallenge (App applicaiton, UserProfile target, String message);
 
 }

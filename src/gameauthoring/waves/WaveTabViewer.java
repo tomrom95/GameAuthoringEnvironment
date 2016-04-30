@@ -9,6 +9,7 @@ import engine.IGame;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
 import gameauthoring.creation.cellviews.WaveDragCell;
+import gameauthoring.tabs.ITabViewer;
 import gameauthoring.util.ErrorMessage;
 import gameauthoring.util.Glyph;
 import gameauthoring.util.BasicUIFactory;
@@ -34,7 +35,7 @@ import javafx.scene.layout.HBox;
  *
  */
 
-public class WaveTabViewer implements Glyph {
+public class WaveTabViewer implements Glyph, ITabViewer {
 
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 700;
@@ -56,7 +57,7 @@ public class WaveTabViewer implements Glyph {
         new WaveTabController(this, myCreationZone);
     }
 
-    private void init () {
+    public void init () {
         listInit();
         myPane.getStyleClass().add(myStyle.getString("WaveTab"));
         myPane.add(myWaveAuthorship.draw(), 1, 1, 1, 2);
@@ -123,7 +124,7 @@ public class WaveTabViewer implements Glyph {
         myPane.setAlignment(Pos.CENTER);
         myPane.setScaleX(width/WIDTH);
         myPane.setScaleY(height/(HEIGHT - 15));
-        
+       
     }
 
 }

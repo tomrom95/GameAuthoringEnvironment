@@ -7,6 +7,7 @@ import engine.rendering.ScaleFactory;
 import engine.rendering.UnscaledFactory;
 import gameauthoring.util.BasicUIFactory;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
@@ -29,6 +30,8 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     private static final double PIC_SIZE = 30;
     private E myProfile;
+    private ChangeListener<Boolean> imageListener;
+
 
     @Override
     protected void updateItem (E item, boolean empty) {
@@ -45,12 +48,16 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     protected Node createSpriteCell (E profile) {
         HBox container = getHBox(profile);
-        setImageBind(profile);
+//        setImageBind(profile);
         return container;
     }
 
     private void setImageBind (E profile) {
-        profile.getProfile().imageChanged().addListener(e -> updateItem(profile, false));
+        if (imageListener != null) {
+            profile.getProfile().imageChanged().removeListener(imageListener);
+        }
+        imageListener = (obs, oldValue, newValue) -> updateItem(profile, false);
+        profile.getProfile().imageChanged().addListener(imageListener);
     }
 
     /**
@@ -61,8 +68,6 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
     protected HBox getHBox (E profile) {
         HBox container = new HBox(10);
         container.setAlignment(Pos.CENTER_LEFT);
-      
-
         container.getChildren().add(createImageProfile(profile.getProfile(),PIC_SIZE));
         container.getChildren().add(createTextProfile(profile.getProfile()));
         return container;

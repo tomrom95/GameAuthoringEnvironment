@@ -54,13 +54,13 @@ public class GridRenderer implements IRenderer {
             for (int j = 0; j < myNumBlockCol; j++) {
                 Tile tile = new Tile(myScale.scale(BLOCK_SIZE), i, j);
                 if (myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[i][j]) {
-                  
                     tile.setRed();
                 }
                 tile.getTile().setOnMouseClicked(e -> handleMouseClick(tile));
                 myBlocks[i][j] = tile;
                 myPane.add(tile.getTile(), j, i);
             }
+
         }
 
     }

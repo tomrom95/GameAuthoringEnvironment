@@ -83,7 +83,7 @@ public class TestFacebook extends Application{
         Button button = new Button("Challenge");
         button.setOnMouseClicked(e -> {
             myUser = mySocial.getActiveUser();
-            myUser.getProfiles().getActiveProfile().challenge(myUser, myUser, field.getText());
+            //myUser.getProfiles().getActiveProfile().challenge(myUser, myUser, field.getText());
         });
         box.getChildren().add(button);
         return box;

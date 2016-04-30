@@ -11,7 +11,6 @@ import engine.definitions.concrete.SpriteDefinition;
 public interface IDirectionalFireSFV extends IFiringSFV {
 
 
-    SpriteDefinition getMissileSelection ();
 
     double getMyAngle ();
 

@@ -27,6 +27,13 @@ public abstract class SubFormView implements ISubFormView {
             ResourceBundle
                     .getBundle("languages/labels",
                                LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    private ResourceBundle myNumbers = ResourceBundle
+            .getBundle("defaults/numbers",
+                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    
+    private ResourceBundle myErrors = ResourceBundle
+            .getBundle("defaults/errors",
+                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
 
 
     protected String getMyTitle () {
@@ -52,6 +59,13 @@ public abstract class SubFormView implements ISubFormView {
         return myLabels;
     }
     
+    public ResourceBundle getMyNumbers(){
+        return myNumbers;
+    }
+    //TODO : get rid of this is unused
+    public ResourceBundle getMyErrors(){
+        return myErrors;
+    }
     protected BasicUIFactory getMyUIFactory () {
         return myUIFactory;
     }

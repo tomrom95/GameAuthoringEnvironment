@@ -1,0 +1,20 @@
+<facebookutil.user.User>
+  <myEmail>
+    <myName>dhrew95</myName>
+    <myDomain>yahoo.com</myDomain>
+  </myEmail>
+  <myScoreBoard>
+    <myBoard/>
+  </myScoreBoard>
+  <myProfiles>
+    <myProfiles>
+      <entry>
+        <facebookutil.SocialType>FACEBOOK</facebookutil.SocialType>
+        <facebookutil.user.profiles.FacebookProfile>
+          <myID>1108038825927458</myID>
+        </facebookutil.user.profiles.FacebookProfile>
+      </entry>
+    </myProfiles>
+    <myActiveProfile class="facebookutil.user.profiles.FacebookProfile" reference="../myProfiles/entry/facebookutil.user.profiles.FacebookProfile"/>
+  </myProfiles>
+</facebookutil.user.User>

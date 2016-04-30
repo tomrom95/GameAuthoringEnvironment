@@ -9,15 +9,11 @@ import javafx.stage.Stage;
  * 
  * @author Tommy
  * @author Jin An
+ * @author Dhrumil
  *
  */
 public interface IAuthoringView {
 
-    GameTabViewer getGameTabViewer ();
-
-    CreationTabViewer getCreationTabViewer ();
-
-    SceneTabViewer getLevelTabViewer ();
 
     /**
      * Creates initial tabs/views that make up the main view
