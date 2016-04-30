@@ -64,7 +64,6 @@ public class TrackingFirer extends Firer {
                                               mySprite.getLocation().getY()));
             bullet.getMovementStrategy().setOrientationFromTracker(getTracker().calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
 
-            System.out.println("BULLET ORIENTATION IS: "+bullet.getOrientation());
             getGame().bufferedAdd(bullet);
             getFiredSprites().add(bullet);
             myTimeSinceFire.setToZero();
