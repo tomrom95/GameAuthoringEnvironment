@@ -1,7 +1,5 @@
 package facebookutil.user.profiles;
 
-import facebookutil.SocialType;
-import facebookutil.actions.facebook.FacebookChallenge;
 import facebookutil.actions.facebook.FacebookCustomPost;
 import facebookutil.actions.facebook.FacebookHighScorePost;
 import facebookutil.actions.facebook.FacebookScoreBoardPost;
@@ -19,15 +17,6 @@ public class FacebookProfile extends UserProfile {
 
     public FacebookProfile (String userID) {
         super(userID);
-    }
-
-    @Override
-    public void challenge (IUser source, IUser target, String message) {
-        FacebookChallenge challenge = new FacebookChallenge();
-        challenge.createChallenge(source.getProfiles().getProfileByType(SocialType.FACEBOOK),
-                                  source.getProfiles().getProfileByType(SocialType.FACEBOOK), message);
-        challenge.send(getLogin());
-
     }
 
     @Override

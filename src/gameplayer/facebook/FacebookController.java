@@ -3,7 +3,9 @@ package gameplayer.facebook;
 import engine.IAttribute;
 import engine.IGame;
 import facebookutil.JavaSocial;
+import facebookutil.SocialType;
 import facebookutil.scores.ScoreOrder;
+import facebookutil.user.IUser;
 
 /**
  * Supports simple actions to attach our game to 
@@ -49,6 +51,7 @@ public class FacebookController {
                                myGame.getGameInformation().getNameProperty().get(),
                                mySocial.getActiveUser(),
                                ScoreOrder.HIGHEST);
+        mySocial.saveState();
         return true;
     }
 
@@ -75,6 +78,20 @@ public class FacebookController {
             }
         }
         return null;
+    }
+    
+    public boolean postHighScoreBoard () {
+        mySocial.getActiveUser().getProfiles().getActiveProfile()
+                .highScoreBoardPost(mySocial.getHighScoreBoard(),
+                                    myGame.getGameInformation().getNameProperty().get(),
+                                    ScoreOrder.HIGHEST);
+        return true;
+    }
+    
+    public boolean challengeUser (IUser user, String message) {
+        mySocial.getApplications().getAppByType(SocialType.FACEBOOK)
+                .challenge(user, message);
+        return true;
     }
 
 }

@@ -92,6 +92,7 @@ public class JavaSocial implements IJavaSocial {
         }
         user.login(type, login);
         activeUser = user;
+        saveState();
     }
     
     @Override

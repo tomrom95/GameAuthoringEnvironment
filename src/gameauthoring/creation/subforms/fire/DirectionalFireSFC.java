@@ -29,11 +29,13 @@ public class DirectionalFireSFC extends RemovableFireSFC {
     public DirectionalFireSFC (IGame game, FiringSFC sfc) {
         super(sfc);
         init(game, new DirectionalFirerDefinition(game));
+        initializeFields();
     }
     
     public DirectionalFireSFC (IGame game, FiringSFC sfc, DirectionalFirerDefinition fireDef) {
         super(sfc);
         init(game, fireDef);
+        populateViewsWithData(null);
       
     }
 

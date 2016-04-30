@@ -17,7 +17,7 @@ import util.BundleOperations;
 
 public class FiringSFC extends MultiOptionSFC<SpriteDefinition> {
 
-    private static String FIRING_KEY = "Firing";
+    private static final String FIRING_KEY = "Firing";
 
     public FiringSFC (IGame game) {
         super(game);

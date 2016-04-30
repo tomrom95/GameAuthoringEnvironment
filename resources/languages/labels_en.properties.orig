@@ -120,10 +120,13 @@ UpgradableKey = Upgradable?
 GlobalKey = Deplete Global Resource: 
 AttributeChoicesKey = Depleted Resource: 
 PlaceableLevel = Placeable in Level?
+<<<<<<< HEAD
 HelpMessage = Help
+=======
 Load = Load Game
 MissileKey = Missile:
 
+>>>>>>> 71f838b4ec86d885e55ad33c7aee202120abe3a1
 
 ## Subform titles
 Profile = Profile

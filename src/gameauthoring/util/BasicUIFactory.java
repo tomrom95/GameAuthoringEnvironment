@@ -143,7 +143,8 @@ public class BasicUIFactory implements UIFactory {
 
     public ScrollPane makeScrollPane (Node content, int width, int height) {
         ScrollPane pane = new ScrollPane(content);
-        pane.setPrefSize(width, height);
+        pane.setMinSize(width, height);
+        pane.setMaxHeight(height);
         return pane;
     }
 

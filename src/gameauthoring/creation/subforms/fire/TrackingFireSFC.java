@@ -27,11 +27,14 @@ public class TrackingFireSFC extends RemovableFireSFC {
     public TrackingFireSFC (IGame game, FiringSFC sfc) {
         super(sfc);
         init(game, new TrackingFirerDefinition(game));
+        initializeFields();
     }
 
     public TrackingFireSFC (IGame game, FiringSFC sfc, TrackingFirerDefinition firingDef) {
         super(sfc);
         init(game, firingDef);
+        populateViewsWithData(null);
+        
     }
 
     private void init (IGame game, TrackingFirerDefinition fireDef) {
@@ -58,10 +61,8 @@ public class TrackingFireSFC extends RemovableFireSFC {
         myFireDef.setTargets(myView.getTargetsCoice());
         myFireDef.setProjectileDefinition(myView.getMissileSelection());
         myFireDef.setRanged(myView.getMyIsRanged());
-        myFireDef.setFireRange(myView.getMyRange());
-        
+        myFireDef.setFireRange(myView.getMyRange());        
         item.addModule(myFireDef);
-        System.out.println(item.getModuleDefinitions());
     }
 
     @Override

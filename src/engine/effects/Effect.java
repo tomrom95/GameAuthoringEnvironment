@@ -27,9 +27,11 @@ public abstract class Effect implements IEffect {
      * @param type AttributeType to which the Effect applied
      * @param alteringValue the amount of the decrement
      */
-    public Effect (AttributeDefinition type, IAttribute effectLength, double alteringValue) {
-        myAlteringAttributeDefinition = type;
-        myAttributeType = type.getAttributeType();
+    public Effect (AttributeDefinition def, IAttribute effectLength, double alteringValue) {
+        myAlteringAttributeDefinition = def;
+        if(def!=null){
+            myAttributeType = def.getAttributeType();
+        }
         myEffectLengthAttribute = effectLength;
         myAlteringAttribute = new Attribute(alteringValue, AttributeType.CONSTANT);
     }

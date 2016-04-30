@@ -6,6 +6,7 @@ import engine.IGame;
 import engine.conditions.ICondition;
 import gameauthoring.creation.cellviews.CardCell;
 import gameauthoring.creation.cellviews.DeleteableProfileCellView;
+import gameauthoring.tabs.ITabViewer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,7 +25,7 @@ import javafx.scene.layout.VBox;
 import util.BundleOperations;
 
 
-public class GameConditionView extends ConditionView {
+public class GameConditionView extends ConditionView implements ITabViewer {
 
     private static final String PATH = "defaults/game_condition_view";
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/game_cond_view");
@@ -35,7 +36,7 @@ public class GameConditionView extends ConditionView {
         new GameConditionController(this, game);
     }
 
-    private void init () {
+    public void init () {
         initListView();
         add(createLeft(), 0, 0, 1, 3);
         add(createTop(), 1, 1, 1, 1);

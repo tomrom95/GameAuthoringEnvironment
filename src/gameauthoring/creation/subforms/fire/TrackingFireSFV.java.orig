@@ -14,6 +14,7 @@ import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -27,7 +28,7 @@ import javafx.scene.layout.HBox;
  */
 public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
-    private HBox myPane;
+    private VBox myPane;
     private ResourceBundle myLabel;
     private String myWaitTimeKey;
     private String myTargetsKey;
@@ -40,8 +41,13 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     private RemoveOption myRemove;
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
+<<<<<<< HEAD
     private StringParser s;
 
+=======
+    private double spacing = 20;
+    
+>>>>>>> 71f838b4ec86d885e55ad33c7aee202120abe3a1
     public TrackingFireSFV (AuthorshipData data, RemoveOption remove) {
         setResourceBundleAndKey();
         myRemove = remove;
@@ -80,12 +86,21 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
     @Override
     protected void initView () {
+<<<<<<< HEAD
         double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacing"));
         myPane =
                 getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
                                           myWaitTime.draw(), myTargets.draw(),
                                           myRangeValue.draw(), myIsRanged.draw(), myRemove.draw());
         myPane.getStyleClass().add("firer");
+=======
+        HBox box = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(),myMissileSelectionView.draw(),myWaitTime.draw(),myTargets.draw());
+        HBox boxTwo =  getMyUIFactory().makeHBox(spacing, Pos.CENTER, myIsRanged.draw(),myRangeValue.draw());
+        myPane =
+                getMyUIFactory().makeVBox(20, Pos.CENTER, box, boxTwo);
+        getMyUIFactory().addStyling(myPane, "Firer");
+
+>>>>>>> 71f838b4ec86d885e55ad33c7aee202120abe3a1
     }
 
     @Override
