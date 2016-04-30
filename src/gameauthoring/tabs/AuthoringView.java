@@ -62,7 +62,7 @@ public class AuthoringView implements IAuthoringView {
     public static final String STYLESHEET = "custom.css";
     public static final String DEFAULT_RESOURCE_PACKAGE = "defaults/";
     public static final String DEFAULT_ENTRYVIEW = "defaultTextEntry";
-    private BasicUIFactory myUIFactory = new BasicUIFactory();
+    private BasicUIFactory myUIFactory;
     public static final String HOME = "Home";
     public static final String SAVE = "Save";
     private ResourceBundle myLabel;
@@ -71,6 +71,8 @@ public class AuthoringView implements IAuthoringView {
         setResourceBundle();
         GameFactory gameFactory = new GameFactory();
         myGame = gameFactory.createGame();
+        myUIFactory = new BasicUIFactory();
+        myTabFactory = new TabViewFactory<ITabViewer>(myGame);
     }
 
     private void setResourceBundle () {
