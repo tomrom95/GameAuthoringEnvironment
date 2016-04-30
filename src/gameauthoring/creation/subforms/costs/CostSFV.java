@@ -4,7 +4,6 @@ import java.util.ResourceBundle;
 import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
-import engine.definitions.costs.ICost;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
@@ -22,7 +21,6 @@ import javafx.scene.layout.HBox;
  *
  */
 public class CostSFV extends SubFormView implements ICostSFV {
-
 
     private static final int SPACING = 5;
     private String myAttributeChoicesKey;
@@ -63,8 +61,11 @@ public class CostSFV extends SubFormView implements ICostSFV {
     @Override
     protected void initView () {
         myContainer = getMyUIFactory().makeHBox(SPACING, Pos.CENTER, drawFields());
-        myTitledPane = getMyUIFactory().makeCheckBoxTitledPane(myLabel.getString("CostCheck"), myContainer, false);
-        
+        String costCheck = myLabel.getString("CostCheck");
+        myTitledPane =
+                getMyUIFactory().makeCheckBoxTitledPane(costCheck, myContainer,
+                                                        false);
+
     }
 
     private Node drawFields () {
@@ -82,7 +83,7 @@ public class CostSFV extends SubFormView implements ICostSFV {
     public double getCost () {
         return myCost.getData();
     }
-    
+
     @Override
     public boolean costChecked () {
         return myTitledPane.isExpanded();

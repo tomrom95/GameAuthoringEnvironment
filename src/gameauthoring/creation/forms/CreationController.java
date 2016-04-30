@@ -231,7 +231,7 @@ public abstract class CreationController<T extends IProfilable> {
     protected ResourceBundle getMyResources () {
         return myResources;
     }
-    
+
     protected AuthorshipData getMyData () {
         return myData;
     }
