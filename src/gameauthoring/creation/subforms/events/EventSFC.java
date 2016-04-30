@@ -8,6 +8,7 @@ import engine.events.GameEvent;
 import engine.profile.ProfileDisplay;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.fire.RemovableEventSFC;
+import gameauthoring.util.ErrorMessage;
 import javafx.collections.ObservableList;
 
 
@@ -39,8 +40,14 @@ public class EventSFC extends RemovableEventSFC {
 
     @Override
     public void updateItem (EventPackageDefinition item) {
+        try{
         myEvent = new GameEvent(new EventType(myView.getEventSelection()));
         item.getMyEventsList().add(myEvent);
+        }
+        catch (NullPointerException e) {
+            ErrorMessage err = new ErrorMessage("Please Complete All Fields Associated with Event");
+            err.showError();
+        }
     }
 
     @Override
@@ -49,7 +56,7 @@ public class EventSFC extends RemovableEventSFC {
     }
 
     @Override
-    public void initializeFields (EventPackageDefinition item) {
+    public void initializeFields () {
 
     }
 

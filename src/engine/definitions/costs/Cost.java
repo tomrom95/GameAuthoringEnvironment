@@ -45,5 +45,10 @@ public class Cost implements ICost {
         return myCheck.getStatus();
     }
 
+    @Override
+    public boolean hasCost () {
+        return true;
+    }
+
 
 }

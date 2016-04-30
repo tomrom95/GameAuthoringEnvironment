@@ -62,8 +62,7 @@ public abstract class MultiOptionSFC <T extends IProfilable> implements ISubForm
     }
     
     @Override
-    public void initializeFields (T item) {
-        getMyView().showDefaultMessage();
+    public void initializeFields () {
     }
     
     public void removeSFC (RemovableSFC<T> sfc) {

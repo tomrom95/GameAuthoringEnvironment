@@ -18,7 +18,7 @@ public class CreationListView<E extends IProfilable> implements ICreationListVie
 
     private ObservableList<E> myItems;
     private ListView<E> myListView;
-    private static final double HEIGHT = 580; // TODO: move to common resource file
+    private static final double HEIGHT = 542; // TODO: move to common resource file
 
     public CreationListView (ObservableList<E> items) {
         myItems = items;
@@ -27,7 +27,7 @@ public class CreationListView<E extends IProfilable> implements ICreationListVie
         myListView.setCellFactory(c -> new ProfileCellView<E>());
         myListView.setMinHeight(HEIGHT);
         myListView.setMaxHeight(HEIGHT);
-        myListView.setPlaceholder(new Label("Created objects will show up here."));
+        myListView.setPlaceholder(new Label("Created Objects Here"));
 
         // TODO: resource file and maybe constructor arguement later
         myListView.getStyleClass().add("myObjectListView");

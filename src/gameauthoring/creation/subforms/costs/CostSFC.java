@@ -4,8 +4,10 @@ import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.costs.Cost;
 import engine.definitions.costs.ICost;
+import engine.definitions.costs.NullCost;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
+import gameauthoring.util.ErrorMessage;
 
 
 public class CostSFC implements ISubFormControllerSprite {
@@ -20,16 +22,24 @@ public class CostSFC implements ISubFormControllerSprite {
 
     @Override
     public void updateItem (SpriteDefinition item) {
-        if (!myView.costChecked()) {
-            item.setCost(null);
+        try {
+            if (!myView.costChecked()) {
+                item.setCost(new NullCost());
+            }
+            else {
+                double amount = myView.getCost();
+                ICost cost = new Cost(myGame, myView.getSelectedAttribute(), amount);
+                item.setCost(cost);
+            }
         }
-        double amount = myView.getCost();        
-        ICost cost = new Cost(myGame, myView.getSelectedAttribute(), amount);
-        item.setCost(cost);
+        catch (NullPointerException e) {
+            ErrorMessage err = new ErrorMessage("Please Complete All Fields Associated with Cost");
+            err.showError();
+        }
     }
 
     @Override
-    public void initializeFields (SpriteDefinition item) {
+    public void initializeFields () {
     }
 
     @Override
@@ -40,7 +50,8 @@ public class CostSFC implements ISubFormControllerSprite {
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
         ICost cost = item.getCost();
-        myView.populateWithData(cost == null, cost.getAttributeDefinition(), cost.getCostAmount());
+        myView.populateWithData(cost.hasCost(), cost.getAttributeDefinition(),
+                                cost.getCostAmount());
     }
 
 }

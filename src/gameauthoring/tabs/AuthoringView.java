@@ -2,8 +2,6 @@ package gameauthoring.tabs;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import com.dooapp.xstreamfx.FXConverters;
 import com.thoughtworks.xstream.XStream;
@@ -54,8 +52,8 @@ public class AuthoringView implements IAuthoringView {
     private GameTabViewer myGameTabViewer;
     private CreationTabViewer myCreationTabViewer;
     private SceneTabViewer mySceneTabViewer;
-    private GameConditionView myConditionTabViewer;
-    private WaveTabViewer myWaveTabViewer;
+    private GameConditionView myConditionView;
+    private WaveTabViewer myWaveTabView;
     private BorderPane myLayout;
     private IGame myGame;
     private Stage myStage;
@@ -64,6 +62,7 @@ public class AuthoringView implements IAuthoringView {
     public static final String STYLESHEET = "custom.css";
     public static final String DEFAULT_RESOURCE_PACKAGE = "defaults/";
     public static final String DEFAULT_ENTRYVIEW = "defaultTextEntry";
+    private BasicUIFactory myUIFactory = new BasicUIFactory();
     public static final String HOME = "Home";
     public static final String SAVE = "Save";
     private ResourceBundle myLabel;
@@ -72,7 +71,6 @@ public class AuthoringView implements IAuthoringView {
         setResourceBundle();
         GameFactory gameFactory = new GameFactory();
         myGame = gameFactory.createGame();
-        myTabFactory = new TabViewFactory<ITabViewer>(myGame);
     }
 
     private void setResourceBundle () {
@@ -141,9 +139,9 @@ public class AuthoringView implements IAuthoringView {
     private void initializeTabViewers () {
         myGameTabViewer = new GameTabViewer(getMyGame());
         myCreationTabViewer = new CreationTabViewer(getMyGame());
-        myConditionTabViewer = new GameConditionView(getMyGame());
+        myConditionView = new GameConditionView(getMyGame());
         mySceneTabViewer = new SceneTabViewer(getMyGame());
-        myWaveTabViewer = new WaveTabViewer(getMyGame());
+        myWaveTabView = new WaveTabViewer(getMyGame());
     }
 
     private MenuBar createMenuBar () {
