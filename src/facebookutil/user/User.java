@@ -66,5 +66,10 @@ public class User implements IUser{
         User other = (User) obj;
         return getUserEmail().equals(other.getUserEmail());
     }
+    
+    @Override
+    public String toString () {
+        return myEmail.toString();
+    }
 
 }

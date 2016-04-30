@@ -39,7 +39,6 @@ public abstract class MultiOptionSFC <T extends IProfilable> implements ISubForm
     
     protected void addSFC (RemovableSFC<T> sfc) {
         mySFCs.add(sfc);
-        sfc.initializeFields();
         getMyView().addOrSetSFV(sfc.getSubFormView());
     }
     

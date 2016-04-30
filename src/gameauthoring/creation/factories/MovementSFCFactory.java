@@ -4,6 +4,7 @@ import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.movement.ConstantMoverSFC;
+import gameauthoring.creation.subforms.movement.PathMoverSFC;
 import gameauthoring.creation.subforms.movement.SmartAIMovementSFC;
 import gameauthoring.creation.subforms.movement.StaticMoverSFC;
 import gameauthoring.creation.subforms.movement.TrackingMoverSFC;
@@ -45,6 +46,8 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
         else if (type.equals("TRACKINGMOVER")) {
             return new TrackingMoverSFC(getMyGame());
 
+        }else if (type.equals("PATHMOVER")){
+            return new PathMoverSFC(); 
         }
         throw new ReflectionException("Can't create movement sub-subformcontroller of type " + type);
 

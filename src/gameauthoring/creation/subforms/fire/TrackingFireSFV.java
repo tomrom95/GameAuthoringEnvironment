@@ -6,16 +6,14 @@ import engine.AuthorshipData;
 import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.CheckEntryView;
-import gameauthoring.creation.entryviews.IEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
-import gameauthoring.util.BasicUIFactory;
-import javafx.beans.property.BooleanProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -29,21 +27,21 @@ import javafx.scene.layout.HBox;
  */
 public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
-    private HBox myPane;
+    private VBox myPane;
     private ResourceBundle myLabel;
     private String myWaitTimeKey;
     private String myTargetsKey;
     private String myRangedKey;
     private String myRangeValueKey;
-    private String myMissileKey;
+    private String myProjectileKey;
     private NumberEntryView myWaitTime;
     private SingleChoiceEntryView<SpriteGroup> myTargets;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
-    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private RemoveOption myRemove;
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
-
+    private double spacing = 20;
+    
     public TrackingFireSFV (AuthorshipData data, RemoveOption remove) {
         setResourceBundleAndKey();
         myRemove = remove;
@@ -55,7 +53,7 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
                         .getItems(),
                                                        AuthoringView.DEFAULT_ENTRYVIEW);
         myMissileSelectionView =
-                new SingleChoiceEntryView<>(myMissileKey, data.getMyCreatedMissiles().getItems(),
+                new SingleChoiceEntryView<>(myProjectileKey, data.getMyCreatedMissiles().getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
         myIsRanged =
                 new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
@@ -74,15 +72,17 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         myTargetsKey = myLabel.getString("TargetsKey");
         myRangedKey = myLabel.getString("RangedKey");
         myRangeValueKey = myLabel.getString("RangeValueKey");
+        myProjectileKey = myLabel.getString("ProjectileKey");
     }
 
     @Override
     protected void initView () {
+        HBox box = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(),myMissileSelectionView.draw(),myWaitTime.draw(),myTargets.draw());
+        HBox boxTwo =  getMyUIFactory().makeHBox(spacing, Pos.CENTER, myIsRanged.draw(),myRangeValue.draw());
         myPane =
-                getMyUIFactory().makeHBox(20, Pos.TOP_LEFT,  myRemove.draw(),myMissileSelectionView.draw(),
-                                          myWaitTime.draw(), myTargets.draw(),
-                                          myRangeValue.draw(), myIsRanged.draw());
-        myPane.getStyleClass().add("firer");
+                getMyUIFactory().makeVBox(20, Pos.CENTER, box, boxTwo);
+        getMyUIFactory().addStyling(myPane, "Firer");
+
     }
 
     @Override
@@ -100,7 +100,7 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     }
 
     @Override
-    public SpriteDefinition getSelectedMissile () {
+    public SpriteDefinition getMissileSelection () {
         return myMissileSelectionView.getSelected();
     }
 
@@ -120,8 +120,6 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     public void setTargetsChoice (SpriteGroup targets) {
         this.myTargets.setSelected(targets);
     }
-
-  
 
     @Override
     public double getMyRange () {

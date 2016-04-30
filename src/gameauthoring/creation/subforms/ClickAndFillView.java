@@ -70,7 +70,7 @@ public abstract class ClickAndFillView extends SubFormView {
         for (String s : options) {
             Button button =
                     getMyUIFactory().createImageButton(getMyUIFactory()
-                            .makeImageDisplay(getMyProperties().getString(s), s));
+                            .makeImageDisplay(getMyProperties().getString(s), getMyLanguages().getString(s)));
             getMyUIFactory().addStyling(button, cssButtonClass);
             getMyButtons().add(button);
         }
@@ -80,7 +80,7 @@ public abstract class ClickAndFillView extends SubFormView {
     @Override
     protected void initView () {
         myContainer = new GridPane();
-        myPaneContent = myUIFactory.makeVBox(10, Pos.CENTER, 510, 300, (Node[]) null);
+        myPaneContent = myUIFactory.makeVBox(10, Pos.CENTER, 520, 300, (Node[]) null);
         myPane = myUIFactory.makeScrollPane(myPaneContent, 525, 310); // TODO: magic number
         myUIFactory.addStyling(myPane, cssScrollClass);
         myContainer.add(buttonHolder, 0, 0);

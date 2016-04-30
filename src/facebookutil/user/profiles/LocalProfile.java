@@ -29,12 +29,6 @@ public class LocalProfile extends UserProfile{
     }
 
     @Override
-    public void challenge (IUser source, IUser target, String message) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
     public void highScorePost (HighScoreBoard board,
                                String gameName,
                                IUser user,
