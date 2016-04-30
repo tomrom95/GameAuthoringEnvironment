@@ -6,6 +6,7 @@ import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
 import engine.definitions.concrete.AttributeDefinition;
+import gameauthoring.util.ErrorMessage;
 
 
 public class EffectFactory {
@@ -23,6 +24,8 @@ public class EffectFactory {
 
         }
         catch (ClassNotFoundException e) {
+            ErrorMessage err = new ErrorMessage(e.getMessage());
+            err.showError();
             return null;
         }
     }
@@ -33,12 +36,15 @@ public class EffectFactory {
                                        double val) {
         try {
             Constructor<?> constructor =
-                    effectClass.getConstructor(AttributeType.class, IAttribute.class, double.class);
-            Object obj = constructor.newInstance(new AttributeType(def.getType()), length, val);
+                    effectClass.getConstructor(AttributeDefinition.class, IAttribute.class, double.class);
+            Object obj = constructor.newInstance(def, length, val);
             return (Effect) obj;
         }
         catch (NoSuchMethodException | SecurityException | InstantiationException
                 | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+            ErrorMessage err = new ErrorMessage(e.getMessage());
+            err.showError();
+            e.printStackTrace();
             return null;
         }
     }

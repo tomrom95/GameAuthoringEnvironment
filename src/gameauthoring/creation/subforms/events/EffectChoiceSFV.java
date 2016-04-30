@@ -7,8 +7,6 @@ import gameauthoring.creation.subforms.ISubFormView;
 
 public class EffectChoiceSFV extends ClickAndFillView {
     
-    private String defaultHelpMessage = "add default message to languages";
-
     public EffectChoiceSFV (List<String> options, String titleKey) {
         super(options, titleKey);        
         initView();
