@@ -1,12 +1,12 @@
 package gameauthoring.levels;
 
+import java.util.ResourceBundle;
 import engine.IGame;
 import engine.ILevel;
 import gameauthoring.levels.waves.SpawnerAuthoringView;
 import gameauthoring.util.Glyph;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import util.ScaleRatio;
@@ -17,12 +17,18 @@ import util.ScaleRatio;
  * Will include a side panel for adding sprites and another
  * one for defining waves.
  * 
+ * Scales the view of the game as appropriate to fit the screen. Most components of the screen are
+ * statically sized, to allow for easy reading. The view of the level screen then fits
+ * the remaining space.
+ * 
  * @author Tommy
  * @author Jin An
+ * @author RyanStPierre
  *
  */
 public class LevelEditorView implements Glyph {
 
+    private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/level_editor_view");
     private BorderPane myLayout;
     private IGame myGame;
     private ILevel myLevel;
@@ -49,7 +55,7 @@ public class LevelEditorView implements Glyph {
     }
 
     private Node createBottomForms () {
-        HBox box = new HBox(10);
+        HBox box = new HBox(Double.parseDouble(myBundle.getString("Cushion")));
         box.setAlignment(Pos.BOTTOM_CENTER);
         box.getChildren().add(createWinLoseForm());
 
@@ -68,7 +74,9 @@ public class LevelEditorView implements Glyph {
     }
 
     private double getYScale (double height) {
-        double remainingHeight = height - myLevelConditions.getHeight() - 100;
+        double remainingHeight =
+                height - myLevelConditions.getHeight() -
+                                 Double.parseDouble(myBundle.getString("Offset"));
         double levelBound = myLevel.getBounds().getHeight();
         return remainingHeight / levelBound;
     }
@@ -79,6 +87,5 @@ public class LevelEditorView implements Glyph {
         double levelBound = myLevel.getBounds().getWidth();
         return remainingWidth / levelBound;
     }
-    
-    
+
 }

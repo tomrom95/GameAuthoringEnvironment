@@ -1,24 +1,35 @@
 package gameauthoring.listdisplay;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import splash.LocaleManager;
+import gameauthoring.creation.factories.ReflectionException;
 import gameauthoring.util.ErrorMessage;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 
 
+/**
+ * Responsible for setting the action of the ConditionView
+ * Main responsibility is setting the button action to generate the proper sub-view "pop-up" when
+ * interacted
+ * Factory call is done internally
+ * 
+ * @author RyanStPierre
+ *
+ */
+
 public abstract class ConditionController {
 
-    private static final double Y_OFFSET = 1/2;
-    private static final double X_OFFSET = 1/4;
-    
+    /**
+     * Offset for the tool-tip
+     */
+    private ResourceBundle myBundle =
+            ResourceBundle.getBundle("defaults/tool_tip");
     private ResourceBundle myLanguage =
-            ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
+            ResourceBundle.getBundle("languages/labels",
+                                     LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ConditionViewer myView;
 
     public ConditionController (ConditionViewer conditionView) {
@@ -38,10 +49,13 @@ public abstract class ConditionController {
         help.show(myView.getEditor(), getPoint().getX(), getPoint().getY());
         myView.getEditor().setOnMouseExited(e -> help.hide());
     }
-    
+
     private Point2D getPoint () {
-        return myView.getEditor().localToScreen(myView.getEditor().getLayoutBounds().getMaxX() * X_OFFSET,
-                                      myView.getEditor().getLayoutBounds().getMaxY() * Y_OFFSET);
+        return myView.getEditor()
+                .localToScreen(myView.getEditor().getLayoutBounds().getMaxX() *
+                               Double.parseDouble(myBundle.getString("xOffset")),
+                               myView.getEditor().getLayoutBounds().getMaxY() * Double
+                                       .parseDouble(myBundle.getString("yOffset")));
     }
 
     /**
@@ -52,17 +66,23 @@ public abstract class ConditionController {
      */
     private Node createPopUp (String selection) {
         try {
-            return getFactory().get(selection)
+            return getFactory().interpret(selection)
                     .show();
         }
-        catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-                | IllegalArgumentException | InvocationTargetException | SecurityException e) {
+        catch (ReflectionException e) {
             ErrorMessage error = new ErrorMessage(myLanguage.getString("ConditionViewFile"));
             error.showError();
             e.printStackTrace();
             return new Pane();
         }
     }
+
+    /**
+     * Subclasses of this controller class need to instantiate the factory differently, depending on
+     * whether or not access to the level is necessary
+     * 
+     * @return
+     */
 
     protected abstract ConditionViewFactory getFactory ();
 
