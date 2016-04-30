@@ -1,0 +1,15 @@
+<facebookutil.user.User>
+  <myEmail>
+    <myName>guest</myName>
+    <myDomain>guest.com</myDomain>
+  </myEmail>
+  <myScoreBoard>
+    <myBoard/>
+  </myScoreBoard>
+  <myProfiles>
+    <myProfiles/>
+    <myActiveProfile class="facebookutil.user.profiles.LocalProfile">
+      <myID>local</myID>
+    </myActiveProfile>
+  </myProfiles>
+</facebookutil.user.User>
