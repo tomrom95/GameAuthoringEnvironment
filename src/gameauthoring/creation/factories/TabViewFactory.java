@@ -39,7 +39,13 @@ public class TabViewFactory<T extends ITabViewer> {
         myUIFactory = new BasicUIFactory();
     }
 
+    /**
+     * Reflectively generates the appropriate tab viewer
+     * @param tabViewerName name of tab viewer
+     * @return tab viewer
+     */
     private ITabViewer createTabViewer (String tabViewerName) {
+
         return (ITabViewer) Reflection.createInstance(tabViewerName, myGame);
 
     }
