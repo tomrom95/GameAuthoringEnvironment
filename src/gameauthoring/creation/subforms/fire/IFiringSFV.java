@@ -1,7 +1,7 @@
 package gameauthoring.creation.subforms.fire;
 
+import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.subforms.ISubFormView;
-import javafx.beans.property.BooleanProperty;
 
 /**
  * Generic interface for all firing subform views.  As of now contains the method to store and pass data on ranged firing
@@ -10,8 +10,6 @@ import javafx.beans.property.BooleanProperty;
  *
  */
 
-//TODO: get rid of unecessary methods when done
-//TODO: move waittime into this interface
 public interface IFiringSFV extends ISubFormView {
       
       double getMyRange();
@@ -19,5 +17,8 @@ public interface IFiringSFV extends ISubFormView {
       boolean getMyIsRanged();
       
       double getMyWaitTime ();
+      
+      SpriteDefinition getMissileSelection ();
+
       
 }
