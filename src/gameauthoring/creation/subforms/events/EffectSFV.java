@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -36,8 +37,9 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
     private String myValueKey;
     private String myAttributeKey;
     private String myTypeKey;
-    private HBox myContainer;
+    private VBox myContainer;
     private RemoveOption myRemove;
+    private double spacing = 20;
 
 
     public EffectSFV (AuthorshipData data,
@@ -80,9 +82,9 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
 
     @Override
     protected void initView () {
-        myContainer =
-                getMyUIFactory().makeHBox(10, Pos.CENTER, myEffectType.draw(), myAttribute.draw(),
-                                          myValue.draw(), myLength.draw(), myRemove.draw());
+        HBox box = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(), myEffectType.draw(), myAttribute.draw());
+        HBox boxTwo = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myValue.draw(), myLength.draw());
+        myContainer = getMyUIFactory().makeVBox(spacing, Pos.CENTER, box, boxTwo);
     }
 
     @Override

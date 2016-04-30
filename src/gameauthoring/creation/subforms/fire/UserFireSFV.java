@@ -4,6 +4,7 @@ import java.util.ResourceBundle;
 import engine.AuthorshipData;
 import engine.definitions.concrete.SpriteDefinition;
 import splash.LocaleManager;
+import util.StringParser;
 import gameauthoring.creation.entryviews.CharacterEntryView;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
@@ -18,8 +19,7 @@ import javafx.scene.layout.HBox;
 
 public class UserFireSFV extends SubFormView implements IUserFireSFV {
 
-    private HBox myPane;
-    private GridPane controlPane;
+    private GridPane myPane = new GridPane();
     private ResourceBundle myLabel;
     private String myAngleKey;
     private String myWaitTimeKey;
@@ -40,6 +40,7 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
     private NumberEntryView myRangeValue;
     private RemoveOption myRemove;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
+    private StringParser s;
 
     public UserFireSFV (AuthorshipData data, RemoveOption remove) {
         setResourceBundleAndKey();
@@ -49,31 +50,38 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
     }
 
     private void createEntryViews (AuthorshipData data) {
+        s = new StringParser();
+        double width = s.parseDouble(getMyNumbers().getString("Width"));
+        double height = s.parseDouble(getMyNumbers().getString("Height"));
 
         myMissileSelectionView =
                 new SingleChoiceEntryView<>(myProjectileKey, data.getMyCreatedMissiles().getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
 
         myAngle =
-                new NumberEntryView(myAngleKey, 150, 30,
+                new NumberEntryView(myAngleKey, width, height,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myWaitTime =
-                new NumberEntryView(myWaitTimeKey, 150, 30,
+                new NumberEntryView(myWaitTimeKey, width, height,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myIncrease =
-                new CharacterEntryView(myIncreaseKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+                new CharacterEntryView(myIncreaseKey, width, height,
+                                       AuthoringView.DEFAULT_ENTRYVIEW);
 
         myDecrease =
-                new CharacterEntryView(myDecreaseKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+                new CharacterEntryView(myDecreaseKey, width, height,
+                                       AuthoringView.DEFAULT_ENTRYVIEW);
 
-        myFire = new CharacterEntryView(myFireKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myFire = new CharacterEntryView(myFireKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
 
-        myAngleStep = new NumberEntryView(myAngleStepKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myAngleStep =
+                new NumberEntryView(myAngleStepKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
 
         myIsRanged =
                 new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
         myRangeValue =
-                new NumberEntryView(myRangeValueKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+                new NumberEntryView(myRangeValueKey, width, height,
+                                    AuthoringView.DEFAULT_ENTRYVIEW);
         initBinding();
 
     }
@@ -95,25 +103,30 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
 
     @Override
     public Node draw () {
-        // return myPane;
-        return controlPane;
+        return myPane;
     }
 
     @Override
     protected void initView () {
-        controlPane.setGridLinesVisible(true);
-        controlPane.add(myIncrease.draw(), 0, 0);
-        controlPane.add(myDecrease.draw(), 0, 1);
-        controlPane.add(myFire.draw(), 1, 0);
+        double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacing"));
 
-        myPane =
-                getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(),
+        myPane.add(myIncrease.draw(), 0, 0);
+        myPane.add(myDecrease.draw(), 1, 0);
+        myPane.add(myFire.draw(), 2, 0);
+        myPane.add(myRemove.draw(), 3, 0);
+        
+        HBox fireParams =
+                getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
                                           myAngle.draw(), myAngleStep.draw(),
-                                          myWaitTime.draw(),
-                                          myRangeValue.draw(), myIsRanged.draw(), myRemove.draw());
+                                          myWaitTime.draw()
+                                          );
 
+        HBox rangeParams =
+                getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myIsRanged.draw(), myRangeValue.draw()
+                                          );
+        myPane.add(fireParams, 0, 1, 3, 1);
+        myPane.add(rangeParams, 0, 2, 3, 1);
         myPane.getStyleClass().add("firer");
-        controlPane.add(myPane, 2, 0);
 
     }
 
@@ -183,7 +196,7 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
         myFire.setData(fire);
 
     }
-    
+
     @Override
     public SpriteDefinition getMissileSelection () {
         return myMissileSelectionView.getSelected();

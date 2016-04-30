@@ -27,7 +27,7 @@ public class UserFireSFC extends RemovableFireSFC {
     private String myDefaultFire = "F";
 
 
-    public UserFireSFC (FiringSFC sfc, IGame game) {
+    public UserFireSFC (IGame game, FiringSFC sfc) {
         super(sfc);
         init(game, new UserFirerDefinition(game));
 
@@ -68,7 +68,7 @@ public class UserFireSFC extends RemovableFireSFC {
     }
 
     @Override
-    public void initializeFields (SpriteDefinition item) {
+    public void initializeFields () {
         myView.populateWithData(null, myDefaultWaitTime, myDefaultRange, myDefaultIsRanged, myDefaultAngle, myDefaultAngleStep, myDefaultIncrease, myDefaultDecrease, myDefaultFire);
     }
 
@@ -86,6 +86,5 @@ public class UserFireSFC extends RemovableFireSFC {
     public FirerDefinition getModuleDefinition () {
         return myFireDef;
     }
-
 
 }
