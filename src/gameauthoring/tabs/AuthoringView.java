@@ -28,7 +28,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import serialize.GameReader;
 import serialize.GameWriter;
+import serialize.LoadErrorException;
 import splash.LocaleManager;
 import splash.MainUserInterface;
 
@@ -62,7 +64,7 @@ public class AuthoringView implements IAuthoringView {
     public static final String STYLESHEET = "custom.css";
     public static final String DEFAULT_RESOURCE_PACKAGE = "defaults/";
     public static final String DEFAULT_ENTRYVIEW = "defaultTextEntry";
-    private BasicUIFactory myUIFactory = new BasicUIFactory();
+    private BasicUIFactory myUIFactory;
     public static final String HOME = "Home";
     public static final String SAVE = "Save";
     private ResourceBundle myLabel;
@@ -71,6 +73,8 @@ public class AuthoringView implements IAuthoringView {
         setResourceBundle();
         GameFactory gameFactory = new GameFactory();
         myGame = gameFactory.createGame();
+        myUIFactory = new BasicUIFactory();
+        myTabFactory = new TabViewFactory<ITabViewer>(myGame);
     }
 
     private void setResourceBundle () {
@@ -149,9 +153,11 @@ public class AuthoringView implements IAuthoringView {
         Menu fileMenu = new Menu(myLabel.getString("File"));
         MenuItem goHome = createMenuItems(myLabel.getString("GoHome"), e -> goHome());
         MenuItem saveItem = createMenuItems(myLabel.getString("Save"), e -> saveToXML());
+        MenuItem loadItem = createMenuItems(myLabel.getString("Load"), e -> loadGame());
         MenuItem launchItem = createMenuItems(myLabel.getString("Launch"), e -> launchGame());
         fileMenu.getItems().add(goHome);
         fileMenu.getItems().add(saveItem);
+        fileMenu.getItems().add(loadItem);
         fileMenu.getItems().add(launchItem);
         menuBar.getMenus().add(fileMenu);
         return menuBar;
@@ -175,7 +181,7 @@ public class AuthoringView implements IAuthoringView {
     }
 
     private void saveToXML () {
-        File f = getFile();
+        File f = saveFile();
         myGame.createAndSortGlobals();
         if (f != null) {
             try {
@@ -189,6 +195,20 @@ public class AuthoringView implements IAuthoringView {
 
     }
 
+    private void loadGame () {
+        try {
+            IGame loadedGame = new GameReader().readFile(getFile());
+            AuthoringView aView = new AuthoringView(loadedGame);
+            Stage authoringStage = new Stage();
+            aView.init(authoringStage);
+            authoringStage.show();
+        }
+        catch (LoadErrorException e) {
+            ErrorMessage message = new ErrorMessage(e.getMessage());
+            message.showError();
+        }
+    }
+    
     private void launchGame () {
         XStream xstream = new XStream(new DomDriver());
         FXConverters.configure(xstream);
@@ -200,11 +220,18 @@ public class AuthoringView implements IAuthoringView {
         GamePlayer player = new GamePlayer(game);
     }
 
-    private File getFile () {
+    private File saveFile () {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle(myLabel.getString("SaveGame"));
         fileChooser.setInitialDirectory(new File("resources/saved_games"));
         return fileChooser.showSaveDialog(new Stage());
+    }
+    
+    private File getFile () {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle(myLabel.getString("Load"));
+        fileChooser.setInitialDirectory(new File("resources/saved_games"));
+        return fileChooser.showOpenDialog(new Stage());
     }
 
     private TabPane createAllTabs () {
