@@ -6,6 +6,7 @@ import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import splash.LocaleManager;
+import util.StringParser;
 
 public class PathMoverSFV extends SubFormView implements IPathMoverSFV {
 
@@ -13,6 +14,7 @@ public class PathMoverSFV extends SubFormView implements IPathMoverSFV {
     private ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", LocaleManager
                                                              .getInstance().getCurrentLocaleProperty().get());
     private NumberEntryView mySpeedInputView;
+    private StringParser s;
     
     public PathMoverSFV() {
         initView();

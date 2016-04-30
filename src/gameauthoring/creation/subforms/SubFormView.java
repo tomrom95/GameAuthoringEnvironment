@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import splash.LocaleManager;
+import util.StringParser;
 
 
 /**
@@ -34,8 +35,12 @@ public abstract class SubFormView implements ISubFormView {
     private ResourceBundle myErrors = ResourceBundle
             .getBundle("defaults/errors",
                        LocaleManager.getInstance().getCurrentLocaleProperty().get());
-
-
+    private StringParser s = new StringParser();
+    
+    protected StringParser getParser(){
+        return s;
+    }
+    
     protected String getMyTitle () {
         return getMyLabels().getString(myTitle);
     }
