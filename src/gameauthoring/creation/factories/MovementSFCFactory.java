@@ -77,7 +77,7 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
             return(new PathMoverSFC());
             
         }
-        throw new ReflectionException("No Defined SFC to Match Given Definition");
+        throw new ReflectionException("No defined movement SFC matches given definition");
     }
 
 }

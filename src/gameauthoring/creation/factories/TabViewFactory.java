@@ -53,8 +53,19 @@ public class TabViewFactory<T extends ITabViewer> {
         myTabViewerMap = new HashMap<>();
 
         for (String tabName : tabViewerNames) {
-            ITabViewer tabView =
-                    (ITabViewer) Reflection.createInstance(myTabViewers.getString(tabName), myGame);
+            ITabViewer tabView;
+
+            try{
+                tabView = (ITabViewer) Reflection.createInstance(myTabViewers.getString(tabName), myGame);
+            }  catch (ReflectionException e) {
+                String message = String.format("Reflection exception in TabViewFactory when creating tab %s from key %s: \n%s", myTabViewers.getString(tabName), tabName, e.getMessage());
+                throw new ReflectionException(message);
+            }
+            catch (ClassCastException e) {
+                String message = String.format("Class cast exception in TabViewFactory when creating tab %s from key %s: \n%s", myTabViewers.getString(tabName), tabName, e.getMessage());
+                throw new ClassCastException(message);
+
+            }
             tabViewerList.add(tabView);
             myTabViewerMap.put(tabName, tabView);
         }

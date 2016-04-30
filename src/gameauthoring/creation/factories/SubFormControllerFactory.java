@@ -44,11 +44,15 @@ public abstract class SubFormControllerFactory<T extends IProfilable> {
     protected abstract ISubFormController<T> createSubFormController (String type, Object ... params) throws ReflectionException, ClassCastException;
 
     private ISubFormController<T> createSFCAndHandleErrors(String type){
+        String errorMsg = String.format("Error creating subform of type %s.\nCheck properties files.", type);
         try {
             return createSubFormController(type);
-        } catch (ReflectionException | ClassCastException e) {
-            new ErrorMessage(String.format("Error creating subform of type %s.\n Check properties files.", type)).showError();
-            throw e;
+        } catch (ReflectionException e) {
+            String message = String.format("%s Error was a Reflection Exception: %s", errorMsg, e.getMessage());
+            throw new ReflectionException(message);
+        } catch (ClassCastException e){
+            String message = String.format("%s Error was a ClassCast Exception: %s", errorMsg, e.getMessage());
+            throw new ClassCastException(message);
         }
     }
 
