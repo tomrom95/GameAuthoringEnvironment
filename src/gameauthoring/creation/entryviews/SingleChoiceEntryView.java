@@ -3,11 +3,9 @@ package gameauthoring.creation.entryviews;
 import java.util.function.Consumer;
 import engine.profile.IProfilable;
 import gameauthoring.creation.cellviews.NameCellView;
-import gameauthoring.creation.cellviews.ProfileCellView;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
-import javafx.scene.layout.HBox;
 
 
 /**
@@ -20,14 +18,14 @@ import javafx.scene.layout.HBox;
  */
 public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
     private ComboBox<E> myChoices;
-    private String comboBoxStyle = "SingleChoice";
+    private String myComboBoxStyle = "SingleChoice";
 
     public SingleChoiceEntryView (String label, ObservableList<E> observableList, String cssClass) {
-        super(label,cssClass);
+        super(label, cssClass);
         this.myChoices = new ComboBox<E>(observableList);
         myChoices.setCellFactory(c -> new NameCellView<E>());
         myChoices.setButtonCell(new NameCellView<E>());
-        getMyFactory().addStyling(myChoices, comboBoxStyle);
+        getMyFactory().addStyling(myChoices, myComboBoxStyle);
         init();
     }
 
@@ -43,7 +41,7 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
     public void setSelected (E item) {
         myChoices.getSelectionModel().select(item);
     }
-    
+
     public void setSelected (int index) {
         myChoices.getSelectionModel().select(0);
     }
@@ -55,7 +53,6 @@ public class SingleChoiceEntryView<E extends IProfilable> extends EntryView {
     public E getSelected () {
         return myChoices.getSelectionModel().getSelectedItem();
     }
-
 
     public void addComboItemListener (Consumer<E> action) {
         myChoices.setOnAction(e -> action.accept(myChoices.getSelectionModel().getSelectedItem()));
