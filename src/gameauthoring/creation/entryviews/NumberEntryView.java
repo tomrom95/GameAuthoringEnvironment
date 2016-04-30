@@ -15,14 +15,14 @@ import splash.LocaleManager;
 public class NumberEntryView extends InputEntryView {
 
     private TextInputControl myTextInput;
-    private ResourceBundle myErrors = ResourceBundle
-            .getBundle("defaults/errors",
-                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    private ResourceBundle myErrors;
 
     public NumberEntryView (String label, double width, double height, String cssClass) {
         super(label, width, height, cssClass);
         myTextInput = new NumberTextField();
         super.setInputControl(myTextInput);
+        myErrors =   ResourceBundle
+                .getBundle("defaults/errors");
         super.init();
     }
 
