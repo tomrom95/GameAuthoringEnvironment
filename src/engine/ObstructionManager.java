@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  */
 public class ObstructionManager implements IObstructionManager {
     private static final boolean POSITION_OBSTRUCTED = true;
-    private static final int SAMPLE_RESOLUTION = 100;
+    private static final int SAMPLE_RESOLUTION = 60;
     
     private IGame myGame;
     private ISampledBitMap myCurrentObstructionMap;

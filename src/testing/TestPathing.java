@@ -160,8 +160,8 @@ public class TestPathing extends Application {
 //            wall.setObstruction(true);
 //            game.bufferedAdd(wall);
 //        }
-        for(int i = 4; i < 8; i ++){
-            ISprite wall = createEnemySpriteDefinition(400, i*55).create();
+        for(int i = 0; i < 12; i ++){
+            ISprite wall = createEnemySpriteDefinition(400, i*20).create();
             wall.setObstruction(true);
             game.bufferedAdd(wall);
         }

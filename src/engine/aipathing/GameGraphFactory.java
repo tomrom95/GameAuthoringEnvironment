@@ -93,8 +93,8 @@ public class GameGraphFactory implements INodeGraphFactory {
     }
 
     private ArrayPosition pixelForArrayLoc (int widthAccess, int heightAccess, int xGap, int yGap) {
-        return new ArrayPosition(widthAccess * xGap, //+ (xGap / INT_TWO),
-                                 heightAccess * yGap); //+ (yGap / INT_TWO));
+        return new ArrayPosition(widthAccess * xGap + (xGap / INT_TWO),
+                                 heightAccess * yGap + (yGap / INT_TWO));
     }
 
 
