@@ -1,8 +1,12 @@
 package gameauthoring.creation.subforms.fire;
 
+import java.util.ResourceBundle;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
+import splash.LocaleManager;
+import util.StringParser;
+
 
 /**
  * 
@@ -14,11 +18,20 @@ public abstract class RemovableSFC<T extends IProfilable> implements ISubFormCon
 
     private T myDefinition;
     private RemoveOption myView;
+    private ResourceBundle myLabels;
+    private ResourceBundle myNumbers;
+    private StringParser myParser;
 
     public RemovableSFC (MultiOptionSFC<T> sfc) {
-        myView = new RemoveOption(e->sfc.removeSFC(this));
+        myLabels =
+                ResourceBundle
+                        .getBundle("languages/labels",
+                                   LocaleManager.getInstance().getCurrentLocaleProperty().get());
+        myNumbers = ResourceBundle
+                .getBundle("defaults/numbers");
+        myParser = new StringParser();
+        myView = new RemoveOption(e -> sfc.removeSFC(this));
     }
-
 
     public abstract void removeModule (Object myMod);
 
@@ -28,13 +41,24 @@ public abstract class RemovableSFC<T extends IProfilable> implements ISubFormCon
         return myDefinition;
     }
 
-
-    protected RemoveOption getRemoveMenu(){
+    protected RemoveOption getRemoveMenu () {
         return myView;
     }
-    
+
     protected void setMySpriteDefinition (T mySpriteDefinition) {
         this.myDefinition = mySpriteDefinition;
+    }
+
+    protected ResourceBundle getMyLabels () {
+        return myLabels;
+    }
+
+    protected ResourceBundle getMyNumbers () {
+        return myNumbers;
+    }
+
+    protected StringParser getParser () {
+        return myParser;
     }
 
 }

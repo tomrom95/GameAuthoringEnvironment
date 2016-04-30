@@ -15,14 +15,16 @@ import splash.LocaleManager;
 public class NumberEntryView extends InputEntryView {
 
     private TextInputControl myTextInput;
-    private ResourceBundle myErrors;
+    private ResourceBundle myLabels;
 
     public NumberEntryView (String label, double width, double height, String cssClass) {
         super(label, width, height, cssClass);
         myTextInput = new NumberTextField();
         super.setInputControl(myTextInput);
-        myErrors =   ResourceBundle
-                .getBundle("defaults/errors");
+        myLabels =
+                ResourceBundle
+                        .getBundle("languages/labels",
+                                   LocaleManager.getInstance().getCurrentLocaleProperty().get());
         super.init();
     }
 
@@ -35,7 +37,7 @@ public class NumberEntryView extends InputEntryView {
             return Double.parseDouble(myTextInput.getText());
         }
         catch (NumberFormatException e) {
-            ErrorMessage err = new ErrorMessage(myErrors.getString("NeedNumber"));
+            ErrorMessage err = new ErrorMessage(myLabels.getString("NeedNumber"));
             err.showError();
             return 0;
         }

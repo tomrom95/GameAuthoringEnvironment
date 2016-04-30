@@ -15,37 +15,39 @@ import javafx.collections.ObservableList;
 public class EventSFC extends RemovableEventSFC {
 
     private static final String PATH = "defaults/event_types";
-    private ResourceBundle eventTypes = ResourceBundle.getBundle(PATH);
+    private ResourceBundle myEventTypes = ResourceBundle.getBundle(PATH);
     private IEventSFV myView;
     private GameEvent myEvent;
 
     public EventSFC (IGame game, EventChoiceSFC sfc) {
         super(sfc);
         init(game, new GameEvent(null));
-       
+
     }
+
     public EventSFC (IGame game, EventChoiceSFC sfc, GameEvent event) {
         super(sfc);
         init(game, event);
     }
-    private void init(IGame game, GameEvent event) {
-     
+
+    private void init (IGame game, GameEvent event) {
+
         myView = new EventSFV(getEvents(), getRemoveMenu());
         myEvent = event;
     }
 
     private ObservableList<ProfileDisplay> getEvents () {
-        return new TypeFactory().getEffectTypes(eventTypes);
+        return new TypeFactory().getEffectTypes(myEventTypes);
     }
 
     @Override
     public void updateItem (EventPackageDefinition item) {
-        try{
-        myEvent = new GameEvent(new EventType(myView.getEventSelection()));
-        item.getMyEventsList().add(myEvent);
+        try {
+            myEvent = new GameEvent(new EventType(myView.getEventSelection()));
+            item.getMyEventsList().add(myEvent);
         }
         catch (NullPointerException e) {
-            ErrorMessage err = new ErrorMessage("Please Complete All Fields Associated with Event");
+            ErrorMessage err = new ErrorMessage(getMyLabels().getString("IncompleteEvent"));
             err.showError();
         }
     }

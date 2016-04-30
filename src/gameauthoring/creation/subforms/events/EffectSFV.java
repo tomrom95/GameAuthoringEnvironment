@@ -41,12 +41,13 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
     private String myTypeKey;
     private VBox myContainer;
     private RemoveOption myRemove;
-    private double spacing = 20;
-
 
     public EffectSFV (AuthorshipData data,
-                      ObservableList<ProfileDisplay> effectTypes, RemoveOption remove) {
+                      ObservableList<ProfileDisplay> effectTypes,
+                      RemoveOption remove) {
         setResourceBundleAndKey();
+        double width = getParser().parseDouble(getMyNumbers().getString("Width"));
+        double height = getParser().parseDouble(getMyNumbers().getString("Height"));
         myRemove = remove;
         myEffectType = new SingleChoiceEntryView<ProfileDisplay>(myTypeKey,
                                                                  effectTypes,
@@ -58,10 +59,10 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
                                                                definitions,
                                                                AuthoringView.DEFAULT_ENTRYVIEW);
         myValue =
-                new NumberEntryView(myValueKey, 100, 30,
+                new NumberEntryView(myValueKey, width, height,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myLength =
-                new NumberEntryView(myLengthKey, 100, 30,
+                new NumberEntryView(myLengthKey, width, height,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
     }
@@ -85,8 +86,12 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
 
     @Override
     protected void initView () {
-        HBox box = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(), myEffectType.draw(), myAttribute.draw());
-        HBox boxTwo = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myValue.draw(), myLength.draw());
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
+        HBox box =
+                getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(), myEffectType.draw(),
+                                          myAttribute.draw());
+        HBox boxTwo =
+                getMyUIFactory().makeHBox(spacing, Pos.CENTER, myValue.draw(), myLength.draw());
         myContainer = getMyUIFactory().makeVBox(spacing, Pos.CENTER, box, boxTwo);
     }
 
