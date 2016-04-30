@@ -30,8 +30,7 @@ public abstract class SubFormView implements ISubFormView {
     private ResourceBundle myNumbers = ResourceBundle
             .getBundle("defaults/numbers");
 
-    private ResourceBundle myErrors = ResourceBundle
-            .getBundle("defaults/errors");
+  
     private StringParser s = new StringParser();
 
     protected StringParser getParser () {
