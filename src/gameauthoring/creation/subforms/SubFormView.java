@@ -29,12 +29,10 @@ public abstract class SubFormView implements ISubFormView {
                     .getBundle("languages/labels",
                                LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle myNumbers = ResourceBundle
-            .getBundle("defaults/numbers",
-                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
+            .getBundle("defaults/numbers");
     
     private ResourceBundle myErrors = ResourceBundle
-            .getBundle("defaults/errors",
-                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
+            .getBundle("defaults/errors");
     private StringParser s = new StringParser();
     
     protected StringParser getParser(){
