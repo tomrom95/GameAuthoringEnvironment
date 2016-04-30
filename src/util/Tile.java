@@ -18,6 +18,7 @@ public class Tile {
     public Tile (double rectSize, int row, int col) {
         myTile = new Rectangle(rectSize, rectSize);
         myTile.getStyleClass().add("r");
+        myTile.setFill(Color.TRANSPARENT);
         myRowPosition = row;
         myColPosition = col;
     }
