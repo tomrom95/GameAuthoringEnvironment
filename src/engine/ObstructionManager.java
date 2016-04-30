@@ -36,6 +36,7 @@ public class ObstructionManager implements IObstructionManager {
     @Override
     public void update (TimeDuration duration) {
         //Do nothing
+        System.out.print("");
     }
     
     @Override
