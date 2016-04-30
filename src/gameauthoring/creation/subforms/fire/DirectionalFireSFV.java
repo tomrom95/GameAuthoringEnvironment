@@ -12,6 +12,7 @@ import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -23,7 +24,7 @@ import javafx.scene.layout.HBox;
  */
 public class DirectionalFireSFV extends SubFormView implements IDirectionalFireSFV {
 
-    private HBox myPane;
+    private VBox myPane;
     private ResourceBundle myLabel;
     private String myAngleKey;
     private String myWaitTimeKey;
@@ -36,6 +37,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     private RemoveOption myRemove;
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
+    private double spacing = 20;
 
     public DirectionalFireSFV (IDefinitionCollection<SpriteDefinition> missiles,
                                RemoveOption remove) {
@@ -73,11 +75,11 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
 
     @Override
     protected void initView () {
+        HBox box = getMyUIFactory().makeHBox(spacing , Pos.CENTER, myRemove.draw(),myMissileSelectionView.draw(),myWaitTime.draw(),myAngle.draw());
+        HBox boxTwo =  getMyUIFactory().makeHBox(spacing, Pos.CENTER, myIsRanged.draw(),myRangeValue.draw());
         myPane =
-                getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                          myWaitTime.draw(), myAngle.draw(),
-                                          myRangeValue.draw(), myIsRanged.draw(), myRemove.draw());
-        myPane.getStyleClass().add("firer");
+                getMyUIFactory().makeVBox(20, Pos.CENTER, box, boxTwo);
+        getMyUIFactory().addStyling(myPane, "Firer");
     }
 
     private void initBinding () {
