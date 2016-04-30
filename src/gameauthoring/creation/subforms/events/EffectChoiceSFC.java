@@ -7,19 +7,20 @@ import engine.effects.IEffect;
 import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
 import util.BundleOperations;
 
-public class EffectChoiceSFC extends MultiOptionSFC<EventPackageDefinition>{
-    
-    private static String EFFECT_KEY = "Effects";
+
+public class EffectChoiceSFC extends MultiOptionSFC<EventPackageDefinition> {
+
+    private static final String EFFECT_KEY = "Effects";
 
     public EffectChoiceSFC (IGame game) {
         super(game);
         setMyOptions(BundleOperations.getPropertyValueAsList(EFFECT_KEY, getMyOptionsFile()));
         setMyView(new EffectChoiceSFV(getMyOptions(), EFFECT_KEY));
-        setActions();       
+        setActions();
     }
 
     @Override
-    protected List<IEffect> getList(EventPackageDefinition item){
+    protected List<IEffect> getList (EventPackageDefinition item) {
         return item.getMyEffectsList();
     }
 
@@ -27,7 +28,5 @@ public class EffectChoiceSFC extends MultiOptionSFC<EventPackageDefinition>{
     protected void resetContents (EventPackageDefinition item) {
         item.getMyEffectsList().clear();
     }
-
-     
 
 }

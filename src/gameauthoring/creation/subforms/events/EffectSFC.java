@@ -28,10 +28,10 @@ public class EffectSFC extends RemovableEffectSFC {
     private EffectSFV myView;
     private Effect myEffect;
     private TypeFactory myTypeFactory = new TypeFactory();
-    private String defaultAttributeType = "length";
+    private String myDefaultAttributeType = "length";
     private ResourceBundle myEffects = ResourceBundle.getBundle("defaults/effect_types");
-    private double defaultLength = 0;
-    private double defaultValue = 0;
+    private double myDefaultLength = 0;
+    private double myDefaultValue = 0;
 
     public EffectSFC (IGame game, EffectChoiceSFC sfc) {
         super(sfc);
@@ -61,7 +61,7 @@ public class EffectSFC extends RemovableEffectSFC {
         try {
             AttributeDefinition attrDef = myView.getAttribute();
             Attribute lengthAttr =
-                    new Attribute(myView.getLength(), new AttributeType(defaultAttributeType));
+                    new Attribute(myView.getLength(), new AttributeType(myDefaultAttributeType));
             double val = myView.getValue();
             myEffect = getEffect(myView.getEffectType(), lengthAttr, attrDef, val);
             item.getMyEffectsList().add(myEffect);
@@ -82,7 +82,7 @@ public class EffectSFC extends RemovableEffectSFC {
 
     @Override
     public void initializeFields () {
-        myView.populateWithData(null, null, defaultValue, defaultLength);
+        myView.populateWithData(null, null, myDefaultValue, myDefaultLength);
     }
 
     @Override

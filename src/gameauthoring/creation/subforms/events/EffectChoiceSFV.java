@@ -6,9 +6,9 @@ import gameauthoring.creation.subforms.ISubFormView;
 
 
 public class EffectChoiceSFV extends ClickAndFillView {
-    
+
     public EffectChoiceSFV (List<String> options, String titleKey) {
-        super(options, titleKey);        
+        super(options, titleKey);
         initView();
     }
 
@@ -16,6 +16,5 @@ public class EffectChoiceSFV extends ClickAndFillView {
     public void addOrSetSFV (ISubFormView subFormView) {
         super.getMyPaneContent().getChildren().add(subFormView.draw());
     }
-
 
 }
