@@ -43,16 +43,16 @@ public class CreationControllerFactory {
             return (CreationController<?>) Reflection.createInstance(className, key, sfcs, myGame);
         }
         catch (ReflectionException e) {
-            System.out.println("reflection exception " + e.getMessage() + key + sfcs);
-            // TODO handle exception
+            String message = String.format("Reflection exception for creation controller key %s with subforms %s:\n%s ", key, sfcs, e.getMessage());
+            throw new ReflectionException(message);
         }
         catch (ClassCastException e) {
-            // TODO handle exception
-            System.out.println("class cast exception " + e.getMessage() + key + sfcs);
+            String message = String.format("Class cast exception for creation controller key %s with subforms %s:\n" +
+                    "%s ", key, sfcs, e.getMessage());
+            throw new ReflectionException(message);
 
         }
-        return null;
-    }
+   }
 
     private List<String> getSFCs (String tabName) {
         return BundleOperations.getPropertyValueAsList(tabName, mySubforms);

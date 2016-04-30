@@ -19,32 +19,19 @@ public class MultiOptionFactory<T extends IProfilable>  extends SubFormControlle
     @Override
     public RemovableSFC<T> createSubFormController (String className,
                                                                          Object ... params) {
+        String errorMsg = String.format("Can't create MultiOption subformcontroller of class name %s from definition %s",getMyDefToSFCs().getString(className), className);
 
         try {
-            Object test = Reflection.createInstance(getMyDefToSFCs()
-                                                    .getString(className), params);
             return (RemovableSFC<T>) Reflection.createInstance(getMyDefToSFCs().getString(className), params);
 
         }
-        catch (ReflectionException | ClassCastException e) {
-            // TODO should this be error message or just throw error?
-            String errorMsg = "Check your properties files. Unable to create firing subformcontroller with className " +
-                              className + " and params " + arrayToString(params);
-            System.out.println(errorMsg);
-            ErrorMessage errorMessage = new ErrorMessage(errorMsg);
-            errorMessage.showError();
-            throw e;
+        catch (ReflectionException e){
+            String message = String.format("%s\nReflection exception: %s.", errorMsg, e.getMessage());
+            throw new ReflectionException(message);
+        } catch (ClassCastException e) {
+            String message = String.format("%s\nClass cast exception: %s.", errorMsg, e.getMessage());
+            throw new ClassCastException(message);
         }
-    }
-    
-    private String arrayToString (Object[] objects) {
-        String x = "[ ";
-        for (Object o : objects) {
-            x += o.toString();
-            x += " ";
-        }
-        x += "]";
-        return x;
     }
 
     private ResourceBundle getMyDefToSFCs () {

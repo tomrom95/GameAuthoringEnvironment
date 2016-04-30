@@ -9,7 +9,6 @@ public class GroupSFCFactory extends SubFormControllerFactory<SpriteGroup>{
 
     public GroupSFCFactory (IGame game) {
         super(game);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
