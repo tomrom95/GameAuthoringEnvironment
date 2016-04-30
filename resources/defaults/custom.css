@@ -408,3 +408,9 @@
     -fx-border-width: 3px;
 }
 
+.r {
+	-fx-fill: transparent;
+    -fx-stroke: #000000;
+    -fx-stroke-width: .5;
+}
+

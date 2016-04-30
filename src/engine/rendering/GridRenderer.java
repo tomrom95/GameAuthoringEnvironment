@@ -6,6 +6,7 @@ import util.Tile;
 import engine.ILevel;
 import engine.sprite.ISprite;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -25,7 +26,7 @@ public class GridRenderer implements IRenderer {
     private Tile[][] myBlocks;
     private int myNumBlockRow;
     private int myNumBlockCol;
-    public final int BLOCK_SIZE = 25;
+    public final int BLOCK_SIZE = 50;
     private ScaleRatio myScale;
 
     public GridRenderer (ILevel level, GridPane pane, ScaleRatio scale) {
@@ -42,25 +43,22 @@ public class GridRenderer implements IRenderer {
     }
 
     private void calculateTileArraySize () {
-        myNumBlockRow = (int) (myScale.scale(myLevel.getBounds().getHeight()) / BLOCK_SIZE);
-        myNumBlockCol = (int) (myScale.scale(myLevel.getBounds().getWidth()) / BLOCK_SIZE);
-      
-       
+        myNumBlockRow = (int) (myLevel.getBounds().getHeight() / BLOCK_SIZE);
+        myNumBlockCol = (int) (myLevel.getBounds().getWidth() / BLOCK_SIZE);
+
     }
 
     private void initializeGridLines () {
-        myPane.setGridLinesVisible(true);
-        myPane.setMaxSize(myScale.scale(myLevel.getBounds().getWidth()), myScale.scale(myLevel.getBounds().getHeight()));
+        myPane.getChildren().clear();
         for (int i = 0; i < myNumBlockRow; i++) {
             for (int j = 0; j < myNumBlockCol; j++) {
-                Tile tile = new Tile(new Rectangle(BLOCK_SIZE,BLOCK_SIZE), i, j);
-                tile.getTile().setFill(Color.TRANSPARENT);
+                Tile tile = new Tile(myScale.scale(BLOCK_SIZE), i, j);
                 tile.getTile().setOnMouseClicked(e -> handleMouseClick(tile));
                 myBlocks[i][j] = tile;
                 myPane.add(tile.getTile(), j, i);
             }
         }
-       
+
     }
 
     private void handleMouseClick (Tile tile) {
@@ -105,5 +103,9 @@ public class GridRenderer implements IRenderer {
     @Override
     public void render () {
         init();
+    }
+
+    public void redraw () {
+       initializeGridLines();
     }
 }

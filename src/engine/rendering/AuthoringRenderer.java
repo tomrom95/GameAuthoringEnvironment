@@ -144,4 +144,9 @@ public class AuthoringRenderer extends LevelRenderer {
         return getScale().scale(myLevel.getBounds().getWidth());
     }
 
+    public void scaleTitles () {
+        myTileView.redraw();
+        
+    }
+
 }
