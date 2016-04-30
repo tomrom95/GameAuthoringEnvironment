@@ -119,6 +119,7 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
 
     @Override
     public Node draw () {
+        getMyUIFactory().addStyling(myContainer, "Mover");
         return myContainer;
     }
 

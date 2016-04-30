@@ -51,6 +51,7 @@ public class EventSFV extends SubFormView implements IEventSFV {
 
     @Override
     public Node draw () {
+        getMyUIFactory().addStyling(myContainer, "Firer");
         return myContainer;
     }
 

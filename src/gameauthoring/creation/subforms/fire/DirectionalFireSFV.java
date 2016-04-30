@@ -9,7 +9,6 @@ import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
-import javafx.beans.property.BooleanProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -42,8 +41,8 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
                                RemoveOption remove) {
         setResourceBundleAndKey();
         myRemove = remove;
-        myAngle = new NumberEntryView(myAngleKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-        myWaitTime = new NumberEntryView(myWaitTimeKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myAngle = new NumberEntryView(myAngleKey, 100, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myWaitTime = new NumberEntryView(myWaitTimeKey, 100, 30, AuthoringView.DEFAULT_ENTRYVIEW);
         myMissileSelectionView =
                 new SingleChoiceEntryView<>(myProjectileKey, missiles.getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
@@ -75,10 +74,9 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     @Override
     protected void initView () {
         myPane =
-                getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myRemove.draw(),
-                                          myMissileSelectionView.draw(),
+                getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(),
                                           myWaitTime.draw(), myAngle.draw(),
-                                          myRangeValue.draw(), myIsRanged.draw());
+                                          myRangeValue.draw(), myIsRanged.draw(), myRemove.draw());
         myPane.getStyleClass().add("firer");
     }
 

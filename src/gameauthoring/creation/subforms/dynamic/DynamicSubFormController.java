@@ -112,9 +112,8 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
     
     @Override
     public void populateViewsWithData (T item) {
-        
-        changeCurrentSFCBasedOnData(item);
-        
+        mySubFormControllers.forEach(e->e.initializeFields());
+        changeCurrentSFCBasedOnData(item);        
         if(myCurrentSubFormController != null){
             myCurrentSubFormController.populateViewsWithData(item);
         }
