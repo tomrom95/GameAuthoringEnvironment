@@ -47,5 +47,11 @@ public class CreationControllerAttribute extends CreationController<AttributeDef
         return authorshipData.getMyCreatedAttributes();
 
     }
+    
+    @Override
+    protected void deleteItem () {
+        super.deleteItem();
+        getMyData().removeFromAttributes (getMyLastItem());
+    }
 
 }
