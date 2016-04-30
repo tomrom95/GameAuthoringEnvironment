@@ -4,6 +4,7 @@ import java.util.*;
 import gameauthoring.util.ErrorMessage;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
+import splash.LocaleManager;
 
 
 /**
@@ -21,6 +22,10 @@ public class FormDataManager implements IFormDataManager {
 
     private Map<String, ObservableList<StringProperty>> myStorage =
             new HashMap<String, ObservableList<StringProperty>>();
+    private ResourceBundle myErrors = ResourceBundle
+            .getBundle("defaults/errors",
+                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    private final String myErrorKey = "NoKey";
 
     @Override
     public void add (FormData data) {
@@ -48,7 +53,7 @@ public class FormDataManager implements IFormDataManager {
             return myStorage.get(key);
         }
         catch (NullPointerException e) {
-            ErrorMessage err = new ErrorMessage("Key Does Not Exist");
+            ErrorMessage err = new ErrorMessage(myErrors.getString(myErrorKey));
             err.showError();
             return null;
         }
@@ -61,7 +66,7 @@ public class FormDataManager implements IFormDataManager {
             return myStorage.get(key).get(0);
         }
         catch (NullPointerException e) {
-            ErrorMessage err = new ErrorMessage("Key Does Not Exist");
+            ErrorMessage err = new ErrorMessage(myErrors.getString(myErrorKey));
             err.showError();
             return null;
         }
@@ -73,7 +78,7 @@ public class FormDataManager implements IFormDataManager {
             myStorage.remove(key);
         }
         catch (NullPointerException e) {
-            ErrorMessage err = new ErrorMessage("Key Does Not Exist");
+            ErrorMessage err = new ErrorMessage(myErrors.getString(myErrorKey));
             err.showError();
         }
     }
