@@ -18,8 +18,6 @@ public class FiringSFV extends ClickAndFillView {
     public FiringSFV (List<String> options, String titleKey) {
         super(options, titleKey);
         initView();
-        setDefaultHelpMessage(defaultHelpMessage );
-        showDefaultMessage();
     }
 
     @Override

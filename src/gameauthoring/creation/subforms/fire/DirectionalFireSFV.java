@@ -113,8 +113,6 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         myIsRanged.setSelected(isRanged);
     }
 
-   
-
     @Override
     public double getMyRange () {
         return myRangeValue.getData();

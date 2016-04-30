@@ -2,6 +2,7 @@ package gameauthoring.creation.subforms;
 
 import java.util.ResourceBundle;
 import gameauthoring.util.BasicUIFactory;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -19,7 +20,7 @@ public abstract class SubFormView implements ISubFormView {
     private BasicUIFactory myUIFactory = new BasicUIFactory();
     private String myTitle;
     private String myStyleClass = "SFVclass";
-    
+    private String myLabelStyle = "SFVtitle";
 
     
     private ResourceBundle myLabels =
@@ -40,12 +41,15 @@ public abstract class SubFormView implements ISubFormView {
     }
 
     protected Node getTitleDisplay () {
-        return new Label(getMyTitle());
-        // TODO: fill in default display implementation here
+        Label title = new Label(getMyTitle());
+        getMyUIFactory().addStyling(title, myLabelStyle);
+        return title;
     }
 
     protected VBox defaultDisplayWithNode(Node subview){
-        return new VBox(getTitleDisplay(), subview);
+        VBox box = new VBox(getTitleDisplay(), subview);
+        getMyUIFactory().addStyling(box, getStyleClass());
+        return box;
     }
     protected ResourceBundle getMyLabels(){
         return myLabels;

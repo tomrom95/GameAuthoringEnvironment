@@ -41,7 +41,7 @@ public class TrackingFireSFC extends RemovableFireSFC {
     }
 
     @Override
-    public void initializeFields (SpriteDefinition item) {
+    public void initializeFields () {
         populateViewsWithData(myDefaultWaitTime, myDefaultRange, myDefaultIsRanged);
     }
 
@@ -61,6 +61,7 @@ public class TrackingFireSFC extends RemovableFireSFC {
         myFireDef.setFireRange(myView.getMyRange());
         
         item.addModule(myFireDef);
+        System.out.println(item.getModuleDefinitions());
     }
 
     @Override

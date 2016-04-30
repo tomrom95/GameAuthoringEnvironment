@@ -6,8 +6,10 @@ import gameauthoring.creation.entryviews.CharacterEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 
 public class UserMoverSFV extends SubFormView implements IUserMoverSFV {
@@ -62,12 +64,13 @@ public class UserMoverSFV extends SubFormView implements IUserMoverSFV {
 
     @Override
     public Node draw () {
-        return myPane;
+        HBox box = getMyUIFactory().makeHBox(20, Pos.CENTER, myPane);
+        getMyUIFactory().addStyling(box, "Mover");
+        return box;
     }
 
     @Override
-    protected void initView () {
-        myPane.setGridLinesVisible(true);
+    protected void initView () {        
         myPane.add(mySpeed.draw(), 0, 0);
         myPane.add(myUp.draw(), 0, 1);
         myPane.add(myDown.draw(), 0, 2);

@@ -29,7 +29,7 @@ public class SelectSpriteSFC implements ISubFormControllerGroup{
     }
 
     @Override
-    public void initializeFields (SpriteGroup item) {
+    public void initializeFields () {
         // No initialization needed
     }
 

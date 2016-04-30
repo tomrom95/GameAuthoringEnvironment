@@ -12,8 +12,6 @@ public class EventChoiceSFV extends ClickAndFillView {
     public EventChoiceSFV (List<String> options, String titleKey) {
         super(options, titleKey);
         initView();
-        setDefaultHelpMessage(defaultHelpMessage);
-        showDefaultMessage();
     }
 
     @Override
