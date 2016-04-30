@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import engine.IAttribute;
+import engine.SpriteGroup;
 import engine.definitions.costs.ICost;
 import engine.definitions.costs.NullCost;
 import engine.definitions.moduledef.ModuleDefinition;
@@ -38,6 +39,7 @@ public class SpriteDefinition implements IProfilable {
     private List<AttributeDefinition> myAttributes;
     private IProfile myProfile;
     private ICost myCost;
+    private SpriteGroup mySingleGroup;
 
     public SpriteDefinition () {
         // TODO Set a default from resource file. THis is just for view testing
@@ -118,6 +120,14 @@ public class SpriteDefinition implements IProfilable {
 
     public void setMovementDefinition (MovementDefinition definition) {
         myMovementDefinition = definition;
+    }
+    
+    public void setMySingleGroup (SpriteGroup group) {
+        mySingleGroup = group;
+    }
+    
+    public SpriteGroup getMySingleGroup () {
+        return mySingleGroup;
     }
 
     @Override

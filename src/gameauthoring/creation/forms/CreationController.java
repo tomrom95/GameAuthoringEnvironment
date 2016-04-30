@@ -27,6 +27,7 @@ public abstract class CreationController<T extends IProfilable> {
     private SubFormControllerFactory<T> mySFCFactory;
     private DefinitionCollection<T> myDefinitionCollection;
     private AuthorshipData myData;
+    private T myLastItem;
     private ResourceBundle myResources = ResourceBundle.getBundle("languages/labels",
                                                                   LocaleManager.getInstance()
                                                                           .getCurrentLocaleProperty()
@@ -116,7 +117,8 @@ public abstract class CreationController<T extends IProfilable> {
      *
      * @param item the item to delete
      */
-    private void deleteItem () {
+    protected void deleteItem () {
+        setMyLastItem(getMyCurrentItem());
         getMyItems().remove(getMyCurrentItem());
         if (getMyItems().isEmpty()) {
             getMyCreationView().getFormView().hideForm();
@@ -236,4 +238,11 @@ public abstract class CreationController<T extends IProfilable> {
         return myData;
     }
 
+    private void setMyLastItem (T item) {
+        myLastItem = item;
+    }
+    
+    protected T getMyLastItem () {
+        return myLastItem;
+    }
 }
