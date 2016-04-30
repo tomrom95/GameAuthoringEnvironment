@@ -114,16 +114,16 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
         myPane.add(myDecrease.draw(), 1, 0);
         myPane.add(myFire.draw(), 2, 0);
         myPane.add(myRemove.draw(), 3, 0);
-        
+
         HBox fireParams =
                 getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                          myAngle.draw(), myAngleStep.draw(),
-                                          myWaitTime.draw()
-                                          );
+                                          myAngle.draw(), myAngleStep.draw()
+
+        );
 
         HBox rangeParams =
-                getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myIsRanged.draw(), myRangeValue.draw()
-                                          );
+                getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myIsRanged.draw(),
+                                          myRangeValue.draw(), myWaitTime.draw());
         myPane.add(fireParams, 0, 1, 3, 1);
         myPane.add(rangeParams, 0, 2, 3, 1);
         myPane.getStyleClass().add("firer");
