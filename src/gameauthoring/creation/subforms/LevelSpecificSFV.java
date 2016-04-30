@@ -1,8 +1,12 @@
 package gameauthoring.creation.subforms;
 
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
+import javafx.scene.layout.HBox;
+
 
 /**
  * Implementation of ILevelSpecificSFV using a CheckEntryView
@@ -10,27 +14,37 @@ import javafx.scene.Node;
  * @author Joe Lilien
  *
  */
-public class LevelSpecificSFV extends SubFormView implements ILevelSpecificSFV{
-    
-    private CheckEntryView myChoice;
-    private String myChoiceKey = "Associate Resource With Specific Levels: ";
-    
-    public LevelSpecificSFV(){
-        myChoice = new CheckEntryView(myChoiceKey,AuthoringView.DEFAULT_ENTRYVIEW);        
+public class LevelSpecificSFV extends SubFormView implements ILevelSpecificSFV {
+
+    private CheckEntryView myChoice;   
+    private ResourceBundle myLabel;
+    private String myChoiceKey;
+
+    public LevelSpecificSFV () {
+        myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
+                .getInstance().getCurrentLocaleProperty().get());
+        myChoiceKey = myLabel.getString("AssociateResourceWithLevelChoice");
+        myChoice = new CheckEntryView(myChoiceKey, AuthoringView.DEFAULT_ENTRYVIEW);
+    }
+
+    public void setLevelSpecific (boolean levelSpecific) {
+        myChoice.isCheckedProperty().set(levelSpecific);
     }
 
     @Override
-    public boolean isLevelSpecific(){
+    public boolean isLevelSpecific () {
         return myChoice.isCheckedProperty().get();
     }
-    
+
     @Override
     public Node draw () {
-        return myChoice.draw();
+        HBox box = new HBox(myChoice.draw());
+        getMyUIFactory().addStyling(box, getStyleClass());
+        return box;
     }
 
     @Override
-    protected void initView () { 
+    protected void initView () {
         myChoice.setSelected(false);
     }
 

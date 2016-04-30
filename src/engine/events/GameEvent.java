@@ -13,6 +13,10 @@ public class GameEvent {
     public GameEvent (EventType type) {
         myType = type;
     }
+    
+    public void setEventType(EventType myType) {
+        this.myType = myType;
+    }
 
     public EventType getEventType () {
         return myType;

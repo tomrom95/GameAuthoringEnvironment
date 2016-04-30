@@ -1,8 +1,9 @@
 package gameauthoring.creation.entryviews;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import gameauthoring.util.BasicUIFactory;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 
 
 /**
@@ -22,31 +23,40 @@ import javafx.scene.control.Label;
  */
 public abstract class EntryView implements IEntryView {
 
-    private FormData myFormData;
     private String myLabelCss = "entryViewLabel";
     private Label myLabel;
+    private Pane myContainer;
+    private BasicUIFactory myFactory = new BasicUIFactory();
+    private double containerSpacing = 10;
 
-    public EntryView (String label) {
+    public EntryView (String label, String cssClass) {
         myLabel = new Label(label);
-        myLabel.getStyleClass().add(myLabelCss);
+        myLabel.getStyleClass().add(myLabelCss);        
+        initContainer(cssClass);
     }
-
-    public EntryView (String label, IFormDataManager data) {
-        this(label);
-        myFormData = new FormData(label, new ArrayList<String>(Arrays.asList("")));
-        data.add(myFormData);
+    
+    protected void initContainer (String cssClass) {
+        myContainer = myFactory.makeVBox(containerSpacing, Pos.TOP_LEFT, myLabel);
+        myContainer.getStyleClass().add(cssClass);
     }
 
     @Override
     public Label getLabel () {
         return myLabel;
     }
-
-    @Override
-    public FormData getData () {
-        return myFormData;
+    
+    protected Pane getMyContainer () {
+        return myContainer;
     }
     
-    protected abstract void init(String label, String cssClass);
+    protected void setMyContainer(Pane pane) {
+        myContainer = pane;
+    }
+    
+    protected BasicUIFactory getMyFactory(){
+        return myFactory;
+    }
+
+    protected abstract void init ();
 
 }

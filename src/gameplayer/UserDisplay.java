@@ -12,30 +12,39 @@ import javafx.scene.layout.VBox;
 
 public class UserDisplay {
 
+    private VBox myPane;
     private SpriteDisplay mySpriteDisplay;
     private HeadsUpDisplay myHUD;
     
     public UserDisplay (IGame myGame) {
         mySpriteDisplay = new SpriteDisplay();
         myHUD = new HeadsUpDisplay(myGame);
+        initPane();
 
+    }
+
+    private void initPane () {
+        myPane = new VBox();
+        myPane.getChildren().add(myHUD.draw());
+        myPane.getChildren().add(mySpriteDisplay.draw());     
     }
 
     public Node drawSpriteDisplay () {
         return mySpriteDisplay.draw();
     }
 
-    public SpriteDisplay getSpriteDisplay () {
-        return mySpriteDisplay;
+    public SpriteDisplayController getSpriteDisplay () {
+        return mySpriteDisplay.getController();
     }
 
     public Node draw () {
 
-        VBox vbox = new VBox();
-        vbox.getChildren().add(myHUD.draw());
-        vbox.getChildren().add(mySpriteDisplay.draw());
-        return vbox;
+        return myPane;
 
+    }
+
+    public double getWidth () {
+        return myPane.getWidth();
     }
 
 }

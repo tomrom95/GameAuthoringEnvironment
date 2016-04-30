@@ -2,14 +2,9 @@ package gameauthoring.levels.sprites;
 
 import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
-import engine.rendering.UnscaledFactory;
-import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.levels.SceneController;
 import gameauthoring.util.DraggableCell;
-import gameauthoring.util.UIFactory;
-import gameauthoring.util.BasicUIFactory;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
@@ -65,7 +60,6 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
 
     @Override
     public void setOnDragDropped (DragEvent e) {
-        // if (checkPlaceable(e)) {
         if (checkPlaceableTile(e)) {
             Dragboard db = e.getDragboard();
             if (db.hasString()) {
@@ -79,7 +73,7 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
         myTarget.render();
     }
 
-    private boolean checkPlaceableTile2 (DragEvent e) {
+    private boolean checkPlaceableTile (DragEvent e) {
         double halfHeight = (0.5) * (getProfilable().getProfile().getImageHeight().doubleValue());
         double halfWidth = (0.5) * (getProfilable().getProfile().getImageWidth().doubleValue());
         for (int r = (int) ((e.getY() - halfHeight) / 25); r < (int) ((e.getY() + halfHeight) / 25); r++) {
@@ -88,19 +82,6 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
                     return false;
             }
         }
-        return true;
-    }
-
-    // TODO: TEST THIS
-    public boolean checkPlaceableTile (DragEvent e) {
-//        double halfHeight = (0.5) * (getProfilable().getProfile().getImageHeight().doubleValue());
-//        double halfWidth = (0.5) * (getProfilable().getProfile().getImageWidth().doubleValue());
-//        for (int r = (int) (e.getY() - halfHeight); r < (int) (e.getY() + halfHeight); r++) {
-//            for (int c = (int) (e.getX() - halfWidth); c < (int) (e.getX() + halfWidth); c++) {
-//                if (myController.getLevel().getPlaceableManager().getPlaceableArea().getBitMap()[r][c])
-//                    return false;
-//            }
-//        }
         return true;
     }
 }

@@ -1,10 +1,9 @@
 package splash;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Enumeration;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import facebookutil.JavaSocial;
+import facebookutil.SocialType;
 import gameauthoring.tabs.AuthoringView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,20 +15,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import library.GameLibrary;
+import library.GameLibraryController;
 
 
 /**
- * This is the main user inteface class which contains two buttons "Create game" and
+ * This is the main user interface class which contains two buttons "Create game" and
  * "Load existing game".
  * 
  * @TODO: ResourceBundle for unprotected string
  * @TODO: Load Game method
  * @author Jin An
+ * @author David Maydew
  *
  */
 public class MainUserInterface {
@@ -37,6 +39,7 @@ public class MainUserInterface {
     private static final String SPACING_KEY = "spacing";
     private static final String SPLASHTITLEKEY = "splashtitle";
     private static final String LABELS_PATH = "languages/labels";
+    private static final String CSS_FILE = "defaults/launch.css";
     private final ResourceBundle mySpecs = ResourceBundle.getBundle("defaults/splashscreen");
     private ResourceBundle myLabels;
     private Stage myStage;
@@ -86,6 +89,7 @@ public class MainUserInterface {
     public void init (Stage s) {
         myStage = s;
         Scene scene = new Scene(myLayout, AuthoringView.WIDTH, AuthoringView.HEIGHT);
+        scene.getStylesheets().add(CSS_FILE);
         setTitle();
         s.setScene(scene);
         s.show();
@@ -98,7 +102,7 @@ public class MainUserInterface {
     public Node createCenter () {
         VBox root = new VBox(Integer.parseInt(mySpecs.getString(SPACING_KEY)));
         root.setAlignment(Pos.CENTER);
-        root.getChildren().add(new Label(myLabels.getString(SPLASHTITLEKEY)));
+        root.getChildren().add(new ImageView(new Image(mySpecs.getString("titleimage"))));
         root.getChildren()
                 .add(createButton(myLabels.getString("splashcreategame"), e -> createGame()));
         root.getChildren()
@@ -111,10 +115,10 @@ public class MainUserInterface {
     private Node createLogin () {
         HBox box = new HBox(Integer.parseInt(mySpecs.getString(SPACING_KEY)));
         box.setAlignment(Pos.CENTER);
+        Button fbButton = createButton(myLabels.getString("splashloginfb"), e -> loginWithFacebook());
+        fbButton.setId(mySpecs.getString("fbbutton"));
         box.getChildren()
-                .add(createButton(myLabels.getString("splashloginfb"), e -> loginWithFacebook()));
-        box.getChildren()
-                .add(createButton(myLabels.getString("splashloginlocal"), e -> loginLocally()));
+                .add(fbButton);
         return box;
     }
 
@@ -130,14 +134,11 @@ public class MainUserInterface {
     }
 
     private void launchLibrary () {
-        new GameLibrary().init(myStage);
+        new GameLibraryController().init(myStage);
     }
 
     private void loginWithFacebook () {
-
+        JavaSocial.getInstance().loginUser(SocialType.FACEBOOK);
     }
 
-    private void loginLocally () {
-
-    }
 }

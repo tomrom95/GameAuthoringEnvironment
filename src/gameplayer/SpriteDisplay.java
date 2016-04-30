@@ -1,38 +1,53 @@
 package gameplayer;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.Drawable;
 import engine.IAttribute;
-import engine.events.EventType;
-import engine.events.GameEvent;
 import engine.rendering.GraphicFactory;
 import engine.rendering.ScaleFactory;
+import gameauthoring.util.BasicUIFactory;
+import gameauthoring.util.UIFactory;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
+
 /**
  * Class that displays the selected Sprite on the screen
  * Gives information, such as the Sprite's graphic and attributes.
  * In addition, the upgrade option is given
+ * 
  * @author RyanStPierre
  *
  */
 
-public class SpriteDisplay extends SizeableGlyph {
+public class SpriteDisplay extends SizeableGlyph implements ISpriteDisplay {
 
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private VBox myPane = new VBox();
-    private GraphicFactory myFactory = new ScaleFactory(80, 80);
-    private Drawable mySprite;
+    private GraphicFactory myGraphicFactory;
+    private UIFactory myUIFactory = new BasicUIFactory();
+    private Button myUpgradeButton;
+    private SpriteDisplayController myController;
 
     public SpriteDisplay () {
+        init();
+        myController = new SpriteDisplayController(this);
+    }
+
+    private void init () {
+        myUpgradeButton = myUIFactory.createButton(myLang.getString("Upgrade"));
+        myGraphicFactory = new ScaleFactory(parseString(getString("SpriteImageWidth")),
+                                            parseString(getString("SpriteImageHeight")));
         setSize();
     }
 
     private void setSize () {
         myPane.setPrefWidth(parseString(getString("SpriteDisplayWidth")));
         myPane.setPrefHeight(parseString(getString("SpriteDisplayHeight")));
-
     }
 
     public Node draw () {
@@ -40,51 +55,32 @@ public class SpriteDisplay extends SizeableGlyph {
     }
 
     public void populate (Drawable drawn) {
-        setSprite(drawn);
-        render();
-    }
-
-    private void render () {
         clear();
-        add(mySprite.getDrawer().getVisualRepresentation(myFactory));
-        mySprite.getAttributes().forEach(a -> add(generateLabel(a)));
-        addUpgrade();
+        add(drawn.getDrawer().getVisualRepresentation(myGraphicFactory));
+        drawn.getAttributes().forEach(a -> add(generateLabel(a)));
+        add(myUpgradeButton);
     }
 
-    private void addUpgrade () {
-        Button upgradeButton = new Button("Upgrade");
-        upgradeButton.setDisable(!mySprite.isUgradeable().get());
-        mySprite.isUgradeable().addListener((a,b,newVal) -> upgradeButton.setDisable(!newVal));
-        upgradeButton
-                .setOnMouseClicked(e -> upgrade());
-        add(upgradeButton);
-
-    }
-
-    private void upgrade () {
-        mySprite.registerEvent(new GameEvent(EventType.UPGRADE));
-        clear();
-        
-    }
-
-    private void clear () {
-        myPane.getChildren().clear(); 
+    @Override
+    public void clear () {
+        myPane.getChildren().clear();
     }
 
     private void add (Node node) {
-
         myPane.getChildren().add(node);
-
     }
 
     private Node generateLabel (IAttribute attribute) {
-
-        return new Label(attribute.getType().getType() + " " + attribute.getValueProperty().get());
-
+        return myUIFactory.createLabel(attribute.getType().getType() + " " +
+                                       attribute.getValueProperty().get());
     }
 
-    private void setSprite (Drawable drawable) {
-        mySprite = drawable;
+    public SpriteDisplayController getController () {
+        return myController;
+    }
+
+    public Button getUpgradeButton () {
+        return myUpgradeButton;
     }
 
 }

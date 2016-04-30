@@ -24,17 +24,33 @@ import facebookutil.xstream.UserWriter;
 public class JavaSocial implements IJavaSocial {
     
     public static final String RESOURCE_FOLDER = "voogasalad/facebookutil/";
+    private static final Email GUEST_EMAIL = new Email("guest", "guest.com");
+    
+    private static JavaSocial instance = null;
     
     private List<IUser> myUsers;
     private HighScoreBoard myHighScores;
     private IUser activeUser;
     private AppMap myApps;
     
-    public JavaSocial () {
+    protected JavaSocial () {
         myUsers = loadUsers();
         myHighScores = new HighScoreReader().getBoard();
         myApps = new AppMap();
         myApps.loginApps();
+        loginGuest();
+    }
+    
+    public static JavaSocial getInstance() {
+        if(instance == null) {
+           instance = new JavaSocial();
+        }
+        return instance;
+     }
+
+    private void loginGuest () {
+        IUser guest = createNewUser(GUEST_EMAIL);
+        activeUser = guest;
     }
 
     /**
@@ -76,6 +92,7 @@ public class JavaSocial implements IJavaSocial {
         }
         user.login(type, login);
         activeUser = user;
+        saveState();
     }
     
     @Override

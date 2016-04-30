@@ -1,10 +1,9 @@
 package engine.definitions.upgrades;
-
-import engine.AttributeType;
 import engine.ICheck;
 import engine.IGame;
 import engine.NullFalseCheck;
 import engine.Positionable;
+import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.modules.NullUpgradeModule;
 import engine.modules.UpgradeModule;
@@ -13,14 +12,15 @@ import engine.modules.UpgradeModule;
 public class NullUpgradeDefinition extends UpgradeDefinition {
     
     public NullUpgradeDefinition () {
-        //Do nothing
+        this(null, null, null, 0);
     }
     
     public NullUpgradeDefinition (IGame myGame,
                                   SpriteDefinition nextUpgrade,
-                                  AttributeType type,
+                                  AttributeDefinition definition,
                                   double cost) {
-        super(myGame, nextUpgrade, type, cost);
+        super(myGame, nextUpgrade, definition, cost);
+        setIsUpgradable(false);
       
     }
 

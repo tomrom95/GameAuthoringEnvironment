@@ -139,6 +139,10 @@ public class SpriteDefinition implements IProfilable {
     public void setUpgrade (UpgradeDefinition upgrade) {
         myUpgrade = upgrade;
     }
+    
+    public UpgradeDefinition getUpgrade () {
+        return myUpgrade;
+    }
 
     public List<ModuleDefinition> getModuleDefinitions () {
         return myModuleDefinitions;

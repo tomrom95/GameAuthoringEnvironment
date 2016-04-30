@@ -10,9 +10,10 @@ import facebookutil.user.IUser;
  *
  */
 public class LocalProfile extends UserProfile{
+    private static final String LOCAL_ID = "local";
 
-    public LocalProfile (String userID) {
-        super(userID);
+    public LocalProfile () {
+        super(LOCAL_ID);
     }
 
     @Override
@@ -23,12 +24,6 @@ public class LocalProfile extends UserProfile{
 
     @Override
     public void highScoreBoardPost (HighScoreBoard board, String gameName, ScoreOrder order) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void challenge (IUser source, IUser target, String message) {
         // TODO Auto-generated method stub
         
     }

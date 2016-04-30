@@ -16,8 +16,6 @@ public abstract class UserProfile extends SocialProfile {
         super(userID);
     }
 
-    public abstract void challenge (IUser source, IUser target, String message);
-
     public abstract void customPost (String message);
 
     public abstract void highScorePost (HighScoreBoard board, String gameName, IUser user, ScoreOrder order);

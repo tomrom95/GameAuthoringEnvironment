@@ -40,6 +40,13 @@ import javafx.stage.Stage;
 public class DemoLauncher extends Application {
 
     private IGame myGame;
+    // Health attribute properties
+    private static final double HEALTH_START_VAL = 100d;
+    private static final String HEALTH_IMAGE_URL = "/images/photo.png";
+    private static final String HEALTH_DESCRIPTION = "Health attribute";
+    private static final String HEALTH_ATTY_TYPE = "Health";
+    private static final double SPRITE_HEIGHT = 50;
+    private static final double SPRITE_WIDTH = 50;
 
     @Override
     public void start (Stage primaryStage) throws Exception {
@@ -264,10 +271,16 @@ public class DemoLauncher extends Application {
     }
     */
 
+    private Profile healthAttyProfile () {
+        return new Profile(HEALTH_ATTY_TYPE, HEALTH_DESCRIPTION,
+                           new ImageGraphic(SPRITE_HEIGHT, SPRITE_WIDTH, HEALTH_IMAGE_URL));
+    }
+    
     private SpriteDefinition createBucket () {
         SpriteDefinition sd1 = new SpriteDefinition();
         AttributeDefinition health = new AttributeDefinition();
-        health.setType("Health");
+        health.setProfile(healthAttyProfile());
+        //health.setType("Health");
         health.setStartingValue(10);
         
         sd1.getAttributes().add(health);

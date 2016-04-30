@@ -76,7 +76,7 @@ public class TestPathing extends Application {
     }
 
     private void addConditionsToTest (Game game) {
-        game.getConditionManager().getConditionListProperty().add(createCollisionCondition(game));
+//        game.getConditionManager().getConditionListProperty().add(createCollisionCondition(game));
 //        game.getConditionManager().getConditionListProperty()
 //                .add(createHealthAttributeZeroDeathCondition(game));
     }
@@ -94,18 +94,18 @@ public class TestPathing extends Application {
 
     }
 
-    private OnCollisionCondition createCollisionCondition (Game game) {
-        return new OnCollisionCondition(game, userSpriteGetsHurtPackage(),
-                                        createEnemyEventPackage(), createEmptyEventPackage(),
-                                        createEmptyEventPackage());
-    }
+//    private OnCollisionCondition createCollisionCondition (Game game) {
+//        return new OnCollisionCondition(game, userSpriteGetsHurtPackage(),
+//                                        createEnemyEventPackage(), createEmptyEventPackage(),
+//                                        createEmptyEventPackage());
+//    }
 
-    private List<IEffect> dmgHealth () {
-        List<IEffect> toReturn = new ArrayList<>();
-        toReturn.add(new DecreaseEffect(new AttributeType(HEALTH_ATTY_TYPE),
-                                        new Attribute(15d, new AttributeType("cd")), 50));
-        return toReturn;
-    }
+//    private List<IEffect> dmgHealth () {
+//        List<IEffect> toReturn = new ArrayList<>();
+//        toReturn.add(new DecreaseEffect(new AttributeType(HEALTH_ATTY_TYPE),
+//                                        new Attribute(15d, new AttributeType("cd")), 50));
+//        return toReturn;
+//    }
 
     private List<IEffect> noEffect () {
         return new ArrayList<>();
@@ -132,10 +132,10 @@ public class TestPathing extends Application {
         return new SpriteGroup(new ArrayList<>());
     }
 
-    private EventPackage userSpriteGetsHurtPackage () {
-        return new EventPackage(createSpriteGroupForDefinition(createUserSpriteDefinition(0, 0)),
-                                dmgHealth(), noEvent());
-    }
+//    private EventPackage userSpriteGetsHurtPackage () {
+//        return new EventPackage(createSpriteGroupForDefinition(createUserSpriteDefinition(0, 0)),
+//                                dmgHealth(), noEvent());
+//    }
 
     private EventPackage userSpriteDeathEvent () {
         return new EventPackage(createSpriteGroupForDefinition(createUserSpriteDefinition(0, 0)),
@@ -194,8 +194,8 @@ public class TestPathing extends Application {
         ObservableList<SpriteDefinition> list = FXCollections.observableArrayList();
         list.add(myUser);
         DefinitionCollection<SpriteDefinition> sdef = new DefinitionCollection<>("sdf", list);
-        myGame.getAuthorshipData().addCreatedSprites(sdef);
-        myGame.getAuthorshipData().getMyLevelSelectorSprites().add(sdef);
+//        myGame.getAuthorshipData().addCreatedSprites(sdef);
+//        myGame.getAuthorshipData().getMyLevelSelectorSprites().add(sdef);
         addSpritesToGame(myGame);
         addConditionsToTest(myGame);
         GamePlayer gp = new GamePlayer(myGame);
@@ -243,7 +243,6 @@ public class TestPathing extends Application {
     private AttributeDefinition createHealthAttributeDefinition () {
         AttributeDefinition myDef = new AttributeDefinition();
         myDef.setProfile(healthAttyProfile());
-        myDef.setType(healthAttyProfile().getName().get());
         myDef.setStartingValue(HEALTH_START_VAL);
         return myDef;
     }

@@ -12,8 +12,8 @@ public class OnGlobalView extends OnGameAttributeView {
 
     public OnGlobalView (IGame game) {
         super(game, FXCollections
-                .observableArrayList(game.getAttributeManager().getAttributes().stream()
-                        .map(atty -> atty.getType()).collect(Collectors.toList())));
+                .observableArrayList(game.getAuthorshipData().getMyCreatedGlobals().getItems().stream()
+                        .map(atty -> atty.getAttributeType()).collect(Collectors.toList())));
     }
 
     @Override

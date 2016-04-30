@@ -1,8 +1,12 @@
 package gameauthoring.creation.subforms;
 
-import gameauthoring.creation.entryviews.FormDataManager;
-import gameauthoring.creation.entryviews.IFormDataManager;
+import java.util.ResourceBundle;
 import gameauthoring.util.BasicUIFactory;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 
 
 /**
@@ -13,22 +17,56 @@ import gameauthoring.util.BasicUIFactory;
  */
 public abstract class SubFormView implements ISubFormView {
 
-    private IFormDataManager myData = new FormDataManager();
     private BasicUIFactory myUIFactory = new BasicUIFactory();
+    private String myTitle;
+    private String myStyleClass = "SFVclass";
+    private String myLabelStyle = "SFVtitle";
 
-    /**
-     * Implementation of getData() with Manager, think I like this one better. The same instance of
-     * manager will be passed to all entry views via constructor and getData() method in EntryView
-     * will be implemented to update map with new data upon save
-     * 
-     * @return
-     */
-    @Override
-    public IFormDataManager getData () {
-        return myData;
+    
+    private ResourceBundle myLabels =
+            ResourceBundle
+                    .getBundle("languages/labels",
+                               LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    private ResourceBundle myNumbers = ResourceBundle
+            .getBundle("defaults/numbers",
+                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    
+    private ResourceBundle myErrors = ResourceBundle
+            .getBundle("defaults/errors",
+                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
+
+
+    protected String getMyTitle () {
+        return getMyLabels().getString(myTitle);
+    }
+
+    protected void setMyTitle (String title) {
+        this.myTitle = title;
+    }
+
+    protected Node getTitleDisplay () {
+        Label title = new Label(getMyTitle());
+        getMyUIFactory().addStyling(title, myLabelStyle);
+        return title;
+    }
+
+    protected VBox defaultDisplayWithNode(Node subview){
+        VBox box = new VBox(getTitleDisplay(), subview);
+        getMyUIFactory().addStyling(box, getStyleClass());
+        return box;
+    }
+    protected ResourceBundle getMyLabels(){
+        return myLabels;
     }
     
-    protected BasicUIFactory getMyUIFactory() {
+    public ResourceBundle getMyNumbers(){
+        return myNumbers;
+    }
+    //TODO : get rid of this is unused
+    public ResourceBundle getMyErrors(){
+        return myErrors;
+    }
+    protected BasicUIFactory getMyUIFactory () {
         return myUIFactory;
     }
 
@@ -36,5 +74,9 @@ public abstract class SubFormView implements ISubFormView {
      * Initializes arrangement and actual appearence of SFV
      */
     protected abstract void initView ();
+    
+    protected String getStyleClass() {
+        return myStyleClass;
+    }
 
 }

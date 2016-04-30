@@ -3,6 +3,7 @@ package application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import splash.MainUserInterface;
+import util.StringParser;
 
 
 public class Main extends Application {

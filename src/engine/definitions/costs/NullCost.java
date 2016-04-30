@@ -1,13 +1,14 @@
 package engine.definitions.costs;
 
 import engine.AttributeType;
+import engine.definitions.concrete.AttributeDefinition;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
 public class NullCost implements ICost {
     
     private static final String EMPTY_ATTRIBUTE = "";
-
+    
     @Override
     public double getCostAmount () {
         return 0;
@@ -26,6 +27,17 @@ public class NullCost implements ICost {
     @Override
     public BooleanProperty canPlace () {
         return new SimpleBooleanProperty(true);
+    }
+
+    @Override
+    public AttributeDefinition getAttributeDefinition () {
+        // TODO had to change ICost to store attribute definition for repopulation. not sure where NullCost is used or what to do with it
+        return null;
+    }
+
+    @Override
+    public boolean hasCost () {
+        return false;
     }
 
 }

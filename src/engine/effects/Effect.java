@@ -3,6 +3,7 @@ package engine.effects;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
+import engine.definitions.concrete.AttributeDefinition;
 import util.TimeDuration;
 
 
@@ -18,6 +19,7 @@ public abstract class Effect implements IEffect {
     private AttributeType myAttributeType;
     private IAttribute myEffectLengthAttribute;
     private IAttribute myAlteringAttribute;
+    private AttributeDefinition myAlteringAttributeDefinition;
 
     /**
      * Constructor for an incoming constant.
@@ -25,8 +27,11 @@ public abstract class Effect implements IEffect {
      * @param type AttributeType to which the Effect applied
      * @param alteringValue the amount of the decrement
      */
-    public Effect (AttributeType type, IAttribute effectLength, double alteringValue) {
-        myAttributeType = type;
+    public Effect (AttributeDefinition def, IAttribute effectLength, double alteringValue) {
+        myAlteringAttributeDefinition = def;
+        if(def!=null){
+            myAttributeType = def.getAttributeType();
+        }
         myEffectLengthAttribute = effectLength;
         myAlteringAttribute = new Attribute(alteringValue, AttributeType.CONSTANT);
     }
@@ -67,6 +72,10 @@ public abstract class Effect implements IEffect {
     @Override
     public AttributeType getAttributeType () {
         return myAttributeType;
+    }
+    
+    public AttributeDefinition getAttributeDefinition () {
+        return myAlteringAttributeDefinition;
     }
 
     @Override

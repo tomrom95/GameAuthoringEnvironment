@@ -7,15 +7,14 @@ import gameauthoring.creation.subforms.ISubFormView;
 /**
  * Allows users to define properties of a given TrackingFirer ModuleDefinition for a sprite
  * 
- * @author Joe Lilien
+ * @author Joe Lilien Timko
  *
  */
-public interface ITrackingFireSFV  extends ISubFormView{
+public interface ITrackingFireSFV  extends IFiringSFV{
 
-    String getWaitTimeKey ();
-
-    SpriteDefinition getSelectedMissile ();
 
     SpriteGroup getTargetsCoice ();
+
+    void populateWithData (SpriteDefinition missile, SpriteGroup target, double waitTime, double range, boolean isRanged);
 
 }

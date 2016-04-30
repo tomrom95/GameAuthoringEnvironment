@@ -13,11 +13,11 @@ import util.Key;
  */
 
 public class ScreenEventFactory implements IScreenEventFactory {
-
+    
     @Override
-    public MouseIOEvent interpretEvent (MouseEvent event) {
+    public MouseIOEvent interpretEvent (MouseEvent event, double xscale, double yscale) {
         InputType type = convertType(event.getEventType().toString());
-        MouseIOEvent mouse = new MouseIOEvent(type, event.getX(), event.getY());
+        MouseIOEvent mouse = new MouseIOEvent(type, event.getX()/xscale, event.getY()/yscale);
         return mouse;
     }
 

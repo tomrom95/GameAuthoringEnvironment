@@ -105,7 +105,7 @@ public class HighScoreBoard {
     public List<Score> getScoreBoardSorted (String gameName, ScoreOrder order) {
         List<Score> game = getScoreBoard(gameName);
         if (game == null){
-            return null;
+            return new ArrayList<Score>();
         }
         game.sort(order.getComparator());
         return game;

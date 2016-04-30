@@ -10,6 +10,7 @@ import engine.rendering.GameGridConfigNonScaling;
 import engine.rendering.IGameGridConfig;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
+import util.Bounds;
 import util.Coordinate;
 import util.TimeDuration;
 
@@ -67,6 +68,7 @@ public class Game implements IGame {
         myConditionManager.update(duration);
         myAttributeManager.update(duration);
         myObstructionManager.update(duration);
+
     }
 
     @Override
@@ -129,7 +131,7 @@ public class Game implements IGame {
     public List<IAttribute> getGlobalAttributes () {
         return getAttributeManager().getAttributes();
     }
-    
+
     @Override
     public void add (ISprite sprite, Coordinate coordinate) {
         myLevelManager.add(sprite, coordinate);
@@ -154,7 +156,7 @@ public class Game implements IGame {
     public IObstructionManager getObstructionManager () {
         return myObstructionManager;
     }
-    
+
     @Override
     public IGameGridConfig getGameGridConfig () {
         return myGameGridConfig;
@@ -162,13 +164,21 @@ public class Game implements IGame {
 
     @Override
     public void createAndSortGlobals () {
-        for(AttributeDefinition a: myAuthorshipData.getMyCreatedGlobals().getItems()){
-            if(a.isLevelSpecific()){
-                myLevelManager.getLevels().forEach(c->getAttributeManager().getAttributes().add(a.create()));
+        getAttributeManager().getAttributes().clear();
+        myLevelManager.getLevels().forEach(c -> getAttributeManager().getAttributes().clear());
+        for (AttributeDefinition a : myAuthorshipData.getMyCreatedGlobals().getItems()) {
+            if (a.isLevelSpecific()) {
+                myLevelManager.getLevels()
+                        .forEach(c -> getAttributeManager().getAttributes().add(a.create()));
             }
-            else{
+            else {
                 getAttributeManager().getAttributes().add(a.create());
             }
         }
+    }
+
+    @Override
+    public Bounds getLevelBounds () {
+        return getLevelManager().getCurrentLevel().getBounds();
     }
 }

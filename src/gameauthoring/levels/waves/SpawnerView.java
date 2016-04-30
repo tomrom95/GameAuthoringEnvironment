@@ -1,7 +1,7 @@
 package gameauthoring.levels.waves;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
+import engine.IAdder;
 import engine.IGame;
 import engine.ILevel;
 import engine.definitions.spawnerdef.SpawnerDefinition;
@@ -9,6 +9,7 @@ import engine.definitions.spawnerdef.SpawnerModuleDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
 import engine.profile.Profile;
 import engine.rendering.AuthoringRenderer;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -25,12 +26,14 @@ import gameauthoring.util.Glyph;
 import gameauthoring.util.UIFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 import util.Coordinate;
+import util.ScaleRatio;
 import util.StringParser;
 
 
@@ -45,8 +48,10 @@ public class SpawnerView implements Glyph, Draggable {
 
     private static final String DRAG_STRING = "Spawner";
     private static final String EMPTY = "";
+    private static final double SIZE = 80;
 
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager
+            .getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/spawner_view");
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
 
@@ -58,19 +63,21 @@ public class SpawnerView implements Glyph, Draggable {
     private ILevel myLevel;
     private IGame myGame;
     private TextField myDelay;
+    private Button mySetButton;
     private AuthoringRenderer myRenderer;
+    private ScaleRatio myScale;
 
-    public SpawnerView (IGame game, ILevel level, AuthoringRenderer renderer) {
+    public SpawnerView (IGame game, ILevel level, AuthoringRenderer renderer, ScaleRatio scale) {
         init();
+        myScale = scale;
         myLevel = level;
         myGame = game;
         myRenderer = renderer;
+        new SpawnerViewController(this, level);
     }
 
     private void init () {
         initWaves();
-        myDelay = myFactory.createTextField(myLang.getString("GapPrompt"),
-                                            Double.parseDouble(myBundle.getString("TextWidth")));
         myPane.getChildren().add(getLeft());
         myPane.getChildren().add(myWaves);
         myPane.getStyleClass().add(myStyle.getString("Bordered"));
@@ -88,15 +95,24 @@ public class SpawnerView implements Glyph, Draggable {
     private void setSize () {
         double width = Double.parseDouble(myBundle.getString("ListWidth"));
         myWaves.setMinWidth(width);
-        myWaves.setMaxWidth(width);   
+        myWaves.setMaxWidth(width);
     }
 
     private Node getLeft () {
         VBox vbox = new VBox(Double.parseDouble(myBundle.getString("VSpacing")));
         vbox.setAlignment(Pos.TOP_CENTER);
         vbox.getChildren().add(getView());
-        vbox.getChildren().add(myDelay);
+        vbox.getChildren().add(getGap());
         vbox.getChildren().add(myFactory.createButton(myLang.getString("Clear"), e -> reset()));
+        return vbox;
+    }
+
+    private Node getGap () {
+        VBox vbox = new VBox();
+        myDelay = myFactory.createTextField(myLang.getString("GapPrompt"),
+                                            Double.parseDouble(myBundle.getString("TextWidth")));
+        mySetButton = myFactory.createButton(myLang.getString("Set"));
+        vbox.getChildren().addAll(myDelay, mySetButton);
         return vbox;
     }
 
@@ -150,14 +166,19 @@ public class SpawnerView implements Glyph, Draggable {
     private void createSpawner () {
         try {
             SpawnerModuleDefinition spawnerDef =
-                    new SpawnerModuleDefinition(myLevel, myGame, getDelay(), myWaves.getItems());
+                    new SpawnerModuleDefinition(getAdder(), myLevel, myWaves.getItems());
             mySpawner = new SpawnerDefinition(myGame);
-            mySpawner.setProfile(new Profile(DRAG_STRING, EMPTY, getImageURL()));
+            mySpawner.setProfile(new Profile(DRAG_STRING, EMPTY, getImageURL(), SIZE, SIZE));
             mySpawner.setMySpawningModule(spawnerDef);
+            myLevel.getAddableSprites().add(mySpawner);
         }
         catch (NumberFormatException e) {
             return;
         }
+    }
+
+    private IAdder getAdder () {
+        return myLevel;
     }
 
     @Override
@@ -167,9 +188,18 @@ public class SpawnerView implements Glyph, Draggable {
 
     @Override
     public void setOnDragDropped (DragEvent e) {
-        myLevel.add(mySpawner.create(), new Coordinate(e.getX(), e.getY()));
+        myLevel.add(mySpawner.create(), getCoordinate(e.getX(), e.getY()));
         myRenderer.render();
         reset();
+    }
+
+    private Coordinate getCoordinate (double x, double y) {
+        Coordinate c = new Coordinate(myScale.invert(x), myScale.invert(y));
+        return c;
+    }
+
+    public void setButtonAction (EventHandler<MouseEvent> event) {
+        mySetButton.setOnMouseClicked(event);
     }
 
 }

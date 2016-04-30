@@ -4,7 +4,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
+import facebookutil.JavaSocial;
+import facebookutil.SocialType;
 import gameauthoring.tabs.AuthoringView;
+import gameplayer.facebook.FacebookMenu;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
@@ -12,8 +15,10 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import util.StringParser;
 
+
 /**
  * Displays the tools for the user during game play
+ * 
  * @author RyanStPierre
  *
  */
@@ -31,12 +36,12 @@ public class GamePlayerTools {
         myEngine = engine;
         init();
     }
-    
+
     /**
-     * Reflectively generates the tool bar given information in the resource bundle that 
+     * Reflectively generates the tool bar given information in the resource bundle that
      * map method call names to image URL's
      */
-    
+
     private void init () {
         Enumeration<String> keys = myToolButtons.getKeys();
         while (keys.hasMoreElements()) {
@@ -48,7 +53,7 @@ public class GamePlayerTools {
     }
 
     private Node createButton (String key, String url) {
-        
+
         Button button = new Button();
         Method method;
         try {
@@ -59,19 +64,19 @@ public class GamePlayerTools {
         catch (NoSuchMethodException | SecurityException e) {
             e.printStackTrace();
         }
-        button.setGraphic(getImage(url));      
+        button.setGraphic(getImage(url));
         return button;
-       
-    } 
+
+    }
 
     private void callMethod (Method method) {
         try {
             method.invoke(this);
         }
 
-        catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException  e) {
-           e.printStackTrace();
-           
+        catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+            e.printStackTrace();
+
         }
 
     }
@@ -81,7 +86,7 @@ public class GamePlayerTools {
         ImageView image = new ImageView(url);
         image.setFitWidth(parser.parseDouble(mySizes.getString("Width")));
         image.setFitHeight(parser.parseDouble(mySizes.getString("Height")));
-       
+
         return image;
     }
 
@@ -95,7 +100,18 @@ public class GamePlayerTools {
     public void pause () {
         myEngine.pause();
     }
-    
+
+    public void postToFacebook () {
+        if (JavaSocial.getInstance().getActiveUser().getProfiles()
+                .getProfileByType(SocialType.FACEBOOK) == null) {
+            JavaSocial.getInstance().loginUser(SocialType.FACEBOOK);
+        }
+        else {
+            FacebookMenu menu = new FacebookMenu(myEngine.getGame());
+            menu.popUp();
+        }
+    }
+
     public void launchAuthoring () {
         pause();
         AuthoringView aView = new AuthoringView(myEngine.getGame());
@@ -106,6 +122,10 @@ public class GamePlayerTools {
 
     public Node draw () {
         return myTools;
+    }
+
+    public double getHeight () {
+        return myTools.getHeight();
     }
 
 }

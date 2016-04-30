@@ -18,6 +18,10 @@ public abstract class FirerDefinition extends ModuleDefinition {
     private IGame myGame;
     private double myRange;
     private boolean ranged;
+    
+    public FirerDefinition (IGame game) {
+        setGame(game);
+    }
 
     @Override
     public abstract IModule create (Positionable parent);

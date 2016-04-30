@@ -1,27 +1,34 @@
 package gameauthoring.creation.entryviews;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 
+/**
+ * Entry box that presents a boolean true or false check box to the user
+ * 
+ * @author Joe Lilien
+ *
+ */
 public class CheckEntryView extends EntryView{
-    private GridPane myContainer;
     private CheckBox myCheckBox;
 
     public CheckEntryView (String label, String cssClass) {
-        super(label);
+        super(label,cssClass);
         myCheckBox = new CheckBox();        
-        myContainer = new GridPane();        
-        init(label,cssClass);
+        init();
     }
     
     @Override
-    protected void init(String label, String cssClass){
-        myContainer.getStyleClass().add(cssClass);
-        myContainer.add(new Label(label), 0, 0);
-        myContainer.add(myCheckBox, 1, 0);
+    protected void initContainer(String cssClass) {
+        setMyContainer(getMyFactory().makeHBox(20, Pos.CENTER, getLabel()));
+        getMyContainer().getStyleClass().add(cssClass);
+    }
+    
+    @Override
+    protected void init(){
+        getMyContainer().getChildren().add(myCheckBox);
         myCheckBox.setSelected(false);
     }
     
@@ -35,7 +42,7 @@ public class CheckEntryView extends EntryView{
 
     @Override
     public Node draw () {
-        return myContainer;
+        return getMyContainer();
     }   
 
 }

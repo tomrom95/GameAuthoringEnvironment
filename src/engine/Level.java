@@ -16,6 +16,7 @@ import graphics.ImageGraphic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.BackgroundImage;
+import util.Bounds;
 import util.Coordinate;
 import util.Tile;
 import util.TimeDuration;
@@ -41,6 +42,7 @@ public class Level implements ILevel {
     private IWaveSetManager myWaveSetManager;
     private IProfile myProfile;
     private ObservableList<SpriteDefinition> myAddableSprites;
+    private Bounds myBounds;
 
     public Level () {
         // TODO need to actually instantiate internal manager objects
@@ -53,8 +55,9 @@ public class Level implements ILevel {
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
         myWaveSetManager = new WaveSetManager();
-        myPlaceableTileManager = new PlaceableTileManager(this);
+        myPlaceableTileManager = new PlaceableTileManager(this,0,0);
         myAddableSprites = FXCollections.observableArrayList();
+        myBounds = new Bounds(myBackgroundImageWidth, myBackgroundImageHeight);
     }
 
     @Override
@@ -210,6 +213,16 @@ public class Level implements ILevel {
 
     @Override
     public void initializePlaceableTiles (int row, int column) {
-        myPlaceableTileManager.set(row, column);
+        myPlaceableTileManager.initialize(row, column);
+    }
+
+    @Override
+    public Bounds getBounds () {
+        return myBounds;
+    }
+    
+    @Override
+    public void setBounds (Bounds bound) {
+        myBounds = bound;
     }
 }

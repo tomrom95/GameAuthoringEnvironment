@@ -10,6 +10,7 @@ import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,7 +30,7 @@ public class TestFacebook extends Application{
 
     @Override
     public void start (Stage stage) {
-        mySocial = new JavaSocial();
+        mySocial = JavaSocial.getInstance();
         mySocial.loginUser(SocialType.FACEBOOK);
         addScores(mySocial);
         stage.setScene(testLogin());
@@ -54,7 +55,77 @@ public class TestFacebook extends Application{
     private void createFields (VBox box) {
         box.getChildren().add(makePost());
         box.getChildren().add(makeNotify());
+        box.getChildren().add(makeAddHighScore());
+        box.getChildren().add(makePostHighScoreBoard());
+        box.getChildren().add(makeMyHighScorePost());
+        box.getChildren().add(makeChallenge());
         box.getChildren().add(makeLogout());
+    }
+
+    private Node makeAddHighScore () {
+        HBox box = new HBox(5);
+        TextField field = new TextField("Score");
+        TextField gameName = new TextField("game name");
+        box.getChildren().addAll(gameName, field);
+        Button button = new Button("Add high score");
+        button.setOnMouseClicked(e -> {
+            int score = Integer.valueOf(field.getText());
+            mySocial.getHighScoreBoard().addNewScore(gameName.getText(), mySocial.getActiveUser(), score);
+        });
+        box.getChildren().add(button);
+        return box;
+    }
+
+    private Node makeChallenge () {
+        HBox box = new HBox(5);
+        TextField field = new TextField("Challenge text");
+        box.getChildren().add(field);
+        Button button = new Button("Challenge");
+        button.setOnMouseClicked(e -> {
+            myUser = mySocial.getActiveUser();
+            //myUser.getProfiles().getActiveProfile().challenge(myUser, myUser, field.getText());
+        });
+        box.getChildren().add(button);
+        return box;
+    }
+
+    private Node makePostHighScoreBoard () {
+        HBox box = new HBox(5);
+        TextField field = new TextField("Game name");
+        ComboBox<ScoreOrder> combo = new ComboBox<>();
+        for (ScoreOrder s: ScoreOrder.values()) {
+            combo.getItems().add(s);
+        }
+        box.getChildren().addAll(field, combo);
+        Button button = new Button("Post global score board");
+        button.setOnMouseClicked(e -> {
+            myUser = mySocial.getActiveUser();
+            myUser.getProfiles().getActiveProfile().highScoreBoardPost(mySocial.getHighScoreBoard(),
+                                                                       field.getText(),
+                                                                       combo.getValue());
+        });
+        box.getChildren().add(button);
+        return box;
+    }
+    
+    private Node makeMyHighScorePost () {
+        HBox box = new HBox(5);
+        TextField field = new TextField("Game name");
+        ComboBox<ScoreOrder> combo = new ComboBox<>();
+        for (ScoreOrder s: ScoreOrder.values()) {
+            combo.getItems().add(s);
+        }
+        box.getChildren().addAll(field, combo);
+        Button button = new Button("Post about my scores");
+        button.setOnMouseClicked(e -> {
+            myUser = mySocial.getActiveUser();
+            myUser.getProfiles().getActiveProfile().highScorePost(mySocial.getHighScoreBoard(),
+                                                                  field.getText(),
+                                                                  myUser,
+                                                                  combo.getValue());
+        });
+        box.getChildren().add(button);
+        return box;
     }
 
     private Node makeLogout () {
@@ -67,7 +138,7 @@ public class TestFacebook extends Application{
         HBox box = new HBox(5);
         TextField field = new TextField();
         box.getChildren().add(field);
-        Button button = new Button("Post");
+        Button button = new Button("Custom Post");
         button.setOnMouseClicked(e -> post(field));
         box.getChildren().add(button);
         return box;
@@ -77,7 +148,7 @@ public class TestFacebook extends Application{
         HBox box = new HBox(5);
         TextField field = new TextField();
         box.getChildren().add(field);
-        Button button = new Button("Notify");
+        Button button = new Button("Notify all users");
         button.setOnMouseClicked(e -> notify(field));
         box.getChildren().add(button);
         return box;
@@ -94,17 +165,11 @@ public class TestFacebook extends Application{
 
     private void post (TextField field) {
         myUser = mySocial.getActiveUser();
-        mySocial.getHighScoreBoard().addNewScore("game1", myUser, 299);
         if (myUser == null) {
             System.out.println("Login first");
             return;
         }
         myUser.getProfiles().getActiveProfile().customPost(field.getText());
-        myUser.getProfiles().getActiveProfile().highScoreBoardPost(mySocial.getHighScoreBoard(),
-                                                                   "game1", ScoreOrder.HIGHEST);
-        myUser.getProfiles().getActiveProfile().highScorePost(mySocial.getHighScoreBoard(), "game1",
-                                                              myUser, ScoreOrder.HIGHEST);
-        myUser.getProfiles().getActiveProfile().challenge(myUser, myUser, "Hey come play tower defense");
     }
 
     public static void main (String[] args) {

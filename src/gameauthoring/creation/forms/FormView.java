@@ -1,41 +1,64 @@
 package gameauthoring.creation.forms;
 
 import java.util.*;
-import java.util.function.Consumer;
 import gameauthoring.creation.subforms.ISubFormView;
-import javafx.geometry.Pos;
+import gameauthoring.util.BasicUIFactory;
+import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 
 /**
  * 
- * @author Joe Lilien
+ * @author Joe Lilien, Jeremy Schreck
  *
  */
 public class FormView implements IFormView {
 
-    private VBox mySubFormContainer = new VBox();
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager
+                                                             .getInstance().getCurrentLocaleProperty().get());
+    private String buttonClass = "CreationButton";
+    private FlowPane mySubFormContainer = new FlowPane(Orientation.VERTICAL);
+    private BasicUIFactory myFactory = new BasicUIFactory();
     private ScrollPane mySubFormViewer = new ScrollPane(mySubFormContainer);
     private GridPane myFormView = new GridPane();
-    private Button mySaveButton = new Button("Save");
-    private Button myDeleteButton = new Button("Delete");
-    private Button myNewButton = new Button("New");
+    //TODO: add buttons to languages    
+    private Button mySaveButton = myFactory.createStyledButton("Save", buttonClass);
+    private Button myDeleteButton = myFactory.createStyledButton("Delete", buttonClass);
+    private Button myNewButton = myFactory.createStyledButton("New", buttonClass);
     private List<Node> myButtons = new ArrayList<Node>(Arrays.asList(mySaveButton,myDeleteButton, myNewButton));
     private List<ISubFormView> mySubFormViews;
-    private static final double HEIGHT = 500; //TODO: move to common resource file    
-    
-
-    public FormView(List<ISubFormView> subFormViews){        
+    private static final double HEIGHT = 525; //TODO: move to common resource file    
+    private static final double WRAP_LENGTH = HEIGHT - 20;
+    public FormView(List<ISubFormView> subFormViews){   
+        mySubFormContainer.setPrefWrapLength(WRAP_LENGTH);
         mySubFormViews = subFormViews;
-        mySubFormViewer.getStyleClass().add("myFormView");
+        myFactory.addStyling(mySubFormViewer, "FormView");
         mySubFormViewer.setMaxHeight(HEIGHT);
         myFormView.add(mySubFormViewer, 0, 1); 
+        hideForm();
         myFormView.add(createButtonHolder(), 0 , 0);
         setViews(mySubFormViews);            
+    }
+    
+    public void showForm(){
+        //myFormView.add(mySubFormViewer,  0,  1);
+        mySubFormViewer.setVisible(true);
+        mySaveButton.setDisable(false);
+        myDeleteButton.setDisable(false);
+
+    }
+    @Override
+    public void hideForm () {
+        //myFormView.getChildren().remove(mySubFormViewer);
+        mySubFormViewer.setVisible(false);
+        mySaveButton.setDisable(true);
+        myDeleteButton.setDisable(true);
     }
     
     private Node createButtonHolder () {
@@ -53,7 +76,7 @@ public class FormView implements IFormView {
     
     private List<Node> getSFVNodes(List<ISubFormView> subFormViews){
         List<Node> nodes = new ArrayList<>();
-        subFormViews.forEach(e->nodes.add(e.draw()));       
+        subFormViews.forEach(e-> nodes.add(e.draw()));       
         return nodes;
     }
     
@@ -61,24 +84,24 @@ public class FormView implements IFormView {
      * Define save action for button
      */
     @Override
-    public void setSaveAction (Consumer<?> action) {
-        mySaveButton.setOnAction(e->action.accept(null)); //Not sure what the input should be here
+    public void setSaveAction (Runnable action) {
+        mySaveButton.setOnAction(e->action.run()); 
     }
 
     /**
      * Define delete action for button
      */
     @Override
-    public void setDeleteAction (Consumer<?> action) {
-        myDeleteButton.setOnAction(e->action.accept(null)); //Not sure what the input should be here
+    public void setDeleteAction (Runnable action) {
+        myDeleteButton.setOnAction(e->action.run());
     }
 
     /**
      * Define new action for button
      */
     @Override
-    public void setNewAction(Consumer<?> action){
-        myNewButton.setOnAction(e->action.accept(null));
+    public void setNewAction(Runnable action){
+        myNewButton.setOnAction(e->action.run());
     }
     
     @Override
@@ -90,4 +113,6 @@ public class FormView implements IFormView {
     public Node draw () {
         return myFormView;
     }
+
+   
 }

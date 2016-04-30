@@ -3,6 +3,7 @@ package engine;
 import java.util.List;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
+import util.Bounds;
 import util.Coordinate;
 
 
@@ -42,5 +43,10 @@ public interface IGamePlayable extends Updateable, IAdder, IEventInternalizer {
     void add (ISprite sprite, Coordinate coordinate);
 
     void add (ISprite sprite);
+    
+    /**
+     * @return the virtual pixel bound of the level
+     */
+    Bounds getLevelBounds ();
 
 }

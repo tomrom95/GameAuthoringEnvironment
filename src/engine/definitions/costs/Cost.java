@@ -3,20 +3,21 @@ package engine.definitions.costs;
 import engine.AttributeType;
 import engine.Check;
 import engine.IGame;
+import engine.definitions.concrete.AttributeDefinition;
 import javafx.beans.property.BooleanProperty;
 
 public class Cost implements ICost {
     
-    private AttributeType myType;
+    private AttributeDefinition myAttributeDefinition;
     private double myAmount;
     private Check myCheck;
     
     public Cost (IGame myGame,
-                 AttributeType type,
+                 AttributeDefinition attribute,
                  double cost) {
-        myType = type;
+        myAttributeDefinition = attribute;
         myAmount = cost;
-        myCheck = new Check(myGame.getAttributeManager(), type, cost);
+        myCheck = new Check(myGame.getAttributeManager(), attribute.getAttributeType(), cost);
     }
 
     @Override
@@ -26,7 +27,12 @@ public class Cost implements ICost {
 
     @Override
     public AttributeType getAttributeType () {
-        return myType;
+        return myAttributeDefinition.getAttributeType();
+    }
+
+    @Override
+    public AttributeDefinition getAttributeDefinition () {
+        return myAttributeDefinition;
     }
 
     @Override
@@ -38,5 +44,11 @@ public class Cost implements ICost {
     public BooleanProperty canPlace () {
         return myCheck.getStatus();
     }
+
+    @Override
+    public boolean hasCost () {
+        return true;
+    }
+
 
 }

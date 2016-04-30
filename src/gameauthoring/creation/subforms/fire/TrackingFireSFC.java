@@ -4,7 +4,6 @@ import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.FirerDefinition;
 import engine.definitions.moduledef.TrackingFirerDefinition;
-import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.subforms.ISubFormView;
 
 
@@ -16,52 +15,70 @@ import gameauthoring.creation.subforms.ISubFormView;
  *
  */
 
-public class TrackingFireSFC extends RemovableSpriteSFC {
+public class TrackingFireSFC extends RemovableFireSFC {
 
     private ITrackingFireSFV myView;
-    private IFormDataManager myFormData;
     private IGame myGame;
     private double myDefaultWaitTime = 0;
-    private TrackingFirerDefinition myFireDef = new TrackingFirerDefinition();
+    private double myDefaultRange = 0;
+    private boolean myDefaultIsRanged = false;
+    private TrackingFirerDefinition myFireDef;
 
-    public TrackingFireSFC (IGame game, FiringSFCmult sfc) {
+    public TrackingFireSFC (IGame game, FiringSFC sfc) {
         super(sfc);
+        init(game, new TrackingFirerDefinition(game));
+        initializeFields();
+    }
+
+    public TrackingFireSFC (IGame game, FiringSFC sfc, TrackingFirerDefinition firingDef) {
+        super(sfc);
+        init(game, firingDef);
+        populateViewsWithData(null);
+        
+    }
+
+    private void init (IGame game, TrackingFirerDefinition fireDef) {
+        myFireDef = fireDef;
         myView = new TrackingFireSFV(game.getAuthorshipData(), getRemoveMenu());
-        myFormData = myView.getData();
         myGame = game;
     }
 
     @Override
     public void initializeFields () {
-        populateViewsWithData(myDefaultWaitTime);
+        populateViewsWithData(myDefaultWaitTime, myDefaultRange, myDefaultIsRanged);
     }
 
-    private void populateViewsWithData (double wait) {
-        myFormData.set(myView.getWaitTimeKey(), Double.toString(wait));
+    private void populateViewsWithData (double wait, double range, boolean isRanged) {
+        myView.populateWithData(null, null, myDefaultWaitTime, myDefaultRange, myDefaultIsRanged);
+
     }
 
     @Override
     public void updateItem (SpriteDefinition item) {
         setMySpriteDefinition(item);
         myFireDef.setGame(myGame);
-        Double waitTime =
-                Double.valueOf(myFormData.getValueProperty(myView.getWaitTimeKey()).get());
-        myFireDef.setWaitTime(waitTime);
+        myFireDef.setWaitTime(myView.getMyWaitTime());
         myFireDef.setTargets(myView.getTargetsCoice());
-        myFireDef.setProjectileDefinition(myView.getSelectedMissile());
-        if (!item.getModuleDefinitions().contains(myFireDef)) {
-            item.addModule(myFireDef);
-        }
+        myFireDef.setProjectileDefinition(myView.getMissileSelection());
+        myFireDef.setRanged(myView.getMyIsRanged());
+        myFireDef.setFireRange(myView.getMyRange());        
+        item.addModule(myFireDef);
     }
 
     @Override
     public ISubFormView getSubFormView () {
         return myView;
     }
-    
+
     @Override
-    public FirerDefinition getFirerDefinition(){
+    public FirerDefinition getModuleDefinition () {
         return myFireDef;
+    }
+
+    @Override
+    public void populateViewsWithData (SpriteDefinition item) {
+        myView.populateWithData(myFireDef.getProjectileDefinition(), myFireDef.getTargets(),
+                                myFireDef.getWaitTime(), myFireDef.getFireRange(), myFireDef.getRanged());
     }
 
 }

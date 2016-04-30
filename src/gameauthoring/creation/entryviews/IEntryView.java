@@ -13,8 +13,6 @@ import javafx.scene.control.Label;
  */
 public interface IEntryView extends Glyph {
 
-    FormData getData ();
-
     Label getLabel ();
 
 }

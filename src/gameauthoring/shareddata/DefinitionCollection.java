@@ -14,21 +14,21 @@ import javafx.collections.ObservableList;
 
 public class DefinitionCollection<E> implements IDefinitionCollection<E> {
 
-    private String myTitle;
+    private String myTitleKey;
     private ObservableList<E> myItems;
 
-    public DefinitionCollection (String title) {
-        this(title, FXCollections.observableArrayList());
+    public DefinitionCollection (String titleKey) {
+        this(titleKey, FXCollections.observableArrayList());
     }
     
-    public DefinitionCollection (String title, ObservableList<E> items) {
-        myTitle = title;
+    public DefinitionCollection (String titleKey, ObservableList<E> items) {
+        myTitleKey = titleKey;
         myItems = items;
     }
 
     @Override
-    public String getTitle () {
-        return myTitle;
+    public String getTitleKey () {
+        return myTitleKey;
     }
 
     @Override

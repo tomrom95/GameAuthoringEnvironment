@@ -1,54 +1,41 @@
 package gameauthoring.levels;
 
 import engine.IGame;
+import engine.ILevel;
 import engine.definitions.concrete.SpriteDefinition;
-import engine.definitions.spawnerdef.SpawnerDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.levels.sprites.DragCheckSpriteCell;
-import gameauthoring.shareddata.DefinitionCollection;
 import gameplayer.SideBarDisplay;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
+import util.ScaleRatio;
 
 public class AuthoringSideBar extends SideBarDisplay {
+    
+    private IGame myGame;
 
-    public AuthoringSideBar (IGame game, LevelRenderer renderer) {
-        super(game, renderer);
+    public AuthoringSideBar (IGame game, ILevel level, LevelRenderer renderer, ScaleRatio scale) {
+        super(level, renderer, scale);
+        myGame = game;
     }
 
     protected void fillAccordion (Accordion accordion) {
-        // TODO change to getMyLevelSelectorSprites() if we choose to have separate lists for level selector, created sprites, and group sprites
-        getGame().getAuthorshipData().getMyCreatedSprites().stream().forEach(c -> {
+        myGame.getAuthorshipData().getMyCreatedSpritesMap().values().stream().forEach(c -> {
             TitledPane toAdd = createAccordionPane(c);
             accordion.getPanes().add(toAdd);
             accordion.expandedPaneProperty().set(toAdd);
         });
-        accordion.getPanes().add(createSpawnerPane());
-    }
-
-    protected TitledPane createAccordionPane (DefinitionCollection<SpriteDefinition> collection) {
-        ListView<SpriteDefinition> spriteList = createSpriteList(collection.getItems());
-        TitledPane pane = new TitledPane(collection.getTitle(), spriteList);
-        return pane;
     }
 
     protected ProfileCellView<SpriteDefinition> getSpriteCellView () {
         return new DragCheckSpriteCell(getLevelView(), getController());
     }
 
-    private TitledPane createSpawnerPane () {
-        return new TitledPane("Spawners", createSpawnerList());
+    @Override
+    protected SceneController createController (ILevel level, ScaleRatio ratio) {
+        return new SceneController(level, ratio);
     }
 
-    private Node createSpawnerList () {
-        ObservableList<SpriteDefinition> list = FXCollections.observableArrayList();
-        list.add(new SpawnerDefinition(getGame()));
-        return createSpriteList(list);
-    }
-
+    
 }

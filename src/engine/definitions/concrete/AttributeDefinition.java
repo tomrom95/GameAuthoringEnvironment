@@ -18,7 +18,6 @@ import engine.profile.Profile;
 public class AttributeDefinition implements IProfilable {
 
     //TODO: implement min/max value functionality
-    private String myType;
     private double myStartingValue;
     private IProfile myProfile;
     private boolean isLevelSpecific;
@@ -38,14 +37,14 @@ public class AttributeDefinition implements IProfilable {
         return new Attribute(myStartingValue, new AttributeType(getProfile().getName().get()));
     }
 
-    public void setType (String type) {
-        myType = type;
-    }
-
     public String getType () {
-        return myType;
+        return myProfile.getName().get();
     }
-
+    
+    public AttributeType getAttributeType () {
+        return new AttributeType(getType());
+    }
+   
     public double getStartingValue () {
         return myStartingValue;
     }
@@ -70,6 +69,10 @@ public class AttributeDefinition implements IProfilable {
 
     public void setIsLevelSpecific (boolean level) {
         isLevelSpecific = level;
+    }
+    
+    public boolean getIsLevelSpecific () {
+        return isLevelSpecific;
     }
 
 }
