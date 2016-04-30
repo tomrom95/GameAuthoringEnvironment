@@ -59,11 +59,11 @@ public abstract class SubFormView implements ISubFormView {
         return myLabels;
     }
     
-    protected ResourceBundle getMyNumbers(){
+    public ResourceBundle getMyNumbers(){
         return myNumbers;
     }
-    
-    protected ResourceBundle getMyErrors(){
+    //TODO : get rid of this is unused
+    public ResourceBundle getMyErrors(){
         return myErrors;
     }
     protected BasicUIFactory getMyUIFactory () {
