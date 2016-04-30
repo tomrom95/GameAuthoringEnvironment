@@ -58,7 +58,7 @@ public class TrackingFireSFC extends RemovableFireSFC {
         setMySpriteDefinition(item);
         myFireDef.setGame(myGame);
         myFireDef.setWaitTime(myView.getMyWaitTime());
-        myFireDef.setTargets(myView.getTargetsCoice());
+        myFireDef.setTargets(myView.getTargetsChoice());
         myFireDef.setProjectileDefinition(myView.getMissileSelection());
         myFireDef.setRanged(myView.getMyIsRanged());
         myFireDef.setFireRange(myView.getMyRange());        

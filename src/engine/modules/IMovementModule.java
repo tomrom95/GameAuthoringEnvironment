@@ -23,6 +23,8 @@ public interface IMovementModule extends IModule {
     void setOrientation(double newAngle);
     
     void setSpeed(double newSpeed);
+    
+    void setOrientationFromTracker(double newAngle);
 
 
     /**

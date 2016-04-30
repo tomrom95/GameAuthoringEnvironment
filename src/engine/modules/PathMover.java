@@ -22,15 +22,15 @@ public class PathMover extends Mover {
 
     public static final int PIXEL_RANGE = 5;
 
-    private IAttribute mySpeed;
     private int myNextDestination;
-
+    private EnemyTracker pathTracker;
     public PathMover (double speed,
                       List<Coordinate> points,
                       Positionable positionable) {
         super(positionable);
-        mySpeed = new Attribute(speed, AttributeType.SPEED);
+        setSpeed(speed);
         setPath(points);
+        pathTracker = new EnemyTracker();
         myNextDestination = 0;
     }
 
@@ -40,11 +40,16 @@ public class PathMover extends Mover {
             return;
         }
         if (overshootNext(duration)) {
+            System.out.println(getPath().size());
             move(getPath().get(myNextDestination));
             incrementIndex();
         }
         else {
-            adjustVectors();
+            
+            adjustVectors(getPath().get(myNextDestination));
+            System.out.println("Next Destination Index = " +myNextDestination);
+            //TODO : this should be a thing
+//            incrementIndex();
             move(duration);
         }
     }
@@ -80,21 +85,26 @@ public class PathMover extends Mover {
      * Computes and adjusts the xpos and ypos vectors each time fame to specify the next location of
      * the sprite
      */
-    private void adjustVectors () {
+    private void adjustVectors (Coordinate c) {
 
-        double xDiff = xDifference();
-        double yDiff = yDifference();
-        double constant =
-                Math.sqrt(square(getSpeed()) /
-                          (square(xDiff) + square(yDiff)));
-        if (!isZero(constant)) {
-            setXVelocity(xDiff * constant);
-            setYVelocity(yDiff * constant);
-        }
-        else {
-            setXVelocity(NO_MOTION);
-            setYVelocity(NO_MOTION);
-        }
+        
+        setOrientation(pathTracker.calculateAbsoluteOrientationToEnemy(getParent().getLocation(), c));
+        
+//        double xDiff = xDifference();
+//        double yDiff = yDifference();
+//        setOrientation(Math.tan(yDiff/xDiff));
+//        double constant =
+//                Math.sqrt(square(getSpeed()) /
+//                          (square(xDiff) + square(yDiff)));
+//        if (!isZero(constant)) {
+//            setXVelocity(xDiff * constant);
+//            setYVelocity(yDiff * constant);
+//        }
+//        else {
+//            System.out.println("IT IS CALLING TO SET MOVER TO NO MOTION");
+//            setXVelocity(NO_MOTION);
+//            setYVelocity(NO_MOTION);
+//        }
 
     }
 

@@ -28,7 +28,7 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     public static final double NO_MOTION = 0;
     public static final double RADS_TO_DEGREES = 180 / Math.PI;
     public static final double DEGREES_TO_RADS = Math.PI / 180;
-    
+
     private IAttribute myXVel;
     private IAttribute myYVel;
     private IAttribute myOrientation;
@@ -142,6 +142,13 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
         setYVel(Math.sin(newAngle * DEGREES_TO_RADS) * mySpeed.getValueProperty().get());
 
     }
+    @Override
+    public void setOrientationFromTracker (double newAngle) {
+        myOrientation.setValue(newAngle);
+        setXVel(Math.cos(newAngle) * mySpeed.getValueProperty().get());
+        setYVel(Math.sin(newAngle) * mySpeed.getValueProperty().get());
+
+    }
 
     /**
      * this sets the speed and the X and Y velocities according to the current speed and angle.
@@ -157,6 +164,7 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
 
     @Override
     public void setPath (List<Coordinate> path) {
+        System.out.println("PATH SETTING CALLED " + path.size());
         myPath = path;
     }
 
@@ -174,7 +182,7 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     public double getSpeed () {
         return mySpeed.getValueProperty().get();
     }
-    
+
     protected void setSpeedUnOriented (double speed) {
         mySpeed.getValueProperty().set(speed);
     }
@@ -182,6 +190,7 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     protected Positionable getParent () {
         return myParent;
     }
+    
 
     protected double durationToDouble (TimeDuration duration) {
         return duration.getSeconds() * MULTIPLIER;
