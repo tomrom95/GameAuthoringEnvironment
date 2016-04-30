@@ -12,7 +12,6 @@ import gameauthoring.creation.subforms.ISubFormView;
  */
 public interface ITrackingFireSFV  extends IFiringSFV{
 
-    SpriteDefinition getSelectedMissile ();
 
     SpriteGroup getTargetsCoice ();
 
