@@ -80,9 +80,9 @@ public class ObstructionManager implements IObstructionManager {
     }
 
     private ISampledBitMap getBitMapSizedForCurrentGame (IGame game) {
-        int gameWidth = (int) 1200;
+        int gameWidth = (int) game.getLevelBounds().getWidth();
                 //game.getLevelManager().getCurrentLevel().getBackgroundImageWidth();
-        int gameHeight = (int) 800;
+        int gameHeight = (int) game.getLevelBounds().getHeight();
                 //game.getLevelManager().getCurrentLevel().getBackgroundImageHeight();
         return new SampledBitMap(gameWidth / SAMPLE_RESOLUTION, gameHeight/ SAMPLE_RESOLUTION, gameWidth, gameHeight);
     }
