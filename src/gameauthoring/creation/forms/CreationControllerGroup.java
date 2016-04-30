@@ -15,12 +15,6 @@ public class CreationControllerGroup extends CreationController<SpriteGroup> {
                                     List<String> sfcs,
                                     IGame myGame) {
         super(key, sfcs, myGame);
-        /*
-        getMyCreationView().getCreationListView().setSelectedIndex(0);
-        super.populateViewsWithDefaults();
-        getMyCreationView().getFormView().showForm();
-        super.saveItem();
-        */
     }
 
     @Override
