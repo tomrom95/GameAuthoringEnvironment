@@ -15,10 +15,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import util.BundleOperations;
 
 /**
  * Gives the author the ability to chose the levels in which to proceed after winning and losing
@@ -49,6 +46,10 @@ public class TransitionView implements Glyph {
         myPane.getStyleClass().add("transition_pane");
     }
 
+    /**
+     * Initializes the combo-boxes and gives them the labels as specified in the d 
+     * @param levels
+     */
     private void init (ObservableList<ILevel> levels) {
         initCombos(levels);
         for (int i = 0; i < myCombos.size(); i++) {

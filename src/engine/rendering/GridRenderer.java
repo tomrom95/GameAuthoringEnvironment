@@ -26,6 +26,7 @@ public class GridRenderer implements IRenderer {
     private Tile[][] myBlocks;
     private int myNumBlockRow;
     private int myNumBlockCol;
+    private double myCurrentBlockSize;
     public final int BLOCK_SIZE = 50;
     private ScaleRatio myScale;
 
@@ -38,21 +39,22 @@ public class GridRenderer implements IRenderer {
 
     private void init () {
         calculateTileArraySize();
-        myBlocks = new Tile[myNumBlockRow][myNumBlockCol];
         initializeGridLines();
     }
 
     private void calculateTileArraySize () {
         myNumBlockRow = (int) (myLevel.getBounds().getHeight() / BLOCK_SIZE);
+        System.out.println(myNumBlockRow);
         myNumBlockCol = (int) (myLevel.getBounds().getWidth() / BLOCK_SIZE);
-
+        myBlocks = new Tile[myNumBlockRow][myNumBlockCol];
     }
 
     private void initializeGridLines () {
         myPane.getChildren().clear();
+        myCurrentBlockSize = myScale.scale(BLOCK_SIZE);
         for (int i = 0; i < myNumBlockRow; i++) {
             for (int j = 0; j < myNumBlockCol; j++) {
-                Tile tile = new Tile(myScale.scale(BLOCK_SIZE), i, j);
+                Tile tile = new Tile(myCurrentBlockSize, i, j);
                 if (myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[i][j]) {
                     tile.setRed();
                 }
@@ -66,18 +68,20 @@ public class GridRenderer implements IRenderer {
     }
 
     private void handleMouseClick (Tile tile) {
-
+        System.out.println(myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[tile
+                .getRowPosition()][tile
+                .getColPosition()]);
         if (checkClickable(tile)) {
             if (tile.getTile().getFill() == Color.TRANSPARENT) {
                 myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[tile
                         .getRowPosition()][tile
-                                .getColPosition()] = true;
+                        .getColPosition()] = true;
                 tile.getTile().setFill(Color.RED);
             }
             else if (tile.getTile().getFill() == Color.RED) {
                 myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[tile
                         .getRowPosition()][tile
-                                .getColPosition()] = false;
+                        .getColPosition()] = false;
                 tile.getTile().setFill(Color.TRANSPARENT);
             }
         }
@@ -86,9 +90,9 @@ public class GridRenderer implements IRenderer {
     private boolean checkClickable (Tile tile) {
         for (ISprite sprite : myLevel.getSprites()) {
             Bounds rectBounds =
-                    new Bounds(BLOCK_SIZE * tile.getColPosition(), BLOCK_SIZE *
-                                                                   tile.getRowPosition(),
-                               (double) BLOCK_SIZE, (double) BLOCK_SIZE);
+                    new Bounds(myCurrentBlockSize * tile.getColPosition(),
+                               myCurrentBlockSize * tile.getRowPosition(),
+                               myCurrentBlockSize, myCurrentBlockSize);
             if (sprite.getBounds().collide(rectBounds))
                 return false;
         }
@@ -111,9 +115,17 @@ public class GridRenderer implements IRenderer {
         return myNumBlockCol;
     }
 
+    public double getCurrentBlockSize () {
+        return myCurrentBlockSize;
+    }
+
     @Override
     public void render () {
         init();
+    }
+    
+    public void updateTileNumbers(){
+        calculateTileArraySize ();
     }
 
     public void redraw () {

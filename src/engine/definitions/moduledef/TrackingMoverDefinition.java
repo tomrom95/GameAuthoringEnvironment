@@ -18,7 +18,6 @@ public class TrackingMoverDefinition extends MovementDefinition {
 
     @Override
     public IMovementModule create (Positionable parent) {
-        System.out.println("here");
         return new TrackingMover(mySpeed,
                                  myGame,
                                  myTargets,

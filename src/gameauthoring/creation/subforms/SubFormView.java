@@ -22,23 +22,21 @@ public abstract class SubFormView implements ISubFormView {
     private String myTitle;
     private String myStyleClass = "SFVclass";
     private String myLabelStyle = "SFVtitle";
-
-    
+    private String mySubStyle = "SFVsub";
     private ResourceBundle myLabels =
             ResourceBundle
                     .getBundle("languages/labels",
                                LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle myNumbers = ResourceBundle
             .getBundle("defaults/numbers");
-    
-    private ResourceBundle myErrors = ResourceBundle
-            .getBundle("defaults/errors");
+
+  
     private StringParser s = new StringParser();
-    
-    protected StringParser getParser(){
+
+    protected StringParser getParser () {
         return s;
     }
-    
+
     protected String getMyTitle () {
         return getMyLabels().getString(myTitle);
     }
@@ -48,27 +46,31 @@ public abstract class SubFormView implements ISubFormView {
     }
 
     protected Node getTitleDisplay () {
-        Label title = new Label(getMyTitle());
-        getMyUIFactory().addStyling(title, myLabelStyle);
-        return title;
+        return getMyUIFactory().addStyling(makeTitleLabel(), myLabelStyle);
     }
 
-    protected VBox defaultDisplayWithNode(Node subview){
+    protected Node getSubTitleDisplay () {
+        return getMyUIFactory().addStyling(makeTitleLabel(), mySubStyle);
+    }
+
+    private Node makeTitleLabel () {
+        return new Label(getMyTitle());
+    }
+
+    protected VBox defaultDisplayWithNode (Node subview) {
         VBox box = new VBox(getTitleDisplay(), subview);
         getMyUIFactory().addStyling(box, getStyleClass());
         return box;
     }
-    protected ResourceBundle getMyLabels(){
+
+    protected ResourceBundle getMyLabels () {
         return myLabels;
     }
-    
-    public ResourceBundle getMyNumbers(){
+
+    public ResourceBundle getMyNumbers () {
         return myNumbers;
     }
-    //TODO : get rid of this is unused
-    public ResourceBundle getMyErrors(){
-        return myErrors;
-    }
+    
     protected BasicUIFactory getMyUIFactory () {
         return myUIFactory;
     }
@@ -77,8 +79,8 @@ public abstract class SubFormView implements ISubFormView {
      * Initializes arrangement and actual appearence of SFV
      */
     protected abstract void initView ();
-    
-    protected String getStyleClass() {
+
+    protected String getStyleClass () {
         return myStyleClass;
     }
 

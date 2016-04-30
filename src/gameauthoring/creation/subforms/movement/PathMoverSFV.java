@@ -4,16 +4,16 @@ import java.util.ResourceBundle;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import splash.LocaleManager;
 import util.StringParser;
 
 public class PathMoverSFV extends SubFormView implements IPathMoverSFV {
     
-    private GridPane myPane = new GridPane();
-
     private static String SPEED_LABEL = "PathSpeedLabel";
+    private double spacing = 20;
     private ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", LocaleManager
                                                              .getInstance().getCurrentLocaleProperty().get());
     private NumberEntryView mySpeedInputView;
@@ -33,7 +33,8 @@ public class PathMoverSFV extends SubFormView implements IPathMoverSFV {
 
     @Override
     public Node draw () {
-        return myPane;
+        HBox box = getMyUIFactory().makeHBox(spacing, Pos.CENTER, mySpeedInputView.draw());        
+        return getMyUIFactory().addStyling(box, "Mover");
     }
 
     @Override
@@ -41,8 +42,6 @@ public class PathMoverSFV extends SubFormView implements IPathMoverSFV {
         double width = getParser().parseDouble(getMyNumbers().getString("Width"));
         double height = getParser().parseDouble(getMyNumbers().getString("Height"));
         mySpeedInputView = new NumberEntryView(myLabels.getString(SPEED_LABEL), width, height, AuthoringView.DEFAULT_ENTRYVIEW);
-        myPane.add(mySpeedInputView.draw(), 0, 0);
-        myPane.getStyleClass().add("mover");
 
     }
 

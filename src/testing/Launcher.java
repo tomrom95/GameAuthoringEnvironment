@@ -51,7 +51,7 @@ public class Launcher extends Application {
     private static final double PANE_HEIGHT = 800;
 
     // Sprite Parameters
-    private static final double SPRITE_MOVEMENT_SPEED = 0.3;
+    private static final double SPRITE_MOVEMENT_SPEED = 3;
     private static final double SPRITE_HEIGHT = 50;
     private static final double SPRITE_WIDTH = 50;
     private static final String SPRITE_IMAGE_URL = "/images/photo.png";
@@ -154,8 +154,9 @@ public class Launcher extends Application {
     }
 
     private void addSpritesToGame (Game game) {
-        ISprite test = createUserSpriteDefinition(SPRITE_INITIAL_X, SPRITE_INITIAL_Y).create();
-        game.bufferedAdd(createEnemySpriteDefinition(ENEMY_INITIAL_X, ENEMY_INITIAL_Y).create());
+        ISprite test = createEnemySpriteDefinition(ENEMY_INITIAL_X, ENEMY_INITIAL_Y).create();
+        test.getStatusModule().setIsGoal(true);
+        game.bufferedAdd(test);
         game.bufferedAdd(createUserSpriteDefinition(SPRITE_INITIAL_X, SPRITE_INITIAL_Y).create());
     }
 

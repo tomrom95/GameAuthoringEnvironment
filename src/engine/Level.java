@@ -194,12 +194,12 @@ public class Level implements ILevel {
 
     @Override
     public double getBackgroundImageWidth () {
-        return myBackgroundImageWidth;
+        return myBackgroundImage.getWidth().get();
     }
 
     @Override
     public double getBackgroundImageHeight () {
-        return myBackgroundImageHeight;
+        return myBackgroundImage.getHeight().get();
     }
 
     @Override

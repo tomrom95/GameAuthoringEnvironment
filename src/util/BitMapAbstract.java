@@ -1,5 +1,6 @@
 package util;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 public abstract class BitMapAbstract implements IBitMap, Iterable<Boolean> {
@@ -14,12 +15,20 @@ public abstract class BitMapAbstract implements IBitMap, Iterable<Boolean> {
 
     public BitMapAbstract (IBitMap map) {
         initialize(map.getWidth(), map.getHeight());
-        //myBitMap = map.getBitMap().clone();
-        Iterator<ArrayPosition> iter = map.positionIterator();
-        while (iter.hasNext()) {
-            ArrayPosition pos = iter.next();
-            this.set(pos, map.valueOf(pos));
-        }
+//        myBitMap = map.getBitMap().clone();
+//        Iterator<ArrayPosition> iter = map.positionIterator();
+//        while (iter.hasNext()) {
+//            ArrayPosition pos = iter.next();
+//            this.set(pos, map.valueOf(pos));
+//        }
+        
+        
+//        boolean[][] toCopy = map.getBitMap();
+//        boolean[][] toSet = new boolean[toCopy.length][toCopy[0].length];
+//        for(int i = 0; i < toCopy.length; i++){
+//            toSet[i] = 
+//        }
+        this.myBitMap = Arrays.copyOf(map.getBitMap(), map.getBitMap().length);
     }
 
     public BitMapAbstract () {

@@ -39,7 +39,8 @@ public class IOInterpeter {
 
     private void setUpListener (Scene scene, Pane pane) {
         pane.requestFocus();
-        pane.setOnMouseClicked(e -> queue(myEventFactory.interpretEvent(e, myScale.getScale(), myScale.getScale())));
+        pane.setOnMouseClicked(e -> queue(myEventFactory.interpretEvent(e, myScale.getScale(),
+                                                                        myScale.getScale())));
         scene.addEventFilter(KeyEvent.KEY_RELEASED, e -> queue(myEventFactory.interpretEvent(e)));
         scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> queue(myEventFactory.interpretEvent(e)));
     }
@@ -66,7 +67,7 @@ public class IOInterpeter {
 
     public void setScale (ScaleRatio scale) {
         myScale = scale;
-        
+
     }
 
 }

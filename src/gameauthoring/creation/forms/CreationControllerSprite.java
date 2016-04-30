@@ -40,9 +40,18 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
     }
     
     @Override
+    protected void deleteItem() {
+        super.deleteItem();
+        getMyData().removeFromGroups(getMyLastItem());
+        getMyData().getMyCreatedGroups().removeItem(getMyLastItem().getMySingleGroup());
+    }
+    
+    @Override
     protected SpriteDefinition newItem () {
         SpriteDefinition item = super.newItem();
-        getMyData().getMyCreatedGroups().addItem(new SpriteGroup(item,item.getProfile()));
+        SpriteGroup group = new SpriteGroup(item,item.getProfile());
+        item.setMySingleGroup(group);
+        getMyData().getMyCreatedGroups().addItem(group);
         return item;
     }
     

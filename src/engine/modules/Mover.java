@@ -183,7 +183,7 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     }
 
     protected void setSpeedUnOriented (double speed) {
-        mySpeed.getValueProperty().set(speed);
+        mySpeed.getValueProperty().set(speed * MULTIPLIER);
     }
 
     protected Positionable getParent () {
