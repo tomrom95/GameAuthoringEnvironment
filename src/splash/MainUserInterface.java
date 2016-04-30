@@ -15,6 +15,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -100,7 +102,7 @@ public class MainUserInterface {
     public Node createCenter () {
         VBox root = new VBox(Integer.parseInt(mySpecs.getString(SPACING_KEY)));
         root.setAlignment(Pos.CENTER);
-        root.getChildren().add(new Label(myLabels.getString(SPLASHTITLEKEY)));
+        root.getChildren().add(new ImageView(new Image(mySpecs.getString("titleimage"))));
         root.getChildren()
                 .add(createButton(myLabels.getString("splashcreategame"), e -> createGame()));
         root.getChildren()

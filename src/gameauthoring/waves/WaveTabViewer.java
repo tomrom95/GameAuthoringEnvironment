@@ -9,12 +9,14 @@ import engine.IGame;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
 import gameauthoring.creation.cellviews.WaveDragCell;
+import gameauthoring.tabs.ITabViewer;
 import gameauthoring.util.ErrorMessage;
 import gameauthoring.util.Glyph;
 import gameauthoring.util.BasicUIFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -33,8 +35,10 @@ import javafx.scene.layout.HBox;
  *
  */
 
-public class WaveTabViewer implements Glyph {
+public class WaveTabViewer implements Glyph, ITabViewer {
 
+    public static final int WIDTH = 1200;
+    public static final int HEIGHT = 700;
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/wave_tab_size");
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
@@ -53,7 +57,7 @@ public class WaveTabViewer implements Glyph {
         new WaveTabController(this, myCreationZone);
     }
 
-    private void init () {
+    public void init () {
         listInit();
         myPane.getStyleClass().add(myStyle.getString("WaveTab"));
         myPane.add(myWaveAuthorship.draw(), 1, 1, 1, 2);
@@ -114,6 +118,13 @@ public class WaveTabViewer implements Glyph {
 
     public void exitEdit () {
         myBlockList.clear();
+    }
+
+    public void rescale (double width, double height) {
+        myPane.setAlignment(Pos.CENTER);
+        myPane.setScaleX(width/WIDTH);
+        myPane.setScaleY(height/(HEIGHT - 15));
+       
     }
 
 }

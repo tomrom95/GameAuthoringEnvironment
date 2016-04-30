@@ -1,10 +1,10 @@
 package facebookutil.applications;
 
 import java.util.List;
+import facebookutil.SocialType;
+import facebookutil.actions.facebook.FacebookChallenge;
 import facebookutil.actions.facebook.FacebookNotifyUsers;
-import facebookutil.scores.HighScoreBoard;
 import facebookutil.user.IUser;
-import facebookutil.user.profiles.SocialProfile;
 
 /**
  * Implementation of an app for Facebook.
@@ -28,15 +28,14 @@ public class FacebookApp extends App{
         notify.send(getLogin());
     }
 
-    @Override
-    public void customPost (String message, SocialProfile profile) {
-        
-    }
 
     @Override
-    public void HighScoreBoardPost (HighScoreBoard board, SocialProfile profile) {
-        // TODO Auto-generated method stub
-        
+    public void challenge (IUser target, String message) {
+        FacebookChallenge challenge = new FacebookChallenge();
+        challenge.createChallenge(this,
+                                  target.getProfiles().getProfileByType(SocialType.FACEBOOK), message);
+        challenge.send(getLogin());
     }
+    
 
 }

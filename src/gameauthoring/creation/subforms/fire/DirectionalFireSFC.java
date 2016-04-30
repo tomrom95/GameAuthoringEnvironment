@@ -29,11 +29,13 @@ public class DirectionalFireSFC extends RemovableFireSFC {
     public DirectionalFireSFC (IGame game, FiringSFC sfc) {
         super(sfc);
         init(game, new DirectionalFirerDefinition(game));
+        initializeFields();
     }
     
     public DirectionalFireSFC (IGame game, FiringSFC sfc, DirectionalFirerDefinition fireDef) {
         super(sfc);
         init(game, fireDef);
+        populateViewsWithData(null);
       
     }
 
@@ -50,7 +52,6 @@ public class DirectionalFireSFC extends RemovableFireSFC {
         populateViewsWithData(myDefaultAngle, myDefaultWaitTime, myDefaultRange, myDefaultRanged);
     }
 
-    //TODO: What is this method, why does it pass in variables, seems redundant/not make sense - Timko
     private void populateViewsWithData (double angle, double wait, double range, boolean isRanged) {
         myView.populateWithData(null, myDefaultAngle, myDefaultWaitTime, myDefaultRange, myDefaultRanged);
 }
@@ -89,7 +90,7 @@ public class DirectionalFireSFC extends RemovableFireSFC {
         return myFireDef;
     }
 
-    //TODO why is this item taken in if we just use my firer def
+    //TODO : why is this item taken in if we just use my firer def
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
         myView.populateWithData(myFireDef.getProjectileDefinition(),myFireDef.getAngle() * 180 / Math.PI,myFireDef.getWaitTime(), myFireDef.getFireRange(), myFireDef.getRanged());

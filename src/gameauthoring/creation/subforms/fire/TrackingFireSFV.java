@@ -2,6 +2,7 @@ package gameauthoring.creation.subforms.fire;
 
 import java.util.ResourceBundle;
 import splash.LocaleManager;
+import util.StringParser;
 import engine.AuthorshipData;
 import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;
@@ -13,7 +14,6 @@ import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 
 /**
@@ -27,7 +27,7 @@ import javafx.scene.layout.VBox;
  */
 public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
-    private VBox myPane;
+    private HBox myPane;
     private ResourceBundle myLabel;
     private String myWaitTimeKey;
     private String myTargetsKey;
@@ -40,12 +40,16 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     private RemoveOption myRemove;
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
+    private StringParser s;
 
     public TrackingFireSFV (AuthorshipData data, RemoveOption remove) {
         setResourceBundleAndKey();
         myRemove = remove;
+        s = new StringParser();
+        double width = s.parseDouble(getMyNumbers().getString("Width"));
+        double height = s.parseDouble(getMyNumbers().getString("Height"));
         myWaitTime =
-                new NumberEntryView(myWaitTimeKey, 150, 30,
+                new NumberEntryView(myWaitTimeKey, width, height,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myTargets =
                 new SingleChoiceEntryView<SpriteGroup>(myTargetsKey, data.getMyCreatedGroups()
@@ -57,7 +61,7 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         myIsRanged =
                 new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
         myRangeValue =
-                new NumberEntryView(myRangeValueKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+                new NumberEntryView(myRangeValueKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
 
         initView();
         initBinding();
@@ -76,12 +80,12 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
     @Override
     protected void initView () {
-        HBox box = new HBox(myRemove.draw(),myMissileSelectionView.draw(),myWaitTime.draw(),myTargets.draw());
-        HBox boxTwo =  new HBox(myIsRanged.draw(),myRangeValue.draw());
+        double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacing"));
         myPane =
-                getMyUIFactory().makeVBox(20, Pos.CENTER, box, boxTwo);
-        getMyUIFactory().addStyling(myPane, "Firer");
-
+                getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
+                                          myWaitTime.draw(), myTargets.draw(),
+                                          myRangeValue.draw(), myIsRanged.draw(), myRemove.draw());
+        myPane.getStyleClass().add("firer");
     }
 
     @Override

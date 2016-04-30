@@ -6,10 +6,12 @@ import engine.IGame;
 import engine.conditions.ICondition;
 import gameauthoring.creation.cellviews.CardCell;
 import gameauthoring.creation.cellviews.DeleteableProfileCellView;
+import gameauthoring.tabs.ITabViewer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -24,18 +26,19 @@ import javafx.scene.layout.VBox;
 import util.BundleOperations;
 
 
-public class GameConditionView extends ConditionView {
+public class GameConditionViewer extends ConditionViewer implements ITabViewer {
 
+    
     private static final String PATH = "defaults/game_condition_view";
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/game_cond_view");
 
-    public GameConditionView (IGame game) {
+    public GameConditionViewer (IGame game) {
         super(game.getConditionManager().getConditionListProperty());
         init();
         new GameConditionController(this, game);
     }
 
-    private void init () {
+    public void init () {
         initListView();
         add(createLeft(), 0, 0, 1, 3);
         add(createTop(), 1, 1, 1, 1);
@@ -97,5 +100,4 @@ public class GameConditionView extends ConditionView {
     public void setCenter (Node specific) {
         add(specific, 1, 2, 1, 1);
     }
-
 }

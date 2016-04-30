@@ -7,6 +7,7 @@ import engine.profile.IProfilable;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.util.Glyph;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -16,9 +17,12 @@ import javafx.scene.layout.GridPane;
 
 public class ListDisplay<T extends IProfilable> implements Glyph {
 
+    public static final int WIDTH = 1200;
+    public static final int HEIGHT = 700;
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ListView<T> myListView;
     private GridPane myPane;
+    
 
     public ListDisplay (ObservableList<T> list) {
         myPane = new GridPane();
@@ -48,5 +52,13 @@ public class ListDisplay<T extends IProfilable> implements Glyph {
 
     protected GridPane getPane () {
         return myPane;
+    }
+    
+    public void rescale (double width, double height) {
+
+        myPane.setAlignment(Pos.CENTER);
+        myPane.setScaleX(width / WIDTH);
+        myPane.setScaleY((height) / (HEIGHT - 15));
+
     }
 }

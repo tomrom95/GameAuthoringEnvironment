@@ -68,8 +68,6 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
     protected HBox getHBox (E profile) {
         HBox container = new HBox(10);
         container.setAlignment(Pos.CENTER_LEFT);
-      
-
         container.getChildren().add(createImageProfile(profile.getProfile(),PIC_SIZE));
         container.getChildren().add(createTextProfile(profile.getProfile()));
         return container;
