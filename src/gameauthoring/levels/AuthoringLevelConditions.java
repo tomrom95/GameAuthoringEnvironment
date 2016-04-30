@@ -37,9 +37,4 @@ public class AuthoringLevelConditions implements Glyph{
        return myHBox.getHeight();
     }
 
-    public void scale (double width) {
-       myHBox.setScaleX(width/1200);
-        
-    }
-
 }
