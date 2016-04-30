@@ -14,6 +14,7 @@ import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -27,7 +28,7 @@ import javafx.scene.layout.HBox;
  */
 public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
-    private HBox myPane;
+    private VBox myPane;
     private ResourceBundle myLabel;
     private String myWaitTimeKey;
     private String myTargetsKey;
@@ -41,8 +42,11 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
     private StringParser s;
+    private static final String MY_TITLE_KEY = "TRACKINGFIRER";
+
 
     public TrackingFireSFV (AuthorshipData data, RemoveOption remove) {
+        setMyTitle(MY_TITLE_KEY);
         setResourceBundleAndKey();
         myRemove = remove;
         s = new StringParser();
@@ -61,7 +65,8 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         myIsRanged =
                 new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
         myRangeValue =
-                new NumberEntryView(myRangeValueKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
+                new NumberEntryView(myRangeValueKey, width, height,
+                                    AuthoringView.DEFAULT_ENTRYVIEW);
 
         initView();
         initBinding();
@@ -81,11 +86,17 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     @Override
     protected void initView () {
         double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacing"));
+        HBox head = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(), getSubTitleDisplay());
+        HBox options =
+                getMyUIFactory().makeHBox(spacing, Pos.CENTER, myMissileSelectionView.draw(), myWaitTime.draw(),
+                                          myTargets.draw());
+        HBox ranged =
+                getMyUIFactory().makeHBox(spacing, Pos.CENTER, myIsRanged.draw(),
+                                          myRangeValue.draw());
         myPane =
-                getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                          myWaitTime.draw(), myTargets.draw(),
-                                          myRangeValue.draw(), myIsRanged.draw(), myRemove.draw());
-        myPane.getStyleClass().add("firer");
+                getMyUIFactory().makeVBox(20, Pos.CENTER, head, options, ranged);
+        getMyUIFactory().addStyling(myPane, "Firer");
+
     }
 
     @Override

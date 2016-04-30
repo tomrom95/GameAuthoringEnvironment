@@ -21,8 +21,7 @@ public abstract class SubFormView implements ISubFormView {
     private String myTitle;
     private String myStyleClass = "SFVclass";
     private String myLabelStyle = "SFVtitle";
-
-    
+    private String mySubStyle = "SFVsub";
     private ResourceBundle myLabels =
             ResourceBundle
                     .getBundle("languages/labels",
@@ -35,7 +34,6 @@ public abstract class SubFormView implements ISubFormView {
             .getBundle("defaults/errors",
                        LocaleManager.getInstance().getCurrentLocaleProperty().get());
 
-
     protected String getMyTitle () {
         return getMyLabels().getString(myTitle);
     }
@@ -44,10 +42,16 @@ public abstract class SubFormView implements ISubFormView {
         this.myTitle = title;
     }
 
-    protected Node getTitleDisplay () {
-        Label title = new Label(getMyTitle());
-        getMyUIFactory().addStyling(title, myLabelStyle);
-        return title;
+    protected Node getTitleDisplay () {        
+        return getMyUIFactory().addStyling(makeTitleLabel(), myLabelStyle);
+    }
+    
+    protected Node getSubTitleDisplay () {        
+        return getMyUIFactory().addStyling(makeTitleLabel(), mySubStyle);
+    }
+        
+    private Node makeTitleLabel() {
+        return new Label (getMyTitle());
     }
 
     protected VBox defaultDisplayWithNode(Node subview){

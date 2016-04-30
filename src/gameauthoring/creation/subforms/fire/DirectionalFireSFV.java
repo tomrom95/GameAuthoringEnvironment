@@ -13,6 +13,7 @@ import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -24,7 +25,7 @@ import javafx.scene.layout.HBox;
  */
 public class DirectionalFireSFV extends SubFormView implements IDirectionalFireSFV {
 
-    private HBox myPane;
+    private VBox myPane;
     private ResourceBundle myLabel;
     private String myAngleKey;
     private String myWaitTimeKey;
@@ -38,9 +39,12 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
     private StringParser s;
+    private static final String MY_TITLE_KEY = "DIRECTIONALFIRER";
+
 
     public DirectionalFireSFV (IDefinitionCollection<SpriteDefinition> missiles,
                                RemoveOption remove) {
+        setMyTitle(MY_TITLE_KEY);
         setResourceBundleAndKey();
         s = new StringParser();
         double width = s.parseDouble(getMyNumbers().getString("Width"));
@@ -79,11 +83,12 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     @Override
     protected void initView () {
         double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacing"));
-        myPane =
-                getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                          myWaitTime.draw(), myAngle.draw(),
-                                          myRangeValue.draw(), myIsRanged.draw(), myRemove.draw());
-        myPane.getStyleClass().add("firer");
+        HBox head = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(), getSubTitleDisplay());
+        HBox options = getMyUIFactory().makeHBox(spacing , Pos.CENTER, myMissileSelectionView.draw(),myWaitTime.draw(),myAngle.draw());  
+        HBox rangedOptions =  getMyUIFactory().makeHBox(spacing, Pos.CENTER, myIsRanged.draw(),myRangeValue.draw());  
+        myPane = getMyUIFactory().makeVBox(20, Pos.CENTER, head, options, rangedOptions);  
+        getMyUIFactory().addStyling(myPane, "Firer");  
+
     }
 
     private void initBinding () {
