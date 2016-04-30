@@ -24,7 +24,7 @@ import util.TimeDuration;
  */
 public abstract class Mover extends DefaultAffectable implements IMovementModule {
 
-    private static final double MULTIPLIER = 10;
+    private static final double MULTIPLIER = 0.01;
     public static final double NO_MOTION = 0;
     public static final double RADS_TO_DEGREES = 180 / Math.PI;
     public static final double DEGREES_TO_RADS = Math.PI / 180;
@@ -51,8 +51,8 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
 
     protected void move (TimeDuration duration) {
         updateVelocities();
-        double xChange = distance(getXVel().getValueProperty().get(), durationToDouble(duration));
-        double yChange = distance(getYVel().getValueProperty().get(), durationToDouble(duration));
+        double xChange = distance(getXVel().getValueProperty().get(), duration.getMillis());
+        double yChange = distance(getYVel().getValueProperty().get(), duration.getMillis());
         move(getNextCoordinate(xChange, yChange));
     }
 
@@ -157,7 +157,8 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
      */
     @Override
     public void setSpeed (double newSpeed) {
-        mySpeed.setValue(newSpeed);
+        mySpeed.setValue(newSpeed * MULTIPLIER);
+        System.out.println("MY SPEED = "+ mySpeed.getValueProperty().get());
         setXVel(Math.cos(myOrientation.getValueProperty().get()) * newSpeed);
         setYVel(Math.sin(myOrientation.getValueProperty().get()) * newSpeed);
     }
@@ -192,8 +193,5 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     }
     
 
-    protected double durationToDouble (TimeDuration duration) {
-        return duration.getSeconds() * MULTIPLIER;
-    }
 
 }

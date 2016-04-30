@@ -88,7 +88,7 @@ public class PathMover extends Mover {
     private void adjustVectors (Coordinate c) {
 
         
-        setOrientation(pathTracker.calculateAbsoluteOrientationToEnemy(getParent().getLocation(), c));
+        setOrientationFromTracker(pathTracker.calculateAbsoluteOrientationToEnemy(getParent().getLocation(), c));
         
 //        double xDiff = xDifference();
 //        double yDiff = yDifference();

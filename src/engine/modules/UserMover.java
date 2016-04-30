@@ -66,8 +66,8 @@ public class UserMover extends Mover {
     
     @Override
     protected void move (TimeDuration duration) {
-        double xChange = distance(getXVel().getValueProperty().get(), durationToDouble(duration));
-        double yChange = distance(getYVel().getValueProperty().get(), durationToDouble(duration));
+        double xChange = distance(getXVel().getValueProperty().get(), duration.getMillis());
+        double yChange = distance(getYVel().getValueProperty().get(), duration.getMillis());
         move(getNextCoordinate(xChange, yChange));
     }
 
