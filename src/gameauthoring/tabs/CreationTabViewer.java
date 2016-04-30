@@ -70,4 +70,10 @@ public class CreationTabViewer implements ITabViewer {
     public Node draw () {
         return myTabPane;
     }
+
+    @Override
+    public void rescale (double width, double height) {
+        // TODO Auto-generated method stub
+        
+    }
 }

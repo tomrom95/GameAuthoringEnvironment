@@ -41,6 +41,8 @@ public class Level implements ILevel {
     private PlaceableTileManager myPlaceableTileManager;
     private IWaveSetManager myWaveSetManager;
     private IProfile myProfile;
+    private final int DEFAULT_ROW = 20;
+    private final int DEFAULT_COL = 25;
     private ObservableList<SpriteDefinition> myAddableSprites;
     private Bounds myBounds;
 
@@ -55,7 +57,7 @@ public class Level implements ILevel {
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
         myWaveSetManager = new WaveSetManager();
-        myPlaceableTileManager = new PlaceableTileManager(this,700,400);
+        myPlaceableTileManager = new PlaceableTileManager(this,DEFAULT_ROW,DEFAULT_COL);
         myAddableSprites = FXCollections.observableArrayList();
         myBounds = new Bounds(myBackgroundImageWidth, myBackgroundImageHeight);
     }

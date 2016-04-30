@@ -1,5 +1,6 @@
 package util;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 
@@ -14,8 +15,10 @@ public class Tile {
     private int myRowPosition;
     private int myColPosition;
 
-    public Tile (Rectangle tile, int row, int col) {
-        myTile = tile;
+    public Tile (double rectSize, int row, int col) {
+        myTile = new Rectangle(rectSize, rectSize);
+        myTile.getStyleClass().add("r");
+        myTile.setFill(Color.TRANSPARENT);
         myRowPosition = row;
         myColPosition = col;
     }
@@ -30,5 +33,9 @@ public class Tile {
 
     public Rectangle getTile () {
         return myTile;
+    }
+
+    public void setRed () {
+        myTile.setFill(Color.RED);       
     }
 }
