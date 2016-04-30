@@ -7,6 +7,7 @@ import engine.rendering.ScaleFactory;
 import engine.rendering.UnscaledFactory;
 import gameauthoring.util.BasicUIFactory;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
@@ -29,6 +30,8 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     private static final double PIC_SIZE = 30;
     private E myProfile;
+    private ChangeListener<Boolean> imageListener;
+
 
     @Override
     protected void updateItem (E item, boolean empty) {
@@ -49,9 +52,13 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
         return container;
     }
 
-//    private void setImageBind (E profile) {
-//        profile.getProfile().imageChanged().addListener(e -> updateItem(profile, false));
-//    }
+    private void setImageBind (E profile) {
+        if (imageListener != null) {
+            profile.getProfile().imageChanged().removeListener(imageListener);
+        }
+        imageListener = (obs, oldValue, newValue) -> updateItem(profile, false);
+        profile.getProfile().imageChanged().addListener(imageListener);
+    }
 
     /**
      * For subclasses to alter the HBox not the node
