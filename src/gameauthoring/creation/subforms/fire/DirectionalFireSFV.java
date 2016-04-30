@@ -14,18 +14,19 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 /**
  * View representing a subform that creates the information required to build a directional mover
  * module
  * 
- * @author Dhrumil Timko
+ * @author Dhrumil Timko Lilien
  *
  */
 public class DirectionalFireSFV extends SubFormView implements IDirectionalFireSFV {
 
-    private GridPane myPane = new GridPane();
+    private VBox myPane;
     private ResourceBundle myLabel;
     private String myAngleKey;
     private String myWaitTimeKey;
@@ -38,9 +39,12 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     private RemoveOption myRemove;
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
+    private static final String MY_TITLE_KEY = "DIRECTIONALFIRER";
+
 
     public DirectionalFireSFV (IDefinitionCollection<SpriteDefinition> missiles,
                                RemoveOption remove) {
+        setMyTitle(MY_TITLE_KEY);
         setResourceBundleAndKey();
         double width = getParser().parseDouble(getMyNumbers().getString("Width"));
         double height = getParser().parseDouble(getMyNumbers().getString("Height"));
@@ -79,19 +83,12 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
 
     @Override
     protected void initView () {
-        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacingDirectional"));
-        HBox paramsBox =
-                getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                          myWaitTime.draw());
-        HBox removeBox = getMyUIFactory().makeHBox(spacing, Pos.TOP_RIGHT, myRemove.draw());
-
-        HBox rangeBox = getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT,
-                                                  myIsRanged.draw(), myRangeValue.draw(),
-                                                  myAngle.draw());
-        myPane.add(paramsBox, 0, 0, 2, 1);
-        myPane.add(removeBox, 2, 0, 1, 1);
-        myPane.add(rangeBox, 0, 1);
-        myPane.getStyleClass().add("firer");
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
+        HBox head = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(), getSubTitleDisplay());
+        HBox options = getMyUIFactory().makeHBox(spacing , Pos.CENTER, myMissileSelectionView.draw(),myWaitTime.draw(),myAngle.draw());  
+        HBox rangedOptions =  getMyUIFactory().makeHBox(spacing, Pos.CENTER, myIsRanged.draw(),myRangeValue.draw());  
+        myPane = getMyUIFactory().makeVBox(20, Pos.CENTER, head, options, rangedOptions);  
+        getMyUIFactory().addStyling(myPane, "Firer");  
     }
 
     private void initBinding () {

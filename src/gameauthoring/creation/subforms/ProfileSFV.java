@@ -32,7 +32,7 @@ public class ProfileSFV extends SubFormView implements IProfileSFV {
     private TextEntryView myDescription;
     private SliderEntryView myImageWidth;
     private SliderEntryView myImageHeight;
-    private String MY_TITLE_KEY = "Profile";
+    private static final String MY_TITLE_KEY = "Profile";
 
     public ProfileSFV () {
         setMyTitle(MY_TITLE_KEY);
