@@ -2,7 +2,8 @@ package gameauthoring.creation.subforms.movement;
 
 import gameauthoring.creation.subforms.ISubFormView;
 
-public interface IUserMoverSFV extends ISubFormView{
+
+public interface IUserMoverSFV extends ISubFormView {
 
     double getSpeed ();
 

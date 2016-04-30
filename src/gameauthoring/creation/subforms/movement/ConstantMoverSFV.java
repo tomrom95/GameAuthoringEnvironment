@@ -27,7 +27,6 @@ public class ConstantMoverSFV extends SubFormView implements IConstantMoverSFV {
     private String myOrientationKey;
     private NumberEntryView mySpeed;
     private NumberEntryView myOrientation;
-    
 
     public ConstantMoverSFV () {
         setResourceBundleAndKey();
@@ -61,7 +60,9 @@ public class ConstantMoverSFV extends SubFormView implements IConstantMoverSFV {
     @Override
     protected void initView () {
         double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
-        myPane = getMyUIFactory().makeHBox(spacing, Pos.CENTER, mySpeed.draw(), myOrientation.draw());
+        myPane =
+                getMyUIFactory().makeHBox(spacing, Pos.CENTER, mySpeed.draw(),
+                                          myOrientation.draw());
         myPane.getStyleClass().add("mover");
     }
 
