@@ -89,7 +89,7 @@ public class SceneController {
         return myLevel.getAddableSprites().contains(profilable);
     }
 
-    protected ScaleRatio getRatio () {
+    public ScaleRatio getRatio () {
         return myRatio;
     }
 }

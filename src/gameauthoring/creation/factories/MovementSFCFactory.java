@@ -36,7 +36,7 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
     public ISubFormControllerSprite createSubFormController (String type, Object ... params) {
         if (type.equals("SMARTAIMOVER")) {
 
-            return new SmartAIMovementSFC();
+            return new SmartAIMovementSFC(getMyGame());
         }
         else if (type.equals("STATICMOVER")) {
             return new StaticMoverSFC();

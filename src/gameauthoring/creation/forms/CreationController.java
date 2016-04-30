@@ -141,6 +141,7 @@ public abstract class CreationController<T extends IProfilable> {
         populateViewsWithDefaults();
         saveItem();
         return item;
+
     }
 
     /**

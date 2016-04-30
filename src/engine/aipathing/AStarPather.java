@@ -1,11 +1,13 @@
 package engine.aipathing;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import engine.IGame;
 import util.Coordinate;
-import util.IBitMap;
+import util.ISampledBitMap;
 
 /**
  * Implementation of A* search based off of the pseudo-code provided
@@ -15,28 +17,25 @@ import util.IBitMap;
  *
  */
 public class AStarPather implements INodeGraphPather {
-    private IHeuristic myHeuristic;
-    //The below are initialized in the find path method;
-    private IPathNode myGoal;
-    private INodeGraph myGraph;
     
-
-    public AStarPather () {
+    private IHeuristic myHeuristic;
+    private IGame myGame;
+    
+    public AStarPather (IGame game) {
         myHeuristic = new StraightLineHeuristic();
+        myGame = game;
     }
     
     @Override
-    public List<Coordinate> findPathFor (IBitMap obstructionMap,
+    public List<Coordinate> findPathFor (ISampledBitMap obstructionMap,
                                          Coordinate start,
                                          Coordinate goal) {
-        INodeGraphFactory graphFactory = new GameGraphFactory(obstructionMap);
-        INodeGraph graph = graphFactory.getConstructedGraph();
+        INodeGraphFactory graphFactory = new GameGraphFactory(obstructionMap, getGame());
+        INodeGraph graph = graphFactory.getConstructedGraph(start, goal);
         IPathNode startNode = graph.getClosestNode(start);
         IPathNode goalNode = graph.getClosestNode(goal);
-        setGraph(graph);
-        setGoal(goalNode);
         
-        
+
         if (startNode == null || goalNode == null) {
             return new ArrayList<>();
         }
@@ -60,17 +59,21 @@ public class AStarPather implements INodeGraphPather {
         while (!openSet.isEmpty()) {
             IPathNode cur = openSet
                     .stream()
-                    .reduce( (x, y) -> estimatedCost.get(x) > estimatedCost.get(y) ? y : x)
+                    .reduce((x, y)
+                             -> estimatedCost.get(x) > estimatedCost.get(y) ? y : x)
                     .orElse(null);
-            openSet.remove(cur);
-            closedSet.add(cur);
             if (cur.equals(goalNode)) {
                 return goalPath(cur, startNode, parentMap);
             }
+            openSet.remove(cur);
+            closedSet.add(cur);
+
             for (IPathNode node : cur.getNeighbors()) {
+                
                 if (closedSet.contains(node)) {
                     continue;
                 }
+
                 double curEstCost =
                         nodeCostThusFar.get(cur) +
                                     Coordinate.distance(cur.getLocation(), node.getLocation());
@@ -83,6 +86,7 @@ public class AStarPather implements INodeGraphPather {
                 parentMap.put(node, cur);
                 nodeCostThusFar.put(node, curEstCost);
                 estimatedCost.put(node, curEstCost + heuristic.estimateCost(node, goalNode, graph));
+
             }   
         }
         return new ArrayList<>();
@@ -98,7 +102,7 @@ public class AStarPather implements INodeGraphPather {
             cur = parentMap.get(cur);
             toReturn.add(cur.getLocation());
         }
-        toReturn.add(start.getLocation());
+        Collections.reverse(toReturn);
         return toReturn;
     }
     
@@ -112,27 +116,17 @@ public class AStarPather implements INodeGraphPather {
     
     
     
-    
     public IHeuristic getHeuristic () {
         return myHeuristic;
     }
 
-    private IPathNode getGoal () {
-        return myGoal;
-    }
+   
 
-    private void setGoal (IPathNode myGoal) {
-        this.myGoal = myGoal;
-    }
+   
 
-    private INodeGraph getGraph () {
-        return myGraph;
+    private IGame getGame () {
+        return myGame;
     }
-
-    private void setGraph (INodeGraph myGraph) {
-        this.myGraph = myGraph;
-    }
-    
 
 
 }

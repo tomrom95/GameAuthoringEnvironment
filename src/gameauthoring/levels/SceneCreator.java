@@ -56,25 +56,13 @@ public class SceneCreator implements Glyph {
         HBox container = new HBox(10);
         container.getChildren().add(createLevelView());
         container.getChildren().add(createSpriteSelection());
-         
+
         return container;
     }
 
     @Override
     public Node draw () {
         return myView;
-    }
-
-    private void updatePlaceableTile () {
-        Tile[][] blocks = myRenderer.getGrids().getBlocks();
-        myLevel.initializePlaceableTiles(myRenderer.getGrids().getNumBlockRow(), myRenderer.getGrids()
-                .getNumBlockCol());
-        for (int row = 0; row < myRenderer.getGrids().getNumBlockRow(); row++) {
-            for (int col = 0; col < myRenderer.getGrids().getNumBlockCol(); col++) {
-                myLevel.getPlaceableTileManager().getPlaceableMap()
-                        .set(row, col, blocks[row][col].getTile().getFill() == Color.RED);
-            }
-        }
     }
 
     private Button placeableButton () {
@@ -84,12 +72,13 @@ public class SceneCreator implements Glyph {
     }
 
     private void handlePlaceableButton () {
-        
+
         myPlaceableEnable = !myPlaceableEnable;
-        if(myPlaceableEnable) {
+        if (myPlaceableEnable) {
             myGrid.setDisable(false);
             myGrid.setVisible(true);
-        } else {
+        }
+        else {
             disableGrid();
         }
         myButton.setText((myPlaceableEnable ? "Disable" : "Enable") + " Placeable View");
@@ -117,7 +106,7 @@ public class SceneCreator implements Glyph {
 
         Pane pane = new Pane();
         Pane levelPane = new Pane();
-        myGrid = new GridPane(); 
+        myGrid = new GridPane();
         myButton = placeableButton();
         myController.setBackground(DEFAULT_BACKGROUND);
         disableGrid();
@@ -128,8 +117,8 @@ public class SceneCreator implements Glyph {
         pane.getChildren().addAll(levelPane, myGrid, myButton);
         return pane;
     }
-    
-    public void disableGrid() {
+
+    public void disableGrid () {
         myGrid.setDisable(true);
         myGrid.setVisible(false);
     }
@@ -142,10 +131,16 @@ public class SceneCreator implements Glyph {
     private void handleMouseClick (MouseEvent e) {
         if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
             myController.uploadNewBackground();
-            render();
             myRenderer.updateNewTiles();
-           
+            updateBitMap();
+            render();
         }
+    }
+
+    private void updateBitMap () {
+        myLevel.initializePlaceableTiles(myRenderer.getGrids().getNumBlockRow(), myRenderer
+                .getGrids()
+                .getNumBlockCol());
     }
 
     public AuthoringRenderer getRenderer () {
@@ -156,7 +151,7 @@ public class SceneCreator implements Glyph {
         myRenderer.render();
         myRenderer.redrawBackground();
         myRenderer.scaleTitles();
-        
+
     }
 
     public double getAccordionWith () {
