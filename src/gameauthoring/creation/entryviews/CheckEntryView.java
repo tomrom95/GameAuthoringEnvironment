@@ -17,11 +17,7 @@ import util.StringParser;
  */
 public class CheckEntryView extends EntryView {
     private CheckBox myCheckBox;
-    private ResourceBundle myNumbers = ResourceBundle
-            .getBundle("defaults/numbers",
-                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
-    private StringParser myParser = new StringParser();
-
+ 
     public CheckEntryView (String label, String cssClass) {
         super(label, cssClass);
         myCheckBox = new CheckBox();
@@ -30,7 +26,7 @@ public class CheckEntryView extends EntryView {
 
     @Override
     protected void initContainer (String cssClass) {
-        double spacing = myParser.parseDouble(myNumbers.getString("HBoxSpacing"));
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
         setMyContainer(getMyFactory().makeHBox(spacing, Pos.CENTER, getLabel()));
         getMyContainer().getStyleClass().add(cssClass);
     }
