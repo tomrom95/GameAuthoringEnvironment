@@ -4,7 +4,6 @@ import java.util.ResourceBundle;
 import engine.AuthorshipData;
 import engine.definitions.concrete.SpriteDefinition;
 import splash.LocaleManager;
-import util.StringParser;
 import gameauthoring.creation.entryviews.CharacterEntryView;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
@@ -40,7 +39,6 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
     private NumberEntryView myRangeValue;
     private RemoveOption myRemove;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
-    private StringParser s;
 
     public UserFireSFV (AuthorshipData data, RemoveOption remove) {
         setResourceBundleAndKey();
@@ -50,7 +48,6 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
     }
 
     private void createEntryViews (AuthorshipData data) {
-        s = new StringParser();
         double width = getParser().parseDouble(getMyNumbers().getString("Width"));
         double height = getParser().parseDouble(getMyNumbers().getString("Height"));
 

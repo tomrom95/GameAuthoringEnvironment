@@ -16,14 +16,16 @@ import javafx.scene.input.TransferMode;
 /**
  * Used to create drag and drop reorder list view
  * For intra-list organization
- * @author RyanStPierre 
+ * 
+ * @author RyanStPierre
  *
  */
 
 public class WaveDragCell extends ListCell<WaveBlockDefinition> {
 
-    ListGraphicFactory myFactory = new ListGraphicFactory();
+    private ListGraphicFactory myFactory = new ListGraphicFactory();
     private XStream myXStream;
+    private final String myComma = ",";
 
     public WaveDragCell () {
 
@@ -70,6 +72,7 @@ public class WaveDragCell extends ListCell<WaveBlockDefinition> {
 
     /**
      * Returns the index information of the String
+     * 
      * @param string
      * @return
      */
@@ -79,19 +82,20 @@ public class WaveDragCell extends ListCell<WaveBlockDefinition> {
 
     /**
      * Returns the xml part of the copy
+     * 
      * @param string
      * @return
      */
     private String getLast (String data) {
-        return data.substring(dividerIndex(data) +1);
+        return data.substring(dividerIndex(data) + 1);
     }
-    
+
     private int dividerIndex (String data) {
-        return data.indexOf(",");
+        return data.indexOf(myComma);
     }
 
     private WaveBlockDefinition retrieve (String data) {
-        return (WaveBlockDefinition) myXStream.fromXML(data);
+        return (WaveBlockDefinition)myXStream.fromXML(data);
     }
 
     private void dragStart (MouseEvent event) {
@@ -105,7 +109,7 @@ public class WaveDragCell extends ListCell<WaveBlockDefinition> {
 
     private String serialize (WaveBlockDefinition item, int index) {
         String xml = myXStream.toXML(item);
-        return index + "," + xml;
+        return index + myComma + xml;
     }
 
     @Override
