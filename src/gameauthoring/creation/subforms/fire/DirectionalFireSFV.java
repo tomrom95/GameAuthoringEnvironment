@@ -43,6 +43,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
 
     public DirectionalFireSFV (IDefinitionCollection<SpriteDefinition> missiles,
                                RemoveOption remove) {
+        setMyTitle(MY_TITLE_KEY);
         setResourceBundleAndKey();
         double width = getParser().parseDouble(getMyNumbers().getString("Width"));
         double height = getParser().parseDouble(getMyNumbers().getString("Height"));
