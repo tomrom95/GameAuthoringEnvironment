@@ -33,4 +33,8 @@ public class Tile {
     public Rectangle getTile () {
         return myTile;
     }
+
+    public void setRed () {
+        myTile.setFill(Color.RED);       
+    }
 }

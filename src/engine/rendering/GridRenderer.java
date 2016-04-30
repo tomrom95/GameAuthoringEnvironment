@@ -53,6 +53,9 @@ public class GridRenderer implements IRenderer {
         for (int i = 0; i < myNumBlockRow; i++) {
             for (int j = 0; j < myNumBlockCol; j++) {
                 Tile tile = new Tile(myScale.scale(BLOCK_SIZE), i, j);
+                if (myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[i][j] == true) {
+                    tile.setRed();
+                }
                 tile.getTile().setOnMouseClicked(e -> handleMouseClick(tile));
                 myBlocks[i][j] = tile;
                 myPane.add(tile.getTile(), j, i);
@@ -62,11 +65,18 @@ public class GridRenderer implements IRenderer {
     }
 
     private void handleMouseClick (Tile tile) {
+
         if (checkClickable(tile)) {
             if (tile.getTile().getFill() == Color.TRANSPARENT) {
+                myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[tile
+                        .getRowPosition()][tile
+                                .getColPosition()] = true;
                 tile.getTile().setFill(Color.RED);
             }
             else if (tile.getTile().getFill() == Color.RED) {
+                myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[tile
+                        .getRowPosition()][tile
+                                .getColPosition()] = false;
                 tile.getTile().setFill(Color.TRANSPARENT);
             }
         }
@@ -106,6 +116,6 @@ public class GridRenderer implements IRenderer {
     }
 
     public void redraw () {
-       initializeGridLines();
+        initializeGridLines();
     }
 }

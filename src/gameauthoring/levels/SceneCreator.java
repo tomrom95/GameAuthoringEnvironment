@@ -117,7 +117,7 @@ public class SceneCreator implements Glyph {
 
         Pane pane = new Pane();
         Pane levelPane = new Pane();
-        myGrid = new GridPane();    
+        myGrid = new GridPane(); 
         myButton = placeableButton();
         myController.setBackground(DEFAULT_BACKGROUND);
         disableGrid();
