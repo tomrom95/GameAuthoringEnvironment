@@ -1,7 +1,14 @@
 package gameauthoring.levels.waves;
 
 import engine.ILevel;
+import gameauthoring.util.ErrorMessage;
 
+/**
+ * Responsible for settign the action of the spawner view
+ * 
+ * @author RyanStPierre
+ *
+ */
 public class SpawnerViewController {
 
     private SpawnerView mySpawnerView;
@@ -23,7 +30,8 @@ public class SpawnerViewController {
             myLevel.getWaveSetManager().setGap(mySpawnerView.getDelay());
         }
         catch (NumberFormatException e) {
-            //do nothing
+            ErrorMessage message = new ErrorMessage(e.getMessage());
+            message.showError();
         }
     }
 
