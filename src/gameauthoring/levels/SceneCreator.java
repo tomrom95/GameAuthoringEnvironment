@@ -1,13 +1,12 @@
 package gameauthoring.levels;
 
 import util.ScaleRatio;
-import util.Tile;
+import java.util.ResourceBundle;
 import engine.IGame;
 import engine.ILevel;
 import engine.rendering.AuthoringRenderer;
 import gameauthoring.util.Glyph;
 import gameauthoring.util.BasicUIFactory;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
@@ -15,8 +14,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 
 
 /**
@@ -28,11 +25,11 @@ import javafx.scene.paint.Color;
  *
  */
 public class SceneCreator implements Glyph {
-    private final static String DEFAULT_BACKGROUND = "images/grass.jpg";
-    private final static int DEFAULT_WIDTH = 700;
-    private final static int DEFAULT_HEIGHT = 400;
-
-    private IGame gameModel;
+    
+    private static final String DEFAULT_BACKGROUND = "images/grass.jpg";
+    private static final int DOUBLE_CLICK = 2;
+    private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/scene_creator");
+    private IGame myGameModel;
     private AuthoringRenderer myRenderer;
     private Node myView;
     private ILevel myLevel;
@@ -44,7 +41,7 @@ public class SceneCreator implements Glyph {
     private Button myButton;
 
     public SceneCreator (IGame model, ILevel level, ScaleRatio scale) {
-        gameModel = model;
+        myGameModel = model;
         myLevel = level;
         myScale = scale;
         myController = new SceneController(myLevel, scale);
@@ -53,7 +50,7 @@ public class SceneCreator implements Glyph {
     }
 
     private Node createContainer () {
-        HBox container = new HBox(10);
+        HBox container = new HBox(Double.parseDouble(myBundle.getString("Cushion")));
         container.getChildren().add(createLevelView());
         container.getChildren().add(createSpriteSelection());
 
@@ -92,7 +89,7 @@ public class SceneCreator implements Glyph {
      * @return
      */
     private Node createSpriteSelection () {
-        mySideBar = new AuthoringSideBar(gameModel, myLevel, myRenderer, myScale);
+        mySideBar = new AuthoringSideBar(myGameModel, myLevel, myRenderer, myScale);
         return mySideBar.draw();
     }
 
@@ -104,13 +101,15 @@ public class SceneCreator implements Glyph {
      */
     private Node createLevelView () {
 
+        
         Pane pane = new Pane();
         Pane levelPane = new Pane();
         myGrid = new GridPane();
         myButton = placeableButton();
         myController.setBackground(DEFAULT_BACKGROUND);
         disableGrid();
-        myLevel.setBackgroundImageSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        myLevel.setBackgroundImageSize(Double.parseDouble(myBundle.getString("Width")),
+                                       Double.parseDouble(myBundle.getString("Height")));
         myRenderer = new AuthoringRenderer(myLevel, levelPane, myGrid, myScale);
         myRenderer.render();
         levelPane.setOnMouseClicked(e -> handleMouseClick(e));
@@ -129,7 +128,7 @@ public class SceneCreator implements Glyph {
      * @param e
      */
     private void handleMouseClick (MouseEvent e) {
-        if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+        if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == DOUBLE_CLICK) {
             myController.uploadNewBackground();
             myRenderer.updateNewTiles();
             updateBitMap();

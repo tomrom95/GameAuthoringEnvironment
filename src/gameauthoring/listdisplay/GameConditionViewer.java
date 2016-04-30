@@ -1,34 +1,21 @@
 package gameauthoring.listdisplay;
 
 import java.util.ResourceBundle;
-import engine.Game;
 import engine.IGame;
 import engine.conditions.ICondition;
 import gameauthoring.creation.cellviews.CardCell;
 import gameauthoring.creation.cellviews.DeleteableProfileCellView;
 import gameauthoring.tabs.ITabViewer;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import util.BundleOperations;
 
 
 public class GameConditionViewer extends ConditionViewer implements ITabViewer {
 
-    
+    private static final double HALF = 0.5;
     private static final String PATH = "defaults/game_condition_view";
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/game_cond_view");
 
@@ -86,7 +73,7 @@ public class GameConditionViewer extends ConditionViewer implements ITabViewer {
     }
 
     private double half (double input) {
-        return input * .5;
+        return input * HALF;
     }
 
     protected ObservableList<String> getList () {

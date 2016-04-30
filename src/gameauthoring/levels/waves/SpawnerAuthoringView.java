@@ -1,6 +1,5 @@
 package gameauthoring.levels.waves;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 import engine.IGame;
 import engine.ILevel;
@@ -10,7 +9,6 @@ import gameauthoring.util.Glyph;
 import gameauthoring.util.UIFactory;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import splash.LocaleManager;
 import util.ScaleRatio;
@@ -26,14 +24,19 @@ import util.ScaleRatio;
 
 public class SpawnerAuthoringView implements Glyph {
 
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    private ResourceBundle myLang =
+            ResourceBundle.getBundle("languages/labels",
+                                     LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     private VBox myPane = new VBox();
     private UIFactory myFactory = new BasicUIFactory();
     private WaveOptionView myWaveOptions;
     private SpawnerView mySpawner;
 
-    public SpawnerAuthoringView (IGame game, ILevel level, AuthoringRenderer renderer, ScaleRatio scale) {
+    public SpawnerAuthoringView (IGame game,
+                                 ILevel level,
+                                 AuthoringRenderer renderer,
+                                 ScaleRatio scale) {
         myWaveOptions = new WaveOptionView(game);
         mySpawner = new SpawnerView(game, level, renderer, scale);
         initPane();
@@ -45,7 +48,7 @@ public class SpawnerAuthoringView implements Glyph {
         myPane.setAlignment(Pos.TOP_CENTER);
         myPane.getChildren().add(myFactory.createSubTitleLabel(myLang.getString("SpawnerTitle")));
         myPane.getChildren().add(mySpawner.draw());
-        myPane.getChildren().add(myWaveOptions.draw());      
+        myPane.getChildren().add(myWaveOptions.draw());
     }
 
     @Override
