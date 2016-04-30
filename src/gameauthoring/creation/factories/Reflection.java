@@ -49,7 +49,7 @@ public class Reflection {
         } catch (InvocationTargetException e){
             throw new ReflectionException(e, "Error in constructor for %s:\n%s", name, e.getTargetException().getMessage());
         } catch (Exception e) {
-            throw new ReflectionException(e, "No matching public constructor for %s. %s", name, e.getMessage());
+            throw new ReflectionException(e, "No matching public constructor for %s", name);
         }
     }
 
