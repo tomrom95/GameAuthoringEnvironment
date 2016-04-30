@@ -85,14 +85,14 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacing"));
         HBox paramsBox =
                 getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                          myWaitTime.draw() );
+                                          myWaitTime.draw());
         HBox removeBox = getMyUIFactory().makeHBox(spacing, Pos.TOP_RIGHT, myRemove.draw());
         HBox rangeBox =
                 getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myIsRanged.draw(),
                                           myRangeValue.draw(), myTargets.draw());
 
-        myPane.add(paramsBox, 0, 0,2,1);
-        myPane.add(removeBox, 2, 0,1,1);
+        myPane.add(paramsBox, 0, 0, 2, 1);
+        myPane.add(removeBox, 2, 0, 1, 1);
         myPane.add(rangeBox, 0, 1);
         myPane.getStyleClass().add("firer");
     }

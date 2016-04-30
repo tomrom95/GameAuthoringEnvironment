@@ -12,6 +12,7 @@ import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 
@@ -24,7 +25,7 @@ import javafx.scene.layout.HBox;
  */
 public class DirectionalFireSFV extends SubFormView implements IDirectionalFireSFV {
 
-    private HBox myPane;
+    private GridPane myPane = new GridPane();
     private ResourceBundle myLabel;
     private String myAngleKey;
     private String myWaitTimeKey;
@@ -47,7 +48,8 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         double height = s.parseDouble(getMyNumbers().getString("Height"));
         myRemove = remove;
         myAngle = new NumberEntryView(myAngleKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
-        myWaitTime = new NumberEntryView(myWaitTimeKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
+        myWaitTime =
+                new NumberEntryView(myWaitTimeKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
         myMissileSelectionView =
                 new SingleChoiceEntryView<>(myProjectileKey, missiles.getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
@@ -55,7 +57,8 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         myIsRanged =
                 new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
         myRangeValue =
-                new NumberEntryView(myRangeValueKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
+                new NumberEntryView(myRangeValueKey, width, height,
+                                    AuthoringView.DEFAULT_ENTRYVIEW);
 
         initView();
         initBinding();
@@ -78,11 +81,18 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
 
     @Override
     protected void initView () {
-        double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacing"));
-        myPane =
+        double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacingDirectional"));
+        HBox paramsBox =
                 getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                          myWaitTime.draw(), myAngle.draw(),
-                                          myRangeValue.draw(), myIsRanged.draw(), myRemove.draw());
+                                          myWaitTime.draw());
+        HBox removeBox = getMyUIFactory().makeHBox(spacing, Pos.TOP_RIGHT, myRemove.draw());
+
+        HBox rangeBox = getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT,
+                                                  myIsRanged.draw(), myRangeValue.draw(),
+                                                  myAngle.draw());
+        myPane.add(paramsBox, 0, 0, 2, 1);
+        myPane.add(removeBox, 2, 0, 1, 1);
+        myPane.add(rangeBox, 0, 1);
         myPane.getStyleClass().add("firer");
     }
 
