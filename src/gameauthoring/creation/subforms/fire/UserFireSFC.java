@@ -29,9 +29,10 @@ public class UserFireSFC extends RemovableFireSFC {
     public UserFireSFC (IGame game, FiringSFC sfc) {
         super(sfc);
         init(game, new UserFirerDefinition(game));
+        initializeFields();
 
     }
-
+  
     public UserFireSFC (IGame game,
                         FiringSFC myFiringSFC,
                         UserFirerDefinition userFirerDefinition) {
