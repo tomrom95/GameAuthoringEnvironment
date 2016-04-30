@@ -30,4 +30,11 @@ public class AutoTrueBitMap extends BitMapAbstract  {
         }
         return getBitMap()[row][column];
     }
+    
+    @Override
+    public void set (int row, int column, boolean value) {
+        if(inBounds(row,column)){
+            getBitMap()[row][column] = value;
+        }
+    }
 }
