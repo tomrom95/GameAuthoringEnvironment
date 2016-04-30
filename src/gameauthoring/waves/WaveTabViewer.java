@@ -117,4 +117,10 @@ public class WaveTabViewer implements Glyph, ITabViewer {
         myBlockList.clear();
     }
 
+    @Override
+    public void rescale (double width, double height) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

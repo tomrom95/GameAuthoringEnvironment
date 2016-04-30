@@ -25,12 +25,12 @@ import javafx.scene.layout.VBox;
 import util.BundleOperations;
 
 
-public class GameConditionView extends ConditionView implements ITabViewer {
+public class GameConditionViewer extends ConditionViewer implements ITabViewer {
 
     private static final String PATH = "defaults/game_condition_view";
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/game_cond_view");
 
-    public GameConditionView (IGame game) {
+    public GameConditionViewer (IGame game) {
         super(game.getConditionManager().getConditionListProperty());
         init();
         new GameConditionController(this, game);
@@ -97,6 +97,12 @@ public class GameConditionView extends ConditionView implements ITabViewer {
 
     public void setCenter (Node specific) {
         add(specific, 1, 2, 1, 1);
+    }
+
+    @Override
+    public void rescale (double width, double height) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

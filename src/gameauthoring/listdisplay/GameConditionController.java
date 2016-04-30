@@ -13,7 +13,7 @@ public class GameConditionController extends ConditionController {
     
     private ConditionViewFactory myFactory;
 
-    public GameConditionController (ConditionView conditionView, IGame game) {
+    public GameConditionController (ConditionViewer conditionView, IGame game) {
         super(conditionView);
         myFactory = new ConditionViewFactory(game);
     }

@@ -2,13 +2,14 @@ package gameauthoring.tabs;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.ResourceBundle;
 import com.dooapp.xstreamfx.FXConverters;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.IGame;
 import gameauthoring.creation.factories.TabViewFactory;
-import gameauthoring.listdisplay.GameConditionView;
+import gameauthoring.listdisplay.GameConditionViewer;
 import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.ErrorMessage;
 import gameauthoring.waves.WaveTabViewer;
@@ -22,7 +23,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -47,16 +47,6 @@ import splash.MainUserInterface;
 
 public class AuthoringView implements IAuthoringView {
 
-    private TabViewFactory<ITabViewer> myTabFactory;
-
-    private GameTabViewer myGameTabViewer;
-    private CreationTabViewer myCreationTabViewer;
-    private SceneTabViewer mySceneTabViewer;
-    private GameConditionView myConditionView;
-    private WaveTabViewer myWaveTabView;
-    private BorderPane myLayout;
-    private IGame myGame;
-    private Stage myStage;
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
     public static final String STYLESHEET = "custom.css";
@@ -65,14 +55,19 @@ public class AuthoringView implements IAuthoringView {
     private BasicUIFactory myUIFactory;
     public static final String HOME = "Home";
     public static final String SAVE = "Save";
+    private TabViewFactory<ITabViewer> myTabFactory;
+    private List<ITabViewer> myTabViewers;
+    private BorderPane myLayout;
+    private IGame myGame;
+    private Stage myStage;
     private ResourceBundle myLabel;
 
     public AuthoringView () {
         setResourceBundle();
         GameFactory gameFactory = new GameFactory();
         myGame = gameFactory.createGame();
-        myUIFactory = new BasicUIFactory();
         myTabFactory = new TabViewFactory<ITabViewer>(myGame);
+        myTabViewers = myTabFactory.createTabViewers();
     }
 
     private void setResourceBundle () {
@@ -84,25 +79,10 @@ public class AuthoringView implements IAuthoringView {
         myGame = game;
     }
 
-    @Override
-    public GameTabViewer getGameTabViewer () {
-        return myGameTabViewer;
-    }
-
-    @Override
-    public CreationTabViewer getCreationTabViewer () {
-        return myCreationTabViewer;
-    }
-
-    @Override
-    public SceneTabViewer getLevelTabViewer () {
-        return mySceneTabViewer;
-    }
 
     @Override
     public void init (Stage s) {
         myStage = s;
-        initializeTabViewers();
         myLayout = new BorderPane();
         myLayout.setCenter(createContents());
         myLayout.setTop(createMenuBar());
@@ -135,15 +115,7 @@ public class AuthoringView implements IAuthoringView {
     }
 
     private void rescale (double width, double height) {
-        mySceneTabViewer.rescale(width, height);
-    }
-
-    private void initializeTabViewers () {
-        myGameTabViewer = new GameTabViewer(getMyGame());
-        myCreationTabViewer = new CreationTabViewer(getMyGame());
-        myConditionView = new GameConditionView(getMyGame());
-        mySceneTabViewer = new SceneTabViewer(getMyGame());
-        myWaveTabView = new WaveTabViewer(getMyGame());
+        myTabViewers.forEach(tab -> tab.rescale(width, height));
     }
 
     private MenuBar createMenuBar () {

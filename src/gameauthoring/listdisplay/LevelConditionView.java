@@ -22,7 +22,7 @@ import util.BundleOperations;
  *
  */
 
-public class LevelConditionView extends ConditionView {
+public class LevelConditionView extends ConditionViewer {
 
     ResourceBundle myBundle = ResourceBundle.getBundle("defaults/level_cond");
     
