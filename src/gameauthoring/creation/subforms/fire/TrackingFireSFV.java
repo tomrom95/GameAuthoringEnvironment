@@ -16,6 +16,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -29,7 +30,7 @@ import javafx.scene.layout.HBox;
  */
 public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
-    private HBox myPane;
+    private VBox myPane;
     private ResourceBundle myLabel;
     private String myWaitTimeKey;
     private String myTargetsKey;
@@ -39,7 +40,6 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     private NumberEntryView myWaitTime;
     private SingleChoiceEntryView<SpriteGroup> myTargets;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
-    private BasicUIFactory myUIFactory = new BasicUIFactory();
     private RemoveOption myRemove;
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
@@ -74,15 +74,16 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         myTargetsKey = myLabel.getString("TargetsKey");
         myRangedKey = myLabel.getString("RangedKey");
         myRangeValueKey = myLabel.getString("RangeValueKey");
+        myMissileKey = myLabel.getString("MissileKey");
     }
 
     @Override
     protected void initView () {
+        HBox box = new HBox(myRemove.draw(),myMissileSelectionView.draw(),myWaitTime.draw(),myTargets.draw());
+        HBox boxTwo =  new HBox(myIsRanged.draw(),myRangeValue.draw());
         myPane =
-                getMyUIFactory().makeHBox(20, Pos.TOP_LEFT,  myRemove.draw(),myMissileSelectionView.draw(),
-                                          myWaitTime.draw(), myTargets.draw(),
-                                          myRangeValue.draw(), myIsRanged.draw());
-        myPane.getStyleClass().add("firer");
+                getMyUIFactory().makeVBox(20, Pos.CENTER, box, boxTwo);
+        getMyUIFactory().addStyling(myPane, "Firer");
     }
 
     @Override
@@ -120,8 +121,6 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     public void setTargetsChoice (SpriteGroup targets) {
         this.myTargets.setSelected(targets);
     }
-
-  
 
     @Override
     public double getMyRange () {

@@ -45,13 +45,13 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     protected Node createSpriteCell (E profile) {
         HBox container = getHBox(profile);
-        setImageBind(profile);
+//        setImageBind(profile);
         return container;
     }
 
-    private void setImageBind (E profile) {
-        profile.getProfile().imageChanged().addListener(e -> updateItem(profile, false));
-    }
+//    private void setImageBind (E profile) {
+//        profile.getProfile().imageChanged().addListener(e -> updateItem(profile, false));
+//    }
 
     /**
      * For subclasses to alter the HBox not the node

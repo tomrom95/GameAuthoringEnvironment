@@ -42,8 +42,8 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
                                RemoveOption remove) {
         setResourceBundleAndKey();
         myRemove = remove;
-        myAngle = new NumberEntryView(myAngleKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
-        myWaitTime = new NumberEntryView(myWaitTimeKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myAngle = new NumberEntryView(myAngleKey, 100, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        myWaitTime = new NumberEntryView(myWaitTimeKey, 100, 30, AuthoringView.DEFAULT_ENTRYVIEW);
         myMissileSelectionView =
                 new SingleChoiceEntryView<>(myProjectileKey, missiles.getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
