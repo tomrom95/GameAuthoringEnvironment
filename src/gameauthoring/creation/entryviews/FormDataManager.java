@@ -4,7 +4,6 @@ import java.util.*;
 import gameauthoring.util.ErrorMessage;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
-import splash.LocaleManager;
 
 
 /**
