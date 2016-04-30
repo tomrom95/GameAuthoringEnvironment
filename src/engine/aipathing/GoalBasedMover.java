@@ -11,7 +11,7 @@ import engine.interactionevents.MouseIOEvent;
 import engine.modules.Mover;
 import engine.sprite.ISprite;
 import util.Coordinate;
-import util.IBitMap;
+import util.ISampledBitMap;
 import util.TimeDuration;
 
 
@@ -23,19 +23,17 @@ import util.TimeDuration;
  *
  */
 public class GoalBasedMover extends Mover {
-
+    
     private INodeGraphPather myPather;
     private IGame myGame;
-    //private ISpriteGroup myGoalGroup;
     private IOrientationFinder myRotationStrategy;
 
     public GoalBasedMover (Positionable positionable,
                            IGame game,
                            boolean shouldRotate) {
         super(positionable);
-        myPather = new AStarPather();
+        myPather = new AStarPather(game);
         myGame = game;
-        //myGoalGroup = goalGroup;
         myRotationStrategy = getRotationStrategy(shouldRotate);
     }
 
@@ -49,7 +47,7 @@ public class GoalBasedMover extends Mover {
         List<Coordinate> goalPath = myPather.findPathFor(obstructionMap(), getLocation(), goal);
         Coordinate targetCoordinate =
                 furthestReachablePoint(getLocation(), goalPath,
-                                       distance(getSpeed(), durationToDouble(duration)));
+                                       distance(getSpeed(), duration.getMillis()));
         getParent().setLocation(targetCoordinate);
         getParent().setOrientation(myRotationStrategy.angleFromCoordinates(getLocation(),
                                                                            targetCoordinate));
@@ -73,6 +71,7 @@ public class GoalBasedMover extends Mover {
         return curLoc;
     }
 
+
     /**
      * Will generate a coordinate starting from the first coordinate
      * in the direction of the second coordinate as far as distance
@@ -84,16 +83,17 @@ public class GoalBasedMover extends Mover {
      * @return
      */
     private Coordinate linearInterp (Coordinate start, Coordinate end, double distance) {
-        double deltaX = start.getX() - end.getX();
+        double deltaX = end.getX() - start.getX();
         double deltaY = end.getY() - start.getY();
         if (deltaX == 0 && deltaY == 0) {
             return start;
         }
         double normalizeDistanceConstant =
                 Math.sqrt(Math.pow(distance, 2) / (Math.pow(deltaX, 2) + Math.pow(deltaY, 2)));
-        
-        return new Coordinate(start.getX() + deltaX * normalizeDistanceConstant,
-                              start.getY() + deltaY * normalizeDistanceConstant);
+        double proposedX = start.getX() + deltaX * normalizeDistanceConstant;
+        double proposedY = start.getY() + deltaY * normalizeDistanceConstant;
+
+        return new Coordinate(proposedX, proposedY);
     }
 
     /**
@@ -141,7 +141,7 @@ public class GoalBasedMover extends Mover {
         // do nothing
     }
 
-    private IBitMap obstructionMap () {
+    private ISampledBitMap obstructionMap () {
         return getGame().getObstructionManager().getObstructionMap();
     }
 

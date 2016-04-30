@@ -143,6 +143,7 @@ public abstract class CreationController<T extends IProfilable> {
         populateViewsWithDefaults();
         saveItem();
         return item;
+
     }
 
     /**
@@ -233,7 +234,7 @@ public abstract class CreationController<T extends IProfilable> {
     protected ResourceBundle getMyResources () {
         return myResources;
     }
-    
+
     protected AuthorshipData getMyData () {
         return myData;
     }

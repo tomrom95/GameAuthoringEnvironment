@@ -22,7 +22,6 @@ public class EventSFV extends SubFormView implements IEventSFV {
     private HBox myContainer;
     private RemoveOption myRemove;
 
-    
     public EventSFV (ObservableList<ProfileDisplay> events, RemoveOption remove) {
         setResourceBundleAndKey();
         myRemove = remove;
@@ -31,7 +30,7 @@ public class EventSFV extends SubFormView implements IEventSFV {
                                                              AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
     }
-    
+
     private void setResourceBundleAndKey () {
         myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
                 .getInstance().getCurrentLocaleProperty().get());
@@ -57,10 +56,11 @@ public class EventSFV extends SubFormView implements IEventSFV {
 
     @Override
     protected void initView () {
-        myContainer = getMyUIFactory().makeHBox(20, Pos.CENTER, myEvents.draw(),myRemove.draw());
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
+        myContainer = getMyUIFactory().makeHBox(spacing, 
+                                                Pos.CENTER, 
+                                                myEvents.draw(), 
+                                                myRemove.draw());
     }
-
-
-    
 
 }
