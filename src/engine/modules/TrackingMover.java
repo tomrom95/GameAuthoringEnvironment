@@ -20,11 +20,10 @@ import util.TimeDuration;
  * This class builds a module that follows the closest enemy
  *
  * @author Dhrumil Timko
-
+ * 
  */
 public class TrackingMover extends Mover {
 
-    private IAttribute mySpeed;
     private List<SpriteType> myEnemyList;
     private Positionable mySprite;
     private EnemyTracker myTracker;
@@ -36,7 +35,7 @@ public class TrackingMover extends Mover {
                           Positionable sprite) {
         super(sprite);
         myGame = game;
-        mySpeed = new Attribute(speed, AttributeType.SPEED);
+        setSpeed(speed);
         myEnemyList = spriteGroup.getSpriteTypes();
         mySprite = sprite;
         myTracker = new EnemyTracker();
@@ -44,13 +43,15 @@ public class TrackingMover extends Mover {
 
     @Override
     public void update (TimeDuration duration) {
-        setOrientation(myTracker.calculateOrientationToClosestEnemy(mySprite.getLocation(), myPotentialTargets()));
+        setOrientationFromTracker(myTracker
+                .calculateOrientationToClosestEnemy(mySprite.getLocation(), myPotentialTargets()));
         move(duration);
     }
 
     private List<ISprite> myPotentialTargets () {
+
         return myGame.getLevelManager().getCurrentLevel().getSprites().stream()
-                .filter(sprite -> myEnemyList.contains(sprite))
+                .filter(sprite -> myEnemyList.contains(sprite.getType()))
                 .collect(Collectors.toList());
     }
 
@@ -66,7 +67,6 @@ public class TrackingMover extends Mover {
     @Override
     protected List<IAttribute> getSpecificAttributes () {
         List<IAttribute> myList = new ArrayList<IAttribute>();
-        myList.add(mySpeed);
         return myList;
 
     }

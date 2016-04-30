@@ -62,8 +62,8 @@ public class TrackingFirer extends Firer {
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
                                               mySprite.getLocation().getY()));
+            bullet.getMovementStrategy().setOrientationFromTracker(getTracker().calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
 
-            bullet.getMovementStrategy().setOrientation(getTracker().calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
             getGame().bufferedAdd(bullet);
             getFiredSprites().add(bullet);
             myTimeSinceFire.setToZero();
@@ -72,6 +72,7 @@ public class TrackingFirer extends Firer {
     }
 
     private List<ISprite> getTargets () {
+
         return getGame().getLevelManager().getCurrentLevel().getSprites().stream()
                 .filter(sprite -> myTargets.contains(sprite.getType()))
                 .collect(Collectors.toList());

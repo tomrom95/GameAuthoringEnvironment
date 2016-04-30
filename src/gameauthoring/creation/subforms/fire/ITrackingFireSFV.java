@@ -2,7 +2,7 @@ package gameauthoring.creation.subforms.fire;
 
 import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;
-import gameauthoring.creation.subforms.ISubFormView;
+
 
 /**
  * Allows users to define properties of a given TrackingFirer ModuleDefinition for a sprite
@@ -10,11 +10,14 @@ import gameauthoring.creation.subforms.ISubFormView;
  * @author Joe Lilien Timko
  *
  */
-public interface ITrackingFireSFV  extends IFiringSFV{
+public interface ITrackingFireSFV extends IFiringSFV {
 
+    SpriteGroup getTargetsChoice ();
 
-    SpriteGroup getTargetsCoice ();
-
-    void populateWithData (SpriteDefinition missile, SpriteGroup target, double waitTime, double range, boolean isRanged);
+    void populateWithData (SpriteDefinition missile,
+                           SpriteGroup target,
+                           double waitTime,
+                           double range,
+                           boolean isRanged);
 
 }

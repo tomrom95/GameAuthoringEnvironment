@@ -25,8 +25,9 @@ import javafx.scene.layout.Pane;
  *
  */
 public class SceneCreator implements Glyph {
+    
     private static final String DEFAULT_BACKGROUND = "images/grass.jpg";
-
+    private static final int DOUBLE_CLICK = 2;
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/scene_creator");
     private IGame myGameModel;
     private AuthoringRenderer myRenderer;
@@ -100,6 +101,7 @@ public class SceneCreator implements Glyph {
      */
     private Node createLevelView () {
 
+        
         Pane pane = new Pane();
         Pane levelPane = new Pane();
         myGrid = new GridPane();
@@ -126,12 +128,18 @@ public class SceneCreator implements Glyph {
      * @param e
      */
     private void handleMouseClick (MouseEvent e) {
-        if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+        if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == DOUBLE_CLICK) {
             myController.uploadNewBackground();
-            render();
             myRenderer.updateNewTiles();
-
+            updateBitMap();
+            render();
         }
+    }
+
+    private void updateBitMap () {
+        myLevel.initializePlaceableTiles(myRenderer.getGrids().getNumBlockRow(), myRenderer
+                .getGrids()
+                .getNumBlockCol());
     }
 
     public AuthoringRenderer getRenderer () {

@@ -71,14 +71,5 @@ public class CreationListView<E extends IProfilable> implements ICreationListVie
         myListView.setItems(items);
     }
 
-    @Override
-    public void refreshItems () {
-        ObservableList<E> items = this.myListView.getItems();
-        E selectedItem = this.getSelectedItem();
-        this.myListView.setItems(null);
-        this.myListView.setItems(items);
-        this.setSelectedItem(selectedItem);
-
-    }
 
 }

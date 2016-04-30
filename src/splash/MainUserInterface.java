@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import facebookutil.JavaSocial;
 import facebookutil.SocialType;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.BasicUIFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -76,6 +77,7 @@ public class MainUserInterface {
         ObservableList<Locale> locales = FXCollections
                 .observableArrayList(LocaleManager.getInstance().getSupportedLocales());
         ComboBox<Locale> selector = new ComboBox<>(locales);
+        new BasicUIFactory().addStyling(selector, "LangSelect");
         selector.setValue(LocaleManager.getInstance().getCurrentLocaleProperty().get());
         selector.valueProperty().addListener(event -> updateLocale(selector));
         return selector;

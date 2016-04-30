@@ -41,5 +41,9 @@ public class DefinitionCollection<E> implements IDefinitionCollection<E> {
         myItems.add(item);
     }
     
+    @Override
+    public void removeItem (E item) {
+        myItems.remove(item);
+    }
 
 }

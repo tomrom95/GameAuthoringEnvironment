@@ -109,8 +109,8 @@ public class OnScreenSprite implements Draggable, Glyph {
     private boolean checkPlaceableTile (DragEvent e){
         double halfHeight = (0.5) * (mySprite.getBounds().getBottom() - mySprite.getBounds().getTop());
         double halfWidth = (0.5) * (mySprite.getBounds().getRight() - mySprite.getBounds().getLeft());
-        for(int r = (int)((e.getY()-halfHeight)/25); r < (int)((e.getY() + halfHeight)/25); r++){       
-            for (int c = (int)((e.getX()-halfWidth)/25); c < (int)((e.getX()+halfWidth)/25); c++){
+        for(int r = (int)((e.getY()-halfHeight)/ levelView.getGrids().getCurrentBlockSize()); r < (int)((e.getY() + halfHeight)/levelView.getGrids().getCurrentBlockSize()); r++){       
+            for (int c = (int)((e.getX()-halfWidth)/levelView.getGrids().getCurrentBlockSize()); c < (int)((e.getX()+halfWidth)/levelView.getGrids().getCurrentBlockSize()); c++){
                 if(levelView.getLevel().getPlaceableTileManager().getPlaceableMap().getBitMap()[r][c]){
                     return false;
                 }

@@ -259,10 +259,14 @@
 	-fx-text-fill: darkcyan;
 	-fx-font-familly: "Helvetica";
 	-fx-font-weight: bold;
-	-fx-font-size: 32
+	-fx-font-size: 32;
+	-fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+	-fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 	
-
+	
 }
+
+
 .multi_choice {
 	-fx-padding: 0 0 10 0;
 	-fx-background-radius: 5.0; 
@@ -354,12 +358,14 @@
 	
 }
 
-.title_label {
+.titled_label {
 
 	-fx-text-fill: navy;
-	-fx-font-familly: "Helvetica";
+	-fx-font-family: "Helvetica";
 	-fx-font-weight: bold;
 	-fx-font-size: 36;
+	-fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+	
 	
 }
 .defaultTextEntry {

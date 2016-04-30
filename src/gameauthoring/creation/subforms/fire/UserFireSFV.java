@@ -4,7 +4,6 @@ import java.util.ResourceBundle;
 import engine.AuthorshipData;
 import engine.definitions.concrete.SpriteDefinition;
 import splash.LocaleManager;
-import util.StringParser;
 import gameauthoring.creation.entryviews.CharacterEntryView;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
@@ -15,11 +14,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 public class UserFireSFV extends SubFormView implements IUserFireSFV {
 
-    private GridPane myPane = new GridPane();
+    private VBox myPane;
     private ResourceBundle myLabel;
     private String myAngleKey;
     private String myWaitTimeKey;
@@ -40,9 +40,11 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
     private NumberEntryView myRangeValue;
     private RemoveOption myRemove;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
-    private StringParser s;
+    private static final String MY_TITLE_KEY = "USERFIRER";
+
 
     public UserFireSFV (AuthorshipData data, RemoveOption remove) {
+        setMyTitle(MY_TITLE_KEY);
         setResourceBundleAndKey();
         myRemove = remove;
         createEntryViews(data);
@@ -50,14 +52,12 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
     }
 
     private void createEntryViews (AuthorshipData data) {
-        s = new StringParser();
-        double width = s.parseDouble(getMyNumbers().getString("Width"));
-        double height = s.parseDouble(getMyNumbers().getString("Height"));
 
+        double width = getParser().parseDouble(getMyNumbers().getString("Width"));
+        double height = getParser().parseDouble(getMyNumbers().getString("Height"));
         myMissileSelectionView =
                 new SingleChoiceEntryView<>(myProjectileKey, data.getMyCreatedMissiles().getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
-
         myAngle =
                 new NumberEntryView(myAngleKey, width, height,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
@@ -98,7 +98,6 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
         myRangedKey = myLabel.getString("RangedKey");
         myRangeValueKey = myLabel.getString("RangeValueKey");
         myProjectileKey = myLabel.getString("ProjectileKey");
-
     }
 
     @Override
@@ -108,26 +107,17 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
 
     @Override
     protected void initView () {
-        double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacing"));
-
-        myPane.add(myIncrease.draw(), 0, 0);
-        myPane.add(myDecrease.draw(), 1, 0);
-        myPane.add(myFire.draw(), 2, 0);
-        myPane.add(myRemove.draw(), 3, 0);
-        
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
+        HBox header = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(), getSubTitleDisplay());
+        HBox angles = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myDecrease.draw(), myIncrease.draw(), myFire.draw());
         HBox fireParams =
-                getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                          myAngle.draw(), myAngleStep.draw(),
-                                          myWaitTime.draw()
-                                          );
-
+                getMyUIFactory().makeHBox(spacing, Pos.CENTER, myMissileSelectionView.draw(),
+                                          myAngle.draw(), myAngleStep.draw());
         HBox rangeParams =
-                getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myIsRanged.draw(), myRangeValue.draw()
-                                          );
-        myPane.add(fireParams, 0, 1, 3, 1);
-        myPane.add(rangeParams, 0, 2, 3, 1);
-        myPane.getStyleClass().add("firer");
-
+                getMyUIFactory().makeHBox(spacing, Pos.CENTER, myWaitTime.draw(),
+                                          myIsRanged.draw(), myRangeValue.draw());
+        myPane = getMyUIFactory().makeVBox(spacing, Pos.CENTER, header,angles,fireParams,rangeParams);
+        getMyUIFactory().addStyling(myPane, "Firer");
     }
 
     @Override

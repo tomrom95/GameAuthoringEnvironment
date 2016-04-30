@@ -23,7 +23,7 @@ public class FormData {
         List<StringProperty> valuesP = new ArrayList<StringProperty>();
         for (String value : values) {
             valuesP.add(new SimpleStringProperty(value));
-        }        
+        }
         init(key, valuesP);
 
     }
@@ -33,7 +33,6 @@ public class FormData {
         valuesP.add(new SimpleStringProperty(value));
         init(key, valuesP);
     }
-
 
     private void init (String key, List<StringProperty> values) {
         myKey = key;

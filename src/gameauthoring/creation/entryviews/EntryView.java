@@ -1,9 +1,12 @@
 package gameauthoring.creation.entryviews;
 
+import java.util.ResourceBundle;
 import gameauthoring.util.BasicUIFactory;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import splash.LocaleManager;
+import util.StringParser;
 
 
 /**
@@ -27,16 +30,21 @@ public abstract class EntryView implements IEntryView {
     private Label myLabel;
     private Pane myContainer;
     private BasicUIFactory myFactory = new BasicUIFactory();
-    private double containerSpacing = 10;
+    private ResourceBundle myNumbers;
+   
+    private StringParser myParser; 
 
     public EntryView (String label, String cssClass) {
+        myNumbers =  ResourceBundle.getBundle("defaults/numbers");
+        myParser =  new StringParser();
         myLabel = new Label(label);
-        myLabel.getStyleClass().add(myLabelCss);        
+        myLabel.getStyleClass().add(myLabelCss);
         initContainer(cssClass);
     }
-    
+
     protected void initContainer (String cssClass) {
-        myContainer = myFactory.makeVBox(containerSpacing, Pos.TOP_LEFT, myLabel);
+        double spacing = myParser.parseDouble(myNumbers.getString("EntryViewSpacing"));
+        myContainer = myFactory.makeVBox(spacing, Pos.TOP_LEFT, myLabel);
         myContainer.getStyleClass().add(cssClass);
     }
 
@@ -44,17 +52,25 @@ public abstract class EntryView implements IEntryView {
     public Label getLabel () {
         return myLabel;
     }
-    
+
     protected Pane getMyContainer () {
         return myContainer;
     }
-    
-    protected void setMyContainer(Pane pane) {
+
+    protected void setMyContainer (Pane pane) {
         myContainer = pane;
     }
-    
-    protected BasicUIFactory getMyFactory(){
+
+    protected BasicUIFactory getMyFactory () {
         return myFactory;
+    }
+
+    protected ResourceBundle getMyNumbers () {
+        return myNumbers;
+    }
+    
+    protected StringParser getParser(){
+        return myParser;
     }
 
     protected abstract void init ();

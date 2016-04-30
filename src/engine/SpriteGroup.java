@@ -1,6 +1,7 @@
 package engine;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.profile.IProfilable;
@@ -20,30 +21,31 @@ import javafx.collections.ObservableList;
  */
 public class SpriteGroup implements ISpriteGroup, IProfilable {
 
-    private List<SpriteDefinition> mySpriteDefinitions;
-    private List<SpriteType> mySpriteTypes;
+    private List<SpriteDefinition> mySpriteDefinitions = new ArrayList<>();
+    private List<SpriteType> mySpriteTypes = new ArrayList<>();
     private IProfile myProfile;
 
     public SpriteGroup () {
-        mySpriteTypes = new ArrayList<>();
-        mySpriteDefinitions = new ArrayList<>();
         myProfile = new Profile();
+    }
+    
+    public SpriteGroup (SpriteDefinition def, IProfile profile) {
+        setSpriteDefinitions(new ArrayList<>(Arrays.asList(def)));
+        myProfile = profile;
     }
 
     public SpriteGroup (List<SpriteDefinition> spriteDefs) {
         setSpriteDefinitions(spriteDefs);
         myProfile = new Profile();
     }
+    
 
     public List<SpriteDefinition> getSpriteDefinitions () {
         return mySpriteDefinitions;
     }
 
     public void setSpriteDefinitions (List<SpriteDefinition> sprites) {
-        mySpriteDefinitions = new ArrayList<>(sprites);
-
-        // TODO Patch solution for now, need to work out in more detail later
-
+        mySpriteDefinitions = new ArrayList<>(sprites);      
         mySpriteTypes = new ArrayList<>();
         for (SpriteDefinition s : mySpriteDefinitions) {
             mySpriteTypes.add(s.getSpriteType());
@@ -68,6 +70,10 @@ public class SpriteGroup implements ISpriteGroup, IProfilable {
     @Override
     public void setProfile (IProfile profile) {
         myProfile = profile;
+    }
+
+    public void remove (SpriteDefinition def) {
+        mySpriteDefinitions.remove(def);
     }
 
 }

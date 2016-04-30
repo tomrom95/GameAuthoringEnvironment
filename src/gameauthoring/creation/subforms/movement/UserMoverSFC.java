@@ -17,7 +17,7 @@ import gameauthoring.creation.subforms.ISubFormView;
 public class UserMoverSFC implements ISubFormControllerSprite {
 
     private UserMoverSFV myView;
-    private double myDefaultSpeed = 0;
+    private double myDefaultSpeed;
     private String myDefaultUpKey = "W";
     private String myDefaultDownKey = "S";
     private String myDefaultLeftKey = "A";

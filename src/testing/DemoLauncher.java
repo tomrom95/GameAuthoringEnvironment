@@ -104,7 +104,6 @@ public class DemoLauncher extends Application {
         FXConverters.configure(xstream);
         xstream.setMode(XStream.SINGLE_NODE_XPATH_RELATIVE_REFERENCES);
         xstream.toXML(game);
-        System.out.println("Success!");
     }
 
     private void createConditions (IGame game) {

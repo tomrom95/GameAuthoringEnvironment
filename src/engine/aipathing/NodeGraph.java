@@ -11,9 +11,11 @@ import util.Coordinate;
 public class NodeGraph implements INodeGraph {
 
     private List<IPathNode> myNodes;
+    private IPathNode[][] myPlacedNodes;
 
-    public NodeGraph () {
+    public NodeGraph (IPathNode[][] nodes) {
         myNodes = new ArrayList<>();
+        myPlacedNodes = nodes;
     }
 
     @Override
@@ -94,17 +96,40 @@ public class NodeGraph implements INodeGraph {
                          Coordinate.distance(y.getLocation(), loc)
                          ? y : x)
                 .orElse(null);
+    }
+
+    @Override
+    public void addAndConnectNode (IPathNode toAdd) {
+        connectNodes(toAdd, getClosestNode(toAdd.getLocation()));
+        addNode(toAdd);
         
+    }
+
+    @Override
+    public IPathNode[][] getPlacedNodes () {
+        return myPlacedNodes;
+    }
+
+    @Override
+    public void setPlacedNodes (IPathNode[][] toStore) {
+        myPlacedNodes = toStore;
+
+    }
+
+    @Override
+    public IPathNode addIfCantGetFor (Coordinate pos) {
+        if (getNodes().contains(new PathNode(pos))) {
+            return getNodes().stream()
+                    .filter(node -> node.getLocation().equals(pos))
+                    .reduce((a, b) -> a)
+                    .orElse(null);
+        }
+        else {
+            IPathNode toReturn = new PathNode(pos);
+            addNode(toReturn);
+            return toReturn;
+        }
         
-//        double closestDist = Double.MAX_VALUE;
-//        IPathNode closest = null;
-//        for (IPathNode node : getNodes()) {
-//            if (Coordinate.distance(node.getLocation(), loc) < closestDist) {
-//                closest = node;
-//                closestDist = Coordinate.distance(node.getLocation(), loc);
-//            }
-//        }
-//        return closest;
     }
 
 }

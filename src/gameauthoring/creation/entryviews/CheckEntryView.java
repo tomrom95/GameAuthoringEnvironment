@@ -1,9 +1,13 @@
 package gameauthoring.creation.entryviews;
 
+import java.util.ResourceBundle;
 import javafx.beans.property.BooleanProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
+import splash.LocaleManager;
+import util.StringParser;
+
 
 /**
  * Entry box that presents a boolean true or false check box to the user
@@ -11,38 +15,39 @@ import javafx.scene.control.CheckBox;
  * @author Joe Lilien
  *
  */
-public class CheckEntryView extends EntryView{
+public class CheckEntryView extends EntryView {
     private CheckBox myCheckBox;
-
+ 
     public CheckEntryView (String label, String cssClass) {
-        super(label,cssClass);
-        myCheckBox = new CheckBox();        
+        super(label, cssClass);
+        myCheckBox = new CheckBox();
         init();
     }
-    
+
     @Override
-    protected void initContainer(String cssClass) {
-        setMyContainer(getMyFactory().makeHBox(20, Pos.CENTER, getLabel()));
+    protected void initContainer (String cssClass) {
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
+        setMyContainer(getMyFactory().makeHBox(spacing, Pos.CENTER, getLabel()));
         getMyContainer().getStyleClass().add(cssClass);
     }
-    
+
     @Override
-    protected void init(){
+    protected void init () {
         getMyContainer().getChildren().add(myCheckBox);
         myCheckBox.setSelected(false);
     }
-    
-    public BooleanProperty isCheckedProperty(){
+
+    public BooleanProperty isCheckedProperty () {
         return myCheckBox.selectedProperty();
     }
-        
-    public void setSelected(boolean isSelected){
+
+    public void setSelected (boolean isSelected) {
         this.myCheckBox.setSelected(isSelected);
     }
 
     @Override
     public Node draw () {
         return getMyContainer();
-    }   
+    }
 
 }

@@ -26,6 +26,8 @@ public abstract class CreationController<T extends IProfilable> {
     private String myKey;
     private SubFormControllerFactory<T> mySFCFactory;
     private DefinitionCollection<T> myDefinitionCollection;
+    private AuthorshipData myData;
+    private T myLastItem;
     private ResourceBundle myResources = ResourceBundle.getBundle("languages/labels",
                                                                   LocaleManager.getInstance()
                                                                           .getCurrentLocaleProperty()
@@ -44,10 +46,11 @@ public abstract class CreationController<T extends IProfilable> {
 
         myKey = key;
         myView = new CreationView<T>();
+        myData = game.getAuthorshipData();
         setMySFCFactory(createSFCFactory(game));
         setMyDefinitionCollection(getDefinitionCollectionFromAuthorshipData(game
                 .getAuthorshipData()));
-        setMySubFormControllers(getMySFCFactory().createSubFormControllers(subFormStrings));
+        setMySubFormControllers(getMySFCFactory().createSubFormControllers(subFormStrings, key));
         List<ISubFormView> subFormViews = getSubFormViews(getMySubFormControllers());
         myView.init(subFormViews);
         setupConnections();
@@ -107,7 +110,6 @@ public abstract class CreationController<T extends IProfilable> {
             subFormController.updateItem(getMyCurrentItem());
         }
 
-//        this.getMyCreationView().getCreationListView().refreshItems();
     }
 
     /**
@@ -115,7 +117,8 @@ public abstract class CreationController<T extends IProfilable> {
      *
      * @param item the item to delete
      */
-    private void deleteItem () {
+    protected void deleteItem () {
+        setMyLastItem(getMyCurrentItem());
         getMyItems().remove(getMyCurrentItem());
         if (getMyItems().isEmpty()) {
             getMyCreationView().getFormView().hideForm();
@@ -131,14 +134,16 @@ public abstract class CreationController<T extends IProfilable> {
      * Method handler when user clicks "new" object
      * 
      */
-    private void newItem () {
+    protected T newItem () {
         T item = createBlankItem();
         addItem(item);
         getMyCreationView().getCreationListView().setSelectedItem(item);
         populateViewsWithDefaults();
         getMyCreationView().getFormView().showForm();
-        // showAndEdit();// or
-        populateViewsWithDefaults();// , depending on where defaults are
+        populateViewsWithDefaults();
+        saveItem();
+        return item;
+
     }
 
     /**
@@ -230,4 +235,15 @@ public abstract class CreationController<T extends IProfilable> {
         return myResources;
     }
 
+    protected AuthorshipData getMyData () {
+        return myData;
+    }
+
+    private void setMyLastItem (T item) {
+        myLastItem = item;
+    }
+    
+    protected T getMyLastItem () {
+        return myLastItem;
+    }
 }

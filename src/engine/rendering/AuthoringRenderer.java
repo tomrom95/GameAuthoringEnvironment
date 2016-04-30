@@ -33,8 +33,7 @@ public class AuthoringRenderer extends LevelRenderer {
     }
 
     public void updateNewTiles () {
-       
-        myTileView.render();
+        myTileView.updateTileNumbers();
     }
 
     @Override
@@ -125,7 +124,7 @@ public class AuthoringRenderer extends LevelRenderer {
 
     @Override
     public void redrawBackground () {
-        for (Drawable sprite: mySpriteNodeMap.keySet()) {
+        for (Drawable sprite : mySpriteNodeMap.keySet()) {
             resize(sprite, mySpriteNodeMap.get(sprite));
         }
     }
@@ -146,7 +145,7 @@ public class AuthoringRenderer extends LevelRenderer {
 
     public void scaleTitles () {
         myTileView.redraw();
-        
+
     }
 
 }

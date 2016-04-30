@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import engine.IAttribute;
+import engine.SpriteGroup;
 import engine.definitions.costs.ICost;
 import engine.definitions.costs.NullCost;
 import engine.definitions.moduledef.ModuleDefinition;
@@ -38,6 +39,9 @@ public class SpriteDefinition implements IProfilable {
     private List<AttributeDefinition> myAttributes;
     private IProfile myProfile;
     private ICost myCost;
+    private SpriteGroup mySingleGroup;
+    private boolean myObstructability;
+    private boolean myGoal;
 
     public SpriteDefinition () {
         // TODO Set a default from resource file. THis is just for view testing
@@ -57,7 +61,40 @@ public class SpriteDefinition implements IProfilable {
         IGraphicModule graphicModule = createGraphicModule();
         sprite.initialize(mover, graphicModule, createUpgrade(sprite), createModules(sprite),
                           createAttributes(), createCoordinate());
+        sprite.setObstruction(myObstructability);
+        sprite.getStatusModule().setIsGoal(myGoal);
         return sprite;
+    }
+
+    public void clearGoalObstructable () {
+        setObstructability(false);
+        setMyGoal(false);
+    }
+
+    public void setObstructability () {
+        myObstructability = true;
+        setMyGoal(false);
+    }
+
+    public boolean getObstructability () {
+        return myObstructability;
+    }
+
+    public boolean isMyGoal () {
+        return myGoal;
+    }
+
+    public void setMyGoal () {
+        this.myGoal = true;
+        setObstructability(false);
+    }
+    
+    private void setMyGoal(boolean goal){
+        myGoal = goal;
+    }
+    
+    private void setObstructability (boolean obstructable){
+        myObstructability = obstructable;
     }
     
     protected UpgradeModule createUpgrade (ISprite parent) {
@@ -119,6 +156,14 @@ public class SpriteDefinition implements IProfilable {
     public void setMovementDefinition (MovementDefinition definition) {
         myMovementDefinition = definition;
     }
+    
+    public void setMySingleGroup (SpriteGroup group) {
+        mySingleGroup = group;
+    }
+    
+    public SpriteGroup getMySingleGroup () {
+        return mySingleGroup;
+    }
 
     @Override
     public IProfile getProfile () {
@@ -155,5 +200,7 @@ public class SpriteDefinition implements IProfilable {
     public void setCost (ICost cost) {
         myCost = cost;
     }
+    
+
 
 }
