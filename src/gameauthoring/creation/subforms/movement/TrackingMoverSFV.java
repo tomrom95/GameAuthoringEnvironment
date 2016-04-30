@@ -23,11 +23,13 @@ public class TrackingMoverSFV extends SubFormView implements ITrackingMoverSFV {
     private SingleChoiceEntryView<SpriteGroup> myTargets;
 
     public TrackingMoverSFV (DefinitionCollection<SpriteGroup> groupsList) {
+        double width = getParser().parseDouble(getMyNumbers().getString("WidthMovement"));
+        double height = getParser().parseDouble(getMyNumbers().getString("Height"));
         setResourceBundleAndKey();
         myTargets =
                 new SingleChoiceEntryView<SpriteGroup>(myTargetsKey, groupsList.getItems(),
                                                        AuthoringView.DEFAULT_ENTRYVIEW);
-        mySpeed = new NumberEntryView(mySpeedKey, 150, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        mySpeed = new NumberEntryView(mySpeedKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
         initView();
 
     }
@@ -52,7 +54,8 @@ public class TrackingMoverSFV extends SubFormView implements ITrackingMoverSFV {
 
     @Override
     protected void initView () {
-        myPane = getMyUIFactory().makeHBox(20, Pos.CENTER, mySpeed.draw(), myTargets.draw());
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
+        myPane = getMyUIFactory().makeHBox(spacing, Pos.CENTER, mySpeed.draw(), myTargets.draw());
     }
 
     @Override
