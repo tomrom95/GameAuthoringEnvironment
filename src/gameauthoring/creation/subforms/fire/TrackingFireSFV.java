@@ -41,14 +41,12 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     private RemoveOption myRemove;
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
-    private StringParser s;
 
     public TrackingFireSFV (AuthorshipData data, RemoveOption remove) {
         setResourceBundleAndKey();
         myRemove = remove;
-        s = new StringParser();
-        double width = s.parseDouble(getMyNumbers().getString("Width"));
-        double height = s.parseDouble(getMyNumbers().getString("Height"));
+        double width = getParser().parseDouble(getMyNumbers().getString("Width"));
+        double height = getParser().parseDouble(getMyNumbers().getString("Height"));
         myWaitTime =
                 new NumberEntryView(myWaitTimeKey, width, height,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
@@ -82,7 +80,7 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
     @Override
     protected void initView () {
-        double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacing"));
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
         HBox paramsBox =
                 getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
                                           myWaitTime.draw());

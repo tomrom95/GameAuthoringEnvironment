@@ -34,20 +34,22 @@ public class UserMoverSFV extends SubFormView implements IUserMoverSFV {
     }
 
     private void createEntryViews () {
+        double width = getParser().parseDouble(getMyNumbers().getString("WidthMovement"));
+        double height = getParser().parseDouble(getMyNumbers().getString("Height"));
         mySpeed =
-                new NumberEntryView(mySpeedKey, 150, 30,
+                new NumberEntryView(mySpeedKey, width, height,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myUp =
-                new CharacterEntryView(myUpKey, 150, 30,
+                new CharacterEntryView(myUpKey, width, height,
                                        AuthoringView.DEFAULT_ENTRYVIEW);
         myDown =
-                new CharacterEntryView(myDownKey, 150, 30,
+                new CharacterEntryView(myDownKey, width, height,
                                        AuthoringView.DEFAULT_ENTRYVIEW);
         myRight =
-                new CharacterEntryView(myRightKey, 150, 30,
+                new CharacterEntryView(myRightKey, width, height,
                                        AuthoringView.DEFAULT_ENTRYVIEW);
         myLeft =
-                new CharacterEntryView(myLeftKey, 150, 30,
+                new CharacterEntryView(myLeftKey, width, height,
                                        AuthoringView.DEFAULT_ENTRYVIEW);
 
     }
@@ -64,7 +66,8 @@ public class UserMoverSFV extends SubFormView implements IUserMoverSFV {
 
     @Override
     public Node draw () {
-        HBox box = getMyUIFactory().makeHBox(20, Pos.CENTER, myPane);
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
+        HBox box = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myPane);
         getMyUIFactory().addStyling(box, "Mover");
         return box;
     }
