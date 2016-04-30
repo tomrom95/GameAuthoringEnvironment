@@ -58,6 +58,7 @@ public class SpriteGroup implements ISpriteGroup, IProfilable {
 
     @Override
     public ObservableList<SpriteType> getSpriteTypes () {
+        System.out.println("SIZE OF SPRITE GROUP IS: "+mySpriteTypes.size());
         return FXCollections.observableArrayList(mySpriteTypes);
     }
 

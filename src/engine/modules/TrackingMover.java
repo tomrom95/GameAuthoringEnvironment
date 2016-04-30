@@ -24,7 +24,6 @@ import util.TimeDuration;
  */
 public class TrackingMover extends Mover {
 
-    private IAttribute mySpeed;
     private List<SpriteType> myEnemyList;
     private Positionable mySprite;
     private EnemyTracker myTracker;
@@ -36,7 +35,7 @@ public class TrackingMover extends Mover {
                           Positionable sprite) {
         super(sprite);
         myGame = game;
-        mySpeed = new Attribute(speed, AttributeType.SPEED);
+        setSpeed(speed);
         myEnemyList = spriteGroup.getSpriteTypes();
         mySprite = sprite;
         myTracker = new EnemyTracker();
@@ -44,7 +43,7 @@ public class TrackingMover extends Mover {
 
     @Override
     public void update (TimeDuration duration) {
-        setOrientation(myTracker.calculateOrientationToClosestEnemy(mySprite.getLocation(), myPotentialTargets()));
+        setOrientationFromTracker(myTracker.calculateOrientationToClosestEnemy(mySprite.getLocation(), myPotentialTargets()));
         move(duration);
     }
 

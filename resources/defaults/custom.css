@@ -100,7 +100,7 @@
 
 .sub_title_label {
 	-fx-font-size: 18px;
-    -fx-text-fill: #006600;
+    -fx-text-fill: #000000;
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
     -fx-font-family: "Helvetica";
 }
@@ -402,5 +402,10 @@
 .purple_outline {
 	-fx-border-color: #d0d0e1;
     -fx-border-width: 3px;
+}
+
+.r {
+    -fx-stroke: #000000;
+    -fx-stroke-width: .5;
 }
 

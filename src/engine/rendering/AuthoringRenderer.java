@@ -24,7 +24,7 @@ public class AuthoringRenderer extends LevelRenderer {
         super(pane, scale);
         myLevel = level;
         mySpriteNodeMap = new HashMap<>();
-        myTileView = new GridRenderer(level, gridPane);
+        myTileView = new GridRenderer(level, gridPane, scale);
     }
 
     private Node createOnScreenSprite (ISprite sprite) {
@@ -33,6 +33,7 @@ public class AuthoringRenderer extends LevelRenderer {
     }
 
     public void updateNewTiles () {
+       
         myTileView.render();
     }
 
@@ -141,6 +142,11 @@ public class AuthoringRenderer extends LevelRenderer {
     @Override
     protected double scaledWidth () {
         return getScale().scale(myLevel.getBounds().getWidth());
+    }
+
+    public void scaleTitles () {
+        myTileView.redraw();
+        
     }
 
 }

@@ -29,6 +29,7 @@ public class EnemyTracker {
 	 */
 
 	private ISprite getClosestEnemy(List<ISprite> enemies, Coordinate myLocation) {
+	        System.out.println("Size of enemies: "+enemies.size());
 		Comparator<ISprite> myDistanceComparator = (e1, e2) -> Double.compare(
 				calculateDistance(myLocation, e1.getLocation()), calculateDistance(myLocation, e2.getLocation()));
 		return enemies.stream().min(myDistanceComparator).get();
@@ -59,7 +60,7 @@ public class EnemyTracker {
 	 *            Coordinate of enemy position
 	 * @return value representing orientation differences
 	 */
-	private double calculateAbsoluteOrientationToEnemy(Coordinate myLocation, Coordinate enemyLocation) {
+	protected double calculateAbsoluteOrientationToEnemy(Coordinate myLocation, Coordinate enemyLocation) {
 
 		// TODO: make this method a bit cleaner
 		double xDelta = enemyLocation.getX() - myLocation.getX();

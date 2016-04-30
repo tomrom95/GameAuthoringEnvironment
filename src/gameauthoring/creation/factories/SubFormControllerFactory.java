@@ -19,11 +19,11 @@ public abstract class SubFormControllerFactory<T extends IProfilable> {
         myGame = game;
     }
 
-    public List<ISubFormController<T>> createSubFormControllers (List<String> subFormStrings) {
+    public List<ISubFormController<T>> createSubFormControllers (List<String> subFormStrings, String ccKey) {
         List<ISubFormController<T>> list = new ArrayList<>();
         for (String subFormString : subFormStrings) {
             if(subFormString.equals("Profile")){
-                list.add(createProfileSFC());
+                list.add(createProfileSFC(ccKey));
             }else{
                 list.add(createSFCAndHandleErrors(subFormString));
             }
@@ -60,8 +60,8 @@ public abstract class SubFormControllerFactory<T extends IProfilable> {
         return getMyGame().getAuthorshipData();
     }
 
-    public ProfileSFC<T> createProfileSFC () {
-        return new ProfileSFC<T>();
+    public ProfileSFC<T> createProfileSFC (String key) {
+        return new ProfileSFC<T>(key);
     }
 
 }

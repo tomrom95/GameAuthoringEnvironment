@@ -1,7 +1,9 @@
 package gameauthoring.creation.subforms;
 
+import java.util.ResourceBundle;
 import engine.profile.IProfilable;
 import engine.profile.IProfile;
+import splash.LocaleManager;
 
 
 /**
@@ -16,14 +18,25 @@ import engine.profile.IProfile;
 public class ProfileSFC<T extends IProfilable> implements ISubFormController<T> {
 
     private IProfileSFV myView;
-    private String myDefaultName = "<Name>"; // TODO: move strings to resource file
-    private String myDefaultDescription = "<Description>";
-    private String myDefaultImage = "images/square.png";
+    private static String myNameSuffix = "ProfileName"; // TODO: move strings to resource file
+    private static String myDescriptionSuffix = "ProfileDescription";
+    private String myImageSuffix = "ProfileImage";
     private double myDefaultWidth = 100;
     private double myDefaultHeight = 100;
+    
+    private String myDefaultName;
+    private String myDefaultDescription;
+    private String myDefaultImage = "Images/square.png";
+    private ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", LocaleManager
+                                                               .getInstance().getCurrentLocaleProperty().get());
+    private ResourceBundle myImages = ResourceBundle.getBundle("defaults/profile_default_images");
 
-    public ProfileSFC () {
+    public ProfileSFC (String key) {
         this.myView = new ProfileSFV();
+        myDefaultName = myLabels.getString(key+myNameSuffix);
+        myDefaultDescription = myLabels.getString(key+myDescriptionSuffix);
+        myDefaultImage = "Images/square.png";//myImages.getString(key+myImageSuffix);change when we upload images
+
     }
 
     @Override
