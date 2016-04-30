@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import splash.LocaleManager;
+import util.StringParser;
 
 
 /**
@@ -27,12 +28,15 @@ public abstract class SubFormView implements ISubFormView {
                     .getBundle("languages/labels",
                                LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle myNumbers = ResourceBundle
-            .getBundle("defaults/numbers",
-                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
-    
+            .getBundle("defaults/numbers");
+
     private ResourceBundle myErrors = ResourceBundle
-            .getBundle("defaults/errors",
-                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
+            .getBundle("defaults/errors");
+    private StringParser s = new StringParser();
+
+    protected StringParser getParser () {
+        return s;
+    }
 
     protected String getMyTitle () {
         return getMyLabels().getString(myTitle);
@@ -42,34 +46,37 @@ public abstract class SubFormView implements ISubFormView {
         this.myTitle = title;
     }
 
-    protected Node getTitleDisplay () {        
+    protected Node getTitleDisplay () {
         return getMyUIFactory().addStyling(makeTitleLabel(), myLabelStyle);
     }
-    
-    protected Node getSubTitleDisplay () {        
+
+    protected Node getSubTitleDisplay () {
         return getMyUIFactory().addStyling(makeTitleLabel(), mySubStyle);
     }
-        
-    private Node makeTitleLabel() {
-        return new Label (getMyTitle());
+
+    private Node makeTitleLabel () {
+        return new Label(getMyTitle());
     }
 
-    protected VBox defaultDisplayWithNode(Node subview){
+    protected VBox defaultDisplayWithNode (Node subview) {
         VBox box = new VBox(getTitleDisplay(), subview);
         getMyUIFactory().addStyling(box, getStyleClass());
         return box;
     }
-    protected ResourceBundle getMyLabels(){
+
+    protected ResourceBundle getMyLabels () {
         return myLabels;
     }
-    
-    public ResourceBundle getMyNumbers(){
+
+    public ResourceBundle getMyNumbers () {
         return myNumbers;
     }
-    //TODO : get rid of this is unused
-    public ResourceBundle getMyErrors(){
+
+    // TODO : get rid of this is unused
+    public ResourceBundle getMyErrors () {
         return myErrors;
     }
+
     protected BasicUIFactory getMyUIFactory () {
         return myUIFactory;
     }
@@ -78,8 +85,8 @@ public abstract class SubFormView implements ISubFormView {
      * Initializes arrangement and actual appearence of SFV
      */
     protected abstract void initView ();
-    
-    protected String getStyleClass() {
+
+    protected String getStyleClass () {
         return myStyleClass;
     }
 

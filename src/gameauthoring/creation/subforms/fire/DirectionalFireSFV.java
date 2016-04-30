@@ -12,6 +12,7 @@ import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -20,7 +21,7 @@ import javafx.scene.layout.VBox;
  * View representing a subform that creates the information required to build a directional mover
  * module
  * 
- * @author Dhrumil Timko
+ * @author Dhrumil Timko Lilien
  *
  */
 public class DirectionalFireSFV extends SubFormView implements IDirectionalFireSFV {
@@ -38,7 +39,6 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     private RemoveOption myRemove;
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
-    private StringParser s;
     private static final String MY_TITLE_KEY = "DIRECTIONALFIRER";
 
 
@@ -46,12 +46,12 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
                                RemoveOption remove) {
         setMyTitle(MY_TITLE_KEY);
         setResourceBundleAndKey();
-        s = new StringParser();
-        double width = s.parseDouble(getMyNumbers().getString("Width"));
-        double height = s.parseDouble(getMyNumbers().getString("Height"));
+        double width = getParser().parseDouble(getMyNumbers().getString("Width"));
+        double height = getParser().parseDouble(getMyNumbers().getString("Height"));
         myRemove = remove;
         myAngle = new NumberEntryView(myAngleKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
-        myWaitTime = new NumberEntryView(myWaitTimeKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
+        myWaitTime =
+                new NumberEntryView(myWaitTimeKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
         myMissileSelectionView =
                 new SingleChoiceEntryView<>(myProjectileKey, missiles.getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
@@ -59,7 +59,8 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         myIsRanged =
                 new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
         myRangeValue =
-                new NumberEntryView(myRangeValueKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
+                new NumberEntryView(myRangeValueKey, width, height,
+                                    AuthoringView.DEFAULT_ENTRYVIEW);
 
         initView();
         initBinding();
@@ -82,13 +83,12 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
 
     @Override
     protected void initView () {
-        double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacing"));
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
         HBox head = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(), getSubTitleDisplay());
         HBox options = getMyUIFactory().makeHBox(spacing , Pos.CENTER, myMissileSelectionView.draw(),myWaitTime.draw(),myAngle.draw());  
         HBox rangedOptions =  getMyUIFactory().makeHBox(spacing, Pos.CENTER, myIsRanged.draw(),myRangeValue.draw());  
         myPane = getMyUIFactory().makeVBox(20, Pos.CENTER, head, options, rangedOptions);  
         getMyUIFactory().addStyling(myPane, "Firer");  
-
     }
 
     private void initBinding () {

@@ -4,7 +4,6 @@ import java.util.ResourceBundle;
 import engine.AuthorshipData;
 import engine.definitions.concrete.SpriteDefinition;
 import splash.LocaleManager;
-import util.StringParser;
 import gameauthoring.creation.entryviews.CharacterEntryView;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
@@ -41,8 +40,8 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
     private NumberEntryView myRangeValue;
     private RemoveOption myRemove;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
-    private StringParser s;
     private static final String MY_TITLE_KEY = "USERFIRER";
+
 
     public UserFireSFV (AuthorshipData data, RemoveOption remove) {
         setMyTitle(MY_TITLE_KEY);
@@ -53,9 +52,9 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
     }
 
     private void createEntryViews (AuthorshipData data) {
-        s = new StringParser();
-        double width = s.parseDouble(getMyNumbers().getString("ShortWidth"));
-        double height = s.parseDouble(getMyNumbers().getString("Height"));
+
+        double width = getParser().parseDouble(getMyNumbers().getString("Width"));
+        double height = getParser().parseDouble(getMyNumbers().getString("Height"));
         myMissileSelectionView =
                 new SingleChoiceEntryView<>(myProjectileKey, data.getMyCreatedMissiles().getItems(),
                                             AuthoringView.DEFAULT_ENTRYVIEW);
@@ -108,7 +107,7 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
 
     @Override
     protected void initView () {
-        double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacing")); 
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
         HBox header = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(), getSubTitleDisplay());
         HBox angles = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myDecrease.draw(), myIncrease.draw(), myFire.draw());
         HBox fireParams =

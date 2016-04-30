@@ -2,6 +2,7 @@ package gameauthoring.creation.factories;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -45,6 +46,9 @@ public class Reflection {
             throw new ReflectionException("No matching public constructor for %s", name);
         } catch (ClassNotFoundException e) {
             throw new ReflectionException(e, "Incorrectly named class %s", name);
+        } catch (InvocationTargetException e){
+            e.printStackTrace();
+            throw new ReflectionException(e, "Error in constructor for %s:\n%s", name, e.getTargetException().getMessage());
         } catch (Exception e) {
             throw new ReflectionException(e, "No matching public constructor for %s", name);
         }
