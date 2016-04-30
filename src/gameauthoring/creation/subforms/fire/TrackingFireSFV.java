@@ -13,6 +13,7 @@ import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 
@@ -27,7 +28,7 @@ import javafx.scene.layout.HBox;
  */
 public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
 
-    private HBox myPane;
+    private GridPane myPane = new GridPane();
     private ResourceBundle myLabel;
     private String myWaitTimeKey;
     private String myTargetsKey;
@@ -61,7 +62,8 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         myIsRanged =
                 new CheckEntryView(myRangedKey, AuthoringView.DEFAULT_ENTRYVIEW);
         myRangeValue =
-                new NumberEntryView(myRangeValueKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
+                new NumberEntryView(myRangeValueKey, width, height,
+                                    AuthoringView.DEFAULT_ENTRYVIEW);
 
         initView();
         initBinding();
@@ -81,10 +83,17 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     @Override
     protected void initView () {
         double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacing"));
-        myPane =
+        HBox paramsBox =
                 getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
-                                          myWaitTime.draw(), myTargets.draw(),
-                                          myRangeValue.draw(), myIsRanged.draw(), myRemove.draw());
+                                          myWaitTime.draw());
+        HBox removeBox = getMyUIFactory().makeHBox(spacing, Pos.TOP_RIGHT, myRemove.draw());
+        HBox rangeBox =
+                getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myIsRanged.draw(),
+                                          myRangeValue.draw(), myTargets.draw());
+
+        myPane.add(paramsBox, 0, 0, 2, 1);
+        myPane.add(removeBox, 2, 0, 1, 1);
+        myPane.add(rangeBox, 0, 1);
         myPane.getStyleClass().add("firer");
     }
 
