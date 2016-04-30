@@ -19,7 +19,8 @@ import javafx.scene.layout.HBox;
 
 public class UserFireSFV extends SubFormView implements IUserFireSFV {
 
-    private HBox myPane;
+    private GridPane myPane = new GridPane();
+    private HBox fireParams;
     private GridPane controlPane;
     private ResourceBundle myLabel;
     private String myAngleKey;
@@ -101,25 +102,27 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
 
     @Override
     public Node draw () {
-        // return myPane;
-        return controlPane;
+         return myPane;
     }
 
     @Override
     protected void initView () {
-        controlPane.setGridLinesVisible(true);
-        controlPane.add(myIncrease.draw(), 0, 0);
-        controlPane.add(myDecrease.draw(), 0, 1);
-        controlPane.add(myFire.draw(), 1, 0);
+        double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacing"));
 
-        myPane =
-                getMyUIFactory().makeHBox(20, Pos.TOP_LEFT, myMissileSelectionView.draw(),
+        myPane.setGridLinesVisible(true);
+        myPane.add(myIncrease.draw(), 0, 0);
+        myPane.add(myDecrease.draw(), 1, 0);
+        myPane.add(myFire.draw(), 2, 0);
+
+        fireParams =
+                getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
                                           myAngle.draw(), myAngleStep.draw(),
                                           myWaitTime.draw(),
                                           myRangeValue.draw(), myIsRanged.draw(), myRemove.draw());
 
+       
+        myPane.add(fireParams, 0, 1);
         myPane.getStyleClass().add("firer");
-        controlPane.add(myPane, 2, 0);
 
     }
 
