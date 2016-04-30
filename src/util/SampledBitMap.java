@@ -39,12 +39,12 @@ public class SampledBitMap extends SetBitMap implements ISampledBitMap  {
 
     @Override
     public boolean translatedValueOf (double virtualX, double virtualY) {
-        return valueOf((int) virtualX / widthScale(), (int) virtualY / heightScale());
+        return valueOf((int) (virtualX / widthScale()), (int) (virtualY / heightScale()));
     }
 
     @Override
     public void translatedSet (double virtualX, double virtualY, boolean toSet) {
-        set((int) virtualX / widthScale(), (int) virtualY / heightScale(), toSet);
+        set((int) (virtualX / widthScale()), (int) (virtualY / heightScale()), toSet);
     }
 
     @Override
@@ -53,14 +53,14 @@ public class SampledBitMap extends SetBitMap implements ISampledBitMap  {
     }
 
     @Override
-    public int widthScale () {
-        int toReturn = (int) (trueHeight() / getHeight());
+    public double widthScale () {
+        double toReturn = (trueHeight() / (double) getHeight());
         return toReturn > 0 ? toReturn : 1;
     }
 
     @Override
-    public int heightScale () {
-        int toReturn = (int) (trueWidth() / getWidth());
+    public double heightScale () {
+        double toReturn = (int) (trueWidth() / (double) getWidth());
         return toReturn > 0 ? toReturn : 1;
     }
 

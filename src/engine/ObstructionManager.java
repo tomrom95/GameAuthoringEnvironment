@@ -24,8 +24,8 @@ import java.util.stream.Collectors;
  */
 public class ObstructionManager implements IObstructionManager {
     private static final boolean POSITION_OBSTRUCTED = true;
-    private static final int SAMPLE_RESOLUTION = 60;
-    
+    public static final int SAMPLE_RESOLUTION = 60;
+
     private IGame myGame;
     private ISampledBitMap myCurrentObstructionMap;
 
@@ -80,8 +80,8 @@ public class ObstructionManager implements IObstructionManager {
 
     private void edgeBorder (ISampledBitMap obstructionMap) {
         List<Coordinate> border = new ArrayList<>();
-        int xGap = obstructionMap.widthScale();
-        int yGap = obstructionMap.heightScale();
+        int xGap = ObstructionManager.SAMPLE_RESOLUTION;
+        int yGap = ObstructionManager.SAMPLE_RESOLUTION;
         for (int i = -1; i <= obstructionMap.getHeight(); i++) {
             border.add(new Coordinate(-1, i*yGap));
             border.add(new Coordinate(obstructionMap.getWidth(), i*yGap));
@@ -104,10 +104,11 @@ public class ObstructionManager implements IObstructionManager {
 
     private void markSpriteOnMap (ISampledBitMap map, ISprite sprite) {
         Bounds bound = sprite.getBounds();
-        int leftX = (int) Math.floor(bound.getLeft()) / map.widthScale();
-        int rightX = (int) Math.floor(bound.getRight())/ map.widthScale();
-        int topY = (int) Math.floor(bound.getTop())/ map.heightScale();
-        int botY = (int) Math.floor(bound.getBottom())/ map.heightScale();
+        
+        int leftX = (int) (sprite.getLocation().getX() / SAMPLE_RESOLUTION);
+        int rightX = (int) ((sprite.getLocation().getX() + bound.getMyWidth()) / SAMPLE_RESOLUTION);
+        int topY = (int) (sprite.getLocation().getY()/ SAMPLE_RESOLUTION);
+        int botY = (int) ((sprite.getLocation().getY() + bound.getMyHeight())/ SAMPLE_RESOLUTION);
         for (int i = leftX; i <= rightX; i++) {
             for (int j = topY; j <= botY; j++) {
                 map.set(i, j, POSITION_OBSTRUCTED);

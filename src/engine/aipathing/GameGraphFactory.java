@@ -13,8 +13,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import engine.IGame;
+import engine.ObstructionManager;
 
 /**
  * 
@@ -66,8 +69,8 @@ public class GameGraphFactory implements INodeGraphFactory {
                                       Coordinate goal) {
         int numHorizontalNodes = obstructionMap.getWidth();
         int numHeightNodes = obstructionMap.getHeight();
-        int xGap = (int) (obstructionMap.trueWidth() / obstructionMap.getWidth());
-        int yGap = (int) (obstructionMap.trueHeight() / obstructionMap.getHeight());
+        int xGap = ObstructionManager.SAMPLE_RESOLUTION;
+        int yGap = ObstructionManager.SAMPLE_RESOLUTION;
         IPathNode[][] placedNodes = new PathNode[numHorizontalNodes][numHeightNodes];
         INodeGraph toReturn = new NodeGraph(placedNodes);
         // place the standard grid less obstructed areas
@@ -227,7 +230,8 @@ public class GameGraphFactory implements INodeGraphFactory {
                                           nodes[pos.getX()][pos.getY()]);
                             
 //                            connectIfNotObstructed(nodes[potNeigh.getX()][potNeigh.getY()],
-//                                                   nodes[pos.getX()][pos.getY()],
+//                                                   nodes[pos.getX()][pos.getY()], 
+//                                                   line -> line.size() ,
 //                                                   obstructionMap);
                         }
                     }
@@ -341,6 +345,7 @@ public class GameGraphFactory implements INodeGraphFactory {
         boolean toReturn = false;
         List<Coordinate> pixelLine =
                 PathNodeGeometry.lineRounder(PathNodeGeometry.lineBetween(first, second, obstructionMap));
+        //lineCleaner.accept(pixelLine);
         removeFirstPoint(pixelLine);
         
         if (!lineObstructed(pixelLine, obstructionMap)) {
@@ -349,6 +354,8 @@ public class GameGraphFactory implements INodeGraphFactory {
         }
         return toReturn;
     }
+    
+
     
     /**
      * Avoid comparison of where you are

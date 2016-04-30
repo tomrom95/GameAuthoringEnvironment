@@ -9,6 +9,9 @@ package util;
  *
  */
 public interface ISampledBitMap extends IBitMap {
+    
+
+    
     /**
      * The actual width of the game in virtual pixels
      * @return
@@ -20,14 +23,14 @@ public interface ISampledBitMap extends IBitMap {
      * pixels per horizontal array location
      * @return
      */
-    int widthScale ();
+    double widthScale ();
     
     /**
      * Returns the number of vertical virtual 
      * pixels per vertical array location
      * @return
      */
-    int heightScale ();
+    double heightScale ();
     
     /**
      * The actual height of the game in virtual pixels

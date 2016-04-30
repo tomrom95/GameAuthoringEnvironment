@@ -64,8 +64,8 @@ public class TestPathing extends Application {
     private static final int ENEMY_INITIAL_Y = 100;
 
     // Other Parameters
-    private static final double SPRITE_INITIAL_X = 600.98393d;
-    private static final double SPRITE_INITIAL_Y = 150.19507858d;
+    private static final double SPRITE_INITIAL_X = 800;
+    private static final double SPRITE_INITIAL_Y = 300;
 
     private static final String BACKGROUND_URL = "/images/pvz.jpg";
 
@@ -160,18 +160,21 @@ public class TestPathing extends Application {
 //            wall.setObstruction(true);
 //            game.bufferedAdd(wall);
 //        }
-        for(int i = 0; i < 12; i ++){
+        for(int i = 0; i < 18; i ++){
             ISprite wall = createEnemySpriteDefinition(400, i*20).create();
             wall.setObstruction(true);
             game.bufferedAdd(wall);
         }
         
         
-        
-        ISprite myUser = createUserSpriteDefinition(SPRITE_INITIAL_X, SPRITE_INITIAL_Y).create();
-        myUser.setObstruction(false);
+        for(int i = 0; i < 1; i++){
+            ISprite myUser = createUserSpriteDefinition(SPRITE_INITIAL_X - i*50, SPRITE_INITIAL_Y).create();
+            myUser.setObstruction(false);
+            game.bufferedAdd(myUser);
+        }
+    
         game.bufferedAdd(test);
-        game.bufferedAdd(myUser);
+        
     }
 
     @Override

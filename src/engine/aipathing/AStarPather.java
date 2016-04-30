@@ -25,7 +25,6 @@ public class AStarPather implements INodeGraphPather {
     private INodeGraph myGraph;
     private IGame myGame;
     
-    private int temp;
 
     public AStarPather (IGame game) {
         myHeuristic = new StraightLineHeuristic();
@@ -47,10 +46,7 @@ public class AStarPather implements INodeGraphPather {
         setGraph(graph);
         setGoal(goalNode);
         
-        temp++;
-        if(temp > 400){
-            System.out.println("");
-        }
+
         if (startNode == null || goalNode == null) {
             return new ArrayList<>();
         }

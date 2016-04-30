@@ -120,4 +120,12 @@ public class Bounds {
         return true;
     }
 
+    public double getMyWidth () {
+        return myWidth;
+    }
+
+    public double getMyHeight () {
+        return myHeight;
+    }
+
 }
