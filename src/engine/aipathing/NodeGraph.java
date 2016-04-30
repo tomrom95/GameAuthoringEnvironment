@@ -96,17 +96,6 @@ public class NodeGraph implements INodeGraph {
                          Coordinate.distance(y.getLocation(), loc)
                          ? y : x)
                 .orElse(null);
-        
-        
-//        double closestDist = Double.MAX_VALUE;
-//        IPathNode closest = null;
-//        for (IPathNode node : getNodes()) {
-//            if (Coordinate.distance(node.getLocation(), loc) < closestDist) {
-//                closest = node;
-//                closestDist = Coordinate.distance(node.getLocation(), loc);
-//            }
-//        }
-//        return closest;
     }
 
     @Override
@@ -124,18 +113,18 @@ public class NodeGraph implements INodeGraph {
     @Override
     public void setPlacedNodes (IPathNode[][] toStore) {
         myPlacedNodes = toStore;
-        
+
     }
 
     @Override
     public IPathNode addIfCantGetFor (Coordinate pos) {
-        if(getNodes().contains(new PathNode(pos)))
-        {
+        if (getNodes().contains(new PathNode(pos))) {
             return getNodes().stream()
                     .filter(node -> node.getLocation().equals(pos))
-                    .reduce((a,b) -> a)
+                    .reduce((a, b) -> a)
                     .orElse(null);
-        }else{
+        }
+        else {
             IPathNode toReturn = new PathNode(pos);
             addNode(toReturn);
             return toReturn;

@@ -152,7 +152,7 @@ public class TestPathing extends Application {
     }
 
     private void addSpritesToGame (Game game) {
-        ISprite test = createEnemySpriteDefinition(ENEMY_INITIAL_X, ENEMY_INITIAL_Y).create();
+        ISprite test = createEnemySpriteDefinition(ENEMY_INITIAL_X, ENEMY_INITIAL_Y+300).create();
         test.getStatusModule().setIsGoal(true);
         
 //        for(int i = 0; i < 1; i ++){
@@ -160,7 +160,7 @@ public class TestPathing extends Application {
 //            wall.setObstruction(true);
 //            game.bufferedAdd(wall);
 //        }
-        for(int i = 0; i < 18; i ++){
+        for(int i = 6; i < 30; i ++){
             ISprite wall = createEnemySpriteDefinition(400, i*20).create();
             wall.setObstruction(true);
             game.bufferedAdd(wall);

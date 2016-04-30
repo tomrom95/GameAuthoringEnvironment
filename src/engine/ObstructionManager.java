@@ -23,27 +23,24 @@ import java.util.stream.Collectors;
  *
  */
 public class ObstructionManager implements IObstructionManager {
-    private static final boolean POSITION_OBSTRUCTED = true;
     public static final int SAMPLE_RESOLUTION = 60;
-
+    
+    private static final boolean POSITION_OBSTRUCTED = true;
     private IGame myGame;
-    private ISampledBitMap myCurrentObstructionMap;
+
 
     ObstructionManager (IGame game) {
         myGame = game;
-        myCurrentObstructionMap = getBitMapSizedForCurrentGame(getGame());
     }
 
     @Override
     public void update (TimeDuration duration) {
-       // myCurrentObstructionMap = parseCurrentGameForObstructions(getGame());
-        //boolean[][] map = getObstructionMap().getBitMap();
+        //Do nothing
     }
     
     @Override
     public ISampledBitMap getObstructionMap () {
         return  parseCurrentGameForObstructions(getGame());
-        //return new CachingEdgeBitMap(getObstructionMap());
     }
 
     private ISampledBitMap parseCurrentGameForObstructions (IGame game) {
@@ -51,49 +48,11 @@ public class ObstructionManager implements IObstructionManager {
         game.getLevelManager().getCurrentLevel().getSprites()
                     .stream()
                     .forEach(sprite -> ifObstructsMarkSprite(obstructionMap, sprite));
-        //calculateEdges(obstructionMap, game);
         return obstructionMap;
     }
 
-    private void calculateEdges (ISampledBitMap map, IGame game) {
-        List<Bounds> allBounds = game.getLevelManager().getCurrentLevel().getSprites()
-                .stream()
-                .filter(sprite -> sprite.doesObstruct())
-                .map(sprite -> sprite.getBounds())
-                .collect(Collectors.toList());
-        List<IBoundEdge> boundEdges = new ArrayList<>();
-        while (!allBounds.isEmpty()) {
-            IBoundEdge toAdd = new BoundEdge();
-            boundEdges.add(toAdd);
-            List<Bounds> toRemove = new ArrayList<>();
-            for (Bounds bnd : allBounds) {
-                toAdd.addBoundToEdge(bnd);
-                toRemove.add(bnd);
-            }
-            allBounds.removeAll(toRemove);
-        }
-//        map.setEdges(boundEdges.stream().map(boundEdge -> boundEdge.getEdge())
-//                .collect(Collectors.toList()));
-//        edgeBorder(map);
-        return;
-    }
+   
 
-    private void edgeBorder (ISampledBitMap obstructionMap) {
-        List<Coordinate> border = new ArrayList<>();
-        int xGap = ObstructionManager.SAMPLE_RESOLUTION;
-        int yGap = ObstructionManager.SAMPLE_RESOLUTION;
-        for (int i = -1; i <= obstructionMap.getHeight(); i++) {
-            border.add(new Coordinate(-1, i*yGap));
-            border.add(new Coordinate(obstructionMap.getWidth(), i*yGap));
-        }
-        for (int i = -1; i <= obstructionMap.getWidth(); i++) {
-            border.add(new Coordinate(i*xGap, -1));
-            border.add(new Coordinate(i*xGap, obstructionMap.getHeight()));
-        }
-        
-        //obstructionMap.getEdges().add(border);
-        return;
-    }
     
 
     private void ifObstructsMarkSprite (ISampledBitMap map, ISprite sprite) {

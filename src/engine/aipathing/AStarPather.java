@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 import engine.IGame;
 import util.Coordinate;
-import util.IBitMap;
-import util.IEdgeBitMap;
 import util.ISampledBitMap;
 
 /**
@@ -19,13 +17,10 @@ import util.ISampledBitMap;
  *
  */
 public class AStarPather implements INodeGraphPather {
+    
     private IHeuristic myHeuristic;
-    //The below are initialized in the find path method;
-    private IPathNode myGoal;
-    private INodeGraph myGraph;
     private IGame myGame;
     
-
     public AStarPather (IGame game) {
         myHeuristic = new StraightLineHeuristic();
         myGame = game;
@@ -39,12 +34,6 @@ public class AStarPather implements INodeGraphPather {
         INodeGraph graph = graphFactory.getConstructedGraph(start, goal);
         IPathNode startNode = graph.getClosestNode(start);
         IPathNode goalNode = graph.getClosestNode(goal);
-//        IPathNode startNode = new PathNode(start);
-//        IPathNode goalNode = new PathNode(goal);
-//        graph.addAndConnectNode(startNode);
-//        graph.addAndConnectNode(goalNode);
-        setGraph(graph);
-        setGoal(goalNode);
         
 
         if (startNode == null || goalNode == null) {
@@ -70,7 +59,8 @@ public class AStarPather implements INodeGraphPather {
         while (!openSet.isEmpty()) {
             IPathNode cur = openSet
                     .stream()
-                    .reduce( (x, y) -> estimatedCost.get(x) > estimatedCost.get(y) ? y : x)
+                    .reduce((x, y)
+                             -> estimatedCost.get(x) > estimatedCost.get(y) ? y : x)
                     .orElse(null);
             if (cur.equals(goalNode)) {
                 return goalPath(cur, startNode, parentMap);
@@ -126,28 +116,15 @@ public class AStarPather implements INodeGraphPather {
     
     
     
-    
     public IHeuristic getHeuristic () {
         return myHeuristic;
     }
 
-    private IPathNode getGoal () {
-        return myGoal;
-    }
+   
 
-    private void setGoal (IPathNode myGoal) {
-        this.myGoal = myGoal;
-    }
+   
 
-    private INodeGraph getGraph () {
-        return myGraph;
-    }
-
-    private void setGraph (INodeGraph myGraph) {
-        this.myGraph = myGraph;
-    }
-    
-    private IGame getGame (){
+    private IGame getGame () {
         return myGame;
     }
 

@@ -12,7 +12,9 @@ public class ArrayPosition {
     private int myY;
 
     public ArrayPosition (Coordinate coord) {
-        this((int) coord.getX(), (int) coord.getY());
+        this((int) 
+             coord.getX(), (int) 
+             coord.getY());
     }
 
     public ArrayPosition (ArrayPosition pos) {
@@ -64,7 +66,8 @@ public class ArrayPosition {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        ArrayPosition other = (ArrayPosition) obj;
+        ArrayPosition other = (ArrayPosition)
+                obj;
         if (myX != other.myX) {
             return false;
         }

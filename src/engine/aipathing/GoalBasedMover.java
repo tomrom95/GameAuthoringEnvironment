@@ -26,7 +26,6 @@ public class GoalBasedMover extends Mover {
     
     private INodeGraphPather myPather;
     private IGame myGame;
-    //private ISpriteGroup myGoalGroup;
     private IOrientationFinder myRotationStrategy;
 
     public GoalBasedMover (Positionable positionable,
@@ -35,7 +34,6 @@ public class GoalBasedMover extends Mover {
         super(positionable);
         myPather = new AStarPather(game);
         myGame = game;
-        //myGoalGroup = goalGroup;
         myRotationStrategy = getRotationStrategy(shouldRotate);
     }
 
@@ -46,7 +44,7 @@ public class GoalBasedMover extends Mover {
     @Override
     public void update (TimeDuration duration) {
         Coordinate goal = findNearestGoal();
-        List<Coordinate> goalPath = myPather.findPathFor(obstructionMap(), getLocation(), goal);        
+        List<Coordinate> goalPath = myPather.findPathFor(obstructionMap(), getLocation(), goal);
         Coordinate targetCoordinate =
                 furthestReachablePoint(getLocation(), goalPath,
                                        distance(getSpeed(), durationToDouble(duration)));

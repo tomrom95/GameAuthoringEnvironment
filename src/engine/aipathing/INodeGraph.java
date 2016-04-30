@@ -53,7 +53,7 @@ public interface INodeGraph {
      * @param loc
      * @return The node in the graph closest to the Coordinate location
      */
-    IPathNode getClosestNode(Coordinate loc);
+    IPathNode getClosestNode (Coordinate loc);
 
     /**
      * The internal list of all coordinates which constitute the graph
@@ -82,15 +82,17 @@ public interface INodeGraph {
     /**
      * Adds node and connects regardless of obstruction
      * with the nearest other node
-     * Should be used ensure that movement is possible 
+     * Should be used ensure that movement is possible
      * regardless of resolution
+     * 
      * @param toAdd
      */
-    void addAndConnectNode(IPathNode toAdd);
-    
+    void addAndConnectNode (IPathNode toAdd);
+
     /**
      * A cache of not all, but just the grid placed nodes
      * for fast connection of new nodes to place
+     * 
      * @return
      */
     IPathNode[][] getPlacedNodes ();
@@ -104,10 +106,10 @@ public interface INodeGraph {
      * Will either return the existing node at the location,
      * or will create one and add it, returning the created
      * instance
+     * 
      * @param pos
      * @return
      */
-    IPathNode addIfCantGetFor(Coordinate pos);
-    
+    IPathNode addIfCantGetFor (Coordinate pos);
 
 }

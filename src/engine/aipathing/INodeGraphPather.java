@@ -2,8 +2,6 @@ package engine.aipathing;
 
 import java.util.List;
 import util.Coordinate;
-import util.IBitMap;
-import util.IEdgeBitMap;
 import util.ISampledBitMap;
 
 
