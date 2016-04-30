@@ -48,7 +48,7 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     protected Node createSpriteCell (E profile) {
         HBox container = getHBox(profile);
-        setImageBind(profile);
+//        setImageBind(profile);
         return container;
     }
 

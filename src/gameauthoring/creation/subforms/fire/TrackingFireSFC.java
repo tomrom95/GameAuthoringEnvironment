@@ -58,10 +58,8 @@ public class TrackingFireSFC extends RemovableFireSFC {
         myFireDef.setTargets(myView.getTargetsCoice());
         myFireDef.setProjectileDefinition(myView.getMissileSelection());
         myFireDef.setRanged(myView.getMyIsRanged());
-        myFireDef.setFireRange(myView.getMyRange());
-        
+        myFireDef.setFireRange(myView.getMyRange());        
         item.addModule(myFireDef);
-        System.out.println(item.getModuleDefinitions());
     }
 
     @Override

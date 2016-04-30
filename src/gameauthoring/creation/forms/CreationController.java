@@ -107,7 +107,7 @@ public abstract class CreationController<T extends IProfilable> {
             subFormController.updateItem(getMyCurrentItem());
         }
 
-        this.getMyCreationView().getCreationListView().refreshItems();
+//        this.getMyCreationView().getCreationListView().refreshItems();
     }
 
     /**
