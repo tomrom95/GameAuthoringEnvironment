@@ -1,7 +1,6 @@
 package facebookutil.applications;
 
 import java.util.List;
-import facebookutil.scores.HighScoreBoard;
 import facebookutil.user.IUser;
 import facebookutil.user.profiles.SocialProfile;
 
@@ -22,8 +21,6 @@ public abstract class App extends SocialProfile {
     
     public abstract void notifyUsers(List<IUser> users, String message);
     
-    public abstract void customPost (String message, SocialProfile profile);
-    
-    public abstract void HighScoreBoardPost (HighScoreBoard board, SocialProfile profile);
+    public abstract void challenge (IUser target, String message);
     
 }
