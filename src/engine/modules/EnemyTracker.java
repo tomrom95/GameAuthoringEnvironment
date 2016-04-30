@@ -29,7 +29,6 @@ public class EnemyTracker {
 	 */
 
 	private ISprite getClosestEnemy(List<ISprite> enemies, Coordinate myLocation) {
-	        System.out.println("Size of enemies: "+enemies.size());
 		Comparator<ISprite> myDistanceComparator = (e1, e2) -> Double.compare(
 				calculateDistance(myLocation, e1.getLocation()), calculateDistance(myLocation, e2.getLocation()));
 		return enemies.stream().min(myDistanceComparator).get();

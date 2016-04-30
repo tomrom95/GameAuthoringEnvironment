@@ -62,8 +62,6 @@ public class TrackingFirer extends Firer {
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
                                               mySprite.getLocation().getY()));
-//does the actual game orientaion deal in radians?  I think yes
-//            bullet.getMovementStrategy().setOrientation(getTracker().calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
             bullet.getMovementStrategy().setOrientationFromTracker(getTracker().calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
 
             System.out.println("BULLET ORIENTATION IS: "+bullet.getOrientation());
@@ -75,12 +73,7 @@ public class TrackingFirer extends Firer {
     }
 
     private List<ISprite> getTargets () {
-        
-//        List<ISprite> test = getGame().getLevelManager().getCurrentLevel().getSprites().stream()
-//                .filter(sprite -> myTargets.contains(sprite.getType()))
-//                .collect(Collectors.toList());
-//        System.out.println("SIZE OF TARGET ARRAY IS: "+test.size());
-//        return test;
+
         return getGame().getLevelManager().getCurrentLevel().getSprites().stream()
                 .filter(sprite -> myTargets.contains(sprite.getType()))
                 .collect(Collectors.toList());
