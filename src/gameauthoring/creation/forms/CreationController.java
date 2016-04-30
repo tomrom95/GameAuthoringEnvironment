@@ -137,8 +137,7 @@ public abstract class CreationController<T extends IProfilable> {
         getMyCreationView().getCreationListView().setSelectedItem(item);
         populateViewsWithDefaults();
         getMyCreationView().getFormView().showForm();
-        // showAndEdit();// or
-        populateViewsWithDefaults();// , depending on where defaults are
+        saveItem();
     }
 
     /**
