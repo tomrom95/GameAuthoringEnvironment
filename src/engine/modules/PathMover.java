@@ -16,6 +16,7 @@ import util.TimeDuration;
  * This class provides an implementation of Mover that serves as a module that moves sprites based
  * on a specified coordinate path.
  *
+ *@author  Ryan josephtimko1
  *
  */
 public class PathMover extends Mover {
