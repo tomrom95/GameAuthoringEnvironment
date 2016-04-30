@@ -49,7 +49,6 @@ public class TrackingFireSFC extends RemovableFireSFC {
     }
 
     private void populateViewsWithData (double wait, double range, boolean isRanged) {
-        System.out.println("WTF");
         myView.populateWithData(null, null, myDefaultWaitTime, myDefaultRange, myDefaultIsRanged);
 
     }

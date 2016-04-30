@@ -16,6 +16,12 @@ import gameauthoring.util.ErrorMessage;
 import javafx.collections.ObservableList;
 
 
+/**
+ * Allows for user to create any number of effects to add to an events package
+ * 
+ * @author Joe Lilien
+ *
+ */
 public class EffectSFC extends RemovableEffectSFC {
 
     private IGame myGame;
@@ -30,6 +36,7 @@ public class EffectSFC extends RemovableEffectSFC {
     public EffectSFC (IGame game, EffectChoiceSFC sfc) {
         super(sfc);
         init(game, new IncreaseEffect(null, null, null));
+        initializeFields();
 
     }
 
@@ -41,6 +48,7 @@ public class EffectSFC extends RemovableEffectSFC {
 
     private void init (IGame game, Effect effect) {
         myGame = game;
+        myEffect = effect;
         myView = new EffectSFV(myGame.getAuthorshipData(), getEffects(), getRemoveMenu());
     }
 
