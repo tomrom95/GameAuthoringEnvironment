@@ -42,16 +42,15 @@ import splash.MainUserInterface;
  * divided in order for the users to easily create their own game.
  * 
  * 
- * @author Jin An 
+ * @author Jin An
  * @author Dhrumil
  *
  */
 
 public class AuthoringView implements IAuthoringView {
 
-
     private TabViewFactory<ITabViewer> myTabFactory;
-    
+
     private GameTabViewer myGameTabViewer;
     private CreationTabViewer myCreationTabViewer;
     private SceneTabViewer mySceneTabViewer;
@@ -139,7 +138,7 @@ public class AuthoringView implements IAuthoringView {
         mySceneTabViewer.rescale(width, height);
     }
 
-    private void initializeTabViewers () {        
+    private void initializeTabViewers () {
         myGameTabViewer = new GameTabViewer(getMyGame());
         myCreationTabViewer = new CreationTabViewer(getMyGame());
         myConditionTabViewer = new GameConditionView(getMyGame());
@@ -213,7 +212,7 @@ public class AuthoringView implements IAuthoringView {
     private TabPane createAllTabs () {
         TabPane tabpane = new TabPane();
         tabpane.getStyleClass().add("authoringTabs");
-        
+
         tabpane.getTabs().addAll(myTabFactory.createTabs());
         return tabpane;
     }
