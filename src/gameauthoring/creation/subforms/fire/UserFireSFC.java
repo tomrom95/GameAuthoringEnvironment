@@ -68,7 +68,7 @@ public class UserFireSFC extends RemovableFireSFC {
     }
 
     @Override
-    public void initializeFields (SpriteDefinition item) {
+    public void initializeFields () {
         myView.populateWithData(null, myDefaultWaitTime, myDefaultRange, myDefaultIsRanged, myDefaultAngle, myDefaultAngleStep, myDefaultIncrease, myDefaultDecrease, myDefaultFire);
     }
 
@@ -86,5 +86,7 @@ public class UserFireSFC extends RemovableFireSFC {
     public FirerDefinition getModuleDefinition () {
         return myFireDef;
     }
+
+
 
 }

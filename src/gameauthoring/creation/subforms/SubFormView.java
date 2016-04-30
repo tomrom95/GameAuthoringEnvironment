@@ -30,6 +30,10 @@ public abstract class SubFormView implements ISubFormView {
     private ResourceBundle myNumbers = ResourceBundle
             .getBundle("defaults/numbers",
                        LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    
+    private ResourceBundle myErrors = ResourceBundle
+            .getBundle("defaults/errors",
+                       LocaleManager.getInstance().getCurrentLocaleProperty().get());
 
 
     protected String getMyTitle () {
@@ -57,6 +61,10 @@ public abstract class SubFormView implements ISubFormView {
     
     protected ResourceBundle getMyNumbers(){
         return myNumbers;
+    }
+    
+    protected ResourceBundle getMyErrors(){
+        return myErrors;
     }
     protected BasicUIFactory getMyUIFactory () {
         return myUIFactory;
