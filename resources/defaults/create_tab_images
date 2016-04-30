@@ -1,5 +1,0 @@
-Game = images/game.png
-CreateObjects = images/tools.png
-Conditions = images/collision.png
-Waves = images/waves.png
-BuildScenes = images/scene.png
