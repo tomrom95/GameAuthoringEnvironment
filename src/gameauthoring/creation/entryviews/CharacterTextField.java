@@ -2,6 +2,7 @@ package gameauthoring.creation.entryviews;
 
 import javafx.scene.control.TextField;
 
+
 /**
  * TextField that only accepts one character
  * 
@@ -26,6 +27,6 @@ public class CharacterTextField extends TextField {
     }
 
     private boolean validate (String text) {
-        return text.length()<=1;
+        return text.length() <= 1;
     }
 }

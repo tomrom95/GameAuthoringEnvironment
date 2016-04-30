@@ -31,8 +31,9 @@ public class ImageEntryView extends EntryView {
 
     private Button myChooseImage;
     private ImageView myImage;
-    private String styleClass = "CreationButton";
-    private StringProperty imagePath = new SimpleStringProperty("images/Square.png");
+    private String myStyleClass = "CreationButton";
+    private StringProperty myImagePath = new SimpleStringProperty("images/Square.png");
+    private final String myImageKey = "Image";
     private ResourceBundle myLabel = ResourceBundle.getBundle("languages/labels",
                                                               LocaleManager.getInstance()
                                                                       .getCurrentLocaleProperty()
@@ -68,27 +69,27 @@ public class ImageEntryView extends EntryView {
     }
 
     private void initImageView (DoubleProperty width, DoubleProperty height) {
-        myImage = getMyFactory().makeImageView(imagePath.get(), width, height);
+        myImage = getMyFactory().makeImageView(myImagePath.get(), width, height);
     }
 
     public void updateImage (String url) {
-        imagePath.set(url);
-        myImage.setImage(new Image(imagePath.get()));
+        myImagePath.set(url);
+        myImage.setImage(new Image(myImagePath.get()));
     }
 
     public String getImageURL () {
-        return imagePath.get();
+        return myImagePath.get();
     }
 
     private void initFileChooser (FileChooser imageChoice) {
-        imageChoice.setTitle(myLabel.getString("Image"));
+        imageChoice.setTitle(myLabel.getString(myImageKey));
         imageChoice.getExtensionFilters()
                 .add(new ExtensionFilter(myLabel.getString("ImageFile"), "*.png", "*.jpg",
                                          "*.gif")); // TODO: Default resourcebundle
         myChooseImage =
-                getMyFactory().createButton(myLabel.getString("Image"),
+                getMyFactory().createButton(myLabel.getString(myImageKey),
                                             e -> openImageChoice(imageChoice));
-        getMyFactory().addStyling(myChooseImage, styleClass);
+        getMyFactory().addStyling(myChooseImage, myStyleClass);
     }
 
     private void openImageChoice (FileChooser imageChoice) {
@@ -107,7 +108,7 @@ public class ImageEntryView extends EntryView {
     }
 
     public void bindData (StringProperty url) {
-        imagePath.bindBidirectional(url);
+        myImagePath.bindBidirectional(url);
     }
 
     @Override
