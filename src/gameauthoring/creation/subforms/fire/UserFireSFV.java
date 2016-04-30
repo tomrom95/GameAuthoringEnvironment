@@ -51,8 +51,8 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
 
     private void createEntryViews (AuthorshipData data) {
         s = new StringParser();
-        double width = s.parseDouble(getMyNumbers().getString("Width"));
-        double height = s.parseDouble(getMyNumbers().getString("Height"));
+        double width = getParser().parseDouble(getMyNumbers().getString("Width"));
+        double height = getParser().parseDouble(getMyNumbers().getString("Height"));
 
         myMissileSelectionView =
                 new SingleChoiceEntryView<>(myProjectileKey, data.getMyCreatedMissiles().getItems(),
@@ -108,7 +108,7 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
 
     @Override
     protected void initView () {
-        double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacing"));
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
 
         myPane.add(myIncrease.draw(), 0, 0);
         myPane.add(myDecrease.draw(), 1, 0);

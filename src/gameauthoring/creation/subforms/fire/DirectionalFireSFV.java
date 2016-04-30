@@ -38,14 +38,12 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     private RemoveOption myRemove;
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
-    private StringParser s;
 
     public DirectionalFireSFV (IDefinitionCollection<SpriteDefinition> missiles,
                                RemoveOption remove) {
         setResourceBundleAndKey();
-        s = new StringParser();
-        double width = s.parseDouble(getMyNumbers().getString("Width"));
-        double height = s.parseDouble(getMyNumbers().getString("Height"));
+        double width = getParser().parseDouble(getMyNumbers().getString("Width"));
+        double height = getParser().parseDouble(getMyNumbers().getString("Height"));
         myRemove = remove;
         myAngle = new NumberEntryView(myAngleKey, width, height, AuthoringView.DEFAULT_ENTRYVIEW);
         myWaitTime =
@@ -81,7 +79,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
 
     @Override
     protected void initView () {
-        double spacing = s.parseDouble(getMyNumbers().getString("HBoxSpacingDirectional"));
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacingDirectional"));
         HBox paramsBox =
                 getMyUIFactory().makeHBox(spacing, Pos.TOP_LEFT, myMissileSelectionView.draw(),
                                           myWaitTime.draw());
