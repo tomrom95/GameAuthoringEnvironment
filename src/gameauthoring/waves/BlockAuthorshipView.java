@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 import util.StringParser;
 
 
@@ -34,7 +35,7 @@ public class BlockAuthorshipView implements Glyph {
     private static final int SEC_TO_MILLI = 1000;
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     private ResourceBundle mySize = ResourceBundle.getBundle("defaults/wave_tab_size");
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
 
     private UIFactory myFactory = new BasicUIFactory();
 
