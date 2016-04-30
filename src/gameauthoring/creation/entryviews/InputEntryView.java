@@ -15,22 +15,22 @@ import javafx.scene.control.TextInputControl;
 public abstract class InputEntryView extends EntryView {
 
     private TextInputControl myTextInput;
-    private double width;
-    private double height;
+    private double myWidth;
+    private double myHeight;
 
     public InputEntryView (String label,
                            double width,
                            double height,
                            String cssClass) {
         super(label, cssClass);
-        this.width = width;
-        this.height = height;
+        this.myWidth = width;
+        this.myHeight = height;
     }
 
     @Override
     protected void init () {
-        myTextInput.setMinSize(width, height);
-        myTextInput.setMaxSize(width, height);
+        myTextInput.setMinSize(myWidth, myHeight);
+        myTextInput.setMaxSize(myWidth, myHeight);
         getMyContainer().getChildren().add(myTextInput);
     }
 

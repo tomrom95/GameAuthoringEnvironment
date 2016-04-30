@@ -8,7 +8,6 @@ import engine.rendering.ScaleFactory;
 import engine.rendering.UnscaledFactory;
 import gameauthoring.util.BasicUIFactory;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
@@ -38,7 +37,6 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
                        LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private StringParser myParser = new StringParser();
 
-
     @Override
     protected void updateItem (E item, boolean empty) {
         super.updateItem(item, empty);
@@ -57,8 +55,6 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
         // setImageBind(profile);
         return container;
     }
-
- 
 
     /**
      * For subclasses to alter the HBox not the node
