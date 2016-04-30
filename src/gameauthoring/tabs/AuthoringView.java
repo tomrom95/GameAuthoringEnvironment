@@ -7,6 +7,7 @@ import com.dooapp.xstreamfx.FXConverters;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.IGame;
+import gameauthoring.creation.factories.TabViewFactory;
 import gameauthoring.listdisplay.GameConditionView;
 import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.ErrorMessage;
@@ -40,10 +41,13 @@ import splash.MainUserInterface;
  * 
  * 
  * @author Jin An
+ * @author Dhrumil
  *
  */
 
 public class AuthoringView implements IAuthoringView {
+
+    private TabViewFactory<ITabViewer> myTabFactory;
 
     private GameTabViewer myGameTabViewer;
     private CreationTabViewer myCreationTabViewer;
@@ -62,11 +66,6 @@ public class AuthoringView implements IAuthoringView {
     public static final String HOME = "Home";
     public static final String SAVE = "Save";
     private ResourceBundle myLabel;
-    private ResourceBundle myImages = ResourceBundle.getBundle("defaults/authoringmenus"); // TODO:
-                                                                                           // ResourceBundle
-                                                                                           // default
-                                                                                           // for
-                                                                                           // images
 
     public AuthoringView () {
         setResourceBundle();
@@ -211,35 +210,8 @@ public class AuthoringView implements IAuthoringView {
     private TabPane createAllTabs () {
         TabPane tabpane = new TabPane();
         tabpane.getStyleClass().add("authoringTabs");
-        Tab gameTab =
-                myUIFactory
-                        .createTabGraphic(
-                                          myUIFactory.makeImageDisplay("images/game.png",
-                                                                       myLabel.getString("Game")),
-                                          false, myGameTabViewer.draw());
-        Tab creationTab =
-                myUIFactory
-                        .createTabGraphic(myUIFactory.makeImageDisplay("images/tools.png",
-                                                                       myLabel.getString("CreateObjects")),
-                                          false, myCreationTabViewer.draw());
-        Tab conditionTab =
-                myUIFactory
-                        .createTabGraphic(myUIFactory.makeImageDisplay("images/collision.png",
-                                                                       myLabel.getString("Conditions")),
-                                          false, myConditionView.draw());
-        Tab waveTab =
-                myUIFactory
-                        .createTabGraphic(
-                                          myUIFactory.makeImageDisplay("images/waves.png",
-                                                                       myLabel.getString("Waves")),
-                                          false, myWaveTabView.draw());
-        Tab sceneTab =
-                myUIFactory
-                        .createTabGraphic(myUIFactory.makeImageDisplay("images/scene.png",
-                                                                       myLabel.getString("BuildScenes")),
-                                          false, mySceneTabViewer.draw());
-        tabpane.getTabs().addAll(gameTab, creationTab, conditionTab, waveTab, sceneTab);
 
+        tabpane.getTabs().addAll(myTabFactory.createTabs());
         return tabpane;
     }
 
