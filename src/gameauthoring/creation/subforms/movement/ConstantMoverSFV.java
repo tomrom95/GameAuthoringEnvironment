@@ -2,6 +2,7 @@ package gameauthoring.creation.subforms.movement;
 
 import java.util.ResourceBundle;
 import splash.LocaleManager;
+import util.StringParser;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
@@ -26,6 +27,7 @@ public class ConstantMoverSFV extends SubFormView implements IConstantMoverSFV {
     private String myOrientationKey;
     private NumberEntryView mySpeed;
     private NumberEntryView myOrientation;
+    
 
     public ConstantMoverSFV () {
         setResourceBundleAndKey();
@@ -34,11 +36,13 @@ public class ConstantMoverSFV extends SubFormView implements IConstantMoverSFV {
     }
 
     private void createEntryViews () {
+        double width = getParser().parseDouble(getMyNumbers().getString("WidthMovement"));
+        double height = getParser().parseDouble(getMyNumbers().getString("Height"));
         mySpeed =
-                new NumberEntryView(mySpeedKey, 150, 30,
+                new NumberEntryView(mySpeedKey, width, height,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
         myOrientation =
-                new NumberEntryView(myOrientationKey, 150, 30,
+                new NumberEntryView(myOrientationKey, width, height,
                                     AuthoringView.DEFAULT_ENTRYVIEW);
     }
 
@@ -56,7 +60,8 @@ public class ConstantMoverSFV extends SubFormView implements IConstantMoverSFV {
 
     @Override
     protected void initView () {
-        myPane = getMyUIFactory().makeHBox(20, Pos.CENTER, mySpeed.draw(), myOrientation.draw());
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
+        myPane = getMyUIFactory().makeHBox(spacing, Pos.CENTER, mySpeed.draw(), myOrientation.draw());
         myPane.getStyleClass().add("mover");
     }
 
