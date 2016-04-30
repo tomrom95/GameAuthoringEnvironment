@@ -22,8 +22,10 @@ public class FormDataManager implements IFormDataManager {
 
     private Map<String, ObservableList<StringProperty>> myStorage =
             new HashMap<String, ObservableList<StringProperty>>();
-    private ResourceBundle myErrors = ResourceBundle
-            .getBundle("defaults/errors");
+    private ResourceBundle myLabels =
+            ResourceBundle
+                    .getBundle("languages/labels",
+                               LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private final String myErrorKey = "NoKey";
 
     @Override
@@ -52,7 +54,7 @@ public class FormDataManager implements IFormDataManager {
             return myStorage.get(key);
         }
         catch (NullPointerException e) {
-            ErrorMessage err = new ErrorMessage(myErrors.getString(myErrorKey));
+            ErrorMessage err = new ErrorMessage(myLabels.getString(myErrorKey));
             err.showError();
             return null;
         }
@@ -65,7 +67,7 @@ public class FormDataManager implements IFormDataManager {
             return myStorage.get(key).get(0);
         }
         catch (NullPointerException e) {
-            ErrorMessage err = new ErrorMessage(myErrors.getString(myErrorKey));
+            ErrorMessage err = new ErrorMessage(myLabels.getString(myErrorKey));
             err.showError();
             return null;
         }
@@ -77,7 +79,7 @@ public class FormDataManager implements IFormDataManager {
             myStorage.remove(key);
         }
         catch (NullPointerException e) {
-            ErrorMessage err = new ErrorMessage(myErrors.getString(myErrorKey));
+            ErrorMessage err = new ErrorMessage(myLabels.getString(myErrorKey));
             err.showError();
         }
     }
