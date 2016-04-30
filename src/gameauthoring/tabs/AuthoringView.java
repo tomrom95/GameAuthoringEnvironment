@@ -168,11 +168,13 @@ public class AuthoringView implements IAuthoringView {
 
     private void loadGame () {
         try {
-            IGame loadedGame = new GameReader().readFile(getFile());
-            AuthoringView aView = new AuthoringView(loadedGame);
-            Stage authoringStage = new Stage();
-            aView.init(authoringStage);
-            authoringStage.show();
+            if (getFile() != null) {
+                IGame loadedGame = new GameReader().readFile(getFile());
+                AuthoringView aView = new AuthoringView(loadedGame);
+                Stage authoringStage = new Stage();
+                aView.init(authoringStage);
+                authoringStage.show();
+            }
         }
         catch (LoadErrorException e) {
             ErrorMessage message = new ErrorMessage(e.getMessage());

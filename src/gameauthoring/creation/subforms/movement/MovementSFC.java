@@ -37,26 +37,7 @@ public class MovementSFC extends DynamicSubFormController<SpriteDefinition> {
     @Override
     protected void changeCurrentSFCBasedOnData (SpriteDefinition item) {
         MovementDefinition movDef = item.getMovementDefinition();
-        
-        
-        //TODO fix bad code or move to factory
-        if (movDef instanceof StaticMovementDefintion){
-            this.setMyCurrentSFC(new StaticMoverSFC());
-            
-        }else if (movDef instanceof ConstantMoverDefinition){
-            this.setMyCurrentSFC(new ConstantMoverSFC());
-            
-        }else if (movDef instanceof UserMoverDefinition){
-            this.setMyCurrentSFC(new UserMoverSFC());
-            
-        }else if (movDef instanceof TrackingMoverDefinition){
-            this.setMyCurrentSFC(new TrackingMoverSFC(getMyGame()));
-            
-        }else if (movDef instanceof PathMoverDefinition){
-            this.setMyCurrentSFC(new PathMoverSFC());
-            
-        }
-        
+        setMyCurrentSFC(new MovementSFCFactory(getMyGame()).getSFCFromDefinition(movDef));        
     }
 
 
