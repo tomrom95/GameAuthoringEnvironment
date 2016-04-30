@@ -4,6 +4,7 @@ import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.ConstantMoverDefinition;
 import engine.definitions.moduledef.MovementDefinition;
+import engine.definitions.moduledef.PathMoverDefinition;
 import engine.definitions.moduledef.StaticMovementDefintion;
 import engine.definitions.moduledef.TrackingMoverDefinition;
 import engine.definitions.moduledef.UserMoverDefinition;
@@ -50,6 +51,9 @@ public class MovementSFC extends DynamicSubFormController<SpriteDefinition> {
             
         }else if (movDef instanceof TrackingMoverDefinition){
             this.setMyCurrentSFC(new TrackingMoverSFC(getMyGame()));
+            
+        }else if (movDef instanceof PathMoverDefinition){
+            this.setMyCurrentSFC(new PathMoverSFC());
             
         }
         

@@ -70,7 +70,7 @@ public abstract class ClickAndFillView extends SubFormView {
         for (String s : options) {
             Button button =
                     getMyUIFactory().createImageButton(getMyUIFactory()
-                            .makeImageDisplay(getMyProperties().getString(s), s));
+                            .makeImageDisplay(getMyProperties().getString(s), getMyLanguages().getString(s)));
             getMyUIFactory().addStyling(button, cssButtonClass);
             getMyButtons().add(button);
         }
