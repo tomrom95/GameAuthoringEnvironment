@@ -39,6 +39,7 @@ public class SpriteDefinition implements IProfilable {
     private IProfile myProfile;
     private ICost myCost;
     private boolean myObstructability;
+    private boolean myGoal;
 
     public SpriteDefinition () {
         // TODO Set a default from resource file. THis is just for view testing
@@ -59,11 +60,39 @@ public class SpriteDefinition implements IProfilable {
         sprite.initialize(mover, graphicModule, createUpgrade(sprite), createModules(sprite),
                           createAttributes(), createCoordinate());
         sprite.setObstruction(myObstructability);
+        sprite.getStatusModule().setIsGoal(myGoal);
         return sprite;
     }
+
+    public void clearGoalObstructable () {
+        setObstructability(false);
+        setMyGoal(false);
+    }
+
+    public void setObstructability () {
+        myObstructability = true;
+        setMyGoal(false);
+    }
+
+    public boolean getObstructability () {
+        return myObstructability;
+    }
+
+    public boolean isMyGoal () {
+        return myGoal;
+    }
+
+    public void setMyGoal () {
+        this.myGoal = true;
+        setObstructability(false);
+    }
     
-    public void setObstructability (boolean toSet){
-        myObstructability = toSet;
+    private void setMyGoal(boolean goal){
+        myGoal = goal;
+    }
+    
+    private void setObstructability (boolean obstructable){
+        myObstructability = obstructable;
     }
     
     protected UpgradeModule createUpgrade (ISprite parent) {
@@ -161,5 +190,7 @@ public class SpriteDefinition implements IProfilable {
     public void setCost (ICost cost) {
         myCost = cost;
     }
+    
+
 
 }

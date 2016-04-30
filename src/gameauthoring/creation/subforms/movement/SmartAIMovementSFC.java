@@ -8,6 +8,7 @@ import gameauthoring.creation.subforms.ISubFormView;
 public class SmartAIMovementSFC implements ISubFormControllerSprite {
 
     private SmartAIMovementSFV myView;
+    private double myDefaultSpeed = 0;
 
     public SmartAIMovementSFC () {
         myView = new SmartAIMovementSFV();
@@ -27,7 +28,7 @@ public class SmartAIMovementSFC implements ISubFormControllerSprite {
 
     @Override
     public void initializeFields () {
-        // TODO Auto-generated method stub
+        myView.populateWithData(myDefaultSpeed);
 
     }
 
