@@ -1,0 +1,5 @@
+Game = GAME
+CreateObjects = OBJECT CREATOR
+Conditions = CONDITIONS
+Waves = WAVES
+BuildScenes = SCENE BUILDER
