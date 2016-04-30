@@ -47,7 +47,7 @@ public abstract class CreationController<T extends IProfilable> {
         setMySFCFactory(createSFCFactory(game));
         setMyDefinitionCollection(getDefinitionCollectionFromAuthorshipData(game
                 .getAuthorshipData()));
-        setMySubFormControllers(getMySFCFactory().createSubFormControllers(subFormStrings));
+        setMySubFormControllers(getMySFCFactory().createSubFormControllers(subFormStrings, key));
         List<ISubFormView> subFormViews = getSubFormViews(getMySubFormControllers());
         myView.init(subFormViews);
         setupConnections();
@@ -137,8 +137,7 @@ public abstract class CreationController<T extends IProfilable> {
         getMyCreationView().getCreationListView().setSelectedItem(item);
         populateViewsWithDefaults();
         getMyCreationView().getFormView().showForm();
-        // showAndEdit();// or
-        populateViewsWithDefaults();// , depending on where defaults are
+        saveItem();
     }
 
     /**
