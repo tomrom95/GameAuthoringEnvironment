@@ -33,7 +33,7 @@ public class FormView implements IFormView {
     private Button myNewButton = myFactory.createStyledButton("New", buttonClass);
     private List<Node> myButtons = new ArrayList<Node>(Arrays.asList(mySaveButton,myDeleteButton, myNewButton));
     private List<ISubFormView> mySubFormViews;
-    private static final double HEIGHT = 525; //TODO: move to common resource file    
+    private static final double HEIGHT = 528; //TODO: move to common resource file    
     private static final double WRAP_LENGTH = HEIGHT - 20;
     public FormView(List<ISubFormView> subFormViews){   
         mySubFormContainer.setPrefWrapLength(WRAP_LENGTH);

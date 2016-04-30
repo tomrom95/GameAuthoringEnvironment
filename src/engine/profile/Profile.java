@@ -1,5 +1,6 @@
 package engine.profile;
 
+import engine.AttributeType;
 import graphics.IGraphic;
 import graphics.ImageGraphic;
 import javafx.beans.property.BooleanProperty;
@@ -34,6 +35,10 @@ public class Profile implements IProfile {
 
     public Profile (String name) {
         init(name, "", new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
+    }
+    
+    public Profile (AttributeType type) {
+        init(type.getType(), "", new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
     }
 
     public Profile (String name, String description) {

@@ -2,8 +2,10 @@ package gameauthoring.creation.subforms.events;
 
 import java.util.ResourceBundle;
 import splash.LocaleManager;
+import engine.AttributeType;
 import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
+import engine.profile.Profile;
 import engine.profile.ProfileDisplay;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
@@ -77,6 +79,7 @@ public class EffectSFV extends SubFormView implements IEffectSFV {
         ObservableList<AttributeDefinition> defs = FXCollections.observableArrayList();
         defs.addAll(data.getMyCreatedAttributes().getItems());
         defs.addAll(data.getMyCreatedGlobals().getItems());
+        defs.add(new AttributeDefinition(new Profile(AttributeType.SPEED)));
         return defs;
     }
 

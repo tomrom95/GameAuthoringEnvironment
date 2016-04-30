@@ -26,6 +26,7 @@ public abstract class CreationController<T extends IProfilable> {
     private String myKey;
     private SubFormControllerFactory<T> mySFCFactory;
     private DefinitionCollection<T> myDefinitionCollection;
+    private AuthorshipData myData;
     private ResourceBundle myResources = ResourceBundle.getBundle("languages/labels",
                                                                   LocaleManager.getInstance()
                                                                           .getCurrentLocaleProperty()
@@ -44,10 +45,11 @@ public abstract class CreationController<T extends IProfilable> {
 
         myKey = key;
         myView = new CreationView<T>();
+        myData = game.getAuthorshipData();
         setMySFCFactory(createSFCFactory(game));
         setMyDefinitionCollection(getDefinitionCollectionFromAuthorshipData(game
                 .getAuthorshipData()));
-        setMySubFormControllers(getMySFCFactory().createSubFormControllers(subFormStrings));
+        setMySubFormControllers(getMySFCFactory().createSubFormControllers(subFormStrings, key));
         List<ISubFormView> subFormViews = getSubFormViews(getMySubFormControllers());
         myView.init(subFormViews);
         setupConnections();
@@ -107,7 +109,6 @@ public abstract class CreationController<T extends IProfilable> {
             subFormController.updateItem(getMyCurrentItem());
         }
 
-//        this.getMyCreationView().getCreationListView().refreshItems();
     }
 
     /**
@@ -131,14 +132,15 @@ public abstract class CreationController<T extends IProfilable> {
      * Method handler when user clicks "new" object
      * 
      */
-    private void newItem () {
+    protected T newItem () {
         T item = createBlankItem();
         addItem(item);
         getMyCreationView().getCreationListView().setSelectedItem(item);
         populateViewsWithDefaults();
         getMyCreationView().getFormView().showForm();
-        // showAndEdit();// or
-        populateViewsWithDefaults();// , depending on where defaults are
+        populateViewsWithDefaults();
+        saveItem();
+        return item;
     }
 
     /**
@@ -228,6 +230,10 @@ public abstract class CreationController<T extends IProfilable> {
 
     protected ResourceBundle getMyResources () {
         return myResources;
+    }
+    
+    protected AuthorshipData getMyData () {
+        return myData;
     }
 
 }
