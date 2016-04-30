@@ -30,11 +30,13 @@ public abstract class EntryView implements IEntryView {
     private Label myLabel;
     private Pane myContainer;
     private BasicUIFactory myFactory = new BasicUIFactory();
-    private ResourceBundle myNumbers = ResourceBundle
-            .getBundle("defaults/numbers");
-    private StringParser myParser = new StringParser();
+    private ResourceBundle myNumbers;
+   
+    private StringParser myParser; 
 
     public EntryView (String label, String cssClass) {
+        myNumbers =  ResourceBundle.getBundle("defaults/numbers");
+        myParser =  new StringParser();
         myLabel = new Label(label);
         myLabel.getStyleClass().add(myLabelCss);
         initContainer(cssClass);
@@ -61,6 +63,14 @@ public abstract class EntryView implements IEntryView {
 
     protected BasicUIFactory getMyFactory () {
         return myFactory;
+    }
+
+    protected ResourceBundle getMyNumbers () {
+        return myNumbers;
+    }
+    
+    protected StringParser getParser(){
+        return myParser;
     }
 
     protected abstract void init ();
