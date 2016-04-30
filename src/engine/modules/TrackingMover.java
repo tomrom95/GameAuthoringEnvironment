@@ -43,7 +43,6 @@ public class TrackingMover extends Mover {
 
     @Override
     public void update (TimeDuration duration) {
-        System.out.println("SIZE OF SPRITE TYPE ARRAY IS: " + myEnemyList.size());
         setOrientationFromTracker(myTracker
                 .calculateOrientationToClosestEnemy(mySprite.getLocation(), myPotentialTargets()));
         move(duration);
