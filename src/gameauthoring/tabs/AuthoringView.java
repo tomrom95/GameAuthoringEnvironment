@@ -65,11 +65,10 @@ public class AuthoringView implements IAuthoringView {
     private ResourceBundle myLabel;
 
     public AuthoringView () {
-        setResourceBundle();
+        
         GameFactory gameFactory = new GameFactory();
         myGame = gameFactory.createGame();
-        myTabFactory = new TabViewFactory<ITabViewer>(myGame);
-        myTabViewers = myTabFactory.createTabViewers();
+        createView(myGame);
     }
 
     private void setResourceBundle () {
@@ -79,6 +78,13 @@ public class AuthoringView implements IAuthoringView {
 
     public AuthoringView (IGame game) {
         myGame = game;
+        createView(myGame);
+    }
+    
+    private void createView (IGame game) {
+        setResourceBundle();
+        myTabFactory = new TabViewFactory<ITabViewer>(myGame);
+        myTabViewers = myTabFactory.createTabViewers();
     }
 
     @Override
@@ -210,7 +216,8 @@ public class AuthoringView implements IAuthoringView {
     private TabPane createAllTabs () {
         TabPane tabpane = new TabPane();
         tabpane.getStyleClass().add("authoringTabs");
-
+        //myTabFactory = new TabViewFactory<ITabViewer>(myGame);
+        //myTabViewers = myTabFactory.createTabViewers();
         tabpane.getTabs().addAll(myTabFactory.createTabs());
         return tabpane;
     }

@@ -931,6 +931,7 @@
           <myHeight>720.0</myHeight>
         </myBounds>
       </engine.Level>
+      <engine.Level reference="../engine.Level[1]"/>
     </myLevelPropertyList>
     <myCurrentLevel class="engine.Level" reference="../myLevelPropertyList[1]/engine.Level[1]"/>
     <myGlobalGameConditions class="engine.ConditionManager">
@@ -1147,7 +1148,65 @@
         <string>Enemies</string>
         <gameauthoring.shareddata.DefinitionCollection>
           <myTitleKey>Enemies</myTitleKey>
-          <myItems class="com.sun.javafx.collections.ObservableListWrapper"/>
+          <myItems class="com.sun.javafx.collections.ObservableListWrapper">
+            <engine.definitions.concrete.SpriteDefinition>
+              <myMovementDefinition class="engine.definitions.moduledef.StaticMovementDefintion">
+                <mySpeed defined-in="engine.definitions.moduledef.MovementDefinition">0.0</mySpeed>
+                <myOrientation>0.0</myOrientation>
+                <mySpeed>0.0</mySpeed>
+              </myMovementDefinition>
+              <myModuleDefinitions/>
+              <myUpgrade class="engine.definitions.upgrades.NullUpgradeDefinition">
+                <myCost>0.0</myCost>
+                <isUpgradable>false</isUpgradable>
+              </myUpgrade>
+              <myLocation>
+                <myXCoordinate>0.0</myXCoordinate>
+                <myYCoordinate>0.0</myYCoordinate>
+              </myLocation>
+              <myAttributes/>
+              <myProfile class="engine.profile.Profile">
+                <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                <myName class="javafx.beans.property.SimpleStringProperty">Enemy</myName>
+                <myDescription class="javafx.beans.property.SimpleStringProperty">Description</myDescription>
+                <myImage>
+                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                  <myUrl class="javafx.beans.property.SimpleStringProperty">Images/square.png</myUrl>
+                </myImage>
+                <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
+                <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
+                <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+              </myProfile>
+              <myCost class="engine.definitions.costs.NullCost"/>
+              <mySingleGroup>
+                <mySpriteDefinitions>
+                  <engine.definitions.concrete.SpriteDefinition reference="../../.."/>
+                </mySpriteDefinitions>
+                <mySpriteTypes>
+                  <engine.sprite.SpriteType>
+                    <myType>Enemy</myType>
+                    <myProfile class="engine.profile.Profile">
+                      <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                      <myName class="javafx.beans.property.SimpleStringProperty">Enemy</myName>
+                      <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                      <myImage>
+                        <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                        <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                        <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                      </myImage>
+                      <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                      <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                      <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                    </myProfile>
+                  </engine.sprite.SpriteType>
+                </mySpriteTypes>
+                <myProfile class="engine.profile.Profile" reference="../../myProfile[1]"/>
+              </mySingleGroup>
+              <myObstructability>false</myObstructability>
+              <myGoal>false</myGoal>
+            </engine.definitions.concrete.SpriteDefinition>
+          </myItems>
         </gameauthoring.shareddata.DefinitionCollection>
       </entry>
       <entry>
@@ -1187,6 +1246,7 @@
         <engine.SpriteGroup reference="../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/mySingleGroup[1]"/>
         <engine.SpriteGroup reference="../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]/mySingleGroup[1]"/>
         <engine.SpriteGroup reference="../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[1]/mySelfPackage[1]/mySpriteGroup[1]"/>
+        <engine.SpriteGroup reference="../../../myCreatedSprites[1]/entry[1]/gameauthoring.shareddata.DefinitionCollection[1]/myItems[1]/engine.definitions.concrete.SpriteDefinition[1]/mySingleGroup[1]"/>
       </myItems>
     </myCreatedGroups>
     <myCreatedEventPackages>
@@ -1230,9 +1290,9 @@
     </myCreatedEventPackages>
   </myAuthorshipData>
   <myGameInformation class="engine.GameInformation">
-    <myTitle class="javafx.beans.property.SimpleStringProperty"/>
-    <myAuthor class="javafx.beans.property.SimpleStringProperty"/>
-    <myDateCreated class="javafx.beans.property.SimpleStringProperty"/>
+    <myTitle class="javafx.beans.property.SimpleStringProperty"></myTitle>
+    <myAuthor class="javafx.beans.property.SimpleStringProperty"></myAuthor>
+    <myDateCreated class="javafx.beans.property.SimpleStringProperty"></myDateCreated>
     <mySplashScreen>
       <myWidth class="javafx.beans.property.SimpleDoubleProperty">200.0</myWidth>
       <myHeight class="javafx.beans.property.SimpleDoubleProperty">300.0</myHeight>
