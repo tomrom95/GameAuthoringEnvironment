@@ -2,7 +2,6 @@ package gameauthoring.listdisplay;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import splash.LocaleManager;
 import engine.conditions.ICondition;
@@ -20,6 +19,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -30,7 +30,9 @@ public abstract class SubConditionView {
 
     protected static final double CUSHION = 10;
     private static final String DEFAULT_IMAGE = "/images/C.png";
-    private ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    private ResourceBundle myLabels =
+            ResourceBundle.getBundle("languages/labels",
+                                     LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle mySize = ResourceBundle.getBundle("defaults/subcondition");
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
 
@@ -40,7 +42,7 @@ public abstract class SubConditionView {
     private TextField myName = new TextField();
     private TextArea myDescription = new TextArea();
     private List<Node> myNodes;
-    
+
     public SubConditionView (ObservableList<ICondition> conditionList) {
         myGroup.getStyleClass().add(myStyle.getString("ConditionPane"));
         myList = conditionList;
@@ -51,7 +53,7 @@ public abstract class SubConditionView {
         setSizes();
         myGroup.setHgap(CUSHION);
         myGroup.setVgap(CUSHION);
-        add(addProfileInfo(), 0, 0);
+        myGroup.add(addProfileInfo(), 1, 0);
         initializeDisplay();
     }
 
@@ -72,15 +74,15 @@ public abstract class SubConditionView {
         vbox.getChildren().addAll(myFactory.createSubTitleLabel(label), node2);
         return vbox;
     }
-    
+
     protected void addStringComboBox (ComboBox<String> combo) {
-        myNodes.add(combo);      
+        myNodes.add(combo);
     }
 
     protected void initializeDisplay () {
         initBoxes();
-        add(getHBox(), 0, 1);
-        myGroup.add(createButton(), 0, 2);
+        myGroup.add(getHBox(), 0, 1, 3, 1);
+        myGroup.add(createButton(), 0, 0);
     }
 
     protected abstract void initBoxes ();
@@ -92,39 +94,42 @@ public abstract class SubConditionView {
     }
 
     private void addCondition () {
-        
-        try  {
+
+        try {
             ICondition condition = createCondition();
             myList.add(condition);
         }
         catch (IncompleteFormException e) {
             ErrorMessage error = new ErrorMessage(e.getMessage());
-            error.showError();          
+            error.showError();
         }
     }
 
-    protected void add (Node node, int column, int row) {
-        myGroup.add(node, column, row);
+    protected void add (Node node, int column, int row, int colW, int rowW) {
+        myGroup.add(node, column, row, colW, rowW);
     }
 
     private ICondition createCondition () throws IncompleteFormException {
         try {
             ICondition condition = subCreation();
-            condition.setProfile(new Profile(myName.getText(), myDescription.getText(), DEFAULT_IMAGE));
+            condition.setProfile(new Profile(myName.getText(), myDescription.getText(),
+                                             DEFAULT_IMAGE));
             return condition;
-        } catch (NullPointerException | NumberFormatException e) {
+        }
+        catch (NullPointerException | NumberFormatException e) {
             throw new IncompleteFormException(myLabels.getString("FillForm"));
         }
     }
 
     protected abstract ICondition subCreation ();
 
-    public Pane show () {        
+    public Pane show () {
         return myGroup;
     }
 
     protected <T extends IProfilable> ComboBox<T> createComboBox (ObservableList<T> list) {
         ComboBox<T> combo = new BasicUIFactory().createCombo(list);
+        myFactory.addStyling(combo, "WhiteCombo");
         myNodes.add(combo);
         return combo;
     }
@@ -137,15 +142,26 @@ public abstract class SubConditionView {
 
     /**
      * Loops through the property file grabbing the proper labels
+     * 
      * @return HBox of label/combo-box pairs
      */
     protected Node getHBox () {
-        HBox hbox = new HBox(CUSHION);
+       
+        FlowPane pane = new FlowPane();
+        setSize(pane, Double.parseDouble(mySize.getString("MaxWrap")));
+        pane.setVgap(CUSHION);
+        pane.setVgap(CUSHION);
         for (int i = 0; i < myNodes.size(); i++) {
             String label = myLabels.getString(getLabelKey(Integer.toString(i)));
-            hbox.getChildren().add(getCombo(label, myNodes.get(i)));
+            pane.getChildren().add(getCombo(label, myNodes.get(i)));
         }
-        return hbox;
+        return pane;
+    }
+
+    private void setSize (Pane pane, double size) {
+        pane.setMinWidth(size);
+        pane.setMaxWidth(size);
+        pane.setPrefWidth(size);      
     }
 
     private Node getCombo (String label, Node node) {
@@ -159,6 +175,6 @@ public abstract class SubConditionView {
         myNodes.add(text);
         return text;
     }
-   
+
     protected abstract String getLabelKey (String key);
 }
