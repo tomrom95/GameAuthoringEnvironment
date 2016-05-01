@@ -93,7 +93,7 @@ public class CostSFV extends SubFormView implements ICostSFV {
 
     @Override
     public void populateWithData (boolean hasCost, AttributeDefinition attribute, double cost) {
-        this.myTitledPane.setExpanded(false);
+        this.myTitledPane.setExpanded(hasCost);
         myAttributes.setSelected(attribute);
         myCost.setData(cost);
     }
