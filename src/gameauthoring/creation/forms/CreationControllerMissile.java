@@ -22,7 +22,7 @@ public class CreationControllerMissile extends CreationControllerSprite {
     protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
         authorshipData.getMyCreatedGroups()
                 .addItem(new SpriteGroup(authorshipData.getMyCreatedMissiles().getItems(),
-                                         new Profile(getMyKey(), "",
+                                         new Profile(getMyTitle(), "",
                                                      getImageBundle().getString(getMyKey()))));
         return authorshipData.getMyCreatedMissiles();
     }
