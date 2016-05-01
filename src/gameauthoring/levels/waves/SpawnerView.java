@@ -188,6 +188,7 @@ public class SpawnerView implements Glyph, Draggable {
 
     @Override
     public void setOnDragDropped (DragEvent e) {
+//        mySpawner.setProfile(new Profile());
         myLevel.add(mySpawner.create(), getCoordinate(e.getX(), e.getY()));
         myRenderer.render();
         reset();
