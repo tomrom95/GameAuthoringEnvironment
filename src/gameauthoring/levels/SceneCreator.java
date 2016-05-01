@@ -1,5 +1,6 @@
 package gameauthoring.levels;
 
+import splash.LocaleManager;
 import util.ScaleRatio;
 import java.util.ResourceBundle;
 import engine.IGame;
@@ -25,9 +26,12 @@ import javafx.scene.layout.Pane;
  *
  */
 public class SceneCreator implements Glyph {
-    
+
     private static final String DEFAULT_BACKGROUND = "images/grass.jpg";
     private static final int DOUBLE_CLICK = 2;
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager
+            .getInstance().getCurrentLocaleProperty().get());
+
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/scene_creator");
     private IGame myGameModel;
     private AuthoringRenderer myRenderer;
@@ -64,8 +68,7 @@ public class SceneCreator implements Glyph {
 
     private Button placeableButton () {
         return (new BasicUIFactory())
-                .createButton((myPlaceableEnable ? "Disable" : "Enable") + " Placeable View",
-                              e -> handlePlaceableButton());
+                .createButton(buttonLabel(), e -> handlePlaceableButton());
     }
 
     private void handlePlaceableButton () {
@@ -78,7 +81,7 @@ public class SceneCreator implements Glyph {
         else {
             disableGrid();
         }
-        myButton.setText((myPlaceableEnable ? "Disable" : "Enable") + " Placeable View");
+        myButton.setText(buttonLabel());
     }
 
     /**
@@ -101,7 +104,6 @@ public class SceneCreator implements Glyph {
      */
     private Node createLevelView () {
 
-        
         Pane pane = new Pane();
         Pane levelPane = new Pane();
         myGrid = new GridPane();
@@ -155,5 +157,10 @@ public class SceneCreator implements Glyph {
 
     public double getAccordionWith () {
         return mySideBar.getWidth();
+    }
+
+    private String buttonLabel () {
+        return (myPlaceableEnable ? myLang.getString("Disable") : myLang.getString("Enable")) +
+               myLang.getString("PlaceableView");
     }
 }
