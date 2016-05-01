@@ -43,14 +43,12 @@ public class GoalBasedMover extends Mover {
 
     @Override
     public void update (TimeDuration duration) {
-        System.out.println("SPEED IS: "+getSpeed());
         Coordinate goal = findNearestGoal();
         List<Coordinate> goalPath = myPather.findPathFor(obstructionMap(), getLocation(), goal);
         
         Coordinate targetCoordinate =
                 furthestReachablePoint(getLocation(), goalPath,
                                        distance(getSpeed(), duration.getMillis()));
-        System.out.println("X: "+targetCoordinate.getX()+" Y: "+targetCoordinate.getY());
         getParent().setLocation(targetCoordinate);
         getParent().setOrientation(myRotationStrategy.angleFromCoordinates(getLocation(),
                                                                            targetCoordinate));

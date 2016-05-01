@@ -31,6 +31,7 @@ public class OnScreenSprite implements Draggable, Glyph {
     private AuthoringRenderer levelView;
     private ISprite mySprite;
     private SpriteController myController;
+    private ScaleRatio myScale;
 
     public OnScreenSprite (AuthoringRenderer renderer,
                            ILevel level,
@@ -38,6 +39,7 @@ public class OnScreenSprite implements Draggable, Glyph {
                            ScaleRatio scale) {
         levelView = renderer;
         mySprite = sprite;
+        myScale = scale;
         myController = new SpriteController(level, scale);
     }
 
@@ -107,8 +109,8 @@ public class OnScreenSprite implements Draggable, Glyph {
     }
 
     private boolean checkPlaceableTile (DragEvent e){
-        double halfHeight = (0.5) * (mySprite.getBounds().getBottom() - mySprite.getBounds().getTop());
-        double halfWidth = (0.5) * (mySprite.getBounds().getRight() - mySprite.getBounds().getLeft());
+        double halfHeight = (0.5) * myScale.scale((mySprite.getBounds().getBottom() - mySprite.getBounds().getTop()));
+        double halfWidth = (0.5) * myScale.scale((mySprite.getBounds().getRight() - mySprite.getBounds().getLeft()));
         for(int r = (int)((e.getY()-halfHeight)/ levelView.getGrids().getCurrentBlockSize()); r < (int)((e.getY() + halfHeight)/levelView.getGrids().getCurrentBlockSize()); r++){       
             for (int c = (int)((e.getX()-halfWidth)/levelView.getGrids().getCurrentBlockSize()); c < (int)((e.getX()+halfWidth)/levelView.getGrids().getCurrentBlockSize()); c++){
                 if(levelView.getLevel().getPlaceableTileManager().getPlaceableMap().getBitMap()[r][c]){
