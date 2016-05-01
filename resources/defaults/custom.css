@@ -415,3 +415,6 @@
     -fx-stroke-width: .5;
 }
 
+.cond_combobox {
+	-fx-base: #FFFFFF;
+}

@@ -24,6 +24,7 @@ public class ListDisplay<T extends IProfilable> implements Glyph {
 
     public ListDisplay (ObservableList<T> list) {
         myPane = new GridPane();
+        myPane.setAlignment(Pos.CENTER);
         initListView(list);
 
     }
@@ -53,7 +54,6 @@ public class ListDisplay<T extends IProfilable> implements Glyph {
 
     public void rescale (double width, double height) {
 
-        myPane.setAlignment(Pos.CENTER);
         myPane.setScaleX(width / Double.parseDouble(myBundle.getString("Width")));
         myPane.setScaleY(height / Double.parseDouble(myBundle.getString("Height")));
 

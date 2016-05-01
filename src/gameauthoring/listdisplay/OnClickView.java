@@ -1,20 +1,19 @@
 package gameauthoring.listdisplay;
 
 import java.util.ResourceBundle;
-import engine.IEventPackage;
 import engine.IGame;
 import engine.SpriteGroup;
 import engine.conditions.ICondition;
 import engine.conditions.OnClickCondition;
 import engine.definitions.concrete.EventPackageDefinition;
-import engine.events.EventPackage;
 import javafx.scene.control.ComboBox;
+
 
 public class OnClickView extends SubConditionView {
 
     private static final String PATH = "defaults/on_click_tab";
-    ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
-    
+    private ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
+
     private IGame myGame;
     private ComboBox<SpriteGroup> myGroupA;
     private ComboBox<EventPackageDefinition> myEventsA;
@@ -33,12 +32,13 @@ public class OnClickView extends SubConditionView {
         EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();
         EventPackageDefinition packageA = myEventsA.getSelectionModel().getSelectedItem();
         EventPackageDefinition packageB = myEventsB.getSelectionModel().getSelectedItem();
-        return new OnClickCondition(myGame, packageA.create(myGroupA.getSelectionModel().getSelectedItem()), 
-                                    packageB.create(myGroupB.getSelectionModel().getSelectedItem()), 
+        return new OnClickCondition(myGame,
+                                    packageA.create(myGroupA.getSelectionModel().getSelectedItem()),
+                                    packageB.create(myGroupB.getSelectionModel().getSelectedItem()),
                                     global.create());
     }
 
-    protected void initBoxes () {  
+    protected void initBoxes () {
         myGroupA = createComboBox(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
         myEventsA =
                 createComboBox(myGame.getAuthorshipData().getMyCreatedEventPackages().getItems());
@@ -51,7 +51,7 @@ public class OnClickView extends SubConditionView {
 
     @Override
     protected String getLabelKey (String key) {
-       return myBundle.getString(key);
+        return myBundle.getString(key);
     }
 
 }
