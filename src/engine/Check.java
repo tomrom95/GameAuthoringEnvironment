@@ -47,6 +47,7 @@ public class Check implements ICheck {
                 }
                 costListener = (obs, oldValue, newValue) -> checkPrice(attribute);
                 attribute.getValueProperty().addListener(costListener);
+                checkPrice(attribute);
                 return;
             }
         } 
