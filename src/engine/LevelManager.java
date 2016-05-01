@@ -23,6 +23,7 @@ public class LevelManager implements ILevelManager {
     private ObservableList<ILevel> myLevelPropertyList;
     private ILevel myCurrentLevel;
     private IConditionManager myGlobalGameConditions;
+    private boolean myRedraw;
 
     // since all wrapped in properties, will eventually create lambda loop to call update on all
     // updateable items as
@@ -61,6 +62,7 @@ public class LevelManager implements ILevelManager {
      */
     private void checkAndSetCurrentLevel () {
         if (myCurrentLevel.shouldSwitchLevel()) {
+            myRedraw = true;
             myCurrentLevel = myCurrentLevel.getNextLevel();
         }
     }
@@ -120,10 +122,22 @@ public class LevelManager implements ILevelManager {
     public void add (ISprite sprite, Coordinate coordinate) {
         myCurrentLevel.add(sprite, coordinate);
     }
-    
-    @Override 
-    public void remove(ILevel level) {
+
+    @Override
+    public void remove (ILevel level) {
         myLevelPropertyList.remove(level);
     }
+
+    @Override
+    public boolean getSwitched () {
+        if(myRedraw) {
+            myRedraw = false;
+            return true;
+        }
+        return false;
+
+    }
+
+
 
 }

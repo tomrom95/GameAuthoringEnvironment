@@ -12,6 +12,7 @@ import javafx.animation.Timeline;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import util.ScaleRatio;
 import util.TimeDuration;
@@ -37,12 +38,15 @@ public class GameEngine implements IGameEngine {
     private GamePlayerTools myTools;
     private Timeline myTimeline = new Timeline();
     private ScaleRatio myScale = new ScaleRatio();
+    private Stage myStage;
 
     public GameEngine (IGame game,
+                       Stage stage,
                        BorderPane gamePane,
                        Pane levelPane,
                        IOInterpeter ioInterpreter) {
         myGame = game;
+        myStage = stage;
         myDisplay = new UserDisplay(myGame);
         myRenderer = new InGameRenderer(game, levelPane, myDisplay.getSpriteDisplay(), myScale);
         myIOIntercepter = ioInterpreter;
@@ -92,7 +96,11 @@ public class GameEngine implements IGameEngine {
         getGame().internalizeKeyEvents(myIOIntercepter.deQueueKeyEvents());
         getGame().internalizeMouseEvents(myIOIntercepter.deQueueMouseEvents());
         getGame().update(new TimeDuration(frameDuration.toMillis()));
+        if (getGame().getSwitched()) {
+            rescale(myStage.getWidth(), myStage.getHeight());
+        }
         getRenderer().render();
+        
     }
 
     @Override
