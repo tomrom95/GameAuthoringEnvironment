@@ -7,6 +7,7 @@ import engine.SpriteGroup;
 import gameauthoring.creation.factories.SpriteSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
 import engine.definitions.concrete.SpriteDefinition;
+import engine.profile.Profile;
 import gameauthoring.shareddata.DefinitionCollection;
 
 
@@ -17,7 +18,7 @@ import gameauthoring.shareddata.DefinitionCollection;
  *
  */
 public class CreationControllerSprite extends CreationController<SpriteDefinition> {
-    
+
     public CreationControllerSprite (String key,
                                      List<String> subFormStrings,
                                      IGame myGame) {
@@ -36,24 +37,27 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
 
     @Override
     protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
+        authorshipData.getMyCreatedGroups()
+                .addItem(new SpriteGroup(authorshipData.getMyCreatedSprites(getMyKey()).getItems(),
+                                         new Profile(getMyTitle(), "",
+                                                     getImageBundle().getString(getMyKey()))));
         return authorshipData.getMyCreatedSprites(getMyKey());
     }
-    
+
     @Override
-    protected void deleteItem() {
+    protected void deleteItem () {
         super.deleteItem();
         getMyData().removeFromGroups(getMyLastItem());
         getMyData().getMyCreatedGroups().removeItem(getMyLastItem().getMySingleGroup());
     }
-    
+
     @Override
     protected SpriteDefinition newItem () {
         SpriteDefinition item = super.newItem();
-        SpriteGroup group = new SpriteGroup(item,item.getProfile());
+        SpriteGroup group = new SpriteGroup(item, item.getProfile());
         item.setMySingleGroup(group);
         getMyData().getMyCreatedGroups().addItem(group);
         return item;
     }
-    
 
 }
