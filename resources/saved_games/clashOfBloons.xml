@@ -7,6 +7,145 @@
     <myLevelPropertyList class="com.sun.javafx.collections.ObservableListWrapper">
       <engine.Level>
         <myConditionManager class="engine.ConditionManager">
+          <myConditions class="com.sun.javafx.collections.ObservableListWrapper"/>
+          <myMouseQueue/>
+          <myKeyQueue/>
+        </myConditionManager>
+        <myBackgroundImage>
+          <myWidth class="javafx.beans.property.SimpleDoubleProperty">500.0</myWidth>
+          <myHeight class="javafx.beans.property.SimpleDoubleProperty">309.0</myHeight>
+          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/clashofbloons/fieldrunners_scene.png</myUrl>
+        </myBackgroundImage>
+        <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
+        <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
+        <mySpriteManager class="engine.SpriteManager">
+          <mySpriteList class="com.sun.javafx.collections.ObservableListWrapper"/>
+          <myBufferList/>
+        </mySpriteManager>
+        <myAttributeManager class="engine.AttributeManager">
+          <myAttributes class="com.sun.javafx.collections.ObservableListWrapper"/>
+          <myResources/>
+        </myAttributeManager>
+        <myNextLevelManager class="engine.NextLevelManager">
+          <myShouldProceedToNext>false</myShouldProceedToNext>
+        </myNextLevelManager>
+        <myPlaceableTileManager>
+          <myLevel class="engine.Level" reference="../.."/>
+          <myPlaceableMap>
+            <myBitMap>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+            </myBitMap>
+            <myWidth>6</myWidth>
+            <myHeight>10</myHeight>
+          </myPlaceableMap>
+          <myRowSize>6</myRowSize>
+          <myColumnSize>10</myColumnSize>
+        </myPlaceableTileManager>
+        <myWaveSetManager class="engine.WaveSetManager">
+          <mySets/>
+          <myLevelGap>
+            <myDuration>20000.0</myDuration>
+          </myLevelGap>
+          <timeSinceWaveCompletion>
+            <myDuration>0.0</myDuration>
+          </timeSinceWaveCompletion>
+        </myWaveSetManager>
+        <myProfile class="engine.profile.Profile">
+          <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+          <myName class="javafx.beans.property.SimpleStringProperty">Clash</myName>
+          <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+          <myImage>
+            <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+            <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+            <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+          </myImage>
+          <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+          <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+          <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+        </myProfile>
+        <DEFAULT__ROW>20</DEFAULT__ROW>
+        <DEFAULT__COL>25</DEFAULT__COL>
+        <myAddableSprites class="com.sun.javafx.collections.ObservableListWrapper"/>
+        <myBounds>
+          <myX>0.0</myX>
+          <myY>0.0</myY>
+          <myWidth>500.0</myWidth>
+          <myHeight>309.0</myHeight>
+        </myBounds>
+      </engine.Level>
+      <engine.Level>
+        <myConditionManager class="engine.ConditionManager">
           <myConditions class="com.sun.javafx.collections.ObservableListWrapper">
             <engine.conditions.OnClickCondition>
               <myProfile class="engine.profile.Profile">
@@ -300,145 +439,7 @@
         </myAttributeManager>
         <myNextLevelManager class="engine.NextLevelManager">
           <myShouldProceedToNext>false</myShouldProceedToNext>
-          <myWinLevel class="engine.Level">
-            <myConditionManager class="engine.ConditionManager">
-              <myConditions class="com.sun.javafx.collections.ObservableListWrapper"/>
-              <myMouseQueue/>
-              <myKeyQueue/>
-            </myConditionManager>
-            <myBackgroundImage>
-              <myWidth class="javafx.beans.property.SimpleDoubleProperty">500.0</myWidth>
-              <myHeight class="javafx.beans.property.SimpleDoubleProperty">309.0</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/clashofbloons/fieldrunners_scene.png</myUrl>
-            </myBackgroundImage>
-            <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
-            <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
-            <mySpriteManager class="engine.SpriteManager">
-              <mySpriteList class="com.sun.javafx.collections.ObservableListWrapper"/>
-              <myBufferList/>
-            </mySpriteManager>
-            <myAttributeManager class="engine.AttributeManager">
-              <myAttributes class="com.sun.javafx.collections.ObservableListWrapper"/>
-              <myResources/>
-            </myAttributeManager>
-            <myNextLevelManager class="engine.NextLevelManager">
-              <myShouldProceedToNext>false</myShouldProceedToNext>
-            </myNextLevelManager>
-            <myPlaceableTileManager>
-              <myLevel class="engine.Level" reference="../.."/>
-              <myPlaceableMap>
-                <myBitMap>
-                  <boolean-array>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                  </boolean-array>
-                  <boolean-array>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                  </boolean-array>
-                  <boolean-array>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                  </boolean-array>
-                  <boolean-array>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                  </boolean-array>
-                  <boolean-array>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                  </boolean-array>
-                  <boolean-array>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                  </boolean-array>
-                </myBitMap>
-                <myWidth>6</myWidth>
-                <myHeight>10</myHeight>
-              </myPlaceableMap>
-              <myRowSize>6</myRowSize>
-              <myColumnSize>10</myColumnSize>
-            </myPlaceableTileManager>
-            <myWaveSetManager class="engine.WaveSetManager">
-              <mySets/>
-              <myLevelGap>
-                <myDuration>20000.0</myDuration>
-              </myLevelGap>
-              <timeSinceWaveCompletion>
-                <myDuration>0.0</myDuration>
-              </timeSinceWaveCompletion>
-            </myWaveSetManager>
-            <myProfile class="engine.profile.Profile">
-              <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-              <myName class="javafx.beans.property.SimpleStringProperty">Clash</myName>
-              <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-              <myImage>
-                <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-              </myImage>
-              <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-              <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-              <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-            </myProfile>
-            <DEFAULT__ROW>20</DEFAULT__ROW>
-            <DEFAULT__COL>25</DEFAULT__COL>
-            <myAddableSprites class="com.sun.javafx.collections.ObservableListWrapper"/>
-            <myBounds>
-              <myX>0.0</myX>
-              <myY>0.0</myY>
-              <myWidth>500.0</myWidth>
-              <myHeight>309.0</myHeight>
-            </myBounds>
-          </myWinLevel>
+          <myWinLevel class="engine.Level" reference="../../../engine.Level[1]"/>
           <myLoseLevel class="engine.Level" reference="../.."/>
         </myNextLevelManager>
         <myPlaceableTileManager>
@@ -1369,154 +1370,14 @@
           <myHeight>1066.0</myHeight>
         </myBounds>
       </engine.Level>
-      <engine.Level reference="../engine.Level[1]/myNextLevelManager[1]/myWinLevel[1]"/>
-      <engine.Level reference="../engine.Level[1]"/>
-      <engine.Level>
-        <myConditionManager class="engine.ConditionManager">
-          <myConditions class="com.sun.javafx.collections.ObservableListWrapper"/>
-          <myMouseQueue/>
-          <myKeyQueue/>
-        </myConditionManager>
-        <myBackgroundImage>
-          <myWidth class="javafx.beans.property.SimpleDoubleProperty">500.0</myWidth>
-          <myHeight class="javafx.beans.property.SimpleDoubleProperty">309.0</myHeight>
-          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/clashofbloons/fieldrunners_scene.png</myUrl>
-        </myBackgroundImage>
-        <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
-        <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
-        <mySpriteManager class="engine.SpriteManager">
-          <mySpriteList class="com.sun.javafx.collections.ObservableListWrapper"/>
-          <myBufferList/>
-        </mySpriteManager>
-        <myAttributeManager class="engine.AttributeManager">
-          <myAttributes class="com.sun.javafx.collections.ObservableListWrapper"/>
-          <myResources/>
-        </myAttributeManager>
-        <myNextLevelManager class="engine.NextLevelManager">
-          <myShouldProceedToNext>false</myShouldProceedToNext>
-        </myNextLevelManager>
-        <myPlaceableTileManager>
-          <myLevel class="engine.Level" reference="../.."/>
-          <myPlaceableMap>
-            <myBitMap>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-            </myBitMap>
-            <myWidth>6</myWidth>
-            <myHeight>10</myHeight>
-          </myPlaceableMap>
-          <myRowSize>6</myRowSize>
-          <myColumnSize>10</myColumnSize>
-        </myPlaceableTileManager>
-        <myWaveSetManager class="engine.WaveSetManager">
-          <mySets/>
-          <myLevelGap>
-            <myDuration>20000.0</myDuration>
-          </myLevelGap>
-          <timeSinceWaveCompletion>
-            <myDuration>0.0</myDuration>
-          </timeSinceWaveCompletion>
-        </myWaveSetManager>
-        <myProfile class="engine.profile.Profile">
-          <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-          <myName class="javafx.beans.property.SimpleStringProperty">Clash</myName>
-          <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-          <myImage>
-            <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-            <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-            <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-          </myImage>
-          <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-          <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-          <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-        </myProfile>
-        <DEFAULT__ROW>20</DEFAULT__ROW>
-        <DEFAULT__COL>25</DEFAULT__COL>
-        <myAddableSprites class="com.sun.javafx.collections.ObservableListWrapper"/>
-        <myBounds>
-          <myX>0.0</myX>
-          <myY>0.0</myY>
-          <myWidth>500.0</myWidth>
-          <myHeight>309.0</myHeight>
-        </myBounds>
-      </engine.Level>
     </myLevelPropertyList>
-    <myCurrentLevel class="engine.Level" reference="../myLevelPropertyList[1]/engine.Level[1]"/>
+    <myCurrentLevel class="engine.Level" reference="../myLevelPropertyList[1]/engine.Level[2]"/>
     <myGlobalGameConditions class="engine.ConditionManager">
       <myConditions class="com.sun.javafx.collections.ObservableListWrapper"/>
       <myMouseQueue/>
       <myKeyQueue/>
     </myGlobalGameConditions>
+    <myRedraw>false</myRedraw>
   </myLevelManager>
   <myConditionManager class="engine.ConditionManager">
     <myConditions class="com.sun.javafx.collections.ObservableListWrapper"/>
@@ -1530,8 +1391,8 @@
         <gameauthoring.shareddata.DefinitionCollection>
           <myTitleKey>Enemies</myTitleKey>
           <myItems class="com.sun.javafx.collections.ObservableListWrapper">
-            <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myWaveSetManager[1]/mySets[1]/engine.waves.WaveSet[1]/currentWave[1]/currentBlock[1]/myDefinition[1]"/>
-            <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[1]/mySelfPackage[1]/mySpriteGroup[1]/mySpriteDefinitions[1]/engine.definitions.concrete.SpriteDefinition[1]"/>
+            <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[2]/myWaveSetManager[1]/mySets[1]/engine.waves.WaveSet[1]/currentWave[1]/currentBlock[1]/myDefinition[1]"/>
+            <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[2]/myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[1]/mySelfPackage[1]/mySpriteGroup[1]/mySpriteDefinitions[1]/engine.definitions.concrete.SpriteDefinition[1]"/>
           </myItems>
         </gameauthoring.shareddata.DefinitionCollection>
       </entry>
@@ -1553,7 +1414,7 @@
         <engine.definitions.spawnerdef.WaveDefinition>
           <myBlocks>
             <engine.definitions.spawnerdef.WaveBlockDefinition>
-              <mySpawnedSprite reference="../../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myWaveSetManager[1]/mySets[1]/engine.waves.WaveSet[1]/currentWave[1]/currentBlock[1]/myDefinition[1]"/>
+              <mySpawnedSprite reference="../../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[2]/myWaveSetManager[1]/mySets[1]/engine.waves.WaveSet[1]/currentWave[1]/currentBlock[1]/myDefinition[1]"/>
               <myCount>1</myCount>
               <myGapTime>0.0</myGapTime>
             </engine.definitions.spawnerdef.WaveBlockDefinition>
@@ -1637,8 +1498,92 @@
             <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
           </myProfile>
         </engine.SpriteGroup>
-        <engine.SpriteGroup reference="../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myWaveSetManager[1]/mySets[1]/engine.waves.WaveSet[1]/currentWave[1]/currentBlock[1]/myDefinition[1]/mySingleGroup[1]"/>
-        <engine.SpriteGroup reference="../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[1]/mySelfPackage[1]/mySpriteGroup[1]"/>
+        <engine.SpriteGroup reference="../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[2]/myWaveSetManager[1]/mySets[1]/engine.waves.WaveSet[1]/currentWave[1]/currentBlock[1]/myDefinition[1]/mySingleGroup[1]"/>
+        <engine.SpriteGroup reference="../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[2]/myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[1]/mySelfPackage[1]/mySpriteGroup[1]"/>
+        <engine.SpriteGroup>
+          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper" reference="../../../../myCreatedMissiles[1]/myItems[1]"/>
+          <mySpriteTypes/>
+          <myProfile class="engine.profile.Profile">
+            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+            <myName class="javafx.beans.property.SimpleStringProperty">Missiles</myName>
+            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+            <myImage>
+              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+              <myUrl class="javafx.beans.property.SimpleStringProperty">images/missile.png</myUrl>
+            </myImage>
+            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+          </myProfile>
+        </engine.SpriteGroup>
+        <engine.SpriteGroup>
+          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper" reference="../../../../myCreatedSprites[1]/entry[1]/gameauthoring.shareddata.DefinitionCollection[1]/myItems[1]"/>
+          <mySpriteTypes>
+            <engine.sprite.SpriteType>
+              <myType>Knight</myType>
+              <myProfile class="engine.profile.Profile">
+                <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                <myName class="javafx.beans.property.SimpleStringProperty">Knight</myName>
+                <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                <myImage>
+                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                  <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                </myImage>
+                <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+              </myProfile>
+            </engine.sprite.SpriteType>
+            <engine.sprite.SpriteType>
+              <myType>Play</myType>
+              <myProfile class="engine.profile.Profile">
+                <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                <myName class="javafx.beans.property.SimpleStringProperty">Play</myName>
+                <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                <myImage>
+                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                  <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                </myImage>
+                <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+              </myProfile>
+            </engine.sprite.SpriteType>
+          </mySpriteTypes>
+          <myProfile class="engine.profile.Profile">
+            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+            <myName class="javafx.beans.property.SimpleStringProperty">Enemies</myName>
+            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+            <myImage>
+              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+              <myUrl class="javafx.beans.property.SimpleStringProperty">images/enemy.png</myUrl>
+            </myImage>
+            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+          </myProfile>
+        </engine.SpriteGroup>
+        <engine.SpriteGroup>
+          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper" reference="../../../../myCreatedSprites[1]/entry[2]/gameauthoring.shareddata.DefinitionCollection[1]/myItems[1]"/>
+          <mySpriteTypes/>
+          <myProfile class="engine.profile.Profile">
+            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+            <myName class="javafx.beans.property.SimpleStringProperty">Defenders</myName>
+            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+            <myImage>
+              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+              <myUrl class="javafx.beans.property.SimpleStringProperty">images/tower.png</myUrl>
+            </myImage>
+            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+          </myProfile>
+        </engine.SpriteGroup>
         <engine.SpriteGroup>
           <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper" reference="../../../../myCreatedMissiles[1]/myItems[1]"/>
           <mySpriteTypes/>
