@@ -16,6 +16,8 @@ import javafx.scene.shape.Rectangle;
 /**
  * Renderer for grid in the authoring environment.
  * Authors can set unplaceable terrain by clicking the tiles
+ * Takes in myScale (Scale Ratio wrapper object) and uses it to dynamically calculate the size of
+ * the block and render the updated grid
  * 
  * @author Jin An
  *
@@ -68,9 +70,6 @@ public class GridRenderer implements IRenderer {
     }
 
     private void handleMouseClick (Tile tile) {
-        System.out.println(myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[tile
-                .getRowPosition()][tile
-                .getColPosition()]);
         if (checkClickable(tile)) {
             if (tile.getTile().getFill() == Color.TRANSPARENT) {
                 myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[tile
@@ -123,9 +122,9 @@ public class GridRenderer implements IRenderer {
     public void render () {
         init();
     }
-    
-    public void updateTileNumbers(){
-        calculateTileArraySize ();
+
+    public void updateTileNumbers () {
+        calculateTileArraySize();
     }
 
     public void redraw () {
