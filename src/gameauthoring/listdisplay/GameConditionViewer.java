@@ -10,7 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import splash.LocaleManager;
 import util.BundleOperations;
 
 
@@ -19,8 +18,6 @@ public class GameConditionViewer extends ConditionViewer implements ITabViewer {
     private static final double HALF = 0.5;
     private static final String PATH = "defaults/game_condition_view";
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/game_cond_view");
-    private ResourceBundle myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
-                                       .getInstance().getCurrentLocaleProperty().get());
 
     public GameConditionViewer (IGame game) {
         super(game.getConditionManager().getConditionListProperty());
@@ -80,9 +77,6 @@ public class GameConditionViewer extends ConditionViewer implements ITabViewer {
     }
 
     protected ObservableList<String> getList () {
-        ObservableList<String> list = BundleOperations.getValuesAsObservable(getBundle());
-//        list.forEach(e->e=myLabel.getString(e));
-        
         return BundleOperations.getValuesAsObservable(getBundle());
     }
 

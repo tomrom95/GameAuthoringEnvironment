@@ -22,7 +22,6 @@ import javafx.stage.FileChooser.ExtensionFilter;
  * creating
  * 
  * 
- * TODO: maybe move all the file chooser stuff to factory to avoid duplicate code
  * 
  * @author Joe Lilien
  *
@@ -32,7 +31,7 @@ public class ImageEntryView extends EntryView {
     private Button myChooseImage;
     private ImageView myImage;
     private String myStyleClass = "CreationButton";
-    private StringProperty myImagePath = new SimpleStringProperty("images/Square.png");
+    private StringProperty myImagePath = new SimpleStringProperty("images/emptysquare.png");
     private final String myImageKey = "Image";
     private ResourceBundle myLabel = ResourceBundle.getBundle("languages/labels",
                                                               LocaleManager.getInstance()
