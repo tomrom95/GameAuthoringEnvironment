@@ -47,6 +47,7 @@ public class SceneController {
                                  myRatio.scale(image.getHeight()), imageURL);
         myLevel.setBounds(new Bounds(image.getWidth(), image.getHeight()));
         myLevel.setBackgroundImage(background);
+        
     }
 
     /**

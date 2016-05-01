@@ -243,12 +243,12 @@ public abstract class CreationController<T extends IProfilable> {
     private void setMyLastItem (T item) {
         myLastItem = item;
     }
-    
+
     protected T getMyLastItem () {
         return myLastItem;
     }
-    
-    protected ResourceBundle getImageBundle() {
+
+    protected ResourceBundle getImageBundle () {
         return myImages;
     }
 }
