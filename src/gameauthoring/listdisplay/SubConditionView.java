@@ -2,7 +2,6 @@ package gameauthoring.listdisplay;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import splash.LocaleManager;
 import engine.conditions.ICondition;
@@ -149,14 +148,20 @@ public abstract class SubConditionView {
     protected Node getHBox () {
        
         FlowPane pane = new FlowPane();
-        pane.setMinWidth(800);
-        pane.setMaxWidth(800);
-        pane.setPrefWidth(800);
+        setSize(pane, Double.parseDouble(mySize.getString("MaxWrap")));
+        pane.setVgap(CUSHION);
+        pane.setVgap(CUSHION);
         for (int i = 0; i < myNodes.size(); i++) {
             String label = myLabels.getString(getLabelKey(Integer.toString(i)));
             pane.getChildren().add(getCombo(label, myNodes.get(i)));
         }
         return pane;
+    }
+
+    private void setSize (Pane pane, double size) {
+        pane.setMinWidth(size);
+        pane.setMaxWidth(size);
+        pane.setPrefWidth(size);      
     }
 
     private Node getCombo (String label, Node node) {
