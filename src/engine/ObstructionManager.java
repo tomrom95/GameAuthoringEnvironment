@@ -23,7 +23,8 @@ import java.util.stream.Collectors;
  *
  */
 public class ObstructionManager implements IObstructionManager {
-    public static final int SAMPLE_RESOLUTION = 60;
+    public static final int SAMPLE_RESOLUTION = 100;
+    public static final double SAMPLE_DOUBLE = (double) SAMPLE_RESOLUTION;
     
     private static final boolean POSITION_OBSTRUCTED = true;
     private IGame myGame;
@@ -36,7 +37,6 @@ public class ObstructionManager implements IObstructionManager {
     @Override
     public void update (TimeDuration duration) {
         //Do nothing
-        System.out.print("");
     }
     
     @Override
@@ -81,11 +81,16 @@ public class ObstructionManager implements IObstructionManager {
     }
 
     private ISampledBitMap getBitMapSizedForCurrentGame (IGame game) {
+        double realWidth = game.getLevelBounds().getWidth();
+        double realHeight = game.getLevelBounds().getHeight();
+        int xOffset = Math.floor(realWidth / SAMPLE_DOUBLE) == realWidth / SAMPLE_DOUBLE ? 0 : 1;
+        int yOffset = Math.floor(realHeight / SAMPLE_DOUBLE) == realHeight / SAMPLE_DOUBLE ? 0 : 1;
+        
         int gameWidth = (int) game.getLevelBounds().getWidth();
                 //game.getLevelManager().getCurrentLevel().getBackgroundImageWidth();
         int gameHeight = (int) game.getLevelBounds().getHeight();
                 //game.getLevelManager().getCurrentLevel().getBackgroundImageHeight();
-        return new SampledBitMap(gameWidth / SAMPLE_RESOLUTION, gameHeight/ SAMPLE_RESOLUTION, gameWidth, gameHeight);
+        return new SampledBitMap(gameHeight/ SAMPLE_RESOLUTION + yOffset ,gameWidth / SAMPLE_RESOLUTION + xOffset, gameHeight, gameWidth);
     }
 
 }
