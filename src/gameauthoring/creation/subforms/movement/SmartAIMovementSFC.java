@@ -11,7 +11,7 @@ import gameauthoring.creation.subforms.ISubFormView;
 public class SmartAIMovementSFC implements ISubFormControllerSprite {
 
     private SmartAIMovementSFV myView;
-    private double myDefaultSpeed = 0;
+    private double myDefaultSpeed;
     
     private IGame myGame;
 
