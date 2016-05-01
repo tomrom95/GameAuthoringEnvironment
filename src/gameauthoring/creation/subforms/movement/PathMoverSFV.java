@@ -13,7 +13,7 @@ import util.StringParser;
 public class PathMoverSFV extends SubFormView implements IPathMoverSFV {
     
     private static String SPEED_LABEL = "PathSpeedLabel";
-    private double spacing = 20;
+    
     private ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", LocaleManager
                                                              .getInstance().getCurrentLocaleProperty().get());
     private NumberEntryView mySpeedInputView;
@@ -33,6 +33,7 @@ public class PathMoverSFV extends SubFormView implements IPathMoverSFV {
 
     @Override
     public Node draw () {
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
         HBox box = getMyUIFactory().makeHBox(spacing, Pos.CENTER, mySpeedInputView.draw());        
         return getMyUIFactory().addStyling(box, "Mover");
     }
