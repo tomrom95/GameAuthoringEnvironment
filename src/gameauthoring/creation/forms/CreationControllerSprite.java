@@ -7,6 +7,7 @@ import engine.SpriteGroup;
 import gameauthoring.creation.factories.SpriteSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
 import engine.definitions.concrete.SpriteDefinition;
+import engine.profile.Profile;
 import gameauthoring.shareddata.DefinitionCollection;
 
 
@@ -36,6 +37,7 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
 
     @Override
     protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
+        authorshipData.getMyCreatedGroups().addItem(new SpriteGroup(authorshipData.getMyCreatedSprites(getMyKey()).getItems(), new Profile(getMyTitle())));
         return authorshipData.getMyCreatedSprites(getMyKey());
     }
     
