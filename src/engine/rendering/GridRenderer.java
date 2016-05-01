@@ -47,7 +47,7 @@ public class GridRenderer implements IRenderer {
     private void calculateTileArraySize () {
         myNumBlockRow = (int) (myLevel.getBounds().getHeight() / BLOCK_SIZE);
         System.out.println(myNumBlockRow);
-        myNumBlockCol = (int) (myLevel.getBounds().getWidth() / BLOCK_SIZE);
+        myNumBlockCol = (int)(myLevel.getBounds().getWidth() / BLOCK_SIZE);
         myBlocks = new Tile[myNumBlockRow][myNumBlockCol];
     }
 

@@ -27,7 +27,6 @@ import javafx.scene.layout.Pane;
  */
 public class SceneCreator implements Glyph {
 
-    private static final String DEFAULT_BACKGROUND = "images/grass.jpg";
     private static final int DOUBLE_CLICK = 2;
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager
             .getInstance().getCurrentLocaleProperty().get());
@@ -108,7 +107,6 @@ public class SceneCreator implements Glyph {
         Pane levelPane = new Pane();
         myGrid = new GridPane();
         myButton = placeableButton();
-        myController.setBackground(DEFAULT_BACKGROUND);
         disableGrid();
         myLevel.setBackgroundImageSize(Double.parseDouble(myBundle.getString("Width")),
                                        Double.parseDouble(myBundle.getString("Height")));

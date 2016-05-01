@@ -12,14 +12,191 @@
           <myKeyQueue/>
         </myConditionManager>
         <myBackgroundImage>
-          <myWidth class="javafx.beans.property.SimpleDoubleProperty">711.1111111111111</myWidth>
-          <myHeight class="javafx.beans.property.SimpleDoubleProperty">400.0</myHeight>
-          <myUrl class="javafx.beans.property.SimpleStringProperty">images/grass.jpg</myUrl>
+          <myWidth class="javafx.beans.property.SimpleDoubleProperty">282.00000000000006</myWidth>
+          <myHeight class="javafx.beans.property.SimpleDoubleProperty">125.00000000000001</myHeight>
+          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/farmville/scene_background.png</myUrl>
         </myBackgroundImage>
         <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
         <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
         <mySpriteManager class="engine.SpriteManager">
-          <mySpriteList class="com.sun.javafx.collections.ObservableListWrapper"/>
+          <mySpriteList class="com.sun.javafx.collections.ObservableListWrapper">
+            <engine.sprite.Sprite>
+              <myType>
+                <myType>Farmer</myType>
+                <myProfile class="engine.profile.Profile">
+                  <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                  <myName class="javafx.beans.property.SimpleStringProperty">Farmer</myName>
+                  <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                  <myImage>
+                    <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                    <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                    <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                  </myImage>
+                  <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                  <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                  <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                </myProfile>
+              </myType>
+              <myMover class="engine.modules.UserMover">
+                <myXVel class="engine.Attribute">
+                  <myStartingValue>0.0</myStartingValue>
+                  <myValue class="javafx.beans.property.SimpleDoubleProperty">0.0</myValue>
+                  <myType>
+                    <myType>XVelocity</myType>
+                    <myProfile class="engine.profile.Profile">
+                      <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                      <myName class="javafx.beans.property.SimpleStringProperty">XVelocity</myName>
+                      <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                      <myImage>
+                        <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                        <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                        <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                      </myImage>
+                      <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                      <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                      <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                    </myProfile>
+                  </myType>
+                  <myEffects class="com.sun.javafx.collections.ObservableListWrapper"/>
+                </myXVel>
+                <myYVel class="engine.Attribute">
+                  <myStartingValue>0.0</myStartingValue>
+                  <myValue class="javafx.beans.property.SimpleDoubleProperty">0.0</myValue>
+                  <myType>
+                    <myType>YVelocity</myType>
+                    <myProfile class="engine.profile.Profile">
+                      <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                      <myName class="javafx.beans.property.SimpleStringProperty">YVelocity</myName>
+                      <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                      <myImage>
+                        <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                        <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                        <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                      </myImage>
+                      <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                      <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                      <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                    </myProfile>
+                  </myType>
+                  <myEffects class="com.sun.javafx.collections.ObservableListWrapper"/>
+                </myYVel>
+                <myOrientation class="engine.Attribute">
+                  <myStartingValue>0.0</myStartingValue>
+                  <myValue class="javafx.beans.property.SimpleDoubleProperty">0.0</myValue>
+                  <myType>
+                    <myType>Orientation</myType>
+                    <myProfile class="engine.profile.Profile">
+                      <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                      <myName class="javafx.beans.property.SimpleStringProperty">Orientation</myName>
+                      <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                      <myImage>
+                        <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                        <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                        <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                      </myImage>
+                      <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                      <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                      <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                    </myProfile>
+                  </myType>
+                  <myEffects class="com.sun.javafx.collections.ObservableListWrapper"/>
+                </myOrientation>
+                <mySpeed class="engine.Attribute">
+                  <myStartingValue>0.0</myStartingValue>
+                  <myValue class="javafx.beans.property.SimpleDoubleProperty">0.02</myValue>
+                  <myType>
+                    <myType>Speed</myType>
+                    <myProfile class="engine.profile.Profile">
+                      <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                      <myName class="javafx.beans.property.SimpleStringProperty">Speed</myName>
+                      <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                      <myImage>
+                        <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                        <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                        <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                      </myImage>
+                      <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                      <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                      <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                    </myProfile>
+                  </myType>
+                  <myEffects class="com.sun.javafx.collections.ObservableListWrapper"/>
+                </mySpeed>
+                <myParent class="engine.sprite.Sprite" reference="../.."/>
+                <myPath/>
+                <myKeys>
+                  <entry>
+                    <util.Direction>DOWN</util.Direction>
+                    <util.Key>
+                      <myKeyCode>S</myKeyCode>
+                    </util.Key>
+                  </entry>
+                  <entry>
+                    <util.Direction>RIGHT</util.Direction>
+                    <util.Key>
+                      <myKeyCode>D</myKeyCode>
+                    </util.Key>
+                  </entry>
+                  <entry>
+                    <util.Direction>UP</util.Direction>
+                    <util.Key>
+                      <myKeyCode>W</myKeyCode>
+                    </util.Key>
+                  </entry>
+                  <entry>
+                    <util.Direction>LEFT</util.Direction>
+                    <util.Key>
+                      <myKeyCode>A</myKeyCode>
+                    </util.Key>
+                  </entry>
+                </myKeys>
+                <myTraveling>
+                  <entry>
+                    <util.Direction>DOWN</util.Direction>
+                    <boolean>false</boolean>
+                  </entry>
+                  <entry>
+                    <util.Direction>RIGHT</util.Direction>
+                    <boolean>false</boolean>
+                  </entry>
+                  <entry>
+                    <util.Direction>UP</util.Direction>
+                    <boolean>false</boolean>
+                  </entry>
+                  <entry>
+                    <util.Direction>LEFT</util.Direction>
+                    <boolean>false</boolean>
+                  </entry>
+                </myTraveling>
+              </myMover>
+              <myGraphic class="engine.modules.GraphicModule">
+                <myGraphic class="graphics.ImageGraphic">
+                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">73.95161290322582</myWidth>
+                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">92.33870967741935</myHeight>
+                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/farmville/farmer.png</myUrl>
+                </myGraphic>
+                <myVisibility>true</myVisibility>
+              </myGraphic>
+              <myUpgrade class="engine.modules.NullUpgradeModule">
+                <myCheck class="engine.NullFalseCheck"/>
+                <myParent class="engine.sprite.Sprite" reference="../.."/>
+              </myUpgrade>
+              <myOtherModules/>
+              <myLocation>
+                <myXCoordinate>477.05</myXCoordinate>
+                <myYCoordinate>319.6</myYCoordinate>
+              </myLocation>
+              <myStatus class="engine.modules.SpriteStatus">
+                <myIsDead>false</myIsDead>
+                <myIsGoal>false</myIsGoal>
+                <myDoesObstruct>false</myDoesObstruct>
+              </myStatus>
+              <myAttributeManager>
+                <myAttributes class="com.sun.javafx.collections.ObservableListWrapper"/>
+                <myResources/>
+              </myAttributeManager>
+            </engine.sprite.Sprite>
+          </mySpriteList>
           <myBufferList/>
         </mySpriteManager>
         <myAttributeManager class="engine.AttributeManager">
@@ -51,51 +228,8 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
               </boolean-array>
               <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -132,51 +266,8 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
               </boolean-array>
               <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -213,14 +304,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
               </boolean-array>
               <boolean-array>
                 <boolean>false</boolean>
@@ -240,321 +323,8 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
               </boolean-array>
               <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -574,11 +344,11 @@
                 <boolean>false</boolean>
               </boolean-array>
             </myBitMap>
-            <myWidth>20</myWidth>
-            <myHeight>25</myHeight>
+            <myWidth>7</myWidth>
+            <myHeight>17</myHeight>
           </myPlaceableMap>
-          <myRowSize>20</myRowSize>
-          <myColumnSize>25</myColumnSize>
+          <myRowSize>7</myRowSize>
+          <myColumnSize>17</myColumnSize>
         </myPlaceableTileManager>
         <myWaveSetManager class="engine.WaveSetManager">
           <mySets/>
@@ -620,9 +390,143 @@
                   <mySpeed>0.0</mySpeed>
                 </myMovementDefinition>
                 <myModuleDefinitions/>
-                <myUpgrade class="engine.definitions.upgrades.NullUpgradeDefinition">
+                <myUpgrade class="engine.definitions.upgrades.GlobalUpgradeDefinition">
+                  <myUpgrade>
+                    <myMovementDefinition class="engine.definitions.moduledef.StaticMovementDefintion">
+                      <mySpeed defined-in="engine.definitions.moduledef.MovementDefinition">0.0</mySpeed>
+                      <myOrientation>0.0</myOrientation>
+                      <mySpeed>0.0</mySpeed>
+                    </myMovementDefinition>
+                    <myModuleDefinitions/>
+                    <myUpgrade class="engine.definitions.upgrades.GlobalUpgradeDefinition">
+                      <myUpgrade>
+                        <myMovementDefinition class="engine.definitions.moduledef.StaticMovementDefintion">
+                          <mySpeed defined-in="engine.definitions.moduledef.MovementDefinition">0.0</mySpeed>
+                          <myOrientation>0.0</myOrientation>
+                          <mySpeed>0.0</mySpeed>
+                        </myMovementDefinition>
+                        <myModuleDefinitions/>
+                        <myUpgrade class="engine.definitions.upgrades.NullUpgradeDefinition">
+                          <myCost>0.0</myCost>
+                          <isUpgradable>false</isUpgradable>
+                        </myUpgrade>
+                        <myLocation>
+                          <myXCoordinate>0.0</myXCoordinate>
+                          <myYCoordinate>0.0</myYCoordinate>
+                        </myLocation>
+                        <myAttributes/>
+                        <myProfile class="engine.profile.Profile">
+                          <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                          <myName class="javafx.beans.property.SimpleStringProperty">Wither</myName>
+                          <myDescription class="javafx.beans.property.SimpleStringProperty">Withered plants</myDescription>
+                          <myImage>
+                            <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                            <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                            <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/farmville/dead_plant.png</myUrl>
+                          </myImage>
+                          <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
+                          <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
+                          <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                        </myProfile>
+                        <myCost class="engine.definitions.costs.NullCost"/>
+                        <mySingleGroup>
+                          <mySpriteDefinitions>
+                            <engine.definitions.concrete.SpriteDefinition reference="../../.."/>
+                          </mySpriteDefinitions>
+                          <mySpriteTypes>
+                            <engine.sprite.SpriteType>
+                              <myType>Defender</myType>
+                              <myProfile class="engine.profile.Profile">
+                                <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                                <myName class="javafx.beans.property.SimpleStringProperty">Defender</myName>
+                                <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                                <myImage>
+                                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                                  <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                                </myImage>
+                                <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                                <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                                <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                              </myProfile>
+                            </engine.sprite.SpriteType>
+                          </mySpriteTypes>
+                          <myProfile class="engine.profile.Profile" reference="../../myProfile[1]"/>
+                        </mySingleGroup>
+                        <myObstructability>false</myObstructability>
+                        <myGoal>false</myGoal>
+                      </myUpgrade>
+                      <myCost>0.0</myCost>
+                      <myGame class="engine.Game" reference="../../../../../../../../../../.."/>
+                      <isUpgradable>true</isUpgradable>
+                      <myAttribute>
+                        <myStartingValue>10.0</myStartingValue>
+                        <myProfile class="engine.profile.Profile">
+                          <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                          <myName class="javafx.beans.property.SimpleStringProperty">Cash</myName>
+                          <myDescription class="javafx.beans.property.SimpleStringProperty">Used to buy stuff</myDescription>
+                          <myImage>
+                            <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                            <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                            <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/farmville/cash.png</myUrl>
+                          </myImage>
+                          <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
+                          <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
+                          <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                        </myProfile>
+                        <isLevelSpecific>false</isLevelSpecific>
+                      </myAttribute>
+                    </myUpgrade>
+                    <myLocation>
+                      <myXCoordinate>0.0</myXCoordinate>
+                      <myYCoordinate>0.0</myYCoordinate>
+                    </myLocation>
+                    <myAttributes/>
+                    <myProfile class="engine.profile.Profile">
+                      <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                      <myName class="javafx.beans.property.SimpleStringProperty">Eggplant Bushel</myName>
+                      <myDescription class="javafx.beans.property.SimpleStringProperty">Description</myDescription>
+                      <myImage>
+                        <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                        <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                        <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/farmville/eggplant_basket.png</myUrl>
+                      </myImage>
+                      <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
+                      <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
+                      <imageChange class="javafx.beans.property.SimpleBooleanProperty">true</imageChange>
+                    </myProfile>
+                    <myCost class="engine.definitions.costs.NullCost"/>
+                    <mySingleGroup>
+                      <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper">
+                        <engine.definitions.concrete.SpriteDefinition reference="../../.."/>
+                      </mySpriteDefinitions>
+                      <mySpriteTypes>
+                        <engine.sprite.SpriteType>
+                          <myType>Eggplant Bushel</myType>
+                          <myProfile class="engine.profile.Profile">
+                            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                            <myName class="javafx.beans.property.SimpleStringProperty">Eggplant Bushel</myName>
+                            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                            <myImage>
+                              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                              <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                            </myImage>
+                            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                          </myProfile>
+                        </engine.sprite.SpriteType>
+                      </mySpriteTypes>
+                      <myProfile class="engine.profile.Profile" reference="../../myProfile[1]"/>
+                    </mySingleGroup>
+                    <myObstructability>false</myObstructability>
+                    <myGoal>false</myGoal>
+                  </myUpgrade>
                   <myCost>0.0</myCost>
-                  <isUpgradable>false</isUpgradable>
+                  <myGame class="engine.Game" reference="../../../../../../../../.."/>
+                  <isUpgradable>true</isUpgradable>
+                  <myAttribute reference="../myUpgrade[1]/myUpgrade[1]/myAttribute[1]"/>
                 </myUpgrade>
                 <myLocation>
                   <myXCoordinate>0.0</myXCoordinate>
@@ -643,23 +547,7 @@
                   <imageChange class="javafx.beans.property.SimpleBooleanProperty">true</imageChange>
                 </myProfile>
                 <myCost class="engine.definitions.costs.Cost">
-                  <myAttributeDefinition>
-                    <myStartingValue>10.0</myStartingValue>
-                    <myProfile class="engine.profile.Profile">
-                      <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                      <myName class="javafx.beans.property.SimpleStringProperty">Cash</myName>
-                      <myDescription class="javafx.beans.property.SimpleStringProperty">Used to buy stuff</myDescription>
-                      <myImage>
-                        <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                        <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                        <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/farmville/cash.png</myUrl>
-                      </myImage>
-                      <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
-                      <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
-                      <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-                    </myProfile>
-                    <isLevelSpecific>false</isLevelSpecific>
-                  </myAttributeDefinition>
+                  <myAttributeDefinition reference="../../myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myAttribute[1]"/>
                   <myAmount>0.0</myAmount>
                   <myCheck>
                     <myManager class="engine.AttributeManager">
@@ -738,7 +626,7 @@
               <myCost>0.0</myCost>
               <myGame class="engine.Game" reference="../../../../../../.."/>
               <isUpgradable>true</isUpgradable>
-              <myAttribute reference="../myUpgrade[1]/myCost[1]/myAttributeDefinition[1]"/>
+              <myAttribute reference="../myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myAttribute[1]"/>
             </myUpgrade>
             <myLocation>
               <myXCoordinate>0.0</myXCoordinate>
@@ -759,7 +647,7 @@
               <imageChange class="javafx.beans.property.SimpleBooleanProperty">true</imageChange>
             </myProfile>
             <myCost class="engine.definitions.costs.Cost">
-              <myAttributeDefinition reference="../../myUpgrade[1]/myUpgrade[1]/myCost[1]/myAttributeDefinition[1]"/>
+              <myAttributeDefinition reference="../../myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myAttribute[1]"/>
               <myAmount>5.0</myAmount>
               <myCheck>
                 <myManager class="engine.AttributeManager" reference="../../../myUpgrade[1]/myUpgrade[1]/myCost[1]/myCheck[1]/myManager[1]"/>
@@ -814,10 +702,12 @@
         <myBounds>
           <myX>0.0</myX>
           <myY>0.0</myY>
-          <myWidth>1280.0</myWidth>
-          <myHeight>720.0</myHeight>
+          <myWidth>846.0</myWidth>
+          <myHeight>375.0</myHeight>
         </myBounds>
       </engine.Level>
+      <engine.Level reference="../engine.Level[1]"/>
+      <engine.Level reference="../engine.Level[1]"/>
       <engine.Level reference="../engine.Level[1]"/>
     </myLevelPropertyList>
     <myCurrentLevel class="engine.Level" reference="../myLevelPropertyList[1]/engine.Level[1]"/>
@@ -829,11 +719,11 @@
   </myLevelManager>
   <myConditionManager class="engine.ConditionManager">
     <myConditions class="com.sun.javafx.collections.ObservableListWrapper">
-      <engine.conditions.OnTimeCondition>
+      <engine.conditions.OnClickCondition>
         <myProfile class="engine.profile.Profile">
           <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-          <myName class="javafx.beans.property.SimpleStringProperty">UpgradeEgg</myName>
-          <myDescription class="javafx.beans.property.SimpleStringProperty">Soil to patch</myDescription>
+          <myName class="javafx.beans.property.SimpleStringProperty">Remove Wither</myName>
+          <myDescription class="javafx.beans.property.SimpleStringProperty">Wither removed</myDescription>
           <myImage>
             <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
             <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
@@ -844,12 +734,126 @@
           <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
         </myProfile>
         <myGame class="engine.Game" reference="../../../.."/>
-        <myCycleLength>
-          <myDuration>20000.0</myDuration>
-        </myCycleLength>
+        <mySelfPackage class="engine.events.EventPackage">
+          <mySpriteGroup class="engine.SpriteGroup">
+            <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper">
+              <engine.definitions.concrete.SpriteDefinition reference="../../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]"/>
+            </mySpriteDefinitions>
+            <mySpriteTypes>
+              <engine.sprite.SpriteType>
+                <myType>Wither</myType>
+                <myProfile class="engine.profile.Profile">
+                  <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                  <myName class="javafx.beans.property.SimpleStringProperty">Wither</myName>
+                  <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                  <myImage>
+                    <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                    <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                    <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                  </myImage>
+                  <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                  <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                  <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                </myProfile>
+              </engine.sprite.SpriteType>
+            </mySpriteTypes>
+            <myProfile class="engine.profile.Profile">
+              <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+              <myName class="javafx.beans.property.SimpleStringProperty">Wither</myName>
+              <myDescription class="javafx.beans.property.SimpleStringProperty">wither</myDescription>
+              <myImage>
+                <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                <myUrl class="javafx.beans.property.SimpleStringProperty">Images/square.png</myUrl>
+              </myImage>
+              <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
+              <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
+              <imageChange class="javafx.beans.property.SimpleBooleanProperty">true</imageChange>
+            </myProfile>
+          </mySpriteGroup>
+          <myEffectsList/>
+          <myEventsList>
+            <engine.events.GameEvent>
+              <myType>
+                <myType>Death</myType>
+                <myProfile class="engine.profile.Profile">
+                  <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                  <myName class="javafx.beans.property.SimpleStringProperty">Death</myName>
+                  <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                  <myImage>
+                    <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                    <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                    <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                  </myImage>
+                  <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                  <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                  <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                </myProfile>
+              </myType>
+            </engine.events.GameEvent>
+          </myEventsList>
+        </mySelfPackage>
         <myOtherPackage class="engine.events.EventPackage">
           <mySpriteGroup class="engine.SpriteGroup">
-            <mySpriteDefinitions>
+            <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper"/>
+            <mySpriteTypes/>
+            <myProfile class="engine.profile.Profile">
+              <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+              <myName class="javafx.beans.property.SimpleStringProperty">Empty</myName>
+              <myDescription class="javafx.beans.property.SimpleStringProperty">None</myDescription>
+              <myImage>
+                <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                <myUrl class="javafx.beans.property.SimpleStringProperty">Images/square.png</myUrl>
+              </myImage>
+              <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
+              <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
+              <imageChange class="javafx.beans.property.SimpleBooleanProperty">true</imageChange>
+            </myProfile>
+          </mySpriteGroup>
+          <myEffectsList reference="../../mySelfPackage[1]/myEffectsList[1]"/>
+          <myEventsList reference="../../mySelfPackage[1]/myEventsList[1]"/>
+        </myOtherPackage>
+        <myGlobalPackage class="engine.events.EventPackage">
+          <mySpriteGroup class="engine.SpriteGroup">
+            <mySpriteDefinitions/>
+            <mySpriteTypes/>
+            <myProfile class="engine.profile.Profile">
+              <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+              <myName class="javafx.beans.property.SimpleStringProperty">&lt;Name&gt;</myName>
+              <myDescription class="javafx.beans.property.SimpleStringProperty">&lt;Description&gt;</myDescription>
+              <myImage>
+                <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+              </myImage>
+              <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+              <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+              <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+            </myProfile>
+          </mySpriteGroup>
+          <myEffectsList/>
+          <myEventsList/>
+        </myGlobalPackage>
+      </engine.conditions.OnClickCondition>
+      <engine.conditions.OnCollisionCondition>
+        <myProfile class="engine.profile.Profile">
+          <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+          <myName class="javafx.beans.property.SimpleStringProperty">Till</myName>
+          <myDescription class="javafx.beans.property.SimpleStringProperty">Make soil into patch</myDescription>
+          <myImage>
+            <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+            <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+            <myUrl class="javafx.beans.property.SimpleStringProperty">/images/C.png</myUrl>
+          </myImage>
+          <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+          <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+          <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+        </myProfile>
+        <myGame class="engine.Game" reference="../../../.."/>
+        <myGroupAPackage class="engine.events.EventPackage">
+          <mySpriteGroup class="engine.SpriteGroup">
+            <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper">
               <engine.definitions.concrete.SpriteDefinition reference="../../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]"/>
             </mySpriteDefinitions>
             <mySpriteTypes>
@@ -881,7 +885,7 @@
               </myImage>
               <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
               <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
-              <imageChange class="javafx.beans.property.SimpleBooleanProperty">true</imageChange>
+              <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
             </myProfile>
           </mySpriteGroup>
           <myEffectsList/>
@@ -905,6 +909,111 @@
               </myType>
             </engine.events.GameEvent>
           </myEventsList>
+        </myGroupAPackage>
+        <myGroupBPackage class="engine.events.EventPackage">
+          <mySpriteGroup class="engine.SpriteGroup">
+            <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper">
+              <engine.definitions.concrete.SpriteDefinition>
+                <myMovementDefinition class="engine.definitions.moduledef.UserMoverDefinition">
+                  <mySpeed>2.0</mySpeed>
+                  <myKeys>
+                    <myUp>W</myUp>
+                    <myLeft>A</myLeft>
+                    <myRight>D</myRight>
+                    <myDown>S</myDown>
+                  </myKeys>
+                </myMovementDefinition>
+                <myModuleDefinitions/>
+                <myUpgrade class="engine.definitions.upgrades.NullUpgradeDefinition">
+                  <myCost>0.0</myCost>
+                  <isUpgradable>false</isUpgradable>
+                </myUpgrade>
+                <myLocation>
+                  <myXCoordinate>0.0</myXCoordinate>
+                  <myYCoordinate>0.0</myYCoordinate>
+                </myLocation>
+                <myAttributes/>
+                <myProfile class="engine.profile.Profile">
+                  <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                  <myName class="javafx.beans.property.SimpleStringProperty">Farmer</myName>
+                  <myDescription class="javafx.beans.property.SimpleStringProperty">Your helper</myDescription>
+                  <myImage>
+                    <myWidth class="javafx.beans.property.SimpleDoubleProperty">73.95161290322582</myWidth>
+                    <myHeight class="javafx.beans.property.SimpleDoubleProperty">92.33870967741935</myHeight>
+                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/farmville/farmer.png</myUrl>
+                  </myImage>
+                  <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">73.95161290322582</myImageWidth>
+                  <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">92.33870967741935</myImageHeight>
+                  <imageChange class="javafx.beans.property.SimpleBooleanProperty">true</imageChange>
+                </myProfile>
+                <myCost class="engine.definitions.costs.NullCost"/>
+                <mySingleGroup>
+                  <mySpriteDefinitions>
+                    <engine.definitions.concrete.SpriteDefinition reference="../../.."/>
+                  </mySpriteDefinitions>
+                  <mySpriteTypes>
+                    <engine.sprite.SpriteType>
+                      <myType>Enemy</myType>
+                      <myProfile class="engine.profile.Profile">
+                        <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                        <myName class="javafx.beans.property.SimpleStringProperty">Enemy</myName>
+                        <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                        <myImage>
+                          <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                          <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                          <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                        </myImage>
+                        <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                        <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                        <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                      </myProfile>
+                    </engine.sprite.SpriteType>
+                  </mySpriteTypes>
+                  <myProfile class="engine.profile.Profile" reference="../../myProfile[1]"/>
+                </mySingleGroup>
+                <myObstructability>false</myObstructability>
+                <myGoal>false</myGoal>
+              </engine.definitions.concrete.SpriteDefinition>
+            </mySpriteDefinitions>
+            <mySpriteTypes>
+              <engine.sprite.SpriteType>
+                <myType>Farmer</myType>
+                <myProfile class="engine.profile.Profile">
+                  <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                  <myName class="javafx.beans.property.SimpleStringProperty">Farmer</myName>
+                  <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                  <myImage>
+                    <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                    <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                    <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                  </myImage>
+                  <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                  <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                  <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                </myProfile>
+              </engine.sprite.SpriteType>
+            </mySpriteTypes>
+            <myProfile class="engine.profile.Profile">
+              <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+              <myName class="javafx.beans.property.SimpleStringProperty">Farmer</myName>
+              <myDescription class="javafx.beans.property.SimpleStringProperty">farmer</myDescription>
+              <myImage>
+                <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                <myUrl class="javafx.beans.property.SimpleStringProperty">Images/square.png</myUrl>
+              </myImage>
+              <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
+              <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
+              <imageChange class="javafx.beans.property.SimpleBooleanProperty">true</imageChange>
+            </myProfile>
+          </mySpriteGroup>
+          <myEffectsList reference="../../../engine.conditions.OnClickCondition[1]/myGlobalPackage[1]/myEffectsList[1]"/>
+          <myEventsList reference="../../../engine.conditions.OnClickCondition[1]/myGlobalPackage[1]/myEventsList[1]"/>
+        </myGroupBPackage>
+        <myOtherPackage class="engine.events.EventPackage">
+          <mySpriteGroup class="engine.SpriteGroup" reference="../../../engine.conditions.OnClickCondition[1]/myOtherPackage[1]/mySpriteGroup[1]"/>
+          <myEffectsList reference="../../../engine.conditions.OnClickCondition[1]/myGlobalPackage[1]/myEffectsList[1]"/>
+          <myEventsList reference="../../../engine.conditions.OnClickCondition[1]/myGlobalPackage[1]/myEventsList[1]"/>
         </myOtherPackage>
         <myGlobalPackage class="engine.events.EventPackage">
           <mySpriteGroup class="engine.SpriteGroup">
@@ -924,13 +1033,269 @@
               <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
             </myProfile>
           </mySpriteGroup>
-          <myEffectsList/>
-          <myEventsList/>
+          <myEffectsList reference="../../../engine.conditions.OnClickCondition[1]/myGlobalPackage[1]/myEffectsList[1]"/>
+          <myEventsList reference="../../../engine.conditions.OnClickCondition[1]/myGlobalPackage[1]/myEventsList[1]"/>
+        </myGlobalPackage>
+      </engine.conditions.OnCollisionCondition>
+      <engine.conditions.OnTimeCondition>
+        <myProfile class="engine.profile.Profile">
+          <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+          <myName class="javafx.beans.property.SimpleStringProperty">Patch</myName>
+          <myDescription class="javafx.beans.property.SimpleStringProperty">Eggplant patch to eggplant bushel</myDescription>
+          <myImage>
+            <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+            <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+            <myUrl class="javafx.beans.property.SimpleStringProperty">/images/C.png</myUrl>
+          </myImage>
+          <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+          <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+          <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+        </myProfile>
+        <myGame class="engine.Game" reference="../../../.."/>
+        <myCycleLength>
+          <myDuration>10000.0</myDuration>
+        </myCycleLength>
+        <myOtherPackage class="engine.events.EventPackage">
+          <mySpriteGroup class="engine.SpriteGroup">
+            <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper">
+              <engine.definitions.concrete.SpriteDefinition reference="../../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]"/>
+            </mySpriteDefinitions>
+            <mySpriteTypes>
+              <engine.sprite.SpriteType>
+                <myType>Eggplant Patch</myType>
+                <myProfile class="engine.profile.Profile">
+                  <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                  <myName class="javafx.beans.property.SimpleStringProperty">Eggplant Patch</myName>
+                  <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                  <myImage>
+                    <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                    <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                    <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                  </myImage>
+                  <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                  <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                  <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                </myProfile>
+              </engine.sprite.SpriteType>
+            </mySpriteTypes>
+            <myProfile class="engine.profile.Profile">
+              <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+              <myName class="javafx.beans.property.SimpleStringProperty">EggPatch</myName>
+              <myDescription class="javafx.beans.property.SimpleStringProperty">Eggplant Patch group</myDescription>
+              <myImage>
+                <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                <myUrl class="javafx.beans.property.SimpleStringProperty">Images/square.png</myUrl>
+              </myImage>
+              <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
+              <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
+              <imageChange class="javafx.beans.property.SimpleBooleanProperty">true</imageChange>
+            </myProfile>
+          </mySpriteGroup>
+          <myEffectsList reference="../../../engine.conditions.OnCollisionCondition[1]/myGroupAPackage[1]/myEffectsList[1]"/>
+          <myEventsList reference="../../../engine.conditions.OnCollisionCondition[1]/myGroupAPackage[1]/myEventsList[1]"/>
+        </myOtherPackage>
+        <myGlobalPackage class="engine.events.EventPackage">
+          <mySpriteGroup class="engine.SpriteGroup">
+            <mySpriteDefinitions/>
+            <mySpriteTypes/>
+            <myProfile class="engine.profile.Profile">
+              <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+              <myName class="javafx.beans.property.SimpleStringProperty">&lt;Name&gt;</myName>
+              <myDescription class="javafx.beans.property.SimpleStringProperty">&lt;Description&gt;</myDescription>
+              <myImage>
+                <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+              </myImage>
+              <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+              <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+              <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+            </myProfile>
+          </mySpriteGroup>
+          <myEffectsList reference="../../../engine.conditions.OnClickCondition[1]/myGlobalPackage[1]/myEffectsList[1]"/>
+          <myEventsList reference="../../../engine.conditions.OnClickCondition[1]/myGlobalPackage[1]/myEventsList[1]"/>
         </myGlobalPackage>
         <myTimeSinceLastTrigger>
           <myDuration>0.0</myDuration>
         </myTimeSinceLastTrigger>
       </engine.conditions.OnTimeCondition>
+      <engine.conditions.OnTimeCondition>
+        <myProfile class="engine.profile.Profile">
+          <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+          <myName class="javafx.beans.property.SimpleStringProperty">Wither</myName>
+          <myDescription class="javafx.beans.property.SimpleStringProperty">Eggplant bushel wither</myDescription>
+          <myImage>
+            <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+            <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+            <myUrl class="javafx.beans.property.SimpleStringProperty">/images/C.png</myUrl>
+          </myImage>
+          <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+          <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+          <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+        </myProfile>
+        <myGame class="engine.Game" reference="../../../.."/>
+        <myCycleLength>
+          <myDuration>10000.0</myDuration>
+        </myCycleLength>
+        <myOtherPackage class="engine.events.EventPackage">
+          <mySpriteGroup class="engine.SpriteGroup" reference="../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/mySingleGroup[1]"/>
+          <myEffectsList reference="../../../engine.conditions.OnCollisionCondition[1]/myGroupAPackage[1]/myEffectsList[1]"/>
+          <myEventsList reference="../../../engine.conditions.OnCollisionCondition[1]/myGroupAPackage[1]/myEventsList[1]"/>
+        </myOtherPackage>
+        <myGlobalPackage class="engine.events.EventPackage">
+          <mySpriteGroup class="engine.SpriteGroup">
+            <mySpriteDefinitions/>
+            <mySpriteTypes/>
+            <myProfile class="engine.profile.Profile">
+              <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+              <myName class="javafx.beans.property.SimpleStringProperty">&lt;Name&gt;</myName>
+              <myDescription class="javafx.beans.property.SimpleStringProperty">&lt;Description&gt;</myDescription>
+              <myImage>
+                <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+              </myImage>
+              <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+              <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+              <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+            </myProfile>
+          </mySpriteGroup>
+          <myEffectsList reference="../../../engine.conditions.OnClickCondition[1]/myGlobalPackage[1]/myEffectsList[1]"/>
+          <myEventsList reference="../../../engine.conditions.OnClickCondition[1]/myGlobalPackage[1]/myEventsList[1]"/>
+        </myGlobalPackage>
+        <myTimeSinceLastTrigger>
+          <myDuration>0.0</myDuration>
+        </myTimeSinceLastTrigger>
+      </engine.conditions.OnTimeCondition>
+      <engine.conditions.OnClickCondition>
+        <myProfile class="engine.profile.Profile">
+          <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+          <myName class="javafx.beans.property.SimpleStringProperty">Cash</myName>
+          <myDescription class="javafx.beans.property.SimpleStringProperty">Increase by 10</myDescription>
+          <myImage>
+            <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+            <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+            <myUrl class="javafx.beans.property.SimpleStringProperty">/images/C.png</myUrl>
+          </myImage>
+          <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+          <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+          <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+        </myProfile>
+        <myGame class="engine.Game" reference="../../../.."/>
+        <mySelfPackage class="engine.events.EventPackage">
+          <mySpriteGroup class="engine.SpriteGroup" reference="../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/mySingleGroup[1]"/>
+          <myEffectsList/>
+          <myEventsList>
+            <engine.events.GameEvent>
+              <myType>
+                <myType>Death</myType>
+                <myProfile class="engine.profile.Profile">
+                  <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                  <myName class="javafx.beans.property.SimpleStringProperty">Death</myName>
+                  <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                  <myImage>
+                    <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                    <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                    <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                  </myImage>
+                  <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                  <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                  <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                </myProfile>
+              </myType>
+            </engine.events.GameEvent>
+          </myEventsList>
+        </mySelfPackage>
+        <myOtherPackage class="engine.events.EventPackage">
+          <mySpriteGroup class="engine.SpriteGroup" reference="../../../engine.conditions.OnClickCondition[1]/myOtherPackage[1]/mySpriteGroup[1]"/>
+          <myEffectsList reference="../../../engine.conditions.OnClickCondition[1]/myGlobalPackage[1]/myEffectsList[1]"/>
+          <myEventsList reference="../../../engine.conditions.OnClickCondition[1]/myGlobalPackage[1]/myEventsList[1]"/>
+        </myOtherPackage>
+        <myGlobalPackage class="engine.events.EventPackage">
+          <mySpriteGroup class="engine.SpriteGroup">
+            <mySpriteDefinitions/>
+            <mySpriteTypes/>
+            <myProfile class="engine.profile.Profile">
+              <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+              <myName class="javafx.beans.property.SimpleStringProperty">&lt;Name&gt;</myName>
+              <myDescription class="javafx.beans.property.SimpleStringProperty">&lt;Description&gt;</myDescription>
+              <myImage>
+                <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+              </myImage>
+              <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+              <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+              <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+            </myProfile>
+          </mySpriteGroup>
+          <myEffectsList>
+            <engine.effects.IncreaseEffect>
+              <myAttributeType>
+                <myType>Cash</myType>
+                <myProfile class="engine.profile.Profile">
+                  <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                  <myName class="javafx.beans.property.SimpleStringProperty">Cash</myName>
+                  <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                  <myImage>
+                    <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                    <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                    <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                  </myImage>
+                  <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                  <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                  <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                </myProfile>
+              </myAttributeType>
+              <myEffectLengthAttribute class="engine.Attribute">
+                <myStartingValue>1.0</myStartingValue>
+                <myValue class="javafx.beans.property.SimpleDoubleProperty">1.0</myValue>
+                <myType>
+                  <myType>length</myType>
+                  <myProfile class="engine.profile.Profile">
+                    <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                    <myName class="javafx.beans.property.SimpleStringProperty">length</myName>
+                    <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                    <myImage>
+                      <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                      <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                      <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                    </myImage>
+                    <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                    <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                    <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                  </myProfile>
+                </myType>
+                <myEffects class="com.sun.javafx.collections.ObservableListWrapper"/>
+              </myEffectLengthAttribute>
+              <myAlteringAttribute class="engine.Attribute">
+                <myStartingValue>10.0</myStartingValue>
+                <myValue class="javafx.beans.property.SimpleDoubleProperty">10.0</myValue>
+                <myType>
+                  <myType>Constant</myType>
+                  <myProfile class="engine.profile.Profile">
+                    <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                    <myName class="javafx.beans.property.SimpleStringProperty">Constant</myName>
+                    <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                    <myImage>
+                      <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                      <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                      <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                    </myImage>
+                    <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                    <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                    <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+                  </myProfile>
+                </myType>
+                <myEffects class="com.sun.javafx.collections.ObservableListWrapper"/>
+              </myAlteringAttribute>
+              <myAlteringAttributeDefinition reference="../../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myAttribute[1]"/>
+            </engine.effects.IncreaseEffect>
+          </myEffectsList>
+          <myEventsList/>
+        </myGlobalPackage>
+      </engine.conditions.OnClickCondition>
     </myConditions>
     <myMouseQueue/>
     <myKeyQueue/>
@@ -941,7 +1306,9 @@
         <string>Enemies</string>
         <gameauthoring.shareddata.DefinitionCollection>
           <myTitleKey>Enemies</myTitleKey>
-          <myItems class="com.sun.javafx.collections.ObservableListWrapper"/>
+          <myItems class="com.sun.javafx.collections.ObservableListWrapper">
+            <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnCollisionCondition[1]/myGroupBPackage[1]/mySpriteGroup[1]/mySpriteDefinitions[1]/engine.definitions.concrete.SpriteDefinition[1]"/>
+          </myItems>
         </gameauthoring.shareddata.DefinitionCollection>
       </entry>
       <entry>
@@ -951,6 +1318,8 @@
           <myItems class="com.sun.javafx.collections.ObservableListWrapper">
             <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]"/>
             <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]"/>
+            <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]"/>
+            <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]"/>
           </myItems>
         </gameauthoring.shareddata.DefinitionCollection>
       </entry>
@@ -966,7 +1335,7 @@
     <myCreatedGlobals>
       <myTitleKey>Globals</myTitleKey>
       <myItems class="com.sun.javafx.collections.ObservableListWrapper">
-        <engine.definitions.concrete.AttributeDefinition reference="../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]/myCost[1]/myAttributeDefinition[1]"/>
+        <engine.definitions.concrete.AttributeDefinition reference="../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myAttribute[1]"/>
       </myItems>
     </myCreatedGlobals>
     <myCreatedAttributes>
@@ -976,12 +1345,84 @@
     <myCreatedGroups>
       <myTitleKey>Groups</myTitleKey>
       <myItems class="com.sun.javafx.collections.ObservableListWrapper">
+        <engine.SpriteGroup reference="../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnCollisionCondition[1]/myGroupAPackage[1]/mySpriteGroup[1]"/>
         <engine.SpriteGroup reference="../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnTimeCondition[1]/myOtherPackage[1]/mySpriteGroup[1]"/>
         <engine.SpriteGroup>
-          <mySpriteDefinitions>
-            <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]"/>
+          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper"/>
+          <mySpriteTypes/>
+          <myProfile class="engine.profile.Profile">
+            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+            <myName class="javafx.beans.property.SimpleStringProperty">Missiles</myName>
+            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+            <myImage>
+              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+              <myUrl class="javafx.beans.property.SimpleStringProperty">images/missile.png</myUrl>
+            </myImage>
+            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
+            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
+            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+          </myProfile>
+        </engine.SpriteGroup>
+        <engine.SpriteGroup>
+          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper">
+            <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnCollisionCondition[1]/myGroupBPackage[1]/mySpriteGroup[1]/mySpriteDefinitions[1]/engine.definitions.concrete.SpriteDefinition[1]"/>
           </mySpriteDefinitions>
           <mySpriteTypes>
+            <engine.sprite.SpriteType>
+              <myType>Farmer</myType>
+              <myProfile class="engine.profile.Profile">
+                <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                <myName class="javafx.beans.property.SimpleStringProperty">Farmer</myName>
+                <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                <myImage>
+                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                  <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                </myImage>
+                <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+              </myProfile>
+            </engine.sprite.SpriteType>
+          </mySpriteTypes>
+          <myProfile class="engine.profile.Profile">
+            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+            <myName class="javafx.beans.property.SimpleStringProperty">Enemies</myName>
+            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+            <myImage>
+              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+              <myUrl class="javafx.beans.property.SimpleStringProperty">images/enemy.png</myUrl>
+            </myImage>
+            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
+            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
+            <imageChange class="javafx.beans.property.SimpleBooleanProperty">true</imageChange>
+          </myProfile>
+        </engine.SpriteGroup>
+        <engine.SpriteGroup>
+          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper">
+            <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]"/>
+            <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]"/>
+            <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]"/>
+          </mySpriteDefinitions>
+          <mySpriteTypes>
+            <engine.sprite.SpriteType>
+              <myType>Eggplant Soil</myType>
+              <myProfile class="engine.profile.Profile">
+                <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                <myName class="javafx.beans.property.SimpleStringProperty">Eggplant Soil</myName>
+                <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                <myImage>
+                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                  <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                </myImage>
+                <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+              </myProfile>
+            </engine.sprite.SpriteType>
             <engine.sprite.SpriteType>
               <myType>Eggplant Patch</myType>
               <myProfile class="engine.profile.Profile">
@@ -998,29 +1439,49 @@
                 <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
               </myProfile>
             </engine.sprite.SpriteType>
+            <engine.sprite.SpriteType>
+              <myType>Wither</myType>
+              <myProfile class="engine.profile.Profile">
+                <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+                <myName class="javafx.beans.property.SimpleStringProperty">Wither</myName>
+                <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
+                <myImage>
+                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+                  <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
+                </myImage>
+                <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
+                <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
+                <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+              </myProfile>
+            </engine.sprite.SpriteType>
           </mySpriteTypes>
           <myProfile class="engine.profile.Profile">
             <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-            <myName class="javafx.beans.property.SimpleStringProperty">EggPatch</myName>
-            <myDescription class="javafx.beans.property.SimpleStringProperty">Eggplant Patch group</myDescription>
+            <myName class="javafx.beans.property.SimpleStringProperty">Defenders</myName>
+            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
             <myImage>
               <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
               <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">Images/square.png</myUrl>
+              <myUrl class="javafx.beans.property.SimpleStringProperty">images/tower.png</myUrl>
             </myImage>
             <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
             <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
-            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+            <imageChange class="javafx.beans.property.SimpleBooleanProperty">true</imageChange>
           </myProfile>
         </engine.SpriteGroup>
+        <engine.SpriteGroup reference="../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[1]/mySelfPackage[1]/mySpriteGroup[1]"/>
+        <engine.SpriteGroup reference="../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[1]/myOtherPackage[1]/mySpriteGroup[1]"/>
+        <engine.SpriteGroup reference="../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnCollisionCondition[1]/myGroupBPackage[1]/mySpriteGroup[1]"/>
+        <engine.SpriteGroup reference="../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myAddableSprites[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/myUpgrade[1]/mySingleGroup[1]"/>
       </myItems>
     </myCreatedGroups>
     <myCreatedEventPackages>
       <myTitleKey>EventPackages</myTitleKey>
       <myItems class="com.sun.javafx.collections.ObservableListWrapper">
         <engine.definitions.concrete.EventPackageDefinition>
-          <myEffectsList reference="../../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnTimeCondition[1]/myOtherPackage[1]/myEffectsList[1]"/>
-          <myEventsList reference="../../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnTimeCondition[1]/myOtherPackage[1]/myEventsList[1]"/>
+          <myEffectsList reference="../../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnCollisionCondition[1]/myGroupAPackage[1]/myEffectsList[1]"/>
+          <myEventsList reference="../../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnCollisionCondition[1]/myGroupAPackage[1]/myEventsList[1]"/>
           <myProfile class="engine.profile.Profile">
             <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
             <myName class="javafx.beans.property.SimpleStringProperty">Upgrade</myName>
@@ -1036,12 +1497,46 @@
           </myProfile>
         </engine.definitions.concrete.EventPackageDefinition>
         <engine.definitions.concrete.EventPackageDefinition>
-          <myEffectsList reference="../../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnTimeCondition[1]/myGlobalPackage[1]/myEffectsList[1]"/>
-          <myEventsList reference="../../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnTimeCondition[1]/myGlobalPackage[1]/myEventsList[1]"/>
+          <myEffectsList reference="../../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[1]/myGlobalPackage[1]/myEffectsList[1]"/>
+          <myEventsList reference="../../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[1]/myGlobalPackage[1]/myEventsList[1]"/>
           <myProfile class="engine.profile.Profile">
             <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
             <myName class="javafx.beans.property.SimpleStringProperty">Empty</myName>
             <myDescription class="javafx.beans.property.SimpleStringProperty">Do nothing</myDescription>
+            <myImage>
+              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+              <myUrl class="javafx.beans.property.SimpleStringProperty">Images/square.png</myUrl>
+            </myImage>
+            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
+            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
+            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+          </myProfile>
+        </engine.definitions.concrete.EventPackageDefinition>
+        <engine.definitions.concrete.EventPackageDefinition>
+          <myEffectsList reference="../../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[2]/myGlobalPackage[1]/myEffectsList[1]"/>
+          <myEventsList reference="../../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[2]/myGlobalPackage[1]/myEventsList[1]"/>
+          <myProfile class="engine.profile.Profile">
+            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+            <myName class="javafx.beans.property.SimpleStringProperty">Cash+10</myName>
+            <myDescription class="javafx.beans.property.SimpleStringProperty">Increase Cash by 10</myDescription>
+            <myImage>
+              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
+              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
+              <myUrl class="javafx.beans.property.SimpleStringProperty">Images/square.png</myUrl>
+            </myImage>
+            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
+            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
+            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
+          </myProfile>
+        </engine.definitions.concrete.EventPackageDefinition>
+        <engine.definitions.concrete.EventPackageDefinition>
+          <myEffectsList reference="../../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[2]/mySelfPackage[1]/myEffectsList[1]"/>
+          <myEventsList reference="../../../../../myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[2]/mySelfPackage[1]/myEventsList[1]"/>
+          <myProfile class="engine.profile.Profile">
+            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
+            <myName class="javafx.beans.property.SimpleStringProperty">Death</myName>
+            <myDescription class="javafx.beans.property.SimpleStringProperty">Death Effect</myDescription>
             <myImage>
               <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
               <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
