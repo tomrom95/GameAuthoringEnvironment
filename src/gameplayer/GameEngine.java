@@ -118,7 +118,6 @@ public class GameEngine implements IGameEngine {
     }
 
     public void rescale (double width, double height) {
-        System.out.println("rescaling");
         double xScale = rescaleX(width);
         double yScale = rescaleY(height);
         double min = Math.min(xScale, yScale);
