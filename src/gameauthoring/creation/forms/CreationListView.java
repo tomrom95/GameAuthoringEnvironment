@@ -1,5 +1,7 @@
 package gameauthoring.creation.forms;
 
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.profile.IProfilable;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import javafx.collections.ObservableList;
@@ -18,6 +20,7 @@ public class CreationListView<E extends IProfilable> implements ICreationListVie
 
     private ObservableList<E> myItems;
     private ListView<E> myListView;
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private static final double HEIGHT = 542; // TODO: move to common resource file
 
     public CreationListView (ObservableList<E> items) {
@@ -27,7 +30,7 @@ public class CreationListView<E extends IProfilable> implements ICreationListVie
         myListView.setCellFactory(c -> new ProfileCellView<E>());
         myListView.setMinHeight(HEIGHT);
         myListView.setMaxHeight(HEIGHT);
-        myListView.setPlaceholder(new Label("Created Objects Here"));
+        myListView.setPlaceholder(new Label(myLang.getString("CreatedObjects")));
 
         // TODO: resource file and maybe constructor arguement later
         myListView.getStyleClass().add("myObjectListView");

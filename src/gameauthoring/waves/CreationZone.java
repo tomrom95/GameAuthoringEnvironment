@@ -1,5 +1,7 @@
 package gameauthoring.waves;
 
+import java.util.ResourceBundle;
+import splash.LocaleManager;
 import gameauthoring.util.Glyph;
 import gameauthoring.util.UIFactory;
 import gameauthoring.creation.entryviews.CheckEntryView;
@@ -20,7 +22,8 @@ public class CreationZone implements Glyph {
     private UIFactory myFactory = new BasicUIFactory();
     private Button myActionButton;
     private Button mySaveButton;
-    private String myInfiniteKey = "Infinite Wave: ";
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    private String myInfiniteKey = myLang.getString("InfiniteWaveKey");
     private CheckEntryView myInfiniteSelect;
     
 
@@ -30,8 +33,8 @@ public class CreationZone implements Glyph {
 
     private void init () {
 
-        myActionButton = myFactory.createStyledButton("Add wave", "CustomButton");
-        mySaveButton = myFactory.createStyledButton("Save", "CustomSave");
+        myActionButton = myFactory.createStyledButton(myLang.getString("AddWave"), "CustomButton");
+        mySaveButton = myFactory.createStyledButton(myLang.getString("SaveWave"), "CustomSave");
         mySaveButton.setVisible(false);
         myInfiniteSelect = new CheckEntryView(myInfiniteKey, AuthoringView.DEFAULT_ENTRYVIEW);
         myPane.getChildren().add(myActionButton);
@@ -64,7 +67,7 @@ public class CreationZone implements Glyph {
     
     public void exitEdit () {
         setInfiniteCheckBox(false);
-        myActionButton.setText("Add wave");    
+        myActionButton.setText(myLang.getString("AddWave"));    
         mySaveButton.setVisible(false);
      }
     

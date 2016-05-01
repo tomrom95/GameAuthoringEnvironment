@@ -15,13 +15,14 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 import util.StringParser;
 
 
 public class ListGraphicFactory {
 
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/list_graphic_factory");
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private UIFactory myFactory = new BasicUIFactory();
 
     public Node createGraphic (ObservableList<WaveBlockDefinition> list, WaveBlockDefinition item) {

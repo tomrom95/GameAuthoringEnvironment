@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import splash.LocaleManager;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -20,7 +21,7 @@ import javafx.scene.input.MouseEvent;
 
 public class WaveView implements Glyph {
 
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/default_names");
     private ResourceBundle mySize = ResourceBundle.getBundle("defaults/wave_tab_size");

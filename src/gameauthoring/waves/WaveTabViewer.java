@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import splash.LocaleManager;
 import engine.IGame;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
@@ -39,7 +40,7 @@ public class WaveTabViewer implements Glyph, ITabViewer {
 
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 700;
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", Locale.ENGLISH);
+    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/wave_tab_size");
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     private GridPane myPane = new GridPane();
