@@ -16,6 +16,8 @@ import javafx.scene.shape.Rectangle;
 /**
  * Renderer for grid in the authoring environment.
  * Authors can set unplaceable terrain by clicking the tiles
+ * Takes in myScale (Scale Ratio wrapper object) and uses it to dynamically calculate the size of
+ * the block and render the updated grid
  * 
  * @author Jin An
  *
