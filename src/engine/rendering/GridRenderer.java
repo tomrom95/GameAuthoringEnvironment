@@ -68,9 +68,6 @@ public class GridRenderer implements IRenderer {
     }
 
     private void handleMouseClick (Tile tile) {
-        System.out.println(myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[tile
-                .getRowPosition()][tile
-                .getColPosition()]);
         if (checkClickable(tile)) {
             if (tile.getTile().getFill() == Color.TRANSPARENT) {
                 myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[tile
@@ -123,9 +120,9 @@ public class GridRenderer implements IRenderer {
     public void render () {
         init();
     }
-    
-    public void updateTileNumbers(){
-        calculateTileArraySize ();
+
+    public void updateTileNumbers () {
+        calculateTileArraySize();
     }
 
     public void redraw () {
