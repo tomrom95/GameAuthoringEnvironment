@@ -107,4 +107,12 @@ public class AuthorshipData {
         getCreatedWaves().addItem(item);
     }
 
+    public void removeFromGroups (SpriteDefinition def) {
+        getMyCreatedGroups().getItems().forEach(e->e.remove(def));
+    }
+
+    public void removeFromAttributes (AttributeDefinition myLastItem) {
+        getAllCreatedSpritesAsList().forEach(e->e.removeAttribute(myLastItem));
+    }
+
 }

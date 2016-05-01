@@ -10,7 +10,6 @@ import engine.definitions.spawnerdef.WaveDefinition;
 import engine.profile.Profile;
 import engine.rendering.AuthoringRenderer;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -47,6 +46,7 @@ import util.StringParser;
 public class SpawnerView implements Glyph, Draggable {
 
     private static final String DRAG_STRING = "Spawner";
+    private static final String IMAGE_SIZE = "ImageSize";
     private static final String EMPTY = "";
     private static final double SIZE = 80;
 
@@ -86,7 +86,7 @@ public class SpawnerView implements Glyph, Draggable {
     private void initWaves () {
         myBacking = FXCollections.observableArrayList();
         myWaves = new ListView<>(myBacking);
-        myWaves.setPlaceholder(new Label(myLang.getString("EmptyWavesPrompt")));
+        myWaves.setPlaceholder(myFactory.createLabel(myLang.getString("EmptyWavesPrompt")));
         myWaves.getStyleClass().add(myStyle.getString("GreenList"));
         myWaves.setCellFactory(c -> new NameCellView<WaveDefinition>());
         setSize();
@@ -119,8 +119,8 @@ public class SpawnerView implements Glyph, Draggable {
     private Node getView () {
         ImageView view = new ImageView(getImage());
         view.setOnDragDetected(e -> setOnDragDetected(e, view));
-        view.setFitWidth(Double.parseDouble(myBundle.getString("ImageSize")));
-        view.setFitHeight(Double.parseDouble(myBundle.getString("ImageSize")));
+        view.setFitWidth(Double.parseDouble(myBundle.getString(IMAGE_SIZE)));
+        view.setFitHeight(Double.parseDouble(myBundle.getString(IMAGE_SIZE)));
         return view;
     }
 

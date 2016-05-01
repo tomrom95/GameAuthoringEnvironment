@@ -13,7 +13,6 @@ import gameauthoring.creation.subforms.ISubFormView;
  */
 public class FiringSFV extends ClickAndFillView {
 
-    private String defaultHelpMessage = getMyLabels().getString("HelpMessage");
 
     public FiringSFV (List<String> options, String titleKey) {
         super(options, titleKey);

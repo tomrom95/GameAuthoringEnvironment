@@ -4,8 +4,6 @@ import java.util.ResourceBundle;
 import engine.conditions.ICondition;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;

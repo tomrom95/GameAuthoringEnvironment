@@ -2,7 +2,6 @@ package gameauthoring.creation.subforms.fire;
 
 import java.util.ResourceBundle;
 import splash.LocaleManager;
-import util.StringParser;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
@@ -87,8 +86,9 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
         HBox head = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(), getSubTitleDisplay());
         HBox options = getMyUIFactory().makeHBox(spacing , Pos.CENTER, myMissileSelectionView.draw(),myWaitTime.draw(),myAngle.draw());  
         HBox rangedOptions =  getMyUIFactory().makeHBox(spacing, Pos.CENTER, myIsRanged.draw(),myRangeValue.draw());  
-        myPane = getMyUIFactory().makeVBox(20, Pos.CENTER, head, options, rangedOptions);  
-        getMyUIFactory().addStyling(myPane, "Firer");  
+        myPane = getMyUIFactory().makeVBox(spacing, Pos.CENTER, head, options, rangedOptions);  
+        getMyUIFactory().addStyling(myPane, "Firer"); 
+
     }
 
     private void initBinding () {

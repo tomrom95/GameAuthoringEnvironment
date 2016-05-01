@@ -38,6 +38,7 @@ public class SpriteGroup implements ISpriteGroup, IProfilable {
         setSpriteDefinitions(spriteDefs);
         myProfile = new Profile();
     }
+    
 
     public List<SpriteDefinition> getSpriteDefinitions () {
         return mySpriteDefinitions;
@@ -69,6 +70,10 @@ public class SpriteGroup implements ISpriteGroup, IProfilable {
     @Override
     public void setProfile (IProfile profile) {
         myProfile = profile;
+    }
+
+    public void remove (SpriteDefinition def) {
+        mySpriteDefinitions.remove(def);
     }
 
 }

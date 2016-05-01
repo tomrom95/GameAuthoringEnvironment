@@ -11,14 +11,16 @@ import engine.definitions.moduledef.UserMoverDefinition;
 import gameauthoring.creation.factories.MovementSFCFactory;
 import gameauthoring.creation.subforms.dynamic.DynamicSubFormController;
 
+
 /**
- * A MovementSFC is a SubFormController in charge of assigning a movement module to a SpriteDefinition
+ * A MovementSFC is a SubFormController in charge of assigning a movement module to a
+ * SpriteDefinition
  * 
  * @author Jeremy Schreck
  *
  */
 public class MovementSFC extends DynamicSubFormController<SpriteDefinition> {
-    private static String MY_MOVEMENT_KEY= "Movement";
+    private static final String MY_MOVEMENT_KEY = "Movement";
 
     /**
      * Constructs a MovementSFC with the given game object, a MovementSFCFactory
@@ -29,16 +31,13 @@ public class MovementSFC extends DynamicSubFormController<SpriteDefinition> {
      */
     public MovementSFC (IGame game) {
         super(game, new MovementSFCFactory(game), MY_MOVEMENT_KEY);
-        
+
     }
-    
-    
 
     @Override
     protected void changeCurrentSFCBasedOnData (SpriteDefinition item) {
         MovementDefinition movDef = item.getMovementDefinition();
-        setMyCurrentSFC(new MovementSFCFactory(getMyGame()).getSFCFromDefinition(movDef));        
+        setMyCurrentSFC(new MovementSFCFactory(getMyGame()).getSFCFromDefinition(movDef));
     }
-
 
 }

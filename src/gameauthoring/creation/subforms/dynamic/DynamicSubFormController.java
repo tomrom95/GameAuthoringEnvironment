@@ -18,14 +18,16 @@ import util.BundleOperations;
  * @author Jeremy Schreck
  *
  */
-public abstract class DynamicSubFormController<T extends IProfilable> implements ISubFormController<T> {
+public abstract class DynamicSubFormController<T extends IProfilable>
+        implements ISubFormController<T> {
     private DynamicSubFormView myView;
     private List<ISubFormView> mySubFormViews;
     private List<ISubFormController<T>> mySubFormControllers;
     private ISubFormController<T> myCurrentSubFormController;
     private IGame myGame;
     private DynamicSFCFactory<T> mySFCFactory;
-    private ResourceBundle myOptionsBundle = ResourceBundle.getBundle("defaults/dynamic_sfc_contents");
+    private ResourceBundle myOptionsBundle =
+            ResourceBundle.getBundle("defaults/dynamic_sfc_contents");
 
     /**
      * Constructor
@@ -38,7 +40,8 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
     public DynamicSubFormController (IGame game,
                                      DynamicSFCFactory<T> sfcFactory,
                                      String subFormIdBundleKey) {
-        List<String> subformIDs = BundleOperations.getPropertyValueAsList(subFormIdBundleKey, getMyOptionsBundle());
+        List<String> subformIDs =
+                BundleOperations.getPropertyValueAsList(subFormIdBundleKey, getMyOptionsBundle());
         setMyView(new DynamicSubFormView(subformIDs, subFormIdBundleKey));
         setMyGame(game);
         setMySFCFactory(sfcFactory);
@@ -47,13 +50,13 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
         setActions();
     }
 
-    private void setActions(){
-        for(int i = 0; i<myView.getMyButtons().size(); i++){
+    private void setActions () {
+        for (int i = 0; i < myView.getMyButtons().size(); i++) {
             ISubFormController<T> sfc = mySubFormControllers.get(i);
-            myView.setButtonAction(myView.getMyButtons().get(i), e->setMyCurrentSFC(sfc));
+            myView.setButtonAction(myView.getMyButtons().get(i), e -> setMyCurrentSFC(sfc));
         }
     }
-    
+
     /**
      * Creates the sub-SFCs that will be dynamically swapped in and out based on
      * which type the user selects
@@ -70,7 +73,6 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
 
         setMySubFormControllers(subFormControllers);
     }
-
 
     /**
      * Creates the list of sub-subformviews from the sub-subformcontrollers
@@ -104,28 +106,28 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
 
     @Override
     public void updateItem (T item) {
-        if(myCurrentSubFormController != null){
+        if (myCurrentSubFormController != null) {
             myCurrentSubFormController.updateItem(item);
         }
 
     }
-    
+
     @Override
     public void populateViewsWithData (T item) {
-        mySubFormControllers.forEach(e->e.initializeFields());
-        changeCurrentSFCBasedOnData(item);        
-        if(myCurrentSubFormController != null){
+        mySubFormControllers.forEach(e -> e.initializeFields());
+        changeCurrentSFCBasedOnData(item);
+        if (myCurrentSubFormController != null) {
             myCurrentSubFormController.populateViewsWithData(item);
         }
 
     }
-    
+
     /**
      * Subclasses must determine which sub-sub form to populate with data
      * 
      * @param item The newly selected item that needs to be displayed
      */
-    protected abstract void changeCurrentSFCBasedOnData(T item);
+    protected abstract void changeCurrentSFCBasedOnData (T item);
 
     @Override
     public ISubFormView getSubFormView () {
@@ -158,8 +160,8 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
         return myGame;
     }
 
-    private void setMyGame (IGame myGame) {
-        this.myGame = myGame;
+    private void setMyGame (IGame game) {
+        this.myGame = game;
     }
 
     public void setMySFCFactory (DynamicSFCFactory<T> sfcFactory) {
@@ -170,7 +172,7 @@ public abstract class DynamicSubFormController<T extends IProfilable> implements
     private DynamicSFCFactory<T> getMySFCFactory () {
         return mySFCFactory;
     }
-    
+
     protected ResourceBundle getMyOptionsBundle () {
         return myOptionsBundle;
     }

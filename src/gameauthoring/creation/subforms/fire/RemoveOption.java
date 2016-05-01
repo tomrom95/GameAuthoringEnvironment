@@ -1,11 +1,13 @@
 package gameauthoring.creation.subforms.fire;
 
+import java.util.ResourceBundle;
 import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.Glyph;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import util.StringParser;
 
 
 /**
@@ -15,24 +17,35 @@ import javafx.scene.control.Button;
  * @author Joe Lilien
  *
  */
-public class RemoveOption implements Glyph{
+public class RemoveOption implements Glyph {
 
-    private Button removeMenu;
+    private static final String DIMENSION = "HBoxSpacing";
+    private Button myRemoveMenu;
     private BasicUIFactory myUIFactory = new BasicUIFactory();
-    private String imagePath = "images/close.png";
-    
-    public RemoveOption(EventHandler<ActionEvent> e){
+    private String myImagePath = "images/close.png";
+    private ResourceBundle myNumbers;
+    private StringParser myParser;
+
+    public RemoveOption (EventHandler<ActionEvent> e) {
+        myNumbers = ResourceBundle
+                .getBundle("defaults/numbers");
+        myParser = new StringParser();
         initRemove(e);
     }
 
     private void initRemove (EventHandler<ActionEvent> e) {
-        removeMenu = myUIFactory.createImageButton(myUIFactory.makeImageView((imagePath), 20, 20), e);
+        double width = myParser.parseDouble(myNumbers.getString(DIMENSION));
+        double height = myParser.parseDouble(myNumbers.getString(DIMENSION));
+        myRemoveMenu =
+                myUIFactory.createImageButton(myUIFactory.makeImageView(myImagePath,
+                                                                        width,
+                                                                        height),
+                                              e);
     }
-    
-   
+
     @Override
     public Node draw () {
-        return  removeMenu;
+        return myRemoveMenu;
     }
 
 }

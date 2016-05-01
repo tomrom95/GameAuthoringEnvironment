@@ -40,6 +40,7 @@ public class TabViewFactory<T extends ITabViewer> {
         myTabViewers = ResourceBundle.getBundle(TAB_VIEWER_NAMES, LocaleManager.getInstance()
                 .getCurrentLocaleProperty().get());
         myUIFactory = new BasicUIFactory();
+        myTabViewerMap = new HashMap<>();
     }
 
     /**

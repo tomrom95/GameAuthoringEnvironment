@@ -31,4 +31,6 @@ public interface IDefinitionCollection<E> {
      * @param item The item to add
      */
     void addItem (E item);
+
+    void removeItem (E item);
 }

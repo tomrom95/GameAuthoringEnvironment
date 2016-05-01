@@ -7,9 +7,13 @@ import gameauthoring.listdisplay.LevelConditionView;
 import gameauthoring.util.Glyph;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
-import util.ScaleRatio;
 
-public class AuthoringLevelConditions implements Glyph{
+/**
+ * Class for displaying view of ending conditions (winning, losing, etc.)
+ * @author RyanStPierre
+ *
+ */
+public class AuthoringLevelConditions implements Glyph {
     
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/a_level_size");
     private TransitionView myTransitions;

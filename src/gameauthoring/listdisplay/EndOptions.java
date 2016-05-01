@@ -9,9 +9,17 @@ import javafx.scene.control.ComboBox;
 import util.BundleOperations;
 
 
+/**
+ * Displays a combo box of ending condition options (win, lose, etc.)
+ * Used in composition of many sub condition views the display this type of combo box
+ * 
+ * @author RyanStPierre
+ *
+ */
+
 public class EndOptions {
 
-    ResourceBundle myEndOptions = ResourceBundle.getBundle("defaults/end_event_options");
+    private ResourceBundle myEndOptions = ResourceBundle.getBundle("defaults/end_event_options");
     private ComboBox<String> myEventChoices;
 
     public EndOptions () {
