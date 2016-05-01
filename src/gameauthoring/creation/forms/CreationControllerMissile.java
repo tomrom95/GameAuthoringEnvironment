@@ -15,14 +15,16 @@ public class CreationControllerMissile extends CreationControllerSprite {
                                       List<String> subFormStrings,
                                       IGame myGame) {
         super(key, subFormStrings, myGame);
-        
+
     }
 
     @Override
     protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
-       authorshipData.getMyCreatedGroups().addItem(new SpriteGroup(authorshipData.getMyCreatedMissiles().getItems(), new Profile(getMyTitle())));
-       return authorshipData.getMyCreatedMissiles();        
+        authorshipData.getMyCreatedGroups()
+                .addItem(new SpriteGroup(authorshipData.getMyCreatedMissiles().getItems(),
+                                         new Profile(getMyKey(), "",
+                                                     getImageBundle().getString(getMyKey()))));
+        return authorshipData.getMyCreatedMissiles();
     }
-    
 
 }

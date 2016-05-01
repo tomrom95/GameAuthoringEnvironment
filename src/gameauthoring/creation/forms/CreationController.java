@@ -28,6 +28,7 @@ public abstract class CreationController<T extends IProfilable> {
     private DefinitionCollection<T> myDefinitionCollection;
     private AuthorshipData myData;
     private T myLastItem;
+    private ResourceBundle myImages = ResourceBundle.getBundle("defaults/create_tab_images");
     private ResourceBundle myResources = ResourceBundle.getBundle("languages/labels",
                                                                   LocaleManager.getInstance()
                                                                           .getCurrentLocaleProperty()
@@ -245,5 +246,9 @@ public abstract class CreationController<T extends IProfilable> {
     
     protected T getMyLastItem () {
         return myLastItem;
+    }
+    
+    protected ResourceBundle getImageBundle() {
+        return myImages;
     }
 }
