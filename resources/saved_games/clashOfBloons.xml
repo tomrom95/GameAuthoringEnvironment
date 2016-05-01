@@ -7,291 +7,19 @@
     <myLevelPropertyList class="com.sun.javafx.collections.ObservableListWrapper">
       <engine.Level>
         <myConditionManager class="engine.ConditionManager">
-          <myConditions class="com.sun.javafx.collections.ObservableListWrapper">
-            <engine.conditions.OnClickCondition>
-              <myProfile class="engine.profile.Profile">
-                <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                <myName class="javafx.beans.property.SimpleStringProperty"></myName>
-                <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                <myImage>
-                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                  <myUrl class="javafx.beans.property.SimpleStringProperty">/images/C.png</myUrl>
-                </myImage>
-                <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-              </myProfile>
-              <myGame class="engine.Game" reference="../../../../../../.."/>
-              <mySelfPackage class="engine.events.EventPackage">
-                <mySpriteGroup class="engine.SpriteGroup">
-                  <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper">
-                    <engine.definitions.concrete.SpriteDefinition>
-                      <myMovementDefinition class="engine.definitions.moduledef.StaticMovementDefintion">
-                        <mySpeed defined-in="engine.definitions.moduledef.MovementDefinition">0.0</mySpeed>
-                        <myOrientation>0.0</myOrientation>
-                        <mySpeed>0.0</mySpeed>
-                      </myMovementDefinition>
-                      <myModuleDefinitions/>
-                      <myUpgrade class="engine.definitions.upgrades.NullUpgradeDefinition">
-                        <myCost>0.0</myCost>
-                        <isUpgradable>false</isUpgradable>
-                      </myUpgrade>
-                      <myLocation>
-                        <myXCoordinate>0.0</myXCoordinate>
-                        <myYCoordinate>0.0</myYCoordinate>
-                      </myLocation>
-                      <myAttributes/>
-                      <myProfile class="engine.profile.Profile">
-                        <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                        <myName class="javafx.beans.property.SimpleStringProperty">Play</myName>
-                        <myDescription class="javafx.beans.property.SimpleStringProperty">Play Button</myDescription>
-                        <myImage>
-                          <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                          <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/clashofbloons/play.gif</myUrl>
-                        </myImage>
-                        <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
-                        <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
-                        <imageChange class="javafx.beans.property.SimpleBooleanProperty">true</imageChange>
-                      </myProfile>
-                      <myCost class="engine.definitions.costs.NullCost"/>
-                      <mySingleGroup reference="../../.."/>
-                      <myObstructability>false</myObstructability>
-                      <myGoal>false</myGoal>
-                    </engine.definitions.concrete.SpriteDefinition>
-                  </mySpriteDefinitions>
-                  <mySpriteTypes>
-                    <engine.sprite.SpriteType>
-                      <myType>Play</myType>
-                      <myProfile class="engine.profile.Profile">
-                        <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                        <myName class="javafx.beans.property.SimpleStringProperty">Play</myName>
-                        <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                        <myImage>
-                          <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                          <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                          <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                        </myImage>
-                        <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                        <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                        <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-                      </myProfile>
-                    </engine.sprite.SpriteType>
-                  </mySpriteTypes>
-                  <myProfile class="engine.profile.Profile" reference="../mySpriteDefinitions[1]/engine.definitions.concrete.SpriteDefinition[1]/myProfile[1]"/>
-                </mySpriteGroup>
-                <myEffectsList/>
-                <myEventsList/>
-              </mySelfPackage>
-              <myOtherPackage class="engine.events.EventPackage">
-                <mySpriteGroup class="engine.SpriteGroup">
-                  <mySpriteDefinitions/>
-                  <mySpriteTypes/>
-                  <myProfile class="engine.profile.Profile">
-                    <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                    <myName class="javafx.beans.property.SimpleStringProperty">&lt;Name&gt;</myName>
-                    <myDescription class="javafx.beans.property.SimpleStringProperty">&lt;Description&gt;</myDescription>
-                    <myImage>
-                      <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                      <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                      <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                    </myImage>
-                    <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                    <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                    <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-                  </myProfile>
-                </mySpriteGroup>
-                <myEffectsList/>
-                <myEventsList/>
-              </myOtherPackage>
-              <myGlobalPackage class="engine.events.EventPackage">
-                <mySpriteGroup class="engine.SpriteGroup">
-                  <mySpriteDefinitions/>
-                  <mySpriteTypes/>
-                  <myProfile class="engine.profile.Profile">
-                    <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                    <myName class="javafx.beans.property.SimpleStringProperty">&lt;Name&gt;</myName>
-                    <myDescription class="javafx.beans.property.SimpleStringProperty">&lt;Description&gt;</myDescription>
-                    <myImage>
-                      <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                      <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                      <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                    </myImage>
-                    <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                    <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                    <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-                  </myProfile>
-                </mySpriteGroup>
-                <myEffectsList/>
-                <myEventsList>
-                  <engine.events.GameEvent>
-                    <myType>
-                      <myType>Win</myType>
-                      <myProfile class="engine.profile.Profile">
-                        <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                        <myName class="javafx.beans.property.SimpleStringProperty">Win</myName>
-                        <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                        <myImage>
-                          <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                          <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                          <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                        </myImage>
-                        <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                        <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                        <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-                      </myProfile>
-                    </myType>
-                  </engine.events.GameEvent>
-                </myEventsList>
-              </myGlobalPackage>
-            </engine.conditions.OnClickCondition>
-          </myConditions>
+          <myConditions class="com.sun.javafx.collections.ObservableListWrapper"/>
           <myMouseQueue/>
           <myKeyQueue/>
         </myConditionManager>
         <myBackgroundImage>
-          <myWidth class="javafx.beans.property.SimpleDoubleProperty">600.3752345215761</myWidth>
+          <myWidth class="javafx.beans.property.SimpleDoubleProperty">600.0000000000001</myWidth>
           <myHeight class="javafx.beans.property.SimpleDoubleProperty">400.00000000000006</myHeight>
-          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/clashofbloons/oldpapaer.jpg</myUrl>
+          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/winningbaby.jpg</myUrl>
         </myBackgroundImage>
         <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
         <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
         <mySpriteManager class="engine.SpriteManager">
-          <mySpriteList class="com.sun.javafx.collections.ObservableListWrapper">
-            <engine.sprite.Sprite>
-              <myType>
-                <myType>Play</myType>
-                <myProfile class="engine.profile.Profile">
-                  <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                  <myName class="javafx.beans.property.SimpleStringProperty">Play</myName>
-                  <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                  <myImage>
-                    <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                    <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                    <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                  </myImage>
-                  <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                  <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                  <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-                </myProfile>
-              </myType>
-              <myMover class="engine.modules.StaticMover">
-                <myXVel class="engine.Attribute">
-                  <myStartingValue>0.0</myStartingValue>
-                  <myValue class="javafx.beans.property.SimpleDoubleProperty">0.0</myValue>
-                  <myType>
-                    <myType>XVelocity</myType>
-                    <myProfile class="engine.profile.Profile">
-                      <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                      <myName class="javafx.beans.property.SimpleStringProperty">XVelocity</myName>
-                      <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                      <myImage>
-                        <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                        <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                        <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                      </myImage>
-                      <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                      <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                      <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-                    </myProfile>
-                  </myType>
-                  <myEffects class="com.sun.javafx.collections.ObservableListWrapper"/>
-                </myXVel>
-                <myYVel class="engine.Attribute">
-                  <myStartingValue>0.0</myStartingValue>
-                  <myValue class="javafx.beans.property.SimpleDoubleProperty">0.0</myValue>
-                  <myType>
-                    <myType>YVelocity</myType>
-                    <myProfile class="engine.profile.Profile">
-                      <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                      <myName class="javafx.beans.property.SimpleStringProperty">YVelocity</myName>
-                      <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                      <myImage>
-                        <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                        <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                        <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                      </myImage>
-                      <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                      <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                      <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-                    </myProfile>
-                  </myType>
-                  <myEffects class="com.sun.javafx.collections.ObservableListWrapper"/>
-                </myYVel>
-                <myOrientation class="engine.Attribute">
-                  <myStartingValue>0.0</myStartingValue>
-                  <myValue class="javafx.beans.property.SimpleDoubleProperty">0.0</myValue>
-                  <myType>
-                    <myType>Orientation</myType>
-                    <myProfile class="engine.profile.Profile">
-                      <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                      <myName class="javafx.beans.property.SimpleStringProperty">Orientation</myName>
-                      <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                      <myImage>
-                        <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                        <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                        <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                      </myImage>
-                      <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                      <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                      <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-                    </myProfile>
-                  </myType>
-                  <myEffects class="com.sun.javafx.collections.ObservableListWrapper"/>
-                </myOrientation>
-                <mySpeed class="engine.Attribute">
-                  <myStartingValue>0.0</myStartingValue>
-                  <myValue class="javafx.beans.property.SimpleDoubleProperty">0.0</myValue>
-                  <myType>
-                    <myType>Speed</myType>
-                    <myProfile class="engine.profile.Profile">
-                      <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                      <myName class="javafx.beans.property.SimpleStringProperty">Speed</myName>
-                      <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                      <myImage>
-                        <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                        <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                        <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                      </myImage>
-                      <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                      <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                      <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-                    </myProfile>
-                  </myType>
-                  <myEffects class="com.sun.javafx.collections.ObservableListWrapper"/>
-                </mySpeed>
-                <myParent class="engine.sprite.Sprite" reference="../.."/>
-                <myPath/>
-              </myMover>
-              <myGraphic class="engine.modules.GraphicModule">
-                <myGraphic class="graphics.ImageGraphic">
-                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/clashofbloons/play.gif</myUrl>
-                </myGraphic>
-                <myVisibility>true</myVisibility>
-              </myGraphic>
-              <myUpgrade class="engine.modules.NullUpgradeModule">
-                <myCheck class="engine.NullFalseCheck"/>
-                <myParent class="engine.sprite.Sprite" reference="../.."/>
-              </myUpgrade>
-              <myOtherModules/>
-              <myLocation>
-                <myXCoordinate>1404.455</myXCoordinate>
-                <myYCoordinate>756.8599999999999</myYCoordinate>
-              </myLocation>
-              <myStatus class="engine.modules.SpriteStatus">
-                <myIsDead>false</myIsDead>
-                <myIsGoal>false</myIsGoal>
-                <myDoesObstruct>false</myDoesObstruct>
-              </myStatus>
-              <myAttributeManager>
-                <myAttributes class="com.sun.javafx.collections.ObservableListWrapper"/>
-                <myResources/>
-              </myAttributeManager>
-            </engine.sprite.Sprite>
-          </mySpriteList>
+          <mySpriteList class="com.sun.javafx.collections.ObservableListWrapper"/>
           <myBufferList/>
         </mySpriteManager>
         <myAttributeManager class="engine.AttributeManager">
@@ -300,146 +28,6 @@
         </myAttributeManager>
         <myNextLevelManager class="engine.NextLevelManager">
           <myShouldProceedToNext>false</myShouldProceedToNext>
-          <myWinLevel class="engine.Level">
-            <myConditionManager class="engine.ConditionManager">
-              <myConditions class="com.sun.javafx.collections.ObservableListWrapper"/>
-              <myMouseQueue/>
-              <myKeyQueue/>
-            </myConditionManager>
-            <myBackgroundImage>
-              <myWidth class="javafx.beans.property.SimpleDoubleProperty">500.0</myWidth>
-              <myHeight class="javafx.beans.property.SimpleDoubleProperty">309.0</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/clashofbloons/fieldrunners_scene.png</myUrl>
-            </myBackgroundImage>
-            <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
-            <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
-            <mySpriteManager class="engine.SpriteManager">
-              <mySpriteList class="com.sun.javafx.collections.ObservableListWrapper"/>
-              <myBufferList/>
-            </mySpriteManager>
-            <myAttributeManager class="engine.AttributeManager">
-              <myAttributes class="com.sun.javafx.collections.ObservableListWrapper"/>
-              <myResources/>
-            </myAttributeManager>
-            <myNextLevelManager class="engine.NextLevelManager">
-              <myShouldProceedToNext>false</myShouldProceedToNext>
-            </myNextLevelManager>
-            <myPlaceableTileManager>
-              <myLevel class="engine.Level" reference="../.."/>
-              <myPlaceableMap>
-                <myBitMap>
-                  <boolean-array>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                  </boolean-array>
-                  <boolean-array>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                  </boolean-array>
-                  <boolean-array>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                  </boolean-array>
-                  <boolean-array>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                  </boolean-array>
-                  <boolean-array>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                  </boolean-array>
-                  <boolean-array>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                    <boolean>false</boolean>
-                  </boolean-array>
-                </myBitMap>
-                <myWidth>6</myWidth>
-                <myHeight>10</myHeight>
-              </myPlaceableMap>
-              <myRowSize>6</myRowSize>
-              <myColumnSize>10</myColumnSize>
-            </myPlaceableTileManager>
-            <myWaveSetManager class="engine.WaveSetManager">
-              <mySets/>
-              <myLevelGap>
-                <myDuration>20000.0</myDuration>
-              </myLevelGap>
-              <timeSinceWaveCompletion>
-                <myDuration>0.0</myDuration>
-              </timeSinceWaveCompletion>
-            </myWaveSetManager>
-            <myProfile class="engine.profile.Profile">
-              <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-              <myName class="javafx.beans.property.SimpleStringProperty">Clash</myName>
-              <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-              <myImage>
-                <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-              </myImage>
-              <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-              <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-              <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-            </myProfile>
-            <DEFAULT__ROW>20</DEFAULT__ROW>
-            <DEFAULT__COL>25</DEFAULT__COL>
-            <myAddableSprites class="com.sun.javafx.collections.ObservableListWrapper"/>
-            <myBounds>
-              <myX>0.0</myX>
-              <myY>0.0</myY>
-              <myWidth>500.0</myWidth>
-              <myHeight>309.0</myHeight>
-            </myBounds>
-          </myWinLevel>
-          <myLoseLevel class="engine.Level" reference="../.."/>
         </myNextLevelManager>
         <myPlaceableTileManager>
           <myLevel class="engine.Level" reference="../.."/>
@@ -478,36 +66,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -518,36 +76,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -614,36 +142,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -654,36 +152,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -750,36 +218,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -790,36 +228,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -886,36 +294,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -926,36 +304,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -1022,36 +370,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -1090,6 +408,48 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
               </boolean-array>
               <boolean-array>
                 <boolean>false</boolean>
@@ -1124,8 +484,434 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
               </boolean-array>
               <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -1160,106 +946,16 @@
                 <boolean>false</boolean>
               </boolean-array>
             </myBitMap>
-            <myWidth>21</myWidth>
-            <myHeight>32</myHeight>
+            <myWidth>24</myWidth>
+            <myHeight>36</myHeight>
           </myPlaceableMap>
-          <myRowSize>21</myRowSize>
-          <myColumnSize>32</myColumnSize>
+          <myRowSize>24</myRowSize>
+          <myColumnSize>36</myColumnSize>
         </myPlaceableTileManager>
         <myWaveSetManager class="engine.WaveSetManager">
-          <mySets>
-            <engine.waves.WaveSet>
-              <myWaves/>
-              <currentWave class="engine.waves.Wave">
-                <myBlocks/>
-                <currentBlock>
-                  <myDefinition>
-                    <myMovementDefinition class="engine.definitions.moduledef.PathMoverDefinition">
-                      <mySpeed>5.0</mySpeed>
-                      <myList/>
-                    </myMovementDefinition>
-                    <myModuleDefinitions/>
-                    <myUpgrade class="engine.definitions.upgrades.NullUpgradeDefinition">
-                      <myCost>0.0</myCost>
-                      <isUpgradable>false</isUpgradable>
-                    </myUpgrade>
-                    <myLocation>
-                      <myXCoordinate>0.0</myXCoordinate>
-                      <myYCoordinate>0.0</myYCoordinate>
-                    </myLocation>
-                    <myAttributes/>
-                    <myProfile class="engine.profile.Profile">
-                      <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                      <myName class="javafx.beans.property.SimpleStringProperty">Knight</myName>
-                      <myDescription class="javafx.beans.property.SimpleStringProperty">Medium health medium speed</myDescription>
-                      <myImage>
-                        <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                        <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                        <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/clashofbloons/small-walking-knight.gif</myUrl>
-                      </myImage>
-                      <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
-                      <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
-                      <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-                    </myProfile>
-                    <myCost class="engine.definitions.costs.NullCost"/>
-                    <mySingleGroup>
-                      <mySpriteDefinitions>
-                        <engine.definitions.concrete.SpriteDefinition reference="../../.."/>
-                      </mySpriteDefinitions>
-                      <mySpriteTypes>
-                        <engine.sprite.SpriteType>
-                          <myType>Enemy</myType>
-                          <myProfile class="engine.profile.Profile">
-                            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                            <myName class="javafx.beans.property.SimpleStringProperty">Enemy</myName>
-                            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                            <myImage>
-                              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                              <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                            </myImage>
-                            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-                          </myProfile>
-                        </engine.sprite.SpriteType>
-                      </mySpriteTypes>
-                      <myProfile class="engine.profile.Profile" reference="../../myProfile[1]"/>
-                    </mySingleGroup>
-                    <myObstructability>false</myObstructability>
-                    <myGoal>false</myGoal>
-                  </myDefinition>
-                  <myCount>1</myCount>
-                  <myGapTime>
-                    <myDuration>0.0</myDuration>
-                  </myGapTime>
-                </currentBlock>
-                <sinceLastSpawn>
-                  <myDuration>0.0</myDuration>
-                </sinceLastSpawn>
-              </currentWave>
-              <stopWaves>false</stopWaves>
-            </engine.waves.WaveSet>
-            <engine.waves.WaveSet>
-              <myWaves/>
-              <currentWave class="engine.waves.Wave">
-                <myBlocks/>
-                <currentBlock>
-                  <myDefinition reference="../../../../engine.waves.WaveSet[1]/currentWave[1]/currentBlock[1]/myDefinition[1]"/>
-                  <myCount>1</myCount>
-                  <myGapTime>
-                    <myDuration>0.0</myDuration>
-                  </myGapTime>
-                </currentBlock>
-                <sinceLastSpawn>
-                  <myDuration>0.0</myDuration>
-                </sinceLastSpawn>
-              </currentWave>
-              <stopWaves>false</stopWaves>
-            </engine.waves.WaveSet>
-          </mySets>
+          <mySets/>
           <myLevelGap>
-            <myDuration>6000.0</myDuration>
+            <myDuration>20000.0</myDuration>
           </myLevelGap>
           <timeSinceWaveCompletion>
             <myDuration>0.0</myDuration>
@@ -1280,93 +976,12 @@
         </myProfile>
         <DEFAULT__ROW>20</DEFAULT__ROW>
         <DEFAULT__COL>25</DEFAULT__COL>
-        <myAddableSprites class="com.sun.javafx.collections.ObservableListWrapper">
-          <engine.definitions.spawnerdef.SpawnerDefinition>
-            <myMovementDefinition class="engine.definitions.moduledef.StaticMovementDefintion">
-              <mySpeed defined-in="engine.definitions.moduledef.MovementDefinition">0.0</mySpeed>
-              <myOrientation>0.0</myOrientation>
-              <mySpeed>0.0</mySpeed>
-            </myMovementDefinition>
-            <myModuleDefinitions>
-              <engine.definitions.spawnerdef.SpawnerModuleDefinition>
-                <myLevel class="engine.Level" reference="../../../../.."/>
-                <myAdder class="engine.Level" reference="../../../../.."/>
-                <myWaves class="com.sun.javafx.collections.ObservableListWrapper"/>
-              </engine.definitions.spawnerdef.SpawnerModuleDefinition>
-            </myModuleDefinitions>
-            <myUpgrade class="engine.definitions.upgrades.NullUpgradeDefinition">
-              <myCost>0.0</myCost>
-              <isUpgradable>false</isUpgradable>
-            </myUpgrade>
-            <myLocation>
-              <myXCoordinate>0.0</myXCoordinate>
-              <myYCoordinate>0.0</myYCoordinate>
-            </myLocation>
-            <myAttributes/>
-            <myProfile class="engine.profile.Profile">
-              <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-              <myName class="javafx.beans.property.SimpleStringProperty">Spawner</myName>
-              <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-              <myImage>
-                <myWidth class="javafx.beans.property.SimpleDoubleProperty">80.0</myWidth>
-                <myHeight class="javafx.beans.property.SimpleDoubleProperty">80.0</myHeight>
-                <myUrl class="javafx.beans.property.SimpleStringProperty">images/spawner.png</myUrl>
-              </myImage>
-              <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-              <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-              <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-            </myProfile>
-            <myCost class="engine.definitions.costs.NullCost"/>
-            <myObstructability>false</myObstructability>
-            <myGoal>false</myGoal>
-            <mySpawningModule reference="../myModuleDefinitions[1]/engine.definitions.spawnerdef.SpawnerModuleDefinition[1]"/>
-          </engine.definitions.spawnerdef.SpawnerDefinition>
-          <engine.definitions.spawnerdef.SpawnerDefinition>
-            <myMovementDefinition class="engine.definitions.moduledef.StaticMovementDefintion">
-              <mySpeed defined-in="engine.definitions.moduledef.MovementDefinition">0.0</mySpeed>
-              <myOrientation>0.0</myOrientation>
-              <mySpeed>0.0</mySpeed>
-            </myMovementDefinition>
-            <myModuleDefinitions>
-              <engine.definitions.spawnerdef.SpawnerModuleDefinition>
-                <myLevel class="engine.Level" reference="../../../../.."/>
-                <myAdder class="engine.Level" reference="../../../../.."/>
-                <myWaves class="com.sun.javafx.collections.ObservableListWrapper" reference="../../../../engine.definitions.spawnerdef.SpawnerDefinition[1]/myModuleDefinitions[1]/engine.definitions.spawnerdef.SpawnerModuleDefinition[1]/myWaves[1]"/>
-              </engine.definitions.spawnerdef.SpawnerModuleDefinition>
-            </myModuleDefinitions>
-            <myUpgrade class="engine.definitions.upgrades.NullUpgradeDefinition">
-              <myCost>0.0</myCost>
-              <isUpgradable>false</isUpgradable>
-            </myUpgrade>
-            <myLocation>
-              <myXCoordinate>0.0</myXCoordinate>
-              <myYCoordinate>0.0</myYCoordinate>
-            </myLocation>
-            <myAttributes/>
-            <myProfile class="engine.profile.Profile">
-              <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-              <myName class="javafx.beans.property.SimpleStringProperty">Spawner</myName>
-              <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-              <myImage>
-                <myWidth class="javafx.beans.property.SimpleDoubleProperty">80.0</myWidth>
-                <myHeight class="javafx.beans.property.SimpleDoubleProperty">80.0</myHeight>
-                <myUrl class="javafx.beans.property.SimpleStringProperty">images/spawner.png</myUrl>
-              </myImage>
-              <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-              <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-              <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-            </myProfile>
-            <myCost class="engine.definitions.costs.NullCost"/>
-            <myObstructability>false</myObstructability>
-            <myGoal>false</myGoal>
-            <mySpawningModule reference="../myModuleDefinitions[1]/engine.definitions.spawnerdef.SpawnerModuleDefinition[1]"/>
-          </engine.definitions.spawnerdef.SpawnerDefinition>
-        </myAddableSprites>
+        <myAddableSprites class="com.sun.javafx.collections.ObservableListWrapper"/>
         <myBounds>
           <myX>0.0</myX>
           <myY>0.0</myY>
-          <myWidth>1600.0</myWidth>
-          <myHeight>1066.0</myHeight>
+          <myWidth>1800.0</myWidth>
+          <myHeight>1200.0</myHeight>
         </myBounds>
       </engine.Level>
       <engine.Level>
@@ -1376,9 +991,9 @@
           <myKeyQueue/>
         </myConditionManager>
         <myBackgroundImage>
-          <myWidth class="javafx.beans.property.SimpleDoubleProperty">400.0</myWidth>
-          <myHeight class="javafx.beans.property.SimpleDoubleProperty">400.0</myHeight>
-          <myUrl class="javafx.beans.property.SimpleStringProperty">/images/blank.jpg</myUrl>
+          <myWidth class="javafx.beans.property.SimpleDoubleProperty">348.83720930232556</myWidth>
+          <myHeight class="javafx.beans.property.SimpleDoubleProperty">399.99999999999994</myHeight>
+          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/blue_top.jpg</myUrl>
         </myBackgroundImage>
         <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
         <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
@@ -1423,28 +1038,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -1457,28 +1050,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -1531,28 +1102,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -1565,28 +1114,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -1639,28 +1166,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -1673,28 +1178,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -1747,28 +1230,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -1781,28 +1242,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -1855,28 +1294,6 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -1909,8 +1326,754 @@
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
               </boolean-array>
               <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </boolean-array>
+              <boolean-array>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
                 <boolean>false</boolean>
@@ -1938,11 +2101,11 @@
                 <boolean>false</boolean>
               </boolean-array>
             </myBitMap>
-            <myWidth>20</myWidth>
-            <myHeight>25</myHeight>
+            <myWidth>34</myWidth>
+            <myHeight>30</myHeight>
           </myPlaceableMap>
-          <myRowSize>20</myRowSize>
-          <myColumnSize>25</myColumnSize>
+          <myRowSize>34</myRowSize>
+          <myColumnSize>30</myColumnSize>
         </myPlaceableTileManager>
         <myWaveSetManager class="engine.WaveSetManager">
           <mySets/>
@@ -1955,7 +2118,7 @@
         </myWaveSetManager>
         <myProfile class="engine.profile.Profile">
           <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-          <myName class="javafx.beans.property.SimpleStringProperty">Clash</myName>
+          <myName class="javafx.beans.property.SimpleStringProperty">ryan</myName>
           <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
           <myImage>
             <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
@@ -1972,147 +2135,8 @@
         <myBounds>
           <myX>0.0</myX>
           <myY>0.0</myY>
-          <myWidth>0.0</myWidth>
-          <myHeight>0.0</myHeight>
-        </myBounds>
-      </engine.Level>
-      <engine.Level>
-        <myConditionManager class="engine.ConditionManager">
-          <myConditions class="com.sun.javafx.collections.ObservableListWrapper"/>
-          <myMouseQueue/>
-          <myKeyQueue/>
-        </myConditionManager>
-        <myBackgroundImage>
-          <myWidth class="javafx.beans.property.SimpleDoubleProperty">500.0</myWidth>
-          <myHeight class="javafx.beans.property.SimpleDoubleProperty">309.0</myHeight>
-          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/RyanStPierre/Documents/workspace/voogasalad_GitDepends/resources/images/clashofbloons/fieldrunners_scene.png</myUrl>
-        </myBackgroundImage>
-        <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
-        <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
-        <mySpriteManager class="engine.SpriteManager">
-          <mySpriteList class="com.sun.javafx.collections.ObservableListWrapper"/>
-          <myBufferList/>
-        </mySpriteManager>
-        <myAttributeManager class="engine.AttributeManager">
-          <myAttributes class="com.sun.javafx.collections.ObservableListWrapper"/>
-          <myResources/>
-        </myAttributeManager>
-        <myNextLevelManager class="engine.NextLevelManager">
-          <myShouldProceedToNext>false</myShouldProceedToNext>
-        </myNextLevelManager>
-        <myPlaceableTileManager>
-          <myLevel class="engine.Level" reference="../.."/>
-          <myPlaceableMap>
-            <myBitMap>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-              <boolean-array>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </boolean-array>
-            </myBitMap>
-            <myWidth>6</myWidth>
-            <myHeight>10</myHeight>
-          </myPlaceableMap>
-          <myRowSize>6</myRowSize>
-          <myColumnSize>10</myColumnSize>
-        </myPlaceableTileManager>
-        <myWaveSetManager class="engine.WaveSetManager">
-          <mySets/>
-          <myLevelGap>
-            <myDuration>20000.0</myDuration>
-          </myLevelGap>
-          <timeSinceWaveCompletion>
-            <myDuration>0.0</myDuration>
-          </timeSinceWaveCompletion>
-        </myWaveSetManager>
-        <myProfile class="engine.profile.Profile">
-          <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-          <myName class="javafx.beans.property.SimpleStringProperty">FieldRunner</myName>
-          <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-          <myImage>
-            <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-            <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-            <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-          </myImage>
-          <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-          <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-          <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-        </myProfile>
-        <DEFAULT__ROW>20</DEFAULT__ROW>
-        <DEFAULT__COL>25</DEFAULT__COL>
-        <myAddableSprites class="com.sun.javafx.collections.ObservableListWrapper"/>
-        <myBounds>
-          <myX>0.0</myX>
-          <myY>0.0</myY>
-          <myWidth>500.0</myWidth>
-          <myHeight>309.0</myHeight>
+          <myWidth>1500.0</myWidth>
+          <myHeight>1720.0</myHeight>
         </myBounds>
       </engine.Level>
     </myLevelPropertyList>
@@ -2135,10 +2159,7 @@
         <string>Enemies</string>
         <gameauthoring.shareddata.DefinitionCollection>
           <myTitleKey>Enemies</myTitleKey>
-          <myItems class="com.sun.javafx.collections.ObservableListWrapper">
-            <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myWaveSetManager[1]/mySets[1]/engine.waves.WaveSet[1]/currentWave[1]/currentBlock[1]/myDefinition[1]"/>
-            <engine.definitions.concrete.SpriteDefinition reference="../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[1]/mySelfPackage[1]/mySpriteGroup[1]/mySpriteDefinitions[1]/engine.definitions.concrete.SpriteDefinition[1]"/>
-          </myItems>
+          <myItems class="com.sun.javafx.collections.ObservableListWrapper"/>
         </gameauthoring.shareddata.DefinitionCollection>
       </entry>
       <entry>
@@ -2155,31 +2176,7 @@
     </myCreatedMissiles>
     <myCreatedWaves>
       <myTitleKey>Waves</myTitleKey>
-      <myItems class="com.sun.javafx.collections.ObservableListWrapper">
-        <engine.definitions.spawnerdef.WaveDefinition>
-          <myBlocks>
-            <engine.definitions.spawnerdef.WaveBlockDefinition>
-              <mySpawnedSprite reference="../../../../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myWaveSetManager[1]/mySets[1]/engine.waves.WaveSet[1]/currentWave[1]/currentBlock[1]/myDefinition[1]"/>
-              <myCount>1</myCount>
-              <myGapTime>0.0</myGapTime>
-            </engine.definitions.spawnerdef.WaveBlockDefinition>
-          </myBlocks>
-          <myProfile class="engine.profile.Profile">
-            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-            <myName class="javafx.beans.property.SimpleStringProperty">startingKnight</myName>
-            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-            <myImage>
-              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-            </myImage>
-            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-          </myProfile>
-          <myInfinite>false</myInfinite>
-        </engine.definitions.spawnerdef.WaveDefinition>
-      </myItems>
+      <myItems class="com.sun.javafx.collections.ObservableListWrapper"/>
     </myCreatedWaves>
     <myCreatedGlobals>
       <myTitleKey>Globals</myTitleKey>
@@ -2243,260 +2240,6 @@
             <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
           </myProfile>
         </engine.SpriteGroup>
-        <engine.SpriteGroup reference="../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myWaveSetManager[1]/mySets[1]/engine.waves.WaveSet[1]/currentWave[1]/currentBlock[1]/myDefinition[1]/mySingleGroup[1]"/>
-        <engine.SpriteGroup reference="../../../../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myConditionManager[1]/myConditions[1]/engine.conditions.OnClickCondition[1]/mySelfPackage[1]/mySpriteGroup[1]"/>
-        <engine.SpriteGroup>
-          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper" reference="../../../../myCreatedMissiles[1]/myItems[1]"/>
-          <mySpriteTypes/>
-          <myProfile class="engine.profile.Profile">
-            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-            <myName class="javafx.beans.property.SimpleStringProperty">Missiles</myName>
-            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-            <myImage>
-              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">images/missile.png</myUrl>
-            </myImage>
-            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-          </myProfile>
-        </engine.SpriteGroup>
-        <engine.SpriteGroup>
-          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper" reference="../../../../myCreatedSprites[1]/entry[1]/gameauthoring.shareddata.DefinitionCollection[1]/myItems[1]"/>
-          <mySpriteTypes>
-            <engine.sprite.SpriteType>
-              <myType>Knight</myType>
-              <myProfile class="engine.profile.Profile">
-                <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                <myName class="javafx.beans.property.SimpleStringProperty">Knight</myName>
-                <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                <myImage>
-                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                  <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                </myImage>
-                <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-              </myProfile>
-            </engine.sprite.SpriteType>
-            <engine.sprite.SpriteType>
-              <myType>Play</myType>
-              <myProfile class="engine.profile.Profile">
-                <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                <myName class="javafx.beans.property.SimpleStringProperty">Play</myName>
-                <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                <myImage>
-                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                  <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                </myImage>
-                <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-              </myProfile>
-            </engine.sprite.SpriteType>
-          </mySpriteTypes>
-          <myProfile class="engine.profile.Profile">
-            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-            <myName class="javafx.beans.property.SimpleStringProperty">Enemies</myName>
-            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-            <myImage>
-              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">images/enemy.png</myUrl>
-            </myImage>
-            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-          </myProfile>
-        </engine.SpriteGroup>
-        <engine.SpriteGroup>
-          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper" reference="../../../../myCreatedSprites[1]/entry[2]/gameauthoring.shareddata.DefinitionCollection[1]/myItems[1]"/>
-          <mySpriteTypes/>
-          <myProfile class="engine.profile.Profile">
-            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-            <myName class="javafx.beans.property.SimpleStringProperty">Defenders</myName>
-            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-            <myImage>
-              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">images/tower.png</myUrl>
-            </myImage>
-            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-          </myProfile>
-        </engine.SpriteGroup>
-        <engine.SpriteGroup>
-          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper" reference="../../../../myCreatedMissiles[1]/myItems[1]"/>
-          <mySpriteTypes/>
-          <myProfile class="engine.profile.Profile">
-            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-            <myName class="javafx.beans.property.SimpleStringProperty">Missiles</myName>
-            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-            <myImage>
-              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">images/missile.png</myUrl>
-            </myImage>
-            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-          </myProfile>
-        </engine.SpriteGroup>
-        <engine.SpriteGroup>
-          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper" reference="../../../../myCreatedSprites[1]/entry[1]/gameauthoring.shareddata.DefinitionCollection[1]/myItems[1]"/>
-          <mySpriteTypes>
-            <engine.sprite.SpriteType>
-              <myType>Knight</myType>
-              <myProfile class="engine.profile.Profile">
-                <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                <myName class="javafx.beans.property.SimpleStringProperty">Knight</myName>
-                <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                <myImage>
-                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                  <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                </myImage>
-                <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-              </myProfile>
-            </engine.sprite.SpriteType>
-            <engine.sprite.SpriteType>
-              <myType>Play</myType>
-              <myProfile class="engine.profile.Profile">
-                <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                <myName class="javafx.beans.property.SimpleStringProperty">Play</myName>
-                <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                <myImage>
-                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                  <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                </myImage>
-                <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-              </myProfile>
-            </engine.sprite.SpriteType>
-          </mySpriteTypes>
-          <myProfile class="engine.profile.Profile">
-            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-            <myName class="javafx.beans.property.SimpleStringProperty">Enemies</myName>
-            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-            <myImage>
-              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">images/enemy.png</myUrl>
-            </myImage>
-            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-          </myProfile>
-        </engine.SpriteGroup>
-        <engine.SpriteGroup>
-          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper" reference="../../../../myCreatedSprites[1]/entry[2]/gameauthoring.shareddata.DefinitionCollection[1]/myItems[1]"/>
-          <mySpriteTypes/>
-          <myProfile class="engine.profile.Profile">
-            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-            <myName class="javafx.beans.property.SimpleStringProperty">Defenders</myName>
-            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-            <myImage>
-              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">images/tower.png</myUrl>
-            </myImage>
-            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-          </myProfile>
-        </engine.SpriteGroup>
-        <engine.SpriteGroup>
-          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper" reference="../../../../myCreatedMissiles[1]/myItems[1]"/>
-          <mySpriteTypes/>
-          <myProfile class="engine.profile.Profile">
-            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-            <myName class="javafx.beans.property.SimpleStringProperty">Missiles</myName>
-            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-            <myImage>
-              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">images/missile.png</myUrl>
-            </myImage>
-            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-          </myProfile>
-        </engine.SpriteGroup>
-        <engine.SpriteGroup>
-          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper" reference="../../../../myCreatedSprites[1]/entry[1]/gameauthoring.shareddata.DefinitionCollection[1]/myItems[1]"/>
-          <mySpriteTypes>
-            <engine.sprite.SpriteType>
-              <myType>Knight</myType>
-              <myProfile class="engine.profile.Profile">
-                <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                <myName class="javafx.beans.property.SimpleStringProperty">Knight</myName>
-                <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                <myImage>
-                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                  <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                </myImage>
-                <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-              </myProfile>
-            </engine.sprite.SpriteType>
-            <engine.sprite.SpriteType>
-              <myType>Play</myType>
-              <myProfile class="engine.profile.Profile">
-                <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-                <myName class="javafx.beans.property.SimpleStringProperty">Play</myName>
-                <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-                <myImage>
-                  <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-                  <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                  <myUrl class="javafx.beans.property.SimpleStringProperty">images/Square.png</myUrl>
-                </myImage>
-                <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-                <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-                <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-              </myProfile>
-            </engine.sprite.SpriteType>
-          </mySpriteTypes>
-          <myProfile class="engine.profile.Profile">
-            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-            <myName class="javafx.beans.property.SimpleStringProperty">Enemies</myName>
-            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-            <myImage>
-              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">images/enemy.png</myUrl>
-            </myImage>
-            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-          </myProfile>
-        </engine.SpriteGroup>
-        <engine.SpriteGroup>
-          <mySpriteDefinitions class="com.sun.javafx.collections.ObservableListWrapper" reference="../../../../myCreatedSprites[1]/entry[2]/gameauthoring.shareddata.DefinitionCollection[1]/myItems[1]"/>
-          <mySpriteTypes/>
-          <myProfile class="engine.profile.Profile">
-            <DEFAULT__IMAGE__NAME>images/Square.png</DEFAULT__IMAGE__NAME>
-            <myName class="javafx.beans.property.SimpleStringProperty">Defenders</myName>
-            <myDescription class="javafx.beans.property.SimpleStringProperty"></myDescription>
-            <myImage>
-              <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
-              <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">images/tower.png</myUrl>
-            </myImage>
-            <myImageWidth class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myWidth[1]"/>
-            <myImageHeight class="javafx.beans.property.SimpleDoubleProperty" reference="../myImage[1]/myHeight[1]"/>
-            <imageChange class="javafx.beans.property.SimpleBooleanProperty">false</imageChange>
-          </myProfile>
-        </engine.SpriteGroup>
       </myItems>
     </myCreatedGroups>
     <myCreatedEventPackages>
@@ -2505,9 +2248,9 @@
     </myCreatedEventPackages>
   </myAuthorshipData>
   <myGameInformation class="engine.GameInformation">
-    <myTitle class="javafx.beans.property.SimpleStringProperty">Clash of Bloons</myTitle>
-    <myAuthor class="javafx.beans.property.SimpleStringProperty">GitDepends Dev Team</myAuthor>
-    <myDateCreated class="javafx.beans.property.SimpleStringProperty">May 1st </myDateCreated>
+    <myTitle class="javafx.beans.property.SimpleStringProperty"/>
+    <myAuthor class="javafx.beans.property.SimpleStringProperty"/>
+    <myDateCreated class="javafx.beans.property.SimpleStringProperty"/>
     <mySplashScreen>
       <myWidth class="javafx.beans.property.SimpleDoubleProperty">200.0</myWidth>
       <myHeight class="javafx.beans.property.SimpleDoubleProperty">300.0</myHeight>

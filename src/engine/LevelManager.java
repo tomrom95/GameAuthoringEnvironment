@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.profile.Profile;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.collections.FXCollections;
@@ -32,6 +33,8 @@ public class LevelManager implements ILevelManager {
     public LevelManager () {
         myLevelPropertyList = FXCollections.observableArrayList();
         myCurrentLevel = new Level();
+        myCurrentLevel.setProfile(new Profile("Start"));
+        myLevelPropertyList.add(myCurrentLevel);
         myGlobalGameConditions = new ConditionManager();
     }
 

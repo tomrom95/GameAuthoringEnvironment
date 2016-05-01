@@ -62,11 +62,11 @@ public class SceneTabViewer implements ITabViewer {
     private void displayLevel (String name, ILevel level) {
         LevelEditorView view =
                 new LevelEditorView(myGame, level);
-        myViews.add(FIRST, view);
+        myViews.add(view);
         Tab newLevelTab =
                 myUIFactory.createTabText(name, true, view.draw());
         newLevelTab.setOnClosed(e -> remove(level, view));
-        myLevelTabs.getTabs().add(FIRST, newLevelTab);
+        myLevelTabs.getTabs().add(newLevelTab);
         
     }
 
