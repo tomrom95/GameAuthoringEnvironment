@@ -5,7 +5,9 @@ import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.layout.HBox;
 import splash.LocaleManager;
 
 public class SmartAIMovementSFV extends SubFormView implements ISmartAIMovementSFV {
@@ -30,12 +32,17 @@ public class SmartAIMovementSFV extends SubFormView implements ISmartAIMovementS
 
     @Override
     public Node draw () {
-        return mySpeedInputView.draw();
+        double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
+        HBox box = getMyUIFactory().makeHBox(spacing, Pos.CENTER, mySpeedInputView.draw());        
+        return getMyUIFactory().addStyling(box, "Mover");
+
     }
 
     @Override
     protected void initView () {
-        mySpeedInputView = new NumberEntryView(myLabels.getString(SPEED_LABEL), 100, 30, AuthoringView.DEFAULT_ENTRYVIEW);
+        double width = getParser().parseDouble(getMyNumbers().getString("Width"));
+        double height = getParser().parseDouble(getMyNumbers().getString("Height"));
+        mySpeedInputView = new NumberEntryView(myLabels.getString(SPEED_LABEL), width, height, AuthoringView.DEFAULT_ENTRYVIEW);
     }
 
 }
