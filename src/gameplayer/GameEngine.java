@@ -58,14 +58,22 @@ public class GameEngine implements IGameEngine {
     }
 
     private void createLevelView (BorderPane gamePane) {
-        
+
         gamePane.setRight(mySideBar.draw());
         gamePane.setLeft(myDisplay.draw());
         gamePane.setTop(myTools.draw());
         gamePane.setCenter(myRenderer.getPane());
+        addRendererClip();
+    }
+
+    /**
+     * Clipping approach found here:
+     * http://www.coderanch.com/t/636524/JavaFX/java/Scaling-Node-clipping
+     */
+    private void addRendererClip () {
         Rectangle clip = new Rectangle();
         myRenderer.getPane().setClip(clip);
-        myRenderer.getPane().layoutBoundsProperty().addListener((observable, oldVal, newVal) -> {
+        myRenderer.getPane().layoutBoundsProperty().addListener( (observable, oldVal, newVal) -> {
             clip.setWidth(myScale.scale(myGame.getLevelBounds().getWidth()));
             clip.setHeight(myScale.scale(myGame.getLevelBounds().getHeight()));
         });
