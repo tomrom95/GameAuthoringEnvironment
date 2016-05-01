@@ -11,6 +11,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import util.ScaleRatio;
 import util.TimeDuration;
@@ -57,10 +58,17 @@ public class GameEngine implements IGameEngine {
     }
 
     private void createLevelView (BorderPane gamePane) {
-        gamePane.setCenter(myRenderer.getPane());
+        
         gamePane.setRight(mySideBar.draw());
         gamePane.setLeft(myDisplay.draw());
         gamePane.setTop(myTools.draw());
+        gamePane.setCenter(myRenderer.getPane());
+        Rectangle clip = new Rectangle();
+        myRenderer.getPane().setClip(clip);
+        myRenderer.getPane().layoutBoundsProperty().addListener((observable, oldVal, newVal) -> {
+            clip.setWidth(myScale.scale(myGame.getLevelBounds().getWidth()));
+            clip.setHeight(myScale.scale(myGame.getLevelBounds().getHeight()));
+        });
     }
 
     private void initializeTimeline () {
