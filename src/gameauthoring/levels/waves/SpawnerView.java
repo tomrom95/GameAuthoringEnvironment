@@ -170,7 +170,6 @@ public class SpawnerView implements Glyph, Draggable {
             mySpawner = new SpawnerDefinition(myGame);
             mySpawner.setProfile(new Profile(DRAG_STRING, EMPTY, getImageURL(), SIZE, SIZE));
             mySpawner.setMySpawningModule(spawnerDef);
-            myLevel.getAddableSprites().add(mySpawner);
         }
         catch (NumberFormatException e) {
             return;
@@ -188,6 +187,7 @@ public class SpawnerView implements Glyph, Draggable {
 
     @Override
     public void setOnDragDropped (DragEvent e) {
+//        mySpawner.setProfile(new Profile());
         myLevel.add(mySpawner.create(), getCoordinate(e.getX(), e.getY()));
         myRenderer.render();
         reset();

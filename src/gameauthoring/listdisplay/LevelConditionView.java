@@ -5,6 +5,7 @@ import engine.IGame;
 import engine.ILevel;
 import engine.conditions.ICondition;
 import gameauthoring.creation.cellviews.CardCell;
+import gameauthoring.creation.cellviews.DeleteableProfileCellView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -42,6 +43,7 @@ public class LevelConditionView extends ConditionViewer {
     private void setOptionStyle () {
         getOptions().setCellFactory(cell -> new CardCell(parse(myBundle.getString("CardSize"))));
         getOptions().getStyleClass().add("purple_outline");
+        getListView().setCellFactory(cell -> new DeleteableProfileCellView<ICondition>());
     }
 
     private Node createMiddle () {

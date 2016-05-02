@@ -29,10 +29,11 @@ public class EnemyTracker {
 	 */
 
 	private ISprite getClosestEnemy(List<ISprite> enemies, Coordinate myLocation) {
+	   
 		Comparator<ISprite> myDistanceComparator = (e1, e2) -> Double.compare(
 				calculateDistance(myLocation, e1.getLocation()), calculateDistance(myLocation, e2.getLocation()));
 		return enemies.stream().min(myDistanceComparator).get();
-
+	    
 	}
 
 	protected double calculateDistance(Coordinate myLocation, Coordinate enemyLocation) {

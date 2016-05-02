@@ -82,7 +82,7 @@ public class GamePlayer {
 
     private void initializeGameEngine (IGame game) {
         IOInterpeter IO = new IOInterpeter(myScene, myLevelPane);
-        myGameEngine = new GameEngine(game, myPane, myLevelPane, IO);
+        myGameEngine = new GameEngine(game, myStage, myPane, myLevelPane, IO);
     }
 
     public void play () {

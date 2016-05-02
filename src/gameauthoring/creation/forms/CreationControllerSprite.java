@@ -36,11 +36,7 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
     }
 
     @Override
-    protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
-        authorshipData.getMyCreatedGroups()
-                .addItem(new SpriteGroup(authorshipData.getMyCreatedSprites(getMyKey()).getItems(),
-                                         new Profile(getMyTitle(), "",
-                                                     getImageBundle().getString(getMyKey()))));
+    protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {       
         return authorshipData.getMyCreatedSprites(getMyKey());
     }
 
