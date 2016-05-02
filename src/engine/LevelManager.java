@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.profile.Profile;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.collections.FXCollections;
@@ -23,6 +24,7 @@ public class LevelManager implements ILevelManager {
     private ObservableList<ILevel> myLevelPropertyList;
     private ILevel myCurrentLevel;
     private IConditionManager myGlobalGameConditions;
+    private boolean myRedraw;
 
     // since all wrapped in properties, will eventually create lambda loop to call update on all
     // updateable items as
@@ -31,6 +33,8 @@ public class LevelManager implements ILevelManager {
     public LevelManager () {
         myLevelPropertyList = FXCollections.observableArrayList();
         myCurrentLevel = new Level();
+        myCurrentLevel.setProfile(new Profile("Start"));
+        myLevelPropertyList.add(myCurrentLevel);
         myGlobalGameConditions = new ConditionManager();
     }
 
@@ -61,6 +65,7 @@ public class LevelManager implements ILevelManager {
      */
     private void checkAndSetCurrentLevel () {
         if (myCurrentLevel.shouldSwitchLevel()) {
+            myRedraw = true;
             myCurrentLevel = myCurrentLevel.getNextLevel();
         }
     }
@@ -120,10 +125,22 @@ public class LevelManager implements ILevelManager {
     public void add (ISprite sprite, Coordinate coordinate) {
         myCurrentLevel.add(sprite, coordinate);
     }
-    
-    @Override 
-    public void remove(ILevel level) {
+
+    @Override
+    public void remove (ILevel level) {
         myLevelPropertyList.remove(level);
     }
+
+    @Override
+    public boolean getSwitched () {
+        if(myRedraw) {
+            myRedraw = false;
+            return true;
+        }
+        return false;
+
+    }
+
+
 
 }

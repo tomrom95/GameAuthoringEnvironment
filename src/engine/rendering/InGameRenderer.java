@@ -49,6 +49,9 @@ public class InGameRenderer extends LevelRenderer {
     public void render () {
         // TODO possibly use invalidation listener in case the background image changes, such as in
         // the case of a level change
+        if (myGame.getSwitched()) {
+            myFirstTime = true;
+        }
         if (myFirstTime) {
             drawBackground(getBackgroundURL());
             myFirstTime = false;
@@ -119,7 +122,7 @@ public class InGameRenderer extends LevelRenderer {
             return node;
         }
     }
-    
+
     private void add (Node node) {
         getPane().getChildren().add(node);
     }
@@ -127,18 +130,18 @@ public class InGameRenderer extends LevelRenderer {
     @Override
     public void redrawBackground () {
         myFirstTime = true;
-        for (Drawable drawable: myDrawNodeMap.keySet()) {
+        for (Drawable drawable : myDrawNodeMap.keySet()) {
             resize(drawable, myDrawNodeMap.get(drawable));
         }
     }
 
     private Node resize (Drawable draw, Node node) {
-        draw(node,draw);
+        draw(node, draw);
         return node;
     }
-   
+
     protected double scaledHeight () {
-        return getScale().scale(myGame.getLevelBounds().getHeight()); 
+        return getScale().scale(myGame.getLevelBounds().getHeight());
     }
 
     protected double scaledWidth () {
