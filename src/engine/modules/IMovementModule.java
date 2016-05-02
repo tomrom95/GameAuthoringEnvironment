@@ -34,6 +34,10 @@ public interface IMovementModule extends IModule {
     
     
     double getSpeed();
+    
+    int getNextIndex();
+    
+    void setNextIndex(int index);
 
 
 

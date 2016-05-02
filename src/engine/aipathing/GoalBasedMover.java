@@ -149,4 +149,15 @@ public class GoalBasedMover extends Mover {
         return myGame;
     }
 
+    @Override
+    public int getNextIndex () {
+        return 0;
+    }
+
+    @Override
+    public void setNextIndex (int index) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }
