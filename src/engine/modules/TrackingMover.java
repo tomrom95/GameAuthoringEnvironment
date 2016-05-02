@@ -70,4 +70,16 @@ public class TrackingMover extends Mover {
         return myList;
 
     }
+
+    @Override
+    public int getNextIndex () {
+       
+        return 0;
+    }
+
+    @Override
+    public void setNextIndex (int index) {
+       
+        
+    }
 }
