@@ -43,8 +43,11 @@ public class TrackingMover extends Mover {
 
     @Override
     public void update (TimeDuration duration) {
-        setOrientationFromTracker(myTracker
-                .calculateOrientationToClosestEnemy(mySprite.getLocation(), myPotentialTargets()));
+        if(myPotentialTargets().size() != 0){
+            setOrientationFromTracker(myTracker
+                                      .calculateOrientationToClosestEnemy(mySprite.getLocation(), myPotentialTargets()));
+        }
+        
         move(duration);
     }
 

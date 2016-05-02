@@ -62,7 +62,12 @@ public class TrackingFirer extends Firer {
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
                                               mySprite.getLocation().getY()));
-            bullet.getMovementStrategy().setOrientationFromTracker(getTracker().calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
+            if(getTargets().size() == 0){
+                bullet.getMovementStrategy().setOrientationFromTracker(mySprite.getOrientation());
+            } else{
+                bullet.getMovementStrategy().setOrientationFromTracker(getTracker().calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
+
+            }
 
             getGame().bufferedAdd(bullet);
             getFiredSprites().add(bullet);
