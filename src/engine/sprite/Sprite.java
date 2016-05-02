@@ -224,6 +224,17 @@ public class Sprite extends DefaultAffectable implements ISprite {
     public IStatus getStatusModule () {
         return myStatus;
     }
+
+    @Override
+    public int getNextIndex () {
+        return myMover.getNextIndex();
+    }
+
+    @Override
+    public void setNextIndex (int index) {
+       myMover.setNextIndex(index);
+        
+    }
     
 
 

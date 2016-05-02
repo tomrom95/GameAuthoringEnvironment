@@ -62,5 +62,9 @@ public interface ISprite extends Drawable, Updateable, Affectable, Positionable 
     void setPath (List<Coordinate> path);
     
     IStatus getStatusModule();
+    
+    int getNextIndex();
+    
+    void setNextIndex(int index);
 
 }

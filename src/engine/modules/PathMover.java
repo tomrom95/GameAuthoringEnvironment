@@ -104,5 +104,23 @@ public class PathMover extends Mover {
         return new ArrayList<>();
         
     }
+    
+    public int getPoint () {
+        return myNextDestination;
+    }
+    
+    public void setPoint (int x) {
+        myNextDestination = x;
+    }
+
+    @Override
+    public int getNextIndex () {       
+        return myNextDestination;
+    }
+
+    @Override
+    public void setNextIndex (int index) {
+        myNextDestination = index;
+    }
 
 }
