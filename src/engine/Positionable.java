@@ -38,4 +38,6 @@ public interface Positionable {
      * @return the angle by which the renderer should rotate the displayed node
      */
     void setOrientation (double angle);
+    
+    int getNextIndex();
 }

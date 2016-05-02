@@ -197,4 +197,16 @@ public class UserMover extends Mover {
         return new ArrayList<>();
     }
 
+    @Override
+    public int getNextIndex () {
+        
+        return 0;
+    }
+
+    @Override
+    public void setNextIndex (int index) {
+        
+        
+    }
+
 }
