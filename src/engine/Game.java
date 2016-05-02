@@ -181,4 +181,9 @@ public class Game implements IGame {
     public Bounds getLevelBounds () {
         return getLevelManager().getCurrentLevel().getBounds();
     }
+
+    @Override
+    public boolean getSwitched () {
+        return getLevelManager().getSwitched();
+    }
 }

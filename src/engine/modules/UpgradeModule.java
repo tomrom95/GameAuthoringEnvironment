@@ -64,6 +64,8 @@ public class UpgradeModule implements IModule {
        
         if(event.getEventType().equals(EventType.UPGRADE) && myCheck.getStatus().get()) {
             ISprite upgrade = myUpgrade.create();
+            upgrade.setPath(myParent.getPath());
+            upgrade.setNextIndex(myParent.getNextIndex());
             myCheck.alterAttribute();
             myParent.remove();
             myAdder.bufferedAdd(upgrade, myParent.getLocation());

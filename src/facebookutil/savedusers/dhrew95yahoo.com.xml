@@ -4,7 +4,12 @@
     <myDomain>yahoo.com</myDomain>
   </myEmail>
   <myScoreBoard>
-    <myBoard/>
+    <myBoard>
+      <entry>
+        <string>Farmville</string>
+        <int>25</int>
+      </entry>
+    </myBoard>
   </myScoreBoard>
   <myProfiles>
     <myProfiles>

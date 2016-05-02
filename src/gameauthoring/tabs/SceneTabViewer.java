@@ -28,6 +28,7 @@ import javafx.scene.control.TabPane;
  */
 public class SceneTabViewer implements ITabViewer {
 
+    private static final int FIRST = 0;
     private TabPane myLevelTabs;
     private ILevelManager myLevelManager;
     private IGame myGame;
@@ -52,8 +53,21 @@ public class SceneTabViewer implements ITabViewer {
         myLevelTabs = new TabPane();
         myLevelTabs.getStyleClass().add("subTab");
         Tab createLevelTab = createButtonTab();
-        myLevelTabs.getTabs().addAll(createLevelTab);
-        addNewLevel(myLabel.getString("Start"), myLevelManager.getCurrentLevel());
+        myLevelManager.getLevels().stream().forEachOrdered(level -> {
+            displayLevel(level.getProfile().getName().get(), level);
+        });
+        myLevelTabs.getTabs().add(FIRST, createLevelTab);
+    }
+
+    private void displayLevel (String name, ILevel level) {
+        LevelEditorView view =
+                new LevelEditorView(myGame, level);
+        myViews.add(view);
+        Tab newLevelTab =
+                myUIFactory.createTabText(name, true, view.draw());
+        newLevelTab.setOnClosed(e -> remove(level, view));
+        myLevelTabs.getTabs().add(newLevelTab);
+        
     }
 
     @Override

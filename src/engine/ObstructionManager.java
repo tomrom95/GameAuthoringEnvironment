@@ -23,7 +23,8 @@ import java.util.stream.Collectors;
  *
  */
 public class ObstructionManager implements IObstructionManager {
-    public static final int SAMPLE_RESOLUTION = 100;
+   
+    public static final int SAMPLE_RESOLUTION = 60;
     public static final double SAMPLE_DOUBLE = (double) SAMPLE_RESOLUTION;
     
     private static final boolean POSITION_OBSTRUCTED = true;
