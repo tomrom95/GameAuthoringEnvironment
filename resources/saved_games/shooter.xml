@@ -49,7 +49,7 @@
                         <myImage>
                           <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                           <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/blank.png</myUrl>
+                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/blank.png</myUrl>
                         </myImage>
                         <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                         <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -153,7 +153,7 @@
         <myBackgroundImage>
           <myWidth class="javafx.beans.property.SimpleDoubleProperty">639.6666666666667</myWidth>
           <myHeight class="javafx.beans.property.SimpleDoubleProperty">400.00000000000006</myHeight>
-          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/splash.png</myUrl>
+          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/splash.png</myUrl>
         </myBackgroundImage>
         <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
         <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
@@ -268,7 +268,7 @@
                 <myGraphic class="graphics.ImageGraphic">
                   <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                   <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/blank.png</myUrl>
+                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/blank.png</myUrl>
                 </myGraphic>
                 <myVisibility>true</myVisibility>
               </myGraphic>
@@ -492,7 +492,7 @@
                                   <myImage>
                                     <myWidth class="javafx.beans.property.SimpleDoubleProperty">17.661290322580648</myWidth>
                                     <myHeight class="javafx.beans.property.SimpleDoubleProperty">26.85483870967742</myHeight>
-                                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/Blue_laser.png</myUrl>
+                                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/Blue_laser.png</myUrl>
                                   </myImage>
                                   <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">17.661290322580648</myImageWidth>
                                   <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">26.85483870967742</myImageHeight>
@@ -581,7 +581,7 @@
                                                     <myImage>
                                                       <myWidth class="javafx.beans.property.SimpleDoubleProperty">25.322580645161292</myWidth>
                                                       <myHeight class="javafx.beans.property.SimpleDoubleProperty">31.451612903225804</myHeight>
-                                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/Red_laser.png</myUrl>
+                                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/Red_laser.png</myUrl>
                                                     </myImage>
                                                     <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">25.322580645161292</myImageWidth>
                                                     <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">31.451612903225804</myImageHeight>
@@ -641,7 +641,7 @@
                                                   <myImage>
                                                     <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                     <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/fourth_alien_shield.png</myUrl>
+                                                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/fourth_alien_shield.png</myUrl>
                                                   </myImage>
                                                   <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                                   <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -657,7 +657,7 @@
                                               <myImage>
                                                 <myWidth class="javafx.beans.property.SimpleDoubleProperty">106.53225806451613</myWidth>
                                                 <myHeight class="javafx.beans.property.SimpleDoubleProperty">127.98387096774194</myHeight>
-                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/alien_ship.png</myUrl>
+                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/alien_ship.png</myUrl>
                                               </myImage>
                                               <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">106.53225806451613</myImageWidth>
                                               <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">127.98387096774194</myImageHeight>
@@ -720,7 +720,7 @@
                                                     <myImage>
                                                       <myWidth class="javafx.beans.property.SimpleDoubleProperty">46.774193548387096</myWidth>
                                                       <myHeight class="javafx.beans.property.SimpleDoubleProperty">49.83870967741936</myHeight>
-                                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/alien_missile.png</myUrl>
+                                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/alien_missile.png</myUrl>
                                                     </myImage>
                                                     <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">46.774193548387096</myImageWidth>
                                                     <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">49.83870967741936</myImageHeight>
@@ -819,7 +819,7 @@
                                                             <myImage>
                                                               <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                               <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                              <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/final_user_ship_shield.png</myUrl>
+                                                              <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/final_user_ship_shield.png</myUrl>
                                                             </myImage>
                                                             <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                                             <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -835,7 +835,7 @@
                                                         <myImage>
                                                           <myWidth class="javafx.beans.property.SimpleDoubleProperty">141.7741935483871</myWidth>
                                                           <myHeight class="javafx.beans.property.SimpleDoubleProperty">146.3709677419355</myHeight>
-                                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/final_fighter_ship.png</myUrl>
+                                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/final_fighter_ship.png</myUrl>
                                                         </myImage>
                                                         <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">141.7741935483871</myImageWidth>
                                                         <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">146.3709677419355</myImageHeight>
@@ -912,7 +912,7 @@
                                                               <myImage>
                                                                 <myWidth class="javafx.beans.property.SimpleDoubleProperty">57.5</myWidth>
                                                                 <myHeight class="javafx.beans.property.SimpleDoubleProperty">59.032258064516114</myHeight>
-                                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/ABomb.png</myUrl>
+                                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/ABomb.png</myUrl>
                                                               </myImage>
                                                               <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">57.5</myImageWidth>
                                                               <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">59.032258064516114</myImageHeight>
@@ -1022,7 +1022,7 @@
                                                         <myImage>
                                                           <myWidth class="javafx.beans.property.SimpleDoubleProperty">115.7258064516129</myWidth>
                                                           <myHeight class="javafx.beans.property.SimpleDoubleProperty">127.98387096774194</myHeight>
-                                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/user_two.png</myUrl>
+                                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/user_two.png</myUrl>
                                                         </myImage>
                                                         <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">115.7258064516129</myImageWidth>
                                                         <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">127.98387096774194</myImageHeight>
@@ -1038,7 +1038,7 @@
                                                             <myImage>
                                                               <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                               <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                              <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/anti-matter.png</myUrl>
+                                                              <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/anti-matter.png</myUrl>
                                                             </myImage>
                                                             <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                                             <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -1202,7 +1202,7 @@
                                                         <myImage>
                                                           <myWidth class="javafx.beans.property.SimpleDoubleProperty">200.0</myWidth>
                                                           <myHeight class="javafx.beans.property.SimpleDoubleProperty">200.0</myHeight>
-                                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/user_spacestation.png</myUrl>
+                                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/user_spacestation.png</myUrl>
                                                         </myImage>
                                                         <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">200.0</myImageWidth>
                                                         <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">200.0</myImageHeight>
@@ -1396,7 +1396,7 @@
                                                   <myImage>
                                                     <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                     <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/shield_alien.png</myUrl>
+                                                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/shield_alien.png</myUrl>
                                                   </myImage>
                                                   <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                                   <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -1412,7 +1412,7 @@
                                               <myImage>
                                                 <myWidth class="javafx.beans.property.SimpleDoubleProperty">110.7258064516129</myWidth>
                                                 <myHeight class="javafx.beans.property.SimpleDoubleProperty">110.7258064516129</myHeight>
-                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/alien_figheter_badass.png</myUrl>
+                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/alien_figheter_badass.png</myUrl>
                                               </myImage>
                                               <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">110.7258064516129</myImageWidth>
                                               <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">110.7258064516129</myImageHeight>
@@ -1475,7 +1475,7 @@
                                                     <myImage>
                                                       <myWidth class="javafx.beans.property.SimpleDoubleProperty">65.16129032258064</myWidth>
                                                       <myHeight class="javafx.beans.property.SimpleDoubleProperty">57.5</myHeight>
-                                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/big%20laser.png</myUrl>
+                                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/big%20laser.png</myUrl>
                                                     </myImage>
                                                     <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">65.16129032258064</myImageWidth>
                                                     <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">57.5</myImageHeight>
@@ -1535,7 +1535,7 @@
                                                   <myImage>
                                                     <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                     <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/third_aien_shield.png</myUrl>
+                                                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/third_aien_shield.png</myUrl>
                                                   </myImage>
                                                   <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                                   <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -1551,7 +1551,7 @@
                                               <myImage>
                                                 <myWidth class="javafx.beans.property.SimpleDoubleProperty">129.51612903225805</myWidth>
                                                 <myHeight class="javafx.beans.property.SimpleDoubleProperty">109.59677419354838</myHeight>
-                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/alien_boss.png</myUrl>
+                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/alien_boss.png</myUrl>
                                               </myImage>
                                               <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">129.51612903225805</myImageWidth>
                                               <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">109.59677419354838</myImageHeight>
@@ -1670,7 +1670,7 @@
                                       <myImage>
                                         <myWidth class="javafx.beans.property.SimpleDoubleProperty">32.983870967741936</myWidth>
                                         <myHeight class="javafx.beans.property.SimpleDoubleProperty">80.48387096774192</myHeight>
-                                        <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/missile_user.png</myUrl>
+                                        <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/missile_user.png</myUrl>
                                       </myImage>
                                       <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">32.983870967741936</myImageWidth>
                                       <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">80.48387096774192</myImageHeight>
@@ -1760,7 +1760,7 @@
                                     <myImage>
                                       <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                       <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/second_ship_shield.png</myUrl>
+                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/second_ship_shield.png</myUrl>
                                     </myImage>
                                     <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                     <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -1776,7 +1776,7 @@
                                 <myImage>
                                   <myWidth class="javafx.beans.property.SimpleDoubleProperty">131.0483870967742</myWidth>
                                   <myHeight class="javafx.beans.property.SimpleDoubleProperty">138.70967741935482</myHeight>
-                                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/fighter_one.png</myUrl>
+                                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/fighter_one.png</myUrl>
                                 </myImage>
                                 <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">131.0483870967742</myImageWidth>
                                 <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">138.70967741935482</myImageHeight>
@@ -1829,7 +1829,7 @@
                                 <myImage>
                                   <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                   <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/shield.png</myUrl>
+                                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/shield.png</myUrl>
                                 </myImage>
                                 <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                 <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -1845,7 +1845,7 @@
                             <myImage>
                               <myWidth class="javafx.beans.property.SimpleDoubleProperty">131.0483870967742</myWidth>
                               <myHeight class="javafx.beans.property.SimpleDoubleProperty">118.79032258064517</myHeight>
-                              <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/ship.png</myUrl>
+                              <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/ship.png</myUrl>
                             </myImage>
                             <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">131.0483870967742</myImageWidth>
                             <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">118.79032258064517</myImageHeight>
@@ -2150,7 +2150,7 @@
                             <myImage>
                               <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                               <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                              <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/blackhole.gif</myUrl>
+                              <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/blackhole.gif</myUrl>
                             </myImage>
                             <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                             <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -2239,7 +2239,7 @@
             <myBackgroundImage>
               <myWidth class="javafx.beans.property.SimpleDoubleProperty">348.83720930232556</myWidth>
               <myHeight class="javafx.beans.property.SimpleDoubleProperty">399.99999999999994</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/blue_top.jpg</myUrl>
+              <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/blue_top.jpg</myUrl>
             </myBackgroundImage>
             <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
             <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
@@ -3000,7 +3000,7 @@
                 <myBackgroundImage>
                   <myWidth class="javafx.beans.property.SimpleDoubleProperty">640.0000000000001</myWidth>
                   <myHeight class="javafx.beans.property.SimpleDoubleProperty">400.00000000000006</myHeight>
-                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/level_three.jpg</myUrl>
+                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/level_three.jpg</myUrl>
                 </myBackgroundImage>
                 <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
                 <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
@@ -3055,7 +3055,7 @@
                         <myGraphic class="graphics.ImageGraphic">
                           <myWidth class="javafx.beans.property.SimpleDoubleProperty">118.79032258064517</myWidth>
                           <myHeight class="javafx.beans.property.SimpleDoubleProperty">121.85483870967745</myHeight>
-                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/alien_boss_ships.png</myUrl>
+                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/alien_boss_ships.png</myUrl>
                         </myGraphic>
                         <myVisibility>true</myVisibility>
                       </myGraphic>
@@ -3419,7 +3419,7 @@
                         <myGraphic class="graphics.ImageGraphic">
                           <myWidth class="javafx.beans.property.SimpleDoubleProperty">131.0483870967742</myWidth>
                           <myHeight class="javafx.beans.property.SimpleDoubleProperty">138.70967741935482</myHeight>
-                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/fighter_one.png</myUrl>
+                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/fighter_one.png</myUrl>
                         </myGraphic>
                         <myVisibility>true</myVisibility>
                       </myGraphic>
@@ -3664,7 +3664,7 @@
                         <myGraphic class="graphics.ImageGraphic">
                           <myWidth class="javafx.beans.property.SimpleDoubleProperty">200.0</myWidth>
                           <myHeight class="javafx.beans.property.SimpleDoubleProperty">200.0</myHeight>
-                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/spacestation.png</myUrl>
+                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/spacestation.png</myUrl>
                         </myGraphic>
                         <myVisibility>true</myVisibility>
                       </myGraphic>
@@ -3813,7 +3813,7 @@
                         <myGraphic class="graphics.ImageGraphic">
                           <myWidth class="javafx.beans.property.SimpleDoubleProperty">200.0</myWidth>
                           <myHeight class="javafx.beans.property.SimpleDoubleProperty">200.0</myHeight>
-                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/user_spacestation.png</myUrl>
+                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/user_spacestation.png</myUrl>
                         </myGraphic>
                         <myVisibility>true</myVisibility>
                       </myGraphic>
@@ -3941,7 +3941,7 @@
                     <myBackgroundImage>
                       <myWidth class="javafx.beans.property.SimpleDoubleProperty">600.0000000000001</myWidth>
                       <myHeight class="javafx.beans.property.SimpleDoubleProperty">400.00000000000006</myHeight>
-                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/winningbaby.jpg</myUrl>
+                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/winningbaby.jpg</myUrl>
                     </myBackgroundImage>
                     <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
                     <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
@@ -4942,7 +4942,7 @@
                     <myBackgroundImage>
                       <myWidth class="javafx.beans.property.SimpleDoubleProperty">640.0000000000001</myWidth>
                       <myHeight class="javafx.beans.property.SimpleDoubleProperty">400.00000000000006</myHeight>
-                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/loselevel.png</myUrl>
+                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/loselevel.png</myUrl>
                     </myBackgroundImage>
                     <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
                     <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
@@ -8692,7 +8692,7 @@
                                 <myImage>
                                   <myWidth class="javafx.beans.property.SimpleDoubleProperty">25.322580645161292</myWidth>
                                   <myHeight class="javafx.beans.property.SimpleDoubleProperty">31.451612903225804</myHeight>
-                                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/Red_laser.png</myUrl>
+                                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/Red_laser.png</myUrl>
                                 </myImage>
                                 <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">25.322580645161292</myImageWidth>
                                 <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">31.451612903225804</myImageHeight>
@@ -8778,7 +8778,7 @@
                                                     <myImage>
                                                       <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                       <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/blank.png</myUrl>
+                                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/blank.png</myUrl>
                                                     </myImage>
                                                     <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                                     <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -8882,7 +8882,7 @@
                                     <myBackgroundImage>
                                       <myWidth class="javafx.beans.property.SimpleDoubleProperty">639.6666666666667</myWidth>
                                       <myHeight class="javafx.beans.property.SimpleDoubleProperty">400.00000000000006</myHeight>
-                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/splash.png</myUrl>
+                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/splash.png</myUrl>
                                     </myBackgroundImage>
                                     <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
                                     <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
@@ -8997,7 +8997,7 @@
                                             <myGraphic class="graphics.ImageGraphic">
                                               <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                               <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                              <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/blank.png</myUrl>
+                                              <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/blank.png</myUrl>
                                             </myGraphic>
                                             <myVisibility>true</myVisibility>
                                           </myGraphic>
@@ -9142,7 +9142,7 @@
                                         <myBackgroundImage>
                                           <myWidth class="javafx.beans.property.SimpleDoubleProperty">348.83720930232556</myWidth>
                                           <myHeight class="javafx.beans.property.SimpleDoubleProperty">399.99999999999994</myHeight>
-                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/blue_top.jpg</myUrl>
+                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/blue_top.jpg</myUrl>
                                         </myBackgroundImage>
                                         <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
                                         <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
@@ -9301,7 +9301,7 @@
                                                 <myGraphic class="graphics.ImageGraphic">
                                                   <myWidth class="javafx.beans.property.SimpleDoubleProperty">131.0483870967742</myWidth>
                                                   <myHeight class="javafx.beans.property.SimpleDoubleProperty">118.79032258064517</myHeight>
-                                                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/ship.png</myUrl>
+                                                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/ship.png</myUrl>
                                                 </myGraphic>
                                                 <myVisibility>true</myVisibility>
                                               </myGraphic>
@@ -9403,7 +9403,7 @@
                                                       <myImage>
                                                         <myWidth class="javafx.beans.property.SimpleDoubleProperty">17.661290322580648</myWidth>
                                                         <myHeight class="javafx.beans.property.SimpleDoubleProperty">26.85483870967742</myHeight>
-                                                        <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/Blue_laser.png</myUrl>
+                                                        <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/Blue_laser.png</myUrl>
                                                       </myImage>
                                                       <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">17.661290322580648</myImageWidth>
                                                       <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">26.85483870967742</myImageHeight>
@@ -9568,7 +9568,7 @@
                                                                   <myImage>
                                                                     <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                                     <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/third_aien_shield.png</myUrl>
+                                                                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/third_aien_shield.png</myUrl>
                                                                   </myImage>
                                                                   <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                                                   <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -9584,7 +9584,7 @@
                                                               <myImage>
                                                                 <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                                 <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/alien_boss.png</myUrl>
+                                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/alien_boss.png</myUrl>
                                                               </myImage>
                                                               <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                                               <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -9682,7 +9682,7 @@
                                                                                 <myImage>
                                                                                   <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                                                   <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                                                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/shield.png</myUrl>
+                                                                                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/shield.png</myUrl>
                                                                                 </myImage>
                                                                                 <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                                                                 <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -9781,7 +9781,7 @@
                                                                     <myImage>
                                                                       <myWidth class="javafx.beans.property.SimpleDoubleProperty">46.774193548387096</myWidth>
                                                                       <myHeight class="javafx.beans.property.SimpleDoubleProperty">49.83870967741936</myHeight>
-                                                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/alien_missile.png</myUrl>
+                                                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/alien_missile.png</myUrl>
                                                                     </myImage>
                                                                     <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">46.774193548387096</myImageWidth>
                                                                     <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">49.83870967741936</myImageHeight>
@@ -9844,7 +9844,7 @@
                                                                   <myImage>
                                                                     <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                                     <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/shield_alien.png</myUrl>
+                                                                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/shield_alien.png</myUrl>
                                                                   </myImage>
                                                                   <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                                                   <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -9860,7 +9860,7 @@
                                                               <myImage>
                                                                 <myWidth class="javafx.beans.property.SimpleDoubleProperty">110.7258064516129</myWidth>
                                                                 <myHeight class="javafx.beans.property.SimpleDoubleProperty">110.7258064516129</myHeight>
-                                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/alien_figheter_badass.png</myUrl>
+                                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/alien_figheter_badass.png</myUrl>
                                                               </myImage>
                                                               <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">110.7258064516129</myImageWidth>
                                                               <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">110.7258064516129</myImageHeight>
@@ -9977,7 +9977,7 @@
                                             <myBackgroundImage>
                                               <myWidth class="javafx.beans.property.SimpleDoubleProperty">348.83720930232556</myWidth>
                                               <myHeight class="javafx.beans.property.SimpleDoubleProperty">399.99999999999994</myHeight>
-                                              <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/level_two.jpg</myUrl>
+                                              <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/level_two.jpg</myUrl>
                                             </myBackgroundImage>
                                             <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
                                             <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
@@ -11154,7 +11154,7 @@
                                             <myBackgroundImage>
                                               <myWidth class="javafx.beans.property.SimpleDoubleProperty">640.0000000000001</myWidth>
                                               <myHeight class="javafx.beans.property.SimpleDoubleProperty">400.00000000000006</myHeight>
-                                              <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/loselevel.png</myUrl>
+                                              <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/loselevel.png</myUrl>
                                             </myBackgroundImage>
                                             <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
                                             <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
@@ -15038,7 +15038,7 @@
                                     <myBackgroundImage>
                                       <myWidth class="javafx.beans.property.SimpleDoubleProperty">640.0000000000001</myWidth>
                                       <myHeight class="javafx.beans.property.SimpleDoubleProperty">400.00000000000006</myHeight>
-                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/level_three.jpg</myUrl>
+                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/level_three.jpg</myUrl>
                                     </myBackgroundImage>
                                     <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
                                     <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
@@ -16130,7 +16130,7 @@
                                     <myBackgroundImage>
                                       <myWidth class="javafx.beans.property.SimpleDoubleProperty">600.0000000000001</myWidth>
                                       <myHeight class="javafx.beans.property.SimpleDoubleProperty">400.00000000000006</myHeight>
-                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/winningbaby.jpg</myUrl>
+                                      <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/winningbaby.jpg</myUrl>
                                     </myBackgroundImage>
                                     <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
                                     <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
@@ -17234,7 +17234,7 @@
                                               <myImage>
                                                 <myWidth class="javafx.beans.property.SimpleDoubleProperty">51.37096774193549</myWidth>
                                                 <myHeight class="javafx.beans.property.SimpleDoubleProperty">45.24193548387097</myHeight>
-                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/big%20laser.png</myUrl>
+                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/big%20laser.png</myUrl>
                                               </myImage>
                                               <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">51.37096774193549</myImageWidth>
                                               <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">45.24193548387097</myImageHeight>
@@ -17362,7 +17362,7 @@
                                               <myImage>
                                                 <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                 <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/blackhole.gif</myUrl>
+                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/blackhole.gif</myUrl>
                                               </myImage>
                                               <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                               <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -17554,7 +17554,7 @@
                                           <myImage>
                                             <myWidth class="javafx.beans.property.SimpleDoubleProperty">106.53225806451613</myWidth>
                                             <myHeight class="javafx.beans.property.SimpleDoubleProperty">127.98387096774194</myHeight>
-                                            <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/alien_ship.png</myUrl>
+                                            <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/alien_ship.png</myUrl>
                                           </myImage>
                                           <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">106.53225806451613</myImageWidth>
                                           <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">127.98387096774194</myImageHeight>
@@ -17630,7 +17630,7 @@
                                               <myImage>
                                                 <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                 <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/fourth_alien_shield.png</myUrl>
+                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/fourth_alien_shield.png</myUrl>
                                               </myImage>
                                               <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                               <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -17854,7 +17854,7 @@
                                               <myImage>
                                                 <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                 <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/user_spacestation.png</myUrl>
+                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/user_spacestation.png</myUrl>
                                               </myImage>
                                               <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                               <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -18002,7 +18002,7 @@
                                               <myImage>
                                                 <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                 <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/anti-matter.png</myUrl>
+                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/anti-matter.png</myUrl>
                                               </myImage>
                                               <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                               <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -18064,7 +18064,7 @@
                                               <myImage>
                                                 <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                                 <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/trophy.gif</myUrl>
+                                                <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/trophy.gif</myUrl>
                                               </myImage>
                                               <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                               <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -18338,7 +18338,7 @@
                                         <myImage>
                                           <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                           <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/killed_aliens.png</myUrl>
+                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/killed_aliens.png</myUrl>
                                         </myImage>
                                         <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                         <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -18361,7 +18361,7 @@
                                         <myImage>
                                           <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                           <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/second_ship_shield.png</myUrl>
+                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/second_ship_shield.png</myUrl>
                                         </myImage>
                                         <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                         <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -18378,7 +18378,7 @@
                                         <myImage>
                                           <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                           <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/final_user_ship_shield.png</myUrl>
+                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/final_user_ship_shield.png</myUrl>
                                         </myImage>
                                         <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                         <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -18398,7 +18398,7 @@
                                         <myImage>
                                           <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                                           <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/spacestation_shield.png</myUrl>
+                                          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/spacestation_shield.png</myUrl>
                                         </myImage>
                                         <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                                         <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -18978,7 +18978,7 @@
                                 <mySplashScreen>
                                   <myWidth class="javafx.beans.property.SimpleDoubleProperty">200.0</myWidth>
                                   <myHeight class="javafx.beans.property.SimpleDoubleProperty">300.0</myHeight>
-                                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/splash.png</myUrl>
+                                  <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/splash.png</myUrl>
                                 </mySplashScreen>
                               </myGameInformation>
                               <myAttributeManager class="engine.AttributeManager">
@@ -20885,7 +20885,7 @@
         <myBackgroundImage>
           <myWidth class="javafx.beans.property.SimpleDoubleProperty">348.83720930232556</myWidth>
           <myHeight class="javafx.beans.property.SimpleDoubleProperty">399.99999999999994</myHeight>
-          <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/level_two.jpg</myUrl>
+          <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/level_two.jpg</myUrl>
         </myBackgroundImage>
         <myBackgroundImageWidth>700.0</myBackgroundImageWidth>
         <myBackgroundImageHeight>400.0</myBackgroundImageHeight>
@@ -22551,7 +22551,7 @@
                   <myImage>
                     <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                     <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/spacestation_shield.png</myUrl>
+                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/spacestation_shield.png</myUrl>
                   </myImage>
                   <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                   <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -22726,7 +22726,7 @@
                   <myImage>
                     <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                     <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/trophy.gif</myUrl>
+                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/trophy.gif</myUrl>
                   </myImage>
                   <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                   <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -23080,7 +23080,7 @@
                   <myImage>
                     <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
                     <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/earth.png</myUrl>
+                    <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/earth.png</myUrl>
                   </myImage>
                   <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
                   <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -23947,7 +23947,7 @@
             <myImage>
               <myWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myWidth>
               <myHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myHeight>
-              <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/killed_aliens.png</myUrl>
+              <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/killed_aliens.png</myUrl>
             </myImage>
             <myImageWidth class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageWidth>
             <myImageHeight class="javafx.beans.property.SimpleDoubleProperty">100.0</myImageHeight>
@@ -25106,7 +25106,7 @@
     <mySplashScreen>
       <myWidth class="javafx.beans.property.SimpleDoubleProperty">200.0</myWidth>
       <myHeight class="javafx.beans.property.SimpleDoubleProperty">300.0</myHeight>
-      <myUrl class="javafx.beans.property.SimpleStringProperty">file:/Users/josephtimko1/Documents/workspace/voogasalad_GitDepends/resources/images/shooter/splash.png</myUrl>
+      <myUrl class="javafx.beans.property.SimpleStringProperty">file:resources/images/shooter/splash.png</myUrl>
     </mySplashScreen>
   </myGameInformation>
   <myAttributeManager class="engine.AttributeManager" reference="../myLevelManager[1]/myLevelPropertyList[1]/engine.Level[1]/myNextLevelManager[1]/myWinLevel[1]/myConditionManager[1]/myConditions[1]/engine.conditions.OnSpriteAttributeCondition[1]/mySpritePackage[1]/mySpriteGroup[1]/mySpriteDefinitions[1]/engine.definitions.concrete.SpriteDefinition[1]/myUpgrade[1]/myUpgrade[1]/myModuleDefinitions[1]/engine.definitions.moduledef.DirectionalFirerDefinition[1]/myProjectile[1]/myMovementDefinition[1]/myTargets[1]/mySpriteDefinitions[1]/engine.definitions.concrete.SpriteDefinition[2]/myModuleDefinitions[1]/engine.definitions.moduledef.TrackingFirerDefinition[1]/myTargets[1]/mySpriteDefinitions[1]/engine.definitions.concrete.SpriteDefinition[4]/myCost[1]/myCheck[1]/myManager[1]"/>
