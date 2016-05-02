@@ -39,6 +39,7 @@ public class GameEngine implements IGameEngine {
     private Timeline myTimeline = new Timeline();
     private ScaleRatio myScale = new ScaleRatio();
     private Stage myStage;
+    private BorderPane myPane;
 
     public GameEngine (IGame game,
                        Stage stage,
@@ -51,6 +52,7 @@ public class GameEngine implements IGameEngine {
         myRenderer = new InGameRenderer(game, levelPane, myDisplay.getSpriteDisplay(), myScale);
         myIOIntercepter = ioInterpreter;
         myIOIntercepter.setScale(myScale);
+        myPane = gamePane;
         initDisplays();
         createLevelView(gamePane);
         initializeTimeline();
@@ -98,6 +100,9 @@ public class GameEngine implements IGameEngine {
         getGame().update(new TimeDuration(frameDuration.toMillis()));
         if (getGame().getSwitched()) {
             rescale(myStage.getWidth(), myStage.getHeight());
+            mySideBar = new PlayerSideBar(myGame, myRenderer, myScale);
+            myPane.setRight(mySideBar.draw());
+            
         }
         getRenderer().render();
         
