@@ -6,6 +6,7 @@ import engine.definitions.concrete.AttributeDefinition;
 import engine.events.GameEvent;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
+import engine.rendering.GameGridConfigNonScaling;
 import engine.rendering.IGameGridConfig;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
@@ -21,6 +22,8 @@ import util.TimeDuration;
  *
  */
 public class Game implements IGame {
+    private static final int DEFAULT_WIDTH = 1200;
+    private static final int DEFAULT_HEIGHT = 800;
 
     private IGameGridConfig myGameGridConfig;
     private ILevelManager myLevelManager;
@@ -30,20 +33,33 @@ public class Game implements IGame {
     private IAttributeManager myAttributeManager;
     private IObstructionManager myObstructionManager;
 
+    
+
     public Game (IGameGridConfig gridConfiguration) {
         // TODO remove hardcoded strings
-        this(new GameInformation());
-        myGameGridConfig = gridConfiguration;
+        this(new GameInformation(), gridConfiguration);
+      
+    }
+    
+    /** @deprecated
+     *  Shouldn't create a game without an internal notion of grid size, defaulting
+     *  will lead to unexpected behavior given lack of scaling implementation
+     * @param gameInfo
+     */
+    @Deprecated
+    public Game (IGameInformation gameInfo) {
+        this(gameInfo, new GameGridConfigNonScaling(DEFAULT_WIDTH, DEFAULT_HEIGHT));
     }
 
-    public Game (IGameInformation gameInfo) {
+    public Game (IGameInformation gameInfo, IGameGridConfig gridConfiguration) {
+        myGameGridConfig = gridConfiguration;
         myLevelManager = new LevelManager();
         myConditionManager = new ConditionManager();
         myAuthorshipData = new AuthorshipData();
         myGameInformation = gameInfo;
         myAttributeManager = new AttributeManager();
-
-        // myObstructionManager = new ObstructionManager(this);
+        myObstructionManager = new ObstructionManager(this);
+        
     }
 
     @Override
@@ -51,7 +67,8 @@ public class Game implements IGame {
         myLevelManager.update(duration);
         myConditionManager.update(duration);
         myAttributeManager.update(duration);
-        // myObstructionManager.update(duration);
+        myObstructionManager.update(duration);
+
     }
 
     @Override
@@ -148,11 +165,11 @@ public class Game implements IGame {
     @Override
     public void createAndSortGlobals () {
         getAttributeManager().getAttributes().clear();
-        myLevelManager.getLevels().forEach(c -> getAttributeManager().getAttributes().clear());
+        myLevelManager.getLevels().forEach(c -> c.getAttributeManager().getAttributes().clear());
         for (AttributeDefinition a : myAuthorshipData.getMyCreatedGlobals().getItems()) {
             if (a.isLevelSpecific()) {
                 myLevelManager.getLevels()
-                        .forEach(c -> getAttributeManager().getAttributes().add(a.create()));
+                        .forEach(c -> c.getAttributeManager().getAttributes().add(a.create()));
             }
             else {
                 getAttributeManager().getAttributes().add(a.create());
@@ -163,5 +180,10 @@ public class Game implements IGame {
     @Override
     public Bounds getLevelBounds () {
         return getLevelManager().getCurrentLevel().getBounds();
+    }
+
+    @Override
+    public boolean getSwitched () {
+        return getLevelManager().getSwitched();
     }
 }

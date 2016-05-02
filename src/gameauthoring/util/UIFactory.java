@@ -50,22 +50,21 @@ import javafx.scene.layout.VBox;
  */
 
 public interface UIFactory {
-     
+
     Button createButton (String text, EventHandler<ActionEvent> action);
 
     Button createStyledButton (String text,
-                                      EventHandler<ActionEvent> action,
-                                      String styleClass);
+                               EventHandler<ActionEvent> action,
+                               String styleClass);
 
     Button createStyledButton (String text,
-                                      String styleClass);
+                               String styleClass);
 
- 
-     Button createImageButton (String text,
-                                     ImageView imgview,
-                                     EventHandler<ActionEvent> action);
+    Button createImageButton (String text,
+                              ImageView imgview,
+                              EventHandler<ActionEvent> action);
 
-     Button createImageButton (String url);
+    Button createImageButton (String url);
 
     Tab createTab (String text, boolean closable, Node content);
 
@@ -94,5 +93,7 @@ public interface UIFactory {
     Label createSubTitleLabel (String string);
 
     TextField createTextField (String string, double d);
+
+    Node addStyling (Node node, String key);
 
 }

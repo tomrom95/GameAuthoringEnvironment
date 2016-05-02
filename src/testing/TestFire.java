@@ -48,7 +48,9 @@ public class TestFire {
 
     @Before
     public void setUp () {
-        myGame = new Game(new GameGridConfigNonScaling((int) GamePlayer.PREFWIDTH, (int) GamePlayer.PREFHEIGHT));
+        myGame =
+                new Game(new GameGridConfigNonScaling((int) GamePlayer.PREFWIDTH,
+                                                      (int) GamePlayer.PREFHEIGHT));
         createMover();
         createProjectile();
         createTower();
@@ -61,7 +63,9 @@ public class TestFire {
 
     @After
     public void tearDown () {
-        myGame = new Game(new GameGridConfigNonScaling((int) GamePlayer.PREFWIDTH, (int) GamePlayer.PREFHEIGHT));
+        myGame =
+                new Game(new GameGridConfigNonScaling((int) GamePlayer.PREFWIDTH,
+                                                      (int) GamePlayer.PREFHEIGHT));
         myTowerList.clear();
         Iterator<ModuleDefinition> modules = myTower.getModuleDefinitions().iterator();
 
@@ -81,7 +85,7 @@ public class TestFire {
 
     private SpriteDefinition createEnemy () {
         myEnemy = new SpriteDefinition();
-        myEnemy.setLocation(new Coordinate(100,100));
+        myEnemy.setLocation(new Coordinate(100, 100));
         Profile testprofile = new Profile("Test");
         myEnemy.setProfile(testprofile);
 
@@ -100,7 +104,7 @@ public class TestFire {
 
     private void createTower () {
         myTower = new SpriteDefinition();
-        myTower.setLocation(new Coordinate(0,0));
+        myTower.setLocation(new Coordinate(0, 0));
     }
 
     private void createTrackingFirer () {
@@ -113,7 +117,7 @@ public class TestFire {
         myTrackingFirer.setTargets(myGroup);
         myTower.addModule(myTrackingFirer);
     }
-    
+
     public void createUserFirer () {
         myUserFirer = new UserFirerDefinition(myGame);
         myUserFirer.setProjectileDefinition(myProjectile);
@@ -125,10 +129,8 @@ public class TestFire {
         myUserFirer.setIncrease("f");
         myUserFirer.setFire("s");
         myUserFirer.setRanged(false);
-        
+
     }
-    
-    
 
     @Test
     public void testFire () {
@@ -170,7 +172,7 @@ public class TestFire {
         myTowerList.stream().forEach(sprite -> sprite.update(new TimeDuration(100000)));
         assertEquals(bullets, myGame.getLevelManager().getCurrentLevel().getSprites().size());
     }
-    
+
     @Test
     public void testUserFirer () {
         myTower.addModule(myUserFirer);
@@ -180,9 +182,9 @@ public class TestFire {
             myTowerList.add(tower);
             myGame.add(tower);
         }
-        myTowerList.stream().forEach(sprite -> sprite.registerKeyEvent(new KeyIOEvent(InputType.KEY_PRESSED, new Key("s"))));
+        myTowerList.stream().forEach(sprite -> sprite
+                .registerKeyEvent(new KeyIOEvent(InputType.KEY_PRESSED, new Key("s"))));
         assertEquals(bullets, myGame.getLevelManager().getCurrentLevel().getSprites().size());
-
 
     }
 

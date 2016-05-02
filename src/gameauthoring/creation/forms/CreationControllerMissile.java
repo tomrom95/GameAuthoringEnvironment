@@ -5,6 +5,7 @@ import engine.AuthorshipData;
 import engine.IGame;
 import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;
+import engine.profile.Profile;
 import gameauthoring.shareddata.DefinitionCollection;
 
 
@@ -14,12 +15,12 @@ public class CreationControllerMissile extends CreationControllerSprite {
                                       List<String> subFormStrings,
                                       IGame myGame) {
         super(key, subFormStrings, myGame);
+
     }
 
     @Override
     protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
         return authorshipData.getMyCreatedMissiles();
     }
-    
 
 }

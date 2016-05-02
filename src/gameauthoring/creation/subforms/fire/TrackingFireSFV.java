@@ -2,7 +2,6 @@ package gameauthoring.creation.subforms.fire;
 
 import java.util.ResourceBundle;
 import splash.LocaleManager;
-import util.StringParser;
 import engine.AuthorshipData;
 import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;

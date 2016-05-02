@@ -1,6 +1,5 @@
 package gameplayer;
 
-import java.util.Observable;
 import java.util.ResourceBundle;
 import engine.IGame;
 import engine.IOInterpeter;
@@ -20,14 +19,14 @@ import javafx.stage.Stage;
  *
  */
 public class GamePlayer {
-    
+
     public static final double PREFWIDTH = 1250;
     public static final double PREFHEIGHT = 600;
     public static final int INT_PREF_WIDTH = (int) PREFWIDTH;
     public static final int INT_PREF_HEIGHT = (int) PREFHEIGHT;
-    
+
     private static final String PATH = "defaults/gameplayer";
-    ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
+    private ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
 
     private Stage myStage = new Stage();
     private BorderPane myPane = new BorderPane();
@@ -45,21 +44,25 @@ public class GamePlayer {
 
     private void initListener () {
         myStage.widthProperty().addListener(new ChangeListener<Number>() {
-            @Override 
-            public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
+            @Override
+            public void changed (ObservableValue<? extends Number> observableValue,
+                                 Number oldSceneWidth,
+                                 Number newSceneWidth) {
                 rescale(newSceneWidth.doubleValue(), myStage.getHeight());
             }
         });
-        
+
         myStage.heightProperty().addListener(new ChangeListener<Number>() {
-            @Override 
-            public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneHeight, Number newSceneHeight) {
+            @Override
+            public void changed (ObservableValue<? extends Number> observableValue,
+                                 Number oldSceneHeight,
+                                 Number newSceneHeight) {
                 rescale(myStage.getWidth(), newSceneHeight.doubleValue());
             }
         });
-        
+
     }
-    
+
     private void rescale (double width, double height) {
         myGameEngine.rescale(width, height);
     }
@@ -67,7 +70,7 @@ public class GamePlayer {
     private void setSizes () {
         myPane.setPrefSize(parseDouble(myBundle.getString("Width")),
                            parseDouble(myBundle.getString("Height")));
-        myLevelPane.setPrefSize(parseDouble(myBundle.getString("LevelWidth")), 
+        myLevelPane.setPrefSize(parseDouble(myBundle.getString("LevelWidth")),
                                 parseDouble(myBundle.getString("LevelHeight")));
 
     }
@@ -79,7 +82,7 @@ public class GamePlayer {
 
     private void initializeGameEngine (IGame game) {
         IOInterpeter IO = new IOInterpeter(myScene, myLevelPane);
-        myGameEngine = new GameEngine(game, myPane, myLevelPane, IO);
+        myGameEngine = new GameEngine(game, myStage, myPane, myLevelPane, IO);
     }
 
     public void play () {

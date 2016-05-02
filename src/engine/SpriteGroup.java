@@ -34,17 +34,24 @@ public class SpriteGroup implements ISpriteGroup, IProfilable {
         myProfile = profile;
     }
 
+    public SpriteGroup (List<SpriteDefinition> spriteDefs, IProfile profile) {
+        setSpriteDefinitions(spriteDefs);
+        myProfile = profile;
+        System.out.println(spriteDefs.toString());
+    }
     public SpriteGroup (List<SpriteDefinition> spriteDefs) {
         setSpriteDefinitions(spriteDefs);
         myProfile = new Profile();
     }
+    
 
     public List<SpriteDefinition> getSpriteDefinitions () {
         return mySpriteDefinitions;
     }
 
+    //TODO: watch out for weird behavior with this change
     public void setSpriteDefinitions (List<SpriteDefinition> sprites) {
-        mySpriteDefinitions = new ArrayList<>(sprites);      
+        mySpriteDefinitions = sprites;      
         mySpriteTypes = new ArrayList<>();
         for (SpriteDefinition s : mySpriteDefinitions) {
             mySpriteTypes.add(s.getSpriteType());
@@ -69,6 +76,10 @@ public class SpriteGroup implements ISpriteGroup, IProfilable {
     @Override
     public void setProfile (IProfile profile) {
         myProfile = profile;
+    }
+
+    public void remove (SpriteDefinition def) {
+        mySpriteDefinitions.remove(def);
     }
 
 }

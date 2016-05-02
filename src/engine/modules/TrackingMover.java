@@ -43,8 +43,11 @@ public class TrackingMover extends Mover {
 
     @Override
     public void update (TimeDuration duration) {
-        setOrientationFromTracker(myTracker
-                .calculateOrientationToClosestEnemy(mySprite.getLocation(), myPotentialTargets()));
+        if(myPotentialTargets().size() != 0){
+            setOrientationFromTracker(myTracker
+                                      .calculateOrientationToClosestEnemy(mySprite.getLocation(), myPotentialTargets()));
+        }
+        
         move(duration);
     }
 
@@ -69,5 +72,17 @@ public class TrackingMover extends Mover {
         List<IAttribute> myList = new ArrayList<IAttribute>();
         return myList;
 
+    }
+
+    @Override
+    public int getNextIndex () {
+       
+        return 0;
+    }
+
+    @Override
+    public void setNextIndex (int index) {
+       
+        
     }
 }

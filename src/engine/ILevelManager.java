@@ -61,5 +61,8 @@ public interface ILevelManager extends IAdder, IEventInternalizer {
      * 
      */
     void remove (ILevel level);
+
+    boolean getSwitched ();
+
 }
 

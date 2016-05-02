@@ -11,6 +11,11 @@ import util.Bounds;
 import util.Coordinate;
 import util.TimeDuration;
 
+/**
+ * Condition that firers when a sprite goes out the current level bounds
+ * @author RyanStPierre
+ *
+ */
 
 public class OutOfBoundsCondition extends Condition {
 

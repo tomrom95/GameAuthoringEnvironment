@@ -36,10 +36,10 @@ public class GraphicModule extends DefaultAffectable implements IGraphicModule {
 
     @Override
     public void registerEvent (GameEvent event) {
-        if (event.equals(EventType.VISIBLE)) {
+        if (event.getEventType().equals(EventType.VISIBLE)) {
             myVisibility = true;
         }
-        if (event.equals(EventType.INVISIBLE)) {
+        if (event.getEventType().equals(EventType.INVISIBLE)) {
             myVisibility = false;
         }
 

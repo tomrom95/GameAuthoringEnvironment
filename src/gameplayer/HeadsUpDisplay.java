@@ -1,9 +1,8 @@
 package gameplayer;
 
-import java.util.ResourceBundle;
 import engine.IAttribute;
 import engine.IGame;
-import gameauthoring.util.Glyph;
+import facebookutil.JavaSocial;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -41,8 +40,8 @@ public class HeadsUpDisplay extends SizeableGlyph {
      */
     private void addUser (VBox container) {
         // TODO implement users
-        Node user = new Text("User Name: TODO");
-        // container.getChildren().add(user);
+        Text user = new Text(JavaSocial.getInstance().getActiveUser().toString());
+        container.getChildren().add(user);
     }
 
     /**
@@ -52,6 +51,9 @@ public class HeadsUpDisplay extends SizeableGlyph {
      */
     private void addAttributes (VBox container) {
         myGame.getGlobalAttributes()
+                .stream()
+                .forEach(a -> addAttribute(container, a));
+        myGame.getLevelManager().getCurrentLevel().getAttributeManager().getAttributes()
                 .stream()
                 .forEach(a -> addAttribute(container, a));
     }

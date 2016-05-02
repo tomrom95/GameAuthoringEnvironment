@@ -19,6 +19,7 @@ public class DemoFileChooser extends Application {
         FileChooser chooser = new FileChooser();
         File f = chooser.showOpenDialog(primaryStage);
         IGame xmlGame = new GameReader().readFile(f);
+        
         GamePlayer gp = new GamePlayer(xmlGame);
     }
 }

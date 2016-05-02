@@ -26,7 +26,9 @@ import javafx.scene.layout.VBox;
 
 public class SpriteDisplay extends SizeableGlyph implements ISpriteDisplay {
 
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    private ResourceBundle myLang =
+            ResourceBundle.getBundle("languages/labels",
+                                     LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private VBox myPane = new VBox();
     private GraphicFactory myGraphicFactory;
     private UIFactory myUIFactory = new BasicUIFactory();

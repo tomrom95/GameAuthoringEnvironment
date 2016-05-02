@@ -11,14 +11,16 @@ import javafx.scene.input.TransferMode;
 
 /**
  * Allows waves to be dropped into the target
+ * 
  * @author RyanStPierre
  *
  */
 
 public class WaveDropCell extends NameCellView<WaveDefinition> {
 
-    private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/wave_drop_cell");
     private static final String HOLDER = "holder";
+    
+    private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/wave_drop_cell");
     private SpawnerView myTarget;
 
     public WaveDropCell (SpawnerView target) {

@@ -1,10 +1,19 @@
 package engine;
 
+import engine.aipathing.GameGraphFactory;
 import engine.sprite.ISprite;
-import util.BitMap;
+import util.BoundEdge;
 import util.Bounds;
+import util.CachingEdgeBitMap;
+import util.Coordinate;
 import util.IBitMap;
+import util.IBoundEdge;
+import util.ISampledBitMap;
+import util.SampledBitMap;
 import util.TimeDuration;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This class will loop through the sprites each in the current running level each
@@ -14,44 +23,53 @@ import util.TimeDuration;
  *
  */
 public class ObstructionManager implements IObstructionManager {
+   
+    public static final int SAMPLE_RESOLUTION = 60;
+    public static final double SAMPLE_DOUBLE = (double) SAMPLE_RESOLUTION;
+    
     private static final boolean POSITION_OBSTRUCTED = true;
     private IGame myGame;
-    private IBitMap myCurrentObstructionMap;
+
 
     ObstructionManager (IGame game) {
         myGame = game;
-        myCurrentObstructionMap = getBitMapSizedForCurrentGame(getGame());
     }
 
     @Override
     public void update (TimeDuration duration) {
-        myCurrentObstructionMap = parseCurrentGameForObstructions(getGame());
+        //Do nothing
     }
     
     @Override
-    public IBitMap getObstructionMap () {
-        return myCurrentObstructionMap;
+    public ISampledBitMap getObstructionMap () {
+        return  parseCurrentGameForObstructions(getGame());
     }
 
-    private IBitMap parseCurrentGameForObstructions (IGame game) {
-        IBitMap obstructionMap = getBitMapSizedForCurrentGame(game);
-        game.getLevelManager().getCurrentLevel().getSprites().stream()
-                .forEach(sprite -> ifObstructsMarkSprite(obstructionMap, sprite));
+    private ISampledBitMap parseCurrentGameForObstructions (IGame game) {
+        ISampledBitMap obstructionMap = getBitMapSizedForCurrentGame(game);
+        game.getLevelManager().getCurrentLevel().getSprites()
+                    .stream()
+                    .forEach(sprite -> ifObstructsMarkSprite(obstructionMap, sprite));
         return obstructionMap;
     }
 
-    private void ifObstructsMarkSprite (IBitMap map, ISprite sprite) {
+   
+
+    
+
+    private void ifObstructsMarkSprite (ISampledBitMap map, ISprite sprite) {
         if (sprite.doesObstruct()) {
             markSpriteOnMap(map, sprite);
         }
     }
 
-    private void markSpriteOnMap (IBitMap map, ISprite sprite) {
+    private void markSpriteOnMap (ISampledBitMap map, ISprite sprite) {
         Bounds bound = sprite.getBounds();
-        int leftX = (int) Math.round(bound.getLeft());
-        int rightX = (int) Math.round(bound.getRight());
-        int topY = (int) Math.round(bound.getTop());
-        int botY = (int) Math.round(bound.getBottom());
+        
+        int leftX = (int) (sprite.getLocation().getX() / SAMPLE_RESOLUTION);
+        int rightX = (int) ((sprite.getLocation().getX() + bound.getMyWidth()) / SAMPLE_RESOLUTION);
+        int topY = (int) (sprite.getLocation().getY()/ SAMPLE_RESOLUTION);
+        int botY = (int) ((sprite.getLocation().getY() + bound.getMyHeight())/ SAMPLE_RESOLUTION);
         for (int i = leftX; i <= rightX; i++) {
             for (int j = topY; j <= botY; j++) {
                 map.set(i, j, POSITION_OBSTRUCTED);
@@ -63,10 +81,17 @@ public class ObstructionManager implements IObstructionManager {
         return myGame;
     }
 
-    private IBitMap getBitMapSizedForCurrentGame (IGame game) {
-        int gameWidth = game.getGameGridConfig().getGridWidth();
-        int gameHeight = game.getGameGridConfig().getGridHeight();
-        return new BitMap(gameWidth, gameHeight);
+    private ISampledBitMap getBitMapSizedForCurrentGame (IGame game) {
+        double realWidth = game.getLevelBounds().getWidth();
+        double realHeight = game.getLevelBounds().getHeight();
+        int xOffset = Math.floor(realWidth / SAMPLE_DOUBLE) == realWidth / SAMPLE_DOUBLE ? 0 : 1;
+        int yOffset = Math.floor(realHeight / SAMPLE_DOUBLE) == realHeight / SAMPLE_DOUBLE ? 0 : 1;
+        
+        int gameWidth = (int) game.getLevelBounds().getWidth();
+                //game.getLevelManager().getCurrentLevel().getBackgroundImageWidth();
+        int gameHeight = (int) game.getLevelBounds().getHeight();
+                //game.getLevelManager().getCurrentLevel().getBackgroundImageHeight();
+        return new SampledBitMap(gameHeight/ SAMPLE_RESOLUTION + yOffset ,gameWidth / SAMPLE_RESOLUTION + xOffset, gameHeight, gameWidth);
     }
 
 }

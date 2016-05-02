@@ -2,6 +2,7 @@ package gameauthoring.creation.factories;
 
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
+import gameauthoring.creation.subforms.AISpriteSFC;
 import gameauthoring.creation.subforms.ISubFormController;
 import gameauthoring.creation.subforms.SelectAttributeSFC;
 import gameauthoring.creation.subforms.UpgradeSFC;
@@ -41,6 +42,8 @@ public class SpriteSFCFactory extends SubFormControllerFactory<SpriteDefinition>
         }
         else if (type.equals("Cost")) {
             return new CostSFC(getMyGame());
+        }else if (type.equals("AI")){
+            return new AISpriteSFC();
         }
 
 

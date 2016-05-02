@@ -36,10 +36,10 @@ public class TabViewFactory<T extends ITabViewer> {
     public TabViewFactory (IGame game) {
         myGame = game;
         myImages = ResourceBundle.getBundle(IMAGES);
-        myTabs = ResourceBundle.getBundle(TAB_NAMES);
-        myTabViewers = ResourceBundle.getBundle(TAB_VIEWER_NAMES, LocaleManager.getInstance()
-                .getCurrentLocaleProperty().get());
+        myTabs = ResourceBundle.getBundle(TAB_NAMES, LocaleManager.getInstance().getCurrentLocaleProperty().get());
+        myTabViewers = ResourceBundle.getBundle(TAB_VIEWER_NAMES);
         myUIFactory = new BasicUIFactory();
+        myTabViewerMap = new HashMap<>();
     }
 
     /**

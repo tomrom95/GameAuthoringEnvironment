@@ -26,7 +26,7 @@ public class ProfileSFC<T extends IProfilable> implements ISubFormController<T> 
     
     private String myDefaultName;
     private String myDefaultDescription;
-    private String myDefaultImage = "Images/square.png";
+    private String myDefaultImage;
     private ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", LocaleManager
                                                                .getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle myImages = ResourceBundle.getBundle("defaults/profile_default_images");
@@ -35,7 +35,7 @@ public class ProfileSFC<T extends IProfilable> implements ISubFormController<T> 
         this.myView = new ProfileSFV();
         myDefaultName = myLabels.getString(key+myNameSuffix);
         myDefaultDescription = myLabels.getString(key+myDescriptionSuffix);
-        myDefaultImage = "Images/square.png";//myImages.getString(key+myImageSuffix);change when we upload images
+        myDefaultImage = myImages.getString(key+myImageSuffix);
 
     }
 

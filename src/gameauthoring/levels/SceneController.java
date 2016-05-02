@@ -47,6 +47,7 @@ public class SceneController {
                                  myRatio.scale(image.getHeight()), imageURL);
         myLevel.setBounds(new Bounds(image.getWidth(), image.getHeight()));
         myLevel.setBackgroundImage(background);
+        
     }
 
     /**
@@ -89,7 +90,7 @@ public class SceneController {
         return myLevel.getAddableSprites().contains(profilable);
     }
 
-    protected ScaleRatio getRatio () {
+    public ScaleRatio getRatio () {
         return myRatio;
     }
 }

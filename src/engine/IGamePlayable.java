@@ -49,4 +49,6 @@ public interface IGamePlayable extends Updateable, IAdder, IEventInternalizer {
      */
     Bounds getLevelBounds ();
 
+    boolean getSwitched ();
+
 }

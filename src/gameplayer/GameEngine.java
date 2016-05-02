@@ -11,6 +11,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import util.ScaleRatio;
 import util.TimeDuration;
@@ -25,9 +27,9 @@ import util.TimeDuration;
 public class GameEngine implements IGameEngine {
 
     private static final String PATH = "defaults/gameplayer";
-    ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
-    
     private static final int FPS = 60;
+    private ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
+
     private IGame myGame;
     private UserDisplay myDisplay;
     private LevelRenderer myRenderer;
@@ -36,28 +38,51 @@ public class GameEngine implements IGameEngine {
     private GamePlayerTools myTools;
     private Timeline myTimeline = new Timeline();
     private ScaleRatio myScale = new ScaleRatio();
+    private Stage myStage;
+    private BorderPane myPane;
 
-    public GameEngine (IGame game, BorderPane gamePane, Pane levelPane, IOInterpeter ioInterpreter) {
+    public GameEngine (IGame game,
+                       Stage stage,
+                       BorderPane gamePane,
+                       Pane levelPane,
+                       IOInterpeter ioInterpreter) {
         myGame = game;
+        myStage = stage;
         myDisplay = new UserDisplay(myGame);
         myRenderer = new InGameRenderer(game, levelPane, myDisplay.getSpriteDisplay(), myScale);
         myIOIntercepter = ioInterpreter;
         myIOIntercepter.setScale(myScale);
+        myPane = gamePane;
         initDisplays();
         createLevelView(gamePane);
         initializeTimeline();
     }
-    
-    private void initDisplays(){
+
+    private void initDisplays () {
         mySideBar = new PlayerSideBar(myGame, myRenderer, myScale);
         myTools = new GamePlayerTools(this);
     }
 
     private void createLevelView (BorderPane gamePane) {
-        gamePane.setCenter(myRenderer.getPane());
+
         gamePane.setRight(mySideBar.draw());
         gamePane.setLeft(myDisplay.draw());
         gamePane.setTop(myTools.draw());
+        gamePane.setCenter(myRenderer.getPane());
+        addRendererClip();
+    }
+
+    /**
+     * Clipping approach found here:
+     * http://www.coderanch.com/t/636524/JavaFX/java/Scaling-Node-clipping
+     */
+    private void addRendererClip () {
+        Rectangle clip = new Rectangle();
+        myRenderer.getPane().setClip(clip);
+        myRenderer.getPane().layoutBoundsProperty().addListener( (observable, oldVal, newVal) -> {
+            clip.setWidth(myScale.scale(myGame.getLevelBounds().getWidth()));
+            clip.setHeight(myScale.scale(myGame.getLevelBounds().getHeight()));
+        });
     }
 
     private void initializeTimeline () {
@@ -73,7 +98,14 @@ public class GameEngine implements IGameEngine {
         getGame().internalizeKeyEvents(myIOIntercepter.deQueueKeyEvents());
         getGame().internalizeMouseEvents(myIOIntercepter.deQueueMouseEvents());
         getGame().update(new TimeDuration(frameDuration.toMillis()));
+        if (getGame().getSwitched()) {
+            rescale(myStage.getWidth(), myStage.getHeight());
+            mySideBar = new PlayerSideBar(myGame, myRenderer, myScale);
+            myPane.setRight(mySideBar.draw());
+            
+        }
         getRenderer().render();
+        
     }
 
     @Override
@@ -89,7 +121,7 @@ public class GameEngine implements IGameEngine {
     public IGame getGame () {
         return myGame;
     }
-    
+
     private IRenderer getRenderer () {
         return myRenderer;
     }
@@ -105,20 +137,17 @@ public class GameEngine implements IGameEngine {
         myScale.setScale(min);
         myRenderer.redrawBackground();
     }
-    
-    private double rescaleX (double room) {
-        double sidebar = mySideBar.getWidth();
-        double userdisplay = myDisplay.getWidth();
-        double left = room - sidebar - userdisplay;
-        double g = myGame.getLevelManager().getCurrentLevel().getBounds().getWidth();
-        return left/g;
+
+    private double rescaleX (double width) {
+        double remaining = width - mySideBar.getWidth() - myDisplay.getWidth();
+        double levelWidth = myGame.getLevelManager().getCurrentLevel().getBounds().getWidth();
+        return remaining / levelWidth;
     }
 
-    private double rescaleY (double room) {
-        double toolbar = myTools.getHeight();
-        double left = room - toolbar;
-        double g = myGame.getLevelManager().getCurrentLevel().getBounds().getHeight();
-        return left/g;
+    private double rescaleY (double height) {
+        double left = height - myTools.getHeight();
+        double levelHeight = myGame.getLevelManager().getCurrentLevel().getBounds().getHeight();
+        return left / levelHeight;
     }
 
 }

@@ -2,6 +2,7 @@ package gameauthoring.creation.factories;
 
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
+import engine.definitions.moduledef.AIPatherDefinition;
 import engine.definitions.moduledef.ConstantMoverDefinition;
 import engine.definitions.moduledef.MovementDefinition;
 import engine.definitions.moduledef.PathMoverDefinition;
@@ -36,7 +37,7 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
     public ISubFormControllerSprite createSubFormController (String type, Object ... params) {
         if (type.equals("SMARTAIMOVER")) {
 
-            return new SmartAIMovementSFC();
+            return new SmartAIMovementSFC(getMyGame());
         }
         else if (type.equals("STATICMOVER")) {
             return new StaticMoverSFC();
@@ -76,6 +77,8 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
         }else if (movDef instanceof PathMoverDefinition){
             return(new PathMoverSFC());
             
+        } else if (movDef instanceof AIPatherDefinition){
+            return (new SmartAIMovementSFC(getMyGame()));
         }
         throw new ReflectionException("No defined movement SFC matches given definition");
     }
