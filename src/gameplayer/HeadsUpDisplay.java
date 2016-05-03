@@ -11,14 +11,14 @@ import javafx.scene.text.Text;
 /**
  * Game player HUD that displays the user information (TODO)
  * and shows all the global attributes, updating automatically
- * 
+ *
  * @author Tommy
  *
  */
 public class HeadsUpDisplay extends SizeableGlyph {
 
     private IGame myGame;
-   
+
     public HeadsUpDisplay (IGame game) {
         myGame = game;
     }
@@ -35,7 +35,7 @@ public class HeadsUpDisplay extends SizeableGlyph {
 
     /**
      * TODO create user information
-     * 
+     *
      * @param container
      */
     private void addUser (VBox container) {
@@ -46,7 +46,7 @@ public class HeadsUpDisplay extends SizeableGlyph {
 
     /**
      * Add global attributes to the HUD
-     * 
+     *
      * @param container
      */
     private void addAttributes (VBox container) {
@@ -60,7 +60,7 @@ public class HeadsUpDisplay extends SizeableGlyph {
 
     /**
      * Adds an attribute cell based on the global attribute
-     * 
+     *
      * @param container
      * @param attribute
      */

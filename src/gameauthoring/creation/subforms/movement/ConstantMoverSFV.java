@@ -1,20 +1,19 @@
 package gameauthoring.creation.subforms.movement;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
-import util.StringParser;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import splash.LocaleManager;
 
 
 /**
  * View representing a sub form that creates the information required to build a constant mover
  * module
- * 
+ *
  * @author Joe Lilien
  * @author Dhrumil
  *

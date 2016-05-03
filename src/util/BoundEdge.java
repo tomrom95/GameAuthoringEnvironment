@@ -16,8 +16,6 @@ public class BoundEdge implements IBoundEdge {
         myBounds = new ArrayList<>();
         myBoundEdgeMap = new HashMap<>();
     }
-    
-
 
     @Override
     public boolean addBoundToEdge (Bounds bound) {

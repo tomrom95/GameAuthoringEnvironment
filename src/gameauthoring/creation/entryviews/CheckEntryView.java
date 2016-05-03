@@ -1,23 +1,20 @@
 package gameauthoring.creation.entryviews;
 
-import java.util.ResourceBundle;
 import javafx.beans.property.BooleanProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
-import splash.LocaleManager;
-import util.StringParser;
 
 
 /**
  * Entry box that presents a boolean true or false check box to the user
- * 
+ *
  * @author Joe Lilien
  *
  */
 public class CheckEntryView extends EntryView {
     private CheckBox myCheckBox;
- 
+
     public CheckEntryView (String label, String cssClass) {
         super(label, cssClass);
         myCheckBox = new CheckBox();
@@ -42,7 +39,7 @@ public class CheckEntryView extends EntryView {
     }
 
     public void setSelected (boolean isSelected) {
-        this.myCheckBox.setSelected(isSelected);
+        myCheckBox.setSelected(isSelected);
     }
 
     @Override

@@ -3,10 +3,8 @@ package engine.modules;
 import java.util.ArrayList;
 import java.util.List;
 import engine.IAdder;
-import engine.IGame;
 import engine.ILevel;
 import engine.Positionable;
-import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
 import engine.effects.DefaultAffectable;
 import engine.sprite.ISprite;
@@ -37,7 +35,7 @@ public class SpawningModule extends DefaultAffectable implements IModule {
         waves.stream().forEachOrdered(p -> myWaves.add(p.create()));
         myWaveSet.setWaveList(myWaves);
         myWaveSet.updateCurrentWave();
-        if(myWaveSet.getCurrentWave() != null){
+        if (myWaveSet.getCurrentWave() != null) {
             level.getWaveSetManager().addWaveSet(myWaveSet);
         }
 

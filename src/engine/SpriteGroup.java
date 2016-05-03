@@ -28,7 +28,7 @@ public class SpriteGroup implements ISpriteGroup, IProfilable {
     public SpriteGroup () {
         myProfile = new Profile();
     }
-    
+
     public SpriteGroup (SpriteDefinition def, IProfile profile) {
         setSpriteDefinitions(new ArrayList<>(Arrays.asList(def)));
         myProfile = profile;
@@ -39,19 +39,19 @@ public class SpriteGroup implements ISpriteGroup, IProfilable {
         myProfile = profile;
         System.out.println(spriteDefs.toString());
     }
+
     public SpriteGroup (List<SpriteDefinition> spriteDefs) {
         setSpriteDefinitions(spriteDefs);
         myProfile = new Profile();
     }
-    
 
     public List<SpriteDefinition> getSpriteDefinitions () {
         return mySpriteDefinitions;
     }
 
-    //TODO: watch out for weird behavior with this change
+    // TODO: watch out for weird behavior with this change
     public void setSpriteDefinitions (List<SpriteDefinition> sprites) {
-        mySpriteDefinitions = sprites;      
+        mySpriteDefinitions = sprites;
         mySpriteTypes = new ArrayList<>();
         for (SpriteDefinition s : mySpriteDefinitions) {
             mySpriteTypes.add(s.getSpriteType());

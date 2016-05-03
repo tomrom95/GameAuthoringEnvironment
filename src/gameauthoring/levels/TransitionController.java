@@ -6,7 +6,7 @@ import engine.INextLevelManager;
 /**
  * Defines the action of the transition view (defines which levels are proceeded to upon end
  * conditions)
- * 
+ *
  * @author RyanStPierre
  *
  */

@@ -1,3 +1,8 @@
-IGameEngine - getGame , needed the game to re-launch editing
-
-Drawable needs more info
+# (G)itDepends API Changes
+* Our APIs largely met our needs over the course of the project. No major re-works of the APIs were required, simply additions and type changes as the realities of what our engine and front end needed at certain points became more clear. 
+* As concrete examples, we had to add to our ISprite classes several new modules to implement new desired behavior. For one, we enabled access to the internally stored IStatus module interface in order to support arbitrary checking of state flags for the sprite. Obstruction and goal status for AI pathing were enabled by this change. 
+* We did clean up the input into our conditions by creating a notion of an IEventPackage, which could hold multiple events and effects, instead of restricting ourselves to simple singular inputs. 
+* Another example of a concrete change that was added to support additional functionality was the creation of an INextLevelManager and the addition of an accesor to this interface in the ILevel interface. We discovered that we preferred to keep using our conditions and events framework to make things happen across the engine, so we simply created new modules that implemented our IModule interface, and were constructed with necessary state to cause their effects upon receiving an internal GameEvent
+* Definition classes now take in an instance of a definition into their interface methods. 
+* The addition of the IWaveSetManager to our ILevel interface is yet another example of adding to our existing interfaces in order to get new and powerful functionality
+* To support pathing AI, we had to create a new object that resided in the game that could examine game state and send back a representation of the obstructed areas. This was supported by adding methods to the interfaces that controlled access to these framemwork classes, exposing an instance of an IObstructionManager interface which would allow other components around the game to query the current obstructable state of the level. 

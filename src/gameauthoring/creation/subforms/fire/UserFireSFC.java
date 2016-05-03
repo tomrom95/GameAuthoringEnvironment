@@ -8,7 +8,7 @@ import gameauthoring.creation.subforms.ISubFormView;
 
 
 /**
- * 
+ *
  * @author josephtimko1
  *
  */
@@ -32,7 +32,7 @@ public class UserFireSFC extends RemovableFireSFC {
         initializeFields();
 
     }
-  
+
     public UserFireSFC (IGame game,
                         FiringSFC myFiringSFC,
                         UserFirerDefinition userFirerDefinition) {

@@ -1,7 +1,6 @@
 package gameauthoring.creation.subforms.movement;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.SpriteGroup;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
@@ -11,6 +10,7 @@ import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import splash.LocaleManager;
 
 
 public class TrackingMoverSFV extends SubFormView implements ITrackingMoverSFV {

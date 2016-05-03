@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 /**
  * Interface to allow for storage and access of Form Data objects, essentially String, List
  * <String> pairs
- * 
+ *
  * @author Joe Lilien
  *
  */
@@ -31,7 +31,7 @@ public interface IFormDataManager {
     /**
      * Convenience method for when key has only one associated value String
      * (which is true in most cases).
-     * 
+     *
      * @param key
      * @return
      */

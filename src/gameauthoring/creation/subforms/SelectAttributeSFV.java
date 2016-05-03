@@ -2,7 +2,6 @@ package gameauthoring.creation.subforms;
 
 import java.util.List;
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.creation.entryviews.MultiChoiceEntryView;
 import gameauthoring.shareddata.IDefinitionCollection;
@@ -15,11 +14,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import splash.LocaleManager;
 
 
 /**
  * Implementation of ISelectAttributeSFV with MultiChoiceEntryView display
- * 
+ *
  * @author Joe Lilien
  *
  */
@@ -50,21 +50,21 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
 
     private void setResoureBunldeAndKey () {
         myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
-                                           .getInstance().getCurrentLocaleProperty().get());
+                .getInstance().getCurrentLocaleProperty().get());
         myAttributesKey = myLabel.getString("AttributesKey");
         mySelectedKey = myLabel.getString("SelectedAttributesKey");
     }
 
     @Override
     public Node draw () {
-        return this.defaultDisplayWithNode(myContainer);
+        return defaultDisplayWithNode(myContainer);
     }
 
     @Override
     public List<AttributeDefinition> getSelectedAttributes () {
         return mySelectedView.getListView().getItems();
     }
-    
+
     @Override
     public void setSelectedAttributes (List<AttributeDefinition> items) {
         mySelectedView.getListView().setItems(FXCollections.observableArrayList(items));
@@ -72,7 +72,8 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
 
     @Override
     protected void initView () {
-        mySelectedView.getListView().setPlaceholder(new Label(myLabel.getString("DragAttributeLabel")));
+        mySelectedView.getListView()
+                .setPlaceholder(new Label(myLabel.getString("DragAttributeLabel")));
         mySelectedView.getListView().setOrientation(Orientation.HORIZONTAL);
         mySelectedView.getListView()
                 .setCellFactory(c -> new DraggableRemoveCellImage<AttributeDefinition>(myAttributeSelector
@@ -80,7 +81,9 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
         myAttributeSelector.getListView()
                 .setCellFactory(c -> new DraggableAddCell<AttributeDefinition>(mySelectedView
                         .getListView()));
-        myContainer = getMyUIFactory().makeHBox(20, Pos.CENTER, myAttributeSelector.draw(), mySelectedView.draw());
+        myContainer =
+                getMyUIFactory().makeHBox(20, Pos.CENTER, myAttributeSelector.draw(),
+                                          mySelectedView.draw());
     }
 
 }

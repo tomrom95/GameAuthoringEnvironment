@@ -18,7 +18,7 @@ import util.StringParser;
 
 /**
  * Displays the tools for the user during game play
- * 
+ *
  * @author RyanStPierre
  *
  */

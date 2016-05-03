@@ -9,8 +9,6 @@ import gameauthoring.creation.subforms.MakeAttributeSFC;
 
 public class AttributeSFCFactory extends SubFormControllerFactory<AttributeDefinition> {
 
-    
-    
     public AttributeSFCFactory (IGame game) {
         super(game);
     }

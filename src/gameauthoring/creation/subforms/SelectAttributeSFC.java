@@ -7,7 +7,7 @@ import gameauthoring.shareddata.IDefinitionCollection;
 
 /**
  * Controller to deal with user attribute selection for a sprite definition
- * 
+ *
  * @author Joe Lilien, Jeremy Schreck
  *
  */

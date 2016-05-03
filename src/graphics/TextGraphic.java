@@ -17,20 +17,20 @@ import util.RGBColor;
  * text object
  *
  */
-public class TextGraphic implements IGraphic{
-	
+public class TextGraphic implements IGraphic {
+
     private static final String DEFAULT_PATH = "resource/DefaultGraphics";
     private StringProperty myText;
     private StringProperty myFamily;
     private DoubleProperty myFontSize;
     private ObjectProperty<RGBColor> myFill;
-    
-    public TextGraphic (String text, double fontSize) { 
+
+    public TextGraphic (String text, double fontSize) {
         myText = new SimpleStringProperty(text);
         myFontSize = new SimpleDoubleProperty(fontSize);
         setDefaults();
     }
-    
+
     private void setDefaults () {
         ResourceBundle defaults = ResourceBundle.getBundle(DEFAULT_PATH);
         myFamily = new SimpleStringProperty(defaults.getString("DefaultFont"));
@@ -43,29 +43,29 @@ public class TextGraphic implements IGraphic{
         myFamily = new SimpleStringProperty(font);
         myFill = new SimpleObjectProperty<>(fill);
     }
-    
+
     @Override
     public Node getVisualRepresentation (IGraphicFactory factory) {
         return factory.getVisual(this);
     }
-    
+
     public StringProperty getTextProperty () {
         return myText;
     }
-    
+
     public StringProperty getFamilyProperty () {
         return myFamily;
     }
-    
+
     public DoubleProperty getFontSizeProperty () {
         return myFontSize;
     }
-    
+
     public ObjectProperty<RGBColor> getFillProperty () {
         return myFill;
     }
 
-    //TODO extrapolate bounds
+    // TODO extrapolate bounds
     @Override
     public DoubleProperty getWidth () {
         return new SimpleDoubleProperty(0);

@@ -6,10 +6,10 @@ import gameauthoring.util.Glyph;
 /**
  * An interface for three main tab view classes
  * Implemented by GameTabViewer, CharTabViewer, and SceneTabViewer
- * 
+ *
  * @author Dhrumil
  * @author Jin An
- * 
+ *
  *
  */
 public interface ITabViewer extends Glyph {
@@ -21,7 +21,8 @@ public interface ITabViewer extends Glyph {
 
     /**
      * Rescales the layout based on the given parameters
-     * @param width 
+     *
+     * @param width
      * @param height
      */
     void rescale (double width, double height);

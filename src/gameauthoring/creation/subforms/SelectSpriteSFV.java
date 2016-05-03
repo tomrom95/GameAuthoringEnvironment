@@ -1,14 +1,7 @@
 package gameauthoring.creation.subforms;
 
-import javafx.collections.FXCollections;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Accordion;
-import javafx.scene.control.Label;
-import javafx.scene.control.TitledPane;
-import javafx.scene.layout.HBox;
-import java.util.*;
-import splash.LocaleManager;
+import java.util.ArrayList;
+import java.util.List;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.MultiChoiceEntryView;
 import gameauthoring.shareddata.DefinitionCollection;
@@ -16,11 +9,18 @@ import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.DraggableAddCell;
 import gameauthoring.util.DraggableRemoveCell;
+import javafx.collections.FXCollections;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Accordion;
+import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
+import javafx.scene.layout.HBox;
 
 
 /**
  * Implementation of ISelectSpriteSFV using accoridon and MultiChoiceEntryView
- * 
+ *
  * @author JoeLilien
  *
  */
@@ -31,7 +31,6 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
     private List<MultiChoiceEntryView<SpriteDefinition>> myViews;
     private List<DefinitionCollection<SpriteDefinition>> mySprites;
     private MultiChoiceEntryView<SpriteDefinition> mySelected;
-
 
     public SelectSpriteSFV (List<DefinitionCollection<SpriteDefinition>> sprites) {
         setMyTitle(MY_TITLE_KEY);
@@ -49,13 +48,16 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
         myAccordion = getMyUIFactory().makeAccordion(300);
         for (IDefinitionCollection<SpriteDefinition> def : mySprites) {
             MultiChoiceEntryView<SpriteDefinition> myView =
-                    new MultiChoiceEntryView<>(getMyLabels().getString(def.getTitleKey()), def.getItems(), 300, 400,
+                    new MultiChoiceEntryView<>(getMyLabels().getString(def.getTitleKey()),
+                                               def.getItems(), 300, 400,
                                                AuthoringView.DEFAULT_ENTRYVIEW);
             myView.getListView()
                     .setCellFactory(c -> new DraggableAddCell<SpriteDefinition>(mySelected
                             .getListView()));
             myViews.add(myView);
-            TitledPane tp = new TitledPane(getMyLabels().getString(def.getTitleKey()), myView.getListView());
+            TitledPane tp =
+                    new TitledPane(getMyLabels().getString(def.getTitleKey()),
+                                   myView.getListView());
             myAccordion.getPanes().add(tp);
         }
         mySelected.getListView()
@@ -66,7 +68,7 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
 
     /**
      * Returns a list of selected sprites to be added to the given group
-     * 
+     *
      * @return
      */
     @Override
@@ -81,8 +83,7 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
 
     @Override
     public Node draw () {
-        return this.defaultDisplayWithNode(myContainer);
+        return defaultDisplayWithNode(myContainer);
     }
-   
 
 }

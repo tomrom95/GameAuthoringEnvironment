@@ -10,38 +10,41 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import util.Coordinate;
 
+
 /**
  * Creates the action menu for editing a sprite. This uses a
  * resource file and reflection to create the menu items and
  * their actions
+ *
  * @author Tommy
  *
  */
 public class SpriteContextMenu {
-    
+
     private AuthoringRenderer levelView;
     private ISprite mySprite;
     private SpriteController myController;
     private ResourceBundle myResources;
-    
-    public SpriteContextMenu (AuthoringRenderer renderer, SpriteController controller,
+
+    public SpriteContextMenu (AuthoringRenderer renderer,
+                              SpriteController controller,
                               ISprite sprite) {
         levelView = renderer;
         myController = controller;
         mySprite = sprite;
         myResources = ResourceBundle.getBundle("resource/SpriteContextMenu");
     }
-    
-    public ContextMenu createActionMenu (){
+
+    public ContextMenu createActionMenu () {
         ContextMenu menu = new ContextMenu();
         Enumeration<String> keys = myResources.getKeys();
-        while(keys.hasMoreElements()){
+        while (keys.hasMoreElements()) {
             menu.getItems().add(createMenuItem(keys.nextElement()));
         }
-        
+
         return menu;
     }
-    
+
     private MenuItem createMenuItem (String name) {
         MenuItem newItem = new MenuItem(myResources.getString(name));
 
@@ -54,7 +57,7 @@ public class SpriteContextMenu {
         return newItem;
 
     }
-    
+
     private void callMethod (Method method) {
         try {
             method.invoke(this);
@@ -68,11 +71,10 @@ public class SpriteContextMenu {
         myController.deleteSprite(mySprite);
         levelView.render();
     }
-    
+
     public void createPath () {
         Coordinate point = mySprite.getLocation();
         myController.createNewPath(mySprite, point, levelView.getPane());
     }
-    
 
 }

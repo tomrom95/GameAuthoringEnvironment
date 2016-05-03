@@ -11,7 +11,6 @@ public class DraggableRemoveCell<T extends IProfilable> extends DraggableCell<T>
     public DraggableRemoveCell (Node target) {
         setTarget(target);
     }
-    
 
     @Override
     public void setOnDragOver (DragEvent e) {

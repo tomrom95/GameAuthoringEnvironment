@@ -3,7 +3,6 @@ package gameauthoring.creation.entryviews;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import gameauthoring.util.ErrorMessage;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -15,14 +14,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import splash.LocaleManager;
 
 
 /**
  * EntryView allows users to select and view an image to be associated with any object they are
  * creating
- * 
- * 
- * 
+ *
+ *
+ *
  * @author Joe Lilien
  *
  */

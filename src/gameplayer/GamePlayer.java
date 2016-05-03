@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 /**
  * This class handles the display of a game, and allows for basic high-level interaction from a
  * user.
- * 
+ *
  * @author David Maydew
  *
  */

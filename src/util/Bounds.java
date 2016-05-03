@@ -2,14 +2,12 @@ package util;
 
 /**
  * Class to represent rectangular bounds for collision checking
- * 
+ *
  * @author RyanStPierre
  *
  */
 public class Bounds {
 
-   
-    
     /**
      * myX and myY refer to TOP-LEFT of bounds
      */
@@ -17,9 +15,9 @@ public class Bounds {
     private double myY;
     private double myWidth;
     private double myHeight;
-    
+
     /**
-     * 
+     *
      * @param x - center x
      * @param y - center y
      * @param width
@@ -27,12 +25,12 @@ public class Bounds {
      */
 
     public Bounds (double x, double y, double width, double height) {
-        myX = x - width/2;
-        myY = y - height/2;
+        myX = x - width / 2;
+        myY = y - height / 2;
         myWidth = width;
         myHeight = height;
     }
-    
+
     public Bounds (double width, double height) {
         myX = 0;
         myY = 0;
@@ -66,30 +64,30 @@ public class Bounds {
     public double getRight () {
         return myX + myWidth;
     }
-    
+
     public double getHeight () {
         return myHeight;
     }
-    
-    public double getWidth (){
+
+    public double getWidth () {
         return myWidth;
     }
 
-
     public boolean contains (Coordinate coordinate) {
-        return coordinate.getX() >= getLeft() && coordinate.getX() <= getRight() 
-                && coordinate.getY() <= getBottom() && coordinate.getY() >= getTop();
+        return coordinate.getX() >= getLeft() && coordinate.getX() <= getRight() &&
+               coordinate.getY() <= getBottom() && coordinate.getY() >= getTop();
     }
 
     /**
      * Similar to {@link #contains(Coordinate)} but inclusive points 1 away
      * from the actual edge.
+     *
      * @param coordinate
      * @return
      */
     public boolean edgeBoundsContains (Coordinate coordinate) {
-        return coordinate.getX() >= getLeft() - 1 && coordinate.getX() <= getRight() + 1 
-                && coordinate.getY() <= getBottom() - 1  && coordinate.getY() >= getTop() + 1;
+        return coordinate.getX() >= getLeft() - 1 && coordinate.getX() <= getRight() + 1 &&
+               coordinate.getY() <= getBottom() - 1 && coordinate.getY() >= getTop() + 1;
     }
 
     @Override

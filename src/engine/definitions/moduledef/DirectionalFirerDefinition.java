@@ -15,7 +15,7 @@ public class DirectionalFirerDefinition extends FirerDefinition {
     private double myWaitTime;
     private double myAngle;
     private IGame myGame;
-    
+
     public DirectionalFirerDefinition (IGame game) {
         super(game);
     }

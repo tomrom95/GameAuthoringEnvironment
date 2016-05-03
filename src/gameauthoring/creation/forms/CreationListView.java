@@ -1,18 +1,18 @@
 package gameauthoring.creation.forms;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.profile.IProfilable;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import splash.LocaleManager;
 
 
 /**
  * View class for individual object lists in Object Creation Tabs
- * 
+ *
  * @author Jin An, Jeremy Schreck
  *
  */
@@ -20,7 +20,9 @@ public class CreationListView<E extends IProfilable> implements ICreationListVie
 
     private ObservableList<E> myItems;
     private ListView<E> myListView;
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    private ResourceBundle myLang =
+            ResourceBundle.getBundle("languages/labels",
+                                     LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private static final double HEIGHT = 542; // TODO: move to common resource file
 
     public CreationListView (ObservableList<E> items) {
@@ -73,6 +75,5 @@ public class CreationListView<E extends IProfilable> implements ICreationListVie
         this.myItems = items;
         myListView.setItems(items);
     }
-
 
 }

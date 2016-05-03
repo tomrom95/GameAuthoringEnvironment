@@ -9,7 +9,7 @@ import gameauthoring.creation.subforms.ISubFormView;
 /**
  * This class creates the controller to handle, manage, and interact with user data involving
  * constant movement modules
- * 
+ *
  * @author Joe Lilien
  * @author josephtimko1
  * @author Dhrumil
@@ -54,7 +54,7 @@ public class ConstantMoverSFC implements ISubFormControllerSprite {
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
         ConstantMoverDefinition movementDefinition =
-                (ConstantMoverDefinition)item.getMovementDefinition();
+                (ConstantMoverDefinition) item.getMovementDefinition();
         myView.populateWithData(movementDefinition.getOrientation(), movementDefinition.getSpeed());
     }
 

@@ -3,7 +3,6 @@ package engine.effects;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import engine.Attribute;
-import engine.AttributeType;
 import engine.IAttribute;
 import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.util.ErrorMessage;
@@ -36,7 +35,8 @@ public class EffectFactory {
                                        double val) {
         try {
             Constructor<?> constructor =
-                    effectClass.getConstructor(AttributeDefinition.class, IAttribute.class, double.class);
+                    effectClass.getConstructor(AttributeDefinition.class, IAttribute.class,
+                                               double.class);
             Object obj = constructor.newInstance(def, length, val);
             return (Effect) obj;
         }

@@ -9,10 +9,8 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import engine.IGame;
 import gameauthoring.creation.factories.TabViewFactory;
-import gameauthoring.listdisplay.GameConditionViewer;
 import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.ErrorMessage;
-import gameauthoring.waves.WaveTabViewer;
 import gameplayer.GamePlayer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -40,8 +38,8 @@ import splash.MainUserInterface;
  * gameFactory. It has Home and Save image buttons for users to easily navigate to home and save the
  * game as XML. It contains "game information", "create objects", and "build scene" tabs. These are
  * divided in order for the users to easily create their own game.
- * 
- * 
+ *
+ *
  * @author Jin An
  * @author Dhrumil
  *
@@ -65,7 +63,7 @@ public class AuthoringView implements IAuthoringView {
     private ResourceBundle myLabel;
 
     public AuthoringView () {
-        
+
         GameFactory gameFactory = new GameFactory();
         myGame = gameFactory.createGame();
         createView(myGame);
@@ -80,7 +78,7 @@ public class AuthoringView implements IAuthoringView {
         myGame = game;
         createView(myGame);
     }
-    
+
     private void createView (IGame game) {
         setResourceBundle();
         myTabFactory = new TabViewFactory<ITabViewer>(myGame);
@@ -197,7 +195,7 @@ public class AuthoringView implements IAuthoringView {
         String xml = xstream.toXML(myGame);
 
         IGame game = (IGame) xstream.fromXML(xml);
-        GamePlayer player = new GamePlayer(game);
+        new GamePlayer(game);
     }
 
     private File saveFile () {
@@ -217,8 +215,8 @@ public class AuthoringView implements IAuthoringView {
     private TabPane createAllTabs () {
         TabPane tabpane = new TabPane();
         tabpane.getStyleClass().add("authoringTabs");
-        //myTabFactory = new TabViewFactory<ITabViewer>(myGame);
-        //myTabViewers = myTabFactory.createTabViewers();
+        // myTabFactory = new TabViewFactory<ITabViewer>(myGame);
+        // myTabViewers = myTabFactory.createTabViewers();
         tabpane.getTabs().addAll(myTabFactory.createTabs());
         return tabpane;
     }

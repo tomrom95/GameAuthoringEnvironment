@@ -29,7 +29,7 @@ public abstract class Effect implements IEffect {
      */
     public Effect (AttributeDefinition def, IAttribute effectLength, double alteringValue) {
         myAlteringAttributeDefinition = def;
-        if(def!=null){
+        if (def != null) {
             myAttributeType = def.getAttributeType();
         }
         myEffectLengthAttribute = effectLength;
@@ -73,7 +73,7 @@ public abstract class Effect implements IEffect {
     public AttributeType getAttributeType () {
         return myAttributeType;
     }
-    
+
     public AttributeDefinition getAttributeDefinition () {
         return myAlteringAttributeDefinition;
     }

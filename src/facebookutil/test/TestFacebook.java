@@ -16,16 +16,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+
 /**
  * This class demos a working example of how the utility posts directly to Facebook
- * 
+ *
  *
  */
-public class TestFacebook extends Application{
-    
+public class TestFacebook extends Application {
+
     private JavaSocial mySocial;
     private IUser myUser;
-    
+
     private App myApp;
 
     @Override
@@ -48,7 +49,7 @@ public class TestFacebook extends Application{
 
     private Scene testLogin () {
         VBox box = new VBox(5);
-        createFields (box);
+        createFields(box);
         return new Scene(box, 500, 500);
     }
 
@@ -70,7 +71,8 @@ public class TestFacebook extends Application{
         Button button = new Button("Add high score");
         button.setOnMouseClicked(e -> {
             int score = Integer.valueOf(field.getText());
-            mySocial.getHighScoreBoard().addNewScore(gameName.getText(), mySocial.getActiveUser(), score);
+            mySocial.getHighScoreBoard().addNewScore(gameName.getText(), mySocial.getActiveUser(),
+                                                     score);
         });
         box.getChildren().add(button);
         return box;
@@ -83,7 +85,7 @@ public class TestFacebook extends Application{
         Button button = new Button("Challenge");
         button.setOnMouseClicked(e -> {
             myUser = mySocial.getActiveUser();
-            //myUser.getProfiles().getActiveProfile().challenge(myUser, myUser, field.getText());
+            // myUser.getProfiles().getActiveProfile().challenge(myUser, myUser, field.getText());
         });
         box.getChildren().add(button);
         return box;
@@ -93,7 +95,7 @@ public class TestFacebook extends Application{
         HBox box = new HBox(5);
         TextField field = new TextField("Game name");
         ComboBox<ScoreOrder> combo = new ComboBox<>();
-        for (ScoreOrder s: ScoreOrder.values()) {
+        for (ScoreOrder s : ScoreOrder.values()) {
             combo.getItems().add(s);
         }
         box.getChildren().addAll(field, combo);
@@ -107,12 +109,12 @@ public class TestFacebook extends Application{
         box.getChildren().add(button);
         return box;
     }
-    
+
     private Node makeMyHighScorePost () {
         HBox box = new HBox(5);
         TextField field = new TextField("Game name");
         ComboBox<ScoreOrder> combo = new ComboBox<>();
-        for (ScoreOrder s: ScoreOrder.values()) {
+        for (ScoreOrder s : ScoreOrder.values()) {
             combo.getItems().add(s);
         }
         box.getChildren().addAll(field, combo);
@@ -143,7 +145,7 @@ public class TestFacebook extends Application{
         box.getChildren().add(button);
         return box;
     }
-    
+
     private Node makeNotify () {
         HBox box = new HBox(5);
         TextField field = new TextField();

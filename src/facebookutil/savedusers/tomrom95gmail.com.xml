@@ -6,6 +6,10 @@
   <myScoreBoard>
     <myBoard>
       <entry>
+        <string>Farmville</string>
+        <int>30</int>
+      </entry>
+      <entry>
         <string>game1</string>
         <int>100000</int>
       </entry>

@@ -1,13 +1,7 @@
 package engine.aipathing;
 
 import util.AutoTrueBitMap;
-import util.BitMap;
-import util.Coordinate;
 import util.IBitMap;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import engine.aipathing.GameGraphFactory;
 
 
 public class TestPath {
@@ -26,15 +20,15 @@ public class TestPath {
             }
         }
 
-        //INodeGraphFactory tester = new GameGraphFactory(obstructionMap);
-        //INodeGraph testGraph = tester.getConstructedGraph();
-        
+        // INodeGraphFactory tester = new GameGraphFactory(obstructionMap);
+        // INodeGraph testGraph = tester.getConstructedGraph();
+
     }
-    
-    private static void printArray(boolean[][] input){
-        for(int i = 0; i < input.length; i++){
-            for(int j = 0; j < input[0].length; j++){
-                System.out.print(input[i][j] + " ");
+
+    private static void printArray (boolean[][] input) {
+        for (boolean[] element : input) {
+            for (int j = 0; j < input[0].length; j++) {
+                System.out.print(element[j] + " ");
             }
             System.out.println();
         }

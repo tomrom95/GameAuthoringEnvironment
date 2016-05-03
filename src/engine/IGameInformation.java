@@ -1,6 +1,5 @@
 package engine;
 
-import graphics.ImageGraphic;
 import javafx.beans.property.StringProperty;
 
 
@@ -39,32 +38,32 @@ public interface IGameInformation {
 
     /**
      * set the author of the game
-     * 
+     *
      * @param author
      */
     void setAuthor (String author);
 
     /**
      * set the date created of the game
-     * 
+     *
      * @param date
      */
     void setDateCreated (String date);
 
     /**
      * set the name of the game
-     * 
+     *
      * @param name
      */
     void setName (String name);
 
     /**
      * set the splashscreen of the game
-     * 
+     *
      * @param splashScreen
      */
     void setSplashScreen (String url);
-    
-    StringProperty getSplashScreenURLProperty();
+
+    StringProperty getSplashScreenURLProperty ();
 
 }

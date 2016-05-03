@@ -2,6 +2,7 @@ package util;
 
 /**
  * Scaling class
+ *
  * @author RyanStPierre
  *
  */

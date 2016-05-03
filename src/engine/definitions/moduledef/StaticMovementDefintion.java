@@ -4,6 +4,7 @@ import engine.Positionable;
 import engine.modules.IMovementModule;
 import engine.modules.StaticMover;
 
+
 /**
  * This class represents the definition for a stationary movement module
  *
@@ -11,14 +12,13 @@ import engine.modules.StaticMover;
 public class StaticMovementDefintion extends ConstantMoverDefinition {
 
     private static final double IMMOVABLE_SPEED = 0;
-    
+
     private double mySpeed = IMMOVABLE_SPEED;
 
     @Override
     public IMovementModule create (Positionable parent) {
-    	setSpeed(mySpeed);
+        setSpeed(mySpeed);
         return new StaticMover(parent);
     }
 
-  
 }

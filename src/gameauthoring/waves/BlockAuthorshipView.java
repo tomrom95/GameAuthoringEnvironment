@@ -1,13 +1,12 @@
 package gameauthoring.waves;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
+import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.Glyph;
 import gameauthoring.util.UIFactory;
-import gameauthoring.util.BasicUIFactory;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -25,7 +24,7 @@ import util.StringParser;
 
 /**
  * Allows the user to create wave blocks to use in the making of waves
- * 
+ *
  * @author RyanStPierre
  *
  */
@@ -35,7 +34,9 @@ public class BlockAuthorshipView implements Glyph {
     private static final int SEC_TO_MILLI = 1000;
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     private ResourceBundle mySize = ResourceBundle.getBundle("defaults/wave_tab_size");
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    private ResourceBundle myLang =
+            ResourceBundle.getBundle("languages/labels",
+                                     LocaleManager.getInstance().getCurrentLocaleProperty().get());
 
     private UIFactory myFactory = new BasicUIFactory();
 
@@ -62,7 +63,8 @@ public class BlockAuthorshipView implements Glyph {
     }
 
     private void factoryGenerate (IGame game) {
-        mySpriteChoices = myFactory.createCombo(game.getAuthorshipData().getAllCreatedSpritesAsList());
+        mySpriteChoices =
+                myFactory.createCombo(game.getAuthorshipData().getAllCreatedSpritesAsList());
         mySpriteChoices.setOnMouseClicked(e -> repopulate(game));
         mySpriteChoices.setMinWidth(Double.parseDouble(mySize.getString("ComboWidth")));
         myCount = myFactory.createTextField(Double.parseDouble(mySize.getString("TextWidth")));

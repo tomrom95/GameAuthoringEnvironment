@@ -1,7 +1,6 @@
 package gameauthoring.creation.subforms.events;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.profile.ProfileDisplay;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
@@ -12,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import splash.LocaleManager;
 
 
 public class EventSFV extends SubFormView implements IEventSFV {
@@ -57,9 +57,9 @@ public class EventSFV extends SubFormView implements IEventSFV {
     @Override
     protected void initView () {
         double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
-        myContainer = getMyUIFactory().makeHBox(spacing, 
-                                                Pos.CENTER, 
-                                                myEvents.draw(), 
+        myContainer = getMyUIFactory().makeHBox(spacing,
+                                                Pos.CENTER,
+                                                myEvents.draw(),
                                                 myRemove.draw());
     }
 

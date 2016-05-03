@@ -19,7 +19,7 @@ import javafx.beans.property.StringProperty;
 public class Profile implements IProfile {
 
     private String DEFAULT_IMAGE_NAME = "images/Square.png";
-    
+
     private StringProperty myName;
     private StringProperty myDescription;
     private ImageGraphic myImage;
@@ -28,15 +28,15 @@ public class Profile implements IProfile {
     private static final double DEFAULT_SIZE = 100;
     private BooleanProperty imageChange;
 
-
     public Profile () {
-        init("<Name>", "<Description>", new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
+        init("<Name>", "<Description>",
+             new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
     }
 
     public Profile (String name) {
         init(name, "", new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
     }
-    
+
     public Profile (AttributeType type) {
         init(type.getType(), "", new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_IMAGE_NAME));
     }
@@ -49,10 +49,10 @@ public class Profile implements IProfile {
         init(name, description, new ImageGraphic(DEFAULT_SIZE, DEFAULT_SIZE, url));
     }
 
-    public Profile (String name, String description, String url, double width, double height){
+    public Profile (String name, String description, String url, double width, double height) {
         init(name, description, new ImageGraphic(width, height, url));
     }
-    
+
     public Profile (String name, String description, ImageGraphic graphic) {
         init(name, description, graphic);
 

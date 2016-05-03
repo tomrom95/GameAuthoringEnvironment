@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 
 /**
  * A wrapper for an object that holds a list of items
- * 
+ *
  * @author Jeremy Schreck, Joe Lilien
  *
  * @param <E> The type of item that this class holds in its list
@@ -20,7 +20,7 @@ public class DefinitionCollection<E> implements IDefinitionCollection<E> {
     public DefinitionCollection (String titleKey) {
         this(titleKey, FXCollections.observableArrayList());
     }
-    
+
     public DefinitionCollection (String titleKey, ObservableList<E> items) {
         myTitleKey = titleKey;
         myItems = items;
@@ -40,7 +40,7 @@ public class DefinitionCollection<E> implements IDefinitionCollection<E> {
     public void addItem (E item) {
         myItems.add(item);
     }
-    
+
     @Override
     public void removeItem (E item) {
         myItems.remove(item);

@@ -2,9 +2,11 @@ package facebookutil.scores;
 
 import java.util.Comparator;
 
+
 /**
  * Enum to help sort the high score board by various
  * fields
+ *
  * @author Tommy
  *
  */
@@ -25,6 +27,7 @@ public enum ScoreOrder {
 
     /**
      * Get the comparator to use in list sorting
+     *
      * @param reverse - true if you want to reverse the order
      * @return
      */
@@ -34,6 +37,7 @@ public enum ScoreOrder {
 
     /**
      * Compare by the points
+     *
      * @return
      */
     private static Comparator<Score> compareScore () {
@@ -43,6 +47,7 @@ public enum ScoreOrder {
 
     /**
      * Compare the user's emails in alphabetical order
+     *
      * @return
      */
     private static Comparator<Score> compareAlphabetical () {
@@ -52,15 +57,16 @@ public enum ScoreOrder {
 
     /**
      * Compare the date the user achieved the score
+     *
      * @return
      */
     private static Comparator<Score> compareDate () {
         return (Score s1, Score s2) -> s1.getDate().compareTo(s2.getDate());
     }
-    
+
     @Override
     public String toString () {
-        return this.name().replace("_", " ").toLowerCase();
+        return name().replace("_", " ").toLowerCase();
     }
 
 }

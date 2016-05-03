@@ -56,7 +56,7 @@ public class AuthoringRenderer extends LevelRenderer {
 
     private void updateExistingNodeLocations () {
         mySpriteNodeMap.keySet().stream().forEach(drawable -> {
-            this.draw(mySpriteNodeMap.get(drawable), drawable);
+            draw(mySpriteNodeMap.get(drawable), drawable);
             mySpriteNodeMap.get(drawable).setVisible(true);
         });
 

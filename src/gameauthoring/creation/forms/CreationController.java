@@ -1,6 +1,8 @@
 package gameauthoring.creation.forms;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 import engine.AuthorshipData;
 import engine.IGame;
 import engine.profile.IProfilable;
@@ -14,7 +16,7 @@ import splash.LocaleManager;
 
 /**
  * This class is the controller for a CreationView containing a FormView and CreationListView
- * 
+ *
  * @author Jeremy Schreck, Joe Lilien
  *
  * @param <T> The type of object to be created and stored -- ex: SpriteDefinition,
@@ -36,7 +38,7 @@ public abstract class CreationController<T extends IProfilable> {
 
     /**
      * Constructs a CreationController
-     * 
+     *
      * @param key The creation controller's key which is used to get its title from a resource file
      * @param subFormStrings Strings specifying which subforms to create
      * @param game The current game object
@@ -61,14 +63,14 @@ public abstract class CreationController<T extends IProfilable> {
     /**
      * Gets the corresponding definition collection in authorship data to connect the creation
      * controller
-     * 
+     *
      * @return The definition collection
      */
     protected abstract DefinitionCollection<T> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData);
 
     /**
      * Subclasses specify which SFC factory to use to create the sub forms
-     * 
+     *
      * @param game The current game object
      * @return The SFC factory class to use to instantiate SubFormControllers
      */
@@ -89,7 +91,7 @@ public abstract class CreationController<T extends IProfilable> {
 
     /**
      * Generate list of subformviews from the list of subformcontrollers
-     * 
+     *
      * @param subFormControllers The subformcontrollers
      * @return The list of subformviews
      */
@@ -104,7 +106,7 @@ public abstract class CreationController<T extends IProfilable> {
 
     /**
      * Save the item currently being edited in the form
-     * 
+     *
      */
     private void saveItem () {
         for (ISubFormController<T> subFormController : getMySubFormControllers()) {
@@ -133,7 +135,7 @@ public abstract class CreationController<T extends IProfilable> {
 
     /**
      * Method handler when user clicks "new" object
-     * 
+     *
      */
     protected T newItem () {
         T item = createBlankItem();
@@ -158,14 +160,14 @@ public abstract class CreationController<T extends IProfilable> {
 
     /**
      * Method to be overwritten by subclasses that creates a blank object of type T
-     * 
+     *
      * @return The item
      */
     protected abstract T createBlankItem ();
 
     /**
      * Method called when user clicks a cell in the list view to edit that item
-     * 
+     *
      * @param item The item contained in the cell that was clicked
      */
     private void showAndEdit () {
@@ -179,7 +181,7 @@ public abstract class CreationController<T extends IProfilable> {
 
     /**
      * Add the given item to the list of available items in the model
-     * 
+     *
      * @param item The item to add
      */
     private void addItem (T item) {

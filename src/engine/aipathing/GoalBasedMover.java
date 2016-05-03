@@ -18,12 +18,12 @@ import util.TimeDuration;
 /**
  * This mover will use node based graph search and will simply try to move
  * as far as possible along the returned path each turn
- * 
+ *
  * @author jonathanim
  *
  */
 public class GoalBasedMover extends Mover {
-    
+
     private INodeGraphPather myPather;
     private IGame myGame;
     private IOrientationFinder myRotationStrategy;
@@ -71,12 +71,11 @@ public class GoalBasedMover extends Mover {
         return curLoc;
     }
 
-
     /**
      * Will generate a coordinate starting from the first coordinate
      * in the direction of the second coordinate as far as distance
      * will allow
-     * 
+     *
      * @param start coordinate
      * @param end coordinate
      * @param distance how far to move along vector from start to end coordinate
@@ -101,7 +100,7 @@ public class GoalBasedMover extends Mover {
      * goal to try to path to, we could later if this framework
      * is not too slow chose instead to run the pather on each
      * possible goal and pick the one that is closest in actual distance
-     * 
+     *
      * @return the coordinate
      */
     private Coordinate findNearestGoal () {
@@ -157,7 +156,7 @@ public class GoalBasedMover extends Mover {
     @Override
     public void setNextIndex (int index) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

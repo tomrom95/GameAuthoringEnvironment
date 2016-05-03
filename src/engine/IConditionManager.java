@@ -1,9 +1,6 @@
 package engine;
 
-import java.util.List;
 import engine.conditions.ICondition;
-import engine.interactionevents.KeyIOEvent;
-import engine.interactionevents.MouseIOEvent;
 import javafx.collections.ObservableList;
 
 
@@ -18,7 +15,7 @@ import javafx.collections.ObservableList;
  * @author Jonathan Im
  *
  */
-public interface IConditionManager extends Updateable,IEventInternalizer {
+public interface IConditionManager extends Updateable, IEventInternalizer {
 
     /**
      * @return the observable list of condition that this class manages

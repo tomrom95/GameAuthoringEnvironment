@@ -1,7 +1,6 @@
 package gameauthoring.creation.subforms.movement;
 
 import engine.IGame;
-import engine.aipathing.GoalBasedMover;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.moduledef.AIPatherDefinition;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
@@ -12,7 +11,7 @@ public class SmartAIMovementSFC implements ISubFormControllerSprite {
 
     private SmartAIMovementSFV myView;
     private double myDefaultSpeed = 0;
-    
+
     private IGame myGame;
 
     public SmartAIMovementSFC (IGame game) {

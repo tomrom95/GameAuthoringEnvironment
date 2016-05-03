@@ -14,8 +14,8 @@ public class TrackingMoverSFC implements ISubFormControllerSprite {
     private double myDefaultSpeed = 0;
 
     public TrackingMoverSFC (IGame game) {
-        this.myGame = game;
-        this.myView = new TrackingMoverSFV(game.getAuthorshipData().getMyCreatedGroups());
+        myGame = game;
+        myView = new TrackingMoverSFV(game.getAuthorshipData().getMyCreatedGroups());
     }
 
     @Override

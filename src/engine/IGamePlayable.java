@@ -43,7 +43,7 @@ public interface IGamePlayable extends Updateable, IAdder, IEventInternalizer {
     void add (ISprite sprite, Coordinate coordinate);
 
     void add (ISprite sprite);
-    
+
     /**
      * @return the virtual pixel bound of the level
      */

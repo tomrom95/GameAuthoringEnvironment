@@ -21,9 +21,9 @@ import util.TimeDuration;
 /**
  * Locates the nearest enemy and fires a missile sprite defined in the authoring environment at
  * that enemy, setting its initial X and Y velocity based upon the near enemy
- * 
+ *
  * @author Timko
- * 
+ *
  */
 public class TrackingFirer extends Firer {
 
@@ -33,11 +33,12 @@ public class TrackingFirer extends Firer {
     private Positionable mySprite;
     private TimeDuration myTimeSinceFire;
 
-    public TrackingFirer (IGame game, List<SpriteType> targets,
+    public TrackingFirer (IGame game,
+                          List<SpriteType> targets,
                           double waitTime,
                           SpriteDefinition projectile,
                           Positionable sprite) {
-    	super(game, sprite);
+        super(game, sprite);
         myTargets = targets;
         myWaitTime = new Attribute(waitTime, AttributeType.FIRE_RATE);
         mySprite = sprite;
@@ -49,7 +50,7 @@ public class TrackingFirer extends Firer {
 
     @Override
     public void update (TimeDuration duration) {
-    	super.update(duration);
+        super.update(duration);
         fire(duration);
     }
 
@@ -62,17 +63,19 @@ public class TrackingFirer extends Firer {
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
                                               mySprite.getLocation().getY()));
-            if(getTargets().size() == 0){
+            if (getTargets().size() == 0) {
                 bullet.getMovementStrategy().setOrientationFromTracker(mySprite.getOrientation());
-            } else{
-                bullet.getMovementStrategy().setOrientationFromTracker(getTracker().calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
+            }
+            else {
+                bullet.getMovementStrategy().setOrientationFromTracker(getTracker()
+                        .calculateOrientationToClosestEnemy(mySprite.getLocation(), getTargets()));
 
             }
 
             getGame().bufferedAdd(bullet);
             getFiredSprites().add(bullet);
             myTimeSinceFire.setToZero();
-            
+
         }
     }
 

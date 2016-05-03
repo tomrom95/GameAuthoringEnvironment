@@ -1,7 +1,6 @@
 package gameauthoring.creation.subforms.movement;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import gameauthoring.creation.entryviews.CharacterEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.subforms.SubFormView;
@@ -10,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import splash.LocaleManager;
 
 
 public class UserMoverSFV extends SubFormView implements IUserMoverSFV {
@@ -73,7 +73,7 @@ public class UserMoverSFV extends SubFormView implements IUserMoverSFV {
     }
 
     @Override
-    protected void initView () {        
+    protected void initView () {
         myPane.add(mySpeed.draw(), 0, 0);
         myPane.add(myUp.draw(), 0, 1);
         myPane.add(myDown.draw(), 0, 2);

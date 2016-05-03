@@ -2,7 +2,6 @@ package gameauthoring.creation.subforms;
 
 import java.util.ResourceBundle;
 import gameauthoring.util.BasicUIFactory;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -12,7 +11,7 @@ import util.StringParser;
 
 /**
  * Organizes and Displays a given grouping of EntryView Objects, according to specific needs of user
- * 
+ *
  * @author JoeLilien
  *
  */
@@ -30,7 +29,6 @@ public abstract class SubFormView implements ISubFormView {
     private ResourceBundle myNumbers = ResourceBundle
             .getBundle("defaults/numbers");
 
-  
     private StringParser s = new StringParser();
 
     protected StringParser getParser () {
@@ -42,7 +40,7 @@ public abstract class SubFormView implements ISubFormView {
     }
 
     protected void setMyTitle (String title) {
-        this.myTitle = title;
+        myTitle = title;
     }
 
     protected Node getTitleDisplay () {
@@ -70,7 +68,7 @@ public abstract class SubFormView implements ISubFormView {
     public ResourceBundle getMyNumbers () {
         return myNumbers;
     }
-    
+
     protected BasicUIFactory getMyUIFactory () {
         return myUIFactory;
     }

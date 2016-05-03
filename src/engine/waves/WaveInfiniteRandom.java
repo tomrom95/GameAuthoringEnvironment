@@ -2,7 +2,6 @@ package engine.waves;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.text.html.HTMLDocument.Iterator;
 import engine.sprite.ISprite;
 import util.TimeDuration;
 

@@ -4,8 +4,6 @@ import java.util.function.Predicate;
 import engine.IEventPackage;
 import engine.IGame;
 import engine.interactionevents.MouseIOEvent;
-import engine.profile.IProfile;
-import engine.profile.Profile;
 import engine.sprite.ISprite;
 import util.Coordinate;
 

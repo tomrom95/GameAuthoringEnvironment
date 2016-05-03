@@ -85,18 +85,18 @@ public class SpriteDefinition implements IProfilable {
     }
 
     public void setMyGoal () {
-        this.myGoal = true;
+        myGoal = true;
         setObstructability(false);
     }
-    
-    private void setMyGoal(boolean goal){
+
+    private void setMyGoal (boolean goal) {
         myGoal = goal;
     }
-    
-    private void setObstructability (boolean obstructable){
+
+    private void setObstructability (boolean obstructable) {
         myObstructability = obstructable;
     }
-    
+
     protected UpgradeModule createUpgrade (ISprite parent) {
         return myUpgrade.create(parent);
     }
@@ -156,11 +156,11 @@ public class SpriteDefinition implements IProfilable {
     public void setMovementDefinition (MovementDefinition definition) {
         myMovementDefinition = definition;
     }
-    
+
     public void setMySingleGroup (SpriteGroup group) {
         mySingleGroup = group;
     }
-    
+
     public SpriteGroup getMySingleGroup () {
         return mySingleGroup;
     }
@@ -178,7 +178,7 @@ public class SpriteDefinition implements IProfilable {
     public void setUpgrade (UpgradeDefinition upgrade) {
         myUpgrade = upgrade;
     }
-    
+
     public UpgradeDefinition getUpgrade () {
         return myUpgrade;
     }
@@ -192,15 +192,13 @@ public class SpriteDefinition implements IProfilable {
 
         return new SpriteType(getProfile().getName().get());
     }
-    
+
     public ICost getCost () {
         return myCost;
     }
-    
+
     public void setCost (ICost cost) {
         myCost = cost;
     }
-    
-
 
 }

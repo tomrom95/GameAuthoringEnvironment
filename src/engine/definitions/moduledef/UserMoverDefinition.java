@@ -5,6 +5,7 @@ import engine.definitions.concrete.KeyControlDefinition;
 import engine.modules.IMovementModule;
 import engine.modules.UserMover;
 
+
 /**
  * This class represents the definition for a user controlled movement module
  *

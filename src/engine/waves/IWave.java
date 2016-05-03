@@ -1,7 +1,5 @@
 package engine.waves;
 
-import engine.Updateable;
-import engine.definitions.concrete.SpriteDefinition;
 import engine.sprite.ISprite;
 import util.TimeDuration;
 
@@ -19,7 +17,7 @@ public interface IWave {
     boolean waveCompleted ();
 
     ISprite spawnSprite ();
-    
-    boolean satisfiedSpawnInterval(TimeDuration t);
+
+    boolean satisfiedSpawnInterval (TimeDuration t);
 
 }

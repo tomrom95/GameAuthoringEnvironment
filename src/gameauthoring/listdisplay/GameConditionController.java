@@ -10,7 +10,7 @@ import engine.IGame;
  *
  */
 public class GameConditionController extends ConditionController {
-    
+
     private ConditionViewFactory myFactory;
 
     public GameConditionController (ConditionViewer conditionView, IGame game) {
