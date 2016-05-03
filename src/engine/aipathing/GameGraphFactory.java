@@ -1,18 +1,19 @@
 package engine.aipathing;
 
-import util.Coordinate;
-import util.ISampledBitMap;
-import util.ArrayPosition;
 import java.util.ArrayList;
 import java.util.List;
 import engine.IGame;
 import engine.ObstructionManager;
+import util.ArrayPosition;
+import util.Coordinate;
+import util.ISampledBitMap;
+
 
 /**
- * 
+ *
  * This class will directly translate the input sampled bit maps
- * in to a NodeGraph representing the travserable space. 
- * 
+ * in to a NodeGraph representing the travserable space.
+ *
  * @author jonathanim
  *
  */
@@ -21,12 +22,8 @@ public class GameGraphFactory implements INodeGraphFactory {
     private static final int INT_ONE = 1;
     private static final int INT_NEG_ONE = -1;
 
-
-    
-    
     private ISampledBitMap myObstructionMap;
 
-    
     GameGraphFactory (ISampledBitMap obstructionMap, IGame game) {
         myObstructionMap = obstructionMap;
     }
@@ -61,8 +58,8 @@ public class GameGraphFactory implements INodeGraphFactory {
             }
         }
         connectNeighboringGridNodes(placedNodes, obstructionMap);
-        //adding the goal and start nodes
-        //need to check if the nodes already exist in the graph
+        // adding the goal and start nodes
+        // need to check if the nodes already exist in the graph
         IPathNode startNode = toReturn.addIfCantGetFor(start);
         IPathNode goalNode = toReturn.addIfCantGetFor(goal);
         connectWithAllInGraph(toReturn, startNode, obstructionMap);
@@ -72,21 +69,17 @@ public class GameGraphFactory implements INodeGraphFactory {
     }
 
     private ArrayPosition pixelForArrayLoc (int widthAccess, int heightAccess, int xGap, int yGap) {
-        return new ArrayPosition(widthAccess * xGap, //+ (xGap / INT_TWO),
+        return new ArrayPosition(widthAccess * xGap, // + (xGap / INT_TWO),
                                  heightAccess * yGap); // + (yGap / INT_TWO));
     }
-
-
-
-  
 
     private void connectWithAllInGraph (INodeGraph graph,
                                         IPathNode toConnect,
                                         ISampledBitMap obstructionMap) {
         graph.getNodes()
-            .stream()
-            .filter(node -> !node.equals(toConnect))
-            .forEach(node -> connectIfNotObstructed(toConnect, node, obstructionMap));
+                .stream()
+                .filter(node -> !node.equals(toConnect))
+                .forEach(node -> connectIfNotObstructed(toConnect, node, obstructionMap));
     }
 
     private void connectNeighboringGridNodes (IPathNode[][] nodes, ISampledBitMap obstructionMap) {
@@ -109,11 +102,12 @@ public class GameGraphFactory implements INodeGraphFactory {
             }
         }
     }
-    
+
     /**
      * Will list all legal and non-null nodes that are either directly
-     * adjacent or diagonally so in relation to the proposed array 
+     * adjacent or diagonally so in relation to the proposed array
      * location
+     *
      * @param nodes
      * @param xLoc
      * @param yLoc
@@ -126,11 +120,10 @@ public class GameGraphFactory implements INodeGraphFactory {
         }
         return toReturn;
     }
-    
 
-    
     /**
      * Diagonal and adjacent ArrayPositions surrounding an input position
+     *
      * @param pos
      * @return
      */
@@ -146,8 +139,7 @@ public class GameGraphFactory implements INodeGraphFactory {
         toReturn.add(new ArrayPosition(pos.getX() + INT_NEG_ONE, pos.getY() + INT_ONE));
         return toReturn;
     }
-    
-    
+
     private void addIfBoundsAndNull (List<ArrayPosition> addable,
                                      IPathNode[][] nodes,
                                      ArrayPosition pos) {
@@ -165,17 +157,13 @@ public class GameGraphFactory implements INodeGraphFactory {
     private boolean isNotNull (IPathNode[][] nodes, ArrayPosition pos) {
         return nodes[pos.getX()][pos.getY()] != null;
     }
-    
 
     private boolean inBounds (IPathNode[][] nodes, ArrayPosition pos) {
         int width = nodes.length;
         int height = width > 0 ? nodes[0].length : 0;
-        return (pos.getX() < width) 
-                && (pos.getX() >= 0) 
-                && (pos.getY() < height) 
-                && (pos.getY() >= 0);
+        return (pos.getX() < width) && (pos.getX() >= 0) && (pos.getY() < height) &&
+               (pos.getY() >= 0);
     }
-
 
     private void makeNeighbors (IPathNode first, IPathNode second) {
         if (!first.getNeighbors().contains(second)) {
@@ -189,13 +177,13 @@ public class GameGraphFactory implements INodeGraphFactory {
     /**
      * Will perform obstruction checks by checking a series of coordinates within the map
      * to see if they are all false
-     * 
+     *
      * @param first Node in the pair to connect
      * @param second Node in the pair to connect
      * @param obstructionMap
      */
     private boolean connectIfNotObstructed (IPathNode first,
-                                         IPathNode second,
+                                            IPathNode second,
                                             ISampledBitMap obstructionMap) {
         boolean toReturn = false;
         List<Coordinate> pixelLine =
@@ -209,14 +197,13 @@ public class GameGraphFactory implements INodeGraphFactory {
         }
         return toReturn;
     }
-    
 
-    
     /**
      * Avoid comparison of where you are
+     *
      * @param toPrune
      */
-    private void removeFirstPoint (List<Coordinate> toPrune){
+    private void removeFirstPoint (List<Coordinate> toPrune) {
         if (!(toPrune.size() > 0)) {
             return;
         }
@@ -234,24 +221,15 @@ public class GameGraphFactory implements INodeGraphFactory {
         Coordinate last = line.get(0);
         for (Coordinate coor : line) {
             isObstructed =
-                    isObstructed 
-                    || obstructionMap.valueOf(last) 
-                    || obstructionMap.valueOf(coor);
-            //isObstructed = checkSquare(last, coor, obstructionMap, isObstructed);
+                    isObstructed || obstructionMap.valueOf(last) || obstructionMap.valueOf(coor);
+            // isObstructed = checkSquare(last, coor, obstructionMap, isObstructed);
             last = coor;
         }
         return isObstructed;
     }
 
-
-
-
-
     private ISampledBitMap getObstructionMap () {
         return myObstructionMap;
     }
-
-
-
 
 }

@@ -5,7 +5,7 @@ import gameauthoring.creation.subforms.ISubFormView;
 
 /**
  * View that allows users to create a Game Event to be added to an Event Package
- * 
+ *
  * @author Joe Lilien
  *
  */

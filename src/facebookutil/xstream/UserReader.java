@@ -6,17 +6,19 @@ import java.util.List;
 import java.util.ResourceBundle;
 import facebookutil.user.IUser;
 
+
 /**
  * XStream reader for users. Likely will be refactored so that
  * we can save the high score board as well
+ *
  * @author Tommy
  *
  */
 public class UserReader {
-    
+
     private ResourceBundle mySecrets;
     private XStreamReader myReader;
-    
+
     public UserReader () {
         mySecrets = ResourceBundle.getBundle("facebookutil/secret");
         myReader = new XStreamReader();
@@ -24,13 +26,14 @@ public class UserReader {
 
     /**
      * Gets the list of users from files
+     *
      * @return
      */
     public List<IUser> getUsers () {
         List<IUser> users = new ArrayList<IUser>();
         File dir = new File(mySecrets.getString("userfolder"));
         File[] list = dir.listFiles();
-        for (File f: list) {
+        for (File f : list) {
             addUser(f, users);
         }
         return users;
@@ -40,7 +43,5 @@ public class UserReader {
         IUser user = (IUser) myReader.getObject(f);
         users.add(user);
     }
-    
-
 
 }

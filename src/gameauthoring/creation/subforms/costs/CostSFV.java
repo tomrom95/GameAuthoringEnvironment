@@ -1,7 +1,6 @@
 package gameauthoring.creation.subforms.costs;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.creation.entryviews.NumberEntryView;
@@ -12,11 +11,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
+import splash.LocaleManager;
 
 
 /**
  * Implementation of ICostSFV with HBox arrangement and combobox layout
- * 
+ *
  * @author Tommy
  *
  */
@@ -77,6 +77,7 @@ public class CostSFV extends SubFormView implements ICostSFV {
         return box;
     }
 
+    @Override
     public AttributeDefinition getSelectedAttribute () {
         return myAttributes.getSelected();
     }
@@ -93,7 +94,7 @@ public class CostSFV extends SubFormView implements ICostSFV {
 
     @Override
     public void populateWithData (boolean hasCost, AttributeDefinition attribute, double cost) {
-        this.myTitledPane.setExpanded(hasCost);
+        myTitledPane.setExpanded(hasCost);
         myAttributes.setSelected(attribute);
         myCost.setData(cost);
     }

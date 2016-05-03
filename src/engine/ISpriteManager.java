@@ -27,7 +27,6 @@ public interface ISpriteManager extends Updateable, IAdder, IEventInternalizer {
 
     List<? extends Drawable> getDrawables ();
 
-
     /**
      * @param sprite to be removed
      */

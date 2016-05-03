@@ -6,7 +6,7 @@ import engine.ILevel;
 
 public class LevelConditionController extends ConditionController {
 
-   private ConditionViewFactory myFactory;
+    private ConditionViewFactory myFactory;
 
     public LevelConditionController (LevelConditionView conditionView, IGame game, ILevel level) {
         super(conditionView);

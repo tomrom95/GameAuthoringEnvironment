@@ -10,7 +10,7 @@ import gameauthoring.creation.subforms.ISubFormView;
 /**
  * This class creates the controller to handle, manage, and interact with user data involving
  * tracking movement modules and projectiles
- * 
+ *
  * @author Dhrumil Timko Schreck Lilien
  *
  */

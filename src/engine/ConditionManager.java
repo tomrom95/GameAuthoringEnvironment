@@ -61,7 +61,7 @@ public class ConditionManager implements IConditionManager {
 
     @Override
     public void internalizeGameEvents (List<GameEvent> list) {
-        //Do Nothing
+        // Do Nothing
     }
 
 }

@@ -16,7 +16,9 @@ public class DecreaseEffect extends Effect {
 
     // TODO should this also have constructors that allow specification of just primitive double
     // effectLength?
-    public DecreaseEffect (AttributeDefinition type, IAttribute effectLength, double decreaseAmount) {
+    public DecreaseEffect (AttributeDefinition type,
+                           IAttribute effectLength,
+                           double decreaseAmount) {
         super(type, effectLength, decreaseAmount);
     }
 

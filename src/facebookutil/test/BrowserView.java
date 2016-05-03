@@ -36,7 +36,6 @@ public class BrowserView {
     private static final String GOOGLE_PROTECTED_RESOURCE_URL =
             "https://www.googleapis.com/plus/v1/people/me";
 
-
     private static final String CALLBACK_URL =
             "https://duke.edu/";
 
@@ -180,7 +179,7 @@ public class BrowserView {
                 .apiKey(clientId)
                 .apiSecret(clientSecret)
                 .callback(CALLBACK_URL)
-                //.scope("https://www.googleapis.com/auth/plus.login ")
+                // .scope("https://www.googleapis.com/auth/plus.login ")
                 .scope("https://www.googleapis.com/auth/plus.circles.write https://www.googleapis.com/auth/plus.circles.read https://www.googleapis.com/auth/plus.stream.write https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/plus.stream.read")
 
                 .build(GoogleApi20.instance());

@@ -18,7 +18,7 @@ public interface IAdder extends Updateable {
 
     /**
      * Add a sprite in the next update cycle
-     * 
+     *
      * @param sprite to be added
      * @param coordinate where the Sprite is added
      */
@@ -26,7 +26,7 @@ public interface IAdder extends Updateable {
 
     /**
      * Add a sprite in the next update cycle
-     * 
+     *
      * @param sprite to be added
      */
     void bufferedAdd (ISprite sprite);

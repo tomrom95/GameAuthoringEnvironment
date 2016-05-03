@@ -1,13 +1,13 @@
 package gameauthoring.listdisplay;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import gameauthoring.creation.factories.ReflectionException;
 import gameauthoring.util.ErrorMessage;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
+import splash.LocaleManager;
 
 
 /**
@@ -15,7 +15,7 @@ import javafx.scene.layout.Pane;
  * Main responsibility is setting the button action to generate the proper sub-view "pop-up" when
  * interacted
  * Factory call is done internally
- * 
+ *
  * @author RyanStPierre
  *
  */
@@ -60,7 +60,7 @@ public abstract class ConditionController {
 
     /**
      * If the factory fails show message and display empty pane
-     * 
+     *
      * @param selection
      * @return
      */
@@ -80,7 +80,7 @@ public abstract class ConditionController {
     /**
      * Subclasses of this controller class need to instantiate the factory differently, depending on
      * whether or not access to the level is necessary
-     * 
+     *
      * @return
      */
 

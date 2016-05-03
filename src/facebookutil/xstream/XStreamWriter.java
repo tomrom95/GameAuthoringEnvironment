@@ -7,19 +7,22 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import facebookutil.user.profiles.SocialProfile;
 
+
 /**
  * Helper class to write types to xstream files. This was pulled from our
  * own project.
+ *
  * @author Tommy
  *
  * @param <Type>
  */
 public class XStreamWriter<Type> {
-    
+
     private static final String WRITE_ERROR = "ERROR WRITING TO XSTREAM";
-    
+
     /**
      * Writes a single user to an xml file
+     *
      * @param user
      */
     public void writeToFile (Type toWrite, String fileName, String folderPath) {
@@ -39,6 +42,7 @@ public class XStreamWriter<Type> {
 
     /**
      * transforms user into XML string
+     *
      * @param user
      * @return
      */

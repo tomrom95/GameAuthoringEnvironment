@@ -38,6 +38,7 @@ public class OnClickView extends SubConditionView {
                                     global.create());
     }
 
+    @Override
     protected void initBoxes () {
         myGroupA = createComboBox(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
         myEventsA =

@@ -5,7 +5,7 @@ import javafx.scene.control.TextField;
 
 /**
  * TextField that only accepts one character
- * 
+ *
  * @author Joe Lilien
  *
  */

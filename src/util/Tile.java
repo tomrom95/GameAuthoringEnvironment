@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 
 /**
  * Wrapper class for Rectangles which holds its rectangle object and row/column position.
- * 
+ *
  * @author Jin An
  *
  */
@@ -36,6 +36,6 @@ public class Tile {
     }
 
     public void setRed () {
-        myTile.setFill(Color.RED);       
+        myTile.setFill(Color.RED);
     }
 }

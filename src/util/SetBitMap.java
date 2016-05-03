@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+
 public class SetBitMap implements IBitMap {
     private int myHeight;
     private int myWidth;
@@ -24,11 +25,11 @@ public class SetBitMap implements IBitMap {
     public int getWidth () {
         return myWidth;
     }
-    
-    private void setHeight (int height){
+
+    private void setHeight (int height) {
         myHeight = height;
     }
-    
+
     private void setWidth (int width) {
         myWidth = width;
     }
@@ -42,7 +43,7 @@ public class SetBitMap implements IBitMap {
         else {
             getTrueSet().add(pos);
         }
-        
+
     }
 
     @Override
@@ -74,7 +75,7 @@ public class SetBitMap implements IBitMap {
         else {
             getTrueSet().remove(pos);
         }
-        
+
     }
 
     @Override

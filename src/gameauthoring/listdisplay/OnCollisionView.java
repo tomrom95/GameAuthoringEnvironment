@@ -2,15 +2,11 @@ package gameauthoring.listdisplay;
 
 import java.util.ResourceBundle;
 import engine.IGame;
-import engine.conditions.OnCollisionCondition;
-import engine.definitions.concrete.EventPackageDefinition;
 import engine.SpriteGroup;
 import engine.conditions.ICondition;
-import javafx.scene.Node;
+import engine.conditions.OnCollisionCondition;
+import engine.definitions.concrete.EventPackageDefinition;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 
 /**
@@ -22,7 +18,7 @@ public class OnCollisionView extends SubConditionView {
 
     private static final String PATH = "defaults/on_collision_tab";
     ResourceBundle myBundle = ResourceBundle.getBundle(PATH);
-    
+
     private IGame myGame;
     private ComboBox<SpriteGroup> myGroupA;
     private ComboBox<EventPackageDefinition> myEventsA;
@@ -39,6 +35,7 @@ public class OnCollisionView extends SubConditionView {
 
     }
 
+    @Override
     protected void initBoxes () {
         myGroupA = createComboBox(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
         myGroupB = createComboBox(myGame.getAuthorshipData().getMyCreatedGroups().getItems());
@@ -59,15 +56,18 @@ public class OnCollisionView extends SubConditionView {
         EventPackageDefinition packageB = myEventsB.getSelectionModel().getSelectedItem();
         EventPackageDefinition other = myThirdEvents.getSelectionModel().getSelectedItem();
         EventPackageDefinition global = myGlobalEvents.getSelectionModel().getSelectedItem();
-        return new OnCollisionCondition(myGame, packageA.create(myGroupA.getSelectionModel().getSelectedItem()), 
-                                        packageB.create(myGroupB.getSelectionModel().getSelectedItem()),
-                                        other.create(myThirdParty.getSelectionModel().getSelectedItem()), 
+        return new OnCollisionCondition(myGame, packageA
+                .create(myGroupA.getSelectionModel().getSelectedItem()),
+                                        packageB.create(myGroupB.getSelectionModel()
+                                                .getSelectedItem()),
+                                        other.create(myThirdParty.getSelectionModel()
+                                                .getSelectedItem()),
                                         global.create());
     }
 
     @Override
     protected String getLabelKey (String key) {
-       return myBundle.getString(key);
+        return myBundle.getString(key);
     }
 
 }

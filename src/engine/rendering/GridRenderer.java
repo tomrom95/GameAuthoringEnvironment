@@ -1,16 +1,13 @@
 package engine.rendering;
 
-import util.Bounds;
-import util.ScaleRatio;
-import util.Tile;
 import engine.ILevel;
 import engine.sprite.ISprite;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import util.Bounds;
+import util.ScaleRatio;
+import util.Tile;
 
 
 /**
@@ -18,7 +15,7 @@ import javafx.scene.shape.Rectangle;
  * Authors can set unplaceable terrain by clicking the tiles
  * Takes in myScale (Scale Ratio wrapper object) and uses it to dynamically calculate the size of
  * the block and render the updated grid
- * 
+ *
  * @author Jin An
  *
  */
@@ -47,7 +44,7 @@ public class GridRenderer implements IRenderer {
     private void calculateTileArraySize () {
         myNumBlockRow = (int) (myLevel.getBounds().getHeight() / BLOCK_SIZE);
         System.out.println(myNumBlockRow);
-        myNumBlockCol = (int)(myLevel.getBounds().getWidth() / BLOCK_SIZE);
+        myNumBlockCol = (int) (myLevel.getBounds().getWidth() / BLOCK_SIZE);
         myBlocks = new Tile[myNumBlockRow][myNumBlockCol];
     }
 
@@ -74,13 +71,13 @@ public class GridRenderer implements IRenderer {
             if (tile.getTile().getFill() == Color.TRANSPARENT) {
                 myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[tile
                         .getRowPosition()][tile
-                        .getColPosition()] = true;
+                                .getColPosition()] = true;
                 tile.getTile().setFill(Color.RED);
             }
             else if (tile.getTile().getFill() == Color.RED) {
                 myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[tile
                         .getRowPosition()][tile
-                        .getColPosition()] = false;
+                                .getColPosition()] = false;
                 tile.getTile().setFill(Color.TRANSPARENT);
             }
         }
@@ -92,8 +89,9 @@ public class GridRenderer implements IRenderer {
                     new Bounds(myCurrentBlockSize * tile.getColPosition(),
                                myCurrentBlockSize * tile.getRowPosition(),
                                myCurrentBlockSize, myCurrentBlockSize);
-            if (sprite.getBounds().collide(rectBounds))
+            if (sprite.getBounds().collide(rectBounds)) {
                 return false;
+            }
         }
         return true;
     }

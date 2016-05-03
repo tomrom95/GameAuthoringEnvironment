@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 
 
 public abstract class AttributeEndView extends OnAttributeView {
-    
+
     private EndOptions myEndOptions = new EndOptions();
 
     public AttributeEndView (IGame game, ILevel level, ObservableList<AttributeType> attributes) {
@@ -19,6 +19,7 @@ public abstract class AttributeEndView extends OnAttributeView {
 
     }
 
+    @Override
     protected void initBoxes () {
         super.initBoxes();
         addStringComboBox(myEndOptions.getBox());

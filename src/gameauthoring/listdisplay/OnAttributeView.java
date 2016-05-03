@@ -1,18 +1,10 @@
 package gameauthoring.listdisplay;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.DoublePredicate;
-import java.util.stream.Collectors;
 import engine.AttributeType;
-import engine.IEventPackage;
 import engine.IGame;
-import engine.conditions.OnGlobalAttributeCondition;
-import engine.definitions.concrete.EventPackageDefinition;
-import engine.SpriteGroup;
 import engine.conditions.ICondition;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -30,13 +22,15 @@ public abstract class OnAttributeView extends SubConditionView {
 
     private ObservableList<AttributeType> myAttributeStorage;
 
-    public OnAttributeView (IGame game, ObservableList<ICondition> conditionList,
+    public OnAttributeView (IGame game,
+                            ObservableList<ICondition> conditionList,
                             ObservableList<AttributeType> attributeStorage) {
         super(conditionList);
         myGame = game;
         myAttributeStorage = attributeStorage;
     }
 
+    @Override
     protected void initBoxes () {
         myAttributeType = createComboBox(myAttributeStorage);
         myChecks = createStringComboBox(BundleOperations.getValuesAsObservable(myMathBundle));
@@ -46,7 +40,7 @@ public abstract class OnAttributeView extends SubConditionView {
     protected IGame getGame () {
         return myGame;
     }
-    
+
     protected AttributeType getAttributeType () {
         return myAttributeType.getSelectionModel().getSelectedItem();
     }

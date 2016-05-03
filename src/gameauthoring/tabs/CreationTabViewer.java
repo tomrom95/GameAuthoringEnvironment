@@ -1,12 +1,12 @@
 package gameauthoring.tabs;
 
+import java.util.ArrayList;
+import java.util.List;
+import engine.IGame;
 import gameauthoring.creation.factories.CreationControllerFactory;
 import gameauthoring.creation.forms.CreationController;
 import gameauthoring.creation.forms.ICreationView;
 import gameauthoring.util.BasicUIFactory;
-import java.util.ArrayList;
-import java.util.List;
-import engine.IGame;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -16,7 +16,7 @@ import javafx.scene.control.TabPane;
  * Character(Sprite) tab view class which allows users to create all weapons, enemies, defenders,
  * obstacles, and interactions. Handles selection between these sub-tabs. Serves to make creation
  * controller and subform controller using factory design.
- * 
+ *
  * @TODO: Resourcebundle for unprotectedString
  * @TODO: Interaction, Obstacle subtabs.
  * @author Jin An, Joe Lilien, Jeremy Schreck
@@ -74,6 +74,6 @@ public class CreationTabViewer implements ITabViewer {
     @Override
     public void rescale (double width, double height) {
         // TODO Auto-generated method stub
-        
+
     }
 }

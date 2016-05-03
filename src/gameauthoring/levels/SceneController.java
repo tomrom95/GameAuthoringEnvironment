@@ -15,7 +15,7 @@ import util.ScaleRatio;
  * Controller for the scene actions. Can do actions like
  * swapping the background and adding a sprite to the screen.
  * This is also used by the game player to add sprites to the screen.
- * 
+ *
  * @author Tommy
  * @author Jin An
  *
@@ -34,8 +34,9 @@ public class SceneController {
 
     public void uploadNewBackground () {
         File newImage = (new FileChooser()).showOpenDialog(null);
-        if (newImage == null)
+        if (newImage == null) {
             return;
+        }
         setBackground(newImage.toURI().toString());
     }
 
@@ -47,11 +48,12 @@ public class SceneController {
                                  myRatio.scale(image.getHeight()), imageURL);
         myLevel.setBounds(new Bounds(image.getWidth(), image.getHeight()));
         myLevel.setBackgroundImage(background);
-        
+
     }
 
     /**
-     * Sets the initial scale of the image  
+     * Sets the initial scale of the image
+     *
      * @param width
      * @param height
      */
@@ -66,7 +68,7 @@ public class SceneController {
                 myRatio.setScale(r2);
             }
         }
-        
+
     }
 
     public void addSprite (double x, double y, SpriteDefinition spriteDefinition) {

@@ -20,7 +20,7 @@ import util.TimeDuration;
 
 /**
  * This class represents a GameEngine and handles the rendering and updating of a game
- * 
+ *
  * @author David Maydew
  *
  */
@@ -102,10 +102,10 @@ public class GameEngine implements IGameEngine {
             rescale(myStage.getWidth(), myStage.getHeight());
             mySideBar = new PlayerSideBar(myGame, myRenderer, myScale);
             myPane.setRight(mySideBar.draw());
-            
+
         }
         getRenderer().render();
-        
+
     }
 
     @Override
@@ -118,6 +118,7 @@ public class GameEngine implements IGameEngine {
         getTimeline().pause();
     }
 
+    @Override
     public IGame getGame () {
         return myGame;
     }
@@ -130,6 +131,7 @@ public class GameEngine implements IGameEngine {
         return myTimeline;
     }
 
+    @Override
     public void rescale (double width, double height) {
         double xScale = rescaleX(width);
         double yScale = rescaleY(height);

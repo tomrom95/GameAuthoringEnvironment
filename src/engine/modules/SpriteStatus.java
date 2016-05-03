@@ -18,8 +18,6 @@ public class SpriteStatus extends DefaultAffectable implements IStatus {
     private boolean myIsDead;
     private boolean myIsGoal;
     private boolean myDoesObstruct;
-    
-
 
     @Override
     public void registerEvent (GameEvent event) {
@@ -36,7 +34,8 @@ public class SpriteStatus extends DefaultAffectable implements IStatus {
     public boolean shouldBeRemoved () {
         return myIsDead;
     }
-    
+
+    @Override
     public void remove () {
         myIsDead = true;
     }
@@ -49,7 +48,7 @@ public class SpriteStatus extends DefaultAffectable implements IStatus {
     @Override
     public void setObstruction (boolean value) {
         myDoesObstruct = value;
-        
+
     }
 
     @Override
@@ -61,6 +60,5 @@ public class SpriteStatus extends DefaultAffectable implements IStatus {
     public void setIsGoal (boolean value) {
         myIsGoal = value;
     }
-    
 
 }

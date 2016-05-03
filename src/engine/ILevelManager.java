@@ -1,8 +1,6 @@
 package engine;
 
 import java.util.List;
-import engine.interactionevents.KeyIOEvent;
-import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
@@ -56,13 +54,12 @@ public interface ILevelManager extends IAdder, IEventInternalizer {
     void add (ISprite sprite);
 
     void add (ISprite sprite, Coordinate coordinate);
-    
+
     /**
-     * 
+     *
      */
     void remove (ILevel level);
 
     boolean getSwitched ();
 
 }
-

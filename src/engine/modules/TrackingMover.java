@@ -3,8 +3,6 @@ package engine.modules;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import engine.Attribute;
-import engine.AttributeType;
 import engine.IAttribute;
 import engine.IGame;
 import engine.Positionable;
@@ -20,7 +18,7 @@ import util.TimeDuration;
  * This class builds a module that follows the closest enemy
  *
  * @author Dhrumil Timko
- * 
+ *
  */
 public class TrackingMover extends Mover {
 
@@ -43,11 +41,12 @@ public class TrackingMover extends Mover {
 
     @Override
     public void update (TimeDuration duration) {
-        if(myPotentialTargets().size() != 0){
+        if (myPotentialTargets().size() != 0) {
             setOrientationFromTracker(myTracker
-                                      .calculateOrientationToClosestEnemy(mySprite.getLocation(), myPotentialTargets()));
+                    .calculateOrientationToClosestEnemy(mySprite.getLocation(),
+                                                        myPotentialTargets()));
         }
-        
+
         move(duration);
     }
 
@@ -76,13 +75,12 @@ public class TrackingMover extends Mover {
 
     @Override
     public int getNextIndex () {
-       
+
         return 0;
     }
 
     @Override
     public void setNextIndex (int index) {
-       
-        
+
     }
 }

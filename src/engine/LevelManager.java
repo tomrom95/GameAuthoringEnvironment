@@ -133,14 +133,12 @@ public class LevelManager implements ILevelManager {
 
     @Override
     public boolean getSwitched () {
-        if(myRedraw) {
+        if (myRedraw) {
             myRedraw = false;
             return true;
         }
         return false;
 
     }
-
-
 
 }

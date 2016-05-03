@@ -1,6 +1,6 @@
 package gameauthoring.junittests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import org.junit.Before;
@@ -12,44 +12,45 @@ import gameauthoring.creation.forms.CreationController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+
 public class TestCreation {
 
-    //private CreationController<ISprite> myCreationController;
+    // private CreationController<ISprite> myCreationController;
     private ObservableList<ISprite> myCreationControllerItems;
     private ISprite myCreationControllerCurrentItem;
-    
+
     @Before
     public void setup () {
-        //myCreationController = new CreationController<ISprite>();
-       
-        try{
+        // myCreationController = new CreationController<ISprite>();
+
+        try {
             Field itemsField = CreationController.class.getDeclaredField("myItems");
             itemsField.setAccessible(true);
-            //myCreationControllerItems = (ObservableList<ISprite>) itemsField.get(myCreationController);
-            
-            
+            // myCreationControllerItems = (ObservableList<ISprite>)
+            // itemsField.get(myCreationController);
+
             Field currentItemField = CreationController.class.getDeclaredField("myCurrentItem");
             currentItemField.setAccessible(true);
-            //myCreationControllerCurrentItem = (ISprite) itemsField.get(myCreationController);
+            // myCreationControllerCurrentItem = (ISprite) itemsField.get(myCreationController);
 
-            
-        }catch (Exception e) {
-            assert(false);
         }
-        
+        catch (Exception e) {
+            assert (false);
+        }
+
         myCreationControllerCurrentItem = new Sprite(new SpriteType("UserSprite"));
         myCreationControllerItems = FXCollections.observableArrayList();
-        
+
         /*
-        ISprite sprite1 = new Sprite();
-        ISprite sprite2 = new Sprite();
-        spriteList.add(sprite1);
-        spriteList.add(sprite2);
-        
-        myCreationController.setItems(spriteList);
-        */
+         * ISprite sprite1 = new Sprite();
+         * ISprite sprite2 = new Sprite();
+         * spriteList.add(sprite1);
+         * spriteList.add(sprite2);
+         *
+         * myCreationController.setItems(spriteList);
+         */
     }
-    
+
     @Test
     public void testDeletion () {
         myCreationControllerItems.add(myCreationControllerCurrentItem);
@@ -57,16 +58,17 @@ public class TestCreation {
         try {
             Method deleteMethod = CreationController.class.getDeclaredMethod("deleteItem");
             deleteMethod.setAccessible(true);
-        
+
             assertEquals(myCreationControllerItems.contains(myCreationControllerCurrentItem), true);
-            //deleteMethod.invoke(myCreationController);
-            assertEquals(myCreationControllerItems.contains(myCreationControllerCurrentItem), false);
-            
-        } catch (Exception e) {
-            assert(false);
+            // deleteMethod.invoke(myCreationController);
+            assertEquals(myCreationControllerItems.contains(myCreationControllerCurrentItem),
+                         false);
+
         }
-        
-        
+        catch (Exception e) {
+            assert (false);
+        }
+
     }
 
 }

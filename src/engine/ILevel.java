@@ -5,12 +5,10 @@ import engine.conditions.ICondition;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.profile.IProfilable;
 import engine.sprite.ISprite;
-import engine.waves.IWaveSet;
 import graphics.ImageGraphic;
 import javafx.collections.ObservableList;
 import util.Bounds;
 import util.Coordinate;
-import util.Tile;
 
 
 /**
@@ -33,7 +31,7 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
     INextLevelManager getNextLevelManager ();
 
     /**
-     * 
+     *
      * @return The waveset manager object for this level
      */
     IWaveSetManager getWaveSetManager ();
@@ -74,7 +72,7 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
     /**
      * Gets the list of sprite definitions that can be chosen by the user
      * to use on this level
-     * 
+     *
      * @return list of sprite definitions
      */
     ObservableList<SpriteDefinition> getAddableSprites ();
@@ -117,10 +115,10 @@ public interface ILevel extends Updateable, IAdder, IEventInternalizer, IProfila
     void add (ISprite sprite);
 
     /**
-     * @return the level bounds 
+     * @return the level bounds
      */
     Bounds getBounds ();
-    
+
     void setBounds (Bounds bound);
 
 }

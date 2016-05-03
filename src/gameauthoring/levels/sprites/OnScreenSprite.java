@@ -4,8 +4,8 @@ import engine.ILevel;
 import engine.rendering.AuthoringRenderer;
 import engine.rendering.UnscaledFactory;
 import engine.sprite.ISprite;
-import gameauthoring.util.Glyph;
 import gameauthoring.util.BasicUIFactory;
+import gameauthoring.util.Glyph;
 import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.image.Image;
@@ -21,7 +21,7 @@ import util.ScaleRatio;
 /**
  * Authoring environment sprite that allows for moving around the screen and includes
  * a context menu for deletion and path creation
- * 
+ *
  * @author Tommy
  *
  */
@@ -46,15 +46,15 @@ public class OnScreenSprite implements Draggable, Glyph {
     @Override
     public Node draw () {
         Node node = mySprite.getDrawer().getVisualRepresentation(new UnscaledFactory());
-        this.setActions(node);
-        this.createRightClickMenu(node);
+        setActions(node);
+        createRightClickMenu(node);
         return node;
     }
 
     @Override
     public void setOnDragDetected (MouseEvent e, Node source) {
         Dragboard db = source.startDragAndDrop(TransferMode.COPY);
-        db.setContent(this.createClipboard(MOVE_STRING));
+        db.setContent(createClipboard(MOVE_STRING));
         db.setDragView(getSpriteImage(source));
 
         source.setVisible(false);
@@ -79,7 +79,7 @@ public class OnScreenSprite implements Draggable, Glyph {
 
     /**
      * Sets the sprite action menu on right click
-     * 
+     *
      * @param node
      */
     private void createRightClickMenu (Node node) {
@@ -95,7 +95,7 @@ public class OnScreenSprite implements Draggable, Glyph {
     /**
      * Helper to get the context menu. Can be overridden for various
      * context menus
-     * 
+     *
      * @param container
      * @return
      */
@@ -108,12 +108,24 @@ public class OnScreenSprite implements Draggable, Glyph {
         return mySprite;
     }
 
-    private boolean checkPlaceableTile (DragEvent e){
-        double halfHeight = (0.5) * myScale.scale((mySprite.getBounds().getBottom() - mySprite.getBounds().getTop()));
-        double halfWidth = (0.5) * myScale.scale((mySprite.getBounds().getRight() - mySprite.getBounds().getLeft()));
-        for(int r = (int)((e.getY()-halfHeight)/ levelView.getGrids().getCurrentBlockSize()); r < (int)((e.getY()+halfHeight)/levelView.getGrids().getCurrentBlockSize()); r++){       
-            for (int c = (int)((e.getX()-halfWidth)/levelView.getGrids().getCurrentBlockSize()); c < (int)((e.getX()+halfWidth)/levelView.getGrids().getCurrentBlockSize()); c++){
-                if(levelView.getLevel().getPlaceableTileManager().getPlaceableMap().getBitMap()[r][c]){
+    private boolean checkPlaceableTile (DragEvent e) {
+        double halfHeight =
+                (0.5) * myScale
+                        .scale((mySprite.getBounds().getBottom() - mySprite.getBounds().getTop()));
+        double halfWidth =
+                (0.5) * myScale
+                        .scale((mySprite.getBounds().getRight() - mySprite.getBounds().getLeft()));
+        for (int r =
+                (int) ((e.getY() - halfHeight) / levelView.getGrids()
+                        .getCurrentBlockSize()); r < (int) ((e.getY() + halfHeight) /
+                                                            levelView.getGrids()
+                                                                    .getCurrentBlockSize()); r++) {
+            for (int c =
+                    (int) ((e.getX() - halfWidth) / levelView.getGrids()
+                            .getCurrentBlockSize()); c < (int) ((e.getX() + halfWidth) / levelView
+                                    .getGrids().getCurrentBlockSize()); c++) {
+                if (levelView.getLevel().getPlaceableTileManager().getPlaceableMap()
+                        .getBitMap()[r][c]) {
                     return false;
                 }
             }

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import engine.Attribute;
-import engine.AttributeType;
 import engine.IAttribute;
 import engine.Positionable;
 import engine.effects.IEffect;
@@ -63,7 +61,7 @@ public class UserMover extends Mover {
         myKeys.put(Direction.RIGHT, controls.getRightKey());
         myKeys.put(Direction.DOWN, controls.getDownKey());
     }
-    
+
     @Override
     protected void move (TimeDuration duration) {
         double xChange = distance(getXVel().getValueProperty().get(), duration.getMillis());
@@ -199,14 +197,13 @@ public class UserMover extends Mover {
 
     @Override
     public int getNextIndex () {
-        
+
         return 0;
     }
 
     @Override
     public void setNextIndex (int index) {
-        
-        
+
     }
 
 }

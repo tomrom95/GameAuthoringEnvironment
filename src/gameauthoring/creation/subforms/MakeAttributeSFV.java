@@ -1,16 +1,16 @@
 package gameauthoring.creation.subforms;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import splash.LocaleManager;
 
 
 /**
  * Implementation of IMakeAttributeSFV with GridPane Arrangement and NumberEntryView display
- * 
+ *
  * @author Jin An
  * @author Joe Lilien
  *

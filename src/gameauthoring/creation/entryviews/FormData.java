@@ -1,6 +1,7 @@
 package gameauthoring.creation.entryviews;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -10,7 +11,7 @@ import javafx.collections.ObservableList;
 /**
  * Class for very generic data storage based on user input, strings will be used to generate or
  * represent objects from the GameEngine using reflection
- * 
+ *
  * @author JoeLilien, Jeremy Schreck
  *
  */

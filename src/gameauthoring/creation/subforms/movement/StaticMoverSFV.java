@@ -1,16 +1,16 @@
 package gameauthoring.creation.subforms.movement;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import gameauthoring.creation.subforms.SubFormView;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import splash.LocaleManager;
 
 
 /**
  * View representing a sub form that creates the information required to build a static mover
  * module
- * 
+ *
  * @author Joe Lilien
  * @author Dhrumil
  *

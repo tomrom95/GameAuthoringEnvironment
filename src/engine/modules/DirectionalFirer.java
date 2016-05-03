@@ -17,7 +17,7 @@ import util.TimeDuration;
  * This class creating a Firing module that will spawn the missiles specified in the authoring
  * environment and set their initial, and potentially constant, X and Y velocity to direct the
  * missile in a constant direction
- * 
+ *
  * @author Timko
  *
  */
@@ -46,7 +46,7 @@ public class DirectionalFirer extends Firer {
 
     @Override
     public void update (TimeDuration duration) {
-   
+
         super.update(duration);
         fire(duration);
     }
@@ -57,13 +57,13 @@ public class DirectionalFirer extends Firer {
 
         if (myTimeSinceFire.getSeconds() >= myWaitTime.getValueProperty().get()) {
             fire();
-            
+
             // addToTimeMap(bullet);
 
         }
     }
-    
-    protected void fire(){
+
+    protected void fire () {
         myTimeSinceFire.setToZero();
         ISprite bullet = myProjectile.create();
         bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
@@ -78,10 +78,10 @@ public class DirectionalFirer extends Firer {
         getFiredSprites().add(bullet);
     }
 
-    protected void firerUpdate(TimeDuration t){
+    protected void firerUpdate (TimeDuration t) {
         super.update(t);
     }
-    
+
     @Override
     protected List<IAttribute> getSpecificAttributes () {
         List<IAttribute> toAdd = new ArrayList<>();

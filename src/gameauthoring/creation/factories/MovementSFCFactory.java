@@ -22,7 +22,7 @@ import gameauthoring.creation.subforms.movement.UserMoverSFC;
 /**
  * This is a factory class that creates different types of movement sub-subforms,
  * which the MovementSFC will dynamically switch between based on user input
- * 
+ *
  * @author Jeremy Schreck
  *
  */
@@ -54,30 +54,37 @@ public class MovementSFCFactory extends DynamicSFCFactory<SpriteDefinition> {
         else if (type.equals("TRACKINGMOVER")) {
             return new TrackingMoverSFC(getMyGame());
 
-        }else if (type.equals("PATHMOVER")){
-            return new PathMoverSFC(); 
         }
-        throw new ReflectionException("Can't create movement sub-subformcontroller of type " + type);
+        else if (type.equals("PATHMOVER")) {
+            return new PathMoverSFC();
+        }
+        throw new ReflectionException("Can't create movement sub-subformcontroller of type " +
+                                      type);
 
     }
 
     public ISubFormController<SpriteDefinition> getSFCFromDefinition (MovementDefinition movDef) {
-        if (movDef instanceof StaticMovementDefintion){
-            return(new StaticMoverSFC());
-            
-        }else if (movDef instanceof ConstantMoverDefinition){
-            return(new ConstantMoverSFC());
-            
-        }else if (movDef instanceof UserMoverDefinition){
-            return(new UserMoverSFC());
-            
-        }else if (movDef instanceof TrackingMoverDefinition){
-            return(new TrackingMoverSFC(getMyGame()));
-            
-        }else if (movDef instanceof PathMoverDefinition){
-            return(new PathMoverSFC());
-            
-        } else if (movDef instanceof AIPatherDefinition){
+        if (movDef instanceof StaticMovementDefintion) {
+            return (new StaticMoverSFC());
+
+        }
+        else if (movDef instanceof ConstantMoverDefinition) {
+            return (new ConstantMoverSFC());
+
+        }
+        else if (movDef instanceof UserMoverDefinition) {
+            return (new UserMoverSFC());
+
+        }
+        else if (movDef instanceof TrackingMoverDefinition) {
+            return (new TrackingMoverSFC(getMyGame()));
+
+        }
+        else if (movDef instanceof PathMoverDefinition) {
+            return (new PathMoverSFC());
+
+        }
+        else if (movDef instanceof AIPatherDefinition) {
             return (new SmartAIMovementSFC(getMyGame()));
         }
         throw new ReflectionException("No defined movement SFC matches given definition");

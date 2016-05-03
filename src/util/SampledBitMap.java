@@ -1,14 +1,13 @@
 package util;
 
-public class SampledBitMap extends SetBitMap implements ISampledBitMap  {
+public class SampledBitMap extends SetBitMap implements ISampledBitMap {
 
-    
     private static final double DEFAULT_HEIGHT = 100;
     private static final double DEFAULT_WIDTH = 100;
-    
+
     private double myTrueHeight;
     private double myTrueWidth;
-    
+
     public SampledBitMap (int gridHeight, int gridWidth) {
         this(gridHeight, gridWidth, DEFAULT_HEIGHT, DEFAULT_WIDTH);
     }
@@ -54,13 +53,13 @@ public class SampledBitMap extends SetBitMap implements ISampledBitMap  {
 
     @Override
     public double widthScale () {
-        double toReturn = (trueHeight() / (double) getHeight());
+        double toReturn = (trueHeight() / getHeight());
         return toReturn > 0 ? toReturn : 1;
     }
 
     @Override
     public double heightScale () {
-        double toReturn = (int) (trueWidth() / (double) getWidth());
+        double toReturn = (int) (trueWidth() / getWidth());
         return toReturn > 0 ? toReturn : 1;
     }
 

@@ -2,8 +2,6 @@ package engine.modules;
 
 import java.util.ArrayList;
 import java.util.List;
-import engine.Attribute;
-import engine.AttributeType;
 import engine.IAttribute;
 import engine.Positionable;
 import engine.interactionevents.KeyIOEvent;
@@ -16,7 +14,7 @@ import util.TimeDuration;
  * This class provides an implementation of Mover that serves as a module that moves sprites based
  * on a specified coordinate path.
  *
- *@author  Ryan josephtimko1
+ * @author Ryan josephtimko1
  *
  */
 public class PathMover extends Mover {
@@ -25,6 +23,7 @@ public class PathMover extends Mover {
 
     private int myNextDestination;
     private EnemyTracker pathTracker;
+
     public PathMover (double speed,
                       List<Coordinate> points,
                       Positionable positionable) {
@@ -45,9 +44,9 @@ public class PathMover extends Mover {
             incrementIndex();
         }
         else {
-            
+
             adjustVectors(getPath().get(myNextDestination));
-          
+
             move(duration);
         }
     }
@@ -84,10 +83,10 @@ public class PathMover extends Mover {
      * the sprite
      */
     private void adjustVectors (Coordinate c) {
-        setOrientationFromTracker(pathTracker.calculateAbsoluteOrientationToEnemy(getParent().getLocation(), c));
+        setOrientationFromTracker(pathTracker
+                .calculateAbsoluteOrientationToEnemy(getParent().getLocation(), c));
 
     }
-
 
     @Override
     public void registerKeyEvent (KeyIOEvent keyEvent) {
@@ -102,19 +101,19 @@ public class PathMover extends Mover {
     @Override
     protected List<IAttribute> getSpecificAttributes () {
         return new ArrayList<>();
-        
+
     }
-    
+
     public int getPoint () {
         return myNextDestination;
     }
-    
+
     public void setPoint (int x) {
         myNextDestination = x;
     }
 
     @Override
-    public int getNextIndex () {       
+    public int getNextIndex () {
         return myNextDestination;
     }
 

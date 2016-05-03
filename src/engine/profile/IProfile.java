@@ -3,7 +3,6 @@ package engine.profile;
 import graphics.IGraphic;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
 
 
@@ -35,30 +34,30 @@ public interface IProfile {
      * @return The IGraphic
      */
     IGraphic getImage ();
-    
+
     BooleanProperty imageChanged ();
 
     /**
      * Get the url of the ImageGraphic
-     * 
+     *
      * @return A ImageGraphic's url as a string
      */
     String getImageURL ();
 
     /**
      * Gets the width of image
-     * 
+     *
      * @return
      */
     DoubleProperty getImageWidth ();
 
     /**
      * Gets the height of image
-     * 
+     *
      * @return
      */
     DoubleProperty getImageHeight ();
-    
+
     void setNew (String name, String desc, String url, double width, double height);
 
 }

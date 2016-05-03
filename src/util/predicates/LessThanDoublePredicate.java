@@ -1,7 +1,7 @@
 package util.predicates;
 
 public class LessThanDoublePredicate extends RealDoublePredicate {
-    
+
     public LessThanDoublePredicate (double valToCompare) {
         super(valToCompare);
     }
@@ -10,7 +10,5 @@ public class LessThanDoublePredicate extends RealDoublePredicate {
     public boolean test (double value) {
         return value < getValToCompare();
     }
-    
-    
 
 }

@@ -19,7 +19,7 @@ import engine.profile.Profile;
  *
  */
 public class EventPackageDefinition implements IProfilable {
-    
+
     private List<IEffect> myEffectsList;
     private List<GameEvent> myEventsList;
     private IProfile myProfile;
@@ -34,7 +34,7 @@ public class EventPackageDefinition implements IProfilable {
     public IEventPackage create (ISpriteGroup spriteGroup) {
         return new EventPackage(spriteGroup, myEffectsList, myEventsList);
     }
-    
+
     public IEventPackage create () {
         return create(new SpriteGroup());
     }

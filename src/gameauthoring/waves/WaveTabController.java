@@ -5,11 +5,12 @@ import java.util.List;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
 
+
 public class WaveTabController {
 
-    private WaveTabViewer myView; 
+    private WaveTabViewer myView;
     private CreationZone myCreationZone;
-    
+
     public WaveTabController (WaveTabViewer view, CreationZone creationZone) {
         myView = view;
         myCreationZone = creationZone;
@@ -25,28 +26,28 @@ public class WaveTabController {
     private void exitMode () {
         myCreationZone.exitEdit();
         myView.exitEdit();
-        
-        myCreationZone.setButtonAction(e -> myView.createWave()); 
+
+        myCreationZone.setButtonAction(e -> myView.createWave());
         myCreationZone.setInfiniteCheckBox(false);
 
     }
 
     private void transfer () {
-        if(myView.getWaveSelection()!=null) {
-            myView.transfer(getList(myView.getWaveSelection()), myView.getWaveSelection().getInfinite());
+        if (myView.getWaveSelection() != null) {
+            myView.transfer(getList(myView.getWaveSelection()),
+                            myView.getWaveSelection().getInfinite());
             editMode();
         }
     }
 
     private void editMode () {
         myCreationZone.enterEdit();
-        myCreationZone.setButtonAction(e -> exitMode());  
+        myCreationZone.setButtonAction(e -> exitMode());
     }
 
     private List<WaveBlockDefinition> getList (WaveDefinition waveSelection) {
-        
+
         return new ArrayList<>(waveSelection.getWaveBlocks());
     }
-    
-    
+
 }
