@@ -1,6 +1,5 @@
 package gameauthoring.waves;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
 import gameauthoring.creation.cellviews.WaveDragCell;
@@ -22,7 +21,9 @@ import util.StringParser;
 public class ListGraphicFactory {
 
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/list_graphic_factory");
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    private ResourceBundle myLang =
+            ResourceBundle.getBundle("languages/labels",
+                                     LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private UIFactory myFactory = new BasicUIFactory();
 
     public Node createGraphic (ObservableList<WaveBlockDefinition> list, WaveBlockDefinition item) {
@@ -65,7 +66,7 @@ public class ListGraphicFactory {
     }
 
     private double getImageHeight () {
-       return toDouble(myBundle.getString("ImageHeight"));
+        return toDouble(myBundle.getString("ImageHeight"));
     }
 
     private double toDouble (String string) {

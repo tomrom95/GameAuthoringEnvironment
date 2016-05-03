@@ -2,11 +2,12 @@ package gameauthoring.creation.subforms;
 
 import engine.definitions.concrete.AttributeDefinition;
 
-public class LevelSpecificSFC implements ISubFormControllerAttribute{
-    
+
+public class LevelSpecificSFC implements ISubFormControllerAttribute {
+
     private ILevelSpecificSFV myView;
-    
-    public LevelSpecificSFC(){
+
+    public LevelSpecificSFC () {
         myView = new LevelSpecificSFV();
     }
 
@@ -19,16 +20,14 @@ public class LevelSpecificSFC implements ISubFormControllerAttribute{
     public void populateViewsWithData (AttributeDefinition item) {
         myView.setLevelSpecific(item.getIsLevelSpecific());
     }
-    
+
     @Override
-    public void initializeFields () {        
+    public void initializeFields () {
     }
 
     @Override
     public ISubFormView getSubFormView () {
         return myView;
     }
-
-   
 
 }

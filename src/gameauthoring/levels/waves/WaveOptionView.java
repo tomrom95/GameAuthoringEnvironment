@@ -1,7 +1,6 @@
 package gameauthoring.levels.waves;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.IGame;
 import engine.definitions.spawnerdef.WaveDefinition;
 import gameauthoring.creation.cellviews.NameCellView;
@@ -9,11 +8,12 @@ import gameauthoring.util.Glyph;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import splash.LocaleManager;
 
 
 /**
  * Displays the list view of waves the author has already created
- * 
+ *
  * @author RyanStPierre
  *
  */

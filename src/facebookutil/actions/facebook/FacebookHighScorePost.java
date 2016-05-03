@@ -7,6 +7,7 @@ import facebookutil.scores.HighScoreMessage;
 import facebookutil.scores.ScoreOrder;
 import facebookutil.user.IUser;
 
+
 public class FacebookHighScorePost extends FacebookCustomPost implements HighScorePost {
 
     @Override

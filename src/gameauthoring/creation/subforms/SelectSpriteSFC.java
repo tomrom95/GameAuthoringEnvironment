@@ -1,13 +1,15 @@
 package gameauthoring.creation.subforms;
 
+import java.util.ArrayList;
+import java.util.List;
 import engine.AuthorshipData;
 import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
-import java.util.*;
 
-public class SelectSpriteSFC implements ISubFormControllerGroup{
-    
+
+public class SelectSpriteSFC implements ISubFormControllerGroup {
+
     private ISelectSpriteSFV myView;
 
     public SelectSpriteSFC (AuthorshipData authorshipData) {
@@ -21,7 +23,6 @@ public class SelectSpriteSFC implements ISubFormControllerGroup{
     public void updateItem (SpriteGroup item) {
         item.setSpriteDefinitions(myView.getChosen());
     }
-
 
     @Override
     public ISubFormView getSubFormView () {

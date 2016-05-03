@@ -54,7 +54,7 @@ public class NodeGraph implements INodeGraph {
     /**
      * Will remove all references in all other nodes to the input node
      * Will then remove the node itself
-     * 
+     *
      * @param node
      * @param listToClean
      */
@@ -91,10 +91,9 @@ public class NodeGraph implements INodeGraph {
     public IPathNode getClosestNode (Coordinate loc) {
         return getNodes()
                 .stream()
-                .reduce((x, y)
-                         -> Coordinate.distance(x.getLocation(), loc) >=
-                         Coordinate.distance(y.getLocation(), loc)
-                         ? y : x)
+                .reduce( (x, y) -> Coordinate.distance(x.getLocation(), loc) >= Coordinate
+                        .distance(y.getLocation(), loc)
+                                                        ? y : x)
                 .orElse(null);
     }
 
@@ -102,7 +101,7 @@ public class NodeGraph implements INodeGraph {
     public void addAndConnectNode (IPathNode toAdd) {
         connectNodes(toAdd, getClosestNode(toAdd.getLocation()));
         addNode(toAdd);
-        
+
     }
 
     @Override
@@ -121,7 +120,7 @@ public class NodeGraph implements INodeGraph {
         if (getNodes().contains(new PathNode(pos))) {
             return getNodes().stream()
                     .filter(node -> node.getLocation().equals(pos))
-                    .reduce((a, b) -> a)
+                    .reduce( (a, b) -> a)
                     .orElse(null);
         }
         else {
@@ -129,7 +128,7 @@ public class NodeGraph implements INodeGraph {
             addNode(toReturn);
             return toReturn;
         }
-        
+
     }
 
 }

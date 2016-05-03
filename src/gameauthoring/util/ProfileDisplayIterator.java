@@ -1,11 +1,12 @@
 package gameauthoring.util;
 
+import java.util.List;
 import engine.profile.ProfileDisplay;
-import java.util.*;
+
 
 /**
  * Helper class to match a string to its associated Profile Display
- * 
+ *
  * @author Joe Lilien
  *
  */

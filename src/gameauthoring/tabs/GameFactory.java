@@ -8,7 +8,7 @@ import gameplayer.GamePlayer;
 /**
  * Factory class for creating game.
  * TODO loadGame method which loads XML file and creates the game
- * 
+ *
  * @author Jin An
  *
  */

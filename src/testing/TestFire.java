@@ -28,7 +28,7 @@ import util.TimeDuration;
 
 /**
  * Test package to test firing modules
- * 
+ *
  * @author Dhrumil Timko
  *
  */
@@ -69,8 +69,9 @@ public class TestFire {
         myTowerList.clear();
         Iterator<ModuleDefinition> modules = myTower.getModuleDefinitions().iterator();
 
-        while (modules.hasNext())
+        while (modules.hasNext()) {
             myTower.remove(modules.next());
+        }
     }
 
     private void createMover () {

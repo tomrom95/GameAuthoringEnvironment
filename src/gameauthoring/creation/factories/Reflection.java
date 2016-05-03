@@ -22,9 +22,11 @@ public class Reflection {
     public static Object createInstance (String className) throws ReflectionException {
         try {
             return Class.forName(className).newInstance();
-        } catch (ClassNotFoundException e) {
+        }
+        catch (ClassNotFoundException e) {
             throw new ReflectionException(e, "Incorrectly named class %s", className);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw new ReflectionException(e, "No public default constructor for %s", className);
         }
     }
@@ -34,7 +36,7 @@ public class Reflection {
      * parameters, returns initialized instance of the corresponding class using
      * matching constructor.
      */
-    public static Object createInstance (String name, Object... args) throws ReflectionException {
+    public static Object createInstance (String name, Object ... args) throws ReflectionException {
         try {
             Class<?> c = Class.forName(name);
             for (Constructor<?> current : c.getDeclaredConstructors()) {
@@ -44,12 +46,16 @@ public class Reflection {
                 }
             }
             throw new ReflectionException("No matching public constructor for %s", name);
-        } catch (ClassNotFoundException e) {
+        }
+        catch (ClassNotFoundException e) {
             throw new ReflectionException(e, "Incorrectly named class %s", name);
-        } catch (InvocationTargetException e){
+        }
+        catch (InvocationTargetException e) {
             e.printStackTrace();
-            throw new ReflectionException(e, "Error in constructor for %s:\n%s", name, e.getTargetException().getMessage());
-        } catch (Exception e) {
+            throw new ReflectionException(e, "Error in constructor for %s:\n%s", name,
+                                          e.getTargetException().getMessage());
+        }
+        catch (Exception e) {
             throw new ReflectionException(e, "No matching public constructor for %s", name);
         }
     }
@@ -64,8 +70,10 @@ public class Reflection {
         try {
             Method toCall = target.getClass().getDeclaredMethod(name, new Class[0]);
             return toCall.invoke(target, new Object[0]);
-        } catch (Exception e) {
-            throw new ReflectionException(e, "No matching public method %s for %s", name, target.getClass().getName());
+        }
+        catch (Exception e) {
+            throw new ReflectionException(e, "No matching public method %s for %s", name,
+                                          target.getClass().getName());
         }
     }
 
@@ -76,8 +84,8 @@ public class Reflection {
      *
      * If the method's return type is void, null in returned.
      */
-    public static Object callMethod (Object target, String name, Object... args)
-            throws ReflectionException {
+    public static Object callMethod (Object target, String name, Object ... args)
+                                                                                  throws ReflectionException {
         try {
             for (Method current : target.getClass().getDeclaredMethods()) {
                 if (name.equals(current.getName())) {
@@ -87,9 +95,12 @@ public class Reflection {
                     }
                 }
             }
-            throw new ReflectionException("No matching public method %s for %s", name, target.getClass().getName());
-        } catch (Exception e) {
-            throw new ReflectionException(e, "No matching public method %s for %s", name, target.getClass().getName());
+            throw new ReflectionException("No matching public method %s for %s", name,
+                                          target.getClass().getName());
+        }
+        catch (Exception e) {
+            throw new ReflectionException(e, "No matching public method %s for %s", name,
+                                          target.getClass().getName());
         }
     }
 
@@ -100,8 +111,10 @@ public class Reflection {
     public static Object getFieldValue (Object target, String name) throws ReflectionException {
         try {
             return target.getClass().getDeclaredField(name).get(target);
-        } catch (Exception e) {
-            throw new ReflectionException(e, "No matching public instance variable for %s", target.getClass().getName());
+        }
+        catch (Exception e) {
+            throw new ReflectionException(e, "No matching public instance variable for %s",
+                                          target.getClass().getName());
         }
     }
 
@@ -118,8 +131,8 @@ public class Reflection {
 
     // are parameters of compatible types and in same order?
     private static boolean typesMatch (Member function, Class<?>[] formals, Object[] actuals) {
-        if ((actuals.length == formals.length)
-                || (actuals.length >= formals.length && isVarArgs(function))) {
+        if ((actuals.length == formals.length) ||
+            (actuals.length >= formals.length && isVarArgs(function))) {
             int idx = 0;
             // check each parameter individually
             for (; idx < formals.length - 1; idx++) {
@@ -128,7 +141,8 @@ public class Reflection {
                 }
             }
             // check each of the last actual args to see if they can be one of varargs
-            Class<?> type = (formals[idx].isArray()) ? formals[idx].getComponentType() : formals[idx];
+            Class<?> type =
+                    (formals[idx].isArray()) ? formals[idx].getComponentType() : formals[idx];
             for (; idx < actuals.length; idx++) {
                 if (!isInstance(type, actuals[idx])) {
                     return false;
@@ -173,12 +187,14 @@ public class Reflection {
                     // primitives are not exactly the same
                     return false;
                 }
-            } else if (!clss.isInstance(instance)) {
+            }
+            else if (!clss.isInstance(instance)) {
                 // not an instance of class or its sub-classes
                 return false;
             }
             return true;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             // tried to compare primitive to non-primitive
             return false;
         }

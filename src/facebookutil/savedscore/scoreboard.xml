@@ -6,35 +6,6 @@
         <facebookutil.scores.Score>
           <myUser class="facebookutil.user.User">
             <myEmail>
-              <myName>dhrew95</myName>
-              <myDomain>yahoo.com</myDomain>
-            </myEmail>
-            <myScoreBoard>
-              <myBoard>
-                <entry>
-                  <string>Farmville</string>
-                  <int>25</int>
-                </entry>
-              </myBoard>
-            </myScoreBoard>
-            <myProfiles>
-              <myProfiles>
-                <entry>
-                  <facebookutil.SocialType>FACEBOOK</facebookutil.SocialType>
-                  <facebookutil.user.profiles.FacebookProfile>
-                    <myID>1108038825927458</myID>
-                  </facebookutil.user.profiles.FacebookProfile>
-                </entry>
-              </myProfiles>
-              <myActiveProfile class="facebookutil.user.profiles.FacebookProfile" reference="../myProfiles/entry/facebookutil.user.profiles.FacebookProfile"/>
-            </myProfiles>
-          </myUser>
-          <myPoints>25</myPoints>
-          <myDate>2016-05-02 16:57:15.15 UTC</myDate>
-        </facebookutil.scores.Score>
-        <facebookutil.scores.Score>
-          <myUser class="facebookutil.user.User">
-            <myEmail>
               <myName>tomrom95</myName>
               <myDomain>gmail.com</myDomain>
             </myEmail>
@@ -62,8 +33,37 @@
               <myActiveProfile class="facebookutil.user.profiles.FacebookProfile" reference="../myProfiles/entry/facebookutil.user.profiles.FacebookProfile"/>
             </myProfiles>
           </myUser>
-          <myPoints>15</myPoints>
-          <myDate>2016-05-02 16:42:28.60 UTC</myDate>
+          <myPoints>30</myPoints>
+          <myDate>2016-05-02 20:07:03.54 UTC</myDate>
+        </facebookutil.scores.Score>
+        <facebookutil.scores.Score>
+          <myUser class="facebookutil.user.User">
+            <myEmail>
+              <myName>dhrew95</myName>
+              <myDomain>yahoo.com</myDomain>
+            </myEmail>
+            <myScoreBoard>
+              <myBoard>
+                <entry>
+                  <string>Farmville</string>
+                  <int>25</int>
+                </entry>
+              </myBoard>
+            </myScoreBoard>
+            <myProfiles>
+              <myProfiles>
+                <entry>
+                  <facebookutil.SocialType>FACEBOOK</facebookutil.SocialType>
+                  <facebookutil.user.profiles.FacebookProfile>
+                    <myID>1108038825927458</myID>
+                  </facebookutil.user.profiles.FacebookProfile>
+                </entry>
+              </myProfiles>
+              <myActiveProfile class="facebookutil.user.profiles.FacebookProfile" reference="../myProfiles/entry/facebookutil.user.profiles.FacebookProfile"/>
+            </myProfiles>
+          </myUser>
+          <myPoints>25</myPoints>
+          <myDate>2016-05-02 16:57:15.15 UTC</myDate>
         </facebookutil.scores.Score>
       </list>
     </entry>

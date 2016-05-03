@@ -2,14 +2,15 @@ package graphics;
 
 import engine.rendering.IGraphicFactory;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Node;
-import javafx.beans.property.ObjectProperty;
 import util.RGBColor;
 
+
 /**
- * This class serves as an abstraction of a JavaFX image that stores the height and width of an object
+ * This class serves as an abstraction of a JavaFX image that stores the height and width of an
+ * object
  * and a RGB color.
  *
  */

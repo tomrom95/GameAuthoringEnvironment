@@ -43,8 +43,10 @@ public abstract class LevelRenderer implements IRenderer {
 
     protected void draw (Node node, Drawable sprite) {
         Coordinate location = sprite.getLocation();
-        node.relocate(getScale().scale(location.getX()) - sprite.getDrawer().getGraphic().getHeight().get() / 2,
-                        getScale().scale(location.getY()) - sprite.getDrawer().getGraphic().getHeight().get() / 2);
+        node.relocate(getScale().scale(location.getX()) -
+                      sprite.getDrawer().getGraphic().getHeight().get() / 2,
+                      getScale().scale(location.getY()) - sprite.getDrawer().getGraphic()
+                              .getHeight().get() / 2);
         node.setScaleX(getScale().getScale());
         node.setScaleY(getScale().getScale());
         node.setVisible(sprite.getDrawer().isVisible());
@@ -67,11 +69,11 @@ public abstract class LevelRenderer implements IRenderer {
     }
 
     public abstract void redrawBackground ();
-    
-    protected ScaleRatio getScale() {
+
+    protected ScaleRatio getScale () {
         return myScale;
     }
-    
+
     protected Image getImage (String url) {
         return new Image(url, scaledWidth(), scaledHeight(), true, true);
     }

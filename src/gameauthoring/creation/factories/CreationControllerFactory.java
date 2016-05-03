@@ -10,7 +10,7 @@ import util.BundleOperations;
 
 /**
  * This is a factory class for the creation of Creation Controllers
- * 
+ *
  * @author Jeremy Schreck
  *
  */
@@ -43,16 +43,19 @@ public class CreationControllerFactory {
             return (CreationController<?>) Reflection.createInstance(className, key, sfcs, myGame);
         }
         catch (ReflectionException e) {
-            String message = String.format("Reflection exception for creation controller key %s with subforms %s:\n%s ", key, sfcs, e.getMessage());
+            String message =
+                    String.format("Reflection exception for creation controller key %s with subforms %s:\n%s ",
+                                  key, sfcs, e.getMessage());
             throw new ReflectionException(message);
         }
         catch (ClassCastException e) {
-            String message = String.format("Class cast exception for creation controller key %s with subforms %s:\n" +
-                    "%s ", key, sfcs, e.getMessage());
+            String message =
+                    String.format("Class cast exception for creation controller key %s with subforms %s:\n" +
+                                  "%s ", key, sfcs, e.getMessage());
             throw new ReflectionException(message);
 
         }
-   }
+    }
 
     private List<String> getSFCs (String tabName) {
         return BundleOperations.getPropertyValueAsList(tabName, mySubforms);

@@ -9,10 +9,10 @@ import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
+
 public class TestAppLogin {
-    
-    
-    public static void main(String[] args) {
+
+    public static void main (String[] args) {
         ResourceBundle secrets = ResourceBundle.getBundle("facebookutil/secret");
         final OAuth20Service service = new ServiceBuilder()
                 .apiKey(secrets.getString("clientId"))

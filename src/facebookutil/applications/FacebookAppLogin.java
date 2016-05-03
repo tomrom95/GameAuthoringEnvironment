@@ -15,6 +15,7 @@ import facebookutil.login.LoginObject;
 /**
  * Handles logging in a facebook app. This request is a little different
  * from the others, since it launches the browser view.
+ *
  * @author Tommy
  *
  */

@@ -5,7 +5,7 @@ import engine.definitions.concrete.SpriteDefinition;
 
 /**
  * Allows users to select properties of a directional firing module
- * 
+ *
  * @author Joe Lilien
  *
  */

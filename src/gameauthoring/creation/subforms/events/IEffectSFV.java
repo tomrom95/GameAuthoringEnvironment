@@ -6,7 +6,7 @@ import gameauthoring.creation.subforms.ISubFormView;
 
 /**
  * View to allow users to define and create an Effect to be added to an EventPackageDefinition
- * 
+ *
  * @author Joe Lilien
  *
  */

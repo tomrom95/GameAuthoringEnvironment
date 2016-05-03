@@ -1,7 +1,5 @@
 package engine;
 
-import engine.profile.IProfile;
-
 /**
  * This class defines the type of an attribute, and defines the functionality that allows checking
  * to see if attributes are of the same type
@@ -33,6 +31,5 @@ public class AttributeType extends StringBasedType {
     protected boolean isSameClass (Object obj) {
         return obj instanceof AttributeType;
     }
-
 
 }

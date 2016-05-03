@@ -12,7 +12,7 @@ import util.BundleOperations;
 /**
  * Displays a combo box of ending condition options (win, lose, etc.)
  * Used in composition of many sub condition views the display this type of combo box
- * 
+ *
  * @author RyanStPierre
  *
  */

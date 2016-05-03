@@ -6,9 +6,9 @@ import engine.definitions.concrete.IDefinition;
 import engine.profile.IProfilable;
 import engine.profile.IProfile;
 import engine.profile.Profile;
+import engine.waves.Wave;
 import engine.waves.WaveBlock;
 import engine.waves.WaveInfiniteRandom;
-import engine.waves.Wave;
 
 
 /**
@@ -17,30 +17,31 @@ import engine.waves.Wave;
  *
  */
 public class WaveDefinition implements IDefinition, IProfilable {
-    
+
     private List<WaveBlockDefinition> myBlocks;
     private IProfile myProfile = new Profile();
     boolean myInfinite;
 
     public WaveDefinition (List<WaveBlockDefinition> sprites) {
-    	setListSprites(sprites);
-    	myInfinite = false;
+        setListSprites(sprites);
+        myInfinite = false;
     }
 
     public void setListSprites (List<WaveBlockDefinition> sprites) {
         myBlocks = sprites;
     }
 
-    public Wave create(){
+    public Wave create () {
         List<WaveBlock> spriteData = myBlocks.stream().map(def -> def.create())
                 .collect(Collectors.toList());
         Wave newWave;
-        if(myInfinite){
-             newWave = new WaveInfiniteRandom(spriteData);
-        }else{
-            newWave = new Wave(spriteData); 
+        if (myInfinite) {
+            newWave = new WaveInfiniteRandom(spriteData);
         }
-    	return newWave;
+        else {
+            newWave = new Wave(spriteData);
+        }
+        return newWave;
     }
 
     @Override
@@ -50,18 +51,18 @@ public class WaveDefinition implements IDefinition, IProfilable {
 
     @Override
     public void setProfile (IProfile profile) {
-        myProfile = profile;        
+        myProfile = profile;
     }
-    
-    public List<WaveBlockDefinition> getWaveBlocks() {
+
+    public List<WaveBlockDefinition> getWaveBlocks () {
         return myBlocks;
     }
-    
-    public void setInfinite(boolean b){
+
+    public void setInfinite (boolean b) {
         myInfinite = b;
     }
-    
-    public boolean getInfinite(){
+
+    public boolean getInfinite () {
         return myInfinite;
     }
 

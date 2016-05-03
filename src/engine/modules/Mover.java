@@ -2,7 +2,6 @@ package engine.modules;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 import engine.Attribute;
 import engine.AttributeType;
 import engine.IAttribute;
@@ -132,7 +131,7 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
      * presented to the user, and right after it is taken in by the user
      *
      * The X and Y velocities are only set according to this method and set speed now
-     * 
+     *
      * @return
      */
     @Override
@@ -142,6 +141,7 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
         setYVel(Math.sin(newAngle * DEGREES_TO_RADS) * mySpeed.getValueProperty().get());
 
     }
+
     @Override
     public void setOrientationFromTracker (double newAngle) {
         myOrientation.setValue(newAngle);
@@ -152,7 +152,7 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
 
     /**
      * this sets the speed and the X and Y velocities according to the current speed and angle.
-     * 
+     *
      * The X and Y velocities are only set according to this method and set orientation now
      */
     @Override
@@ -189,7 +189,5 @@ public abstract class Mover extends DefaultAffectable implements IMovementModule
     protected Positionable getParent () {
         return myParent;
     }
-    
-
 
 }

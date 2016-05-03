@@ -3,7 +3,6 @@ package gameauthoring.creation.subforms.fire;
 import java.util.ResourceBundle;
 import engine.AuthorshipData;
 import engine.definitions.concrete.SpriteDefinition;
-import splash.LocaleManager;
 import gameauthoring.creation.entryviews.CharacterEntryView;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
@@ -12,9 +11,9 @@ import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 
 
 public class UserFireSFV extends SubFormView implements IUserFireSFV {
@@ -41,7 +40,6 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
     private RemoveOption myRemove;
     private SingleChoiceEntryView<SpriteDefinition> myMissileSelectionView;
     private static final String MY_TITLE_KEY = "USERFIRER";
-
 
     public UserFireSFV (AuthorshipData data, RemoveOption remove) {
         setMyTitle(MY_TITLE_KEY);
@@ -108,15 +106,21 @@ public class UserFireSFV extends SubFormView implements IUserFireSFV {
     @Override
     protected void initView () {
         double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
-        HBox header = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(), getSubTitleDisplay());
-        HBox angles = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myDecrease.draw(), myIncrease.draw(), myFire.draw());
+        HBox header =
+                getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(),
+                                          getSubTitleDisplay());
+        HBox angles =
+                getMyUIFactory().makeHBox(spacing, Pos.CENTER, myDecrease.draw(), myIncrease.draw(),
+                                          myFire.draw());
         HBox fireParams =
                 getMyUIFactory().makeHBox(spacing, Pos.CENTER, myMissileSelectionView.draw(),
                                           myAngle.draw(), myAngleStep.draw());
         HBox rangeParams =
                 getMyUIFactory().makeHBox(spacing, Pos.CENTER, myWaitTime.draw(),
                                           myIsRanged.draw(), myRangeValue.draw());
-        myPane = getMyUIFactory().makeVBox(spacing, Pos.CENTER, header,angles,fireParams,rangeParams);
+        myPane =
+                getMyUIFactory().makeVBox(spacing, Pos.CENTER, header, angles, fireParams,
+                                          rangeParams);
         getMyUIFactory().addStyling(myPane, "Firer");
     }
 

@@ -16,7 +16,7 @@ import util.TimeDuration;
 /**
  * This abstract class represents all types of conditions, and defines some of behavior that they
  * all use to apply effects to specified locations
- * 
+ *
  * @author Jonathan Im
  * @author David Maydew
  *
@@ -48,7 +48,7 @@ public abstract class Condition implements ICondition {
 
     /**
      * Applies a given package to a third-party group of sprites
-     * 
+     *
      * @param game containing current sprites
      * @param toApply event package to apply to sprites
      */
@@ -65,7 +65,7 @@ public abstract class Condition implements ICondition {
     /**
      * Applies a package to a third-party group of sprites and a different package to all global
      * attributes
-     * 
+     *
      * @param game to apply the packages into
      * @param otherPackage event package to apply to sprites
      * @param globalPackage event package to apply to global attributes
@@ -102,7 +102,7 @@ public abstract class Condition implements ICondition {
 
     /**
      * Applies a given package to a sprite
-     * 
+     *
      * @param myPackage to apply
      * @param mySprite to apply to
      */
@@ -115,7 +115,7 @@ public abstract class Condition implements ICondition {
     /**
      * Checks the value of an attribute with a given predicate, and executes a function if the test
      * is matched
-     * 
+     *
      * @param attribute to check
      * @param valueCheck predicate specifying a boolean test method
      * @param doExecute to run if check is true

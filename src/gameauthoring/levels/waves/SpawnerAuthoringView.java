@@ -17,7 +17,7 @@ import util.ScaleRatio;
 /**
  * Allows the user to generate a spawner on the fly in the view and put it in the level
  * The user can drag any number of waves into a spawner and place it on the level screen
- * 
+ *
  * @author RyanStPierre
  *
  */

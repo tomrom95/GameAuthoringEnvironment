@@ -13,7 +13,7 @@ public class Wave implements IWave {
 
     public Wave (List<WaveBlock> sprites) {
         myBlocks = sprites;
-        currentBlock =  myBlocks.remove(0);
+        currentBlock = myBlocks.remove(0);
         sinceLastSpawn = new TimeDuration();
         sinceLastSpawn.setToZero();
     }
@@ -23,15 +23,13 @@ public class Wave implements IWave {
         return myBlocks.size() == 0 && currentBlock.getCount() <= 0;
     }
 
-
-
     @Override
     public ISprite spawnSprite () {
         if (isBlockEmpty() && !myBlocks.isEmpty()) {
             currentBlock = myBlocks.get(0);
             myBlocks.remove(0);
         }
-        
+
         return currentBlock.spawn();
 
     }
@@ -53,24 +51,24 @@ public class Wave implements IWave {
         }
 
     }
-    
-    protected TimeDuration getTimeSinceSpawn(){
+
+    protected TimeDuration getTimeSinceSpawn () {
         return sinceLastSpawn;
     }
-    
-    protected void setTimeSinceSpawn(TimeDuration t){
+
+    protected void setTimeSinceSpawn (TimeDuration t) {
         sinceLastSpawn = t;
     }
-    
-    protected List<WaveBlock> getBlocks(){
+
+    protected List<WaveBlock> getBlocks () {
         return myBlocks;
     }
-    
-    protected WaveBlock getCurrentBlock(){
+
+    protected WaveBlock getCurrentBlock () {
         return currentBlock;
     }
-    
-    protected void setCurrentBlock(WaveBlock b){
+
+    protected void setCurrentBlock (WaveBlock b) {
         currentBlock = b;
     }
 }

@@ -4,8 +4,6 @@ import java.util.function.DoublePredicate;
 import engine.AttributeType;
 import engine.IEventPackage;
 import engine.IGame;
-import engine.profile.IProfile;
-import engine.profile.Profile;
 import engine.sprite.ISprite;
 import util.TimeDuration;
 
@@ -43,7 +41,7 @@ public class OnSpriteAttributeCondition extends Condition implements ICondition 
                                                              createDoFunction(sprite))));
 
     }
-    
+
     private FunctionalDoer createDoFunction (ISprite sprite) {
         return new FunctionalDoer() {
             @Override
@@ -57,17 +55,17 @@ public class OnSpriteAttributeCondition extends Condition implements ICondition 
         };
     }
 
-//    private FunctionalDoer createDoFunction () {
-//        return new FunctionalDoer() {
-//            @Override
-//            public void doIt () {
-//                applyEventPackageToSprites(myGame,
-//                                           mySpritePackage);
-//                applyOtherAndGlobalEventPackages(myGame,
-//                                                 myOtherPackage,
-//                                                 myGlobalPackage);
-//            }
-//        };
-//    }
+    // private FunctionalDoer createDoFunction () {
+    // return new FunctionalDoer() {
+    // @Override
+    // public void doIt () {
+    // applyEventPackageToSprites(myGame,
+    // mySpritePackage);
+    // applyOtherAndGlobalEventPackages(myGame,
+    // myOtherPackage,
+    // myGlobalPackage);
+    // }
+    // };
+    // }
 
 }

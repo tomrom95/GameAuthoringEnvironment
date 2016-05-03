@@ -15,7 +15,7 @@ public abstract class RemovableFireSFC extends RemovableSFC<SpriteDefinition> {
     public void removeModule (Object myMod) {
         if (getMyDefinition() != null) {
             if (getMyDefinition().getModuleDefinitions().contains(myMod)) {
-                getMyDefinition().remove((ModuleDefinition)myMod);
+                getMyDefinition().remove((ModuleDefinition) myMod);
             }
         }
     }

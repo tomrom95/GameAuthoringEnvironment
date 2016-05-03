@@ -1,6 +1,5 @@
 package testing;
 
-import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
@@ -21,10 +20,13 @@ public class TestSpriteManager {
 
     /**
      * Once again this class in order to be useful will need to be refactord to
-     * use the {@link Sprite#initialize(engine.modules.IMovementModule, engine.modules.IGraphicModule, List, List, Coordinate) initialize}
+     * use the
+     * {@link Sprite#initialize(engine.modules.IMovementModule, engine.modules.IGraphicModule, List, List, Coordinate)
+     * initialize}
      * method in order to actually put the required submodules to test into the sprite
-     * 
-     * Running this code as is should result in some null pointer exceptions as calls go to non-existant objects
+     *
+     * Running this code as is should result in some null pointer exceptions as calls go to
+     * non-existant objects
      */
     @Before
     public void setUp () {
@@ -48,7 +50,7 @@ public class TestSpriteManager {
         ISprite mySprite = new Sprite(new SpriteType("UserSprite"));
         mySprite.setLocation(new Coordinate(10, 10));
         List<Coordinate> path = new ArrayList<>();
-        PathMover mover = new PathMover(1, path, mySprite);
+        new PathMover(1, path, mySprite);
         return mySprite;
 
     }

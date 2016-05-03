@@ -4,16 +4,15 @@ import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
 import engine.SpriteGroup;
+import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.factories.SpriteSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
-import engine.definitions.concrete.SpriteDefinition;
-import engine.profile.Profile;
 import gameauthoring.shareddata.DefinitionCollection;
 
 
 /**
  * This class controls the creation of Sprite Definitions
- * 
+ *
  * @author Jeremy Schreck
  *
  */
@@ -36,7 +35,7 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
     }
 
     @Override
-    protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {       
+    protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
         return authorshipData.getMyCreatedSprites(getMyKey());
     }
 

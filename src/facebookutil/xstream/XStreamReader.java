@@ -8,14 +8,16 @@ import java.io.IOException;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+
 /**
  * Helper class to read objects from xstream xml files. This
  * came from our project.
+ *
  * @author Tommy
  *
  */
 public class XStreamReader {
-    
+
     /**
      * Reads in an XML file object
      */
@@ -35,6 +37,7 @@ public class XStreamReader {
 
     /**
      * Transforms the file from a file to a string
+     *
      * @param file
      * @return
      * @throws IOException
@@ -51,6 +54,7 @@ public class XStreamReader {
 
     /**
      * helper to create a buffered reader of the file
+     *
      * @param file
      * @return
      * @throws FileNotFoundException

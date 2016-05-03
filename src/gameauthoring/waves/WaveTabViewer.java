@@ -2,36 +2,32 @@ package gameauthoring.waves;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.IGame;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
 import gameauthoring.creation.cellviews.WaveDragCell;
 import gameauthoring.tabs.ITabViewer;
+import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.ErrorMessage;
 import gameauthoring.util.Glyph;
-import gameauthoring.util.BasicUIFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import splash.LocaleManager;
 
 
 /**
  * Controls the wave for creating a wave. This includes creating wave blocks and using
  * them to build a wave.
- * 
+ *
  * @author RyanStPierre
  *
  */
@@ -40,7 +36,9 @@ public class WaveTabViewer implements Glyph, ITabViewer {
 
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 700;
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    private ResourceBundle myLang =
+            ResourceBundle.getBundle("languages/labels",
+                                     LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/wave_tab_size");
     private ResourceBundle myStyle = ResourceBundle.getBundle("defaults/styling_class");
     private GridPane myPane = new GridPane();
@@ -58,6 +56,7 @@ public class WaveTabViewer implements Glyph, ITabViewer {
         new WaveTabController(this, myCreationZone);
     }
 
+    @Override
     public void init () {
         listInit();
         myPane.getStyleClass().add(myStyle.getString("WaveTab"));
@@ -81,19 +80,19 @@ public class WaveTabViewer implements Glyph, ITabViewer {
             return;
         }
         Optional<String> option = new BasicUIFactory().getTextDialog(
-                                                                myLang.getString("nameHolder"),
-                                                                myLang.getString("WaveTitle"),
-                                                                myLang.getString("WaveNameInstr"));
+                                                                     myLang.getString("nameHolder"),
+                                                                     myLang.getString("WaveTitle"),
+                                                                     myLang.getString("WaveNameInstr"));
         if (option.isPresent()) {
             myWaveDisplay.add(myBlockList, option.get(), myCreationZone.isInfiniteProperty().get());
             myBlockList.clear();
         }
-        
+
         myCreationZone.setInfiniteCheckBox(false);
     }
 
     public void transfer (List<WaveBlockDefinition> blocks, boolean b) {
-        //TODO: set the value of the infinite box here
+        // TODO: set the value of the infinite box here
         myCreationZone.setInfiniteCheckBox(b);
         myBlockList.setAll(blocks);
     }
@@ -121,11 +120,12 @@ public class WaveTabViewer implements Glyph, ITabViewer {
         myBlockList.clear();
     }
 
+    @Override
     public void rescale (double width, double height) {
         myPane.setAlignment(Pos.CENTER);
-        myPane.setScaleX(width/WIDTH);
-        myPane.setScaleY(height/(HEIGHT - 15));
-       
+        myPane.setScaleX(width / WIDTH);
+        myPane.setScaleY(height / (HEIGHT - 15));
+
     }
 
 }

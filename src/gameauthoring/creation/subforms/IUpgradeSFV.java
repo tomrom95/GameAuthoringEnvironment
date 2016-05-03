@@ -7,13 +7,13 @@ import javafx.beans.property.BooleanProperty;
 
 /**
  * Defines necessary information methods to update an Upgrade Module Definition Properly
- * 
+ *
  * @author Joe Lilien
  *
  */
 
 public interface IUpgradeSFV extends ISubFormView {
-    
+
     BooleanProperty isUpgradableProperty ();
 
     BooleanProperty isGlobalProperty ();

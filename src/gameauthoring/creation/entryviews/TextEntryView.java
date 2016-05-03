@@ -7,7 +7,7 @@ import javafx.scene.control.TextInputControl;
 
 /**
  * Allows for Text Data Entry Associated with Label given as constructor Arguement
- * 
+ *
  * @author JoeLilien
  *
  */

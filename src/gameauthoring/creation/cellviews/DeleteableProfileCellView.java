@@ -7,7 +7,7 @@ import javafx.scene.layout.HBox;
 
 /**
  * Profile cell that can be deleted
- * 
+ *
  * @author RyanStPierre
  *
  * @param <E>

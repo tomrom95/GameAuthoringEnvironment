@@ -1,11 +1,11 @@
 package engine.definitions.spawnerdef;
 
+import engine.IGame;
+import engine.definitions.concrete.SpriteDefinition;
 import engine.modules.StaticMover;
 import engine.sprite.ISprite;
 import engine.sprite.Sprite;
 import engine.sprite.SpriteType;
-import engine.IGame;
-import engine.definitions.concrete.SpriteDefinition;
 
 
 /**
@@ -23,17 +23,18 @@ public class SpawnerDefinition extends SpriteDefinition {
     private SpawnerModuleDefinition mySpawningModule;
 
     public SpawnerDefinition (IGame game) {
-        getProfile().setNew(SPAWNER_NAME, SPAWNER_DESCRIPTION, SPAWNER_URL, DEFAULT_SIZE, DEFAULT_SIZE);
+        getProfile().setNew(SPAWNER_NAME, SPAWNER_DESCRIPTION, SPAWNER_URL, DEFAULT_SIZE,
+                            DEFAULT_SIZE);
         // TODO wave definition should specify an empty constructor so it can handle its own default
         // rather than passing null
-        //mySpawningModule = new SpawnerModuleDefinition(game, new WaveDefinition(null), 1);
+        // mySpawningModule = new SpawnerModuleDefinition(game, new WaveDefinition(null), 1);
     }
 
     @Override
     public ISprite create () {
         ISprite sprite = new Sprite(new SpriteType(getProfile().getName().get()));
         addModule(mySpawningModule);
-        sprite.initialize(new StaticMover(sprite), createGraphicModule(), 
+        sprite.initialize(new StaticMover(sprite), createGraphicModule(),
                           createUpgrade(sprite),
                           createModules(sprite),
                           createAttributes(),
@@ -47,6 +48,6 @@ public class SpawnerDefinition extends SpriteDefinition {
     }
 
     public void setMySpawningModule (SpawnerModuleDefinition spawningModule) {
-        this.mySpawningModule = spawningModule;
+        mySpawningModule = spawningModule;
     }
 }

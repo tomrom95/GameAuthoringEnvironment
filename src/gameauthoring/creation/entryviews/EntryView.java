@@ -5,24 +5,23 @@ import gameauthoring.util.BasicUIFactory;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import splash.LocaleManager;
 import util.StringParser;
 
 
 /**
  * Abstract class for an simple implementation of IEntryView
- * 
+ *
  * Note: one option is to have all of our entry views subclass this, and
  * in populateWithData they will call super and then access their myFormData
- * 
+ *
  * Other option is to never store formData and just regenerate a FormData object
  * in getData() every time, and use the passed in form data in populateWithData
- * 
+ *
  * design decision: state vs functional programming
- * 
+ *
  * @author Jeremy Schreck
  * @author Joe Lilien
- * 
+ *
  */
 public abstract class EntryView implements IEntryView {
 
@@ -31,12 +30,12 @@ public abstract class EntryView implements IEntryView {
     private Pane myContainer;
     private BasicUIFactory myFactory = new BasicUIFactory();
     private ResourceBundle myNumbers;
-   
-    private StringParser myParser; 
+
+    private StringParser myParser;
 
     public EntryView (String label, String cssClass) {
-        myNumbers =  ResourceBundle.getBundle("defaults/numbers");
-        myParser =  new StringParser();
+        myNumbers = ResourceBundle.getBundle("defaults/numbers");
+        myParser = new StringParser();
         myLabel = new Label(label);
         myLabel.getStyleClass().add(myLabelCss);
         initContainer(cssClass);
@@ -68,8 +67,8 @@ public abstract class EntryView implements IEntryView {
     protected ResourceBundle getMyNumbers () {
         return myNumbers;
     }
-    
-    protected StringParser getParser(){
+
+    protected StringParser getParser () {
         return myParser;
     }
 

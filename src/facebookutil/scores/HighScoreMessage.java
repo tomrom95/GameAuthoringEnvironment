@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 import facebookutil.user.IUser;
 
+
 /**
  * Helper class to create String messages out of the high score board
  * for posting
+ *
  * @author Tommy
  *
  */
@@ -30,12 +32,12 @@ public class HighScoreMessage {
         addScores(message, scores);
         return message.toString();
     }
-    
+
     public String getUserScoreString (IUser user, String gameName, ScoreOrder order) {
         int place = getOrder(myBoard.getScoreBoardSorted(gameName, order), user);
         return createUserScoreString(place, order, gameName);
     }
-    
+
     public String getNotifyString (IUser user, String gameName, ScoreOrder order) {
         int place = getOrder(myBoard.getScoreBoardSorted(gameName, order), user);
         return createNotifyString(place, order, gameName);
@@ -60,26 +62,26 @@ public class HighScoreMessage {
     private String createUserScoreString (int place, ScoreOrder order, String gameName) {
         return String.format(getTemplate("scorepost"), place, getAdjective(order), gameName);
     }
-    
+
     private String createNotifyString (int place, ScoreOrder order, String gameName) {
         return String.format(getTemplate("notifyscorepost"), place, getAdjective(order), gameName);
     }
 
     private int getOrder (List<Score> scores, IUser user) {
-        for (int i = 0; i < scores.size(); i ++) {
+        for (int i = 0; i < scores.size(); i++) {
             if (scores.get(i).getUser().equals(user)) {
                 return i + 1;
             }
         }
         return -1;
     }
-    
+
     private String getTemplate (String name) {
         return myProperties.getString(name);
     }
-    
+
     private String getAdjective (ScoreOrder order) {
         return myProperties.getString(order.name());
     }
-    
+
 }

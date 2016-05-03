@@ -73,11 +73,11 @@ public class SpriteManager implements ISpriteManager {
     public void internalizeMouseEvents (List<MouseIOEvent> list) {
         list.forEach(event -> loopThroughSpritesAndDo(sprite -> sprite.registerMouseEvent(event)));
     }
-    
+
     @Override
     public void internalizeGameEvents (List<GameEvent> list) {
         list.forEach(event -> loopThroughSpritesAndDo(sprite -> sprite.registerEvent(event)));
-        
+
     }
 
     @Override
@@ -105,7 +105,5 @@ public class SpriteManager implements ISpriteManager {
     public void add (ISprite sprite) {
         mySpriteList.add(sprite);
     }
-
-
 
 }

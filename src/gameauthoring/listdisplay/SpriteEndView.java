@@ -44,10 +44,10 @@ public class SpriteEndView extends AttributeEndView {
         EventPackageDefinition self = new EventPackageDefinition();
         return self.create(mySpriteGroup.getSelectionModel().getSelectedItem());
     }
-    
+
     @Override
     protected String getLabelKey (String key) {
         return ResourceBundle.getBundle("defaults/end_sprite").getString(key);
     }
-    
+
 }

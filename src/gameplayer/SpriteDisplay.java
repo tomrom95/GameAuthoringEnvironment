@@ -1,8 +1,6 @@
 package gameplayer;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.Drawable;
 import engine.IAttribute;
 import engine.rendering.GraphicFactory;
@@ -11,15 +9,15 @@ import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.UIFactory;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 
 
 /**
  * Class that displays the selected Sprite on the screen
  * Gives information, such as the Sprite's graphic and attributes.
  * In addition, the upgrade option is given
- * 
+ *
  * @author RyanStPierre
  *
  */
@@ -52,10 +50,12 @@ public class SpriteDisplay extends SizeableGlyph implements ISpriteDisplay {
         myPane.setPrefHeight(parseString(getString("SpriteDisplayHeight")));
     }
 
+    @Override
     public Node draw () {
         return myPane;
     }
 
+    @Override
     public void populate (Drawable drawn) {
         clear();
         add(drawn.getDrawer().getVisualRepresentation(myGraphicFactory));
@@ -81,6 +81,7 @@ public class SpriteDisplay extends SizeableGlyph implements ISpriteDisplay {
         return myController;
     }
 
+    @Override
     public Button getUpgradeButton () {
         return myUpgradeButton;
     }

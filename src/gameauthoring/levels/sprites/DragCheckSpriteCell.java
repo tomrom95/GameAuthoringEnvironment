@@ -1,7 +1,6 @@
 package gameauthoring.levels.sprites;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.levels.SceneController;
@@ -10,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
+import splash.LocaleManager;
 
 
 public class DragCheckSpriteCell extends DraggableSpriteCell implements Checkable {
@@ -60,10 +60,10 @@ public class DragCheckSpriteCell extends DraggableSpriteCell implements Checkabl
 
     private void checkBoxChange (Boolean oldValue, Boolean newValue) {
         if (!oldValue && newValue) {
-            this.getController().addSpriteToLevel(this.getProfilable());
+            getController().addSpriteToLevel(getProfilable());
         }
         else if (oldValue && !newValue) {
-            this.getController().removeSpriteFromLevel(this.getProfilable());
+            getController().removeSpriteFromLevel(getProfilable());
         }
     }
 

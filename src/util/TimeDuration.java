@@ -2,7 +2,7 @@ package util;
 
 /**
  * This class represents a duration of time, stored with millisecond precision.
- * 
+ *
  * @author David Maydew
  *
  */
@@ -13,7 +13,7 @@ public class TimeDuration {
     public TimeDuration () {
         myDuration = 0;
     }
-    
+
     public TimeDuration (double millis) {
         myDuration = millis;
     }

@@ -10,7 +10,7 @@ import javafx.scene.input.MouseEvent;
  * Interface for view elements to implement in order to be draggable.
  * Has some default helper methods to help out with repetitive javafx
  * code
- * 
+ *
  * @author Tommy
  * @author Jin An
  *
@@ -19,7 +19,7 @@ public interface Draggable {
 
     /**
      * Sets the drag actions of the source
-     * 
+     *
      * @param source
      */
     default void setActions (Node source) {
@@ -29,7 +29,7 @@ public interface Draggable {
     /**
      * Default method to create a clipboard holding a simple name.
      * Necessary for dragging sprites.
-     * 
+     *
      * @param name
      * @return
      */

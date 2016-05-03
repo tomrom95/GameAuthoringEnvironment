@@ -5,8 +5,6 @@ import engine.AttributeType;
 import engine.IAttributeManager;
 import engine.IEventPackage;
 import engine.IGame;
-import engine.profile.IProfile;
-import engine.profile.Profile;
 import util.TimeDuration;
 
 
@@ -48,5 +46,4 @@ public class OnGlobalAttributeCondition extends Condition implements ICondition 
                 }));
     }
 
-  
 }

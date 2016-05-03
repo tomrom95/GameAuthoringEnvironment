@@ -18,20 +18,20 @@ import util.ScaleRatio;
  * Creates side bar display of sprite that can be added to the screen.
  * Currently very similar to the authoring version, but will be changed when
  * costs are incorporated.
- * 
+ *
  * @author Tommy
  *
  */
 public class PlayerSideBar extends SideBarDisplay {
     private static final String PANE_TITLE = "Towers";
-    
+
     public PlayerSideBar (IGame game, LevelRenderer renderer, ScaleRatio ratio) {
         super(game.getLevelManager().getCurrentLevel(), renderer, ratio);
     }
 
     @Override
     protected void fillAccordion (Accordion accordion) {
-        accordion.getPanes().add(createAccordionPane(this.getLevel().getAddableSprites()));
+        accordion.getPanes().add(createAccordionPane(getLevel().getAddableSprites()));
     }
 
     protected TitledPane createAccordionPane (ObservableList<SpriteDefinition> spriteList) {
@@ -40,6 +40,7 @@ public class PlayerSideBar extends SideBarDisplay {
         return pane;
     }
 
+    @Override
     protected ProfileCellView<SpriteDefinition> getSpriteCellView () {
         return new PlayerSideBarCell(getLevelView(), getController());
     }

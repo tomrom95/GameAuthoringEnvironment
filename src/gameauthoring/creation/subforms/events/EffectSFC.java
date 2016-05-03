@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
 
 /**
  * Allows for user to create any number of effects to add to an events package
- * 
+ *
  * @author Joe Lilien
  *
  */

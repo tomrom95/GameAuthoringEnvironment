@@ -8,6 +8,7 @@ import engine.events.GameEvent;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
+
 public class NullUpgradeModule extends UpgradeModule {
 
     public NullUpgradeModule (IAdder adder,
@@ -16,12 +17,12 @@ public class NullUpgradeModule extends UpgradeModule {
                               Positionable parent) {
         super(adder, upgrade, check, parent);
     }
-    
+
     @Override
     public void registerEvent (GameEvent event) {
-        //do nothing
+        // do nothing
     }
-    
+
     @Override
     public BooleanProperty isUgradeable () {
         return new SimpleBooleanProperty(false);

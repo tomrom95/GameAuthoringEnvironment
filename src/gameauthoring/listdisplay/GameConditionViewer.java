@@ -25,6 +25,7 @@ public class GameConditionViewer extends ConditionViewer implements ITabViewer {
         new GameConditionController(this, game);
     }
 
+    @Override
     public void init () {
         initListView();
         add(createLeft(), 0, 0, 1, 3);
@@ -76,6 +77,7 @@ public class GameConditionViewer extends ConditionViewer implements ITabViewer {
         return input * HALF;
     }
 
+    @Override
     protected ObservableList<String> getList () {
         return BundleOperations.getValuesAsObservable(getBundle());
     }

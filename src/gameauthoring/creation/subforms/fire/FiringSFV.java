@@ -7,12 +7,11 @@ import gameauthoring.creation.subforms.ISubFormView;
 
 /**
  * Implementation of IFiringSFVmult with button display
- * 
+ *
  * @author Joe Lilien
  *
  */
 public class FiringSFV extends ClickAndFillView {
-
 
     public FiringSFV (List<String> options, String titleKey) {
         super(options, titleKey);
