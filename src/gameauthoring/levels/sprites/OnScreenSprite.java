@@ -117,13 +117,13 @@ public class OnScreenSprite implements Draggable, Glyph {
                         .scale((mySprite.getBounds().getRight() - mySprite.getBounds().getLeft()));
         for (int r =
                 (int) ((e.getY() - halfHeight) / levelView.getGrids()
-                        .getCurrentBlockSize()); r < (int) ((e.getY() + halfHeight) /
+                        .getCurrentBlockSize()); r < (int) Math.round(((e.getY() + halfHeight) /
                                                             levelView.getGrids()
-                                                                    .getCurrentBlockSize()); r++) {
+                                                                    .getCurrentBlockSize())); r++) {
             for (int c =
                     (int) ((e.getX() - halfWidth) / levelView.getGrids()
-                            .getCurrentBlockSize()); c < (int) ((e.getX() + halfWidth) / levelView
-                                    .getGrids().getCurrentBlockSize()); c++) {
+                            .getCurrentBlockSize()); c < (int) Math.round(((e.getX() + halfWidth) / levelView
+                                    .getGrids().getCurrentBlockSize())); c++) {
                 if (levelView.getLevel().getPlaceableTileManager().getPlaceableMap()
                         .getBitMap()[r][c]) {
                     return false;

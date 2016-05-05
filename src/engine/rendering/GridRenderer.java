@@ -11,6 +11,7 @@ import util.Tile;
 
 
 /**
+ * 
  * Renderer for grid in the authoring environment.
  * Authors can set unplaceable terrain by clicking the tiles
  * Takes in myScale (Scale Ratio wrapper object) and uses it to dynamically calculate the size of
@@ -43,7 +44,6 @@ public class GridRenderer implements IRenderer {
 
     private void calculateTileArraySize () {
         myNumBlockRow = (int) (myLevel.getBounds().getHeight() / BLOCK_SIZE);
-        System.out.println(myNumBlockRow);
         myNumBlockCol = (int) (myLevel.getBounds().getWidth() / BLOCK_SIZE);
         myBlocks = new Tile[myNumBlockRow][myNumBlockCol];
     }
@@ -71,13 +71,13 @@ public class GridRenderer implements IRenderer {
             if (tile.getTile().getFill() == Color.TRANSPARENT) {
                 myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[tile
                         .getRowPosition()][tile
-                                .getColPosition()] = true;
+                        .getColPosition()] = true;
                 tile.getTile().setFill(Color.RED);
             }
             else if (tile.getTile().getFill() == Color.RED) {
                 myLevel.getPlaceableTileManager().getPlaceableMap().getBitMap()[tile
                         .getRowPosition()][tile
-                                .getColPosition()] = false;
+                        .getColPosition()] = false;
                 tile.getTile().setFill(Color.TRANSPARENT);
             }
         }

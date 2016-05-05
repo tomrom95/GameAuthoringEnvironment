@@ -27,15 +27,6 @@ public class AuthoringRenderer extends LevelRenderer {
         myTileView = new GridRenderer(level, gridPane, scale);
     }
 
-    private Node createOnScreenSprite (ISprite sprite) {
-        return (new OnScreenSprite(this, myLevel, sprite, getScale())).draw();
-        // this.draw(spriteNode, sprite);
-    }
-
-    public void updateNewTiles () {
-        myTileView.updateTileNumbers();
-    }
-
     @Override
     public void render () {
         drawBackground(getBackgroundURL());
@@ -49,9 +40,16 @@ public class AuthoringRenderer extends LevelRenderer {
         updateExistingNodeLocations();
     }
 
-    @Override
-    String getBackgroundURL () {
-        return myLevel.getBackgroundImage().getUrlProperty().get();
+    private Node createOnScreenSprite (ISprite sprite) {
+        return (new OnScreenSprite(this, myLevel, sprite, getScale())).draw();
+    }
+
+    public void updateNewTiles () {
+        myTileView.updateTileNumbers();
+    }
+
+    public void scaleTitles () {
+        myTileView.redraw();
     }
 
     private void updateExistingNodeLocations () {
@@ -110,14 +108,6 @@ public class AuthoringRenderer extends LevelRenderer {
         }
     }
 
-    public GridRenderer getGrids () {
-        return myTileView;
-    }
-
-    public ILevel getLevel () {
-        return myLevel;
-    }
-
     private void add (Node node) {
         getPane().getChildren().add(node);
     }
@@ -143,9 +133,17 @@ public class AuthoringRenderer extends LevelRenderer {
         return getScale().scale(myLevel.getBounds().getWidth());
     }
 
-    public void scaleTitles () {
-        myTileView.redraw();
+    @Override
+    String getBackgroundURL () {
+        return myLevel.getBackgroundImage().getUrlProperty().get();
+    }
 
+    public GridRenderer getGrids () {
+        return myTileView;
+    }
+
+    public ILevel getLevel () {
+        return myLevel;
     }
 
 }

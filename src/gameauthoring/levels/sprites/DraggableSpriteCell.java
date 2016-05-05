@@ -82,13 +82,13 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
                         .scale((getProfilable().getProfile().getImageWidth().doubleValue()));
         for (int r =
                 (int) ((e.getY() - halfHeight) /
-                       myController.getRatio().scale(50)); r < (int) ((e.getY() + halfHeight) /
-                                                                      myController.getRatio()
-                                                                              .scale(50)); r++) {
+                myController.getRatio().scale(50)); r < (int) Math.round(((e.getY() + halfHeight) /
+                myController.getRatio()
+                        .scale(50))); r++) {
             for (int c =
                     (int) ((e.getX() - halfWidth) / myController.getRatio()
-                            .scale(50)); c < (int) ((e.getX() + halfWidth) /
-                                                    myController.getRatio().scale(50)); c++) {
+                            .scale(50)); c < (int) Math.round(((e.getX() + halfWidth) /
+                    myController.getRatio().scale(50))); c++) {
                 if (myController.getLevel().getPlaceableTileManager().getPlaceableMap()
                         .getBitMap()[r][c]) {
                     return false;
