@@ -1,5 +1,6 @@
 package engine.rendering;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,11 +19,10 @@ import util.ScaleRatio;
  * @author RyanStPierre
  *
  */
-public class InGameRenderer extends LevelRenderer {
+public class InGameRenderer extends LevelRenderer<Drawable> {
 
     private IGraphicFactory myFactory;
     private IGamePlayable myGame;
-    private Map<Drawable, Node> myDrawNodeMap;
     private SpriteDisplayController mySpriteDisplay;
     private boolean myFirstTime;
 
@@ -33,13 +33,12 @@ public class InGameRenderer extends LevelRenderer {
         super(pane, scale);
         myFactory = new UnscaledFactory();
         myGame = game;
-        myDrawNodeMap = new HashMap<>();
         myFirstTime = true;
         mySpriteDisplay = spriteDisplay;
     }
 
     @Override
-    void drawSprites () {
+    protected void drawSprites () {
         List<Node> currentEngineConvertedNodeList = getAndUpdateEngineNodeList();
         removeScreenNodesNotInEngine(currentEngineConvertedNodeList);
         updateExistingNodeLocations();
@@ -64,9 +63,10 @@ public class InGameRenderer extends LevelRenderer {
         return myGame.getBackroundImage().getUrlProperty().get();
     }
 
-    private void updateExistingNodeLocations () {
-        myDrawNodeMap.keySet().stream()
-                .forEach(drawable -> draw(myDrawNodeMap.get(drawable), drawable));
+    @Override
+    protected void updateExistingNodeLocations () {
+        getNodeMap().keySet().stream()
+                .forEach(drawable -> draw(getNodeMap().get(drawable), drawable));
         // .relocate(drawable.getLocation().getX(), drawable.getLocation().getY()));
     }
 
@@ -74,7 +74,8 @@ public class InGameRenderer extends LevelRenderer {
      * This method will remove nodes from JavaFX render tree if the does not report them as listing
      * in its list of drawables
      */
-    private void removeScreenNodesNotInEngine (List<Node> engineNodes) {
+    @Override
+    protected void removeScreenNodesNotInEngine (List<Node> engineNodes) {
         getCurrentDrawnNodes()
                 .removeIf(node -> checkEngineContainsAndUpdateDrawNodeMapEntry(engineNodes, node));
     }
@@ -83,8 +84,8 @@ public class InGameRenderer extends LevelRenderer {
                                                                   Node node) {
         boolean shouldRemove = !engineNodes.contains(node);
         if (shouldRemove) {
-            for (Drawable draw : getKeysForNode(myDrawNodeMap, node)) {
-                myDrawNodeMap.remove(draw);
+            for (Drawable draw : getKeysForNode(getNodeMap(), node)) {
+                getNodeMap().remove(draw);
             }
         }
         return shouldRemove;
@@ -105,19 +106,20 @@ public class InGameRenderer extends LevelRenderer {
      *
      * @return List<Node> of node objects that are currently represented in the engine
      */
-    private List<Node> getAndUpdateEngineNodeList () {
+    @Override 
+    protected List<Node> getAndUpdateEngineNodeList () {
         return myGame.getDrawables().stream().map(drawable -> getNodeForDrawableAddNew(drawable))
                 .collect(Collectors.toList());
     }
 
     private Node getNodeForDrawableAddNew (Drawable drawn) {
-        if (myDrawNodeMap.containsKey(drawn)) {
-            return myDrawNodeMap.get(drawn);
+        if (getNodeMap().containsKey(drawn)) {
+            return getNodeMap().get(drawn);
         }
         else {
             Node node = drawn.getDrawer().getVisualRepresentation(myFactory);
             node.setOnMouseClicked(e -> mySpriteDisplay.populate(drawn));
-            myDrawNodeMap.put(drawn, node);
+            getNodeMap().put(drawn, node);
             add(node);
             return node;
         }
@@ -130,8 +132,8 @@ public class InGameRenderer extends LevelRenderer {
     @Override
     public void redrawBackground () {
         myFirstTime = true;
-        for (Drawable drawable : myDrawNodeMap.keySet()) {
-            resize(drawable, myDrawNodeMap.get(drawable));
+        for (Drawable drawable : getNodeMap().keySet()) {
+            resize(drawable, getNodeMap().get(drawable));
         }
     }
 
@@ -148,6 +150,16 @@ public class InGameRenderer extends LevelRenderer {
     @Override
     protected double scaledWidth () {
         return getScale().scale(myGame.getLevelBounds().getWidth());
+    }
+
+    @Override
+    protected Collection<? extends Drawable> getList () {
+        return myGame.getDrawables();
+    }
+
+    @Override
+    protected Node getNode (Drawable item) {
+        return item.getDrawer().getVisualRepresentation(myFactory);
     }
 
 }

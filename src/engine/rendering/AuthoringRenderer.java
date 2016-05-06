@@ -1,5 +1,6 @@
 package engine.rendering;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,16 +15,14 @@ import javafx.scene.layout.Pane;
 import util.ScaleRatio;
 
 
-public class AuthoringRenderer extends LevelRenderer {
+public class AuthoringRenderer extends LevelRenderer<ISprite> {
 
     private ILevel myLevel;
-    private Map<ISprite, Node> mySpriteNodeMap;
     private GridRenderer myTileView;
 
     public AuthoringRenderer (ILevel level, Pane pane, GridPane gridPane, ScaleRatio scale) {
         super(pane, scale);
         myLevel = level;
-        mySpriteNodeMap = new HashMap<>();
         myTileView = new GridRenderer(level, gridPane, scale);
     }
 
@@ -37,77 +36,8 @@ public class AuthoringRenderer extends LevelRenderer {
     }
 
     @Override
-    public void render () {
-        drawBackground(getBackgroundURL());
-        drawSprites();
-    }
-
-    @Override
-    void drawSprites () {
-        List<Node> currentEngineConvertedNodeList = getAndUpdateEngineNodeList();
-        removeScreenNodesNotInEngine(currentEngineConvertedNodeList);
-        updateExistingNodeLocations();
-    }
-
-    @Override
     String getBackgroundURL () {
         return myLevel.getBackgroundImage().getUrlProperty().get();
-    }
-
-    private void updateExistingNodeLocations () {
-        mySpriteNodeMap.keySet().stream().forEach(drawable -> {
-            draw(mySpriteNodeMap.get(drawable), drawable);
-            mySpriteNodeMap.get(drawable).setVisible(true);
-        });
-
-    }
-
-    /**
-     * This method will remove nodes from JavaFX render tree if the does not report them as listing
-     * in its list of drawables
-     */
-    private void removeScreenNodesNotInEngine (List<Node> engineNodes) {
-        getCurrentDrawnNodes()
-                .removeIf(node -> checkEngineContainsAndUpdateDrawNodeMapEntry(engineNodes, node));
-    }
-
-    private boolean checkEngineContainsAndUpdateDrawNodeMapEntry (List<Node> engineNodes,
-                                                                  Node node) {
-        boolean shouldRemove = !engineNodes.contains(node);
-        if (shouldRemove) {
-            for (Drawable draw : getKeysForNode(mySpriteNodeMap, node)) {
-                mySpriteNodeMap.remove(draw);
-            }
-        }
-        return shouldRemove;
-    }
-
-    private List<ISprite> getKeysForNode (Map<ISprite, Node> map, Node node) {
-        return map.keySet().stream().filter(draw -> map.get(draw) == node)
-                .collect(Collectors.toList());
-    }
-
-    private List<Node> getCurrentDrawnNodes () {
-        return getPane().getChildren();
-    }
-
-    private List<Node> getAndUpdateEngineNodeList () {
-        return myLevel.getSprites().stream().map(drawable -> getNodeForDrawableAddNew(drawable))
-                .collect(Collectors.toList());
-    }
-
-    private Node getNodeForDrawableAddNew (ISprite sprite) {
-        if (mySpriteNodeMap.containsKey(sprite)) {
-            return mySpriteNodeMap.get(sprite);
-        }
-        else {
-            Node node = createOnScreenSprite(sprite);
-            node.scaleXProperty().set(getScale().getScale());
-            node.scaleYProperty().set(getScale().getScale());
-            mySpriteNodeMap.put(sprite, node);
-            add(node);
-            return node;
-        }
     }
 
     public GridRenderer getGrids () {
@@ -118,14 +48,10 @@ public class AuthoringRenderer extends LevelRenderer {
         return myLevel;
     }
 
-    private void add (Node node) {
-        getPane().getChildren().add(node);
-    }
-
     @Override
     public void redrawBackground () {
-        for (Drawable sprite : mySpriteNodeMap.keySet()) {
-            resize(sprite, mySpriteNodeMap.get(sprite));
+        for (Drawable sprite : getNodeMap().keySet()) {
+            resize(sprite, getNodeMap().get(sprite));
         }
     }
 
@@ -146,6 +72,16 @@ public class AuthoringRenderer extends LevelRenderer {
     public void scaleTitles () {
         myTileView.redraw();
 
+    }
+
+    @Override
+    protected Collection<ISprite> getList () {
+        return myLevel.getSprites();
+    }
+
+    @Override
+    protected Node getNode (ISprite item) {
+        return createOnScreenSprite(item);
     }
 
 }
