@@ -39,7 +39,8 @@
  * - This file (MultiSFController)
  * - A sample SubClass that would extend this class (Firing SFC)
  * - A sample Factory class that would be included with that subclass (FiringSFCFactory)
- * - The necessary Properties files to achieve reflection functionality
+ * - The necessary Properties files to achieve reflection functionality (dynamic_sfc_contents,
+ *   sfc_classpath)
  * 
  * 
  */
