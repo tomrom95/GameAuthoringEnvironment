@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
+import gameauthoring.tabs.WaveTabViewer;
 
 
 public class WaveTabController {

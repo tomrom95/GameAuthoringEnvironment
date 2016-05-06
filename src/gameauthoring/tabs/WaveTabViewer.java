@@ -1,4 +1,4 @@
-package gameauthoring.waves;
+package gameauthoring.tabs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +8,13 @@ import engine.IGame;
 import engine.definitions.spawnerdef.WaveBlockDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
 import gameauthoring.creation.cellviews.WaveDragCell;
-import gameauthoring.tabs.ITabViewer;
 import gameauthoring.util.BasicUIFactory;
 import gameauthoring.util.ErrorMessage;
 import gameauthoring.util.Glyph;
+import gameauthoring.waves.BlockAuthorshipView;
+import gameauthoring.waves.CreationZone;
+import gameauthoring.waves.WaveTabController;
+import gameauthoring.waves.WaveView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
