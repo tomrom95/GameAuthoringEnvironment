@@ -34,7 +34,7 @@ public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormC
                 ResourceBundle
                         .getBundle("languages/labels",
                                    LocaleManager.getInstance().getCurrentLocaleProperty().get());
-        myNumbers =  ResourceBundle
+        myNumbers = ResourceBundle
                 .getBundle("defaults/numbers");
         myParser = new StringParser();
         setMySFCFactory(new MultiOptionFactory<T>(game));
@@ -146,12 +146,12 @@ public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormC
     protected ResourceBundle getMyLabels () {
         return myLabels;
     }
-    
-    protected ResourceBundle getMyNumbers(){
+
+    protected ResourceBundle getMyNumbers () {
         return myNumbers;
     }
-    
-    protected StringParser getParser() {
+
+    protected StringParser getParser () {
         return myParser;
     }
 }

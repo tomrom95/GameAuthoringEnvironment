@@ -4,6 +4,7 @@ import engine.IOAffectable;
 import engine.definitions.concrete.IDefinition;
 import engine.profile.IProfilable;
 
+
 /**
  * This interface represents a generic Condition that will have a trigger condition that it checks
  * each game loop and an effect to fire upon that condition

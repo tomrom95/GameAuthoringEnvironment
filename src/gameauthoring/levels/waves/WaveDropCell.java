@@ -9,9 +9,10 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 
+
 /**
  * Allows waves to be dropped into the target
- * 
+ *
  * @author RyanStPierre
  *
  */
@@ -19,7 +20,7 @@ import javafx.scene.input.TransferMode;
 public class WaveDropCell extends NameCellView<WaveDefinition> {
 
     private static final String HOLDER = "holder";
-    
+
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/wave_drop_cell");
     private SpawnerView myTarget;
 
@@ -29,12 +30,12 @@ public class WaveDropCell extends NameCellView<WaveDefinition> {
     }
 
     private void initDrag () {
-        this.setOnDragDetected(e -> dragStart());
+        setOnDragDetected(e -> dragStart());
         getProfilable();
     }
 
     private void dragStart () {
-        Dragboard db = this.startDragAndDrop(TransferMode.COPY);
+        Dragboard db = startDragAndDrop(TransferMode.COPY);
         ClipboardContent cc = new ClipboardContent();
         cc.putString(HOLDER);
         db.setContent(cc);

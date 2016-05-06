@@ -6,7 +6,7 @@ import engine.definitions.concrete.SpriteDefinition;
 
 /**
  * Allows users to define properties of a given TrackingFirer ModuleDefinition for a sprite
- * 
+ *
  * @author Joe Lilien Timko
  *
  */

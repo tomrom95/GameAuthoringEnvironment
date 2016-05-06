@@ -5,17 +5,18 @@ import facebookutil.SocialType;
 import facebookutil.login.LoginObject;
 import facebookutil.scores.UserScoreBoard;
 
-public class User implements IUser{
-    
+
+public class User implements IUser {
+
     private Email myEmail;
     private UserScoreBoard myScoreBoard;
     @XStreamOmitField
     private SocialMap myProfiles;
-    
+
     public User (Email email) {
         myEmail = email;
         myScoreBoard = new UserScoreBoard();
-        myProfiles = new SocialMap ();
+        myProfiles = new SocialMap();
     }
 
     @Override
@@ -31,18 +32,19 @@ public class User implements IUser{
     @Override
     public void logout () {
         // TODO setup with XStream
-        
+
     }
-    
+
     @Override
     public void login (SocialType type, LoginObject login) {
-        if (myProfiles.getProfileByType(type) == null){
+        if (myProfiles.getProfileByType(type) == null) {
             createNewProfile(type, login);
-        } else {
+        }
+        else {
             loginExisting(type, login);
         }
     }
-    
+
     private void loginExisting (SocialType type, LoginObject login) {
         myProfiles.getProfileByType(type).login(login);
         myProfiles.setActive(type);
@@ -57,16 +59,16 @@ public class User implements IUser{
     public SocialMap getProfiles () {
         return myProfiles;
     }
-    
+
     @Override
     public boolean equals (Object obj) {
-        if (! (obj instanceof User)) {
+        if (!(obj instanceof User)) {
             return false;
         }
         User other = (User) obj;
         return getUserEmail().equals(other.getUserEmail());
     }
-    
+
     @Override
     public String toString () {
         return myEmail.toString();

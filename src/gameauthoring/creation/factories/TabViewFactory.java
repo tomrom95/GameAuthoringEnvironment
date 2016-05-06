@@ -16,7 +16,7 @@ import util.BundleOperations;
 /**
  * Creating a factory to generate the tab views required for the
  * authoring environment
- * 
+ *
  * @author Dhrumil
  *
  */
@@ -36,7 +36,10 @@ public class TabViewFactory<T extends ITabViewer> {
     public TabViewFactory (IGame game) {
         myGame = game;
         myImages = ResourceBundle.getBundle(IMAGES);
-        myTabs = ResourceBundle.getBundle(TAB_NAMES, LocaleManager.getInstance().getCurrentLocaleProperty().get());
+        myTabs =
+                ResourceBundle
+                        .getBundle(TAB_NAMES,
+                                   LocaleManager.getInstance().getCurrentLocaleProperty().get());
         myTabViewers = ResourceBundle.getBundle(TAB_VIEWER_NAMES);
         myUIFactory = new BasicUIFactory();
         myTabViewerMap = new HashMap<>();
@@ -44,7 +47,7 @@ public class TabViewFactory<T extends ITabViewer> {
 
     /**
      * Reflectively generates the appropriate tab viewers
-     * 
+     *
      * @return list of tab viewers
      */
     public List<ITabViewer> createTabViewers () {
@@ -55,14 +58,21 @@ public class TabViewFactory<T extends ITabViewer> {
         for (String tabName : tabViewerNames) {
             ITabViewer tabView;
 
-            try{
-                tabView = (ITabViewer) Reflection.createInstance(myTabViewers.getString(tabName), myGame);
-            }  catch (ReflectionException e) {
-                String message = String.format("Reflection exception in TabViewFactory when creating tab %s from key %s: \n%s", myTabViewers.getString(tabName), tabName, e.getMessage());
+            try {
+                tabView =
+                        (ITabViewer) Reflection.createInstance(myTabViewers.getString(tabName),
+                                                               myGame);
+            }
+            catch (ReflectionException e) {
+                String message =
+                        String.format("Reflection exception in TabViewFactory when creating tab %s from key %s: \n%s",
+                                      myTabViewers.getString(tabName), tabName, e.getMessage());
                 throw new ReflectionException(message);
             }
             catch (ClassCastException e) {
-                String message = String.format("Class cast exception in TabViewFactory when creating tab %s from key %s: \n%s", myTabViewers.getString(tabName), tabName, e.getMessage());
+                String message =
+                        String.format("Class cast exception in TabViewFactory when creating tab %s from key %s: \n%s",
+                                      myTabViewers.getString(tabName), tabName, e.getMessage());
                 throw new ClassCastException(message);
 
             }
@@ -76,7 +86,7 @@ public class TabViewFactory<T extends ITabViewer> {
 
     /**
      * Generates tabs with its associated view and resources
-     * 
+     *
      * @return list of available tabs to render
      */
     public List<Tab> createTabs () {

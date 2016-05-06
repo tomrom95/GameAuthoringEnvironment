@@ -29,7 +29,7 @@ import javafx.stage.Stage;
  * Pops up menu so that you can do things on facebook like post or
  * send high score. If the user isn't logged into facebook, doesn't
  * do anything
- * 
+ *
  * @author Tommy
  *
  */
@@ -58,7 +58,7 @@ public class FacebookMenu {
 
     /**
      * Initializes the box with proper spacing
-     * 
+     *
      * @return
      */
     private Scene initScene () {
@@ -90,7 +90,7 @@ public class FacebookMenu {
 
     /**
      * Makes a titled node using a vbox
-     * 
+     *
      * @param node you want titled
      * @param info - title string
      * @return
@@ -105,7 +105,7 @@ public class FacebookMenu {
 
     /**
      * Helper to make a button
-     * 
+     *
      * @param string
      * @param event
      * @return
@@ -119,7 +119,7 @@ public class FacebookMenu {
 
     /**
      * Creates the post high score button
-     * 
+     *
      * @return
      */
     public Node highScorePost (String viewString) {
@@ -139,7 +139,7 @@ public class FacebookMenu {
 
     /**
      * Creates the custom post field and button
-     * 
+     *
      * @return
      */
     public Node customPost (String viewString) {

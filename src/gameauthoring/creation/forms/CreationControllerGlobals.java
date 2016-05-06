@@ -3,16 +3,16 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
+import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.creation.factories.AttributeSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
 import gameauthoring.shareddata.DefinitionCollection;
-import engine.definitions.concrete.AttributeDefinition;
 
 
 /**
  * Stores created attributes in global resources instead of character specific attributes collection
  * in authorship data
- * 
+ *
  * @author Joe Lilien, Jeremy Schreck
  *
  */

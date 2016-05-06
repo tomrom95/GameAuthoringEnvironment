@@ -10,7 +10,7 @@ public interface INodeGraphPather {
     /**
      * Using some graph search algorithm, will return a list of way-points from the starting
      * location to the desired goal location
-     * 
+     *
      * @param obstructionMap
      * @param start
      * @param goal

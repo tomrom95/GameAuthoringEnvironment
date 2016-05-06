@@ -1,22 +1,19 @@
 package gameauthoring.gameinformation;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
-import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
-import gameauthoring.creation.entryviews.FormDataManager;
-import gameauthoring.creation.entryviews.IEntryView;
-import gameauthoring.creation.entryviews.IFormDataManager;
 import gameauthoring.creation.entryviews.ImageEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
 import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.Glyph;
+import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
+import splash.LocaleManager;
 
 
 /**
  * View class for Game Information. It creates entryViews for name, author, data created, and
  * splashscreen of the game that allow authors to put information.
- * 
+ *
  * @author Jin An
  *
  */
@@ -24,7 +21,9 @@ public class GameInfoView implements Glyph {
 
     private GridPane myLayout;
 
-    private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager.getInstance().getCurrentLocaleProperty().get());
+    private ResourceBundle myLang =
+            ResourceBundle.getBundle("languages/labels",
+                                     LocaleManager.getInstance().getCurrentLocaleProperty().get());
     private String myNameKey = myLang.getString("NameOfGame");
     private String myAuthorKey = myLang.getString("Author");
     private String myDateCreatedKey = myLang.getString("Date");
@@ -40,19 +39,19 @@ public class GameInfoView implements Glyph {
     public GameInfoView () {
         createEntryViews();
     }
-    
+
     @Override
     public Node draw () {
         myLayout = new GridPane();
         initView();
         return myLayout;
     }
-    
+
     private void createEntryViews () {
-        myName = new TextEntryView(myNameKey,  200, 60, "titleScreen", labelCssClass );
-        myAuthor = new TextEntryView(myAuthorKey,  200, 60, "titleScreen", labelCssClass);
-        myDateCreated = new TextEntryView(myDateCreatedKey,  200, 60, "titleScreen", labelCssClass);
-        mySplashScreen = new ImageEntryView(mySplashScreenKey,  480, 480,
+        myName = new TextEntryView(myNameKey, 200, 60, "titleScreen", labelCssClass);
+        myAuthor = new TextEntryView(myAuthorKey, 200, 60, "titleScreen", labelCssClass);
+        myDateCreated = new TextEntryView(myDateCreatedKey, 200, 60, "titleScreen", labelCssClass);
+        mySplashScreen = new ImageEntryView(mySplashScreenKey, 480, 480,
                                             AuthoringView.DEFAULT_ENTRYVIEW);
     }
 
@@ -72,7 +71,7 @@ public class GameInfoView implements Glyph {
         return myAuthor;
     }
 
-    public TextEntryView getMyDateCreated() {
+    public TextEntryView getMyDateCreated () {
         return myDateCreated;
     }
 

@@ -8,7 +8,7 @@ import javafx.beans.value.ChangeListener;
 /**
  * A check implemented to target a specific attribute type. If the attribute type if found
  * and greater than the cost, the cost is subtracted and check returns true.
- * 
+ *
  * @author RyanStPierre
  *
  */
@@ -29,6 +29,7 @@ public class Check implements ICheck {
         myStatus = new SimpleBooleanProperty(false);
     }
 
+    @Override
     public void alterAttribute () {
 
         for (IAttribute attribute : myManager.getAttributes()) {
@@ -50,7 +51,7 @@ public class Check implements ICheck {
                 checkPrice(attribute);
                 return;
             }
-        } 
+        }
         myStatus.set(false);
     }
 

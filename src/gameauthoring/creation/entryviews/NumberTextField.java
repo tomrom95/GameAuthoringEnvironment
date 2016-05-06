@@ -5,7 +5,7 @@ import javafx.scene.control.TextField;
 
 /**
  * TextField that only accepts numbers
- * 
+ *
  * @author Joe Lilien
  *
  */

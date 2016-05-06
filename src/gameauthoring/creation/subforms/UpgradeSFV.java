@@ -1,7 +1,6 @@
 package gameauthoring.creation.subforms;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.SpriteDefinition;
@@ -14,11 +13,12 @@ import javafx.beans.property.BooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
+import splash.LocaleManager;
 
 
 /**
  * Allow users to define upgrades for sprites
- * 
+ *
  * @author Joe Lilien
  *
  */
@@ -95,12 +95,12 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
 
     @Override
     public SpriteDefinition getNextUpgrade () {
-        return this.myUpgradeChoices.getSelected();
+        return myUpgradeChoices.getSelected();
     }
 
     @Override
     public AttributeDefinition getDepletedAttribute () {
-        return this.myAttributeChoices.getSelected();
+        return myAttributeChoices.getSelected();
     }
 
     @Override
@@ -116,12 +116,12 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
 
     @Override
     public BooleanProperty isUpgradableProperty () {
-        return this.myContainer.expandedProperty();
+        return myContainer.expandedProperty();
     }
 
     @Override
     public BooleanProperty isGlobalProperty () {
-        return this.myIsGlobalResource.isCheckedProperty();
+        return myIsGlobalResource.isCheckedProperty();
     }
 
     @Override
@@ -129,7 +129,7 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
                                   SpriteDefinition nextUpgrade,
                                   AttributeDefinition depletedAttribute,
                                   double cost) {
-        this.myContainer.setExpanded(isUpgradable);
+        myContainer.setExpanded(isUpgradable);
         myUpgradeChoices.setSelected(nextUpgrade);
         myAttributeChoices.setSelected(depletedAttribute);
         myCost.setData(cost);

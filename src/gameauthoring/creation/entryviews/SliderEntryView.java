@@ -7,7 +7,7 @@ import javafx.scene.control.Slider;
 
 /**
  * Entry View class that lets users control a double value through a slider
- * 
+ *
  * @author Joe Lilien
  *
  */

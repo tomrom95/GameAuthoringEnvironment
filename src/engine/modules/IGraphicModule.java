@@ -24,6 +24,7 @@ public interface IGraphicModule extends IModule {
     /**
      * Flag checkable by the renderer to support visibility of sprites as a function
      * of visible invisible GameEvents
+     *
      * @return true if visible, false if invisible
      */
     Boolean isVisible ();

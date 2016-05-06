@@ -1,7 +1,6 @@
 package gameauthoring.creation.subforms;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import gameauthoring.creation.entryviews.ImageEntryView;
 import gameauthoring.creation.entryviews.SliderEntryView;
 import gameauthoring.creation.entryviews.TextEntryView;
@@ -9,12 +8,12 @@ import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 
 
 /**
  * Implementation of IProfileSFV with GridPane arrangement of entryviews
- * 
+ *
  * @author Joe Lilien, Jeremy Schreck
  *
  */
@@ -58,7 +57,7 @@ public class ProfileSFV extends SubFormView implements IProfileSFV {
 
     private void setResourceBundleAndKey () {
         myLabel = ResourceBundle.getBundle("languages/labels", LocaleManager
-                                           .getInstance().getCurrentLocaleProperty().get());
+                .getInstance().getCurrentLocaleProperty().get());
         myNameKey = myLabel.getString("NameKey");
         myDescriptionKey = myLabel.getString("DescriptionKey");
         myImageKey = myLabel.getString("ImageKey");
@@ -72,12 +71,12 @@ public class ProfileSFV extends SubFormView implements IProfileSFV {
         myPane.add(myDescription.draw(), 0, 1);
         myPane.add(myImage.draw(), 1, 0, 1, 3);
         myPane.add(new HBox(myImageWidth.draw(), myImageHeight.draw()), 0, 2);
-        
+
     }
 
     @Override
     public Node draw () {
-        return this.defaultDisplayWithNode(myPane);
+        return defaultDisplayWithNode(myPane);
     }
 
     @Override

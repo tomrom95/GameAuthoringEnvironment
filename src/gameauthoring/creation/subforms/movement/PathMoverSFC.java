@@ -5,13 +5,14 @@ import engine.definitions.moduledef.PathMoverDefinition;
 import gameauthoring.creation.subforms.ISubFormControllerSprite;
 import gameauthoring.creation.subforms.ISubFormView;
 
+
 public class PathMoverSFC implements ISubFormControllerSprite {
 
     private IPathMoverSFV myView;
     private double myDefaultSpeed = 0;
 
     public PathMoverSFC () {
-        this.myView = new PathMoverSFV();
+        myView = new PathMoverSFV();
     }
 
     @Override

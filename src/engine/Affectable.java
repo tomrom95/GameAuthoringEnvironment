@@ -1,9 +1,6 @@
 package engine;
 
 import engine.effects.IEffect;
-import engine.events.GameEvent;
-import engine.interactionevents.KeyIOEvent;
-import engine.interactionevents.MouseIOEvent;
 import javafx.collections.ObservableList;
 
 
@@ -26,8 +23,6 @@ public interface Affectable extends IOAffectable, GameEventHandler {
      * @param effect the effect to apply
      */
     void applyEffect (IEffect effect);
-
-
 
     /**
      * Any object that is affectable must have attributes that can be affected.

@@ -6,17 +6,14 @@ import engine.IAttribute;
 import engine.Positionable;
 import engine.interactionevents.KeyIOEvent;
 import engine.interactionevents.MouseIOEvent;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import util.Coordinate;
 import util.TimeDuration;
 
 
 public class ConstantMover extends Mover {
 
-    
     /*
-     * as of now, I am keeping the Positionable in here, so  there are other potential
+     * as of now, I am keeping the Positionable in here, so there are other potential
      * bits of functionality like angle that can be built it here
      */
 
@@ -39,8 +36,6 @@ public class ConstantMover extends Mover {
         return null;
     }
 
-  
-
     @Override
     public void update (TimeDuration duration) {
         super.move(duration);
@@ -59,21 +54,19 @@ public class ConstantMover extends Mover {
     }
 
     @Override
-    protected List<IAttribute> getSpecificAttributes () {        
-         return new ArrayList<>();
+    protected List<IAttribute> getSpecificAttributes () {
+        return new ArrayList<>();
     }
 
     @Override
     public int getNextIndex () {
-        
+
         return 0;
     }
 
     @Override
     public void setNextIndex (int index) {
-       
-        
-    }
 
+    }
 
 }

@@ -10,8 +10,9 @@ import javafx.scene.layout.VBox;
 
 
 public class GamePosterFactory {
-    
-    private static final ResourceBundle myBundle = ResourceBundle.getBundle("defaults/poster_factory");
+
+    private static final ResourceBundle myBundle =
+            ResourceBundle.getBundle("defaults/poster_factory");
 
     public Node createGamePoster (IGame game) {
         VBox vBox = new VBox();

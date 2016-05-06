@@ -7,7 +7,7 @@ import engine.IGame;
  * Controller class for Game Information. When save button is pressed in the AuthoringView,
  * setGameInformation() will be called to connect with backend. It contains the gameInfoView which
  * renders the view
- * 
+ *
  * @author Jin An
  *
  */
@@ -23,10 +23,11 @@ public class GameInfoController {
     }
 
     private void initialize () {
-       myView.getMyAuthor().bindData(myGame.getGameInformation().getAuthorProperty());
-       myView.getMyDateCreated().bindData(myGame.getGameInformation().getDateCreatedProperty());
-       myView.getMyName().bindData(myGame.getGameInformation().getNameProperty());
-       myView.getMySplashScreen().bindData(myGame.getGameInformation().getSplashScreenURLProperty());
+        myView.getMyAuthor().bindData(myGame.getGameInformation().getAuthorProperty());
+        myView.getMyDateCreated().bindData(myGame.getGameInformation().getDateCreatedProperty());
+        myView.getMyName().bindData(myGame.getGameInformation().getNameProperty());
+        myView.getMySplashScreen()
+                .bindData(myGame.getGameInformation().getSplashScreenURLProperty());
     }
 
     public GameInfoView getGameInfoView () {

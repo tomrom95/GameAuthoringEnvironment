@@ -1,14 +1,12 @@
 package gameauthoring.listdisplay;
 
 import java.util.ResourceBundle;
-import java.util.function.DoublePredicate;
 import java.util.stream.Collectors;
 import engine.AttributeType;
 import engine.IEventPackage;
 import engine.IGame;
 import engine.SpriteGroup;
 import engine.conditions.ICondition;
-import engine.conditions.OnGlobalAttributeCondition;
 import engine.conditions.OnSpriteAttributeCondition;
 import engine.definitions.concrete.EventPackageDefinition;
 import javafx.collections.FXCollections;
@@ -19,7 +17,7 @@ public class OnSpriteView extends OnGameAttributeView {
 
     private ComboBox<SpriteGroup> mySpriteGroup;
     private ComboBox<EventPackageDefinition> mySpriteEvent;
-    
+
     public OnSpriteView (IGame game) {
         super(game, FXCollections
                 .observableArrayList(game.getAuthorshipData().getMyCreatedAttributes().getItems()
@@ -37,7 +35,7 @@ public class OnSpriteView extends OnGameAttributeView {
                         .getItems());
         super.initBoxes();
     }
-    
+
     @Override
     protected String getLabelKey (String key) {
         return ResourceBundle.getBundle("defaults/on_sprite_tab").getString(key);
@@ -49,7 +47,7 @@ public class OnSpriteView extends OnGameAttributeView {
                                               getAttributeType(),
                                               createPredicate(),
                                               getSpritePackage(),
-                                              getThirdPartyPackage(), 
+                                              getThirdPartyPackage(),
                                               getGlobalPackage());
     }
 
@@ -57,6 +55,5 @@ public class OnSpriteView extends OnGameAttributeView {
         EventPackageDefinition self = mySpriteEvent.getSelectionModel().getSelectedItem();
         return self.create(mySpriteGroup.getSelectionModel().getSelectedItem());
     }
-
 
 }

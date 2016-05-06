@@ -3,7 +3,6 @@ package gameauthoring.listdisplay;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.conditions.ICondition;
 import engine.profile.IProfilable;
 import engine.profile.Profile;
@@ -24,6 +23,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 
 
 public abstract class SubConditionView {
@@ -142,11 +142,11 @@ public abstract class SubConditionView {
 
     /**
      * Loops through the property file grabbing the proper labels
-     * 
+     *
      * @return HBox of label/combo-box pairs
      */
     protected Node getHBox () {
-       
+
         FlowPane pane = new FlowPane();
         setSize(pane, Double.parseDouble(mySize.getString("MaxWrap")));
         pane.setVgap(CUSHION);
@@ -161,7 +161,7 @@ public abstract class SubConditionView {
     private void setSize (Pane pane, double size) {
         pane.setMinWidth(size);
         pane.setMaxWidth(size);
-        pane.setPrefWidth(size);      
+        pane.setPrefWidth(size);
     }
 
     private Node getCombo (String label, Node node) {

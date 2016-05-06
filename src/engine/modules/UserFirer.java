@@ -2,7 +2,6 @@ package engine.modules;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import engine.IAttribute;
 import engine.IGame;
 import engine.Positionable;
@@ -27,7 +26,8 @@ public class UserFirer extends DirectionalFirer {
     private Key myDecreaseKey;
     private double myAngleChange;
 
-    public UserFirer (IGame game, Positionable parent,
+    public UserFirer (IGame game,
+                      Positionable parent,
                       SpriteDefinition fireSprite,
                       Key fireKey,
                       Key increaseKey,
@@ -57,27 +57,30 @@ public class UserFirer extends DirectionalFirer {
     }
 
     private void registerKeyPress (Key k) {
-        if(k.isEqual(myFireKey)){
+        if (k.isEqual(myFireKey)) {
             fireSprite();
-        } else if (k.isEqual(myIncreaseKey)){
+        }
+        else if (k.isEqual(myIncreaseKey)) {
             increaseAngle();
-        } else if(k.isEqual(myDecreaseKey)){
+        }
+        else if (k.isEqual(myDecreaseKey)) {
             decreaseAngle();
-        } else{
-            //do nothing
+        }
+        else {
+            // do nothing
         }
     }
 
     private void increaseAngle () {
         setAngle(getAngle() + myAngleChange);
-        if(getAngle() >= FULL_CIRCLE){
+        if (getAngle() >= FULL_CIRCLE) {
             setAngle(getAngle() - FULL_CIRCLE);
         }
     }
 
     private void decreaseAngle () {
         setAngle(getAngle() - myAngleChange);
-        if(getAngle() < 0){
+        if (getAngle() < 0) {
             setAngle(FULL_CIRCLE - getAngle());
         }
     }

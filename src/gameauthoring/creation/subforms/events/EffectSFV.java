@@ -1,7 +1,6 @@
 package gameauthoring.creation.subforms.events;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.AttributeType;
 import engine.AuthorshipData;
 import engine.definitions.concrete.AttributeDefinition;
@@ -19,11 +18,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 
 
 /**
  * Implementation of IEffectSFV using HBox arrangement, allows users to define an effect package
- * 
+ *
  * @author Tommy
  * @author Joe Lilien
  *

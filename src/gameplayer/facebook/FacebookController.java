@@ -7,25 +7,28 @@ import facebookutil.SocialType;
 import facebookutil.scores.ScoreOrder;
 import facebookutil.user.IUser;
 
+
 /**
- * Supports simple actions to attach our game to 
+ * Supports simple actions to attach our game to
  * how the social environment works. This controller supports
  * custom messaging and posting about a high score
+ *
  * @author Tommy
  *
  */
 public class FacebookController {
     private static final String SCORE_STRING = "score";
-    
+
     private IGame myGame;
     private JavaSocial mySocial = JavaSocial.getInstance();
-    
+
     public FacebookController (IGame game) {
         myGame = game;
     }
-    
+
     /**
      * Sends a custom post using the active user
+     *
      * @param message
      * @return
      */
@@ -33,11 +36,12 @@ public class FacebookController {
         mySocial.getActiveUser().getProfiles().getActiveProfile().customPost(message);
         return true;
     }
-    
+
     /**
      * Posts your current high score to Facebook.
      * If the game doesn't have a score attribute, then it returns false
      * If it posts correctly, it returns true
+     *
      * @return
      */
     public boolean postHighScore () {
@@ -57,6 +61,7 @@ public class FacebookController {
 
     /**
      * Helper to add the current score to the high score board
+     *
      * @param scoreAttr
      */
     private void addScore (IAttribute scoreAttr) {
@@ -69,6 +74,7 @@ public class FacebookController {
     /**
      * Finds the score attribute in the game, or null if it doesn't
      * exist
+     *
      * @return
      */
     private IAttribute findScoreAttribute () {
@@ -79,7 +85,7 @@ public class FacebookController {
         }
         return null;
     }
-    
+
     public boolean postHighScoreBoard () {
         mySocial.getActiveUser().getProfiles().getActiveProfile()
                 .highScoreBoardPost(mySocial.getHighScoreBoard(),
@@ -87,7 +93,7 @@ public class FacebookController {
                                     ScoreOrder.HIGHEST);
         return true;
     }
-    
+
     public boolean challengeUser (IUser user, String message) {
         mySocial.getApplications().getAppByType(SocialType.FACEBOOK)
                 .challenge(user, message);

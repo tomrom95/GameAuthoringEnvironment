@@ -13,7 +13,9 @@ import engine.definitions.concrete.AttributeDefinition;
  */
 public class IncreaseEffect extends Effect {
 
-    public IncreaseEffect (AttributeDefinition type, IAttribute effectLength, double increaseAmount) {
+    public IncreaseEffect (AttributeDefinition type,
+                           IAttribute effectLength,
+                           double increaseAmount) {
         super(type, effectLength, increaseAmount);
     }
 

@@ -2,6 +2,7 @@ package engine.aipathing;
 
 import util.Coordinate;
 
+
 public class InDirectionOfMovement implements IOrientationFinder {
 
     @Override

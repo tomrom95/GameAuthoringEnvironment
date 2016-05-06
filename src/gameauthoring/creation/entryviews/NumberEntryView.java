@@ -8,7 +8,7 @@ import splash.LocaleManager;
 
 /**
  * Allows for Number Data Entry Associated with Label given as constructor Arguement
- * 
+ *
  * @author JoeLilien
  *
  */

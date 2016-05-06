@@ -9,9 +9,9 @@ import javafx.scene.Node;
  * GameTabViewer serves to display Text/Image EntryView to authors so that they can fill in the game
  * information such as name of the game, author of the game, date created, and an image file for
  * splash screen. It instantiates the controller class.
- * 
+ *
  * TODO: Multiple Language for label
- * 
+ *
  * @author Jin An
  *
  */
@@ -42,6 +42,6 @@ public class GameTabViewer implements ITabViewer {
     @Override
     public void rescale (double width, double height) {
         // TODO Auto-generated method stub
-        
+
     }
 }

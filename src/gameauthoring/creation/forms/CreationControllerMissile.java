@@ -3,9 +3,7 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
-import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;
-import engine.profile.Profile;
 import gameauthoring.shareddata.DefinitionCollection;
 
 

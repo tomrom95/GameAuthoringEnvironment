@@ -8,7 +8,7 @@ import javafx.scene.control.TextInputControl;
  * Abstract class that defines an EntryView which can take in some form of text input, current
  * subclasses include a text input EntryView and a number input EntryView that only allows users to
  * type in numbers
- * 
+ *
  * @author Joe Lilien
  *
  */
@@ -23,8 +23,8 @@ public abstract class InputEntryView extends EntryView {
                            double height,
                            String cssClass) {
         super(label, cssClass);
-        this.myWidth = width;
-        this.myHeight = height;
+        myWidth = width;
+        myHeight = height;
     }
 
     @Override
@@ -35,7 +35,7 @@ public abstract class InputEntryView extends EntryView {
     }
 
     protected void setInputControl (TextInputControl text) {
-        this.myTextInput = text;
+        myTextInput = text;
     }
 
     @Override

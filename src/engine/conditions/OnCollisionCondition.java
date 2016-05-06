@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import engine.IEventPackage;
 import engine.IGame;
-import engine.profile.IProfile;
-import engine.profile.Profile;
 import engine.sprite.ISprite;
 import util.TimeDuration;
 

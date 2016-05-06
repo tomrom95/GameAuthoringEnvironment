@@ -11,7 +11,7 @@ import util.TimeDuration;
 
 /**
  * This class creates a module that is immovable. Used primarily for towers in TowerDefense games
- * 
+ *
  */
 public class StaticMover extends Mover {
 
@@ -41,14 +41,13 @@ public class StaticMover extends Mover {
 
     @Override
     public int getNextIndex () {
-        
+
         return 0;
     }
 
     @Override
     public void setNextIndex (int index) {
-        
-        
+
     }
 
 }

@@ -1,19 +1,19 @@
 package gameauthoring.creation.subforms;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 import gameauthoring.util.BasicUIFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import splash.LocaleManager;
-import java.util.*;
 
 
 public abstract class ClickAndFillView extends SubFormView {
@@ -49,6 +49,7 @@ public abstract class ClickAndFillView extends SubFormView {
         return myButtons;
     }
 
+    @Override
     public BasicUIFactory getMyUIFactory () {
         return myUIFactory;
     }
@@ -65,12 +66,13 @@ public abstract class ClickAndFillView extends SubFormView {
     protected ScrollPane getMyPane () {
         return myPane;
     }
-    
+
     private void initAndAddButtons (HBox buttonHolder, List<String> options) {
         for (String s : options) {
             Button button =
                     getMyUIFactory().createImageButton(getMyUIFactory()
-                            .makeImageDisplay(getMyProperties().getString(s), getMyLanguages().getString(s)));
+                            .makeImageDisplay(getMyProperties().getString(s),
+                                              getMyLanguages().getString(s)));
             getMyUIFactory().addStyling(button, cssButtonClass);
             getMyButtons().add(button);
         }
@@ -109,6 +111,5 @@ public abstract class ClickAndFillView extends SubFormView {
     public Node draw () {
         return defaultDisplayWithNode(myContainer);
     }
-
 
 }

@@ -1,7 +1,6 @@
 package gameauthoring.creation.subforms.fire;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
@@ -11,15 +10,15 @@ import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 
 
 /**
  * View representing a subform that creates the information required to build a directional mover
  * module
- * 
+ *
  * @author Dhrumil Timko Lilien
  *
  */
@@ -39,7 +38,6 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
     private static final String MY_TITLE_KEY = "DIRECTIONALFIRER";
-
 
     public DirectionalFireSFV (IDefinitionCollection<SpriteDefinition> missiles,
                                RemoveOption remove) {
@@ -83,11 +81,17 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     @Override
     protected void initView () {
         double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
-        HBox head = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(), getSubTitleDisplay());
-        HBox options = getMyUIFactory().makeHBox(spacing , Pos.CENTER, myMissileSelectionView.draw(),myWaitTime.draw(),myAngle.draw());  
-        HBox rangedOptions =  getMyUIFactory().makeHBox(spacing, Pos.CENTER, myIsRanged.draw(),myRangeValue.draw());  
-        myPane = getMyUIFactory().makeVBox(spacing, Pos.CENTER, head, options, rangedOptions);  
-        getMyUIFactory().addStyling(myPane, "Firer"); 
+        HBox head =
+                getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(),
+                                          getSubTitleDisplay());
+        HBox options =
+                getMyUIFactory().makeHBox(spacing, Pos.CENTER, myMissileSelectionView.draw(),
+                                          myWaitTime.draw(), myAngle.draw());
+        HBox rangedOptions =
+                getMyUIFactory().makeHBox(spacing, Pos.CENTER, myIsRanged.draw(),
+                                          myRangeValue.draw());
+        myPane = getMyUIFactory().makeVBox(spacing, Pos.CENTER, head, options, rangedOptions);
+        getMyUIFactory().addStyling(myPane, "Firer");
 
     }
 

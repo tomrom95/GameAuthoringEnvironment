@@ -56,8 +56,7 @@ public class PathNode implements IPathNode {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        PathNode other = (PathNode) 
-                obj;
+        PathNode other = (PathNode) obj;
         if (myLocation == null) {
             if (other.myLocation != null) {
                 return false;
@@ -68,7 +67,5 @@ public class PathNode implements IPathNode {
         }
         return true;
     }
-    
-    
 
 }

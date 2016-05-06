@@ -11,8 +11,9 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import util.ScaleRatio;
 
+
 public class AuthoringSideBar extends SideBarDisplay {
-    
+
     private IGame myGame;
 
     public AuthoringSideBar (IGame game, ILevel level, LevelRenderer renderer, ScaleRatio scale) {
@@ -20,6 +21,7 @@ public class AuthoringSideBar extends SideBarDisplay {
         myGame = game;
     }
 
+    @Override
     protected void fillAccordion (Accordion accordion) {
         myGame.getAuthorshipData().getMyCreatedSpritesMap().values().stream().forEach(c -> {
             TitledPane toAdd = createAccordionPane(c);
@@ -28,6 +30,7 @@ public class AuthoringSideBar extends SideBarDisplay {
         });
     }
 
+    @Override
     protected ProfileCellView<SpriteDefinition> getSpriteCellView () {
         return new DragCheckSpriteCell(getLevelView(), getController());
     }
@@ -37,5 +40,4 @@ public class AuthoringSideBar extends SideBarDisplay {
         return new SceneController(level, ratio);
     }
 
-    
 }

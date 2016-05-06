@@ -3,8 +3,6 @@ package gameauthoring.creation.subforms;
 import java.util.ResourceBundle;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.tabs.AuthoringView;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.TitledPane;
@@ -50,11 +48,12 @@ public class AISpriteSFV extends SubFormView implements IAISpriteSFV {
         myGoalCheckBox = new CheckEntryView(myGoalLabel, AuthoringView.DEFAULT_ENTRYVIEW);
         myObstructabilityCheckBox.setSelected(true);
         myGoalCheckBox.setSelected(false);
-        myGoalCheckBox.isCheckedProperty().addListener((obs, wasSelected, isNowSelected) -> 
-        myObstructabilityCheckBox.setSelected(!isNowSelected));
-        myObstructabilityCheckBox.isCheckedProperty().addListener((obs, wasSelected, isNowSelected) -> 
-        myGoalCheckBox.setSelected(!isNowSelected));
-
+        myGoalCheckBox.isCheckedProperty()
+                .addListener( (obs, wasSelected, isNowSelected) -> myObstructabilityCheckBox
+                        .setSelected(!isNowSelected));
+        myObstructabilityCheckBox.isCheckedProperty()
+                .addListener( (obs, wasSelected, isNowSelected) -> myGoalCheckBox
+                        .setSelected(!isNowSelected));
 
         myContainer = getMyUIFactory().makeHBox(SPACING, Pos.CENTER, drawFields());
         myTitledPane = getMyUIFactory().makeCheckBoxTitledPane(myAILabel, myContainer, false);
@@ -75,7 +74,7 @@ public class AISpriteSFV extends SubFormView implements IAISpriteSFV {
     }
 
     private void setIsObstructable () {
-        this.myObstructabilityCheckBox.isCheckedProperty().set(true);
+        myObstructabilityCheckBox.isCheckedProperty().set(true);
     }
 
     @Override
@@ -84,11 +83,11 @@ public class AISpriteSFV extends SubFormView implements IAISpriteSFV {
     }
 
     private void setIsGoal () {
-        this.myObstructabilityCheckBox.isCheckedProperty().set(false);
+        myObstructabilityCheckBox.isCheckedProperty().set(false);
     }
 
     private void setIsNone () {
-        this.myObstructabilityCheckBox.isCheckedProperty().set(true);
+        myObstructabilityCheckBox.isCheckedProperty().set(true);
         setIsAI(false);
     }
 
@@ -110,6 +109,6 @@ public class AISpriteSFV extends SubFormView implements IAISpriteSFV {
         else if (isGoal) {
             setIsGoal();
         }
-        
+
     }
 }

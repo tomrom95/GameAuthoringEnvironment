@@ -9,7 +9,7 @@ import splash.LocaleManager;
 /**
  * Controls definition of profile for all objects that can be created in authoring, designates a
  * name, description and image for a given profilable object
- * 
+ *
  * @author Joe Lilien
  * @author Jeremy Shreck
  *
@@ -23,26 +23,26 @@ public class ProfileSFC<T extends IProfilable> implements ISubFormController<T> 
     private String myImageSuffix = "ProfileImage";
     private double myDefaultWidth = 100;
     private double myDefaultHeight = 100;
-    
+
     private String myDefaultName;
     private String myDefaultDescription;
     private String myDefaultImage;
     private ResourceBundle myLabels = ResourceBundle.getBundle("languages/labels", LocaleManager
-                                                               .getInstance().getCurrentLocaleProperty().get());
+            .getInstance().getCurrentLocaleProperty().get());
     private ResourceBundle myImages = ResourceBundle.getBundle("defaults/profile_default_images");
 
     public ProfileSFC (String key) {
         this.myView = new ProfileSFV();
-        myDefaultName = myLabels.getString(key+myNameSuffix);
-        myDefaultDescription = myLabels.getString(key+myDescriptionSuffix);
-        myDefaultImage = myImages.getString(key+myImageSuffix);
+        myDefaultName = myLabels.getString(key + myNameSuffix);
+        myDefaultDescription = myLabels.getString(key + myDescriptionSuffix);
+        myDefaultImage = myImages.getString(key + myImageSuffix);
 
     }
 
     @Override
     public void initializeFields () {
         myView.populateWithData(myDefaultName, myDefaultDescription, myDefaultImage, myDefaultWidth,
-                                myDefaultHeight);        
+                                myDefaultHeight);
     }
 
     @Override

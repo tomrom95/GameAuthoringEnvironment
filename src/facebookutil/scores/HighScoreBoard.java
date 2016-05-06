@@ -6,38 +6,44 @@ import java.util.List;
 import java.util.Map;
 import facebookutil.user.IUser;
 
+
 /**
  * Class to keep of global high scores across all games.
  * User can use this class to return the scores in any order.
+ *
  * @author Tommy
  *
  */
 public class HighScoreBoard {
-    
+
     Map<String, List<Score>> myScores;
-    
+
     public HighScoreBoard () {
         myScores = new HashMap<>();
     }
+
     /**
      * Record a new score for a game. Also logs the user score
+     *
      * @param gameName - name of the game
      * @param user - user that achieved this score
      * @param newScore - score user achieved (does not necessarily need to be the highest)
      */
     public void addNewScore (String gameName, IUser user, int newScore) {
-        recordUserScore (gameName, user, newScore);
+        recordUserScore(gameName, user, newScore);
         List<Score> myGame = getOrCreateGame(gameName);
         Score score = getScore(myGame, user);
         if (score != null) {
             recordScore(score, newScore);
-        } else {
+        }
+        else {
             myGame.add(new Score(user, newScore));
         }
     }
 
     /**
      * Helper to record the score for the user
+     *
      * @param gameName
      * @param user
      * @param newScore
@@ -45,9 +51,10 @@ public class HighScoreBoard {
     private void recordUserScore (String gameName, IUser user, int newScore) {
         user.getScoreBoard().logScore(gameName, newScore);
     }
-    
+
     /**
      * Helper to get the user's score in the game's score list
+     *
      * @param myGame
      * @param user
      * @return
@@ -64,6 +71,7 @@ public class HighScoreBoard {
     /**
      * Helper to record a score. Only changes the score
      * if it's better
+     *
      * @param score
      * @param newScore
      */
@@ -75,6 +83,7 @@ public class HighScoreBoard {
 
     /**
      * Helper to get the game by name or create it if it doesn't exist
+     *
      * @param gameName
      * @return
      */
@@ -87,16 +96,18 @@ public class HighScoreBoard {
 
     /**
      * Public API to get the score board as is
+     *
      * @param gameName
      * @return
      */
     public List<Score> getScoreBoard (String gameName) {
         return myScores.get(gameName);
     }
-    
+
     /**
      * Public API to get the score board sorted by score, user email,
      * or date that the score was achieved
+     *
      * @param gameName
      * @param order - SCORE/ALPHABETICAL/DATE
      * @param reverse - true if you want reverse score, reverse alphabetical, reverse date
@@ -104,7 +115,7 @@ public class HighScoreBoard {
      */
     public List<Score> getScoreBoardSorted (String gameName, ScoreOrder order) {
         List<Score> game = getScoreBoard(gameName);
-        if (game == null){
+        if (game == null) {
             return new ArrayList<Score>();
         }
         game.sort(order.getComparator());

@@ -5,7 +5,7 @@ import engine.definitions.concrete.AttributeDefinition;
 
 /**
  * This class serves to control the view and data in the attribute subform in authoring environment
- * 
+ *
  * @author Jin An
  * @author Joe Lilien
  *

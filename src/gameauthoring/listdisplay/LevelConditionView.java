@@ -6,19 +6,14 @@ import engine.ILevel;
 import engine.conditions.ICondition;
 import gameauthoring.creation.cellviews.CardCell;
 import gameauthoring.creation.cellviews.DeleteableProfileCellView;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import util.BundleOperations;
+
 
 /**
  * Winning, losing and other end conditions
+ *
  * @author RyanStPierre
  *
  */
@@ -26,7 +21,7 @@ import util.BundleOperations;
 public class LevelConditionView extends ConditionViewer {
 
     ResourceBundle myBundle = ResourceBundle.getBundle("defaults/level_cond");
-    
+
     public LevelConditionView (IGame game, ILevel level) {
         super(level.getConditionsListProperty());
         init();
@@ -56,6 +51,7 @@ public class LevelConditionView extends ConditionViewer {
         return getOptions();
     }
 
+    @Override
     protected ObservableList<String> getList () {
         return BundleOperations.getValuesAsObservable(getMyBundle());
     }
@@ -71,9 +67,9 @@ public class LevelConditionView extends ConditionViewer {
         getListView().getStyleClass().add("purple_outline");
         add(getListView(), 3, 0, 1, 1);
     }
-    
+
     private double parse (String string) {
-       return Double.parseDouble(string);
+        return Double.parseDouble(string);
     }
 
 }

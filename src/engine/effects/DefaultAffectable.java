@@ -16,7 +16,7 @@ import util.TimeDuration;
  *
  * Will extend this, and override methods if the submodule should have actual
  * behavior
- * 
+ *
  * @author jonathanim
  *
  */
@@ -42,7 +42,6 @@ public abstract class DefaultAffectable implements Affectable {
     @Override
     public void registerMouseEvent (MouseIOEvent mouseEvent) {
     }
-    
 
     @Override
     public ObservableList<IAttribute> getAttributes () {

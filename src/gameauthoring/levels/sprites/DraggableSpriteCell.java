@@ -15,7 +15,7 @@ import javafx.scene.input.TransferMode;
  * ListView ListCell that allows for dragging of sprites to the screen. Is used by both
  * the authoring environment and the engine for dragging new sprites onto the screen. Eventually
  * this will be extended for the engine to incorporate costs
- * 
+ *
  * @author Tommy
  *
  */
@@ -34,14 +34,14 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
     @Override
     protected Node createSpriteCell (SpriteDefinition profile) {
         Node node = super.createSpriteCell(profile);
-        this.setActions(node);
+        setActions(node);
         return node;
     }
 
     @Override
     public void setOnDragDetected (MouseEvent e, Node node) {
         Dragboard db = node.startDragAndDrop(TransferMode.COPY);
-        db.setContent(this.createClipboard(DRAG_STRING));
+        db.setContent(createClipboard(DRAG_STRING));
 
         db.setDragView(getSpriteImage());
 
@@ -74,12 +74,25 @@ public class DraggableSpriteCell extends DraggableCell<SpriteDefinition> {
     }
 
     private boolean checkPlaceableTile (DragEvent e) {
-        double halfHeight = (0.5) * myController.getRatio().scale((getProfilable().getProfile().getImageHeight().doubleValue()));
-        double halfWidth = (0.5) * myController.getRatio().scale((getProfilable().getProfile().getImageWidth().doubleValue()));
-        for (int r = (int) ((e.getY()-halfHeight) / myController.getRatio().scale(50)); r < (int) ((e.getY()+halfHeight) / myController.getRatio().scale(50)); r++) {
-            for (int c = (int) ((e.getX()-halfWidth) / myController.getRatio().scale(50)); c < (int) ((e.getX()+halfWidth) / myController.getRatio().scale(50)); c++) {
-                if (myController.getLevel().getPlaceableTileManager().getPlaceableMap().getBitMap()[r][c])
+        double halfHeight =
+                (0.5) * myController.getRatio()
+                        .scale((getProfilable().getProfile().getImageHeight().doubleValue()));
+        double halfWidth =
+                (0.5) * myController.getRatio()
+                        .scale((getProfilable().getProfile().getImageWidth().doubleValue()));
+        for (int r =
+                (int) ((e.getY() - halfHeight) /
+                       myController.getRatio().scale(50)); r < (int) ((e.getY() + halfHeight) /
+                                                                      myController.getRatio()
+                                                                              .scale(50)); r++) {
+            for (int c =
+                    (int) ((e.getX() - halfWidth) / myController.getRatio()
+                            .scale(50)); c < (int) ((e.getX() + halfWidth) /
+                                                    myController.getRatio().scale(50)); c++) {
+                if (myController.getLevel().getPlaceableTileManager().getPlaceableMap()
+                        .getBitMap()[r][c]) {
                     return false;
+                }
             }
         }
         return true;

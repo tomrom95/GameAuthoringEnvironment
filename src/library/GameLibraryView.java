@@ -1,7 +1,6 @@
 package library;
 
 import java.util.ResourceBundle;
-import engine.IGame;
 import gameauthoring.tabs.AuthoringView;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -13,7 +12,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import splash.LocaleManager;
@@ -23,7 +21,8 @@ import splash.MainUserInterface;
 public class GameLibraryView {
 
     private static final String CSS_FILE = "defaults/library.css";
-    private static final ResourceBundle myBundle = ResourceBundle.getBundle("defaults/game_library");
+    private static final ResourceBundle myBundle =
+            ResourceBundle.getBundle("defaults/game_library");
     private static final ResourceBundle myLang =
             ResourceBundle.getBundle("languages/labels",
                                      LocaleManager.getInstance().getCurrentLocaleProperty().get());

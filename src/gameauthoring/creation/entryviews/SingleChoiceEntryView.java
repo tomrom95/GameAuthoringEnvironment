@@ -11,8 +11,8 @@ import javafx.scene.control.ComboBox;
 /**
  * Allows for Single choice from list of given choices associated with Label given as constructor
  * Arguement
- * 
- * 
+ *
+ *
  * @author JoeLilien
  *
  */

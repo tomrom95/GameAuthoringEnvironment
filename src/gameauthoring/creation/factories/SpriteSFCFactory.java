@@ -18,7 +18,8 @@ public class SpriteSFCFactory extends SubFormControllerFactory<SpriteDefinition>
     }
 
     @Override
-    protected ISubFormController<SpriteDefinition> createSubFormController (String type, Object ... params) throws ReflectionException {
+    protected ISubFormController<SpriteDefinition> createSubFormController (String type,
+                                                                            Object ... params) throws ReflectionException {
 
         if (type.equals("Movement")) {
             return new MovementSFC(getMyGame());
@@ -32,23 +33,25 @@ public class SpriteSFCFactory extends SubFormControllerFactory<SpriteDefinition>
             return new FiringSFC(getMyGame());
         }
         else if (type.equals("UpgradeDefender")) {
-            return new UpgradeSFC(getMyGame(),getMyGame().getAuthorshipData().getMyCreatedSprites("Defenders"));
+            return new UpgradeSFC(getMyGame(),
+                                  getMyGame().getAuthorshipData().getMyCreatedSprites("Defenders"));
         }
         else if (type.equals("UpgradeEnemy")) {
-            return new UpgradeSFC(getMyGame(),getMyGame().getAuthorshipData().getMyCreatedSprites("Enemies"));
+            return new UpgradeSFC(getMyGame(),
+                                  getMyGame().getAuthorshipData().getMyCreatedSprites("Enemies"));
         }
         else if (type.equals("UpgradeMissile")) {
-            return new UpgradeSFC(getMyGame(),getMyGame().getAuthorshipData().getMyCreatedMissiles());
+            return new UpgradeSFC(getMyGame(),
+                                  getMyGame().getAuthorshipData().getMyCreatedMissiles());
         }
         else if (type.equals("Cost")) {
             return new CostSFC(getMyGame());
-        }else if (type.equals("AI")){
+        }
+        else if (type.equals("AI")) {
             return new AISpriteSFC();
         }
 
-
         throw new ReflectionException("Can't create sprite subformcontroller of type " + type);
     }
-
 
 }

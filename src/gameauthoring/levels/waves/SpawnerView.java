@@ -9,15 +9,6 @@ import engine.definitions.spawnerdef.SpawnerModuleDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
 import engine.profile.Profile;
 import engine.rendering.AuthoringRenderer;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 import gameauthoring.creation.cellviews.NameCellView;
 import gameauthoring.levels.sprites.Draggable;
 import gameauthoring.util.BasicUIFactory;
@@ -28,6 +19,15 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import splash.LocaleManager;
@@ -39,7 +39,7 @@ import util.StringParser;
 /**
  * Responsible for showing the spawner image, the gap time, and associated waves
  * Draggable so the spawner can be dragged onto the level
- * 
+ *
  * @author RyanStPierre
  * @author TommyRomano
  */
@@ -154,7 +154,7 @@ public class SpawnerView implements Glyph, Draggable {
     public void setOnDragDetected (MouseEvent e, Node node) {
         createSpawner();
         Dragboard db = node.startDragAndDrop(TransferMode.COPY);
-        db.setContent(this.createClipboard(DRAG_STRING));
+        db.setContent(createClipboard(DRAG_STRING));
         db.setDragView(getImage());
         myRenderer.getPane().setOnDragOver(event -> setOnDragOver(event));
         myRenderer.getPane().setOnDragDropped(event -> setOnDragDropped(event));
@@ -187,7 +187,7 @@ public class SpawnerView implements Glyph, Draggable {
 
     @Override
     public void setOnDragDropped (DragEvent e) {
-//        mySpawner.setProfile(new Profile());
+        // mySpawner.setProfile(new Profile());
         myLevel.add(mySpawner.create(), getCoordinate(e.getX(), e.getY()));
         myRenderer.render();
         reset();

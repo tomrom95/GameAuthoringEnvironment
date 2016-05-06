@@ -3,9 +3,9 @@ package facebookutil;
 import java.util.ArrayList;
 import java.util.List;
 import facebookutil.applications.AppMap;
+import facebookutil.login.LoginObject;
 import facebookutil.login.LoginUser;
 import facebookutil.scores.HighScoreBoard;
-import facebookutil.login.LoginObject;
 import facebookutil.user.Email;
 import facebookutil.user.IUser;
 import facebookutil.user.User;
@@ -14,25 +14,27 @@ import facebookutil.xstream.HighScoreWriter;
 import facebookutil.xstream.UserReader;
 import facebookutil.xstream.UserWriter;
 
+
 /**
  * Class that implements the main java social interface.
  * Loads previous users into a list of current users and allows people
  * to log in, record scores, and post.
+ *
  * @author Tommy
  *
  */
 public class JavaSocial implements IJavaSocial {
-    
+
     public static final String RESOURCE_FOLDER = "voogasalad/facebookutil/";
     private static final Email GUEST_EMAIL = new Email("guest", "guest.com");
-    
+
     private static JavaSocial instance = null;
-    
+
     private List<IUser> myUsers;
     private HighScoreBoard myHighScores;
     private IUser activeUser;
     private AppMap myApps;
-    
+
     protected JavaSocial () {
         myUsers = loadUsers();
         myHighScores = new HighScoreReader().getBoard();
@@ -40,13 +42,13 @@ public class JavaSocial implements IJavaSocial {
         myApps.loginApps();
         loginGuest();
     }
-    
-    public static JavaSocial getInstance() {
-        if(instance == null) {
-           instance = new JavaSocial();
+
+    public static JavaSocial getInstance () {
+        if (instance == null) {
+            instance = new JavaSocial();
         }
         return instance;
-     }
+    }
 
     private void loginGuest () {
         IUser guest = createNewUser(GUEST_EMAIL);
@@ -55,10 +57,11 @@ public class JavaSocial implements IJavaSocial {
 
     /**
      * Loads users to list from the XML reader
+     *
      * @return
      */
     private List<IUser> loadUsers () {
-        UserReader reader = new UserReader ();
+        UserReader reader = new UserReader();
         return reader.getUsers();
     }
 
@@ -69,7 +72,7 @@ public class JavaSocial implements IJavaSocial {
 
     @Override
     public IUser getUserByEmail (Email email) {
-        for (IUser user: myUsers) {
+        for (IUser user : myUsers) {
             if (user.getUserEmail().equals(email)) {
                 return user;
             }
@@ -87,14 +90,15 @@ public class JavaSocial implements IJavaSocial {
         IUser user = getUserByEmail(login.getEmail());
         if (user == null) {
             user = createNewUser(login.getEmail());
-        } else {
+        }
+        else {
             System.out.println("User exists");
         }
         user.login(type, login);
         activeUser = user;
         saveState();
     }
-    
+
     @Override
     public void loginUser (SocialType type) {
         LoginUser login = type.getLogin();
@@ -115,14 +119,16 @@ public class JavaSocial implements IJavaSocial {
 
     /**
      * Gets the current user of the social environment
+     *
      * @return
      */
     public IUser getActiveUser () {
         return activeUser;
     }
-    
+
     /**
      * Gets the applications associated with the social app
+     *
      * @return
      */
     public AppMap getApplications () {
@@ -136,6 +142,5 @@ public class JavaSocial implements IJavaSocial {
         HighScoreWriter scoreWriter = new HighScoreWriter();
         scoreWriter.write(myHighScores);
     }
-
 
 }
