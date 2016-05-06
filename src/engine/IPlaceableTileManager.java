@@ -12,4 +12,8 @@ import util.BitMap;
  */
 public interface IPlaceableTileManager {
     BitMap getPlaceableMap ();
+
+    boolean checkBitMap (int row, int column);
+
+    void setBitMap (int row, int column, boolean bool);
 }

@@ -45,11 +45,11 @@ public class AuthoringRenderer extends LevelRenderer {
     }
 
     public void updateNewTiles () {
-        myTileView.updateTileNumbers();
+        myTileView.calculateTileArraySize();
     }
 
     public void scaleTitles () {
-        myTileView.redraw();
+        myTileView.initializeGridLines();
     }
 
     private void updateExistingNodeLocations () {

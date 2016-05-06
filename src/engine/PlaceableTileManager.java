@@ -22,6 +22,14 @@ public class PlaceableTileManager implements IPlaceableTileManager {
         myColumnSize = column;
     }
 
+    public boolean checkBitMap(int row, int column){
+        return myPlaceableMap.getBitMap()[row][column];
+    }
+    
+    public void setBitMap (int row, int column, boolean bool){
+        myPlaceableMap.getBitMap()[row][column] = bool;
+    }
+    
     public int getRowSize () {
         return myRowSize;
     }
