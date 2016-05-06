@@ -14,6 +14,13 @@ import splash.LocaleManager;
 import util.StringParser;
 
 
+/**
+ * 
+ * 
+ * @author Joseph Lilien
+ *
+ * @param <T> item that SFCs under this hierarchy access and edit
+ */
 public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormController<T> {
 
     private ClickAndFillView myView;
@@ -28,57 +35,72 @@ public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormC
     private ResourceBundle myNumbers;
     private List<String> myOptions;
 
+    /**
+     * 
+     * 
+     * @param game: The current game object
+     */
     public MultiOptionSFC (IGame game) {
         myGame = game;
         myLabels =
                 ResourceBundle
                         .getBundle("languages/labels",
                                    LocaleManager.getInstance().getCurrentLocaleProperty().get());
-        myNumbers =  ResourceBundle
+        myNumbers = ResourceBundle
                 .getBundle("defaults/numbers");
         myParser = new StringParser();
         setMySFCFactory(new MultiOptionFactory<T>(game));
     }
 
+    /**
+     * 
+     */
     protected void setActions () {
         for (int i = 0; i < getMyView().getMyButtons().size(); i++) {
             String sfcID = getMyOptions().get(i);
-            getMyView().setButtonAction(getMyView().getMyButtons().get(i),
-                                        e -> addSFC(mySFCFactory.createSubFormController(
-                                                                                         getMyDefClasspaths()
-                                                                                                 .getString(sfcID),
-                                                                                         getMyGame(),
-                                                                                         this)));
+            RemovableSFC<T> sfc = mySFCFactory.createSubFormController(getMyDefClasspaths()
+                    .getString(sfcID), getMyGame(), this);
+            getMyView().setButtonAction(getMyView().getMyButtons().get(i), e -> addSFC(sfc));
         }
     }
 
+    /**
+     * 
+     * 
+     * @param sfc: 'sub' SFC to be added
+     */
     protected void addSFC (RemovableSFC<T> sfc) {
         mySFCs.add(sfc);
         getMyView().addOrSetSFV(sfc.getSubFormView());
     }
 
+    /**
+     * 
+     */
     protected void clearSFCs () {
         mySFCs.clear();
         getMyView().clearSFVs();
     }
 
-    @Override
-    public void updateItem (T item) {
-        resetContents(item);
-        mySFCs.forEach(e -> e.updateItem(item));
-    }
-
+    /**
+     * 
+     * 
+     * @param item: current Item to be edited by SFCs
+     */
     protected abstract void resetContents (T item);
 
-    @Override
-    public ISubFormView getSubFormView () {
-        return getMyView();
-    }
+    /**
+     * 
+     * 
+     * @param item: current item to be edited
+     * @return: List of objects of interest
+     */
+    protected abstract List<? extends Object> getList (T item);
 
-    @Override
-    public void initializeFields () {
-    }
-
+    /**
+     * 
+     * @param sfc: SFC to be removed
+     */
     public void removeSFC (RemovableSFC<T> sfc) {
         mySFCs.remove(sfc);
         getMyView().removeSFV(sfc.getSubFormView());
@@ -87,8 +109,6 @@ public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormC
         }
     }
 
-    protected abstract List<? extends Object> getList (T item);
-
     @Override
     public void populateViewsWithData (T item) {
         clearSFCs();
@@ -96,11 +116,25 @@ public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormC
         for (Object object : objects) {
             RemovableSFC<T> sfc =
                     getMySFCFactory().createSubFormController(object.getClass().getName(),
-                                                              getMyGame(), this,
-                                                              object);
+                                                              getMyGame(), this, object);
             sfc.populateViewsWithData(item);
             addSFC(sfc);
         }
+    }
+
+    @Override
+    public void updateItem (T item) {
+        resetContents(item);
+        mySFCs.forEach(e -> e.updateItem(item));
+    }
+
+    @Override
+    public ISubFormView getSubFormView () {
+        return getMyView();
+    }
+
+    public ResourceBundle getMyDefClasspaths () {
+        return myDefClasspaths;
     }
 
     protected IGame getMyGame () {
@@ -139,19 +173,15 @@ public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormC
         this.mySFCFactory = sfcFactory;
     }
 
-    public ResourceBundle getMyDefClasspaths () {
-        return myDefClasspaths;
-    }
-
     protected ResourceBundle getMyLabels () {
         return myLabels;
     }
-    
-    protected ResourceBundle getMyNumbers(){
+
+    protected ResourceBundle getMyNumbers () {
         return myNumbers;
     }
-    
-    protected StringParser getParser() {
+
+    protected StringParser getParser () {
         return myParser;
     }
 }
