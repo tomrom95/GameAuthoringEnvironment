@@ -4,6 +4,8 @@ import java.util.Collection;
 import engine.Drawable;
 import engine.IGamePlayable;
 import gameplayer.SpriteDisplayController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import util.ScaleRatio;
@@ -17,34 +19,39 @@ import util.ScaleRatio;
  */
 public class InGameRenderer extends LevelRenderer<Drawable> {
 
-    private IGraphicFactory myFactory;
+    private IGraphicFactory myFactory = new UnscaledFactory();
     private IGamePlayable myGame;
     private SpriteDisplayController mySpriteDisplay;
-    private boolean myFirstTime;
 
     public InGameRenderer (IGamePlayable game,
                            Pane pane,
                            SpriteDisplayController spriteDisplay,
                            ScaleRatio scale) {
         super(pane, scale);
-        myFactory = new UnscaledFactory();
         myGame = game;
-        myFirstTime = true;
         mySpriteDisplay = spriteDisplay;
+        addListener();
+    }
+
+    private void addListener () {
+        getScale().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed (ObservableValue<? extends Number> observedVal,
+                                 Number oldVal,
+                                 Number newVal) {
+                drawBackground();
+            }
+        });   
     }
 
     @Override
     public void render () {
-        // TODO possibly use invalidation listener in case the background image changes, such as in
-        // the case of a level change
-        if (myGame.getSwitched()) {
-            myFirstTime = true;
+        if (myGame.getLevelSwitch()) {
+            super.render();
         }
-        if (myFirstTime) {
-            drawBackground(getBackgroundURL());
-            myFirstTime = false;
+        else {
+            drawSprites();
         }
-        drawSprites();
     }
 
     @Override
@@ -53,13 +60,13 @@ public class InGameRenderer extends LevelRenderer<Drawable> {
     }
 
     @Override
-    protected double scaledHeight () {
-        return getScale().scale(myGame.getLevelBounds().getHeight());
+    protected double boundHeight () {
+        return myGame.getLevelBounds().getHeight();
     }
 
     @Override
-    protected double scaledWidth () {
-        return getScale().scale(myGame.getLevelBounds().getWidth());
+    protected double boundWidth () {
+        return myGame.getLevelBounds().getWidth();
     }
 
     @Override

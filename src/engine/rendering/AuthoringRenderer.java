@@ -9,7 +9,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import util.ScaleRatio;
 
-
 public class AuthoringRenderer extends LevelRenderer<ISprite> {
 
     private ILevel myLevel;
@@ -21,43 +20,6 @@ public class AuthoringRenderer extends LevelRenderer<ISprite> {
         myTileView = new GridRenderer(level, gridPane, scale);
     }
 
-    private Node createOnScreenSprite (ISprite sprite) {
-        return (new OnScreenSprite(this, myLevel, sprite, getScale())).draw();
-        // this.draw(spriteNode, sprite);
-    }
-
-    public void updateNewTiles () {
-        myTileView.updateTileNumbers();
-    }
-
-    @Override
-    protected String getBackgroundURL () {
-        return myLevel.getBackgroundImage().getUrlProperty().get();
-    }
-
-    public GridRenderer getGrids () {
-        return myTileView;
-    }
-
-    public ILevel getLevel () {
-        return myLevel;
-    }
-
-    @Override
-    protected double scaledHeight () {
-        return getScale().scale(myLevel.getBounds().getHeight());
-    }
-
-    @Override
-    protected double scaledWidth () {
-        return getScale().scale(myLevel.getBounds().getWidth());
-    }
-
-    public void scaleTitles () {
-        myTileView.redraw();
-
-    }
-
     @Override
     protected Collection<ISprite> getList () {
         return myLevel.getSprites();
@@ -66,6 +28,42 @@ public class AuthoringRenderer extends LevelRenderer<ISprite> {
     @Override
     protected Node getNode (ISprite item) {
         return createOnScreenSprite(item);
+    }
+    
+    private Node createOnScreenSprite (ISprite sprite) {
+        return (new OnScreenSprite(this, myLevel, sprite, getScale())).draw();
+    }
+
+    @Override
+    protected String getBackgroundURL () {
+        return myLevel.getBackgroundImage().getUrlProperty().get();
+    }
+
+    @Override
+    protected double boundHeight () {
+        return myLevel.getBounds().getHeight();
+    }
+
+    @Override
+    protected double boundWidth () {
+        return myLevel.getBounds().getWidth();
+    }
+    
+    public GridRenderer getGrids () {
+        return myTileView;
+    }
+
+    public void updateNewTiles () {
+        myTileView.updateTileNumbers();
+    }
+    
+    public void scaleTitles () {
+        myTileView.redraw();
+    }
+
+    public boolean[][] getBitMap () {
+        return myLevel.getPlaceableTileManager().getPlaceableMap()
+                .getBitMap();
     }
 
 }

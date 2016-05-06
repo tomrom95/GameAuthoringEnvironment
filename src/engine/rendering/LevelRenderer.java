@@ -19,6 +19,10 @@ import util.ScaleRatio;
 
 public abstract class LevelRenderer<T extends Drawable> implements IRenderer {
 
+    private static final boolean PRESERVE_RATIO = true;
+    private static final boolean SMOOTH = true;
+    private static final double HALF = .5;
+    
     private Map<T, Node> myNodeMap = new HashMap<>();
     private Pane myPane;
     private ScaleRatio myScale;
@@ -30,46 +34,63 @@ public abstract class LevelRenderer<T extends Drawable> implements IRenderer {
 
     @Override
     public void render () {
-        drawBackground(getBackgroundURL());
+        drawBackground();
         drawSprites();
     }
-
-    public Pane getPane () {
-        return myPane;
+    
+    protected void drawBackground () {
+        Image image = getImage(getBackgroundURL());
+        BackgroundImage background = getBackgroundImage(image);
+        myPane.setBackground(new Background(background));
+        resizePane(image.getWidth(), image.getHeight());
+    }
+    
+    private void resizePane (double width, double height) {
+        myPane.setMinWidth(width);
+        myPane.setMinHeight(height);
     }
 
-    protected List<Node> getAndUpdateEngineNodeList () {
-        return getList().stream().map(drawable -> getNodeForDrawableAddNew(drawable))
+    private BackgroundImage getBackgroundImage (Image image) {
+        return new BackgroundImage(image,
+                            BackgroundRepeat.NO_REPEAT,
+                            BackgroundRepeat.NO_REPEAT,
+                            BackgroundPosition.DEFAULT,
+                            BackgroundSize.DEFAULT);
+    }
+
+    protected abstract String getBackgroundURL ();
+
+    protected void drawSprites () {
+        List<Node> currentEngineNodeList = getCurrentNodeList();
+        removeScreenNodesNotInEngine(currentEngineNodeList);
+    }
+
+    protected List<Node> getCurrentNodeList () {
+        return getList().stream().map(drawable -> addToMap(drawable))
                 .collect(Collectors.toList());
     }
 
-    private Node getNodeForDrawableAddNew (T sprite) {
-        if (getNodeMap().containsKey(sprite)) {
-            return getNodeMap().get(sprite);
+    private Node addToMap (T drawable) {
+        if (getNodeMap().containsKey(drawable)) {
+            relocateAndScale(drawable, getNodeMap().get(drawable));
+            return getNodeMap().get(drawable);
         }
         else {
-            Node node = getNode(sprite);
-            node.scaleXProperty().set(getScale().getScale());
-            node.scaleYProperty().set(getScale().getScale());
-            getNodeMap().put(sprite, node);
-            add(node);
+            Node node = getNode(drawable);
+            relocateAndScale(drawable, node);
+            add(drawable, node);
             return node;
         }
     }
 
-    private void add (Node node) {
+    private void add (T drawable, Node node) {
+        getNodeMap().put(drawable, node);
         myPane.getChildren().add(node);
     }
 
-    protected abstract Node getNode (T item);
+    protected abstract Node getNode (T drawable);
 
     protected abstract Collection<? extends T> getList ();
-
-    protected void drawSprites () {
-        List<Node> currentEngineConvertedNodeList = getAndUpdateEngineNodeList();
-        removeScreenNodesNotInEngine(currentEngineConvertedNodeList);
-        updateExistingNodeLocations();
-    }
 
     protected void removeScreenNodesNotInEngine (List<Node> engineNodes) {
         getCurrentDrawnNodes()
@@ -77,71 +98,49 @@ public abstract class LevelRenderer<T extends Drawable> implements IRenderer {
     }
 
     private Collection<Node> getCurrentDrawnNodes () {
-        return myPane.getChildren();
+        return getPane().getChildren();
     }
     
     private boolean checkEngineContainsAndUpdateDrawNodeMapEntry (List<Node> engineNodes,
                                                                   Node node) {
-        boolean shouldRemove = !engineNodes.contains(node);
-        if (shouldRemove) {
-            for (T draw : getKeysForNode(getNodeMap(), node)) {
-                myNodeMap.remove(draw);
+        if (!engineNodes.contains(node)) {
+            for (T draw : getKeysForNode(node)) {
+                getNodeMap().remove(draw);
             }
         }
-        return shouldRemove;
+        return !engineNodes.contains(node);
     }
     
-    private List<T> getKeysForNode (Map<T, Node> map, Node node) {
-        return map.keySet().stream().filter(draw -> map.get(draw) == node)
+    private List<T> getKeysForNode (Node node) {
+        return getNodeMap().keySet().stream().filter(draw -> getNodeMap().get(draw) == node)
                 .collect(Collectors.toList());
     }
+
+    protected void relocateAndScale (Drawable drawable, Node node) {
+        relocate(node, drawable.getLocation());
+        scale(node);
+        node.setVisible(drawable.getDrawer().isVisible());
+        node.setRotate(drawable.getOrientation());
+    }    
+
+    private void relocate (Node node, Coordinate location) {
+        node.relocate(scale(location.getX()) -
+                      half(node.getBoundsInLocal().getWidth()),
+                      scale(location.getY()) - 
+                      half(node.getBoundsInLocal().getHeight()));
+    }
     
-    protected void updateExistingNodeLocations () {
-        getNodeMap().keySet().stream().forEach(drawable -> {
-            draw(getNodeMap().get(drawable), drawable);
-            getNodeMap().get(drawable).setVisible(true);
-        });
-
+    private double half (double input) {
+        return input * HALF;
     }
 
-    protected abstract String getBackgroundURL ();
-
-    protected void draw (Node node, Drawable sprite) {
-        Coordinate location = sprite.getLocation();
-        node.relocate(getScale().scale(location.getX()) -
-                      sprite.getDrawer().getGraphic().getHeight().get() / 2,
-                      getScale().scale(location.getY()) - sprite.getDrawer().getGraphic()
-                              .getHeight().get() / 2);
-        node.setScaleX(getScale().getScale());
-        node.setScaleY(getScale().getScale());
-        node.setVisible(sprite.getDrawer().isVisible());
-        node.setRotate(sprite.getOrientation());
+    private void scale (Node node) {
+        node.setScaleX(getScale().get());
+        node.setScaleY(getScale().get());
     }
-
-    protected void drawBackground (String url) {
-        if (url == null) {
-            return;
-        }
-        Image img = getImage(url);
-        BackgroundImage background = new BackgroundImage(img,
-                                                         BackgroundRepeat.NO_REPEAT,
-                                                         BackgroundRepeat.NO_REPEAT,
-                                                         BackgroundPosition.DEFAULT,
-                                                         BackgroundSize.DEFAULT);
-        myPane.setBackground(new Background(background));
-        myPane.setMinWidth(img.getWidth());
-        myPane.setMinHeight(img.getHeight());
-    }
-
-    public void redrawBackground () {
-        for (Drawable sprite : getNodeMap().keySet()) {
-            resize(sprite, getNodeMap().get(sprite));
-        }
-        render();
-    }
-
-    private void resize (Drawable sprite, Node node) {
-        draw(node, sprite);
+    
+    private double scale (double input) {
+        return getScale().scale(input);
     }
 
     protected ScaleRatio getScale () {
@@ -149,14 +148,19 @@ public abstract class LevelRenderer<T extends Drawable> implements IRenderer {
     }
 
     protected Image getImage (String url) {
-        return new Image(url, scaledWidth(), scaledHeight(), true, true);
+        return new Image(url, scale(boundWidth()), scale(boundHeight()), PRESERVE_RATIO, SMOOTH);
     }
 
-    protected abstract double scaledHeight ();
+    protected abstract double boundHeight ();
 
-    protected abstract double scaledWidth ();
+    protected abstract double boundWidth ();
 
-    protected Map<T, Node> getNodeMap () {
+    private Map<T, Node> getNodeMap () {
         return myNodeMap;
     }
+    
+    public Pane getPane () {
+        return myPane;
+    }
+
 }
