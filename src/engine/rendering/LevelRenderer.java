@@ -34,12 +34,19 @@
  * Originally, our rendering algorithm did not cache node creation, recreating all Sprite nodes
  * every render. This was not fast enough to be workable. Thus, we had to reconstruct the
  * LevelRenderer class. We changed the IRenderer in the GameEngine class from a class that did not
- * cache to this.  Since the GameEngine used the interface it was easy to swap out the old renderer
+ * cache to this. Since the GameEngine used the interface it was easy to swap out the old renderer
  * for this one, using the Strategy pattern.
  * 
  * This class has short methods that have a distinct purpose. In addition, I went through and
  * changed a lot of names to be more concise and clear. These two components contribute to the
  * readibility of the class.
+ * 
+ * Here I take advantage of the Template design pattern to define the skeleton of methods, but call
+ * on abstract methods to be concretely implemented by the subclasses. For example. the
+ * getBackgroundImage() method is fully fleshed out but calls the abstract method, getBackgroundURL
+ * The reason this method is abstract is because the URL comes from different places based on the 
+ * subclass, from the game's current level in the in game case of the direct reference of the level
+ * in the authorship case.
  * 
  */
 package engine.rendering;
