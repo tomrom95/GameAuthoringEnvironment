@@ -3,7 +3,7 @@ package gameauthoring.creation.subforms.fire;
 import java.util.ResourceBundle;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormController;
-import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
+import gameauthoring.creation.subforms.dynamic.MultiSFController;
 import splash.LocaleManager;
 import util.StringParser;
 
@@ -22,7 +22,7 @@ public abstract class RemovableSFC<T extends IProfilable> implements ISubFormCon
     private ResourceBundle myNumbers;
     private StringParser myParser;
 
-    public RemovableSFC (MultiOptionSFC<T> sfc) {
+    public RemovableSFC (MultiSFController<T> sfc) {
         myLabels =
                 ResourceBundle
                         .getBundle("languages/labels",

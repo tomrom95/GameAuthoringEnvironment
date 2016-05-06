@@ -1,12 +1,12 @@
 package gameauthoring.creation.subforms.fire;
 
 import engine.definitions.concrete.EventPackageDefinition;
-import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
+import gameauthoring.creation.subforms.dynamic.MultiSFController;
 
 
 public abstract class RemovableEffectSFC extends RemovableSFC<EventPackageDefinition> {
 
-    public RemovableEffectSFC (MultiOptionSFC<EventPackageDefinition> sfc) {
+    public RemovableEffectSFC (MultiSFController<EventPackageDefinition> sfc) {
         super(sfc);
     }
 

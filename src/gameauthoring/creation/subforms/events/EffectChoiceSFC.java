@@ -4,11 +4,11 @@ import java.util.List;
 import engine.IGame;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.effects.IEffect;
-import gameauthoring.creation.subforms.dynamic.MultiOptionSFC;
+import gameauthoring.creation.subforms.dynamic.MultiSFController;
 import util.BundleOperations;
 
 
-public class EffectChoiceSFC extends MultiOptionSFC<EventPackageDefinition> {
+public class EffectChoiceSFC extends MultiSFController<EventPackageDefinition> {
 
     private static final String EFFECT_KEY = "Effects";
 
@@ -16,11 +16,11 @@ public class EffectChoiceSFC extends MultiOptionSFC<EventPackageDefinition> {
         super(game);
         setMyOptions(BundleOperations.getPropertyValueAsList(EFFECT_KEY, getMyOptionsFile()));
         setMyView(new EffectChoiceSFV(getMyOptions(), EFFECT_KEY));
-        setActions();
+        setViewActions();
     }
 
     @Override
-    protected List<IEffect> getList (EventPackageDefinition item) {
+    protected List<IEffect> getListofEditables (EventPackageDefinition item) {
         return item.getMyEffectsList();
     }
 

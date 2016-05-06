@@ -51,9 +51,9 @@ public abstract class DynamicSubFormController<T extends IProfilable>
     }
 
     private void setActions () {
-        for (int i = 0; i < myView.getMyButtons().size(); i++) {
+        for (int i = 0; i < myView.getMyViewComponents().size(); i++) {
             ISubFormController<T> sfc = mySubFormControllers.get(i);
-            myView.setButtonAction(myView.getMyButtons().get(i), e -> setMyCurrentSFC(sfc));
+            myView.setViewComponentAction(myView.getMyViewComponents().get(i), e -> setMyCurrentSFC(sfc));
         }
     }
 

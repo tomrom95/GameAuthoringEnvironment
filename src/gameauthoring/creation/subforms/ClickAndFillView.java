@@ -6,9 +6,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,7 +14,7 @@ import splash.LocaleManager;
 import java.util.*;
 
 
-public abstract class ClickAndFillView extends SubFormView {
+public abstract class ClickAndFillView extends SubFormView implements IMultiSFView{
     private GridPane myContainer;
     private BasicUIFactory myUIFactory = new BasicUIFactory();
     private ScrollPane myPane;
@@ -27,8 +25,6 @@ public abstract class ClickAndFillView extends SubFormView {
             ResourceBundle.getBundle("defaults/click_and_fill_images");
     private String cssButtonClass = "DynamicButton";
     private String cssScrollClass = "DynamicScroll";
-
-    // TODO: add to language files and use this
     private ResourceBundle myLang = ResourceBundle.getBundle("languages/labels", LocaleManager
             .getInstance().getCurrentLocaleProperty().get());
 
@@ -45,7 +41,8 @@ public abstract class ClickAndFillView extends SubFormView {
         return myProperties;
     }
 
-    public List<Button> getMyButtons () {
+    @Override
+    public List<Button> getMyViewComponents () {
         return myButtons;
     }
 
@@ -53,8 +50,9 @@ public abstract class ClickAndFillView extends SubFormView {
         return myUIFactory;
     }
 
-    public void setMyButtons (List<Button> myButtons) {
-        this.myButtons = myButtons;
+    @Override
+    public void setMyViewComponents (List<Button> myControls) {
+        this.myButtons = myControls;
     }
 
     private void initButtonHolder (List<String> options) {
@@ -72,9 +70,9 @@ public abstract class ClickAndFillView extends SubFormView {
                     getMyUIFactory().createImageButton(getMyUIFactory()
                             .makeImageDisplay(getMyProperties().getString(s), getMyLanguages().getString(s)));
             getMyUIFactory().addStyling(button, cssButtonClass);
-            getMyButtons().add(button);
+            getMyViewComponents().add(button);
         }
-        buttonHolder.getChildren().addAll(getMyButtons());
+        buttonHolder.getChildren().addAll(getMyViewComponents());
     }
 
     @Override
@@ -87,12 +85,15 @@ public abstract class ClickAndFillView extends SubFormView {
         myContainer.add(myPane, 0, 1);
     }
 
+    @Override
     public abstract void addOrSetSFV (ISubFormView subFormView);
 
+    @Override
     public void removeSFV (ISubFormView subFormView) {
         myPaneContent.getChildren().remove(subFormView.draw());
     }
 
+    @Override
     public void clearSFVs () {
         myPaneContent.getChildren().clear();
     }
@@ -101,7 +102,8 @@ public abstract class ClickAndFillView extends SubFormView {
         return myPaneContent;
     }
 
-    public void setButtonAction (Button button, EventHandler<ActionEvent> e) {
+    @Override
+    public void setViewComponentAction (Button button, EventHandler<ActionEvent> e) {
         button.setOnAction(e);
     }
 
