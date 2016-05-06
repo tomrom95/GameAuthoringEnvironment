@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import engine.Drawable;
-import engine.sprite.ISprite;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -18,11 +17,6 @@ import javafx.scene.layout.Pane;
 import util.Coordinate;
 import util.ScaleRatio;
 
-
-/**
- *
- * TODO fix scaling of window sizes
- */
 public abstract class LevelRenderer<T extends Drawable> implements IRenderer {
 
     private Map<T, Node> myNodeMap = new HashMap<>();
@@ -110,7 +104,7 @@ public abstract class LevelRenderer<T extends Drawable> implements IRenderer {
 
     }
 
-    abstract String getBackgroundURL ();
+    protected abstract String getBackgroundURL ();
 
     protected void draw (Node node, Drawable sprite) {
         Coordinate location = sprite.getLocation();
@@ -139,7 +133,16 @@ public abstract class LevelRenderer<T extends Drawable> implements IRenderer {
         myPane.setMinHeight(img.getHeight());
     }
 
-    public abstract void redrawBackground ();
+    public void redrawBackground () {
+        for (Drawable sprite : getNodeMap().keySet()) {
+            resize(sprite, getNodeMap().get(sprite));
+        }
+        render();
+    }
+
+    private void resize (Drawable sprite, Node node) {
+        draw(node, sprite);
+    }
 
     protected ScaleRatio getScale () {
         return myScale;

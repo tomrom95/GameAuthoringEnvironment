@@ -1,11 +1,6 @@
 package engine.rendering;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import engine.Drawable;
 import engine.ILevel;
 import engine.sprite.ISprite;
 import gameauthoring.levels.sprites.OnScreenSprite;
@@ -36,7 +31,7 @@ public class AuthoringRenderer extends LevelRenderer<ISprite> {
     }
 
     @Override
-    String getBackgroundURL () {
+    protected String getBackgroundURL () {
         return myLevel.getBackgroundImage().getUrlProperty().get();
     }
 
@@ -46,17 +41,6 @@ public class AuthoringRenderer extends LevelRenderer<ISprite> {
 
     public ILevel getLevel () {
         return myLevel;
-    }
-
-    @Override
-    public void redrawBackground () {
-        for (Drawable sprite : getNodeMap().keySet()) {
-            resize(sprite, getNodeMap().get(sprite));
-        }
-    }
-
-    private void resize (Drawable sprite, Node node) {
-        draw(node, sprite);
     }
 
     @Override
