@@ -35,7 +35,12 @@ import util.BundleOperations;
  * full class names of the viewers that exist in our codebase, a resource to manage languages, and a resource to 
  * reference a particular tab viewer after creation to build its respective tab. 
  * 
- * 
+ * This class also holds any class that holds a has-a relationship with the ITabViewer interface. The impressive aspect of this
+ * factory is how simply this code can be converted to reflectively generate other classes that hold the same behavior such as 
+ * the FormView sub-classes that exist in the authoring environment. The replicability of this class allows the factory to be 
+ * plugged in and used in other codebases effectively. Additionally, if the developer manipulate how tab viewers render nodes on 
+ * the game screen, the amount of tab viewers, or the tabs that correspond to a particular tab viewer, the factory class can remain
+ * unchanged and reflect the changes elsewhere in a working manner. 
  * 
  * 
  * @author Dhrumil
