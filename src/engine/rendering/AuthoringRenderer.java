@@ -3,6 +3,7 @@ package engine.rendering;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import engine.Drawable;
 import engine.ILevel;
@@ -19,12 +20,24 @@ public class AuthoringRenderer extends LevelRenderer {
     private ILevel myLevel;
     private Map<ISprite, Node> mySpriteNodeMap;
     private GridRenderer myTileView;
+    private ResourceBundle myShapes = ResourceBundle.getBundle("defaults/tile_shape");
 
+    /**
+     * To illustrate an example of how to make extension on creating different shapes, we are
+     * passing a default shape string from resource bundle. In full implementation, I would create a
+     * combo box which has list of different default shapes that authors can use and pass the input
+     * to AuthoringRenderer and to GridRenderer.
+     * 
+     * @param level
+     * @param pane
+     * @param gridPane
+     * @param scale
+     */
     public AuthoringRenderer (ILevel level, Pane pane, GridPane gridPane, ScaleRatio scale) {
         super(pane, scale);
         myLevel = level;
         mySpriteNodeMap = new HashMap<>();
-        myTileView = new GridRenderer(level, gridPane, scale, "Rectangle");
+        myTileView = new GridRenderer(level, gridPane, scale, myShapes.getString("Rectangle"));
     }
 
     @Override
