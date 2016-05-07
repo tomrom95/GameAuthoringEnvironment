@@ -3,12 +3,44 @@
 /*
  * Here's why it's good design:
  * 
+ * It demonstrates the use of an abstraction. When designing the authoring 
+ * environment, we realized a common theme was creating some type of object, 
+ * such as sprites, attributes, event packages, groups etc. Each of these could
+ * involve some type of form that you fill out to create the item, a view 
+ * displaying the list of items you have created, and the ability to save, 
+ * delete, edit and create new items. We abstracted much of this design into 
+ * common superclasses such as this one to be able to reuse as much code as 
+ * possible.
+ *
+ * I use factories and reflection to dynamically instantiate the creation controller
+ * classes and the subforms they use based on resource files (explained further
+ * in the CreationControllerFactory class and related resource files).
  * 
+ * I use generics to be able to re-use the same code across different types of 
+ * objects. This class can be used to control the creation of any type of object. 
+ * For example,we use it in our project for the creation of SpriteDefinitions, 
+ * AttributeDefinitions, SpriteGroups, and more, all of which are classes in 
+ * separate hierarchies.
  * 
+ * The logic is contained in the controller and not the view. The view just
+ * knows how to draw itself, and gets passed methods to call when certain
+ * events happen (such as save, edit, new, delete). These methods are implemented
+ * in this controller class. 
  * 
+ * I use lambdas to pass methods to the views as "Runnables" that they should call
+ * when certain user events occur.
  * 
+ * I use Java streams to make the syntax cleaner, demonstrating my knowledge
+ * of advanced Java techniques.
  * 
+ * I use the Template Method with abstract methods to prevent duplicated code
+ * in the subclasses.
  * 
+ * The title of the creation controller is retrieved through a resource file,
+ * allowing it to be customized without changing any code and allowing the support
+ * of many languages.
+ * 
+ * Last but not least, all the instance variables are private!
  * 
  */
 
@@ -111,7 +143,7 @@ public abstract class CreationController<T extends IProfilable> {
      * Save the item currently being edited in the form
      */
     private void saveItem () {
-        getMySubFormControllers().stream().forEach(e -> e.updateItem(getMyCurrentItem()));
+        getMySubFormControllers().forEach(e -> e.updateItem(getMyCurrentItem()));
     }
 
     /**
@@ -121,8 +153,7 @@ public abstract class CreationController<T extends IProfilable> {
      */
     private void editItem () {
         if (getMyCurrentItem() != null) {
-            getMySubFormControllers().stream()
-                    .forEach(sfc -> sfc.populateViewsWithData(getMyCurrentItem()));
+            getMySubFormControllers().forEach(sfc -> sfc.populateViewsWithData(getMyCurrentItem()));
         }
 
     }
@@ -150,7 +181,7 @@ public abstract class CreationController<T extends IProfilable> {
      * Tells each SubformView to populate itself with default data
      */
     private void populateViewsWithDefaults () {
-        getMySubFormControllers().stream().forEach(sfc -> sfc.initializeFields());
+        getMySubFormControllers().forEach(sfc -> sfc.initializeFields());
     }
 
     /**

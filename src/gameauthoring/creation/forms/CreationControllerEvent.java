@@ -1,3 +1,12 @@
+// This entire file is part of my masterpiece.
+// Jeremy Schreck
+/*
+ * I included this class as another example of what a subclass of creation 
+ * controller looks like. It serves as a demonstration of how we were able
+ * to use the same class structure to control the creation of very different
+ * types of objects (i.e. SpriteDefinitons and EventPackageDefinitions).
+ * 
+ */
 package gameauthoring.creation.forms;
 
 import java.util.List;

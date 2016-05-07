@@ -1,10 +1,30 @@
 // This entire file is part of my masterpiece.
 // Jeremy Schreck
 /*
+ * I included this class to demonstrate my use of Factory classes along with 
+ * reflection and properties files to instantiate creation controllers. 
  * 
+ * You can customize the authoring environment by choosing which creation
+ * controllers to include in the customization/creation_controllers resource file, 
+ * and can choose which subforms to include in each one in the customization/subforms
+ * file. This gives you the ability to customize the authoring environment without
+ * changing a single line of code and having to recompile. In addition to being
+ * closed for modification, it is open to extension. A single line in each of these
+ * two resource files would allow you to add a Sprite creation controller called
+ * Terrain that by default cannot move. You can also add a completely new creation
+ * controller by just adding a creation controller subclass and the appropriate
+ * subform controller/view subclasses you desire. No existing code would need to
+ * be changed.
+ * 
+ * In addition, isolating the instantiation code in a Factory class allows you
+ * to separate the "ugly" factory code from the rest of the project. I used
+ * Professor Duvall's Reflection util to help instantiate the creation controllers.
+ * I catch the exceptions and rethrow them with a more specific error message to 
+ * give more detail as to where/why the error occurred.
  * 
  * 
  */
+
 package gameauthoring.creation.factories;
 
 import java.util.List;
@@ -65,7 +85,7 @@ public class CreationControllerFactory {
                               sfcs);
 
         try {
-            return (CreationController<?>) Reflection.createInstance(className, key, sfcs, myGame);
+            return (CreationController<?>)Reflection.createInstance(className, key, sfcs, myGame);
         }
         catch (ReflectionException e) {
             String message = String.format("Reflection %s %s", errorMsg, e.getMessage());
