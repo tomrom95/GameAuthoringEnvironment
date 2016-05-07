@@ -27,11 +27,6 @@ public interface IUser {
     public UserScoreBoard getScoreBoard ();
 
     /**
-     * Logs the user out
-     */
-    public void logout ();
-
-    /**
      * Gets the profiles that this user has
      *
      * @return

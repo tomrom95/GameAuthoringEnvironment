@@ -30,12 +30,6 @@ public class User implements IUser {
     }
 
     @Override
-    public void logout () {
-        // TODO setup with XStream
-
-    }
-
-    @Override
     public void login (SocialType type, LoginObject login) {
         if (myProfiles.getProfileByType(type) == null) {
             createNewProfile(type, login);

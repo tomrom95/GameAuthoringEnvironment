@@ -110,7 +110,6 @@ public class HighScoreBoard {
      *
      * @param gameName
      * @param order - SCORE/ALPHABETICAL/DATE
-     * @param reverse - true if you want reverse score, reverse alphabetical, reverse date
      * @return
      */
     public List<Score> getScoreBoardSorted (String gameName, ScoreOrder order) {
