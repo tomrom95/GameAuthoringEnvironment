@@ -87,5 +87,16 @@ public class DirectionalFirer extends Firer {
     protected void setAngle (double theta) {
         myAngle = theta;
     }
+    
+    /**
+     *There are no attributes specific to this module as of yet that need to be observed,
+     *return empty list.
+     */
+    @Override
+    protected List<IAttribute> getSpecificAttributes () {
+        List<IAttribute> toAdd = new ArrayList<>();
+   
+        return toAdd;
+    }
 
 }
