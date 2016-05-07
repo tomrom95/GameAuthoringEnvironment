@@ -1,24 +1,6 @@
 // This entire file is part of my masterpiece.
 // Dhrumil Patel
 
-/*
- * The purpose of this class is to create tab viewer objects requested by the program and provide
- * its associated properties
- * to render a working tab viewer. The tab viewer is responsible to rendering its defined tab that
- * holds the UI elements responsible
- * for activating the elements responsible for the user to interact with and create meaningful
- * sprites, events, and other objects.
- * 
- * This factory demonstrates my strong grasp of the factory design pattern, use of reflections,
- * resource files, advanced Java, interfaces, generics, an internal util class, and lambda
- * expressions.
- * Each one of the categories is used to serve its respective purpose and works in tandem
- * with the rest of the class and corresponding hierarchy to provide the
- * aforementioned functionality.
- * 
- * 
- * 
- */
 package gameauthoring.creation.factories;
 
 import java.util.ArrayList;
@@ -35,8 +17,26 @@ import util.BundleOperations;
 
 
 /**
- * Creating a factory to generate the tab views required for the
- * authoring environment based on specified queries by the user
+ * The purpose of this class is to create tab viewer objects requested by the program and provide
+ * its associated properties to render a working tab viewer. The factory class generates a factory 
+ * to build the tab views required for the authoring environment based on specified queries by 
+ * the user. The tab viewer is responsible to rendering its defined tab that holds the UI elements 
+ * responsible for activating the elements responsible for the user to interact with and create 
+ * meaningful sprites, events, and other objects.
+ * 
+ * This factory demonstrates my strong grasp of the factory design pattern, use of reflection,
+ * resource files, advanced Java, interfaces, generics, an internal util class, and lambda
+ * expressions.
+ * Each one of the categories is used to serve its respective purpose and works in tandem
+ * with the rest of the class and corresponding hierarchy to provide the
+ * aforementioned functionality. I use the factory design pattern and reflection (as opposed to enumerate 
+ * various tab viewers using an if-else or switch cases). I believe this allows the developers to request the 
+ * instance of any tab viewer that exists in the code base. I used a few resource files in this class to store the
+ * full class names of the viewers that exist in our codebase, a resource to manage languages, and a resource to 
+ * reference a particular tab viewer after creation to build its respective tab. 
+ * 
+ * 
+ * 
  * 
  * @author Dhrumil
  *
@@ -48,6 +48,7 @@ public class TabViewFactory<T extends ITabViewer> {
     private static final String TAB_NAMES = "languages/labels";
     private static final String TAB_VIEWER_NAMES = "defaults/create_tabviewers";
     private static final String ERRORS = "defaults/tab_errors";
+    private static final String KEY_FINDER = "Order";
 
     private IGame myGame;
     private ResourceBundle myImages;
@@ -78,7 +79,6 @@ public class TabViewFactory<T extends ITabViewer> {
     public List<ITabViewer> createTabViewers () {
         List<ITabViewer> tabViewerList = new ArrayList<>();
         List<String> tabViewerNames = getTabViewerNames();
-        myTabViewerMap = new HashMap<>();
 
         for (String tabName : tabViewerNames) {
             ITabViewer tabView;
@@ -134,9 +134,7 @@ public class TabViewFactory<T extends ITabViewer> {
      * @return list of key names
      */
     private List<String> getTabViewerNames () {
-        List<String> tabViewerNames =
-                BundleOperations.getPropertyValueAsList("Order", myTabViewers);
-        return tabViewerNames;
+        return BundleOperations.getPropertyValueAsList(KEY_FINDER, myTabViewers);
     }
 
 }
