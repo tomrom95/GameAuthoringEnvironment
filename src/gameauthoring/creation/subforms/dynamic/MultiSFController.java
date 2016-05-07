@@ -5,7 +5,7 @@
  * This class is an abstract class that serves to define much of the functionality and create a
  * template structure for Sub Form Controllers that control and manage one or more simpler SFCs.
  * This functionality is absolutely necessary for our Authoring Environment to support as it lends a
- * great deal of new flexibility to the user in creating a game by allowing to fully capitalize on
+ * great deal of new flexibility to the user in creating a game by allowing to fully capitalize on 
  * the extensible structure of the backend classes. For example, a sprite definition in the backend
  * may be constructed with any (not preset) number of module definitions that can completely
  * redefine its functionality. A specific instance of this is that a sprite can be given multiple
@@ -39,8 +39,8 @@
  * - This file (MultiSFController)
  * - A sample SubClass that would extend this class (Firing SFC)
  * - A sample Factory class that would be included with that subclass (FiringSFCFactory)
- * - The necessary Properties files to achieve reflection functionality (dynamic_sfc_contents,
- *   sfc_classpath)
+ * - For reference (optional), the necessary Properties files to achieve reflection functionality 
+ *   (dynamic_sfc_contents, sfc_classpath)
  * 
  * 
  */

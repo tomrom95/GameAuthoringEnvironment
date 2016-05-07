@@ -20,7 +20,7 @@ import gameauthoring.creation.subforms.fire.RemovableSFC;
 
 /**
  * Useful Factory class that uses reflection to generate and return an instance of a RemovableSFC of
- * type T according to parameters passed in as arguments
+ * type T according to parameters passed in as arguments 
  * 
  * @author Joseph Lilien
  *

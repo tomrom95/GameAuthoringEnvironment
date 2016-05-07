@@ -61,7 +61,7 @@ public class FiringSFC extends MultiSFController<SpriteDefinition> {
 
     @Override
     public void initializeFields () {
-        // Nothing to initialize for default case
+        // Nothing to initialize for default case 
     }
 
 }
