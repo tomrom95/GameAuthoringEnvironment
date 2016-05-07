@@ -24,7 +24,7 @@ import util.StringParser;
  * Class to help visualize a profilable definition in a list view.
  * Anything that implements IProfilable can use this to create its
  * cells in a user friendly way.
- * 
+ *
  * @author Tommy
  *
  * @param <E>
@@ -68,7 +68,7 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     /**
      * For subclasses to alter the HBox not the node
-     * 
+     *
      * @param profile
      * @return
      */
@@ -108,7 +108,7 @@ public class ProfileCellView<E extends IProfilable> extends ListCell<E> {
 
     /**
      * Helper to get a the correct image from the sprite
-     * 
+     *
      * @return
      */
     protected Image getSpriteImage () {

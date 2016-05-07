@@ -17,7 +17,7 @@ import util.StringParser;
  * Class to help visualize a profilable definition in a list view with only name.
  * Anything that implements IProfilable can use this to create its
  * cells in a user friendly way.
- * 
+ *
  * @author Jeremy Schreck
  * @author Jin An
  *

@@ -9,7 +9,7 @@ public class WaveBlockDefinition {
     private SpriteDefinition mySpawnedSprite;
     private int myCount;
     private double myGapTime;
-    
+
     public WaveBlockDefinition () {
         myCount = 0;
         myGapTime = 0;
@@ -21,15 +21,15 @@ public class WaveBlockDefinition {
         setGap(gap);
     }
 
-    private void setGap(double gap) {
-    	myGapTime = gap;
-	}
-
-    public double getGap(){
-    	return myGapTime;
+    private void setGap (double gap) {
+        myGapTime = gap;
     }
-    
-	public void setCount (int count) {
+
+    public double getGap () {
+        return myGapTime;
+    }
+
+    public void setCount (int count) {
         myCount = count;
     }
 

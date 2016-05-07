@@ -15,7 +15,7 @@ public class BundleOperations {
      * ResourceBundle is passed here so it can by others
      * Static because it is a resource to which an instance of the class shouldn't have to be
      * created
-     * 
+     *
      * @param bundle
      * @return
      */
@@ -26,17 +26,18 @@ public class BundleOperations {
                 .collect(Collectors.toList());
         return FXCollections.observableArrayList(list);
     }
-    
+
     public static final ObservableList<String> getKeysAsObservable (ResourceBundle bundle) {
         return FXCollections.observableArrayList(bundle.keySet());
     }
 
-    public static List<String> getCommaSeparatedStringAsList(String value) {
+    public static List<String> getCommaSeparatedStringAsList (String value) {
         return Arrays.asList(value.split(",")).stream()
                 .map(sfc -> sfc.trim()).collect(Collectors.toList());
     }
-    public static List<String> getPropertyValueAsList(String key, ResourceBundle bundle ){
-        return  BundleOperations.getCommaSeparatedStringAsList(bundle.getString(key));
+
+    public static List<String> getPropertyValueAsList (String key, ResourceBundle bundle) {
+        return BundleOperations.getCommaSeparatedStringAsList(bundle.getString(key));
     }
 
 }

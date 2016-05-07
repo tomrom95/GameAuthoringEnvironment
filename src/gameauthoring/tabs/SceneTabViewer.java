@@ -1,27 +1,27 @@
 package gameauthoring.tabs;
 
-import engine.profile.Profile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.IGame;
 import engine.ILevel;
 import engine.ILevelManager;
 import engine.Level;
+import engine.profile.Profile;
 import gameauthoring.levels.LevelEditorView;
 import gameauthoring.util.BasicUIFactory;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import splash.LocaleManager;
 
 
 /**
  * Level tab view class which allows the user to put together all the sprites in different levels
  * Handles selection for different level editor views.
- * 
+ *
  * @TODO: Use UI Factory to refactor creating buttons and tabs
  * @author Jin An
  *
@@ -67,7 +67,7 @@ public class SceneTabViewer implements ITabViewer {
                 myUIFactory.createTabText(name, true, view.draw());
         newLevelTab.setOnClosed(e -> remove(level, view));
         myLevelTabs.getTabs().add(newLevelTab);
-        
+
     }
 
     @Override
@@ -78,7 +78,7 @@ public class SceneTabViewer implements ITabViewer {
     /**
      * Create Add level button tab. This makes the UI design clean and by disabling the tab and only
      * enabling the button, there won't be any awkward UI errors.
-     * 
+     *
      * @return
      */
     private Tab createButtonTab () {
@@ -117,7 +117,7 @@ public class SceneTabViewer implements ITabViewer {
 
     /**
      * Removes level and view upon tab being closed
-     * 
+     *
      * @param newLevel
      * @param view
      */
@@ -126,6 +126,7 @@ public class SceneTabViewer implements ITabViewer {
         myViews.remove(view);
     }
 
+    @Override
     public void rescale (double width, double height) {
         myViews.stream().forEach(view -> view.rescale(width, height));
     }

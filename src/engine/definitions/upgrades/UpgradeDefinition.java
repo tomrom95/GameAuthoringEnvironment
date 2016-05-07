@@ -12,7 +12,7 @@ import engine.modules.UpgradeModule;
 
 /**
  * Used to generate the upgrade module of the Sprite
- * 
+ *
  * @author RyanStPierre
  *
  */
@@ -60,8 +60,8 @@ public abstract class UpgradeDefinition extends ModuleDefinition {
     private void setAttribute (AttributeDefinition attribute) {
         myAttribute = attribute;
     }
-    
-    public AttributeDefinition getAttribute(){
+
+    public AttributeDefinition getAttribute () {
         return myAttribute;
     }
 

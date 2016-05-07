@@ -13,7 +13,7 @@ import util.StringParser;
 /**
  * Easy implementation and reusable class for adding a context menu to an item with some sort of
  * remove functionality, defined in constructor, helps keep separation of model and view
- * 
+ *
  * @author Joe Lilien
  *
  */

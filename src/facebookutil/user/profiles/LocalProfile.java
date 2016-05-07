@@ -4,12 +4,14 @@ import facebookutil.scores.HighScoreBoard;
 import facebookutil.scores.ScoreOrder;
 import facebookutil.user.IUser;
 
+
 /**
  * Profile for local users
+ *
  * @author Tommy
  *
  */
-public class LocalProfile extends UserProfile{
+public class LocalProfile extends UserProfile {
     private static final String LOCAL_ID = "local";
 
     public LocalProfile () {
@@ -19,13 +21,13 @@ public class LocalProfile extends UserProfile{
     @Override
     public void customPost (String message) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void highScoreBoardPost (HighScoreBoard board, String gameName, ScoreOrder order) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -34,7 +36,7 @@ public class LocalProfile extends UserProfile{
                                IUser user,
                                ScoreOrder order) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

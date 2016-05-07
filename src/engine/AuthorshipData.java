@@ -1,7 +1,6 @@
 package engine;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,12 +18,12 @@ import javafx.collections.ObservableList;
  * Class for holding the structures the user creates during authorship that want to be saved
  *
  * @author RyanStPierre, Jeremy Schreck, Joe Lilien
- *         
+ *
  */
 public class AuthorshipData {
-    
+
     private Map<String, DefinitionCollection<SpriteDefinition>> myCreatedSprites;
-    
+
     private static String MISSILES_TITLE_KEY = "Missiles";
     private static String WAVES_TITLE_KEY = "Waves";
     private static String GLOBALS_TITLE_KEY = "Globals";
@@ -32,19 +31,18 @@ public class AuthorshipData {
     private static String GROUPS_TITLE_KEY = "Groups";
     private static String EVENTPACKAGES_TITLE_KEY = "EventPackages";
 
-    
     private DefinitionCollection<SpriteDefinition> myCreatedMissiles;
     private DefinitionCollection<WaveDefinition> myCreatedWaves;
     private DefinitionCollection<AttributeDefinition> myCreatedGlobals;
     private DefinitionCollection<AttributeDefinition> myCreatedAttributes;
     private DefinitionCollection<SpriteGroup> myCreatedGroups;
     private DefinitionCollection<EventPackageDefinition> myCreatedEventPackages;
-    
+
     public AuthorshipData () {
         myCreatedSprites = new HashMap<>();
     }
 
-    //TODO why doesnt this work
+    // TODO why doesnt this work
     private void init () {
         SpriteGroup spriteGroup = new SpriteGroup(new ArrayList<>());
         spriteGroup.setProfile(new Profile("Empty Group"));
@@ -53,7 +51,7 @@ public class AuthorshipData {
 
     /**
      * Just for show and picking. Will not edit the overall lists!
-     * 
+     *
      * @return all the created sprites
      */
 
@@ -67,39 +65,66 @@ public class AuthorshipData {
     public Map<String, DefinitionCollection<SpriteDefinition>> getMyCreatedSpritesMap () {
         return myCreatedSprites;
     }
-    
-    public DefinitionCollection<SpriteDefinition> getMyCreatedSprites(String key) {
-        if(!myCreatedSprites.containsKey(key)) myCreatedSprites.put(key, new DefinitionCollection<>(key, FXCollections.observableArrayList()));
+
+    public DefinitionCollection<SpriteDefinition> getMyCreatedSprites (String key) {
+        if (!myCreatedSprites.containsKey(key)) {
+            myCreatedSprites
+                    .put(key, new DefinitionCollection<>(key, FXCollections.observableArrayList()));
+        }
         return myCreatedSprites.get(key);
     }
-    
+
     public DefinitionCollection<SpriteDefinition> getMyCreatedMissiles () {
-        if(myCreatedMissiles == null) myCreatedMissiles = new DefinitionCollection<>(AuthorshipData.MISSILES_TITLE_KEY, FXCollections.observableArrayList());
+        if (myCreatedMissiles == null) {
+            myCreatedMissiles =
+                    new DefinitionCollection<>(AuthorshipData.MISSILES_TITLE_KEY,
+                                               FXCollections.observableArrayList());
+        }
         return myCreatedMissiles;
     }
 
     public DefinitionCollection<AttributeDefinition> getMyCreatedGlobals () {
-        if(myCreatedGlobals == null) myCreatedGlobals = new DefinitionCollection<>(AuthorshipData.GLOBALS_TITLE_KEY, FXCollections.observableArrayList());
+        if (myCreatedGlobals == null) {
+            myCreatedGlobals =
+                    new DefinitionCollection<>(AuthorshipData.GLOBALS_TITLE_KEY,
+                                               FXCollections.observableArrayList());
+        }
         return myCreatedGlobals;
     }
 
     public DefinitionCollection<AttributeDefinition> getMyCreatedAttributes () {
-        if(myCreatedAttributes == null) myCreatedAttributes = new DefinitionCollection<>(AuthorshipData.ATTRIBUTES_TITLE_KEY, FXCollections.observableArrayList());
+        if (myCreatedAttributes == null) {
+            myCreatedAttributes =
+                    new DefinitionCollection<>(AuthorshipData.ATTRIBUTES_TITLE_KEY,
+                                               FXCollections.observableArrayList());
+        }
         return myCreatedAttributes;
     }
 
     public DefinitionCollection<EventPackageDefinition> getMyCreatedEventPackages () {
-        if(myCreatedEventPackages == null) myCreatedEventPackages = new DefinitionCollection<>(AuthorshipData.EVENTPACKAGES_TITLE_KEY, FXCollections.observableArrayList());
+        if (myCreatedEventPackages == null) {
+            myCreatedEventPackages =
+                    new DefinitionCollection<>(AuthorshipData.EVENTPACKAGES_TITLE_KEY,
+                                               FXCollections.observableArrayList());
+        }
         return myCreatedEventPackages;
     }
 
     public DefinitionCollection<SpriteGroup> getMyCreatedGroups () {
-        if(myCreatedGroups == null) myCreatedGroups = new DefinitionCollection<>(AuthorshipData.GROUPS_TITLE_KEY, FXCollections.observableArrayList());
+        if (myCreatedGroups == null) {
+            myCreatedGroups =
+                    new DefinitionCollection<>(AuthorshipData.GROUPS_TITLE_KEY,
+                                               FXCollections.observableArrayList());
+        }
         return myCreatedGroups;
     }
 
     public DefinitionCollection<WaveDefinition> getCreatedWaves () {
-        if(myCreatedWaves == null) myCreatedWaves = new DefinitionCollection<>(AuthorshipData.WAVES_TITLE_KEY, FXCollections.observableArrayList());
+        if (myCreatedWaves == null) {
+            myCreatedWaves =
+                    new DefinitionCollection<>(AuthorshipData.WAVES_TITLE_KEY,
+                                               FXCollections.observableArrayList());
+        }
         return myCreatedWaves;
     }
 
@@ -108,11 +133,11 @@ public class AuthorshipData {
     }
 
     public void removeFromGroups (SpriteDefinition def) {
-        getMyCreatedGroups().getItems().forEach(e->e.remove(def));
+        getMyCreatedGroups().getItems().forEach(e -> e.remove(def));
     }
 
     public void removeFromAttributes (AttributeDefinition myLastItem) {
-        getAllCreatedSpritesAsList().forEach(e->e.removeAttribute(myLastItem));
+        getAllCreatedSpritesAsList().forEach(e -> e.removeAttribute(myLastItem));
     }
 
 }

@@ -2,7 +2,6 @@ package engine.waves;
 
 import java.util.ArrayList;
 import java.util.List;
-import util.TimeDuration;
 
 
 public class WaveSet implements IWaveSet {
@@ -18,7 +17,7 @@ public class WaveSet implements IWaveSet {
 
     @Override
     public void updateCurrentWave () {
-        if(myWaves.isEmpty()) {
+        if (myWaves.isEmpty()) {
             return;
         }
         currentWave = myWaves.get(0);

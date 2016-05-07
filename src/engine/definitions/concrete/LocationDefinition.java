@@ -2,6 +2,7 @@ package engine.definitions.concrete;
 
 import util.Coordinate;
 
+
 //
 public class LocationDefinition {
 

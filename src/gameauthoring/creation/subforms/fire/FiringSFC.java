@@ -15,7 +15,7 @@
  */
 package gameauthoring.creation.subforms.fire;
 
-import java.util.*;
+import java.util.List;
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.subforms.IMultiSFView;

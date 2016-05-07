@@ -11,7 +11,7 @@ import util.ISampledBitMap;
 /**
  * Utility class holding various helpful geometry/math operations for the AI pathing
  * PathNode classes
- * 
+ *
  * @author jonathanim
  *
  */
@@ -38,7 +38,7 @@ public class PathNodeGeometry {
      * This method will return a list of points that sample the line
      * between two coordinates at the interval required to maintain
      * pixel level resolution
-     * 
+     *
      * @param start Coordinate from which to build the line
      * @param end Coordinate to which to build the line
      * @return Coordinates of line in order from start to end
@@ -75,7 +75,7 @@ public class PathNodeGeometry {
 
     /**
      * See {@link #lineBetween(Coordinate, Coordinate)}
-     * 
+     *
      * @param first
      * @param second
      * @return

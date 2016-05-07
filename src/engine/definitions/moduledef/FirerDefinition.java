@@ -18,7 +18,7 @@ public abstract class FirerDefinition extends ModuleDefinition {
     private IGame myGame;
     private double myRange;
     private boolean ranged;
-    
+
     public FirerDefinition (IGame game) {
         setGame(game);
     }
@@ -29,48 +29,48 @@ public abstract class FirerDefinition extends ModuleDefinition {
     public SpriteDefinition getProjectileDefinition () {
         return myProjectile;
     }
-    
-    public void setSuperVariables(Firer myFirer){
-    	myFirer.setAmmo(myAmmo);
-    	myFirer.setRange(myRange);
-    	myFirer.setRanged(ranged);
-    	myFirer.setGame(myGame);
+
+    public void setSuperVariables (Firer myFirer) {
+        myFirer.setAmmo(myAmmo);
+        myFirer.setRange(myRange);
+        myFirer.setRanged(ranged);
+        myFirer.setGame(myGame);
     }
-    
-    public void setAmmo(double ammo){
-    	myAmmo = ammo;
+
+    public void setAmmo (double ammo) {
+        myAmmo = ammo;
     }
-    
-    public double getAmmo(){
-    	return myAmmo;
+
+    public double getAmmo () {
+        return myAmmo;
     }
-    
-    public void setGame(IGame game){
-    	myGame = game;
+
+    public void setGame (IGame game) {
+        myGame = game;
     }
-    
-   public IGame getGame(){
-	   return myGame;
-   }
+
+    public IGame getGame () {
+        return myGame;
+    }
 
     public void setProjectileDefinition (SpriteDefinition projectile) {
         myProjectile = projectile;
     }
-    
-    public void setRanged(boolean isRanged){
-    	ranged = isRanged;
+
+    public void setRanged (boolean isRanged) {
+        ranged = isRanged;
     }
-    
-    public boolean getRanged(){
-    	return ranged;
+
+    public boolean getRanged () {
+        return ranged;
     }
-    
-    public double getFireRange(){
-    	return myRange;
+
+    public double getFireRange () {
+        return myRange;
     }
-    
-    public void setFireRange(double range){
-    	myRange = range;
+
+    public void setFireRange (double range) {
+        myRange = range;
     }
 
 }

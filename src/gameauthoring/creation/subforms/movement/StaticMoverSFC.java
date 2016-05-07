@@ -11,7 +11,7 @@ import gameauthoring.creation.subforms.ISubFormView;
  * static movement modules.
  * <p>
  * Creates movement modules for immovable towers.
- * 
+ *
  * @author Dhrumil
  *
  */
@@ -26,7 +26,7 @@ public class StaticMoverSFC implements ISubFormControllerSprite {
 
     @Override
     public void updateItem (SpriteDefinition item) {
-        
+
         StaticMovementDefintion myMovementDefinition = new StaticMovementDefintion();
         item.setMovementDefinition(myMovementDefinition);
 
@@ -34,7 +34,7 @@ public class StaticMoverSFC implements ISubFormControllerSprite {
 
     @Override
     public void populateViewsWithData (SpriteDefinition item) {
-        
+
     }
 
     @Override
@@ -45,7 +45,7 @@ public class StaticMoverSFC implements ISubFormControllerSprite {
     @Override
     public void initializeFields () {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

@@ -1,5 +1,9 @@
 package gameauthoring.creation.subforms.events;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import engine.effects.DecreaseEffect;
 import engine.effects.IEffect;
 import engine.effects.IncreaseEffect;
@@ -7,8 +11,6 @@ import engine.effects.ProportionEffect;
 import engine.profile.ProfileDisplay;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import java.util.*;
-import java.util.stream.Collectors;
 
 
 public class TypeFactory {

@@ -3,32 +3,32 @@ package util;
 import java.util.Arrays;
 import java.util.Iterator;
 
+
 public abstract class BitMapAbstract implements IBitMap, Iterable<Boolean> {
-    
+
     private boolean[][] myBitMap;
     private int myWidth;
     private int myHeight;
-    
+
     public BitMapAbstract (int width, int height) {
         initialize(width, height);
     }
 
     public BitMapAbstract (IBitMap map) {
         initialize(map.getWidth(), map.getHeight());
-//        myBitMap = map.getBitMap().clone();
-//        Iterator<ArrayPosition> iter = map.positionIterator();
-//        while (iter.hasNext()) {
-//            ArrayPosition pos = iter.next();
-//            this.set(pos, map.valueOf(pos));
-//        }
-        
-        
-//        boolean[][] toCopy = map.getBitMap();
-//        boolean[][] toSet = new boolean[toCopy.length][toCopy[0].length];
-//        for(int i = 0; i < toCopy.length; i++){
-//            toSet[i] = 
-//        }
-        this.myBitMap = Arrays.copyOf(map.getBitMap(), map.getBitMap().length);
+        // myBitMap = map.getBitMap().clone();
+        // Iterator<ArrayPosition> iter = map.positionIterator();
+        // while (iter.hasNext()) {
+        // ArrayPosition pos = iter.next();
+        // this.set(pos, map.valueOf(pos));
+        // }
+
+        // boolean[][] toCopy = map.getBitMap();
+        // boolean[][] toSet = new boolean[toCopy.length][toCopy[0].length];
+        // for(int i = 0; i < toCopy.length; i++){
+        // toSet[i] =
+        // }
+        myBitMap = Arrays.copyOf(map.getBitMap(), map.getBitMap().length);
     }
 
     public BitMapAbstract () {
@@ -37,11 +37,12 @@ public abstract class BitMapAbstract implements IBitMap, Iterable<Boolean> {
 
     /**
      * @deprecated
-     * Should use constructors and overloaded constructors instead of having
-     * methods for post initialization
-     * Please replace usage with {@link #BitMap()} or {@link #BitMap(int, int) BitMap(int width, int
-     * height)}
-     * 
+     *             Should use constructors and overloaded constructors instead of having
+     *             methods for post initialization
+     *             Please replace usage with {@link #BitMap()} or {@link #BitMap(int, int)
+     *             BitMap(int width, int
+     *             height)}
+     *
      * @param width
      * @param height
      */
@@ -55,7 +56,6 @@ public abstract class BitMapAbstract implements IBitMap, Iterable<Boolean> {
         myWidth = width;
         myHeight = height;
     }
-    
 
     @Override
     public int getHeight () {
@@ -72,8 +72,6 @@ public abstract class BitMapAbstract implements IBitMap, Iterable<Boolean> {
         myBitMap[row][column] = !(myBitMap[row][column]);
     }
 
-
-
     @Override
     public boolean valueOf (ArrayPosition pos) {
         return valueOf(pos.getX(), pos.getY());
@@ -81,9 +79,7 @@ public abstract class BitMapAbstract implements IBitMap, Iterable<Boolean> {
 
     @Override
     public boolean valueOf (Coordinate coord) {
-        return valueOf((int)
-                       coord.getX(), (int) 
-                       coord.getY());
+        return valueOf((int) coord.getX(), (int) coord.getY());
     }
 
     @Override
@@ -148,7 +144,5 @@ public abstract class BitMapAbstract implements IBitMap, Iterable<Boolean> {
     public boolean inBounds (ArrayPosition pos) {
         return inBounds(pos.getX(), pos.getY());
     }
-    
-
 
 }

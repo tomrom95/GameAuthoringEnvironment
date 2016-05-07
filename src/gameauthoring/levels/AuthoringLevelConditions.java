@@ -8,24 +8,26 @@ import gameauthoring.util.Glyph;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 
+
 /**
  * Class for displaying view of ending conditions (winning, losing, etc.)
+ *
  * @author RyanStPierre
  *
  */
 public class AuthoringLevelConditions implements Glyph {
-    
+
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/a_level_size");
     private TransitionView myTransitions;
-    private LevelConditionView myConditions; 
+    private LevelConditionView myConditions;
     private HBox myHBox;
-      
+
     public AuthoringLevelConditions (IGame game, ILevel level) {
-        myConditions = new LevelConditionView(game, level);   
+        myConditions = new LevelConditionView(game, level);
         myTransitions = new TransitionView(game, level);
         init();
     }
-    
+
     private void init () {
         myHBox = new HBox();
         myHBox.setMaxHeight(Double.parseDouble(myBundle.getString("MaxHeight")));
@@ -38,7 +40,7 @@ public class AuthoringLevelConditions implements Glyph {
     }
 
     public double getHeight () {
-       return myHBox.getHeight();
+        return myHBox.getHeight();
     }
 
 }

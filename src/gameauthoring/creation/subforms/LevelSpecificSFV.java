@@ -1,22 +1,22 @@
 package gameauthoring.creation.subforms;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import splash.LocaleManager;
 
 
 /**
  * Implementation of ILevelSpecificSFV using a CheckEntryView
- * 
+ *
  * @author Joe Lilien
  *
  */
 public class LevelSpecificSFV extends SubFormView implements ILevelSpecificSFV {
 
-    private CheckEntryView myChoice;   
+    private CheckEntryView myChoice;
     private ResourceBundle myLabel;
     private String myChoiceKey;
 
@@ -27,6 +27,7 @@ public class LevelSpecificSFV extends SubFormView implements ILevelSpecificSFV {
         myChoice = new CheckEntryView(myChoiceKey, AuthoringView.DEFAULT_ENTRYVIEW);
     }
 
+    @Override
     public void setLevelSpecific (boolean levelSpecific) {
         myChoice.isCheckedProperty().set(levelSpecific);
     }

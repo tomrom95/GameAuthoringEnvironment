@@ -17,8 +17,10 @@ import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 
+
 /**
  * Gives the author the ability to chose the levels in which to proceed after winning and losing
+ *
  * @author RyanStPierre
  *
  */
@@ -27,8 +29,8 @@ public class TransitionView implements Glyph {
 
     private ResourceBundle myBundle = ResourceBundle.getBundle("defaults/transition_options");
     private ResourceBundle mySize = ResourceBundle.getBundle("defaults/level_cond");
-    
-    private UIFactory myFactory = new BasicUIFactory();  
+
+    private UIFactory myFactory = new BasicUIFactory();
     private VBox myPane = new VBox();
     private ComboBox<ILevel> myWinningLevel;
     private ComboBox<ILevel> myLosingLevel;
@@ -47,7 +49,8 @@ public class TransitionView implements Glyph {
     }
 
     /**
-     * Initializes the combo-boxes and gives them the labels as specified in the d 
+     * Initializes the combo-boxes and gives them the labels as specified in the d
+     *
      * @param levels
      */
     private void init (ObservableList<ILevel> levels) {
@@ -88,17 +91,17 @@ public class TransitionView implements Glyph {
     }
 
     public void setWinAction (EventHandler<ActionEvent> event) {
-        myWinningLevel.setOnAction(event);       
+        myWinningLevel.setOnAction(event);
     }
 
     public void setLoseAction (EventHandler<ActionEvent> event) {
-        myLosingLevel.setOnAction(event);   
+        myLosingLevel.setOnAction(event);
     }
 
     public ILevel getWinSelection () {
         return myWinningLevel.getSelectionModel().getSelectedItem();
     }
-    
+
     public ILevel getLoseSelection () {
         return myLosingLevel.getSelectionModel().getSelectedItem();
     }

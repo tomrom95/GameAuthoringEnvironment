@@ -16,11 +16,11 @@ import util.ScaleRatio;
  * View wrapper for visualizing the level as you create it.
  * Will include a side panel for adding sprites and another
  * one for defining waves.
- * 
+ *
  * Scales the view of the game as appropriate to fit the screen. Most components of the screen are
  * statically sized, to allow for easy reading. The view of the level screen then fits
  * the remaining space.
- * 
+ *
  * @author Tommy
  * @author Jin An
  * @author RyanStPierre

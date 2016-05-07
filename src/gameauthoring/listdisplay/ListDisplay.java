@@ -1,7 +1,6 @@
 package gameauthoring.listdisplay;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.profile.IProfilable;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.util.Glyph;
@@ -11,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
+import splash.LocaleManager;
 
 
 public class ListDisplay<T extends IProfilable> implements Glyph {

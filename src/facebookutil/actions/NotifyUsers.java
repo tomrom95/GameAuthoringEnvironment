@@ -12,7 +12,7 @@ public interface NotifyUsers extends SocialAction {
 
     /**
      * Build a notification to post
-     * 
+     *
      * @param users list of recipient users
      * @param message a written message to post
      */

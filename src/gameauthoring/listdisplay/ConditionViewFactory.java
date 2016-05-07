@@ -27,6 +27,7 @@ public class ConditionViewFactory implements ISubViewFactory {
         myLevel = level;
     }
 
+    @Override
     public SubConditionView interpret (String selection) throws ReflectionException {
         selection.trim();
         return getSubView(selection);

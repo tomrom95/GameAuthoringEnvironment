@@ -6,7 +6,6 @@ import java.util.List;
 
 
 public class CachingEdgeBitMap extends SetBitMap implements IEdgeBitMap {
-    
 
     private List<List<Coordinate>> myEdges;
 
@@ -14,7 +13,6 @@ public class CachingEdgeBitMap extends SetBitMap implements IEdgeBitMap {
         super(height, width);
         myEdges = new ArrayList<>();
     }
-
 
     @Override
     public Iterator<ArrayPosition> trueIterator () {
@@ -30,7 +28,5 @@ public class CachingEdgeBitMap extends SetBitMap implements IEdgeBitMap {
     public void setEdges (List<List<Coordinate>> toSet) {
         myEdges = toSet;
     }
-
-
 
 }

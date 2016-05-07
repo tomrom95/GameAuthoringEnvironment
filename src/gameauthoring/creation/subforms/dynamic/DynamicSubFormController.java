@@ -14,7 +14,7 @@ import util.BundleOperations;
 /**
  * This in an abstract class for an SFC that needs to dynamically change its
  * sub-subSFC and sub-subview based on user input
- * 
+ *
  * @author Jeremy Schreck
  *
  */
@@ -31,7 +31,7 @@ public abstract class DynamicSubFormController<T extends IProfilable>
 
     /**
      * Constructor
-     * 
+     *
      * @param game The current game object
      * @param sfcFactory A factory class for creating new sub-subforms
      * @param subFormIDs A list of strings containing the IDs to specify which sub-subforms to
@@ -60,7 +60,7 @@ public abstract class DynamicSubFormController<T extends IProfilable>
     /**
      * Creates the sub-SFCs that will be dynamically swapped in and out based on
      * which type the user selects
-     * 
+     *
      * @param subFormIDs A list of strings identifying which sub-SFCs to create
      */
     protected void setUpSubFormControllers (List<String> subFormIDs) {
@@ -76,7 +76,7 @@ public abstract class DynamicSubFormController<T extends IProfilable>
 
     /**
      * Creates the list of sub-subformviews from the sub-subformcontrollers
-     * 
+     *
      * @param subFormControllers A list of sub-subformcontrollers
      */
     private void setUpSubFormViews (List<ISubFormController<T>> subFormControllers) {
@@ -89,7 +89,7 @@ public abstract class DynamicSubFormController<T extends IProfilable>
 
     /**
      * Event handler for changing selection. Changes which sub-SFC is currently shown
-     * 
+     *
      * @param comboSelectionIndex The selected index
      */
     public void setMyCurrentSFC (ISubFormController<T> sfc) {
@@ -124,7 +124,7 @@ public abstract class DynamicSubFormController<T extends IProfilable>
 
     /**
      * Subclasses must determine which sub-sub form to populate with data
-     * 
+     *
      * @param item The newly selected item that needs to be displayed
      */
     protected abstract void changeCurrentSFCBasedOnData (T item);

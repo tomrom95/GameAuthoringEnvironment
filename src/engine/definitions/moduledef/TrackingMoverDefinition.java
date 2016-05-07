@@ -6,6 +6,7 @@ import engine.SpriteGroup;
 import engine.modules.IMovementModule;
 import engine.modules.TrackingMover;
 
+
 /**
  * This class represents the definition for a tracking movement module
  *
@@ -22,14 +23,14 @@ public class TrackingMoverDefinition extends MovementDefinition {
                                  myGame,
                                  myTargets,
                                  parent);
-        
+
     }
 
-    public void setTargets(SpriteGroup targets){
+    public void setTargets (SpriteGroup targets) {
         myTargets = targets;
 
     }
-    
+
     public SpriteGroup getTargets () {
         return myTargets;
     }

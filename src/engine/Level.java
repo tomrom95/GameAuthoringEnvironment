@@ -10,15 +10,11 @@ import engine.interactionevents.MouseIOEvent;
 import engine.profile.IProfile;
 import engine.profile.Profile;
 import engine.sprite.ISprite;
-import engine.waves.IWaveSet;
-import engine.waves.WaveSet;
 import graphics.ImageGraphic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.layout.BackgroundImage;
 import util.Bounds;
 import util.Coordinate;
-import util.Tile;
 import util.TimeDuration;
 
 
@@ -57,7 +53,7 @@ public class Level implements ILevel {
         // TODO store these defaults in properties file
         myBackgroundImage = new ImageGraphic(400, 400, "/images/blank.jpg");
         myWaveSetManager = new WaveSetManager();
-        myPlaceableTileManager = new PlaceableTileManager(this,DEFAULT_ROW,DEFAULT_COL);
+        myPlaceableTileManager = new PlaceableTileManager(this, DEFAULT_ROW, DEFAULT_COL);
         myAddableSprites = FXCollections.observableArrayList();
         myBounds = new Bounds(myBackgroundImageWidth, myBackgroundImageHeight);
     }
@@ -172,6 +168,7 @@ public class Level implements ILevel {
         return myNextLevelManager;
     }
 
+    @Override
     public IProfile getProfile () {
         return myProfile;
     }
@@ -222,7 +219,7 @@ public class Level implements ILevel {
     public Bounds getBounds () {
         return myBounds;
     }
-    
+
     @Override
     public void setBounds (Bounds bound) {
         myBounds = bound;

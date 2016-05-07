@@ -1,18 +1,17 @@
 package engine.conditions;
 
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import engine.IEventPackage;
 import engine.IGame;
-import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import util.Bounds;
-import util.Coordinate;
 import util.TimeDuration;
+
 
 /**
  * Condition that firers when a sprite goes out the current level bounds
+ *
  * @author RyanStPierre
  *
  */

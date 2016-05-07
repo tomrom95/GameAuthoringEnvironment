@@ -15,7 +15,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -28,7 +27,7 @@ import library.GameLibraryController;
 /**
  * This is the main user interface class which contains two buttons "Create game" and
  * "Load existing game".
- * 
+ *
  * @TODO: ResourceBundle for unprotected string
  * @TODO: Load Game method
  * @author Jin An
@@ -117,7 +116,8 @@ public class MainUserInterface {
     private Node createLogin () {
         HBox box = new HBox(Integer.parseInt(mySpecs.getString(SPACING_KEY)));
         box.setAlignment(Pos.CENTER);
-        Button fbButton = createButton(myLabels.getString("splashloginfb"), e -> loginWithFacebook());
+        Button fbButton =
+                createButton(myLabels.getString("splashloginfb"), e -> loginWithFacebook());
         fbButton.setId(mySpecs.getString("fbbutton"));
         box.getChildren()
                 .add(fbButton);

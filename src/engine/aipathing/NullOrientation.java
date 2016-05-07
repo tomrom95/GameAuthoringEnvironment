@@ -2,6 +2,7 @@ package engine.aipathing;
 
 import util.Coordinate;
 
+
 public class NullOrientation implements IOrientationFinder {
 
     @Override

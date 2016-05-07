@@ -10,7 +10,7 @@ import gameauthoring.creation.subforms.ISubFormView;
 /**
  * This class creates the controller to handle, manage, and interact with user data involving user
  * movement modules
- * 
+ *
  * @author Dhrumil Timko
  *
  */
@@ -24,7 +24,7 @@ public class UserMoverSFC implements ISubFormControllerSprite {
     private String myDefaultRightKey = "D";
 
     public UserMoverSFC () {
-        this.myView = new UserMoverSFV();
+        myView = new UserMoverSFV();
     }
 
     @Override

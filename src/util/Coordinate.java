@@ -2,7 +2,7 @@ package util;
 
 /**
  * Utility class that stores two double values as a coordinate and manipulates them.
- * 
+ *
  * @author Dhrumil Timko
  *
  */
@@ -17,7 +17,7 @@ public class Coordinate {
         setX(xCor);
         setY(yCor);
     }
-    
+
     public Coordinate (ArrayPosition pos) {
         setX(pos.getX());
         setY(pos.getY());
@@ -55,11 +55,9 @@ public class Coordinate {
         int result = 1;
         long temp;
         temp = Double.doubleToLongBits(myXCoordinate);
-        result = PRIME * result + (int)
-                (temp ^ (temp >>> 32));
+        result = PRIME * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(myYCoordinate);
-        result = PRIME * result + (int)
-                (temp ^ (temp >>> 32));
+        result = PRIME * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
@@ -74,8 +72,7 @@ public class Coordinate {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Coordinate other = (Coordinate) 
-                obj;
+        Coordinate other = (Coordinate) obj;
         if (Double.doubleToLongBits(myXCoordinate) != Double
                 .doubleToLongBits(other.myXCoordinate)) {
             return false;

@@ -5,9 +5,9 @@ import engine.Affectable;
 import engine.AttributeManager;
 import engine.Drawable;
 import engine.IAttribute;
-import engine.Positionable;
 import engine.IResource;
 import engine.IStatus;
+import engine.Positionable;
 import engine.Updateable;
 import engine.modules.IGraphicModule;
 import engine.modules.IModule;
@@ -47,6 +47,7 @@ public interface ISprite extends Drawable, Updateable, Affectable, Positionable 
 
     List<IResource> getResources ();
 
+    @Override
     AttributeManager getAttributeManager ();
 
     Bounds getBounds ();
@@ -54,17 +55,18 @@ public interface ISprite extends Drawable, Updateable, Affectable, Positionable 
     SpriteType getType ();
 
     boolean shouldBeRemoved ();
-    
+
     boolean doesObstruct ();
-    
+
     void setObstruction (boolean value);
 
     void setPath (List<Coordinate> path);
-    
-    IStatus getStatusModule();
-    
-    int getNextIndex();
-    
-    void setNextIndex(int index);
+
+    IStatus getStatusModule ();
+
+    @Override
+    int getNextIndex ();
+
+    void setNextIndex (int index);
 
 }

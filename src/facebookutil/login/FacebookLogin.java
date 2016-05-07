@@ -10,6 +10,7 @@ import facebookutil.JavaSocial;
 /**
  * Login class for Facebook. Creates a Scribe oauth service and then
  * authenticates the user in the browser.
+ *
  * @author Tommy
  *
  */
@@ -27,13 +28,14 @@ public class FacebookLogin implements LoginUser {
     @Override
     public void authenticate (JavaSocial social) {
         OAuth20Service service = createService(mySecrets.getString("facebookId"),
-                                  mySecrets.getString("facebookSecret"));
+                                               mySecrets.getString("facebookSecret"));
         myLoginObject.setService(service);
         createToken(social);
     }
 
     /**
      * Creates facebook service given client id and secret
+     *
      * @param clientId
      * @param clientSecret
      * @return
@@ -45,9 +47,10 @@ public class FacebookLogin implements LoginUser {
                 .scope(SCOPE)
                 .build(FacebookApi.instance());
     }
-    
+
     /**
      * Gets oauth token using a web browser
+     *
      * @param social
      */
     private void createToken (JavaSocial social) {

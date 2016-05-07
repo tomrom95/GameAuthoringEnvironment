@@ -1,13 +1,11 @@
 package gameauthoring.levels;
 
-import splash.LocaleManager;
-import util.ScaleRatio;
 import java.util.ResourceBundle;
 import engine.IGame;
 import engine.ILevel;
 import engine.rendering.AuthoringRenderer;
-import gameauthoring.util.Glyph;
 import gameauthoring.util.BasicUIFactory;
+import gameauthoring.util.Glyph;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
@@ -15,12 +13,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import splash.LocaleManager;
+import util.ScaleRatio;
 
 
 /**
  * View class for creating the scene creator, which consists
  * of the level itself and a sidebar view of created sprites to add
- * 
+ *
  * @author Tommy
  * @author Jin An
  *
@@ -87,7 +87,7 @@ public class SceneCreator implements Glyph {
      * Makes the sprite selection side bar. Uses a list view
      * of custom listcells to visualize the sprites based on their
      * profiles.
-     * 
+     *
      * @return
      */
     private Node createSpriteSelection () {
@@ -98,7 +98,7 @@ public class SceneCreator implements Glyph {
     /**
      * Creates the level view using an authoring renderer to
      * keep track of the sprites on screen
-     * 
+     *
      * @return
      */
     private Node createLevelView () {
@@ -124,7 +124,7 @@ public class SceneCreator implements Glyph {
 
     /**
      * Handles mouse click actions for the scene
-     * 
+     *
      * @param e
      */
     private void handleMouseClick (MouseEvent e) {

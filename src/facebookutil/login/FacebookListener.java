@@ -14,17 +14,19 @@ import javafx.concurrent.Worker;
 import javafx.concurrent.Worker.State;
 import javafx.scene.web.WebEngine;
 
+
 /**
  * Change listener for the browser login method for a facebook
  * login. Waits until the browser goes to the correct location
  * and returns a code, then logs in the user. Necessary because
  * facebook only logs in users from the web.
+ *
  * @author Tommy
  *
  */
 public class FacebookListener implements ChangeListener<State> {
     private static final String CODE_REGEX = "code=([^&]+)";
-    
+
     private WebEngine myEngine;
     private JavaSocial mySocial;
     private LoginObject myLoginObject;
@@ -43,12 +45,13 @@ public class FacebookListener implements ChangeListener<State> {
         if (newState == Worker.State.SUCCEEDED) {
             String newURL = myEngine.getLocation();
             checkForLogin(newURL);
-            
+
         }
     }
 
     /**
      * Checks if url matches the code regex, then logs in if successful
+     *
      * @param newURL
      */
     private void checkForLogin (String newURL) {
@@ -57,7 +60,7 @@ public class FacebookListener implements ChangeListener<State> {
             OAuth2AccessToken token = myLoginObject.getService().getAccessToken(m.group(1));
             myLoginObject.setToken(token);
             findProfile();
-            login ();
+            login();
         }
     }
 
@@ -67,12 +70,12 @@ public class FacebookListener implements ChangeListener<State> {
     private void login () {
         mySocial.loginUser(SocialType.FACEBOOK, myLoginObject);
     }
-    
+
     /**
      * Finds the profile with another request
      */
     private void findProfile () {
-        GetProfile getter = new FacebookGetProfile ();
+        GetProfile getter = new FacebookGetProfile();
         getter.createGet(myLoginObject);
         myLoginObject.setEmail(new Email(getter.getEmail()));
         myLoginObject.setUserID(getter.getUserID());

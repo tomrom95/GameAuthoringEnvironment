@@ -16,6 +16,6 @@ import engine.Updateable;
  * @author Jonathan Im
  *
  */
-public interface IModule extends Updateable, Affectable, GameEventHandler{
+public interface IModule extends Updateable, Affectable, GameEventHandler {
 
 }

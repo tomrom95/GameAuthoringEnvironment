@@ -16,7 +16,7 @@ import javafx.scene.input.TransferMode;
 /**
  * Used to create drag and drop reorder list view
  * For intra-list organization
- * 
+ *
  * @author RyanStPierre
  *
  */
@@ -30,9 +30,9 @@ public class WaveDragCell extends ListCell<WaveBlockDefinition> {
     public WaveDragCell () {
 
         initXStream();
-        this.setOnDragDetected(event -> dragStart(event));
-        this.setOnDragDropped(event -> drop(event));
-        this.setOnDragOver(event -> over(event));
+        setOnDragDetected(event -> dragStart(event));
+        setOnDragDropped(event -> drop(event));
+        setOnDragOver(event -> over(event));
 
     }
 
@@ -64,7 +64,7 @@ public class WaveDragCell extends ListCell<WaveBlockDefinition> {
         int toRemove = getFirst(event.getDragboard().getString());
         String toRetrieve = getLast(event.getDragboard().getString());
         WaveBlockDefinition retrieved = retrieve(toRetrieve);
-        int index = getListView().getItems().indexOf(this.getItem());
+        int index = getListView().getItems().indexOf(getItem());
         getListView().getItems().remove(toRemove);
         getListView().getItems().add(index, retrieved);
 
@@ -72,7 +72,7 @@ public class WaveDragCell extends ListCell<WaveBlockDefinition> {
 
     /**
      * Returns the index information of the String
-     * 
+     *
      * @param string
      * @return
      */
@@ -82,7 +82,7 @@ public class WaveDragCell extends ListCell<WaveBlockDefinition> {
 
     /**
      * Returns the xml part of the copy
-     * 
+     *
      * @param string
      * @return
      */
@@ -95,14 +95,14 @@ public class WaveDragCell extends ListCell<WaveBlockDefinition> {
     }
 
     private WaveBlockDefinition retrieve (String data) {
-        return (WaveBlockDefinition)myXStream.fromXML(data);
+        return (WaveBlockDefinition) myXStream.fromXML(data);
     }
 
     private void dragStart (MouseEvent event) {
-        Dragboard db = this.startDragAndDrop(TransferMode.MOVE);
+        Dragboard db = startDragAndDrop(TransferMode.MOVE);
         ClipboardContent cc = new ClipboardContent();
         db.setDragView(myFactory.getTransferImage(this), 0, 0);
-        cc.putString(serialize(this.getItem(), getListView().getItems().indexOf(this.getItem())));
+        cc.putString(serialize(getItem(), getListView().getItems().indexOf(getItem())));
         db.setContent(cc);
         event.consume();
     }

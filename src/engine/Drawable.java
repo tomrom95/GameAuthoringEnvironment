@@ -30,25 +30,25 @@ public interface Drawable {
      * @return the location of the drawable
      */
     Coordinate getLocation ();
-    
+
     /**
      * @return the angle by which the renderer should rotate the displayed node
      */
-    double getOrientation();
-    
+    double getOrientation ();
+
     /**
      * @return attributes of the sprite being drawn
      */
     ObservableList<IAttribute> getAttributes ();
-    
+
     /**
      * Need to upgrade drawables
      */
     void registerEvent (GameEvent event);
-    
+
     /**
      * Whether or not hte drawable is ready to be updated
      */
     BooleanProperty isUgradeable ();
-    
+
 }

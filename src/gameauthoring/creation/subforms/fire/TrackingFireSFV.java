@@ -1,7 +1,6 @@
 package gameauthoring.creation.subforms.fire;
 
 import java.util.ResourceBundle;
-import splash.LocaleManager;
 import engine.AuthorshipData;
 import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;
@@ -12,15 +11,15 @@ import gameauthoring.creation.subforms.SubFormView;
 import gameauthoring.tabs.AuthoringView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import splash.LocaleManager;
 
 
 /**
  * View representing a subform that creates the information required to build a tracking mover
  * module
- * 
+ *
  * @author Dhrumil
  * @author Joe Lilien
  * @author josephtimko1
@@ -42,7 +41,6 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     private CheckEntryView myIsRanged;
     private NumberEntryView myRangeValue;
     private static final String MY_TITLE_KEY = "TRACKINGFIRER";
-
 
     public TrackingFireSFV (AuthorshipData data, RemoveOption remove) {
         setMyTitle(MY_TITLE_KEY);
@@ -84,9 +82,12 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     @Override
     protected void initView () {
         double spacing = getParser().parseDouble(getMyNumbers().getString("HBoxSpacing"));
-        HBox head = getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(), getSubTitleDisplay());
+        HBox head =
+                getMyUIFactory().makeHBox(spacing, Pos.CENTER, myRemove.draw(),
+                                          getSubTitleDisplay());
         HBox options =
-                getMyUIFactory().makeHBox(spacing, Pos.CENTER, myMissileSelectionView.draw(), myWaitTime.draw(),
+                getMyUIFactory().makeHBox(spacing, Pos.CENTER, myMissileSelectionView.draw(),
+                                          myWaitTime.draw(),
                                           myTargets.draw());
         HBox ranged =
                 getMyUIFactory().makeHBox(spacing, Pos.CENTER, myIsRanged.draw(),
@@ -107,6 +108,7 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
         return myPane;
     }
 
+    @Override
     public double getMyWaitTime () {
         return myWaitTime.getData();
     }
@@ -130,7 +132,7 @@ public class TrackingFireSFV extends SubFormView implements ITrackingFireSFV {
     }
 
     public void setTargetsChoice (SpriteGroup targets) {
-        this.myTargets.setSelected(targets);
+        myTargets.setSelected(targets);
     }
 
     @Override

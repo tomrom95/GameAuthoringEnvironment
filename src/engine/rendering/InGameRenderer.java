@@ -66,7 +66,7 @@ public class InGameRenderer extends LevelRenderer {
 
     private void updateExistingNodeLocations () {
         myDrawNodeMap.keySet().stream()
-                .forEach(drawable -> this.draw(myDrawNodeMap.get(drawable), drawable));
+                .forEach(drawable -> draw(myDrawNodeMap.get(drawable), drawable));
         // .relocate(drawable.getLocation().getX(), drawable.getLocation().getY()));
     }
 
@@ -140,10 +140,12 @@ public class InGameRenderer extends LevelRenderer {
         return node;
     }
 
+    @Override
     protected double scaledHeight () {
         return getScale().scale(myGame.getLevelBounds().getHeight());
     }
 
+    @Override
     protected double scaledWidth () {
         return getScale().scale(myGame.getLevelBounds().getWidth());
     }

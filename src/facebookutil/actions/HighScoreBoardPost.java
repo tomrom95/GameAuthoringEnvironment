@@ -15,8 +15,8 @@ import facebookutil.user.profiles.SocialProfile;
 public interface HighScoreBoardPost extends Post {
 
     public abstract void createBoardPost (HighScoreBoard board,
-                                 String gameName,
-                                 ScoreOrder order,
-                                 SocialProfile profile);
+                                          String gameName,
+                                          ScoreOrder order,
+                                          SocialProfile profile);
 
 }

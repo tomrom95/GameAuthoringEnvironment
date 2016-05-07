@@ -17,14 +17,13 @@ public class WaveSetManager implements IWaveSetManager {
         mySets = new ArrayList<IWaveSet>();
         myLevelGap = new TimeDuration(0);
         timeSinceWaveCompletion = new TimeDuration(0);
-        
+
         setGap(20000);
     }
-    
 
     @Override
     public void update (TimeDuration duration) {
-        
+
         if (levelComplete()) {
             stopSpawners();
         }

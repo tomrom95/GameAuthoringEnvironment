@@ -1,6 +1,9 @@
 package gameauthoring.creation.entryviews;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
 import gameauthoring.util.ErrorMessage;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
@@ -14,7 +17,7 @@ import splash.LocaleManager;
  * FormData to its value, which seems more natural to me. Good alternative maybe because we avoid
  * need for knowing proper indices (see TempSubFormView) and encapsulates storage of FormData too,
  * which is more flexible design
- * 
+ *
  * @author Joe Lilien
  *
  */

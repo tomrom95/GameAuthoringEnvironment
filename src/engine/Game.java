@@ -33,17 +33,16 @@ public class Game implements IGame {
     private IAttributeManager myAttributeManager;
     private IObstructionManager myObstructionManager;
 
-    
-
     public Game (IGameGridConfig gridConfiguration) {
         // TODO remove hardcoded strings
         this(new GameInformation(), gridConfiguration);
-      
+
     }
-    
-    /** @deprecated
-     *  Shouldn't create a game without an internal notion of grid size, defaulting
-     *  will lead to unexpected behavior given lack of scaling implementation
+
+    /**
+     * @deprecated
+     *             Shouldn't create a game without an internal notion of grid size, defaulting
+     *             will lead to unexpected behavior given lack of scaling implementation
      * @param gameInfo
      */
     @Deprecated
@@ -59,7 +58,7 @@ public class Game implements IGame {
         myGameInformation = gameInfo;
         myAttributeManager = new AttributeManager();
         myObstructionManager = new ObstructionManager(this);
-        
+
     }
 
     @Override

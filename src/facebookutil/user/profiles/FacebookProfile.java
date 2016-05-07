@@ -10,6 +10,7 @@ import facebookutil.user.IUser;
 
 /**
  * Profile for Facebook users
+ *
  * @author Tommy
  *
  */

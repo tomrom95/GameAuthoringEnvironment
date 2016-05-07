@@ -7,7 +7,7 @@ import gameauthoring.creation.subforms.dynamic.MultiSFController;
 import util.BundleOperations;
 
 public class EventChoiceSFC extends MultiSFController<EventPackageDefinition> {
-    
+
     private static final String EVENT_KEY = "Events";
 
     public EventChoiceSFC (IGame game) {
@@ -16,7 +16,7 @@ public class EventChoiceSFC extends MultiSFController<EventPackageDefinition> {
         setMyView(new EventChoiceSFV(getMyOptions(), EVENT_KEY));
         setViewActions();       
     }
- 
+
     @Override
     protected List<? extends Object> getListofEditables (EventPackageDefinition item) {
         return item.getMyEventsList();
@@ -26,8 +26,5 @@ public class EventChoiceSFC extends MultiSFController<EventPackageDefinition> {
     protected void resetContents (EventPackageDefinition item) {
         item.getMyEventsList().clear();
     }
-
-
-    
 
 }

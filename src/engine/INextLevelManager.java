@@ -1,7 +1,5 @@
 package engine;
 
-
-
 /**
  * This interface provides the method calls to for an ILevelManager to determine whether a level is
  * completed and should proceed
@@ -25,11 +23,9 @@ public interface INextLevelManager extends Updateable, IEventInternalizer {
      * @return
      */
     ILevel getNextLevel ();
-    
-    void setWinLevel(ILevel winLevel);
-    
-    void setLoseLevel(ILevel loseLevel);
 
+    void setWinLevel (ILevel winLevel);
 
+    void setLoseLevel (ILevel loseLevel);
 
 }

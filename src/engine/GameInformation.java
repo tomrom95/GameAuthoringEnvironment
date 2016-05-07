@@ -18,7 +18,6 @@ import javafx.beans.property.StringProperty;
 
 public class GameInformation implements IGameInformation {
 
-    
     private static final int DEF_IMAGE_WIDTH = 200;
     private static final int DEF_IMAGE_HEIGHT = 300;
     private static final String DEF_IMAGE_LOCATION = "/images/tower.png";
@@ -53,7 +52,7 @@ public class GameInformation implements IGameInformation {
     public String getSplashScreenURL () {
         return mySplashScreen.getUrlProperty().get();
     }
-    
+
     @Override
     public StringProperty getSplashScreenURLProperty () {
         return mySplashScreen.getUrlProperty();

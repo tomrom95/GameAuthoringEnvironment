@@ -29,10 +29,12 @@ public class UpgradeSFC implements ISubFormControllerSprite {
                 AttributeDefinition attribute = mySFV.getDepletedAttribute();
                 SpriteDefinition nextUpgrade = mySFV.getNextUpgrade();
                 if (mySFV.isGlobalProperty().get()) {
-                    item.setUpgrade(new GlobalUpgradeDefinition(myGame, nextUpgrade, attribute, cost));
+                    item.setUpgrade(new GlobalUpgradeDefinition(myGame, nextUpgrade, attribute,
+                                                                cost));
                 }
                 else {
-                    item.setUpgrade(new SpriteUpgradeDefinition(myGame, nextUpgrade, attribute, cost));
+                    item.setUpgrade(new SpriteUpgradeDefinition(myGame, nextUpgrade, attribute,
+                                                                cost));
                 }
             }
             else {

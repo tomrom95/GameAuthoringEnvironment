@@ -1,5 +1,8 @@
 package gameauthoring.creation.subforms;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 import gameauthoring.util.BasicUIFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,7 +14,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import splash.LocaleManager;
-import java.util.*;
 
 
 public abstract class ClickAndFillView extends SubFormView implements IMultiSFView{
@@ -46,6 +48,7 @@ public abstract class ClickAndFillView extends SubFormView implements IMultiSFVi
         return myButtons;
     }
 
+    @Override
     public BasicUIFactory getMyUIFactory () {
         return myUIFactory;
     }
@@ -63,12 +66,13 @@ public abstract class ClickAndFillView extends SubFormView implements IMultiSFVi
     protected ScrollPane getMyPane () {
         return myPane;
     }
-    
+
     private void initAndAddButtons (HBox buttonHolder, List<String> options) {
         for (String s : options) {
             Button button =
                     getMyUIFactory().createImageButton(getMyUIFactory()
-                            .makeImageDisplay(getMyProperties().getString(s), getMyLanguages().getString(s)));
+                            .makeImageDisplay(getMyProperties().getString(s),
+                                              getMyLanguages().getString(s)));
             getMyUIFactory().addStyling(button, cssButtonClass);
             getMyViewComponents().add(button);
         }
@@ -111,6 +115,5 @@ public abstract class ClickAndFillView extends SubFormView implements IMultiSFVi
     public Node draw () {
         return defaultDisplayWithNode(myContainer);
     }
-
 
 }

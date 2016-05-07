@@ -12,8 +12,8 @@ import javafx.scene.control.SelectionMode;
 /**
  * Allows Users to select multiple items from a given list in a choice box fashion to assoicate with
  * a given label
- * 
- * 
+ *
+ *
  * @author JoeLilien
  *
  */

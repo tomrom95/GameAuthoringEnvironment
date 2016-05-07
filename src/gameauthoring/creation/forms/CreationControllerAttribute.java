@@ -3,15 +3,15 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
+import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.creation.factories.AttributeSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
-import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.shareddata.DefinitionCollection;
 
 
 /**
  * This class controls the creation of attributes
- * 
+ *
  * @author Jeremy Schreck, Joe Lilien
  *
  */
@@ -19,7 +19,7 @@ public class CreationControllerAttribute extends CreationController<AttributeDef
 
     /**
      * Constructor
-     * 
+     *
      * @param key The controller's key used to get its title
      * @param subFormStrings Strings specifying which subforms to use
      * @param authorshipData Data shared by authoring elements
@@ -47,11 +47,11 @@ public class CreationControllerAttribute extends CreationController<AttributeDef
         return authorshipData.getMyCreatedAttributes();
 
     }
-    
+
     @Override
     protected void deleteItem () {
         super.deleteItem();
-        getMyData().removeFromAttributes (getMyLastItem());
+        getMyData().removeFromAttributes(getMyLastItem());
     }
 
 }
