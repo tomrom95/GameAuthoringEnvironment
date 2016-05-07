@@ -32,6 +32,7 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
     private boolean ranged;
     private IGame myGame;
     private IAttribute myRange;
+    private IAttribute myWaitTime;
     private Positionable myParent;
     private List<ISprite> myFiredSprites;
     private EnemyTracker myTracker;
@@ -48,6 +49,7 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
         ranged = false;
         myFiredSprites = new ArrayList<ISprite>();
         myTracker = new EnemyTracker();
+        myWaitTime = (new Attribute(AttributeType.FIRE_RATE));
         myGame = game;
     }
 
@@ -122,6 +124,14 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
 
     public void setGame (IGame game) {
         myGame = game;
+    }
+
+    public IAttribute getMyWaitTime () {
+        return myWaitTime;
+    }
+
+    public void setMyWaitTime (double myWaitTime) {
+        this.myWaitTime.setValue(myWaitTime);
     }
 
 }

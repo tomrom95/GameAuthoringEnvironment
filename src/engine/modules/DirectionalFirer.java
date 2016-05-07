@@ -23,7 +23,6 @@ import util.TimeDuration;
  */
 public class DirectionalFirer extends Firer {
 
-    private IAttribute myWaitTime;
     private Positionable mySprite;
     private SpriteDefinition myProjectile;
     private double myAngle;
@@ -35,7 +34,7 @@ public class DirectionalFirer extends Firer {
                              double waitTime,
                              double theta) {
         super(game, sprite);
-        myWaitTime = new Attribute(waitTime, AttributeType.FIRE_RATE);
+        setMyWaitTime(waitTime);
         myTimeSinceFire = new TimeDuration(0);
         mySprite = sprite;
         myProjectile = projectile;
@@ -55,10 +54,8 @@ public class DirectionalFirer extends Firer {
 
         myTimeSinceFire.increase(duration);
 
-        if (myTimeSinceFire.getSeconds() >= myWaitTime.getValueProperty().get()) {
+        if (myTimeSinceFire.getSeconds() >= getMyWaitTime().getValueProperty().get()) {
             fire();
-
-            // addToTimeMap(bullet);
 
         }
     }
@@ -68,10 +65,7 @@ public class DirectionalFirer extends Firer {
         ISprite bullet = myProjectile.create();
         bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
                                           mySprite.getLocation().getY()));
-        /**
-         * this angle should have been intaken from the authoring and should still be in
-         * degrees
-         */
+    
         bullet.getMovementStrategy().setOrientationFromTracker(myAngle);
 
         getGame().bufferedAdd(bullet);
@@ -85,7 +79,6 @@ public class DirectionalFirer extends Firer {
     @Override
     protected List<IAttribute> getSpecificAttributes () {
         List<IAttribute> toAdd = new ArrayList<>();
-        toAdd.add(myWaitTime);
         return toAdd;
     }
 
