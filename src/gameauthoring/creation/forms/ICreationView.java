@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 
 
 /**
- * Interface for a view object that lays out an IFormView and an IObjectListView
+ * Interface for a view class that displays a list of created items and allows you to create new ones
  *
  * @author Jeremy Schreck
  *
@@ -28,30 +28,20 @@ public interface ICreationView<E> extends Glyph {
      * @param action The action to take when the user decides to edit a different item
      */
     void setEditAction (Runnable action);
+    
+    /**
+     * Tells the view what method it should call upon save
+     *
+     * @param action The method to call
+     */
+    void setSaveAction (Runnable action);
 
     /**
-     * Get the IObjectListView, which is the view containing the list of objects
+     * Tells the view what method it should call upon delete
      *
-     *
-     * @return The IObjectListView object
+     * @param action The method to call
      */
-    ICreationListView<E> getCreationListView ();
-
-    /**
-     * Get the IFormView, which is the view containing the form to create a new object
-     *
-     *
-     * @return The IFormView object
-     */
-    IFormView getFormView ();
-
-    /**
-     * Get the observable list of items stored in the list view
-     *
-     * @param items The observable list of items
-     *
-     */
-    ObservableList<E> getItems ();
+    void setDeleteAction (Runnable action);
 
     /**
      * Get the currently selected item
@@ -59,11 +49,12 @@ public interface ICreationView<E> extends Glyph {
      * @return The item
      */
     E getCurrentItem ();
-
+    
     /**
-     * Init method to pass subformviews
+     * Selects the given item
      *
-     * @param subFormViews The subformviews of which the formview should consist of
+     * @param item The item to be selected
      */
-    void init (List<ISubFormView> subFormViews);
+    void setSelectedItem (E item);
+
 }

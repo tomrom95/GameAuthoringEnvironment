@@ -10,6 +10,7 @@ import engine.effects.Effect;
 import engine.effects.EffectFactory;
 import engine.effects.IncreaseEffect;
 import engine.profile.ProfileDisplay;
+import gameauthoring.creation.factories.TypeFactory;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.fire.RemovableEffectSFC;
 import gameauthoring.util.ErrorMessage;
@@ -29,7 +30,7 @@ public class EffectSFC extends RemovableEffectSFC {
     private Effect myEffect;
     private TypeFactory myTypeFactory = new TypeFactory();
     private String myDefaultAttributeType = "length";
-    private ResourceBundle myEffects = ResourceBundle.getBundle("defaults/effect_types");
+    private ResourceBundle myEffects = ResourceBundle.getBundle("customization/effect_types");
     private double myDefaultLength;
     private double myDefaultValue;
 

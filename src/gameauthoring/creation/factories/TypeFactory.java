@@ -1,4 +1,4 @@
-package gameauthoring.creation.subforms.events;
+package gameauthoring.creation.factories;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +15,7 @@ import javafx.collections.ObservableList;
 
 public class TypeFactory {
 
-    private ResourceBundle myEffectTypes = ResourceBundle.getBundle("defaults/effect_types");
+    private ResourceBundle myEffectTypes = ResourceBundle.getBundle("customization/effect_types");
 
     public ObservableList<ProfileDisplay> getEffectTypes (ResourceBundle typeFile) {
         List<ProfileDisplay> list = Collections.list(typeFile.getKeys())

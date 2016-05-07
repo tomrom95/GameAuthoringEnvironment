@@ -7,7 +7,7 @@ import gameauthoring.creation.subforms.fire.RemovableSFC;
 
 
 public class MultiOptionFactory<T extends IProfilable> extends SubFormControllerFactory<T> {
-    private ResourceBundle myDefToSFCs = ResourceBundle.getBundle("defaults/def_to_sfc_classpath");
+    private ResourceBundle myDefToSFCs = ResourceBundle.getBundle("customization/def_to_sfc_classpath");
 
     public MultiOptionFactory (IGame game) {
         super(game);

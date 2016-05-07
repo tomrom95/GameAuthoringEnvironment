@@ -7,8 +7,8 @@ import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
-import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.ListWrapper;
 import javafx.beans.property.BooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.control.TitledPane;
@@ -37,7 +37,7 @@ public class UpgradeSFV extends SubFormView implements IUpgradeSFV {
     private NumberEntryView myCost;
     private GridPane myPane;
 
-    public UpgradeSFV (AuthorshipData data, DefinitionCollection<SpriteDefinition> nextUpgrades) {
+    public UpgradeSFV (AuthorshipData data, ListWrapper<SpriteDefinition> nextUpgrades) {
         double width = getParser().parseDouble(getMyNumbers().getString("UpgradeWidth"));
         double height = getParser().parseDouble(getMyNumbers().getString("UpgradeHeight"));
         setResourceBundleAndKey();

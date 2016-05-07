@@ -6,7 +6,7 @@ import engine.definitions.concrete.SpriteDefinition;
 import engine.rendering.LevelRenderer;
 import gameauthoring.creation.cellviews.ProfileCellView;
 import gameauthoring.levels.SceneController;
-import gameauthoring.shareddata.DefinitionCollection;
+import gameauthoring.util.ListWrapper;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
@@ -59,10 +59,10 @@ public abstract class SideBarDisplay extends SizeableGlyph {
 
     protected abstract ProfileCellView<SpriteDefinition> getSpriteCellView ();
 
-    protected TitledPane createAccordionPane (DefinitionCollection<SpriteDefinition> collection) {
+    protected TitledPane createAccordionPane (ListWrapper<SpriteDefinition> collection) {
         ListView<SpriteDefinition> spriteList = createSpriteList(collection.getItems());
         TitledPane pane =
-                new TitledPane(getMyLabels().getString(collection.getTitleKey()), spriteList);
+                new TitledPane(getMyLabels().getString(collection.getListMetadata().getTitleKey()), spriteList);
         return pane;
     }
 

@@ -5,7 +5,7 @@ import java.util.List;
 import engine.AuthorshipData;
 import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;
-import gameauthoring.shareddata.DefinitionCollection;
+import gameauthoring.util.ListWrapper;
 
 
 public class SelectSpriteSFC implements ISubFormControllerGroup {
@@ -13,7 +13,7 @@ public class SelectSpriteSFC implements ISubFormControllerGroup {
     private ISelectSpriteSFV myView;
 
     public SelectSpriteSFC (AuthorshipData authorshipData) {
-        List<DefinitionCollection<SpriteDefinition>> groupableSprites = new ArrayList<>();
+        List<ListWrapper<SpriteDefinition>> groupableSprites = new ArrayList<>();
         groupableSprites.addAll(authorshipData.getMyCreatedSpritesMap().values());
         groupableSprites.add(authorshipData.getMyCreatedMissiles());
         myView = new SelectSpriteSFV(groupableSprites);

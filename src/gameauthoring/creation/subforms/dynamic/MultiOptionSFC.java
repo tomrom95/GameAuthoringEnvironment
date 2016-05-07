@@ -19,10 +19,10 @@ public abstract class MultiOptionSFC<T extends IProfilable> implements ISubFormC
     private ClickAndFillView myView;
     private List<RemovableSFC<T>> mySFCs = new ArrayList<>();
     private ResourceBundle myOptionsFile =
-            ResourceBundle.getBundle("defaults/dynamic_sfc_contents");
+            ResourceBundle.getBundle("customization/dynamic_sfc_contents");
     private MultiOptionFactory<T> mySFCFactory;
     private IGame myGame;
-    private ResourceBundle myDefClasspaths = ResourceBundle.getBundle("defaults/sfc_classpath");
+    private ResourceBundle myDefClasspaths = ResourceBundle.getBundle("customization/sfc_classpath");
     private ResourceBundle myLabels;
     private StringParser myParser;
     private ResourceBundle myNumbers;

@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.creation.entryviews.MultiChoiceEntryView;
-import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
 import gameauthoring.util.DraggableAddCell;
 import gameauthoring.util.DraggableRemoveCellImage;
+import gameauthoring.util.IListWrapper;
 import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -33,7 +33,7 @@ public class SelectAttributeSFV extends SubFormView implements ISelectAttributeS
     private MultiChoiceEntryView<AttributeDefinition> mySelectedView;
     private HBox myContainer;
 
-    public SelectAttributeSFV (IDefinitionCollection<AttributeDefinition> attributes) {
+    public SelectAttributeSFV (IListWrapper<AttributeDefinition> attributes) {
         setMyTitle(MY_TITLE_KEY);
         setResoureBunldeAndKey();
         myAttributeSelector =

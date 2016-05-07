@@ -27,7 +27,7 @@ public abstract class DynamicSubFormController<T extends IProfilable>
     private IGame myGame;
     private DynamicSFCFactory<T> mySFCFactory;
     private ResourceBundle myOptionsBundle =
-            ResourceBundle.getBundle("defaults/dynamic_sfc_contents");
+            ResourceBundle.getBundle("customization/dynamic_sfc_contents");
 
     /**
      * Constructor

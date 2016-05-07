@@ -8,8 +8,7 @@ import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.EventPackageDefinition;
 import engine.definitions.concrete.SpriteDefinition;
 import engine.definitions.spawnerdef.WaveDefinition;
-import engine.profile.Profile;
-import gameauthoring.shareddata.DefinitionCollection;
+import gameauthoring.util.ListWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -22,7 +21,7 @@ import javafx.collections.ObservableList;
  */
 public class AuthorshipData {
 
-    private Map<String, DefinitionCollection<SpriteDefinition>> myCreatedSprites;
+    private Map<String, ListWrapper<SpriteDefinition>> myCreatedSprites;
 
     private static String MISSILES_TITLE_KEY = "Missiles";
     private static String WAVES_TITLE_KEY = "Waves";
@@ -31,22 +30,15 @@ public class AuthorshipData {
     private static String GROUPS_TITLE_KEY = "Groups";
     private static String EVENTPACKAGES_TITLE_KEY = "EventPackages";
 
-    private DefinitionCollection<SpriteDefinition> myCreatedMissiles;
-    private DefinitionCollection<WaveDefinition> myCreatedWaves;
-    private DefinitionCollection<AttributeDefinition> myCreatedGlobals;
-    private DefinitionCollection<AttributeDefinition> myCreatedAttributes;
-    private DefinitionCollection<SpriteGroup> myCreatedGroups;
-    private DefinitionCollection<EventPackageDefinition> myCreatedEventPackages;
+    private ListWrapper<SpriteDefinition> myCreatedMissiles;
+    private ListWrapper<WaveDefinition> myCreatedWaves;
+    private ListWrapper<AttributeDefinition> myCreatedGlobals;
+    private ListWrapper<AttributeDefinition> myCreatedAttributes;
+    private ListWrapper<SpriteGroup> myCreatedGroups;
+    private ListWrapper<EventPackageDefinition> myCreatedEventPackages;
 
     public AuthorshipData () {
         myCreatedSprites = new HashMap<>();
-    }
-
-    // TODO why doesnt this work
-    private void init () {
-        SpriteGroup spriteGroup = new SpriteGroup(new ArrayList<>());
-        spriteGroup.setProfile(new Profile("Empty Group"));
-        myCreatedGroups.addItem(spriteGroup);
     }
 
     /**
@@ -62,74 +54,74 @@ public class AuthorshipData {
     }
 
     // Getters and setters
-    public Map<String, DefinitionCollection<SpriteDefinition>> getMyCreatedSpritesMap () {
+    public Map<String, ListWrapper<SpriteDefinition>> getMyCreatedSpritesMap () {
         return myCreatedSprites;
     }
 
-    public DefinitionCollection<SpriteDefinition> getMyCreatedSprites (String key) {
+    public ListWrapper<SpriteDefinition> getMyCreatedSprites (String key) {
         if (!myCreatedSprites.containsKey(key)) {
             myCreatedSprites
-                    .put(key, new DefinitionCollection<>(key, FXCollections.observableArrayList()));
+                    .put(key, new ListWrapper<>(key, FXCollections.observableArrayList()));
         }
         return myCreatedSprites.get(key);
     }
 
-    public DefinitionCollection<SpriteDefinition> getMyCreatedMissiles () {
+    public ListWrapper<SpriteDefinition> getMyCreatedMissiles () {
         if (myCreatedMissiles == null) {
             myCreatedMissiles =
-                    new DefinitionCollection<>(AuthorshipData.MISSILES_TITLE_KEY,
+                    new ListWrapper<>(AuthorshipData.MISSILES_TITLE_KEY,
                                                FXCollections.observableArrayList());
         }
         return myCreatedMissiles;
     }
 
-    public DefinitionCollection<AttributeDefinition> getMyCreatedGlobals () {
+    public ListWrapper<AttributeDefinition> getMyCreatedGlobals () {
         if (myCreatedGlobals == null) {
             myCreatedGlobals =
-                    new DefinitionCollection<>(AuthorshipData.GLOBALS_TITLE_KEY,
+                    new ListWrapper<>(AuthorshipData.GLOBALS_TITLE_KEY,
                                                FXCollections.observableArrayList());
         }
         return myCreatedGlobals;
     }
 
-    public DefinitionCollection<AttributeDefinition> getMyCreatedAttributes () {
+    public ListWrapper<AttributeDefinition> getMyCreatedAttributes () {
         if (myCreatedAttributes == null) {
             myCreatedAttributes =
-                    new DefinitionCollection<>(AuthorshipData.ATTRIBUTES_TITLE_KEY,
+                    new ListWrapper<>(AuthorshipData.ATTRIBUTES_TITLE_KEY,
                                                FXCollections.observableArrayList());
         }
         return myCreatedAttributes;
     }
 
-    public DefinitionCollection<EventPackageDefinition> getMyCreatedEventPackages () {
+    public ListWrapper<EventPackageDefinition> getMyCreatedEventPackages () {
         if (myCreatedEventPackages == null) {
             myCreatedEventPackages =
-                    new DefinitionCollection<>(AuthorshipData.EVENTPACKAGES_TITLE_KEY,
+                    new ListWrapper<>(AuthorshipData.EVENTPACKAGES_TITLE_KEY,
                                                FXCollections.observableArrayList());
         }
         return myCreatedEventPackages;
     }
 
-    public DefinitionCollection<SpriteGroup> getMyCreatedGroups () {
+    public ListWrapper<SpriteGroup> getMyCreatedGroups () {
         if (myCreatedGroups == null) {
             myCreatedGroups =
-                    new DefinitionCollection<>(AuthorshipData.GROUPS_TITLE_KEY,
+                    new ListWrapper<>(AuthorshipData.GROUPS_TITLE_KEY,
                                                FXCollections.observableArrayList());
         }
         return myCreatedGroups;
     }
 
-    public DefinitionCollection<WaveDefinition> getCreatedWaves () {
+    public ListWrapper<WaveDefinition> getCreatedWaves () {
         if (myCreatedWaves == null) {
             myCreatedWaves =
-                    new DefinitionCollection<>(AuthorshipData.WAVES_TITLE_KEY,
+                    new ListWrapper<>(AuthorshipData.WAVES_TITLE_KEY,
                                                FXCollections.observableArrayList());
         }
         return myCreatedWaves;
     }
 
     public void addWave (WaveDefinition item) {
-        getCreatedWaves().addItem(item);
+        getCreatedWaves().getItems().add(item);
     }
 
     public void removeFromGroups (SpriteDefinition def) {

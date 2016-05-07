@@ -1,3 +1,11 @@
+// This entire file is part of my masterpiece.
+// Jeremy Schreck
+/*
+ * 
+ * 
+ * 
+ * 
+ */
 package gameauthoring.creation.forms;
 
 import java.util.List;
@@ -6,11 +14,11 @@ import engine.IGame;
 import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.creation.factories.AttributeSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
-import gameauthoring.shareddata.DefinitionCollection;
+import gameauthoring.util.ListWrapper;
 
 
 /**
- * This class controls the creation of attributes
+ * This class controls the creation of character attributes
  *
  * @author Jeremy Schreck, Joe Lilien
  *
@@ -21,8 +29,8 @@ public class CreationControllerAttribute extends CreationController<AttributeDef
      * Constructor
      *
      * @param key The controller's key used to get its title
-     * @param subFormStrings Strings specifying which subforms to use
-     * @param authorshipData Data shared by authoring elements
+     * @param subFormStrings String IDs specifying which subforms to use
+     * @param game The current game object
      */
     public CreationControllerAttribute (String key,
                                         List<String> subFormStrings,
@@ -43,15 +51,15 @@ public class CreationControllerAttribute extends CreationController<AttributeDef
     }
 
     @Override
-    protected DefinitionCollection<AttributeDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
+    protected ListWrapper<AttributeDefinition> getItemsWrapperFromAuthorshipData (AuthorshipData authorshipData) {
         return authorshipData.getMyCreatedAttributes();
 
     }
 
     @Override
     protected void deleteItem () {
+        getMyAuthorshipData().removeFromAttributes(getMyCurrentItem());
         super.deleteItem();
-        getMyData().removeFromAttributes(getMyLastItem());
     }
 
 }

@@ -3,12 +3,11 @@ package gameauthoring.creation.forms;
 import java.util.List;
 import engine.profile.IProfilable;
 import gameauthoring.creation.subforms.ISubFormView;
-import javafx.collections.FXCollections;
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
 
@@ -22,8 +21,6 @@ public class CreationView<E extends IProfilable> implements ICreationView<E> {
 
     private ICreationListView<E> myCreationListView;
     private IFormView myFormView;
-
-    private Button myNewButton = new Button("New");
     private GridPane myCreationPane = new GridPane();
 
     /**
@@ -39,69 +36,99 @@ public class CreationView<E extends IProfilable> implements ICreationView<E> {
      * issue with some creation controllers needing to share authorshipData with
      * other creation controller's subforms
      *
-     * @param subFormViews The subformviews to create the FormView with
+     * @param items The list of created items
+     * @param subFormViews The SubformViews to create the FormView with
      */
-    public CreationView () {
-        ObservableList<E> items = FXCollections.observableArrayList();
-        this.myCreationListView = new CreationListView<E>(items);
+    public CreationView (ObservableList<E> items, List<ISubFormView> subFormViews) {
+        createListView(items);
+        createFormView(items, subFormViews);
+        initViewLayout();
 
     }
 
     /**
-     * Initialize view
+     * Create my CreationListView
+     * 
+     * @param items The list of created items to show in the view
      */
-    @Override
-    public void init (List<ISubFormView> subFormViews) {
+    private void createListView (ObservableList<E> items) {
+        this.myCreationListView = new CreationListView<E>(items);
+    }
+
+    /**
+     * Create my FormView
+     * 
+     * @param items The list of created items
+     * @param subFormViews The SubformViews to create the FormView with
+     */
+    private void createFormView (ObservableList<E> items, List<ISubFormView> subFormViews) {
         this.myFormView = new FormView(subFormViews);
 
-        myCreationPane.setAlignment(Pos.TOP_LEFT);
-        GridPane.setValignment(myCreationListView.draw(), VPos.TOP);
-
-        myCreationPane.add(myCreationListView.draw(), 0, 0);
-        myCreationPane.add(myFormView.draw(), 1, 0);
-
-        // myCreationPane.getStyleClass().add("myCreationView");
+        Bindings.isEmpty(items).addListener( (obs, wasEmpty, isNowEmpty) -> {
+            getMyFormView().showOrHideForm(wasEmpty);
+        });
 
     }
+
+    /**
+     * Setup the view layout
+     *
+     */
+    public void initViewLayout () {
+        GridPane.setValignment(getMyCreationListView().draw(), VPos.TOP);
+
+        myCreationPane.add(getMyCreationListView().draw(), 0, 0);
+        myCreationPane.add(getMyFormView().draw(), 1, 0);
+
+    }
+
+    // Glyph interface methods
 
     @Override
     public Node draw () {
         return myCreationPane;
     }
 
-    // Getters and Setters
+    // ICreationView interface methods
 
     @Override
-    public ICreationListView<E> getCreationListView () {
-        return myCreationListView;
+    public void setSaveAction (Runnable action) {
+        getMyFormView().setSaveAction(action);
     }
 
     @Override
-    public IFormView getFormView () {
-        return myFormView;
+    public void setDeleteAction (Runnable action) {
+        getMyFormView().setDeleteAction(action);
     }
 
     @Override
     public void setNewAction (Runnable action) {
-        myNewButton.setOnAction(e -> action.run());
+        getMyFormView().setNewAction(action);
     }
 
     @Override
     public void setEditAction (Runnable action) {
-        // set listcell's edit button's setOnAction to call action
-        getCreationListView().setEditAction(action);
-
-    }
-
-    @Override
-    public ObservableList<E> getItems () {
-        return getCreationListView().getMyItems();
-
+        getMyCreationListView().setEditAction(action);
     }
 
     @Override
     public E getCurrentItem () {
-        return getCreationListView().getSelectedItem();
+        return getMyCreationListView().getSelectedItem();
+    }
+
+    @Override
+    public void setSelectedItem (E item) {
+        getMyCreationListView().setSelectedItem(item);
+    }
+
+    // Getters and Setters
+
+    private ICreationListView<E> getMyCreationListView () {
+        return myCreationListView;
+    }
+
+    private IFormView getMyFormView () {
+        return myFormView;
     }
 
 }

@@ -6,7 +6,7 @@ import engine.profile.IProfilable;
 /**
  * This is a generic interface for any controller of a subform
  *
- * Note: The subform will be passed the item currently being edited,
+ * The subform will be passed the item currently being edited,
  * which it should update based on user input and fill in UI elements based
  * on item data
  *

@@ -7,7 +7,7 @@ import engine.definitions.upgrades.GlobalUpgradeDefinition;
 import engine.definitions.upgrades.NullUpgradeDefinition;
 import engine.definitions.upgrades.SpriteUpgradeDefinition;
 import engine.definitions.upgrades.UpgradeDefinition;
-import gameauthoring.shareddata.DefinitionCollection;
+import gameauthoring.util.ListWrapper;
 import gameauthoring.util.ErrorMessage;
 
 
@@ -16,7 +16,7 @@ public class UpgradeSFC implements ISubFormControllerSprite {
     private IUpgradeSFV mySFV;
     private IGame myGame;
 
-    public UpgradeSFC (IGame game, DefinitionCollection<SpriteDefinition> nextUpgrade) {
+    public UpgradeSFC (IGame game, ListWrapper<SpriteDefinition> nextUpgrade) {
         mySFV = new UpgradeSFV(game.getAuthorshipData(), nextUpgrade);
         myGame = game;
     }

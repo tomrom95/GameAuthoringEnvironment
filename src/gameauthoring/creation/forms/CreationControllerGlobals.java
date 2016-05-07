@@ -6,12 +6,11 @@ import engine.IGame;
 import engine.definitions.concrete.AttributeDefinition;
 import gameauthoring.creation.factories.AttributeSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
-import gameauthoring.shareddata.DefinitionCollection;
+import gameauthoring.util.ListWrapper;
 
 
 /**
- * Stores created attributes in global resources instead of character specific attributes collection
- * in authorship data
+ * This class controls the creation of global attributes
  *
  * @author Joe Lilien, Jeremy Schreck
  *
@@ -33,7 +32,7 @@ public class CreationControllerGlobals extends CreationController<AttributeDefin
     }
 
     @Override
-    protected DefinitionCollection<AttributeDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
+    protected ListWrapper<AttributeDefinition> getItemsWrapperFromAuthorshipData (AuthorshipData authorshipData) {
         return authorshipData.getMyCreatedGlobals();
     }
 

@@ -1,3 +1,11 @@
+// This entire file is part of my masterpiece.
+// Jeremy Schreck
+/*
+ * 
+ * 
+ * 
+ * 
+ */
 package gameauthoring.creation.forms;
 
 import java.util.List;
@@ -7,26 +15,37 @@ import engine.SpriteGroup;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.factories.SpriteSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
-import gameauthoring.shareddata.DefinitionCollection;
+import gameauthoring.util.ListWrapper;
 
 
 /**
  * This class controls the creation of Sprite Definitions
  *
- * @author Jeremy Schreck
+ * @author Jeremy Schreck, Joe Lilien
  *
  */
 public class CreationControllerSprite extends CreationController<SpriteDefinition> {
 
+    /**
+     * Constructor
+     *
+     * @param key The controller's key used to get its title
+     * @param subFormStrings String IDs specifying which subforms to use
+     * @param game The current game object
+     */
     public CreationControllerSprite (String key,
                                      List<String> subFormStrings,
-                                     IGame myGame) {
-        super(key, subFormStrings, myGame);
+                                     IGame game) {
+        super(key, subFormStrings, game);
     }
 
     @Override
     protected SpriteDefinition createBlankItem () {
-        return new SpriteDefinition();
+        SpriteDefinition item = new SpriteDefinition();
+        SpriteGroup group = new SpriteGroup(item, item.getProfile());
+        item.setMySingleGroup(group);
+        getMyAuthorshipData().getMyCreatedGroups().getItems().add(group);
+        return item;
     }
 
     @Override
@@ -35,24 +54,19 @@ public class CreationControllerSprite extends CreationController<SpriteDefinitio
     }
 
     @Override
-    protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
+    protected ListWrapper<SpriteDefinition> getItemsWrapperFromAuthorshipData (AuthorshipData authorshipData) {
         return authorshipData.getMyCreatedSprites(getMyKey());
     }
 
     @Override
     protected void deleteItem () {
+        getMyAuthorshipData().removeFromGroups(getMyCurrentItem());
+        getMyAuthorshipData().getMyCreatedGroups().getItems().remove(getMyCurrentItem().getMySingleGroup());
         super.deleteItem();
-        getMyData().removeFromGroups(getMyLastItem());
-        getMyData().getMyCreatedGroups().removeItem(getMyLastItem().getMySingleGroup());
-    }
 
-    @Override
-    protected SpriteDefinition newItem () {
-        SpriteDefinition item = super.newItem();
-        SpriteGroup group = new SpriteGroup(item, item.getProfile());
-        item.setMySingleGroup(group);
-        getMyData().getMyCreatedGroups().addItem(group);
-        return item;
+    
     }
+        
+
 
 }

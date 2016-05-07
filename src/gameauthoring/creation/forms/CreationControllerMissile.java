@@ -4,9 +4,15 @@ import java.util.List;
 import engine.AuthorshipData;
 import engine.IGame;
 import engine.definitions.concrete.SpriteDefinition;
-import gameauthoring.shareddata.DefinitionCollection;
+import gameauthoring.util.ListWrapper;
 
 
+/**
+ * This class controls the creation of missiles
+ * 
+ * @author Jeremy Schreck
+ *
+ */
 public class CreationControllerMissile extends CreationControllerSprite {
 
     public CreationControllerMissile (String key,
@@ -17,7 +23,7 @@ public class CreationControllerMissile extends CreationControllerSprite {
     }
 
     @Override
-    protected DefinitionCollection<SpriteDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
+    protected ListWrapper<SpriteDefinition> getItemsWrapperFromAuthorshipData (AuthorshipData authorshipData) {
         return authorshipData.getMyCreatedMissiles();
     }
 

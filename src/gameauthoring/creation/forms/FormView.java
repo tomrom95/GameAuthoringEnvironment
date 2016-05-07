@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.util.BasicUIFactory;
 import javafx.geometry.Orientation;
@@ -30,7 +31,6 @@ public class FormView implements IFormView {
     private BasicUIFactory myFactory = new BasicUIFactory();
     private ScrollPane mySubFormViewer = new ScrollPane(mySubFormContainer);
     private GridPane myFormView = new GridPane();
-    // TODO: add buttons to languages
     private Button mySaveButton =
             myFactory.createStyledButton(myLang.getString("SaveForm"), buttonClass);
     private Button myDeleteButton =
@@ -49,26 +49,23 @@ public class FormView implements IFormView {
         myFactory.addStyling(mySubFormViewer, "FormView");
         mySubFormViewer.setMaxHeight(HEIGHT);
         myFormView.add(mySubFormViewer, 0, 1);
-        hideForm();
+        showForm();
         myFormView.add(createButtonHolder(), 0, 0);
         setViews(mySubFormViews);
     }
 
     @Override
-    public void showForm () {
-        // myFormView.add(mySubFormViewer, 0, 1);
-        mySubFormViewer.setVisible(true);
-        mySaveButton.setDisable(false);
-        myDeleteButton.setDisable(false);
+    public void showOrHideForm (boolean showForm) {
+        mySubFormViewer.setVisible(showForm);
+        mySaveButton.setDisable(!showForm);
+        myDeleteButton.setDisable(!showForm);
 
     }
-
-    @Override
-    public void hideForm () {
-        // myFormView.getChildren().remove(mySubFormViewer);
-        mySubFormViewer.setVisible(false);
-        mySaveButton.setDisable(true);
-        myDeleteButton.setDisable(true);
+    private void showForm(){
+        showOrHideForm(true);
+    }
+    private void hideForm(){
+        showOrHideForm(false);
     }
 
     private Node createButtonHolder () {
@@ -80,15 +77,12 @@ public class FormView implements IFormView {
     /**
      * New Design, change active subform views
      */
-    @Override
     public void setViews (List<ISubFormView> subFormViews) {
         mySubFormContainer.getChildren().setAll(getSFVNodes(subFormViews));
     }
 
     private List<Node> getSFVNodes (List<ISubFormView> subFormViews) {
-        List<Node> nodes = new ArrayList<>();
-        subFormViews.forEach(e -> nodes.add(e.draw()));
-        return nodes;
+        return subFormViews.stream().map(e -> e.draw()).collect(Collectors.toList());
     }
 
     /**
@@ -113,11 +107,6 @@ public class FormView implements IFormView {
     @Override
     public void setNewAction (Runnable action) {
         myNewButton.setOnAction(e -> action.run());
-    }
-
-    @Override
-    public List<ISubFormView> getSubFormViews () {
-        return mySubFormViews;
     }
 
     @Override

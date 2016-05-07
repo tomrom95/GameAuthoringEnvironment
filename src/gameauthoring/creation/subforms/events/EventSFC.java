@@ -6,6 +6,7 @@ import engine.definitions.concrete.EventPackageDefinition;
 import engine.events.EventType;
 import engine.events.GameEvent;
 import engine.profile.ProfileDisplay;
+import gameauthoring.creation.factories.TypeFactory;
 import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.creation.subforms.fire.RemovableEventSFC;
 import gameauthoring.util.ErrorMessage;
@@ -14,7 +15,7 @@ import javafx.collections.ObservableList;
 
 public class EventSFC extends RemovableEventSFC {
 
-    private static final String PATH = "defaults/event_types";
+    private static final String PATH = "customization/event_types";
     private ResourceBundle myEventTypes = ResourceBundle.getBundle(PATH);
     private IEventSFV myView;
     private GameEvent myEvent;

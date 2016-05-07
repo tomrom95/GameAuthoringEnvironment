@@ -5,8 +5,8 @@ import engine.SpriteGroup;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
-import gameauthoring.shareddata.DefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.ListWrapper;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -22,7 +22,7 @@ public class TrackingMoverSFV extends SubFormView implements ITrackingMoverSFV {
     private NumberEntryView mySpeed;
     private SingleChoiceEntryView<SpriteGroup> myTargets;
 
-    public TrackingMoverSFV (DefinitionCollection<SpriteGroup> groupsList) {
+    public TrackingMoverSFV (ListWrapper<SpriteGroup> groupsList) {
         double width = getParser().parseDouble(getMyNumbers().getString("WidthMovement"));
         double height = getParser().parseDouble(getMyNumbers().getString("Height"));
         setResourceBundleAndKey();

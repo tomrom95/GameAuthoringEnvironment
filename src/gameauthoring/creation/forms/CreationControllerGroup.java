@@ -6,16 +6,21 @@ import engine.IGame;
 import engine.SpriteGroup;
 import gameauthoring.creation.factories.GroupSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
-import gameauthoring.shareddata.DefinitionCollection;
+import gameauthoring.util.ListWrapper;
 
 
+/**
+ * This class controls the creation of Groups
+ * 
+ * @author Jeremy Schreck
+ *
+ */
 public class CreationControllerGroup extends CreationController<SpriteGroup> {
 
     public CreationControllerGroup (String key,
                                     List<String> sfcs,
                                     IGame myGame) {
         super(key, sfcs, myGame);
-        getMyCreationView().getFormView().showForm();
     }
 
     @Override
@@ -29,7 +34,7 @@ public class CreationControllerGroup extends CreationController<SpriteGroup> {
     }
 
     @Override
-    protected DefinitionCollection<SpriteGroup> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
+    protected ListWrapper<SpriteGroup> getItemsWrapperFromAuthorshipData (AuthorshipData authorshipData) {
         return authorshipData.getMyCreatedGroups();
     }
 

@@ -34,7 +34,6 @@ public class CreationListView<E extends IProfilable> implements ICreationListVie
         myListView.setMaxHeight(HEIGHT);
         myListView.setPlaceholder(new Label(myLang.getString("CreatedObjects")));
 
-        // TODO: resource file and maybe constructor arguement later
         myListView.getStyleClass().add("myObjectListView");
     }
 

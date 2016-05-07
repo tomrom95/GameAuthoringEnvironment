@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import engine.definitions.concrete.SpriteDefinition;
 import gameauthoring.creation.entryviews.MultiChoiceEntryView;
-import gameauthoring.shareddata.DefinitionCollection;
-import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.ListWrapper;
 import gameauthoring.util.DraggableAddCell;
 import gameauthoring.util.DraggableRemoveCell;
+import gameauthoring.util.IListWrapper;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -29,10 +29,10 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
     private Accordion myAccordion;
     private HBox myContainer;
     private List<MultiChoiceEntryView<SpriteDefinition>> myViews;
-    private List<DefinitionCollection<SpriteDefinition>> mySprites;
+    private List<ListWrapper<SpriteDefinition>> mySprites;
     private MultiChoiceEntryView<SpriteDefinition> mySelected;
 
-    public SelectSpriteSFV (List<DefinitionCollection<SpriteDefinition>> sprites) {
+    public SelectSpriteSFV (List<ListWrapper<SpriteDefinition>> sprites) {
         setMyTitle(MY_TITLE_KEY);
         myViews = new ArrayList<>();
         mySprites = sprites;
@@ -46,9 +46,9 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
     @Override
     protected void initView () {
         myAccordion = getMyUIFactory().makeAccordion(300);
-        for (IDefinitionCollection<SpriteDefinition> def : mySprites) {
+        for (IListWrapper<SpriteDefinition> def : mySprites) {
             MultiChoiceEntryView<SpriteDefinition> myView =
-                    new MultiChoiceEntryView<>(getMyLabels().getString(def.getTitleKey()),
+                    new MultiChoiceEntryView<>(getMyLabels().getString(def.getListMetadata().getTitleKey()),
                                                def.getItems(), 300, 400,
                                                AuthoringView.DEFAULT_ENTRYVIEW);
             myView.getListView()
@@ -56,7 +56,7 @@ public class SelectSpriteSFV extends SubFormView implements ISelectSpriteSFV {
                             .getListView()));
             myViews.add(myView);
             TitledPane tp =
-                    new TitledPane(getMyLabels().getString(def.getTitleKey()),
+                    new TitledPane(getMyLabels().getString(def.getListMetadata().getTitleKey()),
                                    myView.getListView());
             myAccordion.getPanes().add(tp);
         }

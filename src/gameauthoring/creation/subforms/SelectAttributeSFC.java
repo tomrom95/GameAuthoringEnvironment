@@ -2,7 +2,7 @@ package gameauthoring.creation.subforms;
 
 import engine.definitions.concrete.AttributeDefinition;
 import engine.definitions.concrete.SpriteDefinition;
-import gameauthoring.shareddata.IDefinitionCollection;
+import gameauthoring.util.IListWrapper;
 
 
 /**
@@ -15,7 +15,7 @@ public class SelectAttributeSFC implements ISubFormControllerSprite {
 
     private ISelectAttributeSFV myView;
 
-    public SelectAttributeSFC (IDefinitionCollection<AttributeDefinition> attributes) {
+    public SelectAttributeSFC (IListWrapper<AttributeDefinition> attributes) {
         myView = new SelectAttributeSFV(attributes);
     }
 

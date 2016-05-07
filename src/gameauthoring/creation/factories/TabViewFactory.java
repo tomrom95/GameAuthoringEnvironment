@@ -24,7 +24,7 @@ public class TabViewFactory<T extends ITabViewer> {
 
     private static final String IMAGES = "defaults/create_tab_images";
     private static final String TAB_NAMES = "languages/labels";
-    private static final String TAB_VIEWER_NAMES = "defaults/create_tabviewers";
+    private static final String TAB_VIEWER_NAMES = "customization/create_tabviewers";
 
     private IGame myGame;
     private ResourceBundle myImages;

@@ -6,8 +6,8 @@ import gameauthoring.creation.entryviews.CheckEntryView;
 import gameauthoring.creation.entryviews.NumberEntryView;
 import gameauthoring.creation.entryviews.SingleChoiceEntryView;
 import gameauthoring.creation.subforms.SubFormView;
-import gameauthoring.shareddata.IDefinitionCollection;
 import gameauthoring.tabs.AuthoringView;
+import gameauthoring.util.IListWrapper;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -39,7 +39,7 @@ public class DirectionalFireSFV extends SubFormView implements IDirectionalFireS
     private NumberEntryView myRangeValue;
     private static final String MY_TITLE_KEY = "DIRECTIONALFIRER";
 
-    public DirectionalFireSFV (IDefinitionCollection<SpriteDefinition> missiles,
+    public DirectionalFireSFV (IListWrapper<SpriteDefinition> missiles,
                                RemoveOption remove) {
         setMyTitle(MY_TITLE_KEY);
         setResourceBundleAndKey();

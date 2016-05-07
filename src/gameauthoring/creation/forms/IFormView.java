@@ -1,12 +1,10 @@
 package gameauthoring.creation.forms;
 
-import java.util.List;
-import gameauthoring.creation.subforms.ISubFormView;
 import gameauthoring.util.Glyph;
 
 
 /**
- * View wrapper for the form to create new objects
+ * This in an interface for view that displays a form to create new objects
  * in the Creation Views. This would be general for
  * creating sprites, attributes, or interactions
  *
@@ -38,29 +36,11 @@ public interface IFormView extends Glyph {
      * @param action The method to call
      */
     void setNewAction (Runnable action);
-
+    
     /**
-     * Returns the list of subformviews in the form view
-     *
-     * @return The list of subformviews
+     * Display or hide the form to create an item
      */
-    List<ISubFormView> getSubFormViews ();
+    void showOrHideForm (boolean shouldShowForm);
 
-    /**
-     * Sets currently visible views to those associated with currently selected item
-     *
-     * @param subFormViews
-     */
-    void setViews (List<ISubFormView> subFormViews);
-
-    /**
-     * Display the form to create an item
-     */
-    void showForm ();
-
-    /**
-     * Hide the form to create an item
-     */
-    void hideForm ();
 
 }

@@ -6,11 +6,11 @@ import engine.IGame;
 import engine.definitions.concrete.EventPackageDefinition;
 import gameauthoring.creation.factories.EventsSFCFactory;
 import gameauthoring.creation.factories.SubFormControllerFactory;
-import gameauthoring.shareddata.DefinitionCollection;
+import gameauthoring.util.ListWrapper;
 
 
 /**
- * This class controls the creation of events
+ * This class controls the creation of event packages
  *
  * @author Tommy, Jeremy Schreck
  *
@@ -34,7 +34,7 @@ public class CreationControllerEvent extends CreationController<EventPackageDefi
     }
 
     @Override
-    protected DefinitionCollection<EventPackageDefinition> getDefinitionCollectionFromAuthorshipData (AuthorshipData authorshipData) {
+    protected ListWrapper<EventPackageDefinition> getItemsWrapperFromAuthorshipData (AuthorshipData authorshipData) {
         return authorshipData.getMyCreatedEventPackages();
     }
 

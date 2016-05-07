@@ -32,19 +32,6 @@ public abstract class SubFormControllerFactory<T extends IProfilable> {
 
     }
 
-    /**
-     * Method for creating an SFC based on a string ID for that SFC
-     *
-     * @param type A string indicating which SFC to instantiate
-     * @param params Optional params for the sfc's constructor
-     * @return The ISubFormController that the factory creates
-     * @throws ReflectionException
-     * @throws ClassCastException
-     */
-    protected abstract ISubFormController<T> createSubFormController (String type,
-                                                                      Object ... params) throws ReflectionException,
-                                                                                         ClassCastException;
-
     private ISubFormController<T> createSFCAndHandleErrors (String type) {
         String errorMsg =
                 String.format("Error creating subform of type %s.\nCheck properties files.", type);
@@ -64,6 +51,19 @@ public abstract class SubFormControllerFactory<T extends IProfilable> {
             throw new ClassCastException(message);
         }
     }
+    
+    /**
+     * Method for creating an SFC based on a string ID for that SFC
+     *
+     * @param type A string indicating which SFC to instantiate
+     * @param params Optional params for the sfc's constructor
+     * @return The ISubFormController that the factory creates
+     * @throws ReflectionException
+     * @throws ClassCastException
+     */
+    protected abstract ISubFormController<T> createSubFormController (String type,
+                                                                      Object ... params) throws ReflectionException,
+                                                                                         ClassCastException;
 
     protected IGame getMyGame () {
         return myGame;
