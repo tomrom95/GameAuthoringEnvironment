@@ -1,3 +1,11 @@
+//This entire file is part of my masterpiece.
+//Jonathan Im
+
+/*
+ * This class illustrates how the default behavior abstract super class
+ * allows us to achieve extremely clean code, also an example of responding
+ * to user input through overriding a Condition super method
+ */
 package engine.conditions;
 
 import java.util.function.Predicate;
@@ -6,6 +14,7 @@ import engine.IGame;
 import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import util.Coordinate;
+
 
 
 /**

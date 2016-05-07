@@ -1,4 +1,17 @@
+//This entire file is part of my masterpiece.
+//Jonathan Im
+
+/*
+ * This class showcases the use of an anonymous inner class to allow
+ * the super class performing the predicate check to in essence call
+ * code in the sub class, as defined in the sub class
+ * 
+ * Also shows how the standard ICondition interface allows interarcting with
+ * and measuring very different parts of the game
+ */
 package engine.conditions;
+
+
 
 import java.util.function.DoublePredicate;
 import engine.AttributeType;
@@ -55,17 +68,5 @@ public class OnSpriteAttributeCondition extends Condition implements ICondition 
         };
     }
 
-    // private FunctionalDoer createDoFunction () {
-    // return new FunctionalDoer() {
-    // @Override
-    // public void doIt () {
-    // applyEventPackageToSprites(myGame,
-    // mySpritePackage);
-    // applyOtherAndGlobalEventPackages(myGame,
-    // myOtherPackage,
-    // myGlobalPackage);
-    // }
-    // };
-    // }
 
 }

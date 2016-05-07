@@ -1,3 +1,6 @@
+//This entire file is part of my masterpiece.
+//Jonathan Im
+
 package engine.conditions;
 
 import java.util.List;

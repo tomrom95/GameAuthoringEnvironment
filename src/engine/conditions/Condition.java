@@ -1,3 +1,16 @@
+//This entire file is part of my masterpiece.
+//Jonathan Im
+
+/*
+ * This class represents the abstract super class that holds the functionality common to 
+ * all of our current ICondition implementations
+ * 
+ * David Maydew wrote the first drafts our condition code and I refactored, pulling up
+ * this super class and reducing each of the implemented conditions to their core 
+ * differentiating functionality
+ * 
+ */
+
 package engine.conditions;
 
 import java.util.function.DoublePredicate;
@@ -23,7 +36,7 @@ import util.TimeDuration;
  */
 public abstract class Condition implements ICondition {
 
-    IProfile myProfile = new Profile();
+    private IProfile myProfile = new Profile();
 
     /**
      * By default, do nothing in response
