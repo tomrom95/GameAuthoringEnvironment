@@ -1,11 +1,3 @@
-// This entire file is part of my masterpiece.
-// Jeremy Schreck
-/*
- * 
- * 
- * 
- * 
- */
 package gameauthoring.creation.forms;
 
 import java.util.List;
