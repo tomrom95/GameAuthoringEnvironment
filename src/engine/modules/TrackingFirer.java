@@ -1,17 +1,10 @@
 package engine.modules;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import engine.Attribute;
-import engine.AttributeType;
-import engine.IAttribute;
 import engine.IGame;
 import engine.Positionable;
 import engine.definitions.concrete.SpriteDefinition;
-import engine.effects.IEffect;
-import engine.interactionevents.KeyIOEvent;
-import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import engine.sprite.SpriteType;
 import util.Coordinate;

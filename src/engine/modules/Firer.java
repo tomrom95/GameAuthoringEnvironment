@@ -1,9 +1,7 @@
 package engine.modules;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import engine.Attribute;
@@ -12,9 +10,6 @@ import engine.IAttribute;
 import engine.IGame;
 import engine.Positionable;
 import engine.effects.DefaultAffectable;
-import engine.effects.IEffect;
-import engine.interactionevents.KeyIOEvent;
-import engine.interactionevents.MouseIOEvent;
 import engine.sprite.ISprite;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
