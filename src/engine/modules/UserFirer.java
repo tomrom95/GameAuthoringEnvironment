@@ -89,9 +89,4 @@ public class UserFirer extends DirectionalFirer {
         super.fire();
     }
 
-    @Override
-    protected List<IAttribute> getSpecificAttributes () {
-        return new ArrayList<>();
-    }
-
 }

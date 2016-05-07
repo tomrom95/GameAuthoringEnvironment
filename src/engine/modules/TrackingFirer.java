@@ -29,7 +29,6 @@ public class TrackingFirer extends Firer {
 
     private List<SpriteType> myTargets;
     private SpriteDefinition myProjectile;
-    private IAttribute myWaitTime;
     private Positionable mySprite;
     private TimeDuration myTimeSinceFire;
 
@@ -40,7 +39,7 @@ public class TrackingFirer extends Firer {
                           Positionable sprite) {
         super(game, sprite);
         myTargets = targets;
-        myWaitTime = new Attribute(waitTime, AttributeType.FIRE_RATE);
+        setMyWaitTime(waitTime);
         mySprite = sprite;
         myProjectile = projectile;
         myTimeSinceFire = new TimeDuration(0);
@@ -59,7 +58,7 @@ public class TrackingFirer extends Firer {
             return;
         }
         myTimeSinceFire.increase(duration);
-        if (myTimeSinceFire.getSeconds() >= myWaitTime.getValueProperty().get()) {
+        if (myTimeSinceFire.getSeconds() >= getMyWaitTime().getValueProperty().get()) {
             ISprite bullet = myProjectile.create();
             bullet.setLocation(new Coordinate(mySprite.getLocation().getX(),
                                               mySprite.getLocation().getY()));
@@ -84,27 +83,6 @@ public class TrackingFirer extends Firer {
         return getGame().getLevelManager().getCurrentLevel().getSprites().stream()
                 .filter(sprite -> myTargets.contains(sprite.getType()))
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public void applyEffect (IEffect effect) {
-        // TODO move to firer? and should probably apply to waitTime also
-        getAmmo().applyEffect(effect);
-    }
-
-    @Override
-    public void registerKeyEvent (KeyIOEvent keyEvent) {
-    }
-
-    @Override
-    public void registerMouseEvent (MouseIOEvent mouseEvent) {
-    }
-
-    @Override
-    protected List<IAttribute> getSpecificAttributes () {
-        List<IAttribute> toAdd = new ArrayList<>();
-        toAdd.add(myWaitTime);
-        return toAdd;
     }
 
 }

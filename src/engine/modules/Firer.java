@@ -29,7 +29,7 @@ import util.TimeDuration;
 public abstract class Firer extends DefaultAffectable implements IFireModule {
 
     private IAttribute myAmmo;
-    private boolean ranged;
+    private boolean myRanged;
     private IGame myGame;
     private IAttribute myRange;
     private IAttribute myWaitTime;
@@ -46,10 +46,10 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
         myParent = parent;
         myAmmo = new Attribute(AttributeType.AMMO);
         myRange = new Attribute(AttributeType.FIRE_RANGE);
-        ranged = false;
+        myRanged = false;
         myFiredSprites = new ArrayList<ISprite>();
         myTracker = new EnemyTracker();
-        myWaitTime = (new Attribute(AttributeType.FIRE_RATE));
+        myWaitTime = new Attribute(AttributeType.FIRE_RATE);
         myGame = game;
     }
 
@@ -63,7 +63,7 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
     private List<ISprite> getSpritesBeyondRange () {
 
         return myFiredSprites.stream().filter(isOutOfRange())
-                .collect(Collectors.<ISprite> toList());
+                .collect(Collectors.<ISprite>toList());
     }
 
     @Override
@@ -71,17 +71,15 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
         ObservableList<IAttribute> attributes = FXCollections.observableArrayList();
         attributes.add(myAmmo);
         attributes.add(myRange);
-        attributes.addAll(getSpecificAttributes());
+        attributes.add(myWaitTime);
         return attributes;
 
     }
 
-    protected abstract List<IAttribute> getSpecificAttributes ();
-
     @Override
     public void update (TimeDuration duration) {
 
-        if (ranged) {
+        if (myRanged) {
             removeSpritesBeyondRange();
         }
     }
@@ -95,11 +93,11 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
     }
 
     public boolean getRanged () {
-        return ranged;
+        return myRanged;
     }
 
     public void setRanged (boolean isRanged) {
-        ranged = isRanged;
+        myRanged = isRanged;
     }
 
     public IAttribute getRange () {
@@ -130,8 +128,8 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
         return myWaitTime;
     }
 
-    public void setMyWaitTime (double myWaitTime) {
-        this.myWaitTime.setValue(myWaitTime);
+    public void setMyWaitTime (double waittime) {
+        this.myWaitTime.setValue(waittime);
     }
 
 }

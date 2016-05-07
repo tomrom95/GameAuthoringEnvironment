@@ -76,12 +76,6 @@ public class DirectionalFirer extends Firer {
         super.update(t);
     }
 
-    @Override
-    protected List<IAttribute> getSpecificAttributes () {
-        List<IAttribute> toAdd = new ArrayList<>();
-        return toAdd;
-    }
-
     protected SpriteDefinition getDefinition () {
         return myProjectile;
     }
