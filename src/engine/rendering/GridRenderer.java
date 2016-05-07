@@ -1,6 +1,14 @@
 // This entire file is part of my masterpiece.
 // Jin An
 /**
+ * My masterpiece is comprised of GridRenderer, Tile, Shape, ShapeFactory, and Rectangle classes. I
+ * chose these classes because they show off strong understanding of many materials that we learned
+ * throughout the semester including interface, inheritance hierarchy of Shape, composition
+ * relationship that Tile has to Shape, reflection to instantiate class object by its name, and
+ * Factory Design Pattern. Moreover, I have extracted methods, renamed variables and methods, and
+ * deleted duplicated codes to show off the basic fundamentals of what a good design is. The more
+ * details will be covered in each relevant classes.
+ * 
  * Its functionalities involve calculating the tile array size when the background image changes and
  * dynamically redrawing the appropriately scaled grid lines when the size of the window changes.
  * Furthermore, when grid lines are initialized, it reads data from BitMap (a 2D boolean array which
@@ -63,10 +71,10 @@ public class GridRenderer implements IRenderer {
 
     private GridPane myPane;
     private ILevel myLevel;
-    private Tile[][] myBlocks;
     private ScaleRatio myScale;
     private int myDefaultBlockSize;
     private int myNumBlockRow;
+    private String myTileShape;
     private int myNumBlockCol;
     private double myCurrentBlockSize;
     private static final boolean PLACEABLE = false;
@@ -74,11 +82,12 @@ public class GridRenderer implements IRenderer {
     private ResourceBundle myResources = ResourceBundle
             .getBundle("defaults/blocksize_gridrenderer");
 
-    public GridRenderer (ILevel level, GridPane pane, ScaleRatio scale) {
+    public GridRenderer (ILevel level, GridPane pane, ScaleRatio scale, String shape) {
         myDefaultBlockSize = Integer.parseInt(myResources.getString("BlockSize"));
         myPane = pane;
         myLevel = level;
         myScale = scale;
+        myTileShape = shape;
     }
 
     @Override
@@ -90,7 +99,6 @@ public class GridRenderer implements IRenderer {
     public void calculateTileArraySize () {
         myNumBlockRow = (int) (myLevel.getBounds().getHeight() / myDefaultBlockSize);
         myNumBlockCol = (int) (myLevel.getBounds().getWidth() / myDefaultBlockSize);
-        myBlocks = new Tile[myNumBlockRow][myNumBlockCol];
     }
 
     public void initializeGridLines () {
@@ -98,27 +106,27 @@ public class GridRenderer implements IRenderer {
         myCurrentBlockSize = myScale.scale(myDefaultBlockSize);
         for (int row = 0; row < myNumBlockRow; row++) {
             for (int column = 0; column < myNumBlockCol; column++) {
-                Tile tile = new Tile(myCurrentBlockSize, row, column);
+                Tile tile = new Tile(myCurrentBlockSize, row, column, myTileShape);
                 checkBitMapToPopulateTile(tile, row, column);
-                tile.getRect().setOnMouseClicked(e -> handleMouseClick(tile));
-                myBlocks[row][column] = tile;
-                myPane.add(tile.getRect(), column, row);
+                tile.getTileObject().setOnMouseClicked(e -> handleMouseClick(tile));
+                myPane.add(tile.getTileObject(), column, row);
             }
         }
     }
 
     private void handleMouseClick (Tile tile) {
-        tile.changeColor();
+        tile.getShapeObject().changeColor();
         myLevel.getPlaceableTileManager().setBitMap(tile.getRowPosition(),
                                                     tile.getColPosition(),
-                                                    tile.isRed() ? NOT_PLACEABLE : PLACEABLE);
+                                                    tile.getShapeObject().isRed() ? NOT_PLACEABLE
+                                                                                 : PLACEABLE);
     }
 
     private void checkBitMapToPopulateTile (Tile tile, int row, int column) {
         if (myLevel.getPlaceableTileManager().checkBitMap(row, column))
-            tile.setRed();
+            tile.getShapeObject().setRed();
         else
-            tile.setTransparent();
+            tile.getShapeObject().setTransparent();
     }
 
     public int getNumBlockRow () {

@@ -24,7 +24,7 @@ public class AuthoringRenderer extends LevelRenderer {
         super(pane, scale);
         myLevel = level;
         mySpriteNodeMap = new HashMap<>();
-        myTileView = new GridRenderer(level, gridPane, scale);
+        myTileView = new GridRenderer(level, gridPane, scale, "Rectangle");
     }
 
     @Override
