@@ -34,14 +34,7 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
     private IAttribute myRange;
     private Positionable myParent;
     private List<ISprite> myFiredSprites;
-    private Map<ISprite, TimeDuration> myFiredTimeMap;
     private EnemyTracker myTracker;
-
-    // private static Predicate<ISprite> isOutOfRange(Map<ISprite, TimeDuration> timeMap, IAttribute
-    // range){
-    // return p -> (p.getMovementStrategy().getSpeed() * timeMap.get(p).getSeconds()) >=
-    // range.getValueProperty().get();
-    // }
 
     private Predicate<ISprite> isOutOfRange () {
         return p -> myTracker.calculateDistance(myParent.getLocation(), p.getLocation()) >= myRange
@@ -54,26 +47,8 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
         myRange = new Attribute(AttributeType.FIRE_RANGE);
         ranged = false;
         myFiredSprites = new ArrayList<ISprite>();
-        myFiredTimeMap = new HashMap<ISprite, TimeDuration>();
         myTracker = new EnemyTracker();
         myGame = game;
-    }
-
-    @Override
-    public void applyEffect (IEffect effect) {
-
-    }
-
-    protected void addToTimeMap (ISprite s) {
-        myFiredTimeMap.put(s, new TimeDuration(0));
-    }
-
-    protected void updateTimeMap (TimeDuration time) {
-        for (ISprite s : myFiredTimeMap.keySet()) {
-            TimeDuration newTime = myFiredTimeMap.get(s);
-            newTime.increase(time);
-            myFiredTimeMap.put(s, newTime);
-        }
     }
 
     private void removeSpritesBeyondRange () {
@@ -85,20 +60,8 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
 
     private List<ISprite> getSpritesBeyondRange () {
 
-        // return myFiredSprites.stream().filter(isOutOfRange(myFiredTimeMap,
-        // myRange)).collect(Collectors.<ISprite>toList());
         return myFiredSprites.stream().filter(isOutOfRange())
                 .collect(Collectors.<ISprite> toList());
-    }
-
-    @Override
-    public void registerKeyEvent (KeyIOEvent keyEvent) {
-
-    }
-
-    @Override
-    public void registerMouseEvent (MouseIOEvent mouseEvent) {
-
     }
 
     @Override
@@ -147,10 +110,6 @@ public abstract class Firer extends DefaultAffectable implements IFireModule {
 
     protected List<ISprite> getFiredSprites () {
         return myFiredSprites;
-    }
-
-    protected Map<ISprite, TimeDuration> getFiredMap () {
-        return myFiredTimeMap;
     }
 
     protected EnemyTracker getTracker () {
