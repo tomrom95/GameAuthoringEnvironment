@@ -1,3 +1,24 @@
+// This entire file is part of my masterpiece.
+// Dhrumil Patel
+
+/*
+ * The purpose of this class is to create tab viewer objects requested by the program and provide
+ * its associated properties
+ * to render a working tab viewer. The tab viewer is responsible to rendering its defined tab that
+ * holds the UI elements responsible
+ * for activating the elements responsible for the user to interact with and create meaningful
+ * sprites, events, and other objects.
+ * 
+ * This factory demonstrates my strong grasp of the factory design pattern, use of reflections,
+ * resource files, advanced Java, interfaces, generics, an internal util class, and lambda
+ * expressions.
+ * Each one of the categories is used to serve its respective purpose and works in tandem
+ * with the rest of the class and corresponding hierarchy to provide the
+ * aforementioned functionality.
+ * 
+ * 
+ * 
+ */
 package gameauthoring.creation.factories;
 
 import java.util.ArrayList;
@@ -15,21 +36,24 @@ import util.BundleOperations;
 
 /**
  * Creating a factory to generate the tab views required for the
- * authoring environment
- *
+ * authoring environment based on specified queries by the user
+ * 
  * @author Dhrumil
  *
+ * @param <T> Tab view that represents the GUI components of a tab
  */
 public class TabViewFactory<T extends ITabViewer> {
 
     private static final String IMAGES = "defaults/create_tab_images";
     private static final String TAB_NAMES = "languages/labels";
     private static final String TAB_VIEWER_NAMES = "defaults/create_tabviewers";
+    private static final String ERRORS = "defaults/tab_errors";
 
     private IGame myGame;
     private ResourceBundle myImages;
     private ResourceBundle myTabs;
     private ResourceBundle myTabViewers;
+    private ResourceBundle myErrors;
     private BasicUIFactory myUIFactory;
     private Map<String, ITabViewer> myTabViewerMap;
 
@@ -41,12 +65,13 @@ public class TabViewFactory<T extends ITabViewer> {
                         .getBundle(TAB_NAMES,
                                    LocaleManager.getInstance().getCurrentLocaleProperty().get());
         myTabViewers = ResourceBundle.getBundle(TAB_VIEWER_NAMES);
+        myErrors = ResourceBundle.getBundle(ERRORS);
         myUIFactory = new BasicUIFactory();
         myTabViewerMap = new HashMap<>();
     }
 
     /**
-     * Reflectively generates the appropriate tab viewers
+     * Reflectively generates the appropriate tab viewers based on the associated resource file
      *
      * @return list of tab viewers
      */
@@ -63,16 +88,18 @@ public class TabViewFactory<T extends ITabViewer> {
                         (ITabViewer) Reflection.createInstance(myTabViewers.getString(tabName),
                                                                myGame);
             }
-            catch (ReflectionException e) {
+            catch (ReflectionException reflectionError) {
                 String message =
-                        String.format("Reflection exception in TabViewFactory when creating tab %s from key %s: \n%s",
-                                      myTabViewers.getString(tabName), tabName, e.getMessage());
+                        String.format(myErrors.getString("REFLECTION_EXCEPTION"),
+                                      myTabViewers.getString(tabName), tabName,
+                                      reflectionError.getMessage());
                 throw new ReflectionException(message);
             }
-            catch (ClassCastException e) {
+            catch (ClassCastException classError) {
                 String message =
-                        String.format("Class cast exception in TabViewFactory when creating tab %s from key %s: \n%s",
-                                      myTabViewers.getString(tabName), tabName, e.getMessage());
+                        String.format(myErrors.getString("CLASS_CAST_EXCEPTION"),
+                                      myTabViewers.getString(tabName), tabName,
+                                      classError.getMessage());
                 throw new ClassCastException(message);
 
             }
@@ -85,7 +112,7 @@ public class TabViewFactory<T extends ITabViewer> {
     }
 
     /**
-     * Generates tabs with its associated view and resources
+     * Generates tabs with its associated view and resources based on resource files
      *
      * @return list of available tabs to render
      */
@@ -101,6 +128,11 @@ public class TabViewFactory<T extends ITabViewer> {
         return tabList;
     }
 
+    /**
+     * Uses the util BundleOperations to convert a resource file into a list of key headers
+     * 
+     * @return list of key names
+     */
     private List<String> getTabViewerNames () {
         List<String> tabViewerNames =
                 BundleOperations.getPropertyValueAsList("Order", myTabViewers);

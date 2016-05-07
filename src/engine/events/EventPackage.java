@@ -7,9 +7,9 @@ import engine.effects.IEffect;
 
 
 /**
- * TODO Need to alter the definition classes to use this class instead
- *
- * @author jonathanim
+ * This class provides the framework to store information about sprite groups, 
+ * effects, and events that are responsible for handling the logic of interactions 
+ * that exist in the game. 
  *
  */
 public class EventPackage implements IEventPackage {
