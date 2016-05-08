@@ -85,9 +85,9 @@ public abstract class LevelRenderer<T extends Drawable> implements IRenderer {
     private static final double HALF = .5;
 
     /**
-     * A Map of Drawable to Node is used for performance reasons
+     * This map serves as a way of caching rendering.
      * Recreating a new Node each time, rather than just moving those already rendered is too
-     * expensive
+     * expensive.  Thus, to render this hash-map is altered rather than recreating the whole screen
      */
     private Map<T, Node> myNodeMap = new HashMap<>();
     private Pane myPane;
@@ -131,12 +131,24 @@ public abstract class LevelRenderer<T extends Drawable> implements IRenderer {
         removeScreenNodesNotInEngine(currentEngineNodes);
     }
 
+    /**
+     * The current Nodes as represented by the current state of the game
+     * @return List of Nodes that should be displayed on next render
+     */
     protected List<Node> getCurrentNodeList () {
         return getList().stream()
                 .map(drawable -> updateMap(drawable))
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Searches for the Drawable drawable in the Node map
+     * If the Node is cached it is relocated and scaled and returned
+     * Else it is added to the Map and returned 
+     * 
+     * @param Drawable drawable
+     * @return Node corresponding to the Drawable drawable
+     */
     private Node updateMap (T drawable) {
         if (getNodeMap().containsKey(drawable)) {
             relocateAndScale(drawable, getNodeMap().get(drawable));
@@ -167,6 +179,10 @@ public abstract class LevelRenderer<T extends Drawable> implements IRenderer {
         }
     }
 
+    /**
+     * @param Drawable T
+     * @return Node representation of the Drawable 
+     */
     protected abstract Node getNode (T drawable);
 
     protected abstract Collection<? extends T> getList ();
@@ -180,7 +196,12 @@ public abstract class LevelRenderer<T extends Drawable> implements IRenderer {
     private Collection<Node> getCurrentDrawnNodes () {
         return getPane().getChildren();
     }
-
+    
+    /**
+     * Finds the keys that map to this node
+     * @param node - value of map for which the keys are desired
+     * @return List of keys 
+     */
     private List<T> getKeysForNode (Node node) {
         // == is desired (want by address)
         return getNodeMap().keySet().stream()
@@ -222,7 +243,7 @@ public abstract class LevelRenderer<T extends Drawable> implements IRenderer {
     }
 
     protected abstract double boundHeight ();
-
+    
     protected abstract double boundWidth ();
 
     private Map<T, Node> getNodeMap () {
